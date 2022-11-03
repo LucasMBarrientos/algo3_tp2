@@ -10,6 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Ian Anca** - [integrante2](https://github.com/IA104)
 * **Leticia Aab** - [integrante3](https://github.com/LetiAab)
 * **Lucas Barrientos** - [integrante4](https://github.com/LucasMBarrientos)
+* **Ezequiel Fernández** - [integrante5](https://github.com/Ezequiel2024)
 
 Corrector: **{Corrector}**
 
