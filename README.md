@@ -6,7 +6,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo 6
 
-* **Agustín Murseli** - [integrante1](https://github.com/amurseli)
+* **Agustín Murseli (107752)** - [amurseli](https://github.com/amurseli)
 * **Ian Anca (108924)** - [integrante2](https://github.com/IA104)
 * **Leticia Aab (106053)** - [integrante3](https://github.com/LetiAab)
 * **Lucas Barrientos** - [integrante4](https://github.com/LucasMBarrientos)
