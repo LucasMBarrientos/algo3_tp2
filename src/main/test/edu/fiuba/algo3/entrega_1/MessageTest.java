@@ -9,7 +9,7 @@ public class MessageTest {
     public void messageGreeting() {
         Message message = new Message("Hola Mundo!", "Hello world!");
 
-        assertEquals("Hello mundo!", message.greet("us"));
+        assertEquals("Hello world!", message.greet("us"));
     }
 
     @Test
