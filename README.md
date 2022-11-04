@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Agustín Murseli (107752)** - [amurseli](https://github.com/amurseli)
 * **Ian Anca (108924)** - [integrante2](https://github.com/IA104)
 * **Leticia Aab (106053)** - [integrante3](https://github.com/LetiAab)
-* **Lucas Barrientos** - [integrante4](https://github.com/LucasMBarrientos)
+* **Lucas Barrientos (104296)** - [integrante4](https://github.com/LucasMBarrientos)
 * **Ezequiel Fernández (107186)** - [integrante5](https://github.com/Ezequiel2024)
 
 Corrector: **Pablo Rodríguez Massuh**
