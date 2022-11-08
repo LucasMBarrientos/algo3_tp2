@@ -10,8 +10,8 @@ public class CasoDeUso1 {
     public void criaderoSeGeneraCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        Assertions.assertTrue(algoStar.seleccionarCasilla(0,0).devolverOcupante() == null);
         Ocupante ocupanteDeLaCasilla = algoStar.seleccionarCasilla(1,1).devolverOcupante();
+
         Assertions.assertTrue(ocupanteDeLaCasilla instanceof Criadero);
     }
 
