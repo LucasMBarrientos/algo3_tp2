@@ -28,15 +28,34 @@ public class CasoDeUso1 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
-        int cantidadDeLarvas = algoStar.seleccionarCasilla((Criadero)algoStar.seleccionarCasilla(1,1)).devolverCantidadDeLarvas();
+        int cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
         Assertions.assertTrue(cantidadDeLarvas == 2);
         algoStar.pasarTurno();
-        cantidadDeLarvas = algoStar.seleccionarCasilla((Criadero)algoStar.seleccionarCasilla(1,1)).devolverCantidadDeLarvas();
+        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
         Assertions.assertTrue(cantidadDeLarvas == 3);
     }
 
     @Test
-    public void criaderoRegeneraLarvasCorrectamente1() {
+    public void criaderoRegeneraLarvasCorrectamente() {
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        int cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 0);
+        algoStar.pasarTurno();
+        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 1);
+        algoStar.pasarTurno();
+        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 2);
+        algoStar.pasarTurno();
+        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 3);
+        algoStar.pasarTurno();
+        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 3);
 
     }
 

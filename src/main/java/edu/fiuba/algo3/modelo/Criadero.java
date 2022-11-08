@@ -24,8 +24,5 @@ public class Criadero extends Edificio implements GeneraUnidades {
             casilla.establecerOcupante(new Zangano());
         }
     }
-
-    public int larvasDisponibles() {
-        return larvas;
-    }
+    
 }
