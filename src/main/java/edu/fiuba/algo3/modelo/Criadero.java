@@ -1,17 +1,21 @@
 package edu.fiuba.algo3.modelo;
 
-public class Criadero extends Edificio {
+public class Criadero extends Edificio implements generadorUnidades{
 
-    private int larvas;
+    private int larvas = 3;
 
 
 
-    Criadero(Casilla ubicacion){
+    public Criadero(){
 
     }
 
-    public Zangano generarZangano(){
+    public int getLarvas(){
+        return larvas;
+    }
+
+    public void generarUnidad(Casilla c){
         larvas = larvas - 1;
-        return new Zangano(ubicacion.desplazarUno());
+        c.ocupar(new Zangano());
     }
 }

@@ -3,20 +3,19 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JugadorZerg {
+public class JugadorZerg extends Jugador {
 
     private List<Zangano> zanganosDisponibles;
-    private List<Edificio> edificios = new ArrayList<Edificio>();
+    private List<Criadero> criaderos = new ArrayList<Criadero>();
 
-    public void construirCriadero(Casilla dondeConstruir){
-        edificios.add(new Criadero(dondeConstruir));
+    public JugadorZerg(Mapa mapa){
+        this.mapa = mapa;
     }
 
-    public void generarZangano(Casilla ubicacionCriadero){
-        for (int i = 0; i < edificios.size(); i++){
-            if(edificios.get(i).esLaMismaCasilla(ubicacionCriadero)){
-                //edificios.get(i).generarZangano()
-            }
-        }
+    public void construirCriadero(Casilla dondeConstruir){
+    }
+
+    public void generarUnidad(Casilla ubicacionGenerador){
+        ( ubicacionGenerador.devolverOcupante()).generarUnidad(mapa.obtenerAdyacenteDisponible(ubicacionGenerador));
     }
 }
