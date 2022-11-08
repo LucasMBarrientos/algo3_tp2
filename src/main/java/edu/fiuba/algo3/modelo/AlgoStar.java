@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AlgoStar {
 
-    public List<Jugador> jugadores;
+    public List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
 
     private int turnoActual;

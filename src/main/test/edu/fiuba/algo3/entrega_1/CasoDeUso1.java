@@ -19,8 +19,11 @@ public class CasoDeUso1 {
     public void zanganoSeGeneraCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
+
         algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+
         Ocupante ocupanteDeLaCasilla = algoStar.seleccionarCasilla(1,1).devolverOcupante();
+
         Assertions.assertTrue(ocupanteDeLaCasilla instanceof Zangano);
     }
 
