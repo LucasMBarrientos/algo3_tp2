@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Zangano extends Unidad implements Ocupante {
+public class Zangano extends Unidad {
 
     Construccion construccion;
 

@@ -9,7 +9,9 @@ public class JugadorZerg extends Jugador {
     private List<Criadero> criaderos = new ArrayList<Criadero>();
 
     public JugadorZerg(Mapa mapa) {
-        mapa.buscarCasilla(1,1).establecerOcupante(new Criadero());
+        Criadero criaderoInicial = new Criadero();
+        mapa.buscarCasilla(1,1).establecerOcupante(criaderoInicial);
+        criaderos.add(criaderoInicial);
         this.establecerMapa(mapa);
     }
 

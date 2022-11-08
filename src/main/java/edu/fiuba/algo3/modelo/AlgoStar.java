@@ -32,6 +32,7 @@ public class AlgoStar {
         turnoActual++;
         if (turnoActual % jugadores.size() == 0) {
             idJugadorActual = 0;
+            rondaActual++;
         }
         mapa.actualizar();
     }
