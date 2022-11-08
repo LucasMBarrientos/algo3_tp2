@@ -4,26 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mapa {
+
     private List<Casilla> casillas = new ArrayList<Casilla>();
-    public Mapa(){
-        for (int i = 0; i< 10; i++){
-            for (int j = 0; j< 10; j++){
-                casillas.add(new Casilla(i,j));
+
+    public Mapa(int dimensionX, int dimensionY) {
+        for (int x = 0; x < dimensionX; x++){
+            for (int y = 0; y < dimensionY; y++){
+                this.casillas.add(new Casilla(x,y));
             }
         }
     }
-
-    public Casilla esLaMismaCasilla(Casilla c){
-        for(Casilla casilla : casillas) {
-           if(casilla.devolverCasilla(c)){
+/*
+    public Casilla esLaMismaCasilla(Casilla casilla){
+        for(Casilla casilla : this.casillas) {
+           if(casilla.compararUbicaciones(c)){
                return casilla;
            }
         }
         return c;
     }
+    */
+    public Casilla buscarCasilla(int x, int y) {
+        Casilla casillaBuscada = new Casilla(x,y);
+        for(Casilla casilla : this.casillas) {
+           if(casilla.compararUbicaciones(casillaBuscada)){
+               return casilla;
+           }
+        }
+        return casillaBuscada;
+    }
 
     public boolean compararUbicaciones(Casilla c1, Casilla c2){
-        return c1.devolverCasilla(c2);
+        return c1.compararUbicaciones(c2);
     }
 
     public Casilla obtenerAdyacenteDisponible(Casilla c){

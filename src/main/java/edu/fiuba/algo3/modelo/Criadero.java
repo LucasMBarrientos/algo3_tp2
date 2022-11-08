@@ -4,11 +4,10 @@ public class Criadero extends Edificio implements generadorUnidades{
 
     private int larvas = 3;
 
-
-
-    public Criadero(){
+    public Criadero() {
 
     }
+
     public void actualizar(){
         if(larvas < 3){
             larvas = larvas + 1;
@@ -22,7 +21,7 @@ public class Criadero extends Edificio implements generadorUnidades{
     public void generarUnidad(Casilla c){
         if(larvas > 0){
             larvas = larvas - 1;
-            c.ocupar(new Zangano());
+            c.establecerOcupante(new Zangano());
         }
     }
 

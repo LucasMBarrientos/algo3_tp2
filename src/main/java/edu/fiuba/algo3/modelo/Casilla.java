@@ -3,39 +3,47 @@ package edu.fiuba.algo3.modelo;
 public class Casilla {
 
     private int x,y;
-    public Ocupante unidadActual;
+    public Ocupante ocupante;
 
-
-    public Casilla(int x, int y){
+    public Casilla(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Casilla(int x, int y,Ocupante o){
+    public Casilla(int x, int y, Ocupante ocupante) {
         this.x = x;
         this.y = y;
-        this.unidadActual = o;
+        this.ocupante = ocupante;
     }
 
-    public Casilla desplazarUno(){
-        return new Casilla(x +1, y);
+    public int devolverX() {
+        return this.x;
     }
 
-    public void ocupar(Ocupante o){
-        unidadActual = o;
+    public int devolverY() {
+        return this.y;
+    }
+    
+    public Ocupante devolverOcupante() {
+        return this.ocupante;
     }
 
-    public Ocupante devolverOcupante(){
-        return unidadActual;
+    /*
+    public Casilla obtenerCasillaRelativa(int distanciaX, int distanciaY){
+        return new Casilla(this.x + distanciaX, this.y + distanciaY);
+    }
+    */
+
+    public void establecerOcupante(Ocupante ocupante) {
+        this.ocupante = ocupante;
     }
 
-    public boolean ocupada(){
-        return unidadActual != null;
+
+    public boolean ocupada() {
+        return (this.ocupante != null);
     }
 
-    public boolean devolverCasilla(Object c){
-        Casilla e = (Casilla)c;
-        return this.x == e.x && this.y == e.y;
+    public boolean compararUbicaciones(Casilla casillaComparada) {
+        return (this.x == casillaComparada.devolverX() && this.y == casillaComparada.devolverY());
     }
-
 }
