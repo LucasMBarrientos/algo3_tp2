@@ -8,6 +8,8 @@ public class AlgoStar {
     public List<Jugador> jugadores = new ArrayList<Jugador>();
     private Jugador jugadorActual ;
 
+    private int turno = 0;
+
     private Mapa mapa;
 
 
@@ -16,9 +18,20 @@ public class AlgoStar {
         mapa = new Mapa();
         jugadores.add(new JugadorZerg(mapa));
         jugadores.add(new JugadorProtoss());
-        jugadorActual = jugadores.get(0);
+        jugadorActual = jugadores.get(turno);
         devolverCasilla(1,2).ocupar(new Criadero());
 
+    }
+
+    public void pasarTurno(){
+        if(turno == 1){
+            jugadorActual = jugadores.get(0);
+        }
+        else{
+
+            jugadorActual = jugadores.get(1);
+        }
+        mapa.actualizar();
     }
 
     public Casilla devolverCasilla(int x, int y){

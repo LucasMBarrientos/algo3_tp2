@@ -29,6 +29,10 @@ public class Casilla {
         return unidadActual;
     }
 
+    public boolean ocupada(){
+        return unidadActual != null;
+    }
+
     public boolean devolverCasilla(Object c){
         Casilla e = (Casilla)c;
         return this.x == e.x && this.y == e.y;

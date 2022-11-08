@@ -27,9 +27,14 @@ public class CasoDeUso1 {
 
     }
 
-    @Test
-    public void criaderoRegeneraLarvasCorrectamente(){
 
+    @Test
+    public void sePasaUnTurnoYSeAgregaUnaLarva(){
+        AlgoStar a = new AlgoStar();
+        a.empezarJuego();
+        a.generarUnidad(a.devolverCasilla(1,1));
+        a.pasarTurno();
+        //a.seleccionarCasillero(a.devolverCasilla(1,1)).larvasDisponibles();
 
 
     }

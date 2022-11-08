@@ -34,4 +34,12 @@ public class Mapa {
         }
         return c;
     }
+
+    public void actualizar(){
+        for (Casilla c : casillas){
+            if(c.ocupada()){
+                c.devolverOcupante().actualizar();
+            }
+        }
+    }
 }
