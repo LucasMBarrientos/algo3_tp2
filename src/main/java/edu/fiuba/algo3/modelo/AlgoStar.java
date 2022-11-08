@@ -50,5 +50,4 @@ public class AlgoStar {
         //jugador.construirCriadero
     }
 
-
 }

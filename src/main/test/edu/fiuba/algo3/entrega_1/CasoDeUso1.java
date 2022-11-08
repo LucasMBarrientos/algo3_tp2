@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso1 {
 
     @Test
-    public void criaderoSeGeneraCorrectamente(){
+    public void criaderoSeGeneraCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         Ocupante ocupanteDelCasilla = algoStar.seleccionarCasilla(1,2).devolverOcupante();
@@ -15,7 +15,7 @@ public class CasoDeUso1 {
     }
 
     @Test
-    public void zanganoSeGeneraCorrectamente(){
+    public void zanganoSeGeneraCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(algoStar.seleccionarCasilla(1,2));
@@ -24,7 +24,7 @@ public class CasoDeUso1 {
     }
 
     @Test
-    public void sePasaUnTurnoYSeAgregaUnaLarva(){
+    public void sePasaUnTurnoYSeAgregaUnaLarva() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
@@ -33,7 +33,7 @@ public class CasoDeUso1 {
     }
 
     @Test
-    public void criaderoRegeneraLarvasCorrectamente1(){
+    public void criaderoRegeneraLarvasCorrectamente1() {
 
     }
 
