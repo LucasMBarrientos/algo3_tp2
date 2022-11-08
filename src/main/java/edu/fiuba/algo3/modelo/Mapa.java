@@ -29,11 +29,7 @@ public class Mapa {
         return casillaBuscada;
     }
 
-    public boolean compararUbicaciones(Casilla c1, Casilla c2){
-        return c1.compararUbicaciones(c2);
-    }
-
-    public Casilla hallarCasillaAdyacenteDesocupada(Casilla casillaCentral){
+    public Casilla hallarCasillaAdyacenteDesocupada(Casilla casillaCentral) {
         int x = casillaCentral.devolverX() - 1;
         int y = casillaCentral.devolverY() - 1;
         Casilla casillaPosible;
@@ -56,10 +52,10 @@ public class Mapa {
         return null;
     }
 
-    public void actualizar(){
-        for (Casilla c : casillas){
-            if(c.ocupada()){
-                c.devolverOcupante().actualizar();
+    public void actualizar() {
+        for (Casilla casilla : casillas){
+            if(casilla.ocupada()){
+                casilla.devolverOcupante().actualizar();
             }
         }
     }

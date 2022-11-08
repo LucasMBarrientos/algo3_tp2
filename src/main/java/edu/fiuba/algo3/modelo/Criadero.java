@@ -5,7 +5,7 @@ public class Criadero extends Edificio implements GeneraUnidades {
     private int larvas;
 
     public Criadero() {
-        larvas = 0;
+        larvas = 3;
     }
 
     public void actualizar() {

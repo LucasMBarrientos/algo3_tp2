@@ -28,8 +28,11 @@ public class CasoDeUso1 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        int cantidadDeLarvas = algoStar.seleccionarCasilla((Criadero)algoStar.seleccionarCasilla(1,1)).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 2);
         algoStar.pasarTurno();
-        //algoStar.seleccionarCasilla((Criadero)algoStar.seleccionarCasilla(1,1)).larvasDisponibles();
+        cantidadDeLarvas = algoStar.seleccionarCasilla((Criadero)algoStar.seleccionarCasilla(1,1)).devolverCantidadDeLarvas();
+        Assertions.assertTrue(cantidadDeLarvas == 3);
     }
 
     @Test
