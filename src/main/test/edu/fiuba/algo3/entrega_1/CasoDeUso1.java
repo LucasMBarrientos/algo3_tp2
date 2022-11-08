@@ -5,42 +5,36 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso1 {
+
     @Test
     public void criaderoSeGeneraCorrectamente(){
-        AlgoStar a = new AlgoStar();
-        a.empezarJuego();
-        Ocupante o = a.seleccionarCasillero(a.devolverCasilla(1,2));
-
-        Assertions.assertTrue(o instanceof Criadero);
-
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Ocupante ocupanteDelCasilla = algoStar.seleccionarCasilla(1,2).devolverOcupante();
+        Assertions.assertTrue(ocupanteDelCasilla instanceof Criadero);
     }
-
 
     @Test
     public void zanganoSeGeneraCorrectamente(){
-        AlgoStar a = new AlgoStar();
-        a.empezarJuego();
-        a.generarUnidad(a.devolverCasilla(1,2));
-        Ocupante o = a.seleccionarCasillero(a.devolverCasilla(1,3));
-
-        Assertions.assertTrue(o instanceof Zangano);
-
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,2));
+        Ocupante ocupanteDelCasilla = algoStar.seleccionarCasilla(1,3).devolverOcupante();
+        Assertions.assertTrue(ocupanteDelCasilla instanceof Zangano);
     }
-
 
     @Test
     public void sePasaUnTurnoYSeAgregaUnaLarva(){
-        AlgoStar a = new AlgoStar();
-        a.empezarJuego();
-        a.generarUnidad(a.devolverCasilla(1,1));
-        a.pasarTurno();
-        //a.seleccionarCasillero(a.devolverCasilla(1,1)).larvasDisponibles();
-
-
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        algoStar.pasarTurno();
+        //algoStar.seleccionarCasilla(algoStar.devolverCasilla(1,1)).larvasDisponibles();
     }
 
     @Test
     public void criaderoRegeneraLarvasCorrectamente1(){
 
     }
+
 }

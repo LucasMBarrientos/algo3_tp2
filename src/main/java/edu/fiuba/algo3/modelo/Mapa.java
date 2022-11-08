@@ -14,16 +14,11 @@ public class Mapa {
             }
         }
     }
-/*
-    public Casilla esLaMismaCasilla(Casilla casilla){
-        for(Casilla casilla : this.casillas) {
-           if(casilla.compararUbicaciones(c)){
-               return casilla;
-           }
-        }
-        return c;
+    
+    public boolean validarCasillaDeUnGenerador(Casilla casilla) {
+        return (casilla instanceof GeneraUnidades);
     }
-    */
+
     public Casilla buscarCasilla(int x, int y) {
         Casilla casillaBuscada = new Casilla(x,y);
         for(Casilla casilla : this.casillas) {
