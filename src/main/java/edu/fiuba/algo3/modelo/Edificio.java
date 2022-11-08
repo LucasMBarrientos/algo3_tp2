@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 public class Edificio {
 
-    public Casilla ubicacion;
-
+    public Casilla casilla;
 
 }

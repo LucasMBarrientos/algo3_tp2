@@ -18,6 +18,6 @@ public class JugadorZerg extends Jugador {
     }
 
     public void generarUnidad(Casilla casillaDelGenerador) {
-        (casillaDelGenerador.devolverOcupante()).generarUnidad(mapa.obtenerAdyacenteDisponible(casillaDelGenerador));
+        (casillaDelGenerador.devolverOcupante()).generarUnidad(mapa.hallarCasillaAdyacenteDesocupada(casillaDelGenerador));
     }
 }

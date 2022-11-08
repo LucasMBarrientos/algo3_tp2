@@ -33,13 +33,27 @@ public class Mapa {
         return c1.compararUbicaciones(c2);
     }
 
-    public Casilla obtenerAdyacenteDisponible(Casilla c){
-        for (int i = 0; i< casillas.size(); i++){
-            if(compararUbicaciones(c,casillas.get(i))){ //resolver esto
-                return casillas.get(i+1);
+    public Casilla hallarCasillaAdyacenteDesocupada(Casilla casillaCentral){
+        int x = casillaCentral.devolverX() - 1;
+        int y = casillaCentral.devolverY() - 1;
+        Casilla casillaPosible;
+        for (int i = 0; i < 9; i++) {
+            casillaPosible = new Casilla(x,y);
+            for (Casilla casilla : casillas) {
+                if (casillaPosible.compararUbicaciones(casilla)) {
+                    // Encontre la casilla del mapa en la misma posicion que casillaPosible
+                    if (!casilla.ocupada()) {
+                        return casilla;
+                    }
+                }
+            }
+            x++;
+            if (x == casillaCentral.devolverX() + 1) {
+                x -= 2;
+                y++;
             }
         }
-        return c;
+        return null;
     }
 
     public void actualizar(){

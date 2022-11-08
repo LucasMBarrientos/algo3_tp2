@@ -29,7 +29,7 @@ public class CasoDeUso1 {
         algoStar.empezarJuego();
         algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
         algoStar.pasarTurno();
-        //algoStar.seleccionarCasilla(algoStar.devolverCasilla(1,1)).larvasDisponibles();
+        //algoStar.seleccionarCasilla((Criadero)algoStar.seleccionarCasilla(1,1)).larvasDisponibles();
     }
 
     @Test
