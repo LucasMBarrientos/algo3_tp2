@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Jugador {
+public abstract class Jugador {
 
     public Mapa mapa;
 
@@ -8,5 +8,8 @@ public class Jugador {
         this.mapa = mapa;
     }
 
-    public void generarUnidad(Casilla ubicacionCriadero){}
+    public abstract void generarUnidad(Casilla casilla);
+
+    public abstract void construirEdificio(int x, int y, Edificio edificio);
+
 }

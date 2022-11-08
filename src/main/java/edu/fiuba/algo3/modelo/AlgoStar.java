@@ -46,8 +46,8 @@ public class AlgoStar {
         }
     }
 
-    public void construirCriadero(){
-        //jugador.construirCriadero
+    public void construirEdificio(int x, int y, Edificio edificio) {
+        seleccionarJugadorActual().construirEdificio(x, y, edificio);
     }
 
 }

@@ -1,13 +1,20 @@
 package edu.fiuba.algo3.modelo;
 
-public class Zangano implements Ocupante {
+public class Zangano extends Unidad implements Ocupante {
 
-    Casilla ubicacion;
-    public Zangano(){
+    Construccion construccion;
 
+    public void actualizar() {
+        if (this.construccion != null) {
+            boolean construccionTerminada = this.construccion.continuar();
+            if (construccionTerminada) {
+                this.construccion.finalizar();
+            }
+        }
     }
-    public void generarUnidad(Casilla c){}
 
-    public void actualizar(){}
+    public void construir(Edificio edificio, Casilla casilla) {
+        this.construccion = new Construccion(edificio, casilla);
+    }
 
 }

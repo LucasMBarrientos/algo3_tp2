@@ -5,7 +5,7 @@ public class Criadero extends Edificio implements GeneraUnidades {
     private int larvas;
 
     public Criadero() {
-        larvas = 3;
+        this.larvas = 3;
     }
 
     public void actualizar() {
@@ -15,7 +15,7 @@ public class Criadero extends Edificio implements GeneraUnidades {
     }
 
     public int devolverCantidadDeLarvas() {
-        return larvas;
+        return this.larvas;
     }
 
     public void generarUnidad(Casilla casilla) {

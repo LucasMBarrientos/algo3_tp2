@@ -2,6 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 public class Edificio {
 
-    public Casilla casilla;
+    public int tiempoConstruccion;
+
+    public int devolverTiempoConstruccion() {
+        return this.tiempoConstruccion;
+    }
 
 }
