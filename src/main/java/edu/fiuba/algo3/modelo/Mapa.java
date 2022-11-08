@@ -27,7 +27,7 @@ public class Mapa {
     }
 
     public Casilla obtenerAdyacenteDisponible(Casilla c){
-        for (int i = 0; i< 10; i++){
+        for (int i = 0; i< casillas.size(); i++){
             if(compararUbicaciones(c,casillas.get(i))){ //resolver esto
                 return casillas.get(i+1);
             }
