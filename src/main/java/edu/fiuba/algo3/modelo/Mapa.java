@@ -8,21 +8,18 @@ public class Mapa {
     private List<Casilla> casillas = new ArrayList<Casilla>();
 
     public Mapa(int dimensionX, int dimensionY) {
-        for (int x = 0; x < dimensionX; x++){
-            for (int y = 0; y < dimensionY; y++){
-                this.casillas.add(new Casilla(x,y));
+        for (int x = 0; x < dimensionX; x++) {
+            for (int y = 0; y < dimensionY; y++) {                
+                this.casillas.add(new Casilla(x,y,new TerrenoVacio()));
             }
         }
-    }
-    
-    public boolean validarCasillaDeUnGenerador(Casilla casilla) {
-        return (casilla.devolverOcupante() instanceof GeneraUnidades); // ???????
+        buscarCasilla(5, 5).establecerTerreno(new Volcan());
     }
 
     public Casilla buscarCasilla(int x, int y) {
         Casilla casillaBuscada = new Casilla(x,y);
-        for(Casilla casilla : this.casillas) {
-           if(casilla.compararUbicaciones(casillaBuscada)){
+        for (Casilla casilla : this.casillas) {
+           if (casilla.compararUbicaciones(casillaBuscada)){
                return casilla;
            }
         }
@@ -54,9 +51,11 @@ public class Mapa {
     }
 
     public void actualizar() {
-        for (Casilla casilla : casillas){
-            if(casilla.ocupada()){
-                casilla.devolverOcupante().actualizar();
+        for (Casilla casilla : casillas) {
+            if (casilla.ocupada()) {
+                if (casilla.devolverOcupante() instanceof Actualizable) {
+                    ((Actualizable)casilla.devolverOcupante()).actualizar();
+                }
             }
         }
     }

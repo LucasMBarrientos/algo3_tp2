@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Criadero extends Edificio implements GeneraUnidades {
+public class Criadero extends Edificio implements GeneradorDeUnidades, Actualizable {
 
     private int larvas;
 
@@ -19,11 +19,14 @@ public class Criadero extends Edificio implements GeneraUnidades {
         return this.larvas;
     }
 
-    public void generarUnidad(Casilla casilla) {
+    public Unidad generarUnidad(Casilla casilla) {
+        Unidad unidadGenerada = null;
         if (larvas > 0) {
+            unidadGenerada = new Zangano();
             this.larvas--;
-            casilla.establecerOcupante(new Zangano());
+            casilla.establecerOcupante(unidadGenerada);
         }
+        return unidadGenerada;
     }
     
 }

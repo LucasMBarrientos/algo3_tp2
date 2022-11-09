@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Zangano extends Unidad {
+public class Zangano extends Unidad implements Actualizable, Constructor {
 
     Construccion construccion;
 
@@ -13,8 +13,8 @@ public class Zangano extends Unidad {
         }
     }
 
-    public void construir(Casilla c) {
-        this.construccion = new Construccion(new Criadero(), c);
+    public void construir(Edificio edificio, Casilla casilla) {
+        this.construccion = new Construccion(edificio, casilla);
     }
 
 }

@@ -22,7 +22,11 @@ public class AlgoStar {
         this.rondaActual = 0;
     }
 
-    public Jugador devolverJugadorActual() {
+    public void DEBUGspawnearOcupante(int x, int y, Ocupante ocupante) { // Eliminar previamente a la entrega
+        this.seleccionarCasilla(x, y).establecerOcupante(ocupante);
+    }
+
+    public Jugador hallarJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
 
@@ -40,16 +44,19 @@ public class AlgoStar {
         return mapa.buscarCasilla(x,y);
     }
 
-    public Casilla generarUnidad(Casilla casilla) {
-        Casilla c = new Casilla(0,0);
-        if (this.mapa.validarCasillaDeUnGenerador(casilla)) {
-            c = devolverJugadorActual().generarUnidad(casilla);
+    public Unidad seleccionarUnidadDisponible(int id) {
+        return hallarJugadorActual().buscarUnidadDisponible(id);
+    }
+
+    public void generarUnidad(int x, int y) {
+        if (this.mapa.buscarCasilla(x, y).devolverOcupante() instanceof GeneradorDeUnidades) {
+            Casilla casilla = this.mapa.buscarCasilla(x, y);
+            hallarJugadorActual().generarUnidad(casilla);
         }
-        return c;
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {
-        devolverJugadorActual().construirEdificio(x, y, edificio);
+        hallarJugadorActual().construirEdificio(x, y, edificio);
     }
 
 }

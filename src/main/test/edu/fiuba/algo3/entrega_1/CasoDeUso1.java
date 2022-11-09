@@ -11,7 +11,6 @@ public class CasoDeUso1 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         Ocupante ocupanteDeLaCasilla = algoStar.seleccionarCasilla(1,1).devolverOcupante();
-
         Assertions.assertTrue(ocupanteDeLaCasilla instanceof Criadero);
     }
 
@@ -19,19 +18,16 @@ public class CasoDeUso1 {
     public void zanganoSeGeneraCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-
-        Casilla casillaConZangano = algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
-
-        Ocupante ocupanteDeLaCasilla = casillaConZangano.devolverOcupante();
-
-        Assertions.assertTrue(ocupanteDeLaCasilla instanceof Zangano);
+        algoStar.generarUnidad(1,1);
+        Ocupante zanganoGenerado = algoStar.seleccionarUnidadDisponible(0);
+        Assertions.assertTrue(zanganoGenerado instanceof Zangano);
     }
 
     @Test
     public void sePasaUnTurnoYSeAgregaUnaLarva() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        algoStar.generarUnidad(1,1);
         int cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
         Assertions.assertTrue(cantidadDeLarvas == 2);
         algoStar.pasarTurno();
@@ -43,9 +39,9 @@ public class CasoDeUso1 {
     public void criaderoRegeneraLarvasCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));        
+        algoStar.generarUnidad(1,1);
+        algoStar.generarUnidad(1,1);
+        algoStar.generarUnidad(1,1);   
         int cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverOcupante()).devolverCantidadDeLarvas();
         Assertions.assertTrue(cantidadDeLarvas == 0);
         algoStar.pasarTurno();
