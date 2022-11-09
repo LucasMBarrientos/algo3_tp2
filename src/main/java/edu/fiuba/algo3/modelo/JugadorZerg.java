@@ -24,9 +24,10 @@ public class JugadorZerg extends Jugador {
         }
     };
 
-    public void generarUnidad(Casilla casillaDelGenerador) {
+    public Casilla generarUnidad(Casilla casillaDelGenerador) {
         GeneraUnidades edificioGenerador = (GeneraUnidades)casillaDelGenerador.devolverOcupante();
         Casilla casillaDisponible = mapa.hallarCasillaAdyacenteDesocupada(casillaDelGenerador);
         edificioGenerador.generarUnidad(casillaDisponible);
+        return casillaDisponible;
     }
 }

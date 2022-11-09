@@ -20,11 +20,10 @@ public class AlgoStar {
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;
-        this.jugadores = new ArrayList<Jugador>();
     }
 
     private Jugador seleccionarJugadorActual() {
-        return this.jugadores.get(idJugadorActual);
+        return jugadores.get(idJugadorActual);
     }
 
     public void pasarTurno() {
@@ -41,10 +40,12 @@ public class AlgoStar {
         return mapa.buscarCasilla(x,y);
     }
 
-    public void generarUnidad(Casilla casilla) {
+    public Casilla generarUnidad(Casilla casilla) {
+        Casilla c = new Casilla(0,0);
         if (this.mapa.validarCasillaDeUnGenerador(casilla)) {
-            seleccionarJugadorActual().generarUnidad(casilla);
+            c = seleccionarJugadorActual().generarUnidad(casilla);
         }
+        return c;
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {

@@ -20,9 +20,9 @@ public class CasoDeUso1 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
 
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
+        Casilla casillaConZangano = algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1));
 
-        Ocupante ocupanteDeLaCasilla = algoStar.seleccionarCasilla(1,1).devolverOcupante();
+        Ocupante ocupanteDeLaCasilla = casillaConZangano.devolverOcupante();
 
         Assertions.assertTrue(ocupanteDeLaCasilla instanceof Zangano);
     }

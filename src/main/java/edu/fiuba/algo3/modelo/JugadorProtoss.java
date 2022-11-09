@@ -6,8 +6,8 @@ public class JugadorProtoss extends Jugador {
         this.establecerMapa(mapa);
     }
 
-    public void generarUnidad(Casilla casilla) {
-
+    public Casilla generarUnidad(Casilla casilla) {
+        return casilla;
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {

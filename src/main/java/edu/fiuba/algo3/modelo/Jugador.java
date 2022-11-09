@@ -11,7 +11,7 @@ public abstract class Jugador {
 
 
 
-    public abstract void generarUnidad(Casilla casilla);
+    public abstract Casilla generarUnidad(Casilla casilla);
 
 
     public abstract void construirEdificio(int x, int y, Edificio edificio);

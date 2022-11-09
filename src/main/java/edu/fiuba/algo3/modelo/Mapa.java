@@ -16,7 +16,7 @@ public class Mapa {
     }
     
     public boolean validarCasillaDeUnGenerador(Casilla casilla) {
-        return (casilla instanceof GeneraUnidades);
+        return (casilla.devolverOcupante() instanceof GeneraUnidades); // ???????
     }
 
     public Casilla buscarCasilla(int x, int y) {
@@ -50,6 +50,7 @@ public class Mapa {
             }
         }
         return null;
+
     }
 
     public void actualizar() {
