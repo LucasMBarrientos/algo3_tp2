@@ -15,19 +15,11 @@ public class JugadorZerg extends Jugador {
         this.establecerMapa(mapa);
     }
 
-    public void construirEdificio(int x, int y, Edificio edificio) {
-        if (mapa.buscarCasilla(x,y).devolverOcupante() instanceof Zangano) {
-            // Si ya esta construyendo algo entonces empieza otra construccion nueva
-            Casilla ubicacionDelEdificio = mapa.buscarCasilla(x,y);
-            Zangano zanganoConstructor = (Zangano)ubicacionDelEdificio.devolverOcupante();
-          //  zanganoConstructor.construir(edificio, ubicacionDelEdificio);
-        }
-    };
-
     public Casilla generarUnidad(Casilla casillaDelGenerador) {
         GeneradorDeUnidades edificioGenerador = (GeneradorDeUnidades)casillaDelGenerador.devolverOcupante();
         Casilla casillaDisponible = mapa.hallarCasillaAdyacenteDesocupada(casillaDelGenerador);
         Unidad unidadGenerada = edificioGenerador.generarUnidad(casillaDisponible);
+        unidadGenerada.establecerCasilla(casillaDisponible);
         this.unidadesDisponibles.add(unidadGenerada);
         return casillaDisponible;
     }

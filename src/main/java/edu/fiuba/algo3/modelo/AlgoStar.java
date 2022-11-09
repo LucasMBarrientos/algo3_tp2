@@ -55,8 +55,19 @@ public class AlgoStar {
         }
     }
 
+    public void generarUnidad(Casilla casilla) {
+        if (casilla.devolverOcupante() instanceof GeneradorDeUnidades) {
+            hallarJugadorActual().generarUnidad(casilla);
+        }
+    }
+
     public void construirEdificio(int x, int y, Edificio edificio) {
         hallarJugadorActual().construirEdificio(x, y, edificio);
     }
+
+    public void construirEdificio(Unidad unidad, Edificio edificio) {
+        hallarJugadorActual().construirEdificio(unidad, edificio);
+    }
+
 
 }

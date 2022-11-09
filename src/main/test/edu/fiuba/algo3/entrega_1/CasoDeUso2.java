@@ -8,49 +8,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CasoDeUso2 {
-/*
+
     @Test
     public void criaderoSeConstruyeEnTiempoAdecuado() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1)); // Se genera una unidad en la casilla(0,0)
-        algoStar.devolverUnidadesDisponibles().get(0);
-
-
-
-
-        Casilla casillaConZangano = algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1)); // Se genera una unidad en la casilla(0,0)
-        algoStar.construirEdificio(casillaConZangano.devolverX(),casillaConZangano.devolverY(), new Criadero());
-
-
-        algoStar.seleccionarCasilla(1,1)
-
-        algoStar.construirEdificio(1, 1, new Criadero());
-
-
-        casillaConZangano.construirEdificio();
-        algoStar.pasarTurno();        
-        algoStar.pasarTurno();        
+        algoStar.generarUnidad(1,1); // Se generara una unidad en la casilla(0,0)
+        Unidad zanganoDisponible = algoStar.seleccionarUnidadDisponible(0);
+        Casilla casillaDelZangano = zanganoDisponible.devolverCasilla();
+        algoStar.construirEdificio(zanganoDisponible, new Criadero());
         algoStar.pasarTurno();
-        Assertions.assertFalse(casillaConZangano.devolverOcupante() instanceof Criadero);
         algoStar.pasarTurno();
-        Assertions.assertTrue(casillaConZangano.devolverOcupante() instanceof Criadero);
+        algoStar.pasarTurno();
+        Assertions.assertFalse(casillaDelZangano.devolverOcupante() instanceof Criadero);
+        algoStar.pasarTurno();
+        Assertions.assertTrue(casillaDelZangano.devolverOcupante() instanceof Criadero);
     }
 
     @Test
     public void criaderoEstaOperativoLuegoDeConstruirse(){
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        Casilla casillaConZangano = algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1)); // Se genera una unidad en la casilla(0,0)
-        casillaConZangano.construirEdificio();
+        algoStar.generarUnidad(1,1); // Se generara una unidad en la casilla(0,0)
+        Unidad zanganoDisponible = algoStar.seleccionarUnidadDisponible(0);
+        Casilla casillaDelZangano = zanganoDisponible.devolverCasilla();
+        algoStar.construirEdificio(zanganoDisponible, new Criadero());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        Assertions.assertTrue(casillaConZangano.devolverOcupante() instanceof Criadero);
-        Casilla otraCasillaConZangano =algoStar.generarUnidad(casillaConZangano);
-        Assertions.assertTrue(otraCasillaConZangano.devolverOcupante() instanceof Zangano);
+        Assertions.assertTrue(casillaDelZangano.devolverOcupante() instanceof Criadero);
+        algoStar.generarUnidad(casillaDelZangano); // Se generara una unidad en la casilla(1,0)
+        Unidad nuevoZanganoDisponible = algoStar.seleccionarUnidadDisponible(1);
+        Assertions.assertTrue(zanganoDisponible instanceof Zangano && nuevoZanganoDisponible instanceof Zangano);
     }
+    
 
-    */
+    
 }
