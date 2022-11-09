@@ -6,6 +6,7 @@ public class Criadero extends Edificio implements GeneraUnidades {
 
     public Criadero() {
         this.larvas = 3;
+        this.tiempoConstruccion = 4;
     }
 
     public void actualizar() {

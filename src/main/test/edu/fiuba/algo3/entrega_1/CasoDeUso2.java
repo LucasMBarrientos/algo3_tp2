@@ -7,17 +7,32 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso2 {
 
     @Test
-    public void edificioTardaLoApropiadoEnConstruirse() {
+    public void criaderoSeConstruyeEnTiempoAdecuado() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1)); // Se genera una unidad en la casilla(0,0) 
-        algoStar.construirEdificio(0,0, new Criadero());
+        Casilla casillaConZangano = algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1)); // Se genera una unidad en la casilla(0,0)
+        casillaConZangano.construirEdificio();
         algoStar.pasarTurno();        
         algoStar.pasarTurno();        
         algoStar.pasarTurno();
-        Assertions.assertFalse(algoStar.seleccionarCasilla(0,0).devolverOcupante() instanceof Criadero);
+        Assertions.assertFalse(casillaConZangano.devolverOcupante() instanceof Criadero);
         algoStar.pasarTurno();
-        Assertions.assertTrue(algoStar.seleccionarCasilla(0,0).devolverOcupante() instanceof Criadero);
+        Assertions.assertTrue(casillaConZangano.devolverOcupante() instanceof Criadero);
+    }
+
+    @Test
+    public void criaderoEstaOperativoLuegoDeConstruirse(){
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Casilla casillaConZangano = algoStar.generarUnidad(algoStar.seleccionarCasilla(1,1)); // Se genera una unidad en la casilla(0,0)
+        casillaConZangano.construirEdificio();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        Assertions.assertTrue(casillaConZangano.devolverOcupante() instanceof Criadero);
+        Casilla otraCasillaConZangano =algoStar.generarUnidad(casillaConZangano);
+        Assertions.assertTrue(otraCasillaConZangano.devolverOcupante() instanceof Zangano);
     }
 
 }

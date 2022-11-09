@@ -13,8 +13,8 @@ public class Zangano extends Unidad {
         }
     }
 
-    public void construir(Edificio edificio, Casilla casilla) {
-        this.construccion = new Construccion(edificio, casilla);
+    public void construir(Casilla c) {
+        this.construccion = new Construccion(new Criadero(), c);
     }
 
 }

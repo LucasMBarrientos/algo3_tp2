@@ -38,6 +38,14 @@ public class Casilla {
         this.ocupante = ocupante;
     }
 
+    public void construirEdificio(){
+        if(devolverOcupante() instanceof Zangano){
+            ((Zangano) devolverOcupante()).construir(this);
+        }else{
+            //hacemos otra cosa
+        }
+    }
+
 
     public boolean ocupada() {
         return (this.ocupante != null);

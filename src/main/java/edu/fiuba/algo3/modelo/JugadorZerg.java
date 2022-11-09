@@ -20,7 +20,7 @@ public class JugadorZerg extends Jugador {
             // Si ya esta construyendo algo entonces empieza otra construccion nueva
             Casilla ubicacionDelEdificio = mapa.buscarCasilla(x,y);
             Zangano zanganoConstructor = (Zangano)ubicacionDelEdificio.devolverOcupante();
-            zanganoConstructor.construir(edificio, ubicacionDelEdificio);
+          //  zanganoConstructor.construir(edificio, ubicacionDelEdificio);
         }
     };
 

@@ -18,7 +18,7 @@ public class Construccion {
     }
 
     public void finalizar() {
-        this.casilla.establecerOcupante((Ocupante)this.edificio);
+        casilla.establecerOcupante((Ocupante) edificio);
     }
 
 }

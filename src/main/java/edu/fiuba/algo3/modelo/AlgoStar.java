@@ -22,7 +22,7 @@ public class AlgoStar {
         this.rondaActual = 0;
     }
 
-    private Jugador seleccionarJugadorActual() {
+    public Jugador devolverJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
 
@@ -43,13 +43,13 @@ public class AlgoStar {
     public Casilla generarUnidad(Casilla casilla) {
         Casilla c = new Casilla(0,0);
         if (this.mapa.validarCasillaDeUnGenerador(casilla)) {
-            c = seleccionarJugadorActual().generarUnidad(casilla);
+            c = devolverJugadorActual().generarUnidad(casilla);
         }
         return c;
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {
-        seleccionarJugadorActual().construirEdificio(x, y, edificio);
+        devolverJugadorActual().construirEdificio(x, y, edificio);
     }
 
 }
