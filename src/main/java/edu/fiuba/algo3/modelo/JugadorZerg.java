@@ -12,6 +12,7 @@ public class JugadorZerg extends Jugador {
         Criadero criaderoInicial = new Criadero();
         mapa.buscarCasilla(1,1).establecerOcupante(criaderoInicial);
         criaderos.add(criaderoInicial);
+        mapa.generarMoho();
         this.establecerMapa(mapa);
     }
 

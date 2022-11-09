@@ -5,6 +5,7 @@ public class Zangano extends Unidad implements Actualizable, Constructor {
     Construccion construccion;
 
     public void actualizar() {
+        this.actualizarDisponibilidad();
         if (this.construccion != null) {
             boolean construccionTerminada = this.construccion.continuar();
             if (construccionTerminada) {

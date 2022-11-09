@@ -22,10 +22,6 @@ public class AlgoStar {
         this.rondaActual = 0;
     }
 
-    public void DEBUGspawnearOcupante(int x, int y, Ocupante ocupante) { // Eliminar previamente a la entrega
-        this.seleccionarCasilla(x, y).establecerOcupante(ocupante);
-    }
-
     public Jugador hallarJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
@@ -37,7 +33,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        mapa.actualizar();
+        this.mapa.actualizar();
     }
 
     public Casilla seleccionarCasilla(int x, int y) {
@@ -59,6 +55,15 @@ public class AlgoStar {
         if (casilla.devolverOcupante() instanceof GeneradorDeUnidades) {
             hallarJugadorActual().generarUnidad(casilla);
         }
+    }
+
+    public void moverUnidad(Unidad unidad, Casilla nuevaCasilla) {
+        hallarJugadorActual().moverUnidad(unidad, nuevaCasilla);
+    }
+
+    public void moverUnidad(Unidad unidad, int x, int y) {
+        Casilla nuevaCasilla = mapa.buscarCasilla(x, y);
+        this.moverUnidad(unidad, nuevaCasilla);
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {

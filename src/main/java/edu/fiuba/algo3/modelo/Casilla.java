@@ -39,6 +39,10 @@ public class Casilla {
         this.terreno = terreno;
     }
 
+    public Terreno devolverTerreno() {
+        return this.terreno;
+    }
+
     public void establecerOcupante(Ocupante ocupante) {
         if (this.terreno.validarOcupante(ocupante)) {
             this.ocupante = ocupante;
@@ -60,7 +64,6 @@ public class Casilla {
         }
     }
     */
-
     
     public boolean validarCasillaAdyacente(Casilla casillaComparada) {
         int x = casillaComparada.devolverX();
@@ -75,4 +78,9 @@ public class Casilla {
     public boolean compararUbicaciones(Casilla casillaComparada) {
         return (this.x == casillaComparada.devolverX() && this.y == casillaComparada.devolverY());
     }
+
+    public boolean compararUbicaciones(int x, int y) {
+        return (this.x == x && this.y == y);
+    }
+
 }

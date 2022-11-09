@@ -4,9 +4,6 @@ import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CasoDeUso2 {
 
     @Test
@@ -26,7 +23,7 @@ public class CasoDeUso2 {
     }
 
     @Test
-    public void criaderoEstaOperativoLuegoDeConstruirse(){
+    public void criaderoEstaOperativoLuegoDeConstruirse() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(1,1); // Se generara una unidad en la casilla(0,0)
@@ -42,7 +39,5 @@ public class CasoDeUso2 {
         Unidad nuevoZanganoDisponible = algoStar.seleccionarUnidadDisponible(1);
         Assertions.assertTrue(zanganoDisponible instanceof Zangano && nuevoZanganoDisponible instanceof Zangano);
     }
-    
-
     
 }

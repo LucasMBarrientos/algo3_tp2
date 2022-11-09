@@ -6,6 +6,10 @@ public class Extractor extends Edificio {
         this.tiempoConstruccion = 6;
     }
 
+    public boolean validarRequerimientosDelCasillero(Casilla casilla) {
+        return (casilla.devolverTerreno() instanceof Volcan);
+    }
+
     public void actualizar() {
         
     }

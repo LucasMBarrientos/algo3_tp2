@@ -9,6 +9,10 @@ public class Criadero extends Edificio implements GeneradorDeUnidades, Actualiza
         this.tiempoConstruccion = 4;
     }
 
+    public boolean validarRequerimientosDelCasillero(Casilla casilla) {
+        return (casilla.devolverTerreno() instanceof Moho);
+    }
+
     public void actualizar() {
         if (larvas < 3) {
             this.larvas++;

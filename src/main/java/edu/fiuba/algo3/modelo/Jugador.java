@@ -17,21 +17,28 @@ public abstract class Jugador {
         return this.unidadesDisponibles.get(id);
     }
 
+    public void moverUnidad(Unidad unidad, Casilla nuevaCasilla) {
+        if (this.mapa.validarMovimiento(unidad, nuevaCasilla)) {
+            unidad.intentarMoverse(nuevaCasilla);
+        }
+    }
+
     public abstract Casilla generarUnidad(Casilla casilla);
 
     //public abstract void construirEdificio(int x, int y, Edificio edificio);
 
     public void construirEdificio(int x, int y, Edificio edificio) {
         if (this.mapa.buscarCasilla(x,y).devolverOcupante() instanceof Constructor) {
-            // Si ya esta construyendo algo entonces empieza otra construccion nueva
-            Casilla ubicacionDelEdificio = mapa.buscarCasilla(x,y);
-            Constructor unidadConstructora = (Constructor)ubicacionDelEdificio.devolverOcupante();
-            unidadConstructora.construir(edificio, ubicacionDelEdificio);
+            Unidad unidadConstructora = (Unidad)this.mapa.buscarCasilla(x,y).devolverOcupante();
+            this.construirEdificio(unidadConstructora, edificio);
         }
     };
 
     public void construirEdificio(Unidad unidad, Edificio edificio) {
-        ((Constructor)unidad).construir(edificio, unidad.devolverCasilla());
+        Casilla ubicacionDelEdificio = unidad.devolverCasilla();
+        if (edificio.validarRequerimientosDelCasillero(ubicacionDelEdificio)) {
+            ((Constructor)unidad).construir(edificio, unidad.devolverCasilla());
+        }
     }
 
 }
