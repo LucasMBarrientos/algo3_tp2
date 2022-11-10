@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +9,13 @@ import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
 public class CasoDeUso7 {
-/*
+
     @Test
     public void verificarQueElNexoMineralSeaConstruibleSobreUnMineral() {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
+
+      algoStar.pasarTurno();
 
       algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
       algoStar.construirEdificio(2, 1, new NexoMineral());
@@ -30,6 +33,8 @@ public class CasoDeUso7 {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
 
+      algoStar.pasarTurno();
+
       algoStar.construirEdificio(2, 1, new NexoMineral());
 
       algoStar.pasarTurno();
@@ -41,9 +46,11 @@ public class CasoDeUso7 {
     }
 
     @Test
-    public void verificarQueProtosPuedaRecolectarMinerales() {
+    public void verificarQueProtossPuedaRecolectarMinerales() {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
+
+      algoStar.pasarTurno();
 
       algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
       algoStar.construirEdificio(2, 1, new NexoMineral());
@@ -51,12 +58,15 @@ public class CasoDeUso7 {
       algoStar.pasarTurno();
       algoStar.pasarTurno();
       algoStar.pasarTurno();
+
+      Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
       algoStar.pasarTurno();
 
-      Assertions.assertTrue(algoStar.cantidadMinerales() == 0);
       algoStar.pasarTurno();
-      Assertions.assertTrue(algoStar.cantidadMinerales() == 1);
+      algoStar.pasarTurno();
+      Assertions.assertEquals(110, algoStar.devolverCantidadMinerales());
     }
+    /*
 
     @Test
     public void verificarQueZergPuedaRecolectarMinerales() {
