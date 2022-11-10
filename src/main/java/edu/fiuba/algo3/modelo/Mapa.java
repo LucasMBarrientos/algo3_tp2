@@ -46,9 +46,30 @@ public class Mapa {
     }
 */
     public void generarMoho() {
-        for (Casilla casilla : this.casillas) {
-            if (casilla.devolverEdificio() instanceof Criadero) {
-                this.hallarCasillaAdyacenteConTerrenoVacio(casilla).establecerTerreno(new Moho());
+        for (Casilla casillaCentral : this.casillas) {
+            if (casillaCentral.devolverEdificio() instanceof Criadero) {
+                int x = casillaCentral.devolverX() - 1;
+                int y = casillaCentral.devolverY() - 1;
+                Casilla casillaPosible;
+                for (int i = 0; i < 9; i++) {
+                    casillaPosible = new Casilla(x,y);
+                    for (Casilla casillaAdyacente : casillas) {
+                        if (casillaPosible.compararUbicaciones(casillaCentral)) {
+                            // Encontre la casilla del mapa en la misma posicion que casillaPosible
+                            if(casillaAdyacente.devolverTerreno() instanceof TerrenoVacio){
+                                casillaAdyacente.establecerTerreno(new Moho());
+                            }
+                        }
+                    }
+                    x++;
+                    if (x == casillaCentral.devolverX() + 1) {
+                        x -= 2;
+                        y++;
+                    }
+                }
+
+                //this.hallarCasillaAdyacenteConTerrenoVacio(casilla).establecerTerreno(new Moho());
+
             }
         }
     }

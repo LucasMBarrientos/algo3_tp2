@@ -61,18 +61,59 @@ public class AlgoStar {
         hallarJugadorActual().moverUnidad(unidad, nuevaCasilla);
     }
 
-    public void moverUnidad(Unidad unidad, int x, int y) {
-        Casilla nuevaCasilla = mapa.buscarCasilla(x, y);
-        this.moverUnidad(unidad, nuevaCasilla);
+    public void moverDerecha(int x, int y) {
+        Casilla casilla = mapa.buscarCasilla(x, y);
+        Unidad unidad = casilla.devolverUnidad();
+        Casilla casillaObjetivo = mapa.buscarCasilla(x+1,y);
+        if(unidad != null){
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
+               // unidad.intentarMoverse(casillaObjetivo);
+                casillaObjetivo.establecerUnidad(unidad);
+                casilla.establecerUnidad(null);
+            }
+        }
+    }
+    public void moverArriba(int x, int y) {
+        Casilla casilla = mapa.buscarCasilla(x, y);
+        Unidad unidad = casilla.devolverUnidad();
+        Casilla casillaObjetivo = mapa.buscarCasilla(x,y+1);
+        if(unidad != null){
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
+                //unidad.intentarMoverse(casillaObjetivo);
+                casillaObjetivo.establecerUnidad(unidad);
+                casilla.establecerUnidad(null);
+            }
+        }
+    }
+    public void moverAbajo(int x, int y) {
+        Casilla casilla = mapa.buscarCasilla(x, y);
+        Unidad unidad = casilla.devolverUnidad();
+        Casilla casillaObjetivo = mapa.buscarCasilla(x,y-1);
+        if(unidad != null){
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
+               // unidad.intentarMoverse(casillaObjetivo);
+                casillaObjetivo.establecerUnidad(unidad);
+                casilla.establecerUnidad(null);
+            }
+        }
+    }
+    public void moverIzquierda(int x, int y) {
+        Casilla casilla = mapa.buscarCasilla(x, y);
+        Unidad unidad = casilla.devolverUnidad();
+        Casilla casillaObjetivo = mapa.buscarCasilla(x-1,y);
+        if(unidad != null){
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
+               // unidad.intentarMoverse(casillaObjetivo);
+                casillaObjetivo.establecerUnidad(unidad);
+                casilla.establecerUnidad(null);
+            }
+        }
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {
         hallarJugadorActual().construirEdificio(x, y, edificio);
     }
 
-    public void construirEdificio(Unidad unidad, Edificio edificio) {
-        hallarJugadorActual().construirEdificio(unidad, edificio);
-    }
 
 
 }

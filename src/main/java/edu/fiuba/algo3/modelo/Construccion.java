@@ -19,6 +19,7 @@ public class Construccion {
 
     public void finalizar() {
         casilla.establecerEdificio(edificio);
+        casilla.establecerUnidad(null);
     }
 
 }

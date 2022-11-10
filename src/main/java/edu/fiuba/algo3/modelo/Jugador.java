@@ -28,16 +28,9 @@ public abstract class Jugador {
     //public abstract void construirEdificio(int x, int y, Edificio edificio);
 
     public void construirEdificio(int x, int y, Edificio edificio) {
-        if (this.mapa.buscarCasilla(x,y).devolverEdificio() instanceof Constructor) {
-            Unidad unidadConstructora = this.mapa.buscarCasilla(x,y).devolverUnidad();
-            this.construirEdificio(unidadConstructora, edificio);
-        }
-    };
-
-    public void construirEdificio(Unidad unidad, Edificio edificio) {
-        Casilla ubicacionDelEdificio = unidad.devolverCasilla();
-        if (edificio.validarRequerimientosDelCasillero(ubicacionDelEdificio)) {
-            ((Constructor)unidad).construir(edificio, unidad.devolverCasilla());
+        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
+            Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
+            unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
         }
     }
 
