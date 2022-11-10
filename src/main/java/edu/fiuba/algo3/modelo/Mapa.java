@@ -66,6 +66,21 @@ public class Mapa {
         }
     }
 
+    public void generarMoho(int radio) {
+        for (int i = 0; i < radio; i++) {
+            List<Casilla> casillasConMoho = new ArrayList<Casilla>();
+            for (Casilla casillaCentral : this.casillas) {
+                if (casillaCentral.devolverTerreno() instanceof TerrenoMoho) {
+                    casillasConMoho.add(casillaCentral);
+
+                }
+            }
+            for (Casilla casillaConMoho : casillasConMoho) {
+                expandirMoho(casillaConMoho);
+            }
+        }
+    }
+
     public void expandirMoho(Casilla casillaInicial){
         int x = casillaInicial.devolverX();
         int y = casillaInicial.devolverY();
