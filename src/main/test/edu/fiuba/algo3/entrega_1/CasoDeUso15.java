@@ -48,8 +48,6 @@ public class CasoDeUso15 {
         algoStar.pasarTurno();
 
         Assertions.assertEquals(5210,algoStar.hallarJugadorActual().devolverCantidadGas()); // Extractor fue construido en (2,1)
-
-
     }
 
 }
