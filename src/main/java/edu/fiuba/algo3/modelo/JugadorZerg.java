@@ -36,7 +36,11 @@ public class JugadorZerg extends Jugador {
     }
 
     public void recogerRecursos() {
-        recogerRecursosDeEdificios();
+        TieneRecursos edificioConRecursos = this.mapa.buscarEdificiosZergConRecursos();
+        while (edificioConRecursos != null) {
+            inventario.agregarRecursos(edificioConRecursos.recolectarRecursos());
+            edificioConRecursos = this.mapa.buscarEdificiosZergConRecursos();
+        }
         recogerRecursosDeZanganosMineros();
     }
 

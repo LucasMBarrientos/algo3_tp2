@@ -47,13 +47,7 @@ public abstract class Jugador {
 
 
     public void recogerRecursosDeEdificios() {
-        TieneRecursos edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
-        while (edificioConRecursos != null) {
-            inventario.agregarRecursos(edificioConRecursos.recolectarRecursos());
-            edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
-        }
     }
-
 
     public abstract void recogerRecursos();
 

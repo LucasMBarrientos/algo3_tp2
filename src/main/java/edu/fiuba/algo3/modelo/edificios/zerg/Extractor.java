@@ -17,6 +17,8 @@ public class Extractor extends EdificioZerg implements TieneRecursos {
     public List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 
     private Boolean recursosRecolectados = false;
+
+    public int recursosRestantes = 5000;
         
     public Extractor() {
         this.tiempoConstruccion = 6;
@@ -44,7 +46,11 @@ public class Extractor extends EdificioZerg implements TieneRecursos {
     @Override
     public Recursos recolectarRecursos() {
         recursosRecolectados = true;
-        return new GasVespeno(10 * zanganosTrabajando.size());
+        if(recursosRestantes > 0){
+            recursosRestantes -= (10 * zanganosTrabajando.size());
+            return new GasVespeno(10 * zanganosTrabajando.size());
+        }
+        return new GasVespeno(0);
     }
 
     @Override

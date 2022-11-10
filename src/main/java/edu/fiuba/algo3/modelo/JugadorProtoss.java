@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
@@ -30,7 +31,11 @@ public class JugadorProtoss extends Jugador {
     }
 
     public void recogerRecursos() {
-        recogerRecursosDeEdificios();
+        TieneRecursos edificioConRecursos = this.mapa.buscarEdificiosProtossConRecursos();
+        while (edificioConRecursos != null) {
+            inventario.agregarRecursos(edificioConRecursos.recolectarRecursos());
+            edificioConRecursos = this.mapa.buscarEdificiosProtossConRecursos();
+        }
     }
 
 }

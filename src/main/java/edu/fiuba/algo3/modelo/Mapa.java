@@ -35,23 +35,6 @@ public class Mapa {
         return this.buscarCasilla(x, y);
     }
 
-/*    private Casilla buscarCasillaDesocupadaAlAzar() {
-        Casilla casillaDisponible;
-        while (true) {
-            casillaDisponible = buscarCasillaAlAzar();
-            if (casillaDisponible.devolverOcupante() == null) {
-                return casillaDisponible;
-            }
-        }
-    }
-
-    private void generarVolcanes() {
-        int cantidadDeVolcanes = ThreadLocalRandom.current().nextInt(5, 11); // En un mapa hay 5~10 volcanes
-        for (int i = 0; i < cantidadDeVolcanes; i++) {
-            buscarCasillaDesocupadaAlAzar().establecerTerreno(new Volcan());
-        }
-    }
-*/
     public void generarTerrenoEnergizadoEnLosPilones() {
         for (Casilla casillaCentral : this.casillas) {
             if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
@@ -255,10 +238,24 @@ public class Mapa {
         }
     }
 
-    public TieneRecursos buscarEdificiosConRecursos(){
+    public TieneRecursos buscarEdificiosZergConRecursos(){
         for(Casilla casilla : casillas) {
             // Recorre todas las casillas del mapa
-            if(casilla.devolverEdificio() instanceof TieneRecursos) {
+            if(casilla.devolverEdificio() instanceof TieneRecursos && casilla.devolverEdificio() instanceof EdificioZerg) {
+                // Se halla un edificio que extrae recursos
+                if (((TieneRecursos) casilla.devolverEdificio()).tieneRecursos()) {
+                    // El edificio ademas tiene recursos extraidos
+                    return (TieneRecursos) casilla.devolverEdificio();
+                }
+            }
+        }
+        return null;
+    }
+
+    public TieneRecursos buscarEdificiosProtossConRecursos(){
+        for(Casilla casilla : casillas) {
+            // Recorre todas las casillas del mapa
+            if(casilla.devolverEdificio() instanceof TieneRecursos && casilla.devolverEdificio() instanceof EdificioProtoss) {
                 // Se halla un edificio que extrae recursos
                 if (((TieneRecursos) casilla.devolverEdificio()).tieneRecursos()) {
                     // El edificio ademas tiene recursos extraidos
