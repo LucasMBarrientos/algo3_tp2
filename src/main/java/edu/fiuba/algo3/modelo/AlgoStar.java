@@ -37,6 +37,7 @@ public class AlgoStar {
             rondaActual++;
         }
         mapa.actualizar();
+        hallarJugadorActual().recogerRecursos();
     }
 
     public Casilla seleccionarCasilla(int x, int y) {

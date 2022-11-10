@@ -3,19 +3,20 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificiosConRecursos;
+import edu.fiuba.algo3.modelo.edificios.EdificioConRecursos;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Extractor extends Edificio implements EdificiosConRecursos {
+public class Extractor extends Edificio implements EdificioConRecursos {
 
     public List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 
-    private Recursos recursosExtraidos;
-    
+    private Boolean recursosRecolectados = false;
+        
     public Extractor() {
         this.tiempoConstruccion = 6;
     }
@@ -25,7 +26,7 @@ public class Extractor extends Edificio implements EdificiosConRecursos {
     }
 
     public void actualizar() {
-        
+        recursosRecolectados = false;
     }
 
     public boolean ingresarUnidad(Unidad unidad) {
@@ -36,15 +37,13 @@ public class Extractor extends Edificio implements EdificiosConRecursos {
         return false;
     }
 
-
-
     @Override
-    public void recolectarRecursos() {
-        return recursosExtraidos.extraer();
+    public Recursos recolectarRecursos() {
+        return new GasVespeno(10 * zanganosTrabajando.size());
     }
 
     @Override
     public boolean tieneRecursos() {
-        return false;
+        return !(recursosRecolectados);
     }
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
@@ -179,11 +179,17 @@ public class Mapa {
     }
 
     public EdificioConRecursos buscarEdificiosConRecursos(){
-        for(Casilla casilla : casillas){
-            if(casilla.devolverEdificio() instanceof EdificioConRecursos){
-                return casilla.devolverEdificio();
+        for(Casilla casilla : casillas) {
+            // Recorre todas las casillas del mapa
+            if(casilla.devolverEdificio() instanceof EdificioConRecursos) {
+                // Se halla un edificio que extrae recursos
+                if (!((EdificioConRecursos) casilla.devolverEdificio()).tieneRecursos()) {
+                    // El edificio ademas tiene recursos extraidos
+                    return (EdificioConRecursos) casilla.devolverEdificio();
+                }
             }
         }
+        return null;
     }
 
 

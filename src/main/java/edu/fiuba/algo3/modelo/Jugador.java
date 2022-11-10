@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.EdificioConRecursos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,13 +50,10 @@ public abstract class Jugador {
     }
 
     public void recogerRecursos() {
-        Edificio edificioConRecursos = this.mapa.buscarEdificioConRecursos();
+        EdificioConRecursos edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         while (edificioConRecursos != null) {
-            inventario.agregarRecursos(edificioConRecursos.extraerRecursos());
-            // public Recurso extraerRecursos() {
-            //  return unidadesExtraidas;
-            // }
-            edificioConRecursos = this.mapa.buscarEdificioConRecursos();
+            inventario.agregarRecursos(edificioConRecursos.recolectarRecursos());
+            edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         }
     }
 
