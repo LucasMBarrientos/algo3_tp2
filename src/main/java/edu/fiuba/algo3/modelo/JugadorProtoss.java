@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Mapa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class JugadorProtoss extends Jugador {
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {
-        boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario);
+        boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario) && mapa.buscarCasilla(x,y).devolverEdificio() == null;
         if (requerimientosAlcanzados) {
             if (edificio instanceof PuertoEstelar) {
                 if (mapa.buscarEdificioAcceso()) {

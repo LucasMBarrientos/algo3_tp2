@@ -28,7 +28,7 @@ public class JugadorZerg extends Jugador {
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {        
-        boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario);
+        boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario) && mapa.buscarCasilla(x,y).devolverEdificio() == null;
         if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor && requerimientosAlcanzados) {
             if (edificio instanceof Espiral) {
                 if (mapa.buscarEdificioGuarida()) {
