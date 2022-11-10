@@ -13,15 +13,22 @@ public class CasoDeUso13 {
       algoStar.empezarJuego();
 
       algoStar.generarUnidad(1, 1);
-      algoStar.moverDerecha(1, 1);
+      algoStar.moverIzquierda(1, 1);
 
       // ATACAR EL CON DANIO MAYOR A LA VIDA QUE TIENE
-      algoStar.seleccionarCasilla(1, 1).devolverEdificio().recibirDanio(510);
+      for (int i = 0; i < 100; i++) {
+
+        algoStar.atacarEdificioALaDerecha(0,1);
+      }
 
       Assertions.assertFalse(algoStar.seleccionarCasilla(1,1).devolverEdificio() instanceof Criadero);
 
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
       // DEBERIA PODER CONSTRUIR IGUAL CON EL MOHO YA EXISTENTE
-      algoStar.construirEdificio(2, 1, new Criadero());
+
+      algoStar.moverDerecha(0, 1);
+      algoStar.construirEdificio(1, 1, new Criadero());
 
       algoStar.pasarTurno();
       algoStar.pasarTurno();
@@ -30,6 +37,6 @@ public class CasoDeUso13 {
       algoStar.pasarTurno();
       algoStar.pasarTurno();
 
-      Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Criadero);
+      Assertions.assertTrue(algoStar.seleccionarCasilla(1,1).devolverEdificio() instanceof Criadero);
     }
 }
