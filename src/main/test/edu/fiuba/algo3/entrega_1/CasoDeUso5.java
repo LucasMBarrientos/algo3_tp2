@@ -23,7 +23,6 @@ public class CasoDeUso5 {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
 
-      // GENERO ZANGANO LEJOS DEL MOHO
       algoStar.generarUnidad(1,1);
 
       algoStar.moverDerecha(1, 1);
@@ -31,7 +30,6 @@ public class CasoDeUso5 {
       algoStar.moverDerecha(3, 1);
       algoStar.moverDerecha(4, 1);
       algoStar.moverDerecha(5, 1);
-
 
       // CONTRUYE UN CRIADERO LEJOS DEL MOHO
       algoStar.construirEdificio(6, 1, new Criadero());
