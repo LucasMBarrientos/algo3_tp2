@@ -15,6 +15,6 @@ public class TerrenoEnergizado implements Terreno {
         if (unidad == null){
             return true;
         }
-        return false;
+        return true;
     }
 }

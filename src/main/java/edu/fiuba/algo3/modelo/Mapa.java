@@ -71,16 +71,24 @@ public class Mapa {
         int y = casillaInicial.devolverY();
 
         if(validarCasillaDentroDeLimites(x-1,y)){
-            buscarCasilla(x-1,y).establecerTerreno(new TerrenoMoho());
+            if (buscarCasilla(x-1,y).devolverTerreno() instanceof TerrenoVacio){
+                buscarCasilla(x-1,y).establecerTerreno(new TerrenoMoho());
+            }
         }
         if(validarCasillaDentroDeLimites(x+1,y)){
-            buscarCasilla(x+1,y).establecerTerreno(new TerrenoMoho());
+            if (buscarCasilla(x+1,y).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x + 1, y).establecerTerreno(new TerrenoMoho());
+            }
         }
         if(validarCasillaDentroDeLimites(x,y+1)){
-            buscarCasilla(x,y+1).establecerTerreno(new TerrenoMoho());
+            if (buscarCasilla(x,y+1).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x, y + 1).establecerTerreno(new TerrenoMoho());
+            }
         }
         if(validarCasillaDentroDeLimites(x,y-1)){
-            buscarCasilla(x,y-1).establecerTerreno(new TerrenoMoho());
+            if (buscarCasilla(x,y-1).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x, y - 1).establecerTerreno(new TerrenoMoho());
+            }
         }
 
     }
@@ -107,16 +115,24 @@ public class Mapa {
         int y = casillaInicial.devolverY();
 
         if(validarCasillaDentroDeLimites(x-1,y)){
-            buscarCasilla(x-1,y).establecerTerreno(new TerrenoEnergizado());
+            if (buscarCasilla(x-1,y).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x - 1, y).establecerTerreno(new TerrenoEnergizado());
+            }
         }
         if(validarCasillaDentroDeLimites(x+1,y)){
-            buscarCasilla(x+1,y).establecerTerreno(new TerrenoEnergizado());
+            if (buscarCasilla(x+1,y).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x + 1, y).establecerTerreno(new TerrenoEnergizado());
+            }
         }
         if(validarCasillaDentroDeLimites(x,y+1)){
-            buscarCasilla(x,y+1).establecerTerreno(new TerrenoEnergizado());
+            if (buscarCasilla(x,y+1).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x, y + 1).establecerTerreno(new TerrenoEnergizado());
+            }
         }
         if(validarCasillaDentroDeLimites(x,y-1)){
-            buscarCasilla(x,y-1).establecerTerreno(new TerrenoEnergizado());
+            if (buscarCasilla(x,y-1).devolverTerreno() instanceof TerrenoVacio) {
+                buscarCasilla(x, y - 1).establecerTerreno(new TerrenoEnergizado());
+            }
         }
 
     }
