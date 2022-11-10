@@ -25,6 +25,7 @@ public class JugadorProtoss extends Jugador {
         boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario);
         if (requerimientosAlcanzados) {
             mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
+            edificio.consumirRecursosDelJugador(inventario);
         }
     }
 

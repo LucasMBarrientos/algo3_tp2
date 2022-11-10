@@ -23,6 +23,11 @@ public abstract class Edificio implements Actualizable {
         return requerimientosDeGasAlcanzados && requerimientosDeMineralesAlcanzados;
     }
 
+    public void consumirRecursosDelJugador(Inventario inventario) {
+        inventario.restarGas(requerimientosGas);
+        inventario.restarMinerales(requerimientosMinerales);
+    }
+
     public int devolverRequerimientosDeMinerales() {
         return requerimientosMinerales;
     }

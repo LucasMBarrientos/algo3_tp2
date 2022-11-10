@@ -17,7 +17,7 @@ public class Recursos {
         if (unidadesAExtraer >= this.unidades) {
             unidadesQueSeExtraeran = this.unidades;
         }
-        int unidadesExtraidas = this.unidades - unidadesQueSeExtraeran;
+        int unidadesExtraidas = unidadesQueSeExtraeran;
         this.unidades -= unidadesExtraidas;
         return unidadesExtraidas;
     }

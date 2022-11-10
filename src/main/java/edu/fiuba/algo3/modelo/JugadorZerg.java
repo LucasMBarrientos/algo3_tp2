@@ -31,6 +31,7 @@ public class JugadorZerg extends Jugador {
         if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor && requerimientosAlcanzados) {
             Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
             unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
+            edificio.consumirRecursosDelJugador(inventario);
         }
     }
 

@@ -57,14 +57,13 @@ public class CasoDeUso7 {
 
       algoStar.pasarTurno();
       algoStar.pasarTurno();
-      algoStar.pasarTurno();
 
-      Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
-      algoStar.pasarTurno();
+      Assertions.assertEquals(50, algoStar.devolverCantidadMinerales());
 
       algoStar.pasarTurno();
       algoStar.pasarTurno();
-      Assertions.assertEquals(110, algoStar.devolverCantidadMinerales());
+
+      Assertions.assertEquals(60, algoStar.devolverCantidadMinerales());
     }
     
     @Test

@@ -16,6 +16,8 @@ public class CasoDeUso8 {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
     Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
+
+    algoStar.pasarTurno(); // Ahora es el turno de los protoss
     
     algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
     algoStar.seleccionarCasilla(1, 2).establecerTerreno(new TerrenoMineral());
