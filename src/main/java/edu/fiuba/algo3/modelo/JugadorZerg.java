@@ -26,32 +26,11 @@ public class JugadorZerg extends Jugador {
         return casillaDelGenerador;
     }
 
-    public void construirEdificio(int x, int y, Edificio edificio) { // eliminar esto
-        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
+    public void construirEdificio(int x, int y, Edificio edificio) {        
+        boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario);
+        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor && requerimientosAlcanzados) {
             Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
             unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
-        }
-    }
-
-    public void construirEdificioUsandoMinerales(int x, int y, Edificio edificio) {
-        int requerimientosDelEdificio = edificio.devolverRequerimientosDeMinerales();
-        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
-            if (this.inventario.devolverCantidadMinerales() >= requerimientosDelEdificio && requerimientosDelEdificio != 0) {
-                Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
-                unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
-                inventario.restarMinerales(edificio.devolverRequerimientosDeMinerales());
-            }
-        }
-    }
-
-    public void construirEdificioUsandoGas(int x, int y, Edificio edificio) {
-        int requerimientosDelEdificio = edificio.devolverRequerimientosDeGas();
-        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
-            if (this.inventario.devolverCantidadGas() >= requerimientosDelEdificio && requerimientosDelEdificio != 0) {
-                Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
-                unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
-                inventario.restarGas(edificio.devolverRequerimientosDeGas());
-            }
         }
     }
 

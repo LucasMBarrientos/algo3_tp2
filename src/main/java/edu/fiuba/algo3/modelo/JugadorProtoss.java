@@ -21,23 +21,10 @@ public class JugadorProtoss extends Jugador {
         return casilla;
     }
 
-    public void construirEdificio(int x, int y, Edificio edificio) { // eliminar esto
-        mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
-    }
-
-    public void construirEdificioUsandoMinerales(int x, int y, Edificio edificio) {
-        int requerimientosDelEdificio = edificio.devolverRequerimientosDeMinerales();
-        if (this.inventario.devolverCantidadMinerales() >= requerimientosDelEdificio && requerimientosDelEdificio != 0) {
+    public void construirEdificio(int x, int y, Edificio edificio) {
+        boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario);
+        if (requerimientosAlcanzados) {
             mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
-            inventario.restarMinerales(requerimientosDelEdificio);
-        }
-    }
-
-    public void construirEdificioUsandoGas(int x, int y, Edificio edificio) {
-        int requerimientosDelEdificio = edificio.devolverRequerimientosDeGas();
-        if (this.inventario.devolverCantidadGas() >= requerimientosDelEdificio && requerimientosDelEdificio != 0) {
-            mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
-            inventario.restarGas(requerimientosDelEdificio);
         }
     }
 
