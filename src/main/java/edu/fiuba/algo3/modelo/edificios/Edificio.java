@@ -1,6 +1,9 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.edificios;
 
-public abstract class Edificio implements Actualizable{
+import edu.fiuba.algo3.modelo.Actualizable;
+import edu.fiuba.algo3.modelo.Casilla;
+
+public abstract class Edificio implements Actualizable {
 
     public int tiempoConstruccion;
 

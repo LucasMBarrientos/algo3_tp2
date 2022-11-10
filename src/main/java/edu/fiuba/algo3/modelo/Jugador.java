@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+
 import java.util.ArrayList;
 import java.util.List;
 
