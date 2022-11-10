@@ -43,48 +43,45 @@ public class CasoDeUso8 {
   public void protossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
-    
-    algoStar.construirEdificio(2, 1, new Pilon());
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 0);
+    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
 
-    algoStar.construirEdificio(1, 2, new Pilon());
-    
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
     algoStar.pasarTurno();
 
-    Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof Pilon);
-    Assertions.assertFalse(algoStar.seleccionarCasilla(1, 2).devolverEdificio() instanceof Pilon);
+    algoStar.construirEdificio(9, 8, new Pilon());
+    Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
+    
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+
+    Assertions.assertTrue(algoStar.seleccionarCasilla(9, 8).devolverEdificio() instanceof Pilon);
   }
 
   @Test
   public void protossSoloPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
+    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
 
-    algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-    algoStar.seleccionarCasilla(1, 2).establecerTerreno(new TerrenoVolcan());
-    
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
-    
-    algoStar.construirEdificio(2, 1, new Asimilador());
-    
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 0);
-
-    algoStar.construirEdificio(1, 2, new Asimilador());
-    
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
     algoStar.pasarTurno();
 
-    Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof Asimilador);
-    Assertions.assertFalse(algoStar.seleccionarCasilla(1, 2).devolverEdificio() instanceof Asimilador);
+    algoStar.seleccionarCasilla(9,8).establecerTerreno(new TerrenoVolcan());
+    algoStar.construirEdificio(9, 8, new Asimilador());
+    Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
+
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+    algoStar.pasarTurno();
+
+    Assertions.assertTrue(algoStar.seleccionarCasilla(9, 8).devolverEdificio() instanceof Asimilador);
   }
 
   @Test
