@@ -34,12 +34,7 @@ public abstract class Jugador {
 
     //public abstract void construirEdificio(int x, int y, Edificio edificio);
 
-    public void construirEdificio(int x, int y, Edificio edificio) {
-        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
-            Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
-            unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
-        }
-    }
+    public abstract void construirEdificio(int x, int y, Edificio edificio);
 
     public int devolverCantidadGas(){
         return inventario.devolverCantidadGas();

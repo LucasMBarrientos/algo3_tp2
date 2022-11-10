@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
 import java.util.ArrayList;
@@ -21,5 +22,12 @@ public class JugadorZerg extends Jugador {
        // unidadGenerada.establecerCasilla(casillaDisponible);
        // this.unidadesDisponibles.add(unidadGenerada);
         return casillaDelGenerador;
+    }
+
+    public void construirEdificio(int x, int y, Edificio edificio) {
+        if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
+            Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
+            unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
+        }
     }
 }

@@ -12,10 +12,27 @@ public class CasoDeUso5 {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
 
-      // CONTRUYE UN PILON LEJOS DE LA ENERGIA
-      algoStar.construirEdificio(5, 1, new Pilon());
+      algoStar.construirEdificio(6,6, new Pilon());
 
-      // DEBERIA DEVOLVER ERROR AL TRATAR DE CONSTRUIR LEJOS DEL PILON
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+
+      Assertions.assertFalse(algoStar.seleccionarCasilla(6,6).devolverEdificio() instanceof Pilon);
+
+      algoStar.construirEdificio(9,8, new Pilon());
+
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+
+
+      Assertions.assertTrue(algoStar.seleccionarCasilla(9,8).devolverEdificio() instanceof Pilon);
+
     }
 
     @Test

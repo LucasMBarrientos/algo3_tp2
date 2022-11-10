@@ -36,7 +36,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        mapa.actualizar();
+        mapa.actualizar(rondaActual);
         hallarJugadorActual().recogerRecursos();
     }
 

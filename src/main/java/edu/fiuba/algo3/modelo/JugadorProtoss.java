@@ -22,7 +22,7 @@ public class JugadorProtoss extends Jugador {
     }
 
     public void construirEdificio(int x, int y, Edificio edificio) {
-        
+        mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
     }
 
 }

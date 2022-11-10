@@ -54,58 +54,71 @@ public class Mapa {
     }
 */
     public void generarMoho() {
+        List<Casilla> casillasConMoho = new ArrayList<Casilla>();
         for (Casilla casillaCentral : this.casillas) {
-            if (casillaCentral.devolverEdificio() instanceof Criadero) {
-                int x = casillaCentral.devolverX() - 1;
-                int y = casillaCentral.devolverY() - 1;
-                Casilla casillaPosible;
-                for (int i = 0; i < 9; i++) {
-                    casillaPosible = new Casilla(x,y);
-                    for (Casilla casillaAdyacente : casillas) {
-                        if (casillaPosible.compararUbicaciones(casillaCentral)) {
-                            // Encontre la casilla del mapa en la misma posicion que casillaPosible
-                            if(casillaAdyacente.devolverTerreno() instanceof TerrenoVacio){
-                                casillaAdyacente.establecerTerreno(new TerrenoMoho());
-                            }
-                        }
-                    }
-                    x++;
-                    if (x == casillaCentral.devolverX() + 1) {
-                        x -= 2;
-                        y++;
-                    }
-                }
-
-                //this.hallarCasillaAdyacenteConTerrenoVacio(casilla).establecerTerreno(new Moho());
+            if (casillaCentral.devolverTerreno() instanceof TerrenoMoho) {
+                casillasConMoho.add(casillaCentral);
 
             }
+        }
+        for(Casilla casillaConMoho : casillasConMoho){
+            expandirMoho(casillaConMoho);
         }
     }
 
+    public void expandirMoho(Casilla casillaInicial){
+        int x = casillaInicial.devolverX();
+        int y = casillaInicial.devolverY();
+
+        if(validarCasillaDentroDeLimites(x-1,y)){
+            buscarCasilla(x-1,y).establecerTerreno(new TerrenoMoho());
+        }
+        if(validarCasillaDentroDeLimites(x+1,y)){
+            buscarCasilla(x+1,y).establecerTerreno(new TerrenoMoho());
+        }
+        if(validarCasillaDentroDeLimites(x,y+1)){
+            buscarCasilla(x,y+1).establecerTerreno(new TerrenoMoho());
+        }
+        if(validarCasillaDentroDeLimites(x,y-1)){
+            buscarCasilla(x,y-1).establecerTerreno(new TerrenoMoho());
+        }
+
+    }
+
+    public boolean validarCasillaDentroDeLimites(int x,int y){
+        return (x >= 0 && x < dimensionX) && (y >= 0 && y < dimensionY);
+    }
+
     public void generarEnergizadosIniciales() {
+        List<Casilla> casillasEnergizadas = new ArrayList<Casilla>();
         for (Casilla casillaCentral : this.casillas) {
-            if (casillaCentral.devolverEdificio() instanceof Pilon) {
-                int x = casillaCentral.devolverX() - 1;
-                int y = casillaCentral.devolverY() - 1;
-                Casilla casillaPosible;
-                for (int i = 0; i < 9; i++) {
-                    casillaPosible = new Casilla(x,y);
-                    for (Casilla casillaAdyacente : casillas) {
-                        if (casillaPosible.compararUbicaciones(casillaCentral)) {
-                            // Encontre la casilla del mapa en la misma posicion que casillaPosible
-                            if(casillaAdyacente.devolverTerreno() instanceof TerrenoVacio){
-                                casillaAdyacente.establecerTerreno(new TerrenoEnergizado());
-                            }
-                        }
-                    }
-                    x++;
-                    if (x == casillaCentral.devolverX() + 1) {
-                        x -= 2;
-                        y++;
-                    }
-                }
+            if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
+                casillasEnergizadas.add(casillaCentral);
+
             }
         }
+        for(Casilla casillaEnergia : casillasEnergizadas){
+            expandirEnergia(casillaEnergia);
+        }
+    }
+
+    public void expandirEnergia(Casilla casillaInicial){
+        int x = casillaInicial.devolverX();
+        int y = casillaInicial.devolverY();
+
+        if(validarCasillaDentroDeLimites(x-1,y)){
+            buscarCasilla(x-1,y).establecerTerreno(new TerrenoEnergizado());
+        }
+        if(validarCasillaDentroDeLimites(x+1,y)){
+            buscarCasilla(x+1,y).establecerTerreno(new TerrenoEnergizado());
+        }
+        if(validarCasillaDentroDeLimites(x,y+1)){
+            buscarCasilla(x,y+1).establecerTerreno(new TerrenoEnergizado());
+        }
+        if(validarCasillaDentroDeLimites(x,y-1)){
+            buscarCasilla(x,y-1).establecerTerreno(new TerrenoEnergizado());
+        }
+
     }
 
 
@@ -172,9 +185,12 @@ public class Mapa {
         return (nuevaCasilla.devolverUnidad() == null && nuevaCasilla.devolverTerreno().validarTransitable(unidad));
     }
 
-    public void actualizar() {
+    public void actualizar(int ronda) {
         for (Casilla casilla : casillas) {
             casilla.actualizar();
+            if(casilla.devolverTerreno() instanceof TerrenoMoho && ronda % 2 == 0){
+                generarMoho();
+            }
         }
     }
 

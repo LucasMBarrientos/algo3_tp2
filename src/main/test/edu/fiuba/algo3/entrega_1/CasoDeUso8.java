@@ -16,7 +16,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 
 public class CasoDeUso8 {
-  
+  /*
   @Test
   public void protossSoloPuedeConstruirNexoMineralSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();
@@ -427,5 +427,5 @@ public class CasoDeUso8 {
     
     Assertions.assertTrue(algoStar.seleccionarCasilla(0, 1).devolverEdificio() instanceof Espiral);
     Assertions.assertFalse(algoStar.seleccionarCasilla(1, 0).devolverEdificio() instanceof Espiral);
-  }
+  }*/
 }
