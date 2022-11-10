@@ -10,6 +10,8 @@ public abstract class Edificio implements Actualizable {
     public int tiempoConstruccion;
     public int requerimientosGas;
     public int requerimientosMinerales;
+    public int vidaMax;
+    public int vida;
 
     public abstract boolean validarRequerimientosDelCasillero(Casilla casilla);
 
@@ -39,6 +41,11 @@ public abstract class Edificio implements Actualizable {
     public abstract void actualizar();
 
 
+    public abstract void recibirDanio(int unidades);
+
+    public void reducirVida(int unidades) {
+        this.vida -= unidades;
+    }
 
 
 }

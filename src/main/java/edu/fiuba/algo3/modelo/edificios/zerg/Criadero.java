@@ -2,9 +2,10 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 
-public class Criadero extends Edificio implements GeneradorDeUnidades, Actualizable {
+public class Criadero extends EdificioZerg implements GeneradorDeUnidades {
 
     private int larvas;
 
@@ -23,6 +24,7 @@ public class Criadero extends Edificio implements GeneradorDeUnidades, Actualiza
         if (larvas < 3) {
             this.larvas++;
         }
+        regenerarVida();
     }
 
     public int devolverCantidadDeLarvas() {

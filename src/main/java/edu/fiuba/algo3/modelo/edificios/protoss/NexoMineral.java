@@ -6,8 +6,9 @@ import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
-public class NexoMineral extends Edificio implements TieneRecursos {
+public class NexoMineral extends EdificioProtoss implements TieneRecursos {
 
 
     private Boolean recursosRecolectados = false;
@@ -24,7 +25,7 @@ public class NexoMineral extends Edificio implements TieneRecursos {
 
     @Override
     public void actualizar() {
-
+        regenerarEscudo();
     }
 
     public Recursos recolectarRecursos() {

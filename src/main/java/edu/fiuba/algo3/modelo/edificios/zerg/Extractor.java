@@ -7,11 +7,12 @@ import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Extractor extends Edificio implements TieneRecursos {
+public class Extractor extends EdificioZerg implements TieneRecursos {
 
     public List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 
@@ -29,6 +30,7 @@ public class Extractor extends Edificio implements TieneRecursos {
 
     public void actualizar() {
         recursosRecolectados = false;
+        regenerarVida();
     }
 
     public boolean ingresarUnidad(Unidad unidad) {

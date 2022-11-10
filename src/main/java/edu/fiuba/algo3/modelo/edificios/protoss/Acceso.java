@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
-import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.Casilla;
 
-public class Acceso extends Edificio {
+public class Acceso extends EdificioProtoss {
 
     public int tiempoConstruccion;
 
@@ -22,7 +22,7 @@ public class Acceso extends Edificio {
     }
 
     public void actualizar() {
-
+        regenerarEscudo();
     }
 
 }

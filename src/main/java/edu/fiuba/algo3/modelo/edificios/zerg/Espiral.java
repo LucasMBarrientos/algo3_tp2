@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.Casilla;
 
-public class Espiral extends Edificio {
+public class Espiral extends EdificioZerg {
 
     public int tiempoConstruccion;
 
@@ -22,7 +22,7 @@ public class Espiral extends Edificio {
     }
 
     public void actualizar() {
-
+        regenerarVida();
     }
     
 }
