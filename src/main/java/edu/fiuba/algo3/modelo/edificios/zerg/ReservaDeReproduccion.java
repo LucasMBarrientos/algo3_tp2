@@ -1,4 +1,26 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-public class ReservaDeReproduccion {
+import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.Casilla;
+
+public class ReservaDeReproduccion extends Edificio {
+
+    public int tiempoConstruccion;
+
+    public ReservaDeReproduccion() {
+        tiempoConstruccion = 12;
+    }
+
+    public boolean validarRequerimientosDelCasillero(Casilla casilla) {
+        return true;
+    }
+
+    public int devolverTiempoConstruccion() {
+        return this.tiempoConstruccion;
+    }
+
+    public void actualizar() {
+
+    }
+
 }
