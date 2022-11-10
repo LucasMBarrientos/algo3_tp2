@@ -47,4 +47,7 @@ public abstract class Edificio implements Actualizable {
         this.vida -= unidades;
     }
 
+    public int devolverVida(){
+        return vida;
+    }
 }

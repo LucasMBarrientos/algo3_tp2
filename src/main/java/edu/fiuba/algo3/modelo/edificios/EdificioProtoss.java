@@ -38,6 +38,9 @@ public abstract class EdificioProtoss extends Edificio {
         return operativo;
     }
 
+    public int devolverEscudo(){
+        return escudo;
+    }
     
 
 }

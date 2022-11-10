@@ -25,6 +25,7 @@ public class NexoMineral extends EdificioProtoss implements TieneRecursos {
 
     @Override
     public void actualizar() {
+        recursosRecolectados = false;
         regenerarEscudo();
     }
 

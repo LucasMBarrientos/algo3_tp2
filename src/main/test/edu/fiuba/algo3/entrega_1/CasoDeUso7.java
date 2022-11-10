@@ -58,12 +58,12 @@ public class CasoDeUso7 {
       algoStar.pasarTurno();
       algoStar.pasarTurno();
 
-      Assertions.assertEquals(50, algoStar.devolverCantidadMinerales());
+      Assertions.assertEquals(150, algoStar.devolverCantidadMinerales());
 
       algoStar.pasarTurno();
       algoStar.pasarTurno();
 
-      Assertions.assertEquals(60, algoStar.devolverCantidadMinerales());
+      Assertions.assertEquals(160, algoStar.devolverCantidadMinerales());
     }
     
     @Test
@@ -80,9 +80,9 @@ public class CasoDeUso7 {
 
       // PONER A TRABAJAR UN ZANGANO SOBRE UN MINERAL?
 
-      Assertions.assertEquals(110,algoStar.devolverCantidadMinerales());
+      Assertions.assertEquals(210,algoStar.devolverCantidadMinerales());
       algoStar.pasarTurno();
       algoStar.pasarTurno();
-      Assertions.assertEquals(120,algoStar.devolverCantidadMinerales());
+      Assertions.assertEquals(220,algoStar.devolverCantidadMinerales());
     }
 }

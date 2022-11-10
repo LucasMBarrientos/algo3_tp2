@@ -28,7 +28,7 @@ public class CasoDeUso4 {
         algoStar.pasarTurno();
 
         // JUGADOR CON EXTRACTOR SIN ZANGANO NO PRODUCE GAS
-        Assertions.assertEquals(100, algoStar.devolverCantidadGas());
+        Assertions.assertEquals(200, algoStar.devolverCantidadGas());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class CasoDeUso4 {
         algoStar.pasarTurno();
 
 
-        Assertions.assertEquals(110, algoStar.devolverCantidadGas());
+        Assertions.assertEquals(210, algoStar.devolverCantidadGas());
     }
 
     @Test
@@ -115,24 +115,23 @@ public class CasoDeUso4 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
 
-        Assertions.assertEquals(120, algoStar.devolverCantidadGas());
+        Assertions.assertEquals(220, algoStar.devolverCantidadGas());
     }
 
 
-    /*
+
 
     @Test
     public void ExtractorCon3ZanganosGenera30Gas() {
-        AlgoStar algoStar = new AlgoStar();
+         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(1, 1);
-        Ocupante zangano = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
+        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
 
-        // FALTA MOVER ZANGANO A UN VOLCAN
-        Casilla casillaDelZangano = zangano.devolverCasilla();
+        algoStar.moverDerecha(1, 1);
+        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
+        algoStar.construirEdificio(2, 1, new Extractor());
 
-        // CONTRUYE UN EXTRACTOR EN UN VOLCAN Y ESPERA 6 TURNOS
-        algoStar.construirEdificio(casillaDelZangano, new Extractor());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
@@ -140,24 +139,21 @@ public class CasoDeUso4 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
 
-        Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Extractor);
-
-        // CREAR Y MOVER 3 ZANGANOS Al EXTRACTOR
         algoStar.generarUnidad(1, 1);
-        Ocupante zangano1 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-        // FALTA MOVER ZANGANO A UN EXTRACTOR
+        algoStar.moverDerecha(1, 1);
+        algoStar.ingresarUnidad(2,1);
         algoStar.generarUnidad(1, 1);
-        Ocupante zangano2 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-        // FALTA MOVER ZANGANO A UN EXTRACTOR
+        algoStar.moverDerecha(1, 1);
+        algoStar.ingresarUnidad(2,1);
         algoStar.generarUnidad(1, 1);
-        Ocupante zangano3 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-        // FALTA MOVER ZANGANO A UN EXTRACTOR
+        algoStar.moverDerecha(1, 1);
+        algoStar.ingresarUnidad(2,1);
+
+        algoStar.pasarTurno();
         algoStar.pasarTurno();
 
-
-        // JUGADOR CON EXTRACTOR CON 3 ZANGANO GENERA 30 DE GAS
-        Assertions.assertTrue(algoStar.cantidadGas() == 30);
-    }
+        Assertions.assertEquals(230, algoStar.devolverCantidadGas());
+    }/*
 
     @Test
     public void ExtractorCon3ZanganosNoPuedeAgregarOtro() {
