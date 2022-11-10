@@ -202,11 +202,11 @@ public class Mapa {
     }
 
     public void actualizar(int ronda) {
+        if(ronda % 2 == 0){
+            generarMoho();
+        }
         for (Casilla casilla : casillas) {
             casilla.actualizar();
-            if(casilla.devolverTerreno() instanceof TerrenoMoho && ronda % 2 == 0){
-                generarMoho();
-            }
         }
     }
 
