@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioConRecursos;
+import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.recursos.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +46,22 @@ public abstract class Jugador {
     }
 
     public void recogerRecursos() {
-        EdificioConRecursos edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
+        TieneRecursos edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         while (edificioConRecursos != null) {
             inventario.agregarRecursos(edificioConRecursos.recolectarRecursos());
             edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         }
+
+        TieneRecursos zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
+        while (zanganoExtrayendoMinerales != null) {
+            Recursos nuevosRecursos = zanganoExtrayendoMinerales.recolectarRecursos();
+            if (nuevosRecursos != null) {
+                inventario.agregarRecursos(zanganoExtrayendoMinerales.recolectarRecursos());
+            }
+            zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
+        }
+
+
     }
 
 }

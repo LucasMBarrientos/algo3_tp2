@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioConRecursos;
+import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Extractor extends Edificio implements EdificioConRecursos {
+public class Extractor extends Edificio implements TieneRecursos {
 
     public List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 

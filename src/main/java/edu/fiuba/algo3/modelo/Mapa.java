@@ -1,11 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
+import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.terrenos.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,8 +149,6 @@ public class Mapa {
 
     }
 
-
-
     public Casilla buscarCasilla(int x, int y) {
         for (Casilla casilla : this.casillas) {
            if (casilla.compararUbicaciones(x,y)){
@@ -225,19 +220,34 @@ public class Mapa {
         }
     }
 
-    public EdificioConRecursos buscarEdificiosConRecursos(){
+    public TieneRecursos buscarEdificiosConRecursos(){
         for(Casilla casilla : casillas) {
             // Recorre todas las casillas del mapa
-            if(casilla.devolverEdificio() instanceof EdificioConRecursos) {
+            if(casilla.devolverEdificio() instanceof TieneRecursos) {
                 // Se halla un edificio que extrae recursos
-                if (((EdificioConRecursos) casilla.devolverEdificio()).tieneRecursos()) {
+                if (((TieneRecursos) casilla.devolverEdificio()).tieneRecursos()) {
                     // El edificio ademas tiene recursos extraidos
-                    return (EdificioConRecursos) casilla.devolverEdificio();
+                    return (TieneRecursos) casilla.devolverEdificio();
                 }
             }
         }
         return null;
     }
+
+    public TieneRecursos buscarMineralesConZanganos(){
+        for(Casilla casilla : casillas) {
+            // Recorre todas las casillas del mapa
+            if(casilla.devolverTerreno() instanceof Minerales && casilla.devolverUnidad() instanceof Zangano) {
+                // Se halla un mineral con un zangano arriba
+                if (((TieneRecursos) casilla.devolverUnidad()).tieneRecursos()) {
+                    // El edificio ademas tiene recursos extraidos
+                    return (TieneRecursos) casilla.devolverUnidad();
+                }
+            }
+        }
+        return null;
+    }
+    
 
 
 }

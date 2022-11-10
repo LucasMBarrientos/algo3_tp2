@@ -66,22 +66,26 @@ public class CasoDeUso7 {
       algoStar.pasarTurno();
       Assertions.assertEquals(110, algoStar.devolverCantidadMinerales());
     }
-    /*
-
+    
     @Test
     public void verificarQueZergPuedaRecolectarMinerales() {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
       algoStar.generarUnidad(1, 1);
       Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
       algoStar.moverDerecha(1, 1);
       algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-      
+
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+
+      algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
+
       // PONER A TRABAJAR UN ZANGANO SOBRE UN MINERAL?
 
-      Assertions.assertTrue(algoStar.cantidadMinerales() == 0);
+      Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
       algoStar.pasarTurno();
-      Assertions.assertTrue(algoStar.cantidadMinerales() == 1);
-    }*/
+      algoStar.pasarTurno();
+      Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 110);
+    }
 }

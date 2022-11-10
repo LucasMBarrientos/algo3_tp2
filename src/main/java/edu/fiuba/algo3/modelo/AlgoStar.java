@@ -70,10 +70,9 @@ public class AlgoStar {
         Unidad unidad = casilla.devolverUnidad();
         Casilla casillaObjetivo = mapa.buscarCasilla(x+1,y);
         if(unidad != null){
-            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
-               // unidad.intentarMoverse(casillaObjetivo);
-                casillaObjetivo.establecerUnidad(unidad);
-                casilla.establecerUnidad(null);
+            boolean movimientoExitoso = unidad.intentarMoverse(casillaObjetivo);
+            if (movimientoExitoso) {
+                mapa.buscarCasilla(x,y).establecerUnidad(null);
             }
         }
     }
@@ -83,9 +82,10 @@ public class AlgoStar {
         Casilla casillaObjetivo = mapa.buscarCasilla(x,y+1);
         if(unidad != null){
             if (mapa.validarMovimiento(unidad,casillaObjetivo)){
-                //unidad.intentarMoverse(casillaObjetivo);
-                casillaObjetivo.establecerUnidad(unidad);
-                casilla.establecerUnidad(null);
+                boolean movimientoExitoso = unidad.intentarMoverse(casillaObjetivo);
+                if (movimientoExitoso) {
+                    mapa.buscarCasilla(x,y).establecerUnidad(null);
+                }
             }
         }
     }
@@ -94,10 +94,11 @@ public class AlgoStar {
         Unidad unidad = casilla.devolverUnidad();
         Casilla casillaObjetivo = mapa.buscarCasilla(x,y-1);
         if(unidad != null){
-            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
-               // unidad.intentarMoverse(casillaObjetivo);
-                casillaObjetivo.establecerUnidad(unidad);
-                casilla.establecerUnidad(null);
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){               
+                boolean movimientoExitoso = unidad.intentarMoverse(casillaObjetivo);
+                if (movimientoExitoso) {
+                    mapa.buscarCasilla(x,y).establecerUnidad(null);
+                }
             }
         }
     }
@@ -106,10 +107,11 @@ public class AlgoStar {
         Unidad unidad = casilla.devolverUnidad();
         Casilla casillaObjetivo = mapa.buscarCasilla(x-1,y);
         if(unidad != null){
-            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
-               // unidad.intentarMoverse(casillaObjetivo);
-                casillaObjetivo.establecerUnidad(unidad);
-                casilla.establecerUnidad(null);
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){               
+                boolean movimientoExitoso = unidad.intentarMoverse(casillaObjetivo);
+                if (movimientoExitoso) {
+                    mapa.buscarCasilla(x,y).establecerUnidad(null);
+                }
             }
         }
     }

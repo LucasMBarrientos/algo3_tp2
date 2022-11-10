@@ -3,17 +3,18 @@ package edu.fiuba.algo3.modelo;
 public abstract class Unidad {
 
 
-    private boolean disponible = true;
+    protected boolean disponible = true;
 
     public boolean devolverDisponibilidad() {
         return disponible;
     }
 
-
-    public void intentarMoverse(Casilla nuevaCasilla) {
+    public boolean intentarMoverse(Casilla nuevaCasilla) {
         if (this.disponible) {
             this.disponible = false;
+            return true;
         }
+        return false;
     }
 
     protected void actualizarDisponibilidad() {
