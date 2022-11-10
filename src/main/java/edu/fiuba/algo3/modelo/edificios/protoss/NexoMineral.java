@@ -10,7 +10,6 @@ import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
 public class NexoMineral extends EdificioProtoss implements TieneRecursos {
 
-
     private Boolean recursosRecolectados = false;
 
     public NexoMineral() {

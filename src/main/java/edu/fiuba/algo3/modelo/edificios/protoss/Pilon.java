@@ -7,8 +7,8 @@ import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
 public class Pilon extends EdificioProtoss {
 
-    public Pilon(){
-        tiempoConstruccion = 5;
+    public Pilon() {
+        this.tiempoConstruccion = 5;
         this.requerimientosGas = 0;
         this.requerimientosMinerales = 100;
         this.vida = 300;

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.recursos.*;
@@ -279,7 +280,25 @@ public class Mapa {
         }
         return null;
     }
-    
 
+    public boolean buscarEdificioGuarida() {
+        for(Casilla casilla : casillas) {
+            // Recorre todas las casillas del mapa
+            if(casilla.devolverEdificio() instanceof Guarida) {
+                return true;
+            } 
+        }
+        return false;
+    }
+
+    public boolean buscarEdificioAcceso() {
+        for(Casilla casilla : casillas) {
+            // Recorre todas las casillas del mapa
+            if(casilla.devolverEdificio() instanceof Acceso) {
+                return true;
+            } 
+        }
+        return false;
+    }
 
 }

@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.*;
 
 import java.util.ArrayList;
@@ -29,9 +30,16 @@ public class JugadorZerg extends Jugador {
     public void construirEdificio(int x, int y, Edificio edificio) {        
         boolean requerimientosAlcanzados = edificio.validarRequirimientos(inventario);
         if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor && requerimientosAlcanzados) {
-            Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
-            unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
-            edificio.consumirRecursosDelJugador(inventario);
+            if (edificio instanceof Espiral) {
+                if (mapa.buscarEdificioGuarida()) {
+                    mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
+                    edificio.consumirRecursosDelJugador(inventario);
+                }
+            } else {
+                Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
+                unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
+                edificio.consumirRecursosDelJugador(inventario);
+            }
         }
     }
 
