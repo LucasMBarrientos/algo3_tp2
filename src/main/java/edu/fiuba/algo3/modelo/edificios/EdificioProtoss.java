@@ -20,17 +20,24 @@ public abstract class EdificioProtoss extends Edificio {
         escudo -= unidades;
     }
 
-    public void recibirDanio(int unidades) {
+    public boolean recibirDanio(int unidades) {
         if (unidades < escudo) {
             reducirEscudo(unidades);
         } else {
             reducirVida(unidades - escudo);
             escudo = 0;
         }
+        return (vida <= 0);
     }
 
     public void establecerOperatividad(boolean operativo) {
         this.operativo = operativo;
     }
+
+    public boolean devolverOperatividad() {
+        return operativo;
+    }
+
+    
 
 }

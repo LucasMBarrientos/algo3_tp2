@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Unidad;
 public class TerrenoMoho implements Terreno, Actualizable {
 
     public boolean validarEdificio(Edificio edificio){
-        return (edificio instanceof Criadero); //distinto de extractor y protoss
+        return (edificio instanceof Criadero || edificio == null); //distinto de extractor y protoss
     };
 
     public boolean validarTransitable(Unidad unidad){

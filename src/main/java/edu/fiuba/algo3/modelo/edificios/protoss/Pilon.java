@@ -11,6 +11,10 @@ public class Pilon extends EdificioProtoss {
         tiempoConstruccion = 5;
         this.requerimientosGas = 0;
         this.requerimientosMinerales = 100;
+        this.vida = 300;
+        this.escudo = 300;
+        this.vidaMax = 300;
+        this.escudoMax = 300;
     }
 
     @Override

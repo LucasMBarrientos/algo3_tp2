@@ -13,8 +13,9 @@ public abstract class EdificioZerg extends Edificio {
         }
     }
 
-    public void recibirDanio(int unidades) {
+    public boolean recibirDanio(int unidades) {
         reducirVida(unidades);
+        return (vida <= 0);
     }
 
 }

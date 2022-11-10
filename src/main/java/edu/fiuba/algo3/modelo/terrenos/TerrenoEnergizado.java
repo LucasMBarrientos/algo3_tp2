@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Unidad;
 public class TerrenoEnergizado implements Terreno {
     @Override
     public boolean validarEdificio(Edificio edificio) {
-        return edificio instanceof Pilon;
+        return (edificio instanceof Pilon || edificio == null);
     }
 
     @Override

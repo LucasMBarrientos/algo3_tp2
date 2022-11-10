@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
 public class TerrenoMineral implements Terreno{
     @Override
     public boolean validarEdificio(Edificio edificio) {
-        return edificio instanceof NexoMineral;
+        return (edificio instanceof NexoMineral || edificio == null);
     }
 
     @Override

@@ -70,9 +70,11 @@ public class AlgoStar {
         Unidad unidad = casilla.devolverUnidad();
         Casilla casillaObjetivo = mapa.buscarCasilla(x+1,y);
         if(unidad != null){
-            boolean movimientoExitoso = unidad.intentarMoverse(casillaObjetivo);
-            if (movimientoExitoso) {
-                mapa.buscarCasilla(x,y).establecerUnidad(null);
+            if (mapa.validarMovimiento(unidad,casillaObjetivo)){
+                boolean movimientoExitoso = unidad.intentarMoverse(casillaObjetivo);
+                if (movimientoExitoso) {
+                    mapa.buscarCasilla(x,y).establecerUnidad(null);
+                }
             }
         }
     }
@@ -135,4 +137,21 @@ public class AlgoStar {
     public void construirEdificio(int x, int y, Edificio edificio) {//Usar solo por ahora, dsps hay que eliminarlo
         hallarJugadorActual().construirEdificio(x, y, edificio);
     }
+
+    public void atacarEdificioALaDerecha(int x, int y) {
+        Casilla casilla = mapa.buscarCasilla(x, y);
+        Unidad unidad = casilla.devolverUnidad();
+        Casilla casillaObjetivo = mapa.buscarCasilla(x+1,y);
+        if(unidad != null){
+            if (casillaObjetivo.devolverUnidad() instanceof Unidad) {
+                //casillaObjetivo.devolverUnidad().recibirDanio(casilla.devolverUnidad().emitirDanio());
+            } else if (casillaObjetivo.devolverEdificio() instanceof Edificio) {
+                boolean edificioFueDestruido = mapa.buscarCasilla(x+1, y).devolverEdificio().recibirDanio(casilla.devolverUnidad().emitirDanio());
+                if (edificioFueDestruido) {
+                    mapa.buscarCasilla(x+1, y).establecerEdificio(null);
+                }
+            }
+        }
+    }
+
 }

@@ -41,11 +41,10 @@ public abstract class Edificio implements Actualizable {
     public abstract void actualizar();
 
 
-    public abstract void recibirDanio(int unidades);
+    public abstract boolean recibirDanio(int unidades);
 
     public void reducirVida(int unidades) {
         this.vida -= unidades;
     }
-
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Inventario {
 
-    public Recursos unidadesGas = new Recursos(100), unidadesMineral = new Recursos(100);
+    public Recursos unidadesGas = new Recursos(200), unidadesMineral = new Recursos(200);
 
     public int devolverCantidadGas(){
         return unidadesGas.devolverUnidades();

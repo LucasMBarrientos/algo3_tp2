@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 public class TerrenoVolcan implements Terreno {
 
     public boolean validarEdificio(Edificio edificio){
-        return (edificio instanceof Extractor || edificio instanceof Asimilador); //distinto de extractor y protoss
+        return (edificio instanceof Extractor || edificio instanceof Asimilador || edificio == null); //distinto de extractor y protoss
     };
 
     public boolean validarTransitable(Unidad unidad){

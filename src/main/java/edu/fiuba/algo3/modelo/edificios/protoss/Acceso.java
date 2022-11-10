@@ -11,6 +11,10 @@ public class Acceso extends EdificioProtoss {
         tiempoConstruccion = 8;
         this.requerimientosGas = 0;
         this.requerimientosMinerales = 150;
+        this.vida = 500;
+        this.escudo = 500;
+        this.vidaMax = 500;
+        this.escudoMax = 500;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {
