@@ -1,11 +1,15 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Jugador {
 
     protected Mapa mapa;
+
+    protected int unidadesGas, unidadesMineral;
 
     protected List<Unidad> unidadesDisponibles = new ArrayList<Unidad>();
 

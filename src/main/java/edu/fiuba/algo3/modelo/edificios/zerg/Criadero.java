@@ -1,4 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.edificios.zerg;
+
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 
 public class Criadero extends Edificio implements GeneradorDeUnidades, Actualizable {
 
@@ -10,7 +14,7 @@ public class Criadero extends Edificio implements GeneradorDeUnidades, Actualiza
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {
-        return (casilla.devolverTerreno() instanceof Moho);
+        return (casilla.devolverTerreno() instanceof TerrenoMoho);
     }
 
     public void actualizar() {

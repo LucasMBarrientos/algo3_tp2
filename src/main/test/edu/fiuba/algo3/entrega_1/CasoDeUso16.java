@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso16 {
-    
+    /*
     @Test
     public void noSePuedeConstruirUnExtractorSobreOtroExtractor() {
         AlgoStar algoStar = new AlgoStar();
@@ -27,5 +27,5 @@ public class CasoDeUso16 {
         algoStar.construirEdificio(2,1, new Extractor());
         Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverUnidad().construyendo() == false);
     }
-
+*/
 }

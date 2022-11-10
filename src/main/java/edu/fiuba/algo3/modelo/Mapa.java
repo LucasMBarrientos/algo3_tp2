@@ -1,5 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,7 +25,8 @@ public class Mapa {
                 this.casillas.add(new Casilla(x,y,new TerrenoVacio()));
             }
         }
-        buscarCasilla(1,1).establecerTerreno(new Moho());
+        buscarCasilla(1,1).establecerTerreno(new TerrenoMoho());
+        buscarCasilla(9,9).establecerTerreno(new TerrenoEnergizado());
     }
 
     private Casilla buscarCasillaAlAzar() {
@@ -57,7 +64,7 @@ public class Mapa {
                         if (casillaPosible.compararUbicaciones(casillaCentral)) {
                             // Encontre la casilla del mapa en la misma posicion que casillaPosible
                             if(casillaAdyacente.devolverTerreno() instanceof TerrenoVacio){
-                                casillaAdyacente.establecerTerreno(new Moho());
+                                casillaAdyacente.establecerTerreno(new TerrenoMoho());
                             }
                         }
                     }
@@ -73,6 +80,34 @@ public class Mapa {
             }
         }
     }
+
+    public void generarEnergizadosIniciales() {
+        for (Casilla casillaCentral : this.casillas) {
+            if (casillaCentral.devolverEdificio() instanceof Pilon) {
+                int x = casillaCentral.devolverX() - 1;
+                int y = casillaCentral.devolverY() - 1;
+                Casilla casillaPosible;
+                for (int i = 0; i < 9; i++) {
+                    casillaPosible = new Casilla(x,y);
+                    for (Casilla casillaAdyacente : casillas) {
+                        if (casillaPosible.compararUbicaciones(casillaCentral)) {
+                            // Encontre la casilla del mapa en la misma posicion que casillaPosible
+                            if(casillaAdyacente.devolverTerreno() instanceof TerrenoVacio){
+                                casillaAdyacente.establecerTerreno(new TerrenoEnergizado());
+                            }
+                        }
+                    }
+                    x++;
+                    if (x == casillaCentral.devolverX() + 1) {
+                        x -= 2;
+                        y++;
+                    }
+                }
+            }
+        }
+    }
+
+
 
     public Casilla buscarCasilla(int x, int y) {
         for (Casilla casilla : this.casillas) {

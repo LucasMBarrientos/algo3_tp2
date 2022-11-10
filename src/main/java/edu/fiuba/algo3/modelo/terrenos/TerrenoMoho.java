@@ -1,6 +1,11 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.terrenos;
 
-public class Moho implements Terreno, Actualizable {
+import edu.fiuba.algo3.modelo.Actualizable;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.Unidad;
+
+public class TerrenoMoho implements Terreno, Actualizable {
 
     public boolean validarEdificio(Edificio edificio){
         return (edificio instanceof Criadero); //distinto de extractor y protoss

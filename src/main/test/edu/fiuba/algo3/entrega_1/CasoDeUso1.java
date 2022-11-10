@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +21,7 @@ public class CasoDeUso1 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(1,1);
-        Ocupante zanganoGenerado = algoStar.seleccionarCasilla(1,1).devolverUnidad();
+        Unidad zanganoGenerado = algoStar.seleccionarCasilla(1,1).devolverUnidad();
         Assertions.assertTrue(zanganoGenerado instanceof Zangano);
     }
 
