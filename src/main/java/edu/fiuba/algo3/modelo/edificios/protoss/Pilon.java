@@ -8,6 +8,8 @@ public class Pilon extends Edificio {
 
     public Pilon(){
         tiempoConstruccion = 5;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 100;
     }
 
     @Override

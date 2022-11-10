@@ -11,6 +11,8 @@ public class Criadero extends Edificio implements GeneradorDeUnidades, Actualiza
     public Criadero() {
         this.larvas = 3;
         this.tiempoConstruccion = 4;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 50;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

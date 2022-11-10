@@ -33,10 +33,16 @@ public abstract class Jugador {
 
     public abstract Casilla generarUnidad(Casilla casilla);
 
-    //public abstract void construirEdificio(int x, int y, Edificio edificio);
 
-    public abstract void construirEdificio(int x, int y, Edificio edificio);
 
+    public abstract void construirEdificio(int x, int y, Edificio edificio); // eliminar esto
+
+    public abstract void construirEdificioUsandoGas(int x, int y, Edificio edificio);
+
+    public abstract void construirEdificioUsandoMinerales(int x, int y, Edificio edificio);
+
+
+    
     public int devolverCantidadGas(){
         return inventario.devolverCantidadGas();
     }
@@ -53,6 +59,7 @@ public abstract class Jugador {
             edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         }
     }
+
 
     public abstract void recogerRecursos();
 

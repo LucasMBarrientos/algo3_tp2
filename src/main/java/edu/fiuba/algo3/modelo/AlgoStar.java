@@ -132,7 +132,16 @@ public class AlgoStar {
         return hallarJugadorActual().devolverCantidadMinerales();
     }
 
-    public void construirEdificio(int x, int y, Edificio edificio) {
+    public void construirEdificio(int x, int y, Edificio edificio) {//Usar solo por ahora, dsps hay que eliminarlo
         hallarJugadorActual().construirEdificio(x, y, edificio);
     }
+
+    public void construirEdificioUsandoGas(int x, int y, Edificio edificio) {
+        hallarJugadorActual().construirEdificioUsandoGas(x, y, edificio);
+    }
+
+    public void construirEdificioUsandoMinerales(int x, int y, Edificio edificio) {
+        hallarJugadorActual().construirEdificioUsandoMinerales(x, y, edificio);
+    }
+
 }

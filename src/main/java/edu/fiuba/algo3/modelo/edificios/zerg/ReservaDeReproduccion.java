@@ -9,6 +9,8 @@ public class ReservaDeReproduccion extends Edificio {
 
     public ReservaDeReproduccion() {
         tiempoConstruccion = 12;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 150;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

@@ -9,6 +9,8 @@ public class PuertoEstelar extends Edificio {
 
     public PuertoEstelar() {
         tiempoConstruccion = 10;
+        this.requerimientosGas = 150;
+        this.requerimientosMinerales = 150;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

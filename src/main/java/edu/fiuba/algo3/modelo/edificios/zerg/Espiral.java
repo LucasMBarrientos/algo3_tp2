@@ -9,6 +9,8 @@ public class Espiral extends Edificio {
 
     public Espiral() {
         tiempoConstruccion = 10;
+        this.requerimientosGas = 100;
+        this.requerimientosMinerales = 150;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

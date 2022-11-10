@@ -7,6 +7,8 @@ public class Asimilador extends Edificio {
 
     public Asimilador() {
         this.tiempoConstruccion = 6;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 100;
     }
     @Override
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

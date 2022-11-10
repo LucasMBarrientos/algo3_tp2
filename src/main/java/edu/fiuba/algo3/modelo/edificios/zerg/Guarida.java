@@ -9,6 +9,8 @@ public class Guarida extends Edificio {
 
     public Guarida() {
         tiempoConstruccion = 12;
+        this.requerimientosGas = 100;
+        this.requerimientosMinerales = 200;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

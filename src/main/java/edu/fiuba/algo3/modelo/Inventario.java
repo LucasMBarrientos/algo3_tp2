@@ -20,12 +20,12 @@ public class Inventario {
         return unidadesMineral.devolverUnidades();
     }
 
-    public void agregarGas(int cantidadGas) {
-        unidadesGas.agregarUnidades(cantidadGas);
+    public void agregarGas(int cantidad) {
+        unidadesGas.agregarUnidades(cantidad);
     }
 
-    public void agregarMinerales(int cantidadMinerales){
-        unidadesMineral.agregarUnidades(cantidadMinerales);
+    public void agregarMinerales(int cantidad){
+        unidadesMineral.agregarUnidades(cantidad);
     }
 
     public void agregarRecursos(Recursos recursos) {
@@ -35,6 +35,14 @@ public class Inventario {
         } else if (recursos instanceof Minerales) {
             unidadesMineral.agregarUnidades(nuevasUnidades);
         }
+    }
+
+    public void restarGas(int cantidad) {
+        unidadesGas.restar(cantidad);
+    }
+    
+    public void restarMinerales(int cantidad) {
+        unidadesMineral.restar(cantidad);
     }
 
 }

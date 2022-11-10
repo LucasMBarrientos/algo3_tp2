@@ -19,6 +19,8 @@ public class Extractor extends Edificio implements TieneRecursos {
         
     public Extractor() {
         this.tiempoConstruccion = 6;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 100;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {

@@ -9,6 +9,8 @@ public class Acceso extends Edificio {
 
     public Acceso() {
         tiempoConstruccion = 8;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 150;
     }
 
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {
