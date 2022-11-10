@@ -17,9 +17,9 @@ public class CasoDeUso2 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        Assertions.assertFalse(casillaDelZangano.devolverOcupante() instanceof Criadero);
+        Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Criadero);
         algoStar.pasarTurno();
-        Assertions.assertTrue(casillaDelZangano.devolverOcupante() instanceof Criadero);
+        Assertions.assertTrue(casillaDelZangano.devolverEdificio() instanceof Criadero);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class CasoDeUso2 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        Assertions.assertTrue(casillaDelZangano.devolverOcupante() instanceof Criadero);
+        Assertions.assertTrue(casillaDelZangano.devolverEdificio() instanceof Criadero);
         algoStar.generarUnidad(casillaDelZangano); // Se generara una unidad en la casilla(1,0)
         Unidad nuevoZanganoDisponible = algoStar.seleccionarUnidadDisponible(1);
         Assertions.assertTrue(zanganoDisponible instanceof Zangano && nuevoZanganoDisponible instanceof Zangano);

@@ -15,11 +15,11 @@ public class Mapa {
         this.dimensionX = dimensionX;
         this.dimensionY = dimensionY;
         for (int x = 0; x < dimensionX; x++) {
-            for (int y = 0; y < dimensionY; y++) {                
+            for (int y = 0; y < dimensionY; y++) {
                 this.casillas.add(new Casilla(x,y,new TerrenoVacio()));
             }
         }
-        this.generarVolcanes();
+        buscarCasilla(1,1).establecerTerreno(new Moho());
     }
 
     private Casilla buscarCasillaAlAzar() {
@@ -28,7 +28,7 @@ public class Mapa {
         return this.buscarCasilla(x, y);
     }
 
-    private Casilla buscarCasillaDesocupadaAlAzar() {
+/*    private Casilla buscarCasillaDesocupadaAlAzar() {
         Casilla casillaDisponible;
         while (true) {
             casillaDisponible = buscarCasillaAlAzar();
@@ -44,10 +44,10 @@ public class Mapa {
             buscarCasillaDesocupadaAlAzar().establecerTerreno(new Volcan());
         }
     }
-
+*/
     public void generarMoho() {
         for (Casilla casilla : this.casillas) {
-            if (casilla.devolverOcupante() instanceof Criadero) {
+            if (casilla.devolverEdificio() instanceof Criadero) {
                 this.hallarCasillaAdyacenteConTerrenoVacio(casilla).establecerTerreno(new Moho());
             }
         }
@@ -112,16 +112,12 @@ public class Mapa {
         if (nuevaCasilla == null) {
             return false;
         }
-        return (nuevaCasilla.devolverOcupante() == null && nuevaCasilla.devolverTerreno().validarOcupante(unidad));
+        return (nuevaCasilla.devolverUnidad() == null && nuevaCasilla.devolverTerreno().validarTransitable(unidad));
     }
 
     public void actualizar() {
         for (Casilla casilla : casillas) {
-            if (casilla.ocupada()) {
-                if (casilla.devolverOcupante() instanceof Actualizable) {
-                    ((Actualizable)casilla.devolverOcupante()).actualizar();
-                }
-            }
+            casilla.actualizar();
         }
     }
 }

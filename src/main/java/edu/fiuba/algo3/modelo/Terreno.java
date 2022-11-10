@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 public interface Terreno {
 
-    boolean validarOcupante(Ocupante ocupante);
+    boolean validarEdificio(Edificio edificio);
+
+    boolean validarTransitable(Unidad unidad);
 
 }

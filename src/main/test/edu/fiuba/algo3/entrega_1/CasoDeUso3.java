@@ -51,9 +51,9 @@ public class CasoDeUso3 {
             algoStar.pasarTurno();
             algoStar.pasarTurno();
             algoStar.pasarTurno();
-            Assertions.assertFalse(casillaDelZangano.devolverOcupante() instanceof Extractor);
+            Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Extractor);
         }
-
+/*
         boolean finDelMapaAlcanzado = false;
         boolean volcanHallado = false;
         int x = 0;
@@ -86,7 +86,7 @@ public class CasoDeUso3 {
                 algoStar.pasarTurno();
             }
         }
-
+*/
         casillaDelZangano = zanganoDisponible.devolverCasilla();
         Assertions.assertTrue(casillaDelZangano.devolverTerreno() instanceof Volcan);
         algoStar.construirEdificio(zanganoDisponible, new Extractor());
@@ -95,9 +95,9 @@ public class CasoDeUso3 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        Assertions.assertFalse(casillaDelZangano.devolverOcupante() instanceof Extractor);
+        Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Extractor);
         algoStar.pasarTurno();
-        Assertions.assertTrue(casillaDelZangano.devolverOcupante() instanceof Extractor);
+        Assertions.assertTrue(casillaDelZangano.devolverEdificio() instanceof Extractor);
     }
     
 }

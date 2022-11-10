@@ -45,14 +45,14 @@ public class AlgoStar {
     }
 
     public void generarUnidad(int x, int y) {
-        if (this.mapa.buscarCasilla(x, y).devolverOcupante() instanceof GeneradorDeUnidades) {
+        if (this.mapa.buscarCasilla(x, y).devolverEdificio() instanceof GeneradorDeUnidades) {
             Casilla casilla = this.mapa.buscarCasilla(x, y);
             hallarJugadorActual().generarUnidad(casilla);
         }
     }
 
     public void generarUnidad(Casilla casilla) {
-        if (casilla.devolverOcupante() instanceof GeneradorDeUnidades) {
+        if (casilla.devolverEdificio() instanceof GeneradorDeUnidades) {
             hallarJugadorActual().generarUnidad(casilla);
         }
     }

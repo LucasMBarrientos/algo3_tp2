@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public abstract class Edificio implements Ocupante {
+public abstract class Edificio implements Actualizable{
 
     public int tiempoConstruccion;
 
@@ -9,5 +9,10 @@ public abstract class Edificio implements Ocupante {
     public int devolverTiempoConstruccion() {
         return this.tiempoConstruccion;
     }
+
+    public abstract void actualizar();
+
+
+
 
 }

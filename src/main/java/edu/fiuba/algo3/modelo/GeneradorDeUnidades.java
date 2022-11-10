@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-public interface GeneradorDeUnidades extends Ocupante {
+public interface GeneradorDeUnidades {
 
-    public Unidad generarUnidad(Casilla casilla);
+    public void generarUnidad(Casilla casilla);
 
 }

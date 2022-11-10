@@ -23,14 +23,13 @@ public class Criadero extends Edificio implements GeneradorDeUnidades, Actualiza
         return this.larvas;
     }
 
-    public Unidad generarUnidad(Casilla casilla) {
+    public void generarUnidad(Casilla casilla) {
         Unidad unidadGenerada = null;
         if (larvas > 0) {
             unidadGenerada = new Zangano();
             this.larvas--;
-            casilla.establecerOcupante(unidadGenerada);
+             casilla.establecerUnidad(unidadGenerada);
         }
-        return unidadGenerada;
     }
     
 }

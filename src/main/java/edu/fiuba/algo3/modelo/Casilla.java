@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-public class Casilla {
+import javafx.event.ActionEvent;
+
+public class Casilla implements Actualizable {
 
     private int x,y;
-    public Ocupante ocupante;
+    public Edificio edificio;
+    public Unidad unidad;
     public Terreno terreno;
 
     public Casilla(int x, int y) {
@@ -11,10 +14,10 @@ public class Casilla {
         this.y = y;
     }
 
-    public Casilla(int x, int y, Ocupante ocupante) {
+    public Casilla(int x, int y, Edificio edificio) {
         this.x = x;
         this.y = y;
-        this.ocupante = ocupante;
+        this.edificio = edificio;
     }
 
     public Casilla(int x, int y, Terreno terreno) {
@@ -31,8 +34,12 @@ public class Casilla {
         return this.y;
     }
     
-    public Ocupante devolverOcupante() {
-        return this.ocupante;
+    public Unidad devolverUnidad() {
+        return this.unidad;
+    }
+
+    public Edificio devolverEdificio() {
+        return this.edificio;
     }
 
     public void establecerTerreno(Terreno terreno) {
@@ -43,9 +50,14 @@ public class Casilla {
         return this.terreno;
     }
 
-    public void establecerOcupante(Ocupante ocupante) {
-        if (this.terreno.validarOcupante(ocupante)) {
-            this.ocupante = ocupante;
+    public void establecerEdificio(Edificio edificio) {
+        if (this.terreno.validarEdificio(edificio)) {
+            this.edificio = edificio;
+        }
+    }
+    public void establecerUnidad(Unidad unidad) {
+        if (this.terreno.validarTransitable(unidad)) {
+            this.unidad = unidad;
         }
     }
 
@@ -72,7 +84,7 @@ public class Casilla {
     }
     
     public boolean ocupada() {
-        return (this.ocupante != null);
+        return (this.edificio != null || this.unidad != null);
     }
 
     public boolean compararUbicaciones(Casilla casillaComparada) {
@@ -83,4 +95,13 @@ public class Casilla {
         return (this.x == x && this.y == y);
     }
 
+    @Override
+    public void actualizar() {
+        if(edificio != null){
+            edificio.actualizar();
+        }
+        if(unidad != null){
+            unidad.actualizar();
+        }
+    }
 }
