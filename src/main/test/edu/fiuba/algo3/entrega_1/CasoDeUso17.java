@@ -47,9 +47,12 @@ public class CasoDeUso17 {
             algoStar.pasarTurno();
         }
 
-        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() == null);
+        Assertions.assertNull(algoStar.seleccionarCasilla(2, 1).devolverEdificio());
 
-        algoStar.seleccionarCasilla(4, 5).establecerEdificio(new Guarida());
+        algoStar.seleccionarCasilla(2, 2).establecerEdificio(new Guarida());
+
+        algoStar.generarUnidad(1,1);
+        algoStar.moverDerecha(1,1);
 
         algoStar.construirEdificio(2,1, new Espiral());
         // Intentar construir el edificio por un par de turnos
