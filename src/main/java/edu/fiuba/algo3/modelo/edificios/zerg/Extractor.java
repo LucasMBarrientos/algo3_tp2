@@ -39,6 +39,7 @@ public class Extractor extends Edificio implements EdificioConRecursos {
 
     @Override
     public Recursos recolectarRecursos() {
+        recursosRecolectados = true;
         return new GasVespeno(10 * zanganosTrabajando.size());
     }
 

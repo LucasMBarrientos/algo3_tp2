@@ -183,7 +183,7 @@ public class Mapa {
             // Recorre todas las casillas del mapa
             if(casilla.devolverEdificio() instanceof EdificioConRecursos) {
                 // Se halla un edificio que extrae recursos
-                if (!((EdificioConRecursos) casilla.devolverEdificio()).tieneRecursos()) {
+                if (((EdificioConRecursos) casilla.devolverEdificio()).tieneRecursos()) {
                     // El edificio ademas tiene recursos extraidos
                     return (EdificioConRecursos) casilla.devolverEdificio();
                 }

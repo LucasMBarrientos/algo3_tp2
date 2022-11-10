@@ -81,6 +81,7 @@ public class CasoDeUso4 {
         algoStar.ingresarUnidad(2,1);
 
         algoStar.pasarTurno();
+        algoStar.pasarTurno();
 
 
         Assertions.assertEquals(110, algoStar.devolverCantidadGas());
