@@ -12,6 +12,9 @@ public class TerrenoVolcan implements Terreno {
     };
 
     public boolean validarTransitable(Unidad unidad){
+        if (unidad == null){
+            return true;
+        }
         return  (unidad instanceof Zangano);
     }
 

@@ -9,7 +9,9 @@ public abstract class Jugador {
 
     protected Mapa mapa;
 
-    protected int unidadesGas, unidadesMineral;
+    protected Inventario inventario = new Inventario();
+
+
 
     protected List<Unidad> unidadesDisponibles = new ArrayList<Unidad>();
 
@@ -35,6 +37,25 @@ public abstract class Jugador {
         if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
             Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
             unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
+        }
+    }
+
+    public int devolverCantidadGas(){
+        return inventario.devolverCantidadGas();
+    }
+
+    public int devolverCantidadMinerales(){
+        return inventario.devolverCantidadMinerales();
+    }
+
+    public void recogerRecursos() {
+        Edificio edificioConRecursos = this.mapa.buscarEdificioConRecursos();
+        while (edificioConRecursos != null) {
+            inventario.agregarRecursos(edificioConRecursos.extraerRecursos());
+            // public Recurso extraerRecursos() {
+            //  return unidadesExtraidas;
+            // }
+            edificioConRecursos = this.mapa.buscarEdificioConRecursos();
         }
     }
 

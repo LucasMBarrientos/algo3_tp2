@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        this.mapa.actualizar();
+        mapa.actualizar();
     }
 
     public Casilla seleccionarCasilla(int x, int y) {
@@ -112,10 +113,23 @@ public class AlgoStar {
         }
     }
 
+    public void ingresarUnidad(int x, int y){
+        Unidad unidad = mapa.buscarCasilla(x,y).devolverUnidad();
+        boolean ingresoExitoso = ((Extractor) mapa.buscarCasilla(x,y).devolverEdificio()).ingresarUnidad(unidad); //falta chequear instanceOf
+        if(ingresoExitoso){
+            mapa.buscarCasilla(x,y).establecerUnidad(null);
+        }
+    }
+
+    public int devolverCantidadGas(){
+        return hallarJugadorActual().devolverCantidadGas();
+    }
+
+    public int devolverCantidadMinerales(){
+        return hallarJugadorActual().devolverCantidadMinerales();
+    }
+
     public void construirEdificio(int x, int y, Edificio edificio) {
         hallarJugadorActual().construirEdificio(x, y, edificio);
     }
-
-
-
 }

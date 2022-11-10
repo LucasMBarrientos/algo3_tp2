@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
@@ -176,4 +177,14 @@ public class Mapa {
             casilla.actualizar();
         }
     }
+
+    public EdificioConRecursos buscarEdificiosConRecursos(){
+        for(Casilla casilla : casillas){
+            if(casilla.devolverEdificio() instanceof EdificioConRecursos){
+                return casilla.devolverEdificio();
+            }
+        }
+    }
+
+
 }

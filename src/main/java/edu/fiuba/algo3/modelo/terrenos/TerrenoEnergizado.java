@@ -12,6 +12,9 @@ public class TerrenoEnergizado implements Terreno {
 
     @Override
     public boolean validarTransitable(Unidad unidad) {
+        if (unidad == null){
+            return true;
+        }
         return false;
     }
 }

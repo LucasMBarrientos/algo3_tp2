@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,39 +13,62 @@ public class CasoDeUso4 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(1, 1);
-        Unidad zangano = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
+        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
 
-        // FALTA MOVER ZANGANO A UN VOLCAN
-      //  Casilla casillaDelZangano = zangano.devolverCasilla();
+        algoStar.moverDerecha(1, 1);
+        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
+        algoStar.construirEdificio(2, 1, new Extractor());
 
-        // CONTRUYE UN EXTRACTOR EN UN VOLCAN Y ESPERA 6 TURNOS
-     //   algoStar.construirEdificio(casillaDelZangano, new Extractor());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-
-       // Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Extractor);
         algoStar.pasarTurno();
 
         // JUGADOR CON EXTRACTOR SIN ZANGANO NO PRODUCE GAS
-       // Assertions.assertTrue(algoStar.cantidadGas() == 0);
-    }/*
+        Assertions.assertEquals(100, algoStar.devolverCantidadGas());
+    }
+
+    @Test
+    public void ZanganoPuedeIngresarAExtractor(){
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        algoStar.generarUnidad(1, 1);
+        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
+
+        algoStar.moverDerecha(1, 1);
+        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
+        algoStar.construirEdificio(2, 1, new Extractor());
+
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+
+        algoStar.generarUnidad(1, 1);
+        algoStar.moverDerecha(1, 1);
+        algoStar.ingresarUnidad(2,1);
+
+        Assertions.assertNull(algoStar.seleccionarCasilla(2, 1).devolverUnidad());
+    }
+
+
 
     @Test
     public void ExtractorCon1ZanganoGenera10Gas() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(1, 1);
-        Ocupante zangano = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
+        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
 
-        // FALTA MOVER ZANGANO A UN VOLCAN
-        Casilla casillaDelZangano = zangano.devolverCasilla();
+        algoStar.moverDerecha(1, 1);
+        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
+        algoStar.construirEdificio(2, 1, new Extractor());
 
-        // CONTRUYE UN EXTRACTOR EN UN VOLCAN Y ESPERA 6 TURNOS
-        algoStar.construirEdificio(casillaDelZangano, new Extractor());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
@@ -52,20 +76,16 @@ public class CasoDeUso4 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
 
-        Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Extractor);
-
-        // MOVER ZANGANO Al EXTRACTOR
         algoStar.generarUnidad(1, 1);
-        Ocupante zanganoNuevo = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
+        algoStar.moverDerecha(1, 1);
+        algoStar.ingresarUnidad(2,1);
 
         algoStar.pasarTurno();
 
 
-        // JUGADOR CON EXTRACTOR CON 1 ZANGANO GENERA 10 DE GAS
-        Assertions.assertTrue(algoStar.cantidadGas() == 10);
+        Assertions.assertEquals(110, algoStar.devolverCantidadGas());
     }
-
+/*
     @Test
     public void ExtractorCon2ZanganosGenera20Gas() {
         AlgoStar algoStar = new AlgoStar();
