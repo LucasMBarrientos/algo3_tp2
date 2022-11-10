@@ -9,6 +9,8 @@ public abstract class Jugador {
 
     protected Mapa mapa;
 
+    protected int unidadesGas, unidadesMineral;
+
     protected List<Unidad> unidadesDisponibles = new ArrayList<Unidad>();
 
     public void establecerMapa(Mapa mapa) {

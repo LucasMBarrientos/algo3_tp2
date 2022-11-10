@@ -21,7 +21,7 @@ public class CasoDeUso1 {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
         algoStar.generarUnidad(1,1);
-        Ocupante zanganoGenerado = algoStar.seleccionarCasilla(1,1).devolverUnidad();
+        Unidad zanganoGenerado = algoStar.seleccionarCasilla(1,1).devolverUnidad();
         Assertions.assertTrue(zanganoGenerado instanceof Zangano);
     }
 
