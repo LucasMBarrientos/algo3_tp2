@@ -238,12 +238,12 @@ public class Mapa {
     }
 
     public void actualizar(int ronda) {
-        generarTerrenoEnergizadoEnLosPilones();
         if(ronda % 2 == 0){
             generarMoho();
         }
         for (Casilla casilla : casillas) {
             casilla.actualizar();
+            generarTerrenoEnergizadoEnLosPilones();
             if (casilla.devolverEdificio() instanceof EdificioProtoss) {
                 if (casilla.devolverTerreno() instanceof TerrenoEnergizado || casilla.devolverEdificio() instanceof NexoMineral || casilla.devolverEdificio() instanceof Asimilador) {
                     // TODO: Implementar interface "NecesitaEnergia" para simplificar esto

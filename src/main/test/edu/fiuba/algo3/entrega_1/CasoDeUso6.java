@@ -24,18 +24,26 @@ public class CasoDeUso6 {
       algoStar.pasarTurno();
 
       Assertions.assertFalse(algoStar.seleccionarCasilla(6, 3).devolverTerreno() instanceof TerrenoMoho);
+
       algoStar.pasarTurno();
       algoStar.pasarTurno();
 
       Assertions.assertTrue(algoStar.seleccionarCasilla(6, 3).devolverTerreno() instanceof TerrenoMoho);
-      algoStar.pasarTurno();
 
       algoStar.pasarTurno();
       algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
 
       Assertions.assertTrue(algoStar.seleccionarCasilla(6, 4).devolverTerreno() instanceof TerrenoMoho);
+
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+
+      Assertions.assertTrue(algoStar.seleccionarCasilla(6, 5).devolverTerreno() instanceof TerrenoMoho);
+
+      algoStar.pasarTurno();
+      algoStar.pasarTurno();
+
+      Assertions.assertTrue(algoStar.seleccionarCasilla(6, 6).devolverTerreno() instanceof TerrenoMoho);
+      Assertions.assertFalse(algoStar.seleccionarCasilla(6, 7).devolverTerreno() instanceof TerrenoMoho);
     }
 }
