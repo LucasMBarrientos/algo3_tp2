@@ -72,20 +72,18 @@ public class CasoDeUso7 {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
       algoStar.generarUnidad(1, 1);
-      Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
+      algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
       algoStar.moverDerecha(1, 1);
-      algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-
       algoStar.pasarTurno();
+      // Turno de los protoss
       algoStar.pasarTurno();
-
-      algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
+      // Turno de los zerg
 
       // PONER A TRABAJAR UN ZANGANO SOBRE UN MINERAL?
 
-      Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
+      Assertions.assertEquals(110,algoStar.devolverCantidadMinerales());
       algoStar.pasarTurno();
       algoStar.pasarTurno();
-      Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 110);
+      Assertions.assertEquals(120,algoStar.devolverCantidadMinerales());
     }
 }

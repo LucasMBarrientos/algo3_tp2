@@ -45,23 +45,15 @@ public abstract class Jugador {
         return inventario.devolverCantidadMinerales();
     }
 
-    public void recogerRecursos() {
+
+    public void recogerRecursosDeEdificios() {
         TieneRecursos edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         while (edificioConRecursos != null) {
             inventario.agregarRecursos(edificioConRecursos.recolectarRecursos());
             edificioConRecursos = this.mapa.buscarEdificiosConRecursos();
         }
-
-        TieneRecursos zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
-        while (zanganoExtrayendoMinerales != null) {
-            Recursos nuevosRecursos = zanganoExtrayendoMinerales.recolectarRecursos();
-            if (nuevosRecursos != null) {
-                inventario.agregarRecursos(zanganoExtrayendoMinerales.recolectarRecursos());
-            }
-            zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
-        }
-
-
     }
+
+    public abstract void recogerRecursos();
 
 }

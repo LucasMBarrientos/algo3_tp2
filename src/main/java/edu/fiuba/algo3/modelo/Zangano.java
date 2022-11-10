@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 
 public class Zangano extends Unidad implements Actualizable, Constructor, TieneRecursos {
 
@@ -18,16 +19,13 @@ public class Zangano extends Unidad implements Actualizable, Constructor, TieneR
                 this.construccion.finalizar();
             }
         }
-        if (recolectandoMinerales) {
-
-        }
-
+        recursosRecolectados = false;
     }
 
     public boolean intentarMoverse(Casilla nuevaCasilla) {
         if (this.disponible) {
             nuevaCasilla.establecerUnidad(this);            
-            if (nuevaCasilla.devolverTerreno() instanceof Minerales) {
+            if (nuevaCasilla.devolverTerreno() instanceof TerrenoMineral) {
                 recolectandoMinerales = true;
             } else {
                 recolectandoMinerales = false;
@@ -52,7 +50,7 @@ public class Zangano extends Unidad implements Actualizable, Constructor, TieneR
     }
 
     public boolean tieneRecursos() {
-        return recolectandoMinerales;
+        return !(recursosRecolectados);
     }
 
 }

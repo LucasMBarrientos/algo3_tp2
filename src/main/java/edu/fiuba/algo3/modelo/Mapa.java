@@ -237,7 +237,7 @@ public class Mapa {
     public TieneRecursos buscarMineralesConZanganos(){
         for(Casilla casilla : casillas) {
             // Recorre todas las casillas del mapa
-            if(casilla.devolverTerreno() instanceof Minerales && casilla.devolverUnidad() instanceof Zangano) {
+            if(casilla.devolverTerreno() instanceof TerrenoMineral && casilla.devolverUnidad() instanceof Zangano) {
                 // Se halla un mineral con un zangano arriba
                 if (((TieneRecursos) casilla.devolverUnidad()).tieneRecursos()) {
                     // El edificio ademas tiene recursos extraidos

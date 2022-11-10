@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.recursos.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,22 @@ public class JugadorZerg extends Jugador {
         if (this.mapa.buscarCasilla(x,y).devolverUnidad() instanceof Constructor) {
             Constructor unidadConstructora = (Constructor) this.mapa.buscarCasilla(x,y).devolverUnidad();
             unidadConstructora.construir(edificio,mapa.buscarCasilla(x,y));
+        }
+    }
+
+    public void recogerRecursos() {
+        recogerRecursosDeEdificios();
+        recogerRecursosDeZanganosMineros();
+    }
+
+    public void recogerRecursosDeZanganosMineros() {
+        TieneRecursos zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
+        while (zanganoExtrayendoMinerales != null) {
+            Recursos nuevosRecursos = zanganoExtrayendoMinerales.recolectarRecursos();
+            if (nuevosRecursos != null) {
+                inventario.agregarRecursos(zanganoExtrayendoMinerales.recolectarRecursos());
+            }
+            zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
         }
     }
 }

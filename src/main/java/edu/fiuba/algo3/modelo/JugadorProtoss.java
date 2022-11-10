@@ -25,4 +25,8 @@ public class JugadorProtoss extends Jugador {
         mapa.buscarCasilla(x,y).establecerUnidad(new ConstruccionProtoss(edificio, mapa.buscarCasilla(x,y)));
     }
 
+    public void recogerRecursos() {
+        recogerRecursosDeEdificios();
+    }
+
 }
