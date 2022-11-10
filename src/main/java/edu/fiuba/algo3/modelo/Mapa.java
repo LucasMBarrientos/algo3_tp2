@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.terrenos.*;
 
@@ -50,6 +52,33 @@ public class Mapa {
         }
     }
 */
+    public void generarTerrenoEnergizadoEnLosPilones() {
+        for (Casilla casillaCentral : this.casillas) {
+            if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
+                casillaCentral.establecerTerreno(new TerrenoVacio());
+            }
+            if (casillaCentral.devolverEdificio() instanceof Pilon) {
+                casillaCentral.establecerTerreno(new TerrenoEnergizado());
+            }
+        }
+        generarTerrenoEnergizado();
+        generarTerrenoEnergizado();
+        generarTerrenoEnergizado();
+    }
+
+    private void generarTerrenoEnergizado() {
+        List<Casilla> casillasConEnergia = new ArrayList<Casilla>();
+        for (Casilla casillaCentral : this.casillas) {
+            if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
+                casillasConEnergia.add(casillaCentral);
+            }
+        }
+        for (Casilla casillaConEnergia : casillasConEnergia){
+            expandirEnergia(casillaConEnergia);
+        }
+
+    }
+
     public void generarMoho() {
         List<Casilla> casillasConMoho = new ArrayList<Casilla>();
         for (Casilla casillaCentral : this.casillas) {
@@ -69,7 +98,6 @@ public class Mapa {
             for (Casilla casillaCentral : this.casillas) {
                 if (casillaCentral.devolverTerreno() instanceof TerrenoMoho) {
                     casillasConMoho.add(casillaCentral);
-
                 }
             }
             for (Casilla casillaConMoho : casillasConMoho) {
@@ -102,7 +130,6 @@ public class Mapa {
                 buscarCasilla(x, y - 1).establecerTerreno(new TerrenoMoho());
             }
         }
-
     }
 
     public boolean validarCasillaDentroDeLimites(int x,int y){
@@ -146,7 +173,6 @@ public class Mapa {
                 buscarCasilla(x, y - 1).establecerTerreno(new TerrenoEnergizado());
             }
         }
-
     }
 
     public Casilla buscarCasilla(int x, int y) {
@@ -212,11 +238,20 @@ public class Mapa {
     }
 
     public void actualizar(int ronda) {
+        generarTerrenoEnergizadoEnLosPilones();
         if(ronda % 2 == 0){
             generarMoho();
         }
         for (Casilla casilla : casillas) {
             casilla.actualizar();
+            if (casilla.devolverEdificio() instanceof EdificioProtoss) {
+                if (casilla.devolverTerreno() instanceof TerrenoEnergizado || casilla.devolverEdificio() instanceof NexoMineral || casilla.devolverEdificio() instanceof Asimilador) {
+                    // TODO: Implementar interface "NecesitaEnergia" para simplificar esto
+                    ((EdificioProtoss) casilla.devolverEdificio()).establecerOperatividad(true);
+                } else {
+                    ((EdificioProtoss) casilla.devolverEdificio()).establecerOperatividad(false);
+                }
+            }
         }
     }
 

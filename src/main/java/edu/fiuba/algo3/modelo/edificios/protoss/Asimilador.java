@@ -11,6 +11,7 @@ public class Asimilador extends EdificioProtoss {
         this.requerimientosGas = 0;
         this.requerimientosMinerales = 100;
     }
+
     @Override
     public boolean validarRequerimientosDelCasillero(Casilla casilla) {
         return false;

@@ -5,6 +5,8 @@ public abstract class EdificioProtoss extends Edificio {
     protected int escudo;
     protected int escudoMax;
 
+    protected boolean operativo;
+
     protected void regenerarEscudo() {
         if (escudo < escudoMax) {
             escudo += (0.2 * escudoMax);
@@ -25,6 +27,10 @@ public abstract class EdificioProtoss extends Edificio {
             reducirVida(unidades - escudo);
             escudo = 0;
         }
+    }
+
+    public void establecerOperatividad(boolean operativo) {
+        this.operativo = operativo;
     }
 
 }
