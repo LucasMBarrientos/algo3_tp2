@@ -5,8 +5,34 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 
-public class Criadero extends EdificioZerg implements GeneradorDeUnidades {
+public class Criadero extends EdificioZerg {
 
+    private EstadoDeConstruccion estado = new CriaderoEnConstruccion();
+    private int tiempoDeConstruccion = 4;
+    private Coordenada coordenada;
+
+    public Criadero(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }
+
+    public Zangano generarZangano() throws NoHayLarvasDisponibles{ //ZANGANO NO ES UNA UNIDAD, TIENE COMPORTAMIENTO DISTINTO!!
+        return estado.generarZangano();
+    }
+
+    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles{
+        return estado.generarUnidad(unidad);
+    }
+
+    public void actualizar() {
+        estado.actualizar();
+        tiempoDeConstruccion--;
+        if(tiempoDeConstruccion == 0){
+            estado = new CriaderoOperativo();
+        }
+    }
+
+
+/*
     private int larvas;
 
     public Criadero() {
@@ -39,5 +65,5 @@ public class Criadero extends EdificioZerg implements GeneradorDeUnidades {
              casilla.establecerUnidad(unidadGenerada);
         }
     }
-    
+    */
 }

@@ -7,8 +7,8 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Jugador {
-
+public class Jugador {
+/*
     protected Mapa mapa;
 
     protected Inventario inventario = new Inventario();
@@ -50,5 +50,5 @@ public abstract class Jugador {
     }
 
     public abstract void recogerRecursos();
-
+*/
 }

@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 
 public class CasoDeUso10 {
+  /*
   @Test
     public void verificiarQueLasConstruccionesZergSeRegeneranHastaEl100() {
       AlgoStar algoStar = new AlgoStar();
@@ -36,5 +37,5 @@ public class CasoDeUso10 {
       // algoStar.seleccionarCasilla(2, 1).devolverEdificio().vida()
 
       // algoStar.seleccionarCasilla(2, 1).devolverEdificio().vida() DEBERIA SER LA VIDA MAXIMA DEL EXTRACTOR
-    }
+    }*/
 }

@@ -5,8 +5,20 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 
-public class Zangano extends Unidad implements Actualizable, Constructor, TieneRecursos {
+public class Zangano {
 
+    public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {
+        
+    }
+
+
+
+
+    /*
+
+    public void construir(Edificio edificio, Casilla casilla) {
+        this.construccion = new Construccion(this, casilla);
+    }
     private Construccion construccion;
     private boolean recolectandoMinerales = false;
     private Boolean recursosRecolectados = false;
@@ -52,5 +64,5 @@ public class Zangano extends Unidad implements Actualizable, Constructor, TieneR
     public boolean tieneRecursos() {
         return !(recursosRecolectados);
     }
-
+*/
 }

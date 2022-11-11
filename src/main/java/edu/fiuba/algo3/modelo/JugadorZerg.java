@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorZerg extends Jugador {
-
+/*
     public JugadorZerg(Mapa mapa) {
         Criadero criaderoInicial = new Criadero();
         mapa.buscarCasilla(1,1).establecerEdificio(criaderoInicial);
@@ -61,5 +61,5 @@ public class JugadorZerg extends Jugador {
             }
             zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
         }
-    }
+    }*/
 }

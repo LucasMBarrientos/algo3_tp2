@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.recursos;
 
 public class Recursos {
-
+/*
     private int unidades;
 
     public Recursos(int unidades) {
@@ -35,5 +35,5 @@ public class Recursos {
     public void agregarUnidades(int nuevasUnidades) {
         unidades += nuevasUnidades;
     }
-
+*/
 }

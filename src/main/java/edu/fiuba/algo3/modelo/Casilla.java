@@ -3,8 +3,8 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
-public class Casilla implements Actualizable {
-
+public class Casilla {
+/*
     private int x,y;
     public Edificio edificio;
     public Unidad unidad;
@@ -77,7 +77,7 @@ public class Casilla implements Actualizable {
         }
     }
     */
-    
+    /*
     public boolean validarCasillaAdyacente(Casilla casillaComparada) {
         int x = casillaComparada.devolverX();
         int y = casillaComparada.devolverY();
@@ -104,5 +104,5 @@ public class Casilla implements Actualizable {
         if(unidad != null){
             unidad.actualizar();
         }
-    }
+    }*/
 }

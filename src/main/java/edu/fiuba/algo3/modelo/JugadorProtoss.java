@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorProtoss extends Jugador {
-
+/*
 
     public JugadorProtoss(Mapa mapa) {
         Pilon pilonInicial = new Pilon();
@@ -46,5 +46,5 @@ public class JugadorProtoss extends Jugador {
             edificioConRecursos = this.mapa.buscarEdificiosProtossConRecursos();
         }
     }
-
+*/
 }

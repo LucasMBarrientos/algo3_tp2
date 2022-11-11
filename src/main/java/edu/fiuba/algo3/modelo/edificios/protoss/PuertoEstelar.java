@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.Casilla;
 
 public class PuertoEstelar extends EdificioProtoss {
-
+/*
     public PuertoEstelar() {
         this.tiempoConstruccion = 10;
         this.requerimientosGas = 150;
@@ -22,5 +22,5 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public void actualizar() {
         regenerarEscudo();
-    }
+    }*/
 }

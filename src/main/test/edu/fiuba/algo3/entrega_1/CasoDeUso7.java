@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
 public class CasoDeUso7 {
-
+/*
     @Test
     public void verificarQueElNexoMineralSeaConstruibleSobreUnMineral() {
       AlgoStar algoStar = new AlgoStar();
@@ -84,5 +84,5 @@ public class CasoDeUso7 {
       algoStar.pasarTurno();
       algoStar.pasarTurno();
       Assertions.assertEquals(220,algoStar.devolverCantidadMinerales());
-    }
+    }*/
 }

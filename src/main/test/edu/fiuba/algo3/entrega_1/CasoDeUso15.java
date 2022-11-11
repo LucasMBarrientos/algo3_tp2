@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso15 {
+public class CasoDeUso15 {/*
 
     @Test
     public void noSePuedenSeguirSacandoRecursosDeUnExtractorVacio() {
@@ -48,6 +48,6 @@ public class CasoDeUso15 {
         algoStar.pasarTurno();
 
         Assertions.assertEquals(5210,algoStar.hallarJugadorActual().devolverCantidadGas()); // Extractor fue construido en (2,1)
-    }
+    }*/
 
 }

@@ -6,8 +6,8 @@ import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.*;
 
-public class TerrenoVolcan implements Terreno {
-
+public class TerrenoVolcan {
+/*
     public boolean validarEdificio(Edificio edificio){
         return (edificio instanceof Extractor || edificio instanceof Asimilador || edificio == null); //distinto de extractor y protoss
     };
@@ -18,5 +18,5 @@ public class TerrenoVolcan implements Terreno {
         }
         return  (unidad instanceof Zangano);
     }
-
+*/
 }

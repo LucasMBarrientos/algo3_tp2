@@ -9,13 +9,102 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso1 {
     
     @Test
-    public void criaderoSeGeneraCorrectamente() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        Edificio edificioEnCasilla = algoStar.seleccionarCasilla(1,1).devolverEdificio();
-        Assertions.assertTrue(edificioEnCasilla instanceof Criadero);
+    public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
+
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+        for(int i=0; i<5; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
+
+        criadero.generarZangano();
+        criadero.generarZangano();
+        criadero.generarZangano();
+
+        Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
+            criadero.generarZangano();
+        });
     }
 
+    @Test
+    public void criaderoGeneraDosZanganosYPuedeGenerarUnoMasEnEseTurno() {
+        boolean expected = true;
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+        for(int i=0; i<5; i++){ criadero.actualizar(); }
+
+        criadero.generarZangano();
+        criadero.generarZangano();
+
+        try{
+            criadero.generarZangano();
+        } catch (NoHayLarvasDisponibles e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected); //buscar forma mas elegante para hacer esto
+    }
+
+    @Test
+    public void criaderoGeneraTresZanganosYAlOtroTurnoPuedeGenerarUnoMas() {
+        boolean expected = true;
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+        for(int i=0; i<5; i++){ criadero.actualizar(); }
+
+        criadero.generarZangano();
+        criadero.generarZangano();
+        criadero.generarZangano();
+
+        criadero.actualizar();
+
+        try{
+            criadero.generarZangano();
+        } catch (NoHayLarvasDisponibles e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected);
+    }
+
+    @Test
+    public void criaderoGeneraTresZanganosYEnDosTurnosPuedeGenerarDosMas() {
+        boolean expected = true;
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+        for(int i=0; i<5; i++){ criadero.actualizar(); }
+
+        criadero.generarZangano();
+        criadero.generarZangano();
+        criadero.generarZangano();
+
+        criadero.actualizar();
+        criadero.actualizar();
+
+        try{
+            criadero.generarZangano();
+            criadero.generarZangano();
+        } catch (NoHayLarvasDisponibles e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected);
+    }
+
+    @Test
+    public void criaderoNoPuedeTenerMasDeTresLarvasQueGenerenZanganos() {
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+        for(int i=0; i<5; i++){ criadero.actualizar(); }
+
+        criadero.generarZangano();
+        criadero.generarZangano();
+        criadero.generarZangano();
+
+        for(int i=0; i<10; i++){ //paso varios turnos
+            criadero.actualizar();
+        }
+
+        Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
+            for(int i=0; i<4; i++){criadero.generarZangano();} //trato de generar mas de 3 zanganos
+        });
+    }
+/*
     @Test
     public void zanganoSeGeneraCorrectamente() {
         AlgoStar algoStar = new AlgoStar();
@@ -59,5 +148,5 @@ public class CasoDeUso1 {
         cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
         Assertions.assertTrue(cantidadDeLarvas == 3);
     }
-
+*/
 }

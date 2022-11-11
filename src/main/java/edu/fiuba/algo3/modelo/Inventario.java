@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventario {
-
+/*
     public Recursos unidadesGas = new Recursos(200), unidadesMineral = new Recursos(200);
 
     public int devolverCantidadGas(){
@@ -44,5 +44,5 @@ public class Inventario {
     public void restarMinerales(int cantidad) {
         unidadesMineral.restar(cantidad);
     }
-
+*/
 }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios;
 
-public abstract class EdificioProtoss extends Edificio {
-    
+public class EdificioProtoss  {
+    /*
     protected int escudo;
     protected int escudoMax;
 
@@ -42,5 +42,5 @@ public abstract class EdificioProtoss extends Edificio {
         return escudo;
     }
     
-
+*/
 }

@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.terrenos.*;
 
 public class CasoDeUso8 {
-
+/*
   @Test
   public void protossSoloPuedeConstruirNexoMineralSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();

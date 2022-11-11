@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-public abstract class Unidad {
-
+public class Unidad { // seguramente deba ser abstracta
+/*
     protected boolean disponible = true;
 
     public boolean devolverDisponibilidad() {
@@ -26,5 +26,5 @@ public abstract class Unidad {
     }
 
     public abstract void actualizar();
-
+*/
 }

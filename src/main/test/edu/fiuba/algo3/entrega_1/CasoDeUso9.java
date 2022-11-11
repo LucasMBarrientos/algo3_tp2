@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.terrenos.*;
 
 public class CasoDeUso9 {
-
+/*
   @Test
   public void verificarSiEdificioProtossOperaCuandoDebe() {
     AlgoStar algoStar = new AlgoStar();
@@ -65,6 +65,6 @@ public class CasoDeUso9 {
 
     Assertions.assertTrue(algoStar.seleccionarCasilla(8,9).devolverTerreno() instanceof TerrenoEnergizado);
 
-  }
+  }*/
 
 }

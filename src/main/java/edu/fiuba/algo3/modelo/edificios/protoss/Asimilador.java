@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
 public class Asimilador extends EdificioProtoss {
-
+/*
     public Asimilador() {
         this.tiempoConstruccion = 6;
         this.requerimientosGas = 0;
@@ -20,5 +20,5 @@ public class Asimilador extends EdificioProtoss {
     @Override
     public void actualizar() {
         regenerarEscudo();
-    }
+    }*/
 }

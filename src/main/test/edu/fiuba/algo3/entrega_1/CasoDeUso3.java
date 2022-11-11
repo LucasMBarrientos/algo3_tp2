@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class CasoDeUso3 {
-
+/*
     @Test
     public void verificarQueElExtractorSoloPuedaSerConstruibleEnUnVolcan() {
         AlgoStar algoStar = new AlgoStar();
@@ -33,7 +33,7 @@ public class CasoDeUso3 {
 
         Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof Extractor);
 
-/*
+
         boolean finDelMapaAlcanzado = false;
         boolean volcanHallado = false;
         int x = 0;
@@ -66,7 +66,7 @@ public class CasoDeUso3 {
                 algoStar.pasarTurno();
             }
         }
-*/
+
 
     }
 
@@ -88,7 +88,7 @@ public class CasoDeUso3 {
 
         Assertions.assertFalse(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof Extractor);
 
-/*
+
         boolean finDelMapaAlcanzado = false;
         boolean volcanHallado = false;
         int x = 0;
@@ -121,8 +121,8 @@ public class CasoDeUso3 {
                 algoStar.pasarTurno();
             }
         }
-*/
 
 
-    }
+
+    }*/
 }

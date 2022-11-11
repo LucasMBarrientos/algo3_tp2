@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo.edificios;
 
 import edu.fiuba.algo3.modelo.edificios.*;
 
-public abstract class EdificioZerg extends Edificio {
-
+public class EdificioZerg {
+/*
     protected void regenerarVida() {
         if (vida < vidaMax) {
             vida += (0.1 * vidaMax);
@@ -17,5 +17,5 @@ public abstract class EdificioZerg extends Edificio {
         reducirVida(unidades);
         return (vida <= 0);
     }
-
+*/
 }

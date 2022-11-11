@@ -12,8 +12,8 @@ import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Extractor extends EdificioZerg implements TieneRecursos {
-
+public class Extractor extends EdificioZerg {
+/*
     public List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 
     private Boolean recursosRecolectados = false;
@@ -56,5 +56,5 @@ public class Extractor extends EdificioZerg implements TieneRecursos {
     @Override
     public boolean tieneRecursos() {
         return !(recursosRecolectados);
-    }
+    }*/
 }

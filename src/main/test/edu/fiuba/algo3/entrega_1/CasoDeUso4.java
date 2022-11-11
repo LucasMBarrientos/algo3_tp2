@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso4 {
-
+/*
     @Test
     public void ExtractorSinZanganoNoGeneraGas() {
         AlgoStar algoStar = new AlgoStar();

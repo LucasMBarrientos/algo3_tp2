@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
-
+/*
     private List<Casilla> casillas = new ArrayList<Casilla>();
 
     private int dimensionX;
@@ -299,6 +299,6 @@ public class Mapa {
             } 
         }
         return false;
-    }
+    }*/
 
 }

@@ -1,12 +1,26 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.CriaderoEnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoDeConstruccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
 public class Pilon extends EdificioProtoss {
 
+    private int tiempoDeConstruccion = 5;
+    private Coordenada coordenada;
+
+    public Pilon(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }
+
+
+
+
+    /*
     public Pilon() {
         this.tiempoConstruccion = 5;
         this.requerimientosGas = 0;
@@ -25,5 +39,5 @@ public class Pilon extends EdificioProtoss {
     @Override
     public void actualizar() {
         regenerarEscudo();
-    }
+    }*/
 }

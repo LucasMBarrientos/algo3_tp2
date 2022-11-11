@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.Casilla;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-
+/*
     public ReservaDeReproduccion() {
         this.tiempoConstruccion = 12;
         this.requerimientosGas = 0;
@@ -18,5 +18,5 @@ public class ReservaDeReproduccion extends EdificioZerg {
     public void actualizar() {
         regenerarVida();
     }
-
+*/
 }

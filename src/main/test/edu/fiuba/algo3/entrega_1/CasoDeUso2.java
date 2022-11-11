@@ -2,12 +2,37 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso2 {
 
+
+    @Test
+    public void pilonSeConstruyeEnTiempoAdecuado() {
+
+        Coordenada destino = new Coordenada(1 , 1);
+        Pilon edificioAConstruir = new Pilon(destino);
+
+
+    }
+
+    @Test
+    public void criaderoSeConstruyeEnTiempoAdecuado() {
+
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+
+        criadero.actualizar();
+        criadero.actualizar();
+
+        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
+            criadero.generarZangano();
+        });
+    }
+/*
     @Test
     public void criaderoSeConstruyeEnTiempoAdecuado() {
         AlgoStar algoStar = new AlgoStar();
@@ -43,5 +68,5 @@ public class CasoDeUso2 {
         algoStar.generarUnidad(2,1);
         Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverUnidad() instanceof Zangano);
     }
-    
+    */
 }

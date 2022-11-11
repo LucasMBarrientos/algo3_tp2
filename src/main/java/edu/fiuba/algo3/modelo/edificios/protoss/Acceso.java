@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Casilla;
 
 public class Acceso extends EdificioProtoss {
 
-
+/*
     public Acceso() {
         this.tiempoConstruccion = 8;
         this.requerimientosGas = 0;
@@ -23,5 +23,5 @@ public class Acceso extends EdificioProtoss {
     public void actualizar() {
         regenerarEscudo();
     }
-
+*/
 }
