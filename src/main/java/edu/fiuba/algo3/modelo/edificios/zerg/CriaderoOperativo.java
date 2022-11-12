@@ -1,12 +1,14 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
+import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.Zangano;
 
-public class CriaderoOperativo implements EstadoDeConstruccion {
+public class CriaderoOperativo implements EstadoCriadero {
 
     private int larvas = 3; //hacer clase Larva (?
 
-    public Zangano generarZangano() throws NoHayLarvasDisponibles{ //ZANGANO NO ES UNA UNIDAD, TIENE COMPORTAMIENTO DISTINTO!!
+    public Zangano generarZangano() throws NoHayLarvasDisponibles { //ZANGANO NO ES UNA UNIDAD, TIENE COMPORTAMIENTO DISTINTO!!
         if (larvas <= 0) {
             throw new NoHayLarvasDisponibles();
         }

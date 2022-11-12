@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.Zangano;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -13,6 +15,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Extractor extends EdificioZerg {
+
+    private EstadoExtractor estado = new ExtractorEnConstruccion();
+
+    private int tiempoDeConstruccion = 6;
+    private Coordenada coordenada;
+
+    public Extractor(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }
+
+    public void ingresarUnidad(Zangano zangano) {
+        estado.ingresarUnidad(zangano);
+    }
+
+    public void actualizar() {
+        estado.actualizar();
+        tiempoDeConstruccion--;
+        if(tiempoDeConstruccion == 0){
+            estado = new ExtractorOperativo();
+        }
+    }
+
+
 /*
     public List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 

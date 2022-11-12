@@ -1,9 +1,33 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
+import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.Casilla;
 
 public class ReservaDeReproduccion extends EdificioZerg {
+
+
+    private EstadoReserva estado = new ReservaEnConstruccion();
+
+    private int tiempoDeConstruccion = 12;
+    private Coordenada coordenada;
+
+    public ReservaDeReproduccion(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }
+
+    public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
+        return estado.generarUnidad(criadero);
+    }
+    public void actualizar() {
+        estado.actualizar();
+        tiempoDeConstruccion--;
+        if(tiempoDeConstruccion == 0){
+            estado = new ReservaOperativa();
+        }
+    }
 /*
     public ReservaDeReproduccion() {
         this.tiempoConstruccion = 12;

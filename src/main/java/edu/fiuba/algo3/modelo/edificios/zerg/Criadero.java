@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 
 public class Criadero extends EdificioZerg {
 
-    private EstadoDeConstruccion estado = new CriaderoEnConstruccion();
+    private EstadoCriadero estado = new CriaderoEnConstruccion();
     private int tiempoDeConstruccion = 4;
     private Coordenada coordenada;
 
@@ -15,7 +13,7 @@ public class Criadero extends EdificioZerg {
         this.coordenada = coordenada;
     }
 
-    public Zangano generarZangano() throws NoHayLarvasDisponibles{ //ZANGANO NO ES UNA UNIDAD, TIENE COMPORTAMIENTO DISTINTO!!
+    public Zangano generarZangano() throws NoHayLarvasDisponibles{
         return estado.generarZangano();
     }
 
