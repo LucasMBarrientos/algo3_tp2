@@ -5,10 +5,10 @@ import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.Unidad;
 
-public class TerrenoMoho  {
-/*
+public class TerrenoMoho extends Terreno {
+
     public boolean validarEdificio(Edificio edificio){
-        return (edificio instanceof Criadero || edificio instanceof Espiral || edificio instanceof Guarida || edificio == null); //distinto de extractor y protoss
+        return true; //(edificio instanceof Criadero || edificio instanceof Espiral || edificio instanceof Guarida || edificio == null); //distinto de extractor y protoss
     };
 
     public boolean validarTransitable(Unidad unidad){
@@ -16,6 +16,6 @@ public class TerrenoMoho  {
     }
     public void actualizar() {
         // Expandir el moho a su alrededor
-    }*/
+    }
 
 }

@@ -4,11 +4,11 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.Unidad;
 
-public class TerrenoEnergizado  {
-    /*
+public class TerrenoEnergizado extends Terreno {
+    
     @Override
     public boolean validarEdificio(Edificio edificio) {
-        return (edificio instanceof Pilon || edificio instanceof PuertoEstelar || edificio instanceof Acceso || edificio == null);
+        return true; //(edificio instanceof Pilon || edificio instanceof PuertoEstelar || edificio instanceof Acceso || edificio == null);
     }
 
     @Override
@@ -17,5 +17,5 @@ public class TerrenoEnergizado  {
             return true;
         }
         return true;
-    }*/
+    }
 }

@@ -3,10 +3,10 @@ package edu.fiuba.algo3.modelo.terrenos;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.Unidad;
 
-public interface Terreno {
+public abstract class Terreno {
 
-    boolean validarEdificio(Edificio edificio);
+    protected abstract boolean validarEdificio(Edificio edificio);
 
-    boolean validarTransitable(Unidad unidad);
+    protected abstract boolean validarTransitable(Unidad unidad);
 
 }

@@ -2,8 +2,34 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
 
 public class Casilla {
+
+    private Coordenada coordenada;
+    private Edificio edificio;
+    private Unidad unidad;
+    private Terreno terreno;
+
+    public Casilla (Coordenada coordenada) {
+        this.coordenada = coordenada;
+        this.terreno = new TerrenoVacio();
+    }
+
+    public void establecerEdificio(Edificio edificio) {
+        this.edificio = edificio;
+    }
+
+    public void establecerUnidad(Unidad unidad) {
+        this.unidad = unidad;
+    }
+
+    public void establecerTerreno(Terreno terreno) {
+        this.terreno = terreno;
+    }
+
+
+
 /*
     private int x,y;
     public Edificio edificio;

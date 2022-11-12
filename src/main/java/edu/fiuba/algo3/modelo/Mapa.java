@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.edificios.protoss.*;
-import edu.fiuba.algo3.modelo.edificios.zerg.*;
-import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
-import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.terrenos.*;
 
 import java.util.ArrayList;
@@ -12,23 +9,62 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
-/*
+
     private List<Casilla> casillas = new ArrayList<Casilla>();
 
-    private int dimensionX;
-    private int dimensionY;
+    private Coordenada dimensiones;
 
-    public Mapa(int dimensionX, int dimensionY) {
-        this.dimensionX = dimensionX;
-        this.dimensionY = dimensionY;
-        for (int x = 0; x < dimensionX; x++) {
-            for (int y = 0; y < dimensionY; y++) {
-                this.casillas.add(new Casilla(x,y,new TerrenoVacio()));
+    public Mapa(Coordenada dimensionesDelMapa) {
+        this.dimensiones = dimensionesDelMapa;
+        for (int x = 0; x < this.dimensiones.devolverX(); x++) {
+            for (int y = 0; y < this.dimensiones.devolverY(); y++) {
+                this.casillas.add(new Casilla(new Coordenada(x,y)));
             }
         }
-        buscarCasilla(1,1).establecerTerreno(new TerrenoMoho());
-        buscarCasilla(9,9).establecerTerreno(new TerrenoEnergizado());
+        generarTerreno();
     }
+
+    public Casilla buscarCasilla(Coordenada coordenada) {
+        if (validarCoordenada(coordenada)) {
+            int indiceDeLaCasilla = coordenada.devolverX() * dimensiones.devolverX() + coordenada.devolverY();
+            return casillas.get(indiceDeLaCasilla);
+        }
+        // Lanzar Excepcion: Casilla fuera de las dimensiones del mapa
+        return null;
+    }
+
+    private boolean validarCoordenada(Coordenada coordenada) {
+        int x = coordenada.devolverX();
+        int y = coordenada.devolverY();
+        return (x > 0 && x < dimensiones.devolverX() && y > 0 && y < dimensiones.devolverY());
+    }
+
+    private void generarTerreno() {
+        int maximoGenerado = (dimensiones.devolverX() * dimensiones.devolverY()) / 10;
+        // Generar volcanes en el mapa
+        for (int i=0; i < maximoGenerado; i++) {
+            buscarCasillaAlAzar().establecerTerreno(new TerrenoVolcan());
+        }
+        // Generar minerales en el mapa
+        for (int i=0; i < maximoGenerado; i++) {
+            buscarCasillaAlAzar().establecerTerreno(new TerrenoMineral());
+        }
+        // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
+        Coordenada ubicacionInicialDeUnJugador = new Coordenada(1, 1);
+        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoMoho());
+        // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
+        ubicacionInicialDeUnJugador = new Coordenada(dimensiones.devolverX() - 1, dimensiones.devolverY() - 1);
+        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoEnergizado());
+    }
+
+    private Casilla buscarCasillaAlAzar() {
+        int x = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverX());
+        int y = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverY());
+        Coordenada coordeandaAlAzar = new Coordenada(x, y);
+        return this.buscarCasilla(coordeandaAlAzar);
+    }
+
+    /*
 
     private Casilla buscarCasillaAlAzar() {
         int x = ThreadLocalRandom.current().nextInt(0, dimensionY);
