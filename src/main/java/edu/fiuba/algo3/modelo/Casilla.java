@@ -1,8 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.terrenos.BuscadorDeTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Casilla {
 
@@ -28,7 +34,33 @@ public class Casilla {
         this.terreno = terreno;
     }
 
+    public List<Coordenada> devolverCoordenadasAdyacentes() {
+        return coordenada.devolverCoordenadasAdyacentes();
+    }
 
+    public boolean compararCoordenadas(Coordenada coordenada) {
+        return this.coordenada.esIgual(coordenada);
+    }
+
+    public boolean compararCoordenadas(Casilla casilla) {
+        return this.coordenada.esIgual(casilla.devolverCoordendas());
+    }
+
+    public Coordenada devolverCoordendas() {
+        return coordenada;
+    }
+
+    public Edificio devolverEdificio() {
+        return edificio;
+    }
+
+    public Terreno devolverTerreno() {
+        return terreno;
+    }
+    
+    public void expandirTerreno(Mapa mapa) {
+        terreno.expandirse(mapa);
+    }
 
 /*
     private int x,y;

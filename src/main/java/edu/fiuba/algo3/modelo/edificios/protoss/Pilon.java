@@ -9,9 +9,12 @@ public class Pilon extends EdificioProtoss {
     private Coordenada coordenada;
 
     public Pilon(Coordenada coordenada) {
-        this.coordenada = coordenada;
+        
     }
 
+    public boolean generaTerrenoEnergizado() {
+        return true;
+    }
 
 
 

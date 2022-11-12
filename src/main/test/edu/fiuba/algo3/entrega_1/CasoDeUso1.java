@@ -29,8 +29,7 @@ public class CasoDeUso1 {
         boolean expected = true;
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacion);
-        for(int i=0; i<5; i++){ criadero.actualizar();
-        }
+        for(int i=0; i<5; i++){ criadero.actualizar(); }
 
         criadero.generarZangano();
         criadero.generarZangano();

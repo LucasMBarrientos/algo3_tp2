@@ -1,6 +1,11 @@
 package edu.fiuba.algo3.modelo.edificios;
 
-public class EdificioProtoss  {
+public class EdificioProtoss extends Edificio {
+
+    public void actualizar() {
+        
+    }
+
     /*
     protected int escudo;
     protected int escudoMax;

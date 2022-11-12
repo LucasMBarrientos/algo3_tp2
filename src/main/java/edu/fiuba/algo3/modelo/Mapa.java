@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.terrenos.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +26,73 @@ public class Mapa {
         generarTerreno();
     }
 
-    public Casilla buscarCasilla(Coordenada coordenada) {
-        if (validarCoordenada(coordenada)) {
-            int indiceDeLaCasilla = coordenada.devolverX() * dimensiones.devolverX() + coordenada.devolverY();
-            return casillas.get(indiceDeLaCasilla);
-        }
-        // Lanzar Excepcion: Casilla fuera de las dimensiones del mapa
-        return null;
+    private boolean validarCoordenada(Coordenada coordenada) {
+        return coordenada.dentroDeCoordenadas(dimensiones);
     }
 
-    private boolean validarCoordenada(Coordenada coordenada) {
-        int x = coordenada.devolverX();
-        int y = coordenada.devolverY();
-        return (x > 0 && x < dimensiones.devolverX() && y > 0 && y < dimensiones.devolverY());
+    public Casilla buscarCasilla(Coordenada coordenada) {
+        int indiceDeLaCasilla = -1;
+        if (validarCoordenada(coordenada)) {
+            for (int i = 0; i < this.casillas.size(); i++) {
+                if (this.casillas.get(i).compararCoordenadas(coordenada)) {
+                    indiceDeLaCasilla = i;
+                }
+            }
+        }
+        if (validarCoordenada(coordenada)) {
+            for (int i = 0; i < this.casillas.size(); i++) {
+                if (this.casillas.get(i).compararCoordenadas(coordenada)) {
+                    indiceDeLaCasilla = i;
+                }
+            }
+        }
+        // TODO : Lanzar Excepcion: Casilla fuera de las dimensiones del mapa si indiceDeLaCasilla == -1
+        return this.casillas.get(indiceDeLaCasilla);
+    }
+
+    private List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
+        List<Coordenada> coordenadasAdyacentes = casilla.devolverCoordenadasAdyacentes();
+        List<Casilla> casillasAdyacentes = new ArrayList<>();
+        for (int i = 0; i < coordenadasAdyacentes.size(); i++) {
+            if (validarCoordenada(coordenadasAdyacentes.get(i))) {
+                // Coordenada esta dentro del mapa
+                casillasAdyacentes.add(buscarCasilla(coordenadasAdyacentes.get(i)));
+            }
+        }
+        return casillasAdyacentes;
+    }
+
+    public List<Casilla> buscarCasillasAdyacentes(Coordenada coordenada) {
+        Casilla casilla = this.buscarCasilla(coordenada);
+        return buscarCasillasAdyacentes(casilla);
+    }
+
+    private Casilla buscarCasillaAlAzar() {
+        int x = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverX());
+        int y = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverY());
+        Coordenada coordeandaAlAzar = new Coordenada(x, y);
+        return this.buscarCasilla(coordeandaAlAzar);
+    }
+
+    /*
+    private void sobreescribirCasillas(List<Casilla> casillas) {
+        for (Casilla casillaNueva : casillas) {
+            for (Casilla casillaDelMapa : this.casillas) {
+                if (casillaNueva.compararCoordenadas(casillaDelMapa)) {
+                    // Coordenada esta dentro del mapa
+                    casillaDelMapa = casillaNueva;
+                }            
+            }
+        }
+    }
+    */
+
+    public void actualizar(int turno) {
+        if(turno % 4 == 0) {
+            // Se expande el moho una vez cada 2 rondas (4 turnos)
+            expandirMoho();
+        }
+        //actualizarTerrenoEnergizado();
     }
 
     private void generarTerreno() {
@@ -51,26 +107,76 @@ public class Mapa {
         }
         // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
         Coordenada ubicacionInicialDeUnJugador = new Coordenada(1, 1);
-        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoMoho());
+        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoMoho(ubicacionInicialDeUnJugador));
+        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerEdificio(new Criadero(ubicacionInicialDeUnJugador));
+        for (int i = 0; i < 3; i++) {
+            expandirMoho();
+        }
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
         ubicacionInicialDeUnJugador = new Coordenada(dimensiones.devolverX() - 1, dimensiones.devolverY() - 1);
         this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoEnergizado());
+        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerEdificio(new Pilon(ubicacionInicialDeUnJugador));
     }
 
-    private Casilla buscarCasillaAlAzar() {
-        int x = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverX());
-        int y = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverY());
-        Coordenada coordeandaAlAzar = new Coordenada(x, y);
-        return this.buscarCasilla(coordeandaAlAzar);
+    private void expandirMoho() {
+        BuscadorDeTerreno buscadorDeTerreno = new BuscadorDeTerreno();
+        List<Casilla> casillasConMoho = buscadorDeTerreno.buscarCasillasConMoho(casillas);
+        for (Casilla casillaConMoho : casillasConMoho) {
+            casillaConMoho.expandirTerreno(this);                
+        }
     }
+
+    private void actualizarTerrenoEnergizado() {
+        /*
+        BuscadorDeTerreno generadorDeTerreno = new BuscadorDeTerreno();
+        Boolean pilonDetectado;
+        List<Casilla> casillasConPilones = new ArrayList<>();
+        for (Casilla casilla : casillas) {
+
+
+            pilonDetectado = generadorDeTerreno.generarTerrenoEnergizadoEnPilon(casilla, casilla.devolverEdificio().generaEnergia());
+
+        }
+        */
+    }
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    public void expandirMoho(Casilla casillaConMoho) {
+        List<Casilla> casillasAdyacentes = this.buscarCasillasContiguas(casillaConMoho);
+        for (Casilla casillaAdyacente : casillasAdyacentes) {
+            casillaAdyacente.establecerTerreno(new TerrenoMoho());
+        }
+    }
+
+    private List<Casilla> buscarCasillasConMoho() {
+        List<Casilla> casillasConMoho = new ArrayList<Casilla>(); 
+        for (Casilla casilla : casillas) {
+            if (casilla.devolverTerreno() instanceof TerrenoMoho) {
+                casillasConMoho.add(casilla);
+            }
+        }
+        return casillasConMoho;
+    }
+
+*/
+
+
+
+
+
 
     /*
-
-    private Casilla buscarCasillaAlAzar() {
-        int x = ThreadLocalRandom.current().nextInt(0, dimensionY);
-        int y = ThreadLocalRandom.current().nextInt(0, dimensionY);
-        return this.buscarCasilla(x, y);
-    }
 
     public void generarTerrenoEnergizadoEnLosPilones() {
         for (Casilla casillaCentral : this.casillas) {
@@ -152,10 +258,6 @@ public class Mapa {
         }
     }
 
-    public boolean validarCasillaDentroDeLimites(int x,int y){
-        return (x >= 0 && x < dimensionX) && (y >= 0 && y < dimensionY);
-    }
-
     public void generarEnergizadosIniciales() {
         List<Casilla> casillasEnergizadas = new ArrayList<Casilla>();
         for (Casilla casillaCentral : this.casillas) {
@@ -193,15 +295,6 @@ public class Mapa {
                 buscarCasilla(x, y - 1).establecerTerreno(new TerrenoEnergizado());
             }
         }
-    }
-
-    public Casilla buscarCasilla(int x, int y) {
-        for (Casilla casilla : this.casillas) {
-           if (casilla.compararUbicaciones(x,y)){
-               return casilla;
-           }
-        }
-        return null;
     }
 
     public Casilla hallarCasillaAdyacenteDesocupada(Casilla casillaCentral) {

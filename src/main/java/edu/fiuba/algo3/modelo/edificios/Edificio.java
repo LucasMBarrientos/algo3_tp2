@@ -6,6 +6,12 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Inventario;
 
 public abstract class Edificio implements Actualizable {
+
+    public boolean generaEnergia() {
+        return false;
+    }
+
+
 /*
     public int tiempoConstruccion;
     public int requerimientosGas;

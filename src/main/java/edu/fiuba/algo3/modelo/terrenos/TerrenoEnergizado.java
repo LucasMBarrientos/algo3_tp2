@@ -18,4 +18,10 @@ public class TerrenoEnergizado extends Terreno {
         }
         return true;
     }
+
+    public boolean esTerrenoEnergizado() {
+        return true;
+    }
+
+
 }
