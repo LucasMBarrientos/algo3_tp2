@@ -1,6 +1,15 @@
 package edu.fiuba.algo3.modelo.recursos;
 
-public class Recursos {
+public abstract class Recursos {
+
+    private int unidadesDisponibles;
+
+    public void gastarUnidades(int costoEnMinerales) throws RecursosInsuficientes{
+        if(unidadesDisponibles < costoEnMinerales){
+            throw new RecursosInsuficientes();
+        }
+        unidadesDisponibles -= costoEnMinerales;
+    }
 /*
     private int unidades;
 

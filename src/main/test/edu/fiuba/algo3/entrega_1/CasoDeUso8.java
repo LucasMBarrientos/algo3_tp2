@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -38,27 +39,16 @@ public class CasoDeUso8 {
     Assertions.assertTrue(algoStar.seleccionarCasilla(1, 2).devolverEdificio() instanceof NexoMineral);
     Assertions.assertFalse(algoStar.seleccionarCasilla(2, 2).devolverEdificio() instanceof NexoMineral);
   }
-
+*/
   @Test
   public void protossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
-    AlgoStar algoStar = new AlgoStar();
-    algoStar.empezarJuego();
-    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
-
-    algoStar.pasarTurno();
-
-    algoStar.construirEdificio(9, 8, new Pilon());
-    Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
-    
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(9, 8).devolverEdificio() instanceof Pilon);
+        AlgoStar a = new AlgoStar();
+        a.empezarJuego();
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            a.hallarJugadorActual().construirEdificio(new Coordenada(2,2), new Pilon());
+        });
   }
-
+/*
   @Test
   public void protossSoloPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
     AlgoStar algoStar = new AlgoStar();

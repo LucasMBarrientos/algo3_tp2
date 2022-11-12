@@ -7,7 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlgoStar {
-/*
+
+
+    public List<Jugador> jugadores = new ArrayList<Jugador>();
+    private int idJugadorActual;
+
+    private Mapa mapa;
+
+    public void empezarJuego() {
+        this.mapa = new Mapa(new Coordenada(10,10));
+        jugadores.add(new JugadorZerg(mapa));
+        jugadores.add(new JugadorProtoss(mapa));
+    }
+    public Jugador hallarJugadorActual() {
+        return jugadores.get(idJugadorActual);
+    }
+
+    /*
     public List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
 

@@ -2,12 +2,16 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public class Criadero extends EdificioZerg {
 
     private EstadoCriadero estado = new CriaderoEnConstruccion();
     private int tiempoDeConstruccion = 4;
     private Coordenada coordenada;
+
+    private int costoEnMinerales;
 
     public Criadero(Coordenada coordenada) {
         this.coordenada = coordenada;
@@ -27,6 +31,10 @@ public class Criadero extends EdificioZerg {
         if(tiempoDeConstruccion == 0){
             estado = new CriaderoOperativo();
         }
+    }
+
+    public void consumirRecursos(Recursos recurso){
+        recurso.gastarUnidades(costoEnMinerales);
     }
 
 

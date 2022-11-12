@@ -7,7 +7,13 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jugador {
+public abstract class Jugador {
+
+    protected Mapa mapa;
+
+    protected Recursos gas ,minerales;
+
+    public abstract void construirEdificio(Coordenada coord, Edificio edificio);
 /*
     protected Mapa mapa;
 

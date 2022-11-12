@@ -11,7 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorProtoss extends Jugador {
-/*
+
+
+    public JugadorProtoss(Mapa mapa) {
+        this.mapa = mapa;
+    }
+
+    @Override
+    public void construirEdificio(Coordenada coord, Edificio edificio) {
+        //edificio.construirse(coord, edificio);
+    }
+
+    public void construirEdificioDeterminado(Coordenada coord, Pilon pilon){
+        pilon.consumirRecursos(minerales);
+        mapa.buscarCasilla(coord).ocuparPorEdificio(pilon);
+    }
+
+    /*
 
     public JugadorProtoss(Mapa mapa) {
         Pilon pilonInicial = new Pilon();

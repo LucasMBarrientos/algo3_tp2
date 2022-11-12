@@ -10,7 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorZerg extends Jugador {
-/*
+
+
+    public JugadorZerg(Mapa mapa) {
+        this.mapa = mapa;
+    }
+
+    public void construirEdificio(Coordenada coord, Edificio edificio) {
+        construirEdificio(coord, edificio);
+
+    }
+
+    public void construirEdificio(Coordenada coord, Criadero criadero){
+        criadero.consumirRecursos(minerales);
+        mapa.buscarCasilla(coord).ocuparPorEdificio(criadero);
+    }
+
+
+
+    /*
     public JugadorZerg(Mapa mapa) {
         Criadero criaderoInicial = new Criadero();
         mapa.buscarCasilla(1,1).establecerEdificio(criaderoInicial);
