@@ -22,6 +22,12 @@ public class Casilla {
         this.terreno = new TerrenoVacio();
     }
 
+    public void ocuparPorEdificio(Edificio edificio) {
+        if (this.edificio == null) {
+            terreno.ocuparPorEdificio(edificio, this);
+        }
+
+    }
     public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;
     }

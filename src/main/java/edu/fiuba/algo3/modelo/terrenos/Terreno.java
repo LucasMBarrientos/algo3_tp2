@@ -9,6 +9,10 @@ import java.util.List;
 
 public abstract class Terreno {
 
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla){
+        this.ocuparPorEdificio(edificio, casilla);
+    }
+
     public void expandirse(Mapa mapa) {
         return;
     }
@@ -21,8 +25,5 @@ public abstract class Terreno {
         return false;
     }
 
-    protected abstract boolean validarEdificio(Edificio edificio);
-
-    protected abstract boolean validarTransitable(Unidad unidad);
 
 }

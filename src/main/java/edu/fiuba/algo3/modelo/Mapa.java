@@ -26,6 +26,7 @@ public class Mapa {
         generarTerreno();
     }
 
+
     private boolean validarCoordenada(Coordenada coordenada) {
         return coordenada.dentroDeCoordenadas(dimensiones);
     }

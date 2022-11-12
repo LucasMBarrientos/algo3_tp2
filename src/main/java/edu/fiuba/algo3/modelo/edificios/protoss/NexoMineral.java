@@ -9,6 +9,15 @@ import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
 public class NexoMineral  {
+
+
+    public void recolectarRecursos() {
+
+    }
+
+    public void actualizar() {
+
+    }
 /*
     private Boolean recursosRecolectados = false;
 

@@ -22,12 +22,11 @@ public class CasoDeUso2 {
 
         try{
             criadero.generarZangano();
-        } catch (NoHayLarvasDisponibles e){
+        } catch (EdificioNoTerminoDeConstruirse e){
             expected = false;
         }
         Assertions.assertTrue(expected);
     }
-
     @Test
     public void criaderoNoEstaOperativoAntesDe4Turnos() {
 
@@ -184,6 +183,9 @@ public class CasoDeUso2 {
             extractor.ingresarUnidad(new Zangano());
         });
     }
+
+
+
 /*
     @Test
     public void criaderoSeConstruyeEnTiempoAdecuado() {
