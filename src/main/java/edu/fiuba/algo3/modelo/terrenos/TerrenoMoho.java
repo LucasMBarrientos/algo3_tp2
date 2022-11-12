@@ -23,7 +23,7 @@ public class TerrenoMoho extends Terreno {
         casilla.establecerEdificio(criadero);
     }
 
-    public void ocuparPorEdificio( ReservaDeReproduccion reserva, Casilla casilla){
+    public void ocuparPorEdificio(ReservaDeReproduccion reserva, Casilla casilla){
         casilla.establecerEdificio(reserva);
     }
 
@@ -45,19 +45,20 @@ public class TerrenoMoho extends Terreno {
 
 
 
+
+
+
+
+    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
+        List<Coordenada> coordenadasAdyacentes = coordenada.devolverCoordenadasAdyacentes();
+        for (Coordenada coordenada : coordenadasAdyacentes) {
+            cooordenadasDeCasillasConMoho.add(coordenada);
+        }
+    }
+
+
     public void actualizar() {
 
-    }
-
-    public boolean esTerrenoMoho() {
-        return true;
-    }
-
-    public void expandirse(Mapa mapa) {
-        List<Casilla> casillasAdyacentes = mapa.buscarCasillasAdyacentes(coordenada);
-        for (Casilla casilla : casillasAdyacentes) {
-            casilla.establecerTerreno(new TerrenoMoho(casilla.devolverCoordendas()));
-        }
     }
 
 }

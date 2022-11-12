@@ -26,7 +26,6 @@ public class Mapa {
         generarTerreno();
     }
 
-
     private boolean validarCoordenada(Coordenada coordenada) {
         return coordenada.dentroDeCoordenadas(dimensiones);
     }
@@ -119,11 +118,34 @@ public class Mapa {
         this.buscarCasilla(ubicacionInicialDeUnJugador).establecerEdificio(new Pilon(ubicacionInicialDeUnJugador));
     }
 
+    private List<Casilla> buscarCasillasConMoho() {
+        List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
+        for (Casilla casilla : casillas) {
+            casilla.devolverTerreno().actualizarListaDeCoordenadasConMoho(coordenadasConMoho);
+        }
+        List<Casilla> casillasConMoho = new ArrayList<Casilla>();
+        for (Coordenada coordenadaConMoho : coordenadasConMoho) {
+            if (validarCoordenadaOcupableConMoho(coordenadaConMoho)) {
+                casillasConMoho.add(this.buscarCasilla(coordenadaConMoho));
+            }
+        }
+        return casillasConMoho;
+    }
+
+    private boolean validarCoordenadaOcupableConMoho(Coordenada coordenadaConMoho) {
+        Boolean casillaPertenceAlMapa = this.validarCoordenada(coordenadaConMoho);
+        if (casillaPertenceAlMapa) {
+            Casilla casilla = this.buscarCasilla(coordenadaConMoho);
+            return (casilla.devolverTerreno().esReemplazable());
+        } else {
+            return false;
+        }
+    }
+
     private void expandirMoho() {
-        BuscadorDeTerreno buscadorDeTerreno = new BuscadorDeTerreno();
-        List<Casilla> casillasConMoho = buscadorDeTerreno.buscarCasillasConMoho(casillas);
+        List<Casilla> casillasConMoho = buscarCasillasConMoho();
         for (Casilla casillaConMoho : casillasConMoho) {
-            casillaConMoho.expandirTerreno(this);                
+            casillaConMoho.establecerTerreno(new TerrenoMoho(casillaConMoho.devolverCoordendas()));
         }
     }
 
@@ -145,32 +167,6 @@ public class Mapa {
 
 
 
-
-
-
-
-
-
-/*
-
-    public void expandirMoho(Casilla casillaConMoho) {
-        List<Casilla> casillasAdyacentes = this.buscarCasillasContiguas(casillaConMoho);
-        for (Casilla casillaAdyacente : casillasAdyacentes) {
-            casillaAdyacente.establecerTerreno(new TerrenoMoho());
-        }
-    }
-
-    private List<Casilla> buscarCasillasConMoho() {
-        List<Casilla> casillasConMoho = new ArrayList<Casilla>(); 
-        for (Casilla casilla : casillas) {
-            if (casilla.devolverTerreno() instanceof TerrenoMoho) {
-                casillasConMoho.add(casilla);
-            }
-        }
-        return casillasConMoho;
-    }
-
-*/
 
 
 

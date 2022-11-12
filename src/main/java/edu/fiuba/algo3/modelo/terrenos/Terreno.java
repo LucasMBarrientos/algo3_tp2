@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.Coordenada;
 
 import java.util.List;
 
@@ -13,15 +14,15 @@ public abstract class Terreno {
         this.ocuparPorEdificio(edificio, casilla);
     }
 
-    public void expandirse(Mapa mapa) {
+
+
+
+
+    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
         return;
     }
 
-    public boolean esTerrenoMoho() {
-        return false;
-    }
-
-    public boolean esTerrenoEnergizado() {
+    public boolean esReemplazable() {
         return false;
     }
 

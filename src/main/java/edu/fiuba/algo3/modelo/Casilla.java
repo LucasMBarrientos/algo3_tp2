@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.terrenos.BuscadorDeTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
@@ -64,10 +63,6 @@ public class Casilla {
         return terreno;
     }
     
-    public void expandirTerreno(Mapa mapa) {
-        terreno.expandirse(mapa);
-    }
-
 /*
     private int x,y;
     public Edificio edificio;
