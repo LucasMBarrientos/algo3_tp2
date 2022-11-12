@@ -14,16 +14,7 @@ public class CasoDeUso1 {
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacion);
         for(int i=0; i<5; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
-
-        Mapa mapa = new Mapa(new Coordenada(10,10));
-        mapa.actualizar(0);
-        mapa.actualizar(1);
-        mapa.actualizar(2);
-        mapa.actualizar(3);
-        mapa.actualizar(4);
-        mapa.actualizar(5);
-
-
+        
         criadero.generarZangano();
         criadero.generarZangano();
         criadero.generarZangano();
