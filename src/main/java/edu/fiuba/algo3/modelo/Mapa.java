@@ -96,11 +96,7 @@ public class Mapa {
 
     private List<SuperficieRectangular> calcularBases() {
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
-        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores, cantidadDeJugadores + 10);    
-
-        cantidadDeBases = 2; // DEBUG ONLY
-
-
+        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores, cantidadDeJugadores + 10);
         List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
         for (int i=0; i < cantidadDeJugadores; i++) {
             coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i));
