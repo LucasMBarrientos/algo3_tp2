@@ -15,6 +15,8 @@ public class TerrenoMoho extends Terreno {
 
     Coordenada coordenada;
 
+    public TerrenoMoho() {}
+
     public TerrenoMoho(Coordenada coordenada) {
         this.coordenada = coordenada;
     }

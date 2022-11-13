@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class Criadero extends EdificioZerg {
 
@@ -49,10 +50,9 @@ public class Criadero extends EdificioZerg {
         vida.recibirDanio(danio);
     }
 
-    public void ocupar(Casilla casilla){
-        casilla.establecerEdificio(this);
+    public void ocupar(Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(this, casilla);
     }
-
 
 /*
     private int larvas;

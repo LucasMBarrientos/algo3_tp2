@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class Espiral extends EdificioZerg {
 
@@ -41,6 +42,9 @@ public class Espiral extends EdificioZerg {
         inventario.consumirGasVespeno(costoEnGas);
     }
 
+    public void ocupar(Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(this, casilla);
+    }
 
 /*
     public Espiral() {

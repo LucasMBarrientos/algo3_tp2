@@ -24,7 +24,7 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
-       // terreno.ocuparPorEdificio(this, casilla);
+        terreno.ocuparPorEdificio(this, casilla);
     }
 
 /*

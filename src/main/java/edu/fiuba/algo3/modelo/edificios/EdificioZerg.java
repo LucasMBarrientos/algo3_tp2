@@ -31,9 +31,7 @@ public abstract class EdificioZerg extends Edificio {
         inventario.consumirMinerales(costoEnMinerales);
     }
 
-    public void ocupar(Casilla casilla, Terreno terreno){
-        casilla.establecerEdificio(this);
-    }
+    public abstract void ocupar(Casilla casilla, Terreno terreno);
 /*
     protected void regenerarVida() {
         if (vida < vidaMax) {

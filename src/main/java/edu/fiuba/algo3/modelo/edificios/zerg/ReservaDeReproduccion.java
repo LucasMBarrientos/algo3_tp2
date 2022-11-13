@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class ReservaDeReproduccion extends EdificioZerg {
 
@@ -29,6 +30,10 @@ public class ReservaDeReproduccion extends EdificioZerg {
         if(tiempoDeConstruccion == 0){
             estado = new ReservaOperativa();
         }
+    }
+
+    public void ocupar(Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(this, casilla);
     }
 
 /*

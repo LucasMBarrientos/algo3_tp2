@@ -28,6 +28,10 @@ public class Mapa {
             }
         }
         this.buscarCasillaParaPrueba(new Coordenada(2,2)).establecerTerreno(new TerrenoVacio());
+        this.buscarCasillaParaPrueba(new Coordenada(3,3)).establecerTerreno(new TerrenoMoho());
+        this.buscarCasillaParaPrueba(new Coordenada(4,4)).establecerTerreno(new TerrenoVolcan());
+        this.buscarCasillaParaPrueba(new Coordenada(5,5)).establecerTerreno(new TerrenoEnergizado());
+        this.buscarCasillaParaPrueba(new Coordenada(6,6)).establecerTerreno(new TerrenoMineral());
     }
 
     public Casilla buscarCasillaParaPrueba(Coordenada coordenada){

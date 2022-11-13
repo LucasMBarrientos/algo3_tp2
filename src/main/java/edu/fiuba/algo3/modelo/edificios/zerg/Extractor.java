@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 
@@ -37,6 +38,10 @@ public class Extractor extends EdificioZerg {
         if(tiempoDeConstruccion == 0){
             estado = new ExtractorOperativo();
         }
+    }
+
+    public void ocupar(Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(this, casilla);
     }
 
 

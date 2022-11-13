@@ -25,6 +25,9 @@ public abstract class Edificio implements Actualizable {
 
     //public abstract void recibirGolpe(int danio);
 
+
+
+
     
 /*
     public int tiempoConstruccion;
