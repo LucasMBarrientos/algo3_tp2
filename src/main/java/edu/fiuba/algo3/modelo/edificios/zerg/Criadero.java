@@ -49,6 +49,9 @@ public class Criadero extends EdificioZerg {
         vida.recibirDanio(danio);
     }
 
+    public void ocupar(Casilla casilla){
+        casilla.establecerEdificio(this);
+    }
 
 
 /*

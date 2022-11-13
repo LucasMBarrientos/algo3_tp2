@@ -19,14 +19,31 @@ public class TerrenoMoho extends Terreno {
         this.coordenada = coordenada;
     }
 
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, Terreno terreno){
-        terreno.ocuparPorEdificio(edificio, casilla, this);
-    }
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, TerrenoMoho terreno){
-        terreno.ocuparPorEdificio(edificio, casilla, this);
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(Criadero criadero, Casilla casilla, TerrenoMoho terrenoMoho){
+    @Override
+    public void ocuparPorEdificio(Acceso acceso, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(NexoMineral nexoMineral, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(Criadero criadero, Casilla casilla){
         casilla.establecerEdificio(criadero);
     }
 
@@ -45,12 +62,6 @@ public class TerrenoMoho extends Terreno {
     public void ocuparPorEdificio(Extractor extractor, Casilla casilla){
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
-
-    public void ocuparPorEdificio(EdificioProtoss edificioProtoss, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-
 
 
 

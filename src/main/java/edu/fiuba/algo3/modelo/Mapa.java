@@ -126,7 +126,7 @@ public class Mapa {
         actualizarTerrenoEnergizado();
         if(turno % 4 == 0) {
             // Se expande el moho una vez cada 2 rondas (4 turnos)
-            expandirMoho();
+           expandirMoho();
         }
     }
 
@@ -193,7 +193,7 @@ public class Mapa {
         this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho(ubicacionInicialDeJugador));
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
         for (int i = 0; i < 3; i++) {
-            expandirMoho();
+            //expandirMoho();
         }
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
         ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);

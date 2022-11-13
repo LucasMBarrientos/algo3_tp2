@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public abstract class EdificioZerg extends Edificio {
 
@@ -16,7 +17,7 @@ public abstract class EdificioZerg extends Edificio {
     public void construirse(Casilla casilla, Inventario inventario){
         //TODO Leti: verificar que exista un zangano parado en esa casilla, sino lanzar exepcion
 
-        casilla.ocuparPorEdificio(this);
+        this.ocupar(casilla, casilla.devolverTerreno());
 
         try {
             this.consumirRecursosParaConstruccion(inventario);
@@ -30,6 +31,9 @@ public abstract class EdificioZerg extends Edificio {
         inventario.consumirMinerales(costoEnMinerales);
     }
 
+    public void ocupar(Casilla casilla, Terreno terreno){
+        casilla.establecerEdificio(this);
+    }
 /*
     protected void regenerarVida() {
         if (vida < vidaMax) {

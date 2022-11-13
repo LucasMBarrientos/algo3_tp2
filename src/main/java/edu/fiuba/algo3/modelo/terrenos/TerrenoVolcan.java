@@ -8,14 +8,7 @@ import edu.fiuba.algo3.modelo.*;
 
 public class TerrenoVolcan extends Terreno {
 
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, Terreno terreno){
-        terreno.ocuparPorEdificio(edificio, casilla, this);
-    }
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, TerrenoVolcan terreno){
-        terreno.ocuparPorEdificio(edificio, casilla, this);
-    }
-
-    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla, TerrenoVolcan terreno){
+    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
         casilla.establecerEdificio(asimilador);
     }
 

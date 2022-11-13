@@ -8,11 +8,14 @@ import edu.fiuba.algo3.modelo.edificios.zerg.*;
 
 public class TerrenoVacio extends Terreno {
     //TODO Leti YO xd: codigo repetido x1000, hace un refactor a esto  plis. Nuevas interfaces o excepciones mas especificas?
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, Terreno terreno){
-        terreno.ocuparPorEdificio(edificio, casilla, this);
-    }
 
-    public void ocuparPorEdificio(Criadero criadero, Casilla casilla, TerrenoVacio terreno){
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla){
+
+    }
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
+        casilla.establecerEdificio(pilon);
+    }
+    public void ocuparPorEdificio(Criadero criadero, Casilla casilla){
         casilla.establecerEdificio(criadero);
     }
 

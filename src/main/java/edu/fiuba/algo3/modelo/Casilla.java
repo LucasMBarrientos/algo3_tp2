@@ -18,13 +18,13 @@ public class Casilla {
         this.coordenada = coordenada;
         this.terreno = new TerrenoVacio();
     }
-
+/*
     public void ocuparPorEdificio(Edificio edificio) {
         if (this.edificio != null) {
             throw new TerrenoNoAptoParaConstruirEsteEdificio(); //cambiar por excepcion TerrenoOcupado?
         }
-        terreno.ocuparPorEdificio((Pilon) edificio, this);
-    }
+        terreno.ocuparPorEdificio(edificio, this);
+    }*/
     public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;
     }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.Casilla;
 
@@ -23,7 +24,9 @@ public class PuertoEstelar extends EdificioProtoss {
         inventario.consumirGasVespeno(costoEnGas);
     }
 
-
+    public void ocupar(Casilla casilla, Terreno terreno){
+        //terreno.ocuparPorEdificio(this, casilla);
+    }
 /*
     public PuertoEstelar() {
         this.tiempoConstruccion = 10;

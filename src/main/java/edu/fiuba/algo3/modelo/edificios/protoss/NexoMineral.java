@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class NexoMineral extends EdificioProtoss {
 
@@ -22,6 +23,9 @@ public class NexoMineral extends EdificioProtoss {
 
     }
 
+    public void ocupar(Casilla casilla, Terreno terreno){
+       // terreno.ocuparPorEdificio(this, casilla);
+    }
 
 /*
     private Boolean recursosRecolectados = false;

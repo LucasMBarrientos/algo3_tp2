@@ -10,11 +10,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.*;
 
 public class TerrenoEnergizado extends Terreno {
 
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, Terreno terreno){
-        terreno.ocuparPorEdificio(edificio, casilla, this);
-    }
-
-    public void ocuparPorEdificio(Pilon pilon, Casilla casilla, TerrenoEnergizado terreno){
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
         casilla.establecerEdificio(pilon);
     }
 
@@ -26,15 +22,36 @@ public class TerrenoEnergizado extends Terreno {
         casilla.establecerEdificio(puertoEstelar);
     }
 
+    @Override
+    public void ocuparPorEdificio(Criadero criadero, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(Espiral espiral, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(Extractor extractor, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(Guarida guarida, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    @Override
+    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion, Casilla casilla) {
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
     public void ocuparPorEdificio(NexoMineral nexoMineral, Casilla casilla){
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
     public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(EdificioZerg edificioZerg, Casilla casilla){
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 

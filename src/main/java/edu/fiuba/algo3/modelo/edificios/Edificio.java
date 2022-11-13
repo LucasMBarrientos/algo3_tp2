@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 
 public abstract class Edificio implements Actualizable {
@@ -19,6 +20,8 @@ public abstract class Edificio implements Actualizable {
     public abstract void construirse(Casilla casilla, Inventario inventario);
 
     protected abstract void consumirRecursosParaConstruccion(Inventario inventario);
+
+    public abstract void ocupar(Casilla casilla, Terreno terreno);
 
     //public abstract void recibirGolpe(int danio);
 
@@ -60,6 +63,8 @@ public abstract class Edificio implements Actualizable {
     public void consumirRecursos(Recursos recursos){
 
     }
+
+    public abstract void ocupar(Casilla casilla, Terreno terreno);
 
 
     public abstract boolean recibirDanio(int unidades);

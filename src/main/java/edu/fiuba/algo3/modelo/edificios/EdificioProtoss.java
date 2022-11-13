@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
 
 public abstract class EdificioProtoss extends Edificio {
@@ -16,7 +17,7 @@ public abstract class EdificioProtoss extends Edificio {
     }
 
     public void construirse(Casilla casilla, Inventario inventario){
-        casilla.ocuparPorEdificio(this);
+        this.ocupar(casilla, casilla.devolverTerreno());
 
         try {
             this.consumirRecursosParaConstruccion(inventario);
@@ -29,6 +30,8 @@ public abstract class EdificioProtoss extends Edificio {
     public void consumirRecursosParaConstruccion(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);
     }
+
+    public abstract void ocupar(Casilla casilla, Terreno terreno);
 
 
 

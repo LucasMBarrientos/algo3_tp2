@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
+import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -7,6 +8,7 @@ import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class Pilon extends EdificioProtoss {
 
@@ -40,6 +42,14 @@ public class Pilon extends EdificioProtoss {
     public void actualizar() {
         escudo.regenerar();
     }
+
+    public void ocupar(Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(this, casilla);
+    }
+
+
+
+
     /*
     public Pilon() {
         this.tiempoConstruccion = 5;

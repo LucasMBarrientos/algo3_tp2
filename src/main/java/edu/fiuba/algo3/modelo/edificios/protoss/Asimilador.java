@@ -4,11 +4,16 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class Asimilador extends EdificioProtoss {
 
     public Asimilador(){
         this.costoEnMinerales = new Minerales(100);
+    }
+
+    public void ocupar(Casilla casilla, Terreno terreno){
+        //terreno.ocuparPorEdificio(this, casilla);
     }
 /*
     public Asimilador() {
