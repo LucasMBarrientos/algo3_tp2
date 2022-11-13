@@ -36,7 +36,10 @@ public class Pilon extends EdificioProtoss {
             vida.recibirDanio(new Danio(escudoRestante * (-1)));
         }
     }
-
+    @Override
+    public void actualizar() {
+        escudo.regenerar();
+    }
     /*
     public Pilon() {
         this.tiempoConstruccion = 5;

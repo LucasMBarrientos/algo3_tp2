@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
 public class Escudo extends Estadisticas{
+    private final double porcentajeDeRegeneracion = 0.05;
     private final int escudoMaximo;
     private int escudo;
 
@@ -15,7 +16,9 @@ public class Escudo extends Estadisticas{
     }
 
     public void regenerar(){
-        escudo += (escudoMaximo * 0.2);
+        if(escudo <= escudoMaximo -(escudoMaximo * porcentajeDeRegeneracion)) {
+            escudo += (escudoMaximo * porcentajeDeRegeneracion);
+        }
     }
 
 }

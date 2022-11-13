@@ -18,7 +18,7 @@ public class Vida extends Estadisticas{
     }
 
     public void regenerar(){
-        if(vida <= vidaMaxima * porcentajeDeRegeneracion){
+        if(vida <= vidaMaxima - (vidaMaxima * porcentajeDeRegeneracion)){
             vida += (vidaMaxima * porcentajeDeRegeneracion);
         }
     }
