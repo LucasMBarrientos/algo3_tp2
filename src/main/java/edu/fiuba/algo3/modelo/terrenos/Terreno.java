@@ -22,7 +22,12 @@ public abstract class Terreno {
         return;
     }
 
+
     public boolean esReemplazable() {
+        return false;
+    }
+
+    public boolean repeleeMoho() {
         return false;
     }
 

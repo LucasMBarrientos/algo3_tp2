@@ -17,13 +17,19 @@ public class SuperficieRectangular {
         return (coordenada.completamenteMenorA(coordenadaInicial) && coordenada.completamenteMayorA(coordenadaFinal));
     }
 
+    public Coordenada devolverCoordenadaCentral() {
+        int x = (coordenadaFinal.devolverX() + coordenadaInicial.devolverX()) / 2;
+        int y = (coordenadaFinal.devolverY() + coordenadaInicial.devolverY()) / 2;
+        return new Coordenada(x, y);
+    }
+
     public Coordenada devolverCoordenadaAlAzar() {
         int x = ThreadLocalRandom.current().nextInt(coordenadaInicial.devolverX(), coordenadaFinal.devolverX());
         int y = ThreadLocalRandom.current().nextInt(coordenadaInicial.devolverY(), coordenadaFinal.devolverY());
         return new Coordenada(x, y);
     }
 
-    public Coordenada devolverCoordenadaAlAzar(List<Coordenada> coordenasEvitadas) {
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
         boolean coordenadaValida;
         Coordenada coordenada;
         do {

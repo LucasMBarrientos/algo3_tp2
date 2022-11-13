@@ -51,9 +51,7 @@ public class TerrenoMoho extends Terreno {
 
     public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
         List<Coordenada> coordenadasAdyacentes = coordenada.devolverCoordenadasAdyacentes();
-        for (Coordenada coordenada : coordenadasAdyacentes) {
-            cooordenadasDeCasillasConMoho.add(coordenada);
-        }
+        cooordenadasDeCasillasConMoho.addAll(coordenadasAdyacentes);
     }
 
 

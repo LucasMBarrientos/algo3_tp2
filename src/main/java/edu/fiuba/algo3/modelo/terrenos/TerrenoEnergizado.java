@@ -42,4 +42,8 @@ public class TerrenoEnergizado extends Terreno {
         return true;
     }
 
+    public boolean repeleeMoho() {
+        return true;
+    }
+
 }

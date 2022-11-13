@@ -15,14 +15,19 @@ public class CasoDeUso1 {
         Criadero criadero = new Criadero(ubicacion);
         for(int i=0; i<5; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
         
-        Mapa mapa = new Mapa(new Coordenada(150, 100));
+
+        
+        /* 
+        Mapa mapa = new Mapa(new Coordenada(150, 100)); // Mapa de tamanio normal
+        mapa = new Mapa(new Coordenada(40, 40)); // Mapa mas chico posible, para demostrar que la energia y el moho no se superponen
         mapa.DEBUGMOSTRARMAPA();
-        mapa.actualizar(0);
-        mapa.actualizar(1);
-        mapa.actualizar(2);
-        mapa.actualizar(3);
-        mapa.actualizar(4);
-        mapa.actualizar(5);
+        for (int i=1;i < 100;i++) {
+            mapa.actualizar(i);
+        }
+        //400 turnos despues no deveria sobrescribir las casillas con TerrenoEnergizado
+        mapa.DEBUGMOSTRARMAPA();
+        */
+        
 
 
         criadero.generarZangano();

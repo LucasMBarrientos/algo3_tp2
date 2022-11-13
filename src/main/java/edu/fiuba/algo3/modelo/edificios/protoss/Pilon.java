@@ -18,6 +18,7 @@ public class Pilon extends EdificioProtoss {
 
     }
 
+    @Override
     public boolean generaTerrenoEnergizado() {
         return true;
     }

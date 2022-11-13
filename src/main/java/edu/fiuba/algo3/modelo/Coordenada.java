@@ -55,6 +55,16 @@ public class Coordenada {
         return coordendas;
     }
 
+    public boolean noSeInterpolaConCoordenadas(List<Coordenada> coordenadas) {
+        boolean noSeInterpola = true;
+        for (Coordenada coordenada : coordenadas) {
+            if (this.esIgual(coordenada))  {
+                noSeInterpola = false;
+            }
+        }
+        return noSeInterpola;
+    }
+
     public boolean esIgual(Coordenada coordenada) {
         return (coordenada.devolverX() == x && coordenada.devolverY() == y);
     }
