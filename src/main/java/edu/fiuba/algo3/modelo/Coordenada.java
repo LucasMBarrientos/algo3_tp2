@@ -13,6 +13,22 @@ public class Coordenada {
         this.y = y;
     }
 
+    public boolean completamenteMayorA(Coordenada coordenada) {
+        return (!compararX(coordenada) && !compararY(coordenada));
+    }
+
+    public boolean completamenteMenorA(Coordenada coordenada) { // retorna true si esta coordenada es menor en xy que la pasado por parametro
+        return (compararX(coordenada) && compararY(coordenada));
+    }
+
+    public boolean compararX(Coordenada coordenada) { // retorna true si esta coordenada es mayor en x que la pasado por parametro
+        return (this.x >= coordenada.devolverX());
+    }
+
+    public boolean compararY(Coordenada coordenada) {
+        return (this.y >= coordenada.devolverY()); // retorna true si esta coordenada es mayor en y que la pasado por parametro
+    }
+
     public int devolverX() {
         return this.x;
     }
@@ -21,11 +37,13 @@ public class Coordenada {
         return this.y;
     }
 
+    /* 
     public boolean dentroDeCoordenadas(Coordenada dimension) {
         Boolean contenidoDentroDeX = (x >= 0 && x < dimension.devolverX());
         Boolean contenidoDentroDeY = (y >= 0 && y < dimension.devolverY());
         return (contenidoDentroDeX && contenidoDentroDeY);
     }
+    */
 
     // Devuelve una lista con las coordendas adyacentes
     public List<Coordenada> devolverCoordenadasAdyacentes() {

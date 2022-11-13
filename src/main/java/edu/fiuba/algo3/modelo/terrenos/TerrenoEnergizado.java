@@ -38,5 +38,8 @@ public class TerrenoEnergizado extends Terreno {
         return true;
     }
 
+    public boolean esReemplazable(){
+        return true;
+    }
 
 }

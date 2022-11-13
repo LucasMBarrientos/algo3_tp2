@@ -15,6 +15,7 @@ public class TerrenoVacio extends Terreno {
     public boolean esReemplazable(){
         return true;
     }
+    
     protected boolean validarEdificio(Edificio edificio){
         return false;
     };

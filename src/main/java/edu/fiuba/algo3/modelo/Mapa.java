@@ -9,25 +9,30 @@ import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.lang.Math;
 
 public class Mapa {
 
     private List<Casilla> casillas = new ArrayList<Casilla>();
 
-    private Coordenada dimensiones;
+    List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
 
-    public Mapa(Coordenada dimensionesDelMapa) {
-        this.dimensiones = dimensionesDelMapa;
-        for (int x = 0; x < this.dimensiones.devolverX(); x++) {
-            for (int y = 0; y < this.dimensiones.devolverY(); y++) {
+    SuperficieRectangular superficie;
+
+    public Mapa(Coordenada dimension) {
+        this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
+        for (int x = 0; x < dimension.devolverX(); x++) {
+            for (int y = 0; y < dimension.devolverY(); y++) {
                 this.casillas.add(new Casilla(new Coordenada(x,y)));
             }
         }
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
         generarTerreno();
     }
 
     private boolean validarCoordenada(Coordenada coordenada) {
-        return coordenada.dentroDeCoordenadas(dimensiones);
+        return superficie.contieneCoordenada(coordenada);
     }
 
     public Casilla buscarCasilla(Coordenada coordenada) {
@@ -39,14 +44,10 @@ public class Mapa {
                 }
             }
         }
-        if (validarCoordenada(coordenada)) {
-            for (int i = 0; i < this.casillas.size(); i++) {
-                if (this.casillas.get(i).compararCoordenadas(coordenada)) {
-                    indiceDeLaCasilla = i;
-                }
-            }
+        if (indiceDeLaCasilla == -1) {
+            // TODO : Lanzar Excepcion: Casilla fuera de las dimensiones del mapa
+            System.out.println("error");
         }
-        // TODO : Lanzar Excepcion: Casilla fuera de las dimensiones del mapa si indiceDeLaCasilla == -1
         return this.casillas.get(indiceDeLaCasilla);
     }
 
@@ -68,9 +69,7 @@ public class Mapa {
     }
 
     private Casilla buscarCasillaAlAzar() {
-        int x = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverX());
-        int y = ThreadLocalRandom.current().nextInt(0, dimensiones.devolverY());
-        Coordenada coordeandaAlAzar = new Coordenada(x, y);
+        Coordenada coordeandaAlAzar = superficie.devolverCoordenadaAlAzar();
         return this.buscarCasilla(coordeandaAlAzar);
     }
 
@@ -95,27 +94,108 @@ public class Mapa {
         //actualizarTerrenoEnergizado();
     }
 
-    private void generarTerreno() {
-        int maximoGenerado = (dimensiones.devolverX() * dimensiones.devolverY()) / 10;
-        // Generar volcanes en el mapa
-        for (int i=0; i < maximoGenerado; i++) {
-            buscarCasillaAlAzar().establecerTerreno(new TerrenoVolcan());
+    private List<SuperficieRectangular> calcularBases() {
+        int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
+        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores, cantidadDeJugadores + 10);    
+
+        cantidadDeBases = 2; // DEBUG ONLY
+
+
+        List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
+        for (int i=0; i < cantidadDeJugadores; i++) {
+            coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i));
         }
-        // Generar minerales en el mapa
-        for (int i=0; i < maximoGenerado; i++) {
-            buscarCasillaAlAzar().establecerTerreno(new TerrenoMineral());
+        for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
+            coordenadasCentralesDeBases.add(this.superficie.devolverCoordenadaAlAzar(coordenadasCentralesDeBases));
+        }
+
+        int tamanioDeLasBases = this.superficie.devolverLongitudPromedio() / 5;
+        List<SuperficieRectangular> bases = new ArrayList<SuperficieRectangular>();
+        Coordenada coordenadaInicial, coordenadaFinal;
+        int x,y;
+        for (Coordenada coordenadaCentral : coordenadasCentralesDeBases) {
+            x = coordenadaCentral.devolverX() - tamanioDeLasBases / 2;
+            y = coordenadaCentral.devolverY() - tamanioDeLasBases / 2;
+            coordenadaInicial = new Coordenada(x,y);
+            while (!this.superficie.contieneCoordenada(coordenadaInicial)) {
+                x++;
+                y++;
+                coordenadaInicial = new Coordenada(x,y);
+            }
+            x = coordenadaCentral.devolverX() + tamanioDeLasBases / 2;
+            y = coordenadaCentral.devolverY() + tamanioDeLasBases / 2;
+            coordenadaFinal = new Coordenada(x,y);
+            while (!this.superficie.contieneCoordenada(coordenadaFinal)) {
+                x--;
+                y--;
+                coordenadaFinal = new Coordenada(x,y);
+            }
+            bases.add(new SuperficieRectangular(coordenadaInicial, coordenadaFinal));
+        }
+        return bases;
+    }
+
+    private void generarTerreno() {
+        List<SuperficieRectangular> bases = calcularBases();
+        int cantidadDeMineralesGenerados, cantidadMaximaDeMineralesGenerados;
+        Coordenada coordenadaDeTerreno;
+        for (SuperficieRectangular superficieDeBase : bases) {
+            coordenadaDeTerreno = superficieDeBase.devolverCoordenadaAlAzar(ubicacionesInicialesDeLosJugadores);
+            this.buscarCasilla(coordenadaDeTerreno).establecerTerreno(new TerrenoVolcan());
+            cantidadMaximaDeMineralesGenerados = superficieDeBase.calcularSuperficie() / 20; // Una base tiene hasta un 20% de cristales
+            if (cantidadMaximaDeMineralesGenerados < 2) {
+                cantidadMaximaDeMineralesGenerados = 2;
+            }
+            cantidadDeMineralesGenerados = ThreadLocalRandom.current().nextInt(1, cantidadMaximaDeMineralesGenerados);  
+            for (int i=0; i < cantidadDeMineralesGenerados; i++) {
+                coordenadaDeTerreno = superficieDeBase.devolverCoordenadaAlAzar(ubicacionesInicialesDeLosJugadores);
+                this.buscarCasilla(coordenadaDeTerreno).establecerTerreno(new TerrenoMineral());                
+            }
         }
         // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
-        Coordenada ubicacionInicialDeUnJugador = new Coordenada(1, 1);
-        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoMoho(ubicacionInicialDeUnJugador));
-        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerEdificio(new Criadero(ubicacionInicialDeUnJugador));
+        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho(ubicacionInicialDeJugador));
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
         for (int i = 0; i < 3; i++) {
             expandirMoho();
         }
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
-        ubicacionInicialDeUnJugador = new Coordenada(dimensiones.devolverX() - 1, dimensiones.devolverY() - 1);
-        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerTerreno(new TerrenoEnergizado());
-        this.buscarCasilla(ubicacionInicialDeUnJugador).establecerEdificio(new Pilon(ubicacionInicialDeUnJugador));
+        ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
+    }
+
+    public void DEBUGMOSTRARMAPA() {
+        String lineaDelMapa = "";
+        int dimensionX = this.superficie.devolverXMax();
+        int dimensionY = this.superficie.devolverYMax();
+        for (int x=0; x < dimensionX ; x++) {
+            lineaDelMapa += "█";
+        }
+        System.out.println("█" + lineaDelMapa + "█");
+        for (int y=0; y < dimensionY; y++) {
+            lineaDelMapa = "";
+            for (int x=0; x < dimensionX ; x++) {
+                Terreno terreno = this.buscarCasilla(new Coordenada(x, y)).devolverTerreno();
+                if (terreno instanceof TerrenoMoho) {
+                    lineaDelMapa += "#";
+                } else if (terreno instanceof TerrenoVacio) {
+                    lineaDelMapa += " ";
+                } else if (terreno instanceof TerrenoEnergizado) {
+                    lineaDelMapa += "+";
+                } else if (terreno instanceof TerrenoVolcan) {
+                    lineaDelMapa += "V";
+                } else if (terreno instanceof TerrenoMineral) {
+                    lineaDelMapa += "M";
+                }
+            }
+            System.out.println("█" + lineaDelMapa + "█");
+        }
+        lineaDelMapa = "";
+        for (int x=0; x < dimensionX ; x++) {
+            lineaDelMapa += "█";
+        }
+        System.out.println("█" + lineaDelMapa + "█");
     }
 
     private List<Casilla> buscarCasillasConMoho() {
@@ -150,7 +230,13 @@ public class Mapa {
     }
 
     private void actualizarTerrenoEnergizado() {
+        generarTerrenoEnergizadoEnLosPilones();
+
+        List<Casilla> casillasConMoho = buscarCasillasConMoho();
+
+
         /*
+
         BuscadorDeTerreno generadorDeTerreno = new BuscadorDeTerreno();
         Boolean pilonDetectado;
         List<Casilla> casillasConPilones = new ArrayList<>();
@@ -163,6 +249,9 @@ public class Mapa {
         */
     }
 
+    public void generarTerrenoEnergizadoEnLosPilones() {
+
+    }
 
 
 
