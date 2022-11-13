@@ -33,7 +33,7 @@ public class CasoDeUso11 {
 
     }
     @Test
-    public void elEscudoseRegeneraComoDebe() {
+    public void elEscudoSeRegeneraComoDebe() {
         Coordenada ubicacion = new Coordenada(2 , 2);
         Pilon pilon = new Pilon(ubicacion);
         for(int i=0; i<6; i++){ pilon.actualizar(); } //paso los turnos para que se termine de construir
