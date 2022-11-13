@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -8,9 +9,11 @@ import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
-public class NexoMineral  {
+public class NexoMineral extends EdificioProtoss {
 
-
+    public NexoMineral(){
+        this.costoEnMinerales = new Minerales(50);
+    }
     public void recolectarRecursos() {
 
     }
@@ -18,6 +21,8 @@ public class NexoMineral  {
     public void actualizar() {
 
     }
+
+
 /*
     private Boolean recursosRecolectados = false;
 

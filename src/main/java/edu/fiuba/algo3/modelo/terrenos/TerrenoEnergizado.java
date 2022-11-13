@@ -10,7 +10,11 @@ import edu.fiuba.algo3.modelo.edificios.zerg.*;
 
 public class TerrenoEnergizado extends Terreno {
 
-    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(edificio, casilla, this);
+    }
+
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla, TerrenoEnergizado terreno){
         casilla.establecerEdificio(pilon);
     }
 

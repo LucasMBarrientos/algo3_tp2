@@ -14,17 +14,15 @@ public class JugadorZerg extends Jugador {
 
     public JugadorZerg(Mapa mapa) {
         this.mapa = mapa;
+        inventario = new Inventario(new GasVespeno(0), new Minerales(200));
     }
 
+    @Override
     public void construirEdificio(Coordenada coord, Edificio edificio) {
-        construirEdificio(coord, edificio);
-
+        edificio.construirse(mapa.buscarCasilla(coord), inventario);
     }
 
-    public void construirEdificio(Coordenada coord, Criadero criadero){
-        criadero.consumirRecursos(minerales);
-        mapa.buscarCasilla(coord).ocuparPorEdificio(criadero);
-    }
+
 
 
 

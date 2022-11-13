@@ -2,8 +2,13 @@ package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 
 public class Acceso extends EdificioProtoss {
+
+    public Acceso(){
+        this.costoEnMinerales = new Minerales(150);
+    }
 
 /*
     public Acceso() {

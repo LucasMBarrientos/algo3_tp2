@@ -9,6 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventario {
+
+    public GasVespeno gasVespeno;
+    public Minerales minerales;
+
+    public Inventario(GasVespeno gasVespeno, Minerales minerales){
+        this.gasVespeno = gasVespeno;
+        this.minerales = minerales;
+    }
+
+    public void consumirMinerales(Recursos RecursoRequerido){
+        minerales.gastar(RecursoRequerido);
+    }
+
+    public void consumirGasVespeno(Recursos RecursoRequerido){
+        gasVespeno.gastar(RecursoRequerido);
+    }
+
+
+
+
+
 /*
     public Recursos unidadesGas = new Recursos(200), unidadesMineral = new Recursos(200);
 

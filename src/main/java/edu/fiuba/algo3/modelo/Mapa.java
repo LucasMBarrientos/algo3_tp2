@@ -19,6 +19,27 @@ public class Mapa {
 
     SuperficieRectangular superficie;
 
+    public Mapa(){ }
+
+    public void inicializandoMapaParaPrueba(Coordenada dimension){
+        for (int x = 0; x < dimension.devolverX(); x++) {
+            for (int y = 0; y < dimension.devolverY(); y++) {
+                this.casillas.add(new Casilla(new Coordenada(x,y)));
+            }
+        }
+        this.buscarCasillaParaPrueba(new Coordenada(2,2)).establecerTerreno(new TerrenoVacio());
+    }
+
+    public Casilla buscarCasillaParaPrueba(Coordenada coordenada){
+        for (Casilla casilla : casillas) {
+            if(casilla.compararCoordenadas(coordenada)){
+                return casilla;
+            }
+        }
+        return null;
+    }
+
+
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
         for (int x = 0; x < dimension.devolverX(); x++) {

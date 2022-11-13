@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.terrenos.*;
 
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ public class Casilla {
     }
 
     public void ocuparPorEdificio(Edificio edificio) {
-        if (this.edificio == null) {
-            terreno.ocuparPorEdificio(edificio, this);
+        if (this.edificio != null) {
+            throw new TerrenoNoAptoParaConstruirEsteEdificio(); //cambiar por excepcion TerrenoOcupado?
         }
-
+        terreno.ocuparPorEdificio((Pilon) edificio, this);
     }
     public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;

@@ -8,7 +8,6 @@ import java.util.List;
 
 public class AlgoStar {
 
-
     public List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
 
@@ -18,6 +17,7 @@ public class AlgoStar {
         this.mapa = new Mapa(new Coordenada(10,10));
         jugadores.add(new JugadorZerg(mapa));
         jugadores.add(new JugadorProtoss(mapa));
+        this.idJugadorActual = 1; //setie 1 para la prueba 8
     }
     public Jugador hallarJugadorActual() {
         return jugadores.get(idJugadorActual);

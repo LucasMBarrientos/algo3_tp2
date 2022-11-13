@@ -19,7 +19,14 @@ public class TerrenoMoho extends Terreno {
         this.coordenada = coordenada;
     }
 
-    public void ocuparPorEdificio(Criadero criadero, Casilla casilla){
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(edificio, casilla, this);
+    }
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla, TerrenoMoho terreno){
+        terreno.ocuparPorEdificio(edificio, casilla, this);
+    }
+
+    public void ocuparPorEdificio(Criadero criadero, Casilla casilla, TerrenoMoho terrenoMoho){
         casilla.establecerEdificio(criadero);
     }
 
@@ -42,8 +49,6 @@ public class TerrenoMoho extends Terreno {
     public void ocuparPorEdificio(EdificioProtoss edificioProtoss, Casilla casilla){
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
-
-
 
 
 

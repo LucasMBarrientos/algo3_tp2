@@ -1,18 +1,22 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
-import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public class Guarida extends EdificioZerg {
 
     private EstadoGuarida estado = new GuaridaEnConstruccion();
-
     private int tiempoDeConstruccion = 12;
+    private Recursos costoEnGas;
     private Coordenada coordenada;
 
+    public Guarida() {
+        this.costoEnMinerales = new Minerales(200);
+        this.costoEnGas = new GasVespeno(100);
+    }
     public Guarida(Coordenada coordenada) {
         this.coordenada = coordenada;
     }
@@ -27,6 +31,13 @@ public class Guarida extends EdificioZerg {
             estado = new GuaridaOperativa();
         }
     }
+    @Override
+    public void consumirRecursosParaConstruccion(Inventario inventario){
+        inventario.consumirMinerales(costoEnMinerales);
+        inventario.consumirGasVespeno(costoEnGas);
+    }
+
+
 /*
     public Guarida() {
         this.tiempoConstruccion = 12;

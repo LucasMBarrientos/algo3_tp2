@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
-import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 
 public class ReservaDeReproduccion extends EdificioZerg {
 
@@ -13,6 +11,10 @@ public class ReservaDeReproduccion extends EdificioZerg {
 
     private int tiempoDeConstruccion = 12;
     private Coordenada coordenada;
+
+    public ReservaDeReproduccion() {
+        this.costoEnMinerales = new Minerales(150);
+    }
 
     public ReservaDeReproduccion(Coordenada coordenada) {
         this.coordenada = coordenada;
@@ -28,6 +30,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
             estado = new ReservaOperativa();
         }
     }
+
 /*
     public ReservaDeReproduccion() {
         this.tiempoConstruccion = 12;

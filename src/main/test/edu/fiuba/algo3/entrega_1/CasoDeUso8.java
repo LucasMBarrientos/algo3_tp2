@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,11 +43,14 @@ public class CasoDeUso8 {
   }
 */
   @Test
-  public void protossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
-        AlgoStar a = new AlgoStar();
-        a.empezarJuego();
+  public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
+        Mapa mapa = new Mapa();
+        mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno vacio en el (2,2)
+        Inventario inventario= new Inventario(new GasVespeno(0), new Minerales(50));
+        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
+
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            a.hallarJugadorActual().construirEdificio(new Coordenada(2,2), new Pilon());
+            jugador.construirEdificio(new Coordenada(2,2), new Pilon());
         });
   }
 /*

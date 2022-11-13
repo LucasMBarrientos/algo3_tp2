@@ -11,14 +11,16 @@ public abstract class Jugador {
 
     protected Mapa mapa;
 
-    protected Recursos gas ,minerales;
+    public Inventario inventario;
 
     public abstract void construirEdificio(Coordenada coord, Edificio edificio);
+
+
+
 /*
     protected Mapa mapa;
 
     protected Inventario inventario = new Inventario();
-
 
 
     protected List<Unidad> unidadesDisponibles = new ArrayList<Unidad>();

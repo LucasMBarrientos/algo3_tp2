@@ -1,21 +1,19 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
-import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 
 public class Pilon extends EdificioProtoss {
 
     private int tiempoDeConstruccion = 5;
     private Coordenada coordenada;
 
-    private int costoEnMinerales = 50;
-
     public Pilon(Coordenada coordenada) {
-        
     }
     public Pilon() {
-
+        this.costoEnMinerales = new Minerales(100);
     }
 
     @Override
@@ -23,9 +21,7 @@ public class Pilon extends EdificioProtoss {
         return true;
     }
 
-    public void consumirRecursos(Recursos recurso){
-        recurso.gastarUnidades(costoEnMinerales);
-    }
+
 
     /*
     public Pilon() {

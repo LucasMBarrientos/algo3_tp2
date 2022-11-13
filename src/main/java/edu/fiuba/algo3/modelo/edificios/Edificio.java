@@ -14,6 +14,14 @@ public abstract class Edificio implements Actualizable {
     public boolean generaTerrenoEnergizado() {
         return false;
     }
+
+
+    public abstract void construirse(Casilla casilla, Inventario inventario);
+
+    protected abstract void consumirRecursosParaConstruccion(Inventario inventario);
+
+
+
     
 /*
     public int tiempoConstruccion;
@@ -48,6 +56,10 @@ public abstract class Edificio implements Actualizable {
     }
 
     public abstract void actualizar();
+
+    public void consumirRecursos(Recursos recursos){
+
+    }
 
 
     public abstract boolean recibirDanio(int unidades);

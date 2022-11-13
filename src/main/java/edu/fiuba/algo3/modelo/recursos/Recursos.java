@@ -1,15 +1,40 @@
 package edu.fiuba.algo3.modelo.recursos;
 
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+
 public abstract class Recursos {
 
     private int unidadesDisponibles;
 
-    public void gastarUnidades(int costoEnMinerales) throws RecursosInsuficientes{
-        if(unidadesDisponibles < costoEnMinerales){
+    public Recursos(int unidades) {
+        this.unidadesDisponibles = unidades;
+    }
+
+    public void gastar(Recursos recurso) throws RecursosInsuficientes{
+        if(unidadesDisponibles < recurso.devolverCantidadUnidades()){
             throw new RecursosInsuficientes();
         }
-        unidadesDisponibles -= costoEnMinerales;
+        unidadesDisponibles -= recurso.devolverCantidadUnidades();
     }
+
+
+    public void gastarUnidades(int unidadesAConsumir) throws RecursosInsuficientes{
+        if(unidadesDisponibles < unidadesAConsumir){
+            throw new RecursosInsuficientes();
+        }
+        unidadesDisponibles -= unidadesAConsumir;
+    }
+
+    public void devolverUnidades(int costoEnMinerales){
+        unidadesDisponibles += costoEnMinerales;
+    }
+
+    public int devolverCantidadUnidades(){
+        return this.unidadesDisponibles;
+    }
+
+
+
 /*
     private int unidades;
 

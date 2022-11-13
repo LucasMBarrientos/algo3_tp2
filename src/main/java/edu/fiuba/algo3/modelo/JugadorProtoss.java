@@ -6,26 +6,29 @@ import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorProtoss extends Jugador {
 
+    public JugadorProtoss(Mapa mapa, Inventario inventario) {
+        this.mapa = mapa;
+        this.inventario = inventario;
+    }
 
     public JugadorProtoss(Mapa mapa) {
         this.mapa = mapa;
+        inventario = new Inventario(new GasVespeno(0), new Minerales(200));
     }
 
     @Override
     public void construirEdificio(Coordenada coord, Edificio edificio) {
-        //edificio.construirse(coord, edificio);
+        edificio.construirse(mapa.buscarCasillaParaPrueba(coord), inventario);
     }
 
-    public void construirEdificioDeterminado(Coordenada coord, Pilon pilon){
-        pilon.consumirRecursos(minerales);
-        mapa.buscarCasilla(coord).ocuparPorEdificio(pilon);
-    }
 
     /*
 

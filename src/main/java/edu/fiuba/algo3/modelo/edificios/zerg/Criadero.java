@@ -11,13 +11,15 @@ public class Criadero extends EdificioZerg {
     private int tiempoDeConstruccion = 4;
     private Coordenada coordenada;
 
-    private int costoEnMinerales;
+    public Criadero() {
+        this.costoEnMinerales = new Minerales(50);
+    }
 
     public Criadero(Coordenada coordenada) {
         this.coordenada = coordenada;
     }
 
-    public Zangano generarZangano() throws NoHayLarvasDisponibles{
+    public Zangano generarZangano() throws NoHayLarvasDisponibles{ //Leti: refactor aca.
         return estado.generarZangano();
     }
 
@@ -32,10 +34,11 @@ public class Criadero extends EdificioZerg {
             estado = new CriaderoOperativo();
         }
     }
-
-    public void consumirRecursos(Recursos recurso){
-        recurso.gastarUnidades(costoEnMinerales);
+    @Override
+    public void consumirRecursosParaConstruccion(Inventario inventario){
+        inventario.consumirMinerales(costoEnMinerales);
     }
+
 
 
 /*

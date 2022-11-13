@@ -1,10 +1,29 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
+import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.Casilla;
 
 public class PuertoEstelar extends EdificioProtoss {
+
+    private Recursos costoEnGas;
+
+    public PuertoEstelar(){
+        this.costoEnMinerales = new Minerales(150);
+        this.costoEnGas = new GasVespeno(150);
+    }
+
+    @Override
+    public void consumirRecursosParaConstruccion(Inventario inventario){
+        inventario.consumirMinerales(costoEnMinerales);
+        inventario.consumirGasVespeno(costoEnGas);
+    }
+
+
 /*
     public PuertoEstelar() {
         this.tiempoConstruccion = 10;
