@@ -43,6 +43,7 @@ public class Mapa {
         return null;
     }
 
+    /////////////////////////////////////////////
 
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
@@ -138,11 +139,9 @@ public class Mapa {
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
         int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
         List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
-        Coordenada coordenada;
         for (int i=0; i < cantidadDeJugadores; i++) {
             // El volcan inicial de cada jugador empieza a la derecha de su ubicacion inicial
-            coordenada = ubicacionesInicialesDeLosJugadores.get(i);
-            coordenadasCentralesDeBases.add(new Coordenada(coordenada.devolverX()+1,coordenada.devolverY()+1));
+            coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i).devolverCoordenadaRelativa(1,0));
         }
         for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
             coordenadasCentralesDeBases.add(this.superficie.devolverCoordenadaAlAzarEvitando(coordenadasCentralesDeBases));
@@ -181,6 +180,7 @@ public class Mapa {
         for (SuperficieRectangular superficieDeBase : bases) {
             // Generacion del volcan de esta base
             coordenadaDeTerreno = superficieDeBase.devolverCoordenadaCentral();
+            this.buscarCasilla(coordenadaDeTerreno).establecerTerreno(new TerrenoVolcan());
             // Generacion de los minerales alrededor de dicho volcan
             cantidadMaximaDeMineralesGenerados = superficieDeBase.calcularSuperficie() / 4; // Una base tiene hasta un 25% de cristales
             if (cantidadMaximaDeMineralesGenerados < 2) {
@@ -197,7 +197,7 @@ public class Mapa {
         this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho(ubicacionInicialDeJugador));
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
         for (int i = 0; i < 3; i++) {
-            //expandirMoho();
+            expandirMoho();
         }
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
         ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);

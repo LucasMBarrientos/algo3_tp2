@@ -55,6 +55,10 @@ public class Coordenada {
         return coordendas;
     }
 
+    public Coordenada devolverCoordenadaRelativa(int distanciaX, int distanciaY) {
+        return new Coordenada(this.x + distanciaX, this.y + distanciaY);
+    }
+
     public boolean noSeInterpolaConCoordenadas(List<Coordenada> coordenadas) {
         boolean noSeInterpola = true;
         for (Coordenada coordenada : coordenadas) {
