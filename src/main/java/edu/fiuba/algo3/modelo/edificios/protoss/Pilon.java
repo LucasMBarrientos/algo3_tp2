@@ -1,14 +1,22 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
+import edu.fiuba.algo3.modelo.estadisticas.Escudo;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 
 public class Pilon extends EdificioProtoss {
 
     private int tiempoDeConstruccion = 5;
     private Coordenada coordenada;
+
+
+    private final Vida vida = new Vida(300);
+
+    private final Escudo escudo = new Escudo(300);
 
     public Pilon(Coordenada coordenada) {
     }
@@ -21,7 +29,13 @@ public class Pilon extends EdificioProtoss {
         return true;
     }
 
-
+    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+        int escudoRestante;
+        escudoRestante = escudo.recibirDanio(danio);
+        if(escudoRestante < 0){
+            vida.recibirDanio(new Danio(escudoRestante * (-1)));
+        }
+    }
 
     /*
     public Pilon() {

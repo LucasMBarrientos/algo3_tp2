@@ -6,7 +6,11 @@ import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso11 {/*
+public class CasoDeUso11 {
+
+
+
+    /*
   @Test
     public void alDañarEdicioProtossConUnDanioMenorAlEscudoEsteSeRegenera() {
     AlgoStar algoStar = new AlgoStar();

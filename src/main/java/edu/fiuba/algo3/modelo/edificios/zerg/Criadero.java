@@ -2,8 +2,10 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public class Criadero extends EdificioZerg {
 
@@ -11,9 +13,12 @@ public class Criadero extends EdificioZerg {
     private int tiempoDeConstruccion = 4;
     private Coordenada coordenada;
 
+    private final Vida vida = new Vida(300);
+
     public Criadero() {
         this.costoEnMinerales = new Minerales(50);
     }
+
 
     public Criadero(Coordenada coordenada) {
         this.coordenada = coordenada;
@@ -33,10 +38,15 @@ public class Criadero extends EdificioZerg {
         if(tiempoDeConstruccion == 0){
             estado = new CriaderoOperativo();
         }
+        vida.regenerar();
     }
     @Override
     public void consumirRecursosParaConstruccion(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);
+    }
+
+    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+        vida.recibirDanio(danio);
     }
 
 

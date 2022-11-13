@@ -20,7 +20,7 @@ public abstract class Edificio implements Actualizable {
 
     protected abstract void consumirRecursosParaConstruccion(Inventario inventario);
 
-
+    //public abstract void recibirGolpe(int danio);
 
     
 /*
