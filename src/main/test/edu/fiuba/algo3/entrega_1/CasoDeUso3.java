@@ -59,7 +59,6 @@ public class CasoDeUso3 {
         Assertions.assertTrue(intentoFueExitoso);
     }
 
-
 /*
     @Test
     public void verificarQueElExtractorSoloPuedaSerConstruibleEnUnVolcan() {

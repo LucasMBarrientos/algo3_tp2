@@ -4,6 +4,9 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,22 +45,26 @@ public class CasoDeUso8 {
     Assertions.assertFalse(algoStar.seleccionarCasilla(2, 2).devolverEdificio() instanceof NexoMineral);
   }
 */
+    @Test
+    public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Mapa mapa = algoStar.devolverMapa();
+        algoStar.pasarTurno();
+        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorProtoss.hallarVolcanInicialDelJugador();
+        Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-2,-2);
 
-    /*
-  @Test
-  public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
-      Mapa mapa = new Mapa();
-      mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno vacio en el (2,2)
-      Inventario inventario = new Inventario(new GasVespeno(100), new Minerales(99));
-      JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
+        List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
 
-      Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-          jugador.construirEdificio(new Coordenada(2,2), new Pilon());
-      });
-  }
+        jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
+        jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new Pilon());
+        
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(2).devolverCoordendas(), new Pilon());
+        });
+    }
 
-
-     */
 /*
   @Test
   public void protossSoloPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {

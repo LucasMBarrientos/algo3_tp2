@@ -89,7 +89,7 @@ public class Mapa {
         return buscarCasillasAdyacentes(hallarVolcanInicialDelJugador(idJugador));
     }
 
-    private List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
+    public List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
         List<Coordenada> coordenadasAdyacentes = casilla.hallarCoordenadasAdyacentes();
         List<Casilla> casillasAdyacentes = new ArrayList<>();
         for (int i = 0; i < coordenadasAdyacentes.size(); i++) {
