@@ -18,18 +18,7 @@ public class Mapa {
     List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
 
     SuperficieRectangular superficie;
-
-    public Casilla buscarCasillaParaPrueba(Coordenada coordenada){
-        for (Casilla casilla : casillas) {
-            if(casilla.compararCoordenadas(coordenada)){
-                return casilla;
-            }
-        }
-        return null;
-    }
-
-    /////////////////////////////////////////////
-
+    
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
         for (int x = 0; x < dimension.devolverX(); x++) {
