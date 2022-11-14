@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+
 public abstract class Unidad { // seguramente deba ser abstracta
 
     protected int requerimientosMinerales = 0;
@@ -8,7 +10,7 @@ public abstract class Unidad { // seguramente deba ser abstracta
     protected int danioAereo = 0;
     protected int danioTerrestre = 0;
     protected int rango = 0;
-    protected int vida = 1;
+    protected Vida vida;
     protected boolean aerea = false;
 
     public int devolverRequerimientosDeGas() {
@@ -27,7 +29,7 @@ public abstract class Unidad { // seguramente deba ser abstracta
         return requerimientosMinerales;
     }
 
-    public int devolverVida() {
+    public Vida devolverVida() {
         return vida;
     }
 

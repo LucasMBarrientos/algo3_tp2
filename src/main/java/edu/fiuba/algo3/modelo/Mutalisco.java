@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-public class Mutalisco extends Unidad {
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+
+public class Mutalisco extends UnidadZerg {
 
     public Mutalisco() {
         this.requerimientosMinerales = 100;
@@ -9,7 +11,7 @@ public class Mutalisco extends Unidad {
         this.danioAereo = 9;
         this.danioTerrestre = 9;
         this.rango = 3;
-        this.vida = 120;
+        this.vida = new Vida(120);
         this.aerea = true;
     }
 

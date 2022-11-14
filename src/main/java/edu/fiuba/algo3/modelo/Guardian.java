@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-public class Guardian extends Unidad {
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+
+public class Guardian extends UnidadZerg {
 
     public Guardian() {
         this.requerimientosMinerales = 50;
@@ -8,7 +10,7 @@ public class Guardian extends Unidad {
         this.tiempoConstruccion = 4;
         this.danioTerrestre = 25;
         this.rango = 10;
-        this.vida = 100;
+        this.vida = new Vida(100);
         this.aerea = true;
     }
 

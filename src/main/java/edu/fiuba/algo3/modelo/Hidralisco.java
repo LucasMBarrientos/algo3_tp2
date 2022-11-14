@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-public class Hidralisco extends Unidad {
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+
+public class Hidralisco extends UnidadZerg {
 
     public Hidralisco() {
         this.requerimientosMinerales = 75;
@@ -9,7 +11,7 @@ public class Hidralisco extends Unidad {
         this.danioAereo = 10;
         this.danioTerrestre = 10;
         this.rango = 4;
-        this.vida = 80;    
+        this.vida = new Vida(80);
     }
 
 }
