@@ -41,8 +41,8 @@ public abstract class Terreno {
         return false;
     }
 
-    public boolean repeleeMoho() {
-        return false;
+    public boolean repeleMoho() {
+        return true;
     }
 
 

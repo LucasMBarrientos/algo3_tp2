@@ -60,6 +60,9 @@ public class TerrenoVacio extends Terreno {
     public boolean esReemplazable(){
         return true;
     }
+    public boolean repeleMoho() {
+        return false;
+    }
 
 
     protected boolean validarTransitable(Unidad unidad){

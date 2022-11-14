@@ -65,7 +65,15 @@ public class TerrenoMoho extends Terreno {
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
+    public void expandirMoho(Mapa mapa){
+        List<Casilla> listaAdyacentes = mapa.buscarCasillasAdyacentes(coordenada);
 
+        for(Casilla casilla : listaAdyacentes){
+            if(casilla.terrenoRepeleMoho()){
+                casilla.establecerTerreno(new TerrenoMoho());
+            }
+        }
+    }
 
     public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
         List<Coordenada> coordenadasAdyacentes = coordenada.devolverCoordenadasAdyacentes();

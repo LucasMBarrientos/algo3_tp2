@@ -72,8 +72,12 @@ public class Casilla {
         return this.terreno.esReemplazable();
     }
 
-    public boolean terrenoRepeleeMoho() {
-        return this.terreno.repeleeMoho();
+    public boolean terrenoRepeleMoho() {
+        return this.terreno.repeleMoho();
+    }
+
+    public void actualizar(){
+       // if
     }
 
 

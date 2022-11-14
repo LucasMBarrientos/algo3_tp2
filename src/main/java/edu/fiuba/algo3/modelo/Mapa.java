@@ -43,6 +43,13 @@ public class Mapa {
         return null;
     }
 
+    public void actualizarMapa(){
+
+        for (Casilla casilla : casillas ){
+            casilla.actualizar();
+        }
+    }
+
     /////////////////////////////////////////////
 
     public Mapa(Coordenada dimension) {
@@ -256,7 +263,7 @@ public class Mapa {
         Boolean casillaPertenceAlMapa = this.validarCoordenada(coordenadaConMoho);
         if (casillaPertenceAlMapa) {
             Casilla casilla = this.buscarCasilla(coordenadaConMoho);
-            return (casilla.terrenoEsReemplazable() && !casilla.terrenoRepeleeMoho());
+            return (casilla.terrenoEsReemplazable() && !casilla.terrenoRepeleMoho());
         } else {
             return false;
         }

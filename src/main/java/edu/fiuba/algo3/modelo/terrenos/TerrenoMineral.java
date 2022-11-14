@@ -53,7 +53,9 @@ public class TerrenoMineral extends Terreno {
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion, Casilla casilla) {
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
-
+    public boolean esReemplazable(){
+        return false;
+    }
 
     public boolean validarTransitable(Unidad unidad) {
         return true;

@@ -60,4 +60,8 @@ public class TerrenoVolcan extends Terreno {
 
     }
 
+    public boolean esReemplazable(){
+        return false;
+    }
+
 }

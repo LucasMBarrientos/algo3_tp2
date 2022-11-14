@@ -23,6 +23,10 @@ public class AlgoStar {
         return jugadores.get(idJugadorActual);
     }
 
+    public void pasarTurno(){
+        mapa.actualizarMapa();
+    }
+
     /*
     public List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
