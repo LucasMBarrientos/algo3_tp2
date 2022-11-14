@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
-import edu.fiuba.algo3.modelo.Unidad;
-import edu.fiuba.algo3.modelo.Zangano;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public class CriaderoOperativo implements EstadoCriadero {
 

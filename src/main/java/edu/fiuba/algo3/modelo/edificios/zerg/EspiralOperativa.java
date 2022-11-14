@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.Hidralisco;
-import edu.fiuba.algo3.modelo.Mutalisco;
-import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 
 public class EspiralOperativa implements EstadoEspiral{
 

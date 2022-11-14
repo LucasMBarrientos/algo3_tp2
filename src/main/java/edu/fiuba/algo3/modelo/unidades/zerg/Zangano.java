@@ -1,11 +1,18 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.unidades.zerg;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
+import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 
-public class Zangano {
+public class Zangano extends UnidadZerg {
+
+    public Zangano() {
+        this.vida = new Vida(10);
+    }
 
     public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {
         

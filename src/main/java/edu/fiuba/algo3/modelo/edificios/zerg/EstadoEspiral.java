@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public interface EstadoEspiral {
 
