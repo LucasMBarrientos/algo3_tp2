@@ -13,12 +13,8 @@ import java.util.List;
 
 public class TerrenoMoho extends Terreno {
 
-    Coordenada coordenada;
+    public TerrenoMoho() {
 
-    public TerrenoMoho() {}
-
-    public TerrenoMoho(Coordenada coordenada) {
-        this.coordenada = coordenada;
     }
 
     public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
@@ -65,18 +61,22 @@ public class TerrenoMoho extends Terreno {
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
+    /*
     public void expandirMoho(Mapa mapa){
         List<Casilla> listaAdyacentes = mapa.buscarCasillasAdyacentes(coordenada);
-
         for(Casilla casilla : listaAdyacentes){
             if(casilla.terrenoRepeleMoho()){
                 casilla.establecerTerreno(new TerrenoMoho());
             }
         }
     }
+    */
 
-    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
-        List<Coordenada> coordenadasAdyacentes = coordenada.devolverCoordenadasAdyacentes();
+
+
+    @Override
+    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho, Coordenada coordenadaActual) {
+        List<Coordenada> coordenadasAdyacentes = coordenadaActual.devolverCoordenadasAdyacentes();
         cooordenadasDeCasillasConMoho.addAll(coordenadasAdyacentes);
     }
 

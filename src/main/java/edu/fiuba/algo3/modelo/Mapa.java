@@ -19,21 +19,6 @@ public class Mapa {
 
     SuperficieRectangular superficie;
 
-    public Mapa(){ }
-
-    public void inicializandoMapaParaPrueba(Coordenada dimension){
-        for (int x = 0; x < dimension.devolverX(); x++) {
-            for (int y = 0; y < dimension.devolverY(); y++) {
-                this.casillas.add(new Casilla(new Coordenada(x,y)));
-            }
-        }
-        this.buscarCasillaParaPrueba(new Coordenada(2,2)).establecerTerreno(new TerrenoVacio());
-        this.buscarCasillaParaPrueba(new Coordenada(3,3)).establecerTerreno(new TerrenoMoho());
-        this.buscarCasillaParaPrueba(new Coordenada(4,4)).establecerTerreno(new TerrenoVolcan());
-        this.buscarCasillaParaPrueba(new Coordenada(5,5)).establecerTerreno(new TerrenoEnergizado());
-        this.buscarCasillaParaPrueba(new Coordenada(6,6)).establecerTerreno(new TerrenoMineral());
-    }
-
     public Casilla buscarCasillaParaPrueba(Coordenada coordenada){
         for (Casilla casilla : casillas) {
             if(casilla.compararCoordenadas(coordenada)){
@@ -41,13 +26,6 @@ public class Mapa {
             }
         }
         return null;
-    }
-
-    public void actualizarMapa(){
-
-        for (Casilla casilla : casillas ){
-            casilla.actualizar();
-        }
     }
 
     /////////////////////////////////////////////
@@ -61,6 +39,7 @@ public class Mapa {
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
+        
         generarTerrenoInicial();
         actualizarTerrenoEnergizado();
     }
@@ -201,11 +180,9 @@ public class Mapa {
         }
         // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
         Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho(ubicacionInicialDeJugador));
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
-        for (int i = 0; i < 3; i++) {
-            expandirMoho();
-        }
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho());
+        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
         ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
         this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
@@ -274,7 +251,14 @@ public class Mapa {
     private void expandirMoho() {
         List<Casilla> casillasConMoho = buscarCasillasConMoho();
         for (Casilla casillaConMoho : casillasConMoho) {
-            casillaConMoho.establecerTerreno(new TerrenoMoho(casillaConMoho.devolverCoordendas()));
+            casillaConMoho.establecerTerreno(new TerrenoMoho());
+        }
+    }
+
+    private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
+        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero);
+        for (Casilla casillaConMoho : casillasConMoho) {
+            casillaConMoho.establecerTerreno(new TerrenoMoho());
         }
     }
 

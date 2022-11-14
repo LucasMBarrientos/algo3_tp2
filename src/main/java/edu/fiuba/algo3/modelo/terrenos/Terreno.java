@@ -33,7 +33,7 @@ public abstract class Terreno {
     public abstract void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion, Casilla casilla);
 
 
-    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
+    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho, Coordenada coordenadaActual) {
         return;
     }
 

@@ -40,7 +40,7 @@ public class Casilla {
     }
 
     public void actualizarListaDeCoordenadasConMoho(List<Coordenada> coordenadasConMoho) {
-        terreno.actualizarListaDeCoordenadasConMoho(coordenadasConMoho);
+        terreno.actualizarListaDeCoordenadasConMoho(coordenadasConMoho, this.coordenada);
     }
 
     public List<Coordenada> devolverCoordenadasAdyacentes() {
