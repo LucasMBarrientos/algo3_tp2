@@ -51,6 +51,7 @@ public class CasoDeUso3 {
         algoStar.empezarJuego();
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+
         boolean intentoFueExitoso = true;
         try {
             jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
@@ -68,7 +69,7 @@ public class CasoDeUso3 {
         Mapa mapa = algoStar.devolverMapa();
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-1,-1);
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorProtoss.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Asimilador());
         });
@@ -95,6 +96,7 @@ public class CasoDeUso3 {
         algoStar.pasarTurno();
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+        
         boolean intentoFueExitoso = true;
         try {
             jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
@@ -104,136 +106,4 @@ public class CasoDeUso3 {
         Assertions.assertTrue(intentoFueExitoso);
     }
 
-
-/*
-
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        Jugador jugadorZerg = algoStar.devolverJugadorActual();
-        Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
-        boolean intentoFueExitoso = true;
-        try {
-            jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
-            intentoFueExitoso = false;
-        }
-        Assertions.assertTrue(intentoFueExitoso);
-    }
-
-*/
-
-
-/*
-    @Test
-    public void verificarQueElExtractorSoloPuedaSerConstruibleEnUnVolcan() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        algoStar.moverDerecha(1, 1);
-        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2, 1, new Extractor());
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof Extractor);
-
-
-        boolean finDelMapaAlcanzado = false;
-        boolean volcanHallado = false;
-        int x = 0;
-        int y = 0;
-        Boolean moviendoseALaIzquierda = false;
-
-        // La gran aventura del zangano bucando un volcan en el mapa
-        while (!volcanHallado) {
-            while (!finDelMapaAlcanzado && !volcanHallado) {
-                if (moviendoseALaIzquierda) {
-                    x--;
-                } else {
-                    x++;
-                }
-                algoStar.moverUnidad(zanganoDisponible,x,y);
-                casillaDelZangano = zanganoDisponible.devolverCasilla();
-                if (casillaDelZangano.devolverX() != x) { // El movimiento no se realizo exitosamente
-                    y++;
-                    if (moviendoseALaIzquierda) {
-                        x++;
-                    } else {
-                        x--;
-                    }
-                    algoStar.moverUnidad(zanganoDisponible,x,y);
-                    moviendoseALaIzquierda = !moviendoseALaIzquierda;
-                }
-                if (casillaDelZangano.devolverTerreno() instanceof Volcan) {
-                    volcanHallado = true;
-                }
-                algoStar.pasarTurno();
-            }
-        }
-
-
-    }
-
-    @Test
-    public void verificarQueElAsimiladorSoloPuedaSerConstruibleEnUnVolcan() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.pasarTurno();
-
-        algoStar.seleccionarCasilla(9, 8).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(9, 8, new Asimilador());
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertFalse(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof Extractor);
-
-
-        boolean finDelMapaAlcanzado = false;
-        boolean volcanHallado = false;
-        int x = 0;
-        int y = 0;
-        Boolean moviendoseALaIzquierda = false;
-
-        // La gran aventura del zangano bucando un volcan en el mapa
-        while (!volcanHallado) {
-            while (!finDelMapaAlcanzado && !volcanHallado) {
-                if (moviendoseALaIzquierda) {
-                    x--;
-                } else {
-                    x++;
-                }
-                algoStar.moverUnidad(zanganoDisponible,x,y);
-                casillaDelZangano = zanganoDisponible.devolverCasilla();
-                if (casillaDelZangano.devolverX() != x) { // El movimiento no se realizo exitosamente
-                    y++;
-                    if (moviendoseALaIzquierda) {
-                        x++;
-                    } else {
-                        x--;
-                    }
-                    algoStar.moverUnidad(zanganoDisponible,x,y);
-                    moviendoseALaIzquierda = !moviendoseALaIzquierda;
-                }
-                if (casillaDelZangano.devolverTerreno() instanceof Volcan) {
-                    volcanHallado = true;
-                }
-                algoStar.pasarTurno();
-            }
-        }
-
-
-
-    }*/
 }
