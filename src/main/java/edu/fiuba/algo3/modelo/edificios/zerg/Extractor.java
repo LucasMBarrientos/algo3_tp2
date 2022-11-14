@@ -44,14 +44,16 @@ public class Extractor extends EdificioZerg {
     }
 
 
-    public void actualizar(Inventario inventario){
+    public void actualizar(Inventario inventario) {
+        estado.actualizar();
         tiempoDeConstruccion--;
-        if(tiempoDeConstruccion == 0){
-            estado = new ExtractorOperativo();
+        if (tiempoDeConstruccion == 0) {
+            estado = new EspiralOperativa();
         }
-        recolectarRecursos(inventario);
         vida.regenerar();
     }
+
+
 
     public void recolectarRecursos(Inventario inventario) {
         estado.recolectarRecursos(terreno, inventario);

@@ -14,4 +14,6 @@ public class ExtractorEnConstruccion  implements EstadoExtractor{
 
     public void recolectarRecursos(Terreno terreno, Inventario inventario) { }
 
+    public void actualizar() { }
 }
+

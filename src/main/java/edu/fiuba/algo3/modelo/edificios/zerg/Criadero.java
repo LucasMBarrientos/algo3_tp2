@@ -35,8 +35,8 @@ public class Criadero extends EdificioZerg {
         return estado.generarUnidad(unidad);
     }
 
-    public void actualizar(Inventario inventario){}
-    public void actualizar() {
+
+    public void actualizar(Inventario inventario) {
         estado.actualizar();
         tiempoDeConstruccion--;
         if(tiempoDeConstruccion == 0){

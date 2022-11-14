@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
@@ -17,6 +18,7 @@ public class Espiral extends EdificioZerg {
     private Recursos costoEnGas;
 
     private Coordenada coordenada;
+    private final Vida vida = new Vida(300);
 
     public Espiral() {
         this.costoEnMinerales = new Minerales(150);
@@ -30,13 +32,7 @@ public class Espiral extends EdificioZerg {
     public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
         return estado.generarUnidad(criadero);
     }
-    public void actualizar() {
-        estado.actualizar();
-        tiempoDeConstruccion--;
-        if (tiempoDeConstruccion == 0) {
-            estado = new EspiralOperativa();
-        }
-    }
+
     @Override
     public void consumirRecursosParaConstruccion(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);
@@ -47,7 +43,14 @@ public class Espiral extends EdificioZerg {
         terreno.ocuparPorEdificio(this, casilla);
     }
 
-    public void actualizar(Inventario inventario){}
+    public void actualizar(Inventario inventario) {
+        estado.actualizar();
+        tiempoDeConstruccion--;
+        if (tiempoDeConstruccion == 0) {
+            estado = new EspiralOperativa();
+        }
+        vida.regenerar();
+    }
 
 /*
     public Espiral() {
