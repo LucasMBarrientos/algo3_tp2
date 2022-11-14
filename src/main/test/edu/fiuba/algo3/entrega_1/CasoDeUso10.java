@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
@@ -30,6 +31,35 @@ public class CasoDeUso10 {
         Assertions.assertThrows(EdificioDestruido.class,() ->{
             criadero.recibirGolpe(new Danio(300));
                 });
+
+    }
+
+
+    @Test
+    public void laVidaSeRegeneraComoDebe() {
+        Coordenada ubicacion = new Coordenada(2 , 2);
+        Criadero criadero = new Criadero(ubicacion);
+        for(int i=0; i<6; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
+
+
+        boolean comportamientoEsperado = false;
+        try{
+            criadero.recibirGolpe(new Danio(100));
+        }catch (EdificioDestruido edificioDestruido){
+            comportamientoEsperado = true;
+        }
+        Assertions.assertFalse(comportamientoEsperado);
+
+        for(int i=0; i<6; i++){
+            criadero.actualizar();
+        } //paso los turnos para que se termine de construir
+
+        try{
+            criadero.recibirGolpe(new Danio(200));
+        }catch (EdificioDestruido edificioDestruido){
+            comportamientoEsperado = true;
+        }
+        Assertions.assertFalse(comportamientoEsperado);
 
     }
 
