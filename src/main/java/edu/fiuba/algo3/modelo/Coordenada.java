@@ -46,13 +46,26 @@ public class Coordenada {
     */
 
     // Devuelve una lista con las coordendas adyacentes
-    public List<Coordenada> devolverCoordenadasAdyacentes() {
+    public List<Coordenada> hallarCoordenadasAdyacentes() {
         List<Coordenada> coordendas = new ArrayList<Coordenada>();
         coordendas.add(new Coordenada(x,y-1));
         coordendas.add(new Coordenada(x-1,y));
         coordendas.add(new Coordenada(x+1,y));
         coordendas.add(new Coordenada(x,y+1));
         return coordendas;
+    }
+
+    public List<Coordenada> hallarCoordenadasAdyacentes(Coordenada coordenadaCentral, int radio) {
+        List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>();
+        coordenadasAdyacentesTotales.add(this);
+        List<Coordenada> nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
+        for (int i = 0; i < radio - 1; i++) {
+            for (Coordenada coordenada : coordenadasAdyacentesTotales) {
+                nuevasCoordenadasAdyacentes.addAll(coordenada.hallarCoordenadasAdyacentes());
+            }
+            coordenadasAdyacentesTotales.addAll(nuevasCoordenadasAdyacentes);
+        }
+        return coordenadasAdyacentesTotales;
     }
 
     public Coordenada devolverCoordenadaRelativa(int distanciaX, int distanciaY) {
@@ -68,6 +81,7 @@ public class Coordenada {
         }
         return noSeInterpola;
     }
+
 
     public boolean esIgual(Coordenada coordenada) {
         return (coordenada.devolverX() == x && coordenada.devolverY() == y);

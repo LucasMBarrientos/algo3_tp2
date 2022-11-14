@@ -44,8 +44,8 @@ public class Casilla {
         terreno.actualizarListaDeCoordenadasConMoho(coordenadasConMoho, this.coordenada);
     }
 
-    public List<Coordenada> devolverCoordenadasAdyacentes() {
-        return coordenada.devolverCoordenadasAdyacentes();
+    public List<Coordenada> hallarCoordenadasAdyacentes() {
+        return coordenada.hallarCoordenadasAdyacentes();
     }
 
     public boolean compararCoordenadas(Coordenada coordenada) {

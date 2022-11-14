@@ -54,7 +54,7 @@ public class Mapa {
     }
 
     private List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
-        List<Coordenada> coordenadasAdyacentes = casilla.devolverCoordenadasAdyacentes();
+        List<Coordenada> coordenadasAdyacentes = casilla.hallarCoordenadasAdyacentes();
         List<Casilla> casillasAdyacentes = new ArrayList<>();
         for (int i = 0; i < coordenadasAdyacentes.size(); i++) {
             if (validarCoordenada(coordenadasAdyacentes.get(i))) {
@@ -109,6 +109,12 @@ public class Mapa {
            expandirMoho();
         }
     }
+
+    /*
+    private List<Coordenada> hallarCoordenadasParaBases() {
+        
+    }
+    */
 
     private List<SuperficieRectangular> calcularBases() {
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
