@@ -21,7 +21,7 @@ public class CasoDeUso1 {
         Mapa mapa = new Mapa(new Coordenada(150, 100)); // Mapa de tamanio normal
         mapa = new Mapa(new Coordenada(40, 40)); // Mapa mas chico posible, para demostrar que la energia y el moho no se superponen
         mapa.DEBUGMOSTRARMAPA();
-        for (int i=1;i < 100;i++) {
+        for (int i=0;i < 100;i++) {
             mapa.actualizar(i);
         }
         //400 turnos despues no deveria sobrescribir las casillas con TerrenoEnergizado

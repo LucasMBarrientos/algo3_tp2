@@ -246,10 +246,12 @@ public class Mapa {
     }
 
     private List<Casilla> buscarCasillasConMoho() {
+        // Buscar casilllas que en este turno van a tener moho
         List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
         for (Casilla casilla : casillas) {
-            casilla.devolverTerreno().actualizarListaDeCoordenadasConMoho(coordenadasConMoho);
+            casilla.actualizarListaDeCoordenadasConMoho(coordenadasConMoho);
         }
+        // Recorre las casillas que en este turno van a tener moho
         List<Casilla> casillasConMoho = new ArrayList<Casilla>();
         for (Coordenada coordenadaConMoho : coordenadasConMoho) {
             if (validarCoordenadaOcupableConMoho(coordenadaConMoho)) {
