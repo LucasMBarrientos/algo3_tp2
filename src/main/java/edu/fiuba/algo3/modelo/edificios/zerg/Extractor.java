@@ -45,10 +45,17 @@ public class Extractor extends EdificioZerg {
 
 
     public void actualizar(Inventario inventario) {
-        estado.actualizar();
         tiempoDeConstruccion--;
         if (tiempoDeConstruccion == 0) {
-            estado = new EspiralOperativa();
+            estado = new ExtractorOperativo();
+        }
+        vida.regenerar();
+    }
+
+    public void actualizar() {
+        tiempoDeConstruccion--;
+        if (tiempoDeConstruccion == 0) {
+            estado = new ExtractorOperativo();
         }
         vida.regenerar();
     }

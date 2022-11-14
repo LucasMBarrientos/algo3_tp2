@@ -52,6 +52,15 @@ public class Espiral extends EdificioZerg {
         vida.regenerar();
     }
 
+    public void actualizar() {
+        estado.actualizar();
+        tiempoDeConstruccion--;
+        if (tiempoDeConstruccion == 0) {
+            estado = new EspiralOperativa();
+        }
+        vida.regenerar();
+    }
+
 /*
     public Espiral() {
         this.tiempoConstruccion = 10;

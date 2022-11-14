@@ -44,14 +44,14 @@ public class CasoDeUso8 {
 */
   @Test
   public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
-        Mapa mapa = new Mapa();
-        mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno vacio en el (2,2)
-        Inventario inventario= new Inventario(new GasVespeno(100), new Minerales(99));
-        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
+      Mapa mapa = new Mapa();
+      mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno vacio en el (2,2)
+      Inventario inventario= new Inventario(new GasVespeno(100), new Minerales(99));
+      JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
 
-        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            jugador.construirEdificio(new Coordenada(2,2), new Pilon());
-        });
+      Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+          jugador.construirEdificio(new Coordenada(2,2), new Pilon());
+      });
   }
 /*
   @Test

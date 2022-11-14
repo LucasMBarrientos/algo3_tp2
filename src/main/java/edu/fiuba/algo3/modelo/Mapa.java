@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import javafx.scene.layout.CornerRadii;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,24 +34,31 @@ public class Mapa {
         actualizarTerrenoEnergizado();
     }
 
+    public Mapa() { }
+
+    public void inicializandoMapaParaPrueba(Coordenada dimension){
+        for (int x = 0; x < dimension.devolverX(); x++) {
+            for (int y = 0; y < dimension.devolverY(); y++) {
+                this.casillas.add(new Casilla(new Coordenada(x,y)));
+            }
+        }
+        this.buscarCasilla(new Coordenada(2,2)).establecerTerreno(new TerrenoVacio());
+        this.buscarCasilla(new Coordenada(3,3)).establecerTerreno(new TerrenoMoho());
+        this.buscarCasilla(new Coordenada(4,4)).establecerTerreno(new TerrenoVolcan());
+    }
+
+
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
     }
 
-    public Casilla buscarCasilla(Coordenada coordenada) {
-        int indiceDeLaCasilla = -1;
-        if (validarCoordenada(coordenada)) {
-            for (int i = 0; i < this.casillas.size(); i++) {
-                if (this.casillas.get(i).compararCoordenadas(coordenada)) {
-                    indiceDeLaCasilla = i;
-                }
+    public Casilla buscarCasilla(Coordenada coordenada) throws RuntimeException{
+        for(Casilla casilla: casillas){
+            if(casilla.compararCoordenadas(coordenada)){
+                return casilla;
             }
         }
-        if (indiceDeLaCasilla == -1) {
-            // TODO : Lanzar Excepcion: Casilla fuera de las dimensiones del mapa
-            indiceDeLaCasilla = 0;
-        }
-        return this.casillas.get(indiceDeLaCasilla);
+        throw new CoordenadaFueraDelMapa();
     }
 
     private List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
@@ -185,7 +193,7 @@ public class Mapa {
         return bases;
     }
 
-    private void generarTerrenoInicial() {
+    public void generarTerrenoInicial() {
         List<SuperficieRectangular> bases = calcularBases();
         int cantidadDeMineralesGenerados, cantidadMaximaDeMineralesGenerados;
         Coordenada coordenadaDeTerreno;

@@ -63,6 +63,7 @@ public class Criadero extends EdificioZerg {
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
+
         terreno.ocuparPorEdificio(this, casilla);
     }
 

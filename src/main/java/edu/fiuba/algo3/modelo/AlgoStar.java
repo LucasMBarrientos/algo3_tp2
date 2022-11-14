@@ -11,21 +11,31 @@ public class AlgoStar {
     public List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
 
+    private int turnoActual;
+    private int rondaActual;
+
     private Mapa mapa;
 
     public void empezarJuego() {
         this.mapa = new Mapa(new Coordenada(10,10));
         jugadores.add(new JugadorZerg(mapa));
         jugadores.add(new JugadorProtoss(mapa));
-        this.idJugadorActual = 1; //setie 1 para la prueba 8
+        this.idJugadorActual = 0;
+        this.turnoActual = 0;
+        this.rondaActual = 0;
     }
     public Jugador hallarJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
 
     public void pasarTurno(){
-        mapa.actualizarMapa();
-
+        idJugadorActual++;
+        turnoActual++;
+        if (turnoActual % jugadores.size() == 0) {
+            idJugadorActual = 0;
+            rondaActual++;
+        }
+        mapa.actualizar(turnoActual);
     }
 
     /*

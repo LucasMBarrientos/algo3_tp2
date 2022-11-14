@@ -21,6 +21,8 @@ public class JugadorZerg extends Jugador {
         edificio.construirse(mapa.buscarCasilla(coord), inventario);
     }
 
+
+
     public void actualizar() {
         inventario.actualizar();
     }

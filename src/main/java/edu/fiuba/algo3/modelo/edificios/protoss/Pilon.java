@@ -2,7 +2,9 @@ package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
+import edu.fiuba.algo3.modelo.edificios.zerg.CriaderoOperativo;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
@@ -15,7 +17,6 @@ public class Pilon extends EdificioProtoss {
     private int tiempoDeConstruccion = 5;
     private Coordenada coordenada;
 
-
     private final Vida vida = new Vida(300);
 
     private final Escudo escudo = new Escudo(300);
@@ -26,6 +27,9 @@ public class Pilon extends EdificioProtoss {
         this.costoEnMinerales = new Minerales(100);
     }
 
+    public void actualizar(Inventario inventario) {
+        vida.regenerar();
+    }
     @Override
     public boolean generaTerrenoEnergizado() {
         return true;

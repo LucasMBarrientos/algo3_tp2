@@ -2,6 +2,9 @@ package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.CriaderoOperativo;
+import edu.fiuba.algo3.modelo.estadisticas.Escudo;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
@@ -11,11 +14,14 @@ import edu.fiuba.algo3.modelo.Casilla;
 
 public class PuertoEstelar extends EdificioProtoss {
 
-    private Recursos costoEnGas;
+    private Recursos costoEnGas= new GasVespeno(150);
+
+    private final Vida vida = new Vida(600);
+
+    private final Escudo escudo = new Escudo(600);
 
     public PuertoEstelar(){
         this.costoEnMinerales = new Minerales(150);
-        this.costoEnGas = new GasVespeno(150);
     }
 
     @Override
@@ -24,9 +30,16 @@ public class PuertoEstelar extends EdificioProtoss {
         inventario.consumirGasVespeno(costoEnGas);
     }
 
+
     public void ocupar(Casilla casilla, Terreno terreno){
         terreno.ocuparPorEdificio(this, casilla);
     }
+
+    public void actualizar(Inventario inventario) {
+        vida.regenerar();
+    }
+
+
 /*
     public PuertoEstelar() {
         this.tiempoConstruccion = 10;

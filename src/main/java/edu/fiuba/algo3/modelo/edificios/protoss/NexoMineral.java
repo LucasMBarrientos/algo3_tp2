@@ -4,6 +4,10 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.edificios.zerg.CriaderoEnConstruccion;
+import edu.fiuba.algo3.modelo.edificios.zerg.EstadoCriadero;
+import edu.fiuba.algo3.modelo.estadisticas.Escudo;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
@@ -12,15 +16,20 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class NexoMineral extends EdificioProtoss {
 
+    private final Vida vida = new Vida(300);
+
+    private final Escudo escudo = new Escudo(300);
+
+    private EstadoNexoMineral estado = new NexoMineralEnConstruccion();
+
     public NexoMineral(){
         this.costoEnMinerales = new Minerales(50);
     }
-    public void recolectarRecursos() {
+    public void recolectarRecursos(){}
 
-    }
-
-    public void actualizar() {
-
+    public void actualizar() {}
+    public void actualizar(Inventario inventario) {
+        vida.regenerar();
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
