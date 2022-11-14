@@ -21,8 +21,8 @@ public class CasoDeUso3 {
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoVacio() {
         AlgoStar algoStar = new AlgoStar();
-        Mapa mapa = algoStar.devolverMapa();
         algoStar.empezarJuego();
+        Mapa mapa = algoStar.devolverMapa();
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
@@ -34,8 +34,8 @@ public class CasoDeUso3 {
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoConMoho() {
         AlgoStar algoStar = new AlgoStar();
-        Mapa mapa = algoStar.devolverMapa();
         algoStar.empezarJuego();
+        Mapa mapa = algoStar.devolverMapa();
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
         Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-1,-1);
