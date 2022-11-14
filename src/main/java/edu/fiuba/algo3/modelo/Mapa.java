@@ -89,6 +89,10 @@ public class Mapa {
         return buscarCasillasAdyacentes(hallarVolcanInicialDelJugador(idJugador));
     }
 
+    public Casilla hallarCasillaConEdificioInicialDelJugador(int idDelJguador) {
+        return buscarCasilla(ubicacionesInicialesDeLosJugadores.get(idDelJguador));
+    }
+
     public List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
         List<Coordenada> coordenadasAdyacentes = casilla.hallarCoordenadasAdyacentes();
         List<Casilla> casillasAdyacentes = new ArrayList<>();

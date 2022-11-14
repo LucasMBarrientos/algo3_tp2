@@ -17,12 +17,16 @@ public abstract class Jugador {
 
     public abstract void construirEdificio(Coordenada coord, Edificio edificio);
 
-    public Casilla hallarVolcanInicialDelJugador() {
+    public Casilla hallarCasillaConVolcanInicial() {
         return mapa.hallarVolcanInicialDelJugador(id);
     }
 
-    public List<Casilla> hallarMineralesInicialesDelJugador() {
+    public List<Casilla> hallarCasillasConMineralesIniciales() {
         return mapa.hallarMineralesInicialesDelJugador(id);
+    }
+
+    public Casilla hallarCasillaConEdificioInicial() {
+        return mapa.hallarCasillaConEdificioInicialDelJugador(id);
     }
 
 /*

@@ -52,7 +52,7 @@ public class CasoDeUso8 {
         Mapa mapa = algoStar.devolverMapa();
         algoStar.pasarTurno();
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
-        Casilla casillaConVolcan = jugadorProtoss.hallarVolcanInicialDelJugador();
+        Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
         Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-2,-2);
 
         List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
