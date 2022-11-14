@@ -3,42 +3,46 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso12 {/*
+public class CasoDeUso12 {
   @Test
     public void alDañarEdicioProtossConUnDanioMayorAlEscudoSeRegeneraSoloSuEscudo() {
-    AlgoStar algoStar = new AlgoStar();
-    algoStar.empezarJuego();
-    algoStar.pasarTurno();
-
-    algoStar.construirEdificio(8,8,new Pilon());
-
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    // ATACAR EL CON DANIO MENOR AL ESCUDO
-    algoStar.seleccionarCasilla(8, 8).devolverEdificio().recibirDanio(400);
+      Coordenada ubicacion = new Coordenada(2 , 2);
+      Pilon pilon = new Pilon(ubicacion);
+      for(int i=0; i<6; i++){ pilon.actualizar(); } //paso los turnos para que se termine de construir
 
 
-    // PROBAR QUE SE REGENERA
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
+      boolean comportamientoEsperado = false;
+      try{
+          pilon.recibirGolpe(new Danio(100));
+      }catch (EdificioDestruido edificioDestruido){
+          comportamientoEsperado = true;
+      }
+      Assertions.assertFalse(comportamientoEsperado);
 
-    Assertions.assertEquals(algoStar.seleccionarCasilla(8,8).devolverEdificio().devolverVida(), 200);
+      for(int i=0; i<6; i++){
+          pilon.actualizar();
+      }
 
-    Assertions.assertEquals(((EdificioProtoss)algoStar.seleccionarCasilla(8,8).devolverEdificio()).devolverEscudo(), 300);
-    }*/
+      try{
+          pilon.recibirGolpe(new Danio(500));
+      }catch (EdificioDestruido edificioDestruido){
+          comportamientoEsperado = true;
+      }
+      Assertions.assertFalse(comportamientoEsperado);
+
+      for(int i=0; i<15; i++){
+          pilon.actualizar();
+      } //Se cura al completo su vida es 100 y su escudo es 300, asi q 400 de daño deberia matarlo
+
+      Assertions.assertThrows(EdificioDestruido.class,() ->{
+          pilon.recibirGolpe(new Danio(400));
+      });
+
+
+  }
 }
