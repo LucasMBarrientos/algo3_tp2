@@ -17,7 +17,7 @@ public class AlgoStar {
     private Mapa mapa;
 
     public void empezarJuego() {
-        this.mapa = new Mapa(new Coordenada(10,10));
+        this.mapa = new Mapa(new Coordenada(150,100));
         jugadores.add(new JugadorZerg(mapa));
         jugadores.add(new JugadorProtoss(mapa));
         this.idJugadorActual = 0;
@@ -38,6 +38,14 @@ public class AlgoStar {
         mapa.actualizar(turnoActual);
     }
 
+    public Mapa devolverMapa() {
+        return mapa;
+    }
+
+    public Jugador devolverJugadorActual() {
+        return jugadores.get(idJugadorActual);
+    }
+    
     /*
     public List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;

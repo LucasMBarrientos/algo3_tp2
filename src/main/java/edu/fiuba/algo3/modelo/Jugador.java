@@ -9,13 +9,21 @@ import java.util.List;
 
 public abstract class Jugador {
 
+    protected int id;
+
     protected Mapa mapa;
 
     public Inventario inventario;
 
     public abstract void construirEdificio(Coordenada coord, Edificio edificio);
 
+    public Casilla hallarVolcanInicialDelJugador() {
+        return mapa.hallarVolcanInicialDelJugador(id);
+    }
 
+    public List<Casilla> hallarMineralesInicialesDelJugador() {
+        return mapa.hallarMineralesInicialesDelJugador(id);
+    }
 
 /*
     protected Mapa mapa;

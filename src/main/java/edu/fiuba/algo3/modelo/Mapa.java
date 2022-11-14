@@ -75,6 +75,20 @@ public class Mapa {
         return casillas.get(indiceDeLaCasilla);
     }
 
+    public Casilla hallarVolcanInicialDelJugador(int idJugador) {
+        Coordenada coordenadaDelVolcan;
+        if (idJugador == 0) {
+            coordenadaDelVolcan = ubicacionesInicialesDeLosJugadores.get(idJugador).devolverCoordenadaRelativa(2, 2);
+        } else {
+            coordenadaDelVolcan = ubicacionesInicialesDeLosJugadores.get(idJugador).devolverCoordenadaRelativa(-2, -2);
+        }
+        return buscarCasilla(coordenadaDelVolcan);
+    }
+
+    public List<Casilla> hallarMineralesInicialesDelJugador(int idJugador) {
+        return buscarCasillasAdyacentes(hallarVolcanInicialDelJugador(idJugador));
+    }
+
     private List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
         List<Coordenada> coordenadasAdyacentes = casilla.hallarCoordenadasAdyacentes();
         List<Casilla> casillasAdyacentes = new ArrayList<>();
@@ -90,6 +104,11 @@ public class Mapa {
     public List<Casilla> buscarCasillasAdyacentes(Coordenada coordenada) {
         Casilla casilla = this.buscarCasilla(coordenada);
         return buscarCasillasAdyacentes(casilla);
+    }
+
+    public Casilla hallarCasillaADistanciaRelativa(Casilla casilla, int distanciaX, int distanciaY) {
+        Coordenada coordenadaDeLaCasillaRelativa = casilla.devolverCoordendas().devolverCoordenadaRelativa(distanciaX, distanciaY);
+        return this.buscarCasilla(coordenadaDeLaCasillaRelativa);
     }
 
     private List<Casilla> buscarCasillasAdyacentes(Casilla casilla, int radio) {
@@ -114,8 +133,8 @@ public class Mapa {
 
     public void actualizar(int turno) {
         actualizarTerrenoEnergizado();
-        if(turno % 4 == 0) {
-            // Se expande el moho una vez cada 2 rondas (4 turnos)
+        if(turno % 2 == 0) {
+            // Se expande el moho una vez cada 2 turnos
            expandirMoho();
         }
     }

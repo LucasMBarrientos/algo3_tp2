@@ -20,44 +20,47 @@ public class CasoDeUso3 {
 
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoVacio() {
-        Mapa mapa = new Mapa();
-        mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno vacio en el (2,2)
-        Inventario inventario= new Inventario(new GasVespeno(0), new Minerales(200));
-        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario); //TODO jugadorProtoss puede construir edificioZerg, corregir esto
-                                                                //Se soluciona pasando el codigo a EdificioZerg
+        AlgoStar algoStar = new AlgoStar();
+        Mapa mapa = algoStar.devolverMapa();
+        algoStar.empezarJuego();
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugador.construirEdificio(new Coordenada(2,2), new Extractor());
+            jugadorZerg.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Extractor());
         });
-
     }
 
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoConMoho() {
-        Mapa mapa = new Mapa();
-        mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno con Moho en el (3,3)
-        Inventario inventario= new Inventario(new GasVespeno(0), new Minerales(200));
-        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
-
+        AlgoStar algoStar = new AlgoStar();
+        Mapa mapa = algoStar.devolverMapa();
+        algoStar.empezarJuego();
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
+        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-1,-1);
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugador.construirEdificio(new Coordenada(3,3), new Extractor());
+            jugadorZerg.construirEdificio(casillaConMoho.devolverCoordendas(), new Extractor());
         });
     }
 
     @Test
     public void extractorPuedeConstruirseSobreUnVolcan() {
-        boolean expected = true;
-        Mapa mapa = new Mapa();
-        mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno con volcan en el (4,4)
-        Inventario inventario= new Inventario(new GasVespeno(0), new Minerales(200));
-        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
+            jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        });
 
+        boolean intentoFueExitoso = true;
         try {
-            jugador.construirEdificio(new Coordenada(4,4), new Extractor());
-        } catch(TerrenoNoAptoParaConstruirEsteEdificio e) {
-            expected = false;
+            jugadorZerg.construirEdificio(new Coordenada(4,4), new Extractor());
+        } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
+            intentoFueExitoso = false;
         }
-
-        Assertions.assertTrue(expected);
+        Assertions.assertTrue(intentoFueExitoso);
     }
 
 

@@ -12,8 +12,9 @@ import java.util.List;
 public class JugadorZerg extends Jugador {
 
     public JugadorZerg(Mapa mapa) {
+        this.id = 0;
         this.mapa = mapa;
-        inventario = new Inventario(new GasVespeno(0), new Minerales(200));
+        this.inventario = new Inventario(new GasVespeno(0), new Minerales(200));
     }
 
     @Override
@@ -21,10 +22,12 @@ public class JugadorZerg extends Jugador {
         edificio.construirse(mapa.buscarCasilla(coord), inventario);
     }
 
-
-
     public void actualizar() {
         inventario.actualizar();
+    }
+
+    public Inventario devolInventario() {
+        return this.inventario;
     }
 
 

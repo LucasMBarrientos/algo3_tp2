@@ -14,21 +14,16 @@ import java.util.List;
 
 public class JugadorProtoss extends Jugador {
 
-    public JugadorProtoss(Mapa mapa, Inventario inventario) {
-        this.mapa = mapa;
-        this.inventario = inventario;
-    }
-
     public JugadorProtoss(Mapa mapa) {
+        this.id = 1;
         this.mapa = mapa;
-        inventario = new Inventario(new GasVespeno(0), new Minerales(200));
+        this.inventario = new Inventario(new GasVespeno(0), new Minerales(200));
     }
 
     @Override
     public void construirEdificio(Coordenada coord, Edificio edificio) {
         edificio.construirse(mapa.buscarCasilla(coord), inventario);
     }
-
 
     /*
 
