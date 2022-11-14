@@ -54,9 +54,7 @@ public class CasoDeUso8 {
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
         Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-2,-2);
-
         List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
-
         jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
         jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new Pilon());
         

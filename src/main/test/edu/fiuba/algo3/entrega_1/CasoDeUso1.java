@@ -11,11 +11,11 @@ public class CasoDeUso1 {
     
     @Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacion);
-        for(int i=0; i<5; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
-
+        for(int i=0; i<5; i++) { // paso los turnos para que se termine de construir
+            criadero.actualizar();
+        }
         criadero.generarZangano();
         criadero.generarZangano();
         criadero.generarZangano();
@@ -29,7 +29,9 @@ public class CasoDeUso1 {
     public void criaderoGeneraDosZanganosYPuedeGenerarUnoMasEnEseTurno() {
         boolean expected = true;
         Criadero criadero = new Criadero();
-        for(int i=0; i<5; i++){ criadero.actualizar(); }
+        for(int i=0; i<5; i++) {
+            criadero.actualizar();
+        }
 
         criadero.generarZangano();
         criadero.generarZangano();
@@ -39,12 +41,11 @@ public class CasoDeUso1 {
         } catch (NoHayLarvasDisponibles e){
             expected = false;
         }
-        Assertions.assertTrue(expected); //buscar forma mas elegante para hacer esto
+        Assertions.assertTrue(expected); // TODO: buscar forma mas elegante para hacer esto
     }
 
     @Test
     public void criaderoGeneraTresZanganosYAlOtroTurnoPuedeGenerarUnoMas() {
-        boolean expected = true;
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacion);
         for(int i=0; i<5; i++){ criadero.actualizar(); }
@@ -55,17 +56,17 @@ public class CasoDeUso1 {
 
         criadero.actualizar();
 
+        boolean intentoExitoso = true;
         try{
             criadero.generarZangano();
         } catch (NoHayLarvasDisponibles e){
-            expected = false;
+            intentoExitoso = false;
         }
-        Assertions.assertTrue(expected);
+        Assertions.assertTrue(intentoExitoso);
     }
 
     @Test
     public void criaderoGeneraTresZanganosYEnDosTurnosPuedeGenerarDosMas() {
-        boolean expected = true;
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacion);
         for(int i=0; i<5; i++){ criadero.actualizar(); }
@@ -77,13 +78,14 @@ public class CasoDeUso1 {
         criadero.actualizar();
         criadero.actualizar();
 
-        try{
+        boolean intentoExitoso = true;
+        try {
             criadero.generarZangano();
             criadero.generarZangano();
         } catch (NoHayLarvasDisponibles e){
-            expected = false;
+            intentoExitoso = false;
         }
-        Assertions.assertTrue(expected);
+        Assertions.assertTrue(intentoExitoso);
     }
 
     @Test

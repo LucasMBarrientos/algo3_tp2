@@ -7,218 +7,135 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso4 {
-/*
+
     @Test
-    public void ExtractorSinZanganoNoGeneraGas() {
+    public void extractorSinZanganosNoGeneraGas() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        algoStar.moverDerecha(1, 1);
-        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2, 1, new Extractor());
-
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
+            algoStar.pasarTurno();
+        }
+        /* TODO: Implementar esto
+        int cantidadDeGasOriginalmente = jugadorZerg.devolverCantidadGas();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        // JUGADOR CON EXTRACTOR SIN ZANGANO NO PRODUCE GAS
-        Assertions.assertEquals(200, algoStar.devolverCantidadGas());
+        int cantidadDeGasObtenido = jugadorZerg.devolverCantidadGas() - cantidadDeGasOriginalmente;
+        Assertions.assertEquals(0, cantidadDeGasObtenido);
+        */
     }
 
     @Test
-    public void ZanganoPuedeIngresarAExtractor(){
+    public void extractorCon1ZanganoGenera10UnidadesDeGas() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        algoStar.moverDerecha(1, 1);
-        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2, 1, new Extractor());
-
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
+            algoStar.pasarTurno();
+        }
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+        jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+        jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+        
+        int cantidadDeMineralesOriginalmente = jugadorZerg.devolverCantidadMinerales();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-
-        Assertions.assertNull(algoStar.seleccionarCasilla(2, 1).devolverUnidad());
-    }
-
-
-
-    @Test
-    public void ExtractorCon1ZanganoGenera10Gas() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        algoStar.moverDerecha(1, 1);
-        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2, 1, new Extractor());
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-
-        Assertions.assertEquals(210, algoStar.devolverCantidadGas());
+        int cantidadDeMineralesObtenidos = jugadorZerg.devolverCantidadMinerales() - cantidadDeMineralesOriginalmente;
+        Assertions.assertEquals(10, cantidadDeMineralesObtenidos);
+        */
     }
 
     @Test
-    public void ExtractorCon2ZanganosGenera20Gas() {
+    public void extractorCon2ZanganoGenera20UnidadesDeGas() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
+            algoStar.pasarTurno();
+        }
+        /* TODO: Implementar esto
+        for (int i=0; i < 2; i++) { // Generar 2 zanganos y meterlos al extractor
+            jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+            jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+            jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+        }
 
-        algoStar.moverDerecha(1, 1);
-        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2, 1, new Extractor());
-
+        int cantidadDeMineralesOriginalmente = jugadorZerg.devolverCantidadMinerales();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertEquals(220, algoStar.devolverCantidadGas());
-    }
-
-
-
-
-    @Test
-    public void ExtractorCon3ZanganosGenera30Gas() {
-         AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        algoStar.moverDerecha(1, 1);
-        algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2, 1, new Extractor());
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-        algoStar.generarUnidad(1, 1);
-        algoStar.moverDerecha(1, 1);
-        algoStar.ingresarUnidad(2,1);
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertEquals(230, algoStar.devolverCantidadGas());
-    }/*
-
-    @Test
-    public void ExtractorCon3ZanganosNoPuedeAgregarOtro() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1, 1);
-        Ocupante zangano = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        // FALTA MOVER ZANGANO A UN VOLCAN
-        Casilla casillaDelZangano = zangano.devolverCasilla();
-
-        // CONTRUYE UN EXTRACTOR EN UN VOLCAN Y ESPERA 6 TURNOS
-        algoStar.construirEdificio(casillaDelZangano, new Extractor());
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertFalse(casillaDelZangano.devolverEdificio() instanceof Extractor);
-
-        // CREAR Y MOVER 4 ZANGANOS Al EXTRACTOR
-        algoStar.generarUnidad(1, 1);
-        Ocupante zangano1 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-        // FALTA MOVER ZANGANO A UN EXTRACTOR
-        algoStar.generarUnidad(1, 1);
-        Ocupante zangano2 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-        // FALTA MOVER ZANGANO A UN EXTRACTOR
-        algoStar.generarUnidad(1, 1);
-        Ocupante zangano3 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-        // FALTA MOVER ZANGANO A UN EXTRACTOR
-        algoStar.generarUnidad(1, 1);
-        Ocupante zangano4 = algoStar.seleccionarCasilla(1, 1).devolverUnidad();
-
-        //DEBERIA DAR ERROR AL MOVER EL 4 ZANGANO
+        int cantidadDeMineralesObtenidos = jugadorZerg.devolverCantidadMinerales() - cantidadDeMineralesOriginalmente;
+        Assertions.assertEquals(20, cantidadDeMineralesObtenidos);
+        */
     }
 
     @Test
-    public void asimiladorGeneraGasUnaVezConstruido() {
-        // CUAL ES LA LOGICA PARA CREAR PROTOSS Y SUS EDIFICIOS?
+    public void extractorCon3ZanganoGenera30UnidadesDeGas() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.empezarJuego();
-
-        // CONTRUYE UN ASIMILADOR EN UN VOLCAN Y ESPERA 6 TURNOS
-        algoStar.construirEdificio(casillaAConstruir, new Asimilador());
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
+            algoStar.pasarTurno();
+        }
+        /* TODO: Implementar esto
+        for (int i=0; i < 3; i++) { // Generar 3 zanganos y meterlos al extractor
+            jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+            jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+            jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+        }
+        
+        int cantidadDeMineralesOriginalmente = jugadorZerg.devolverCantidadMinerales();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        // ASIMILADOR NO TERMINO CONSTRUCCION, JUGADOR NO TIENE GAS
-        Assertions.assertTrue(algoStar.cantidadGas() == 0);
-
-        algoStar.pasarTurno();
-
-        // ASIMILADOR TERMINO SU CONSTRUCCION, JUGADOR AUN NO TIENE GAS
-        Assertions.assertFalse(casillaAConstruir.devolverEdificio() instanceof Asimilador);
-        Assertions.assertTrue(algoStar.cantidadGas() == 0);
-
-        algoStar.pasarTurno();
-        // AL PASAR UN TURNO CON ASIMILADOR CONSTRUIDO, JUGADOR TIENE 20 DE GAS
-        Assertions.assertTrue(algoStar.cantidadGas() == 20);
+        int cantidadDeMineralesObtenidos = jugadorZerg.devolverCantidadMinerales() - cantidadDeMineralesOriginalmente;
+        Assertions.assertEquals(30, cantidadDeMineralesObtenidos);
+        */
     }
 
-     */
+    @Test
+    public void noSePuedeMeterUnCuartoZanganoAUnExtractor() {
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
+            algoStar.pasarTurno();
+        }
+        /* TODO: Implementar esto
+        for (int i=0; i < 3; i++) { // Generar 3 zanganos y meterlos al extractor ()
+            jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+            jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+            jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
+        }
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+
+
+        jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+        jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+
+        boolean intentoExitoso = true;
+        try{
+            jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+        } catch (EdificioEstaAlLimiteDeCapacidad e){
+            intentoExitoso = false;
+        }
+        Assertions.assertTrue(intentoExitoso);
+        */
+    }
 }

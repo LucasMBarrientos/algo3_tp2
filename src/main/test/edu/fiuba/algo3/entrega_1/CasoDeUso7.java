@@ -44,7 +44,7 @@ public class CasoDeUso7 {
         for (int i = 0; i < 4; i++) {
             algoStar.pasarTurno();
         }
-        /*
+        /* TODO: Implementar esto
         int cantidadDeMineralesOriginalmente = jugadorProtoss.devolverCantidadMinerales();
         algoStar.pasarTurno();
         algoStar.pasarTurno();
@@ -61,7 +61,7 @@ public class CasoDeUso7 {
         Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
         Coordenada coordenadaDeCasillaConMinerales = casillaConVolcan.hallarCoordenadasAdyacentes().get(0);
-        /*
+        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
         jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), coordenadaDeCasillaConMinerales); // Mover la unidad desde el criadero hasta la casilla con minerales
         
@@ -72,49 +72,4 @@ public class CasoDeUso7 {
         Assertions.assertEquals(10, cantidadDeMineralesObtenidos);
         */
     }
-
-
-
-/*
-
-    @Test
-    public void verificarQueProtossPuedaRecolectarMinerales() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
-
-      algoStar.pasarTurno();
-
-      algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-      algoStar.construirEdificio(2, 1, new NexoMineral());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-      Assertions.assertEquals(150, algoStar.devolverCantidadMinerales());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-      Assertions.assertEquals(160, algoStar.devolverCantidadMinerales());
-    }
-    
-    @Test
-    public void verificarQueZergPuedaRecolectarMinerales() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
-      algoStar.generarUnidad(1, 1);
-      algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-      algoStar.moverDerecha(1, 1);
-      algoStar.pasarTurno();
-      // Turno de los protoss
-      algoStar.pasarTurno();
-      // Turno de los zerg
-
-      // PONER A TRABAJAR UN ZANGANO SOBRE UN MINERAL?
-
-      Assertions.assertEquals(210,algoStar.devolverCantidadMinerales());
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      Assertions.assertEquals(220,algoStar.devolverCantidadMinerales());
-    }*/
 }

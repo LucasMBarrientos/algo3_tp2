@@ -28,6 +28,7 @@ public class CasoDeUso3 {
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
+
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorZerg.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Extractor());
         });
@@ -40,6 +41,7 @@ public class CasoDeUso3 {
         Mapa mapa = algoStar.devolverMapa();
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         List<Casilla> casillasConMoho = mapa.buscarCasillasAdyacentes(jugadorZerg.hallarCasillaConEdificioInicial());
+
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorZerg.construirEdificio(casillasConMoho.get(0).devolverCoordendas(), new Extractor());
         });
@@ -52,13 +54,13 @@ public class CasoDeUso3 {
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
 
-        boolean intentoFueExitoso = true;
+        boolean intentoExitoso = true;
         try {
             jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
-            intentoFueExitoso = false;
+            intentoExitoso = false;
         }
-        Assertions.assertTrue(intentoFueExitoso);
+        Assertions.assertTrue(intentoExitoso);
     }
 
     @Test
@@ -70,6 +72,7 @@ public class CasoDeUso3 {
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-1,-1);
+
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorProtoss.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Asimilador());
         });
@@ -84,6 +87,7 @@ public class CasoDeUso3 {
         algoStar.pasarTurno();
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
         List<Casilla> casillasConMoho = mapa.buscarCasillasAdyacentes(jugadorZerg.hallarCasillaConEdificioInicial());
+
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorProtoss.construirEdificio(casillasConMoho.get(0).devolverCoordendas(), new Asimilador());
         });
@@ -96,14 +100,14 @@ public class CasoDeUso3 {
         algoStar.pasarTurno();
         Jugador jugadorProtoss = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-        
-        boolean intentoFueExitoso = true;
+
+        boolean intentoExitoso = true;
         try {
             jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
-            intentoFueExitoso = false;
+            intentoExitoso = false;
         }
-        Assertions.assertTrue(intentoFueExitoso);
+        Assertions.assertTrue(intentoExitoso);
     }
 
 }
