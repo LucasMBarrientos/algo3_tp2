@@ -20,19 +20,8 @@ public class Mapa {
 
     SuperficieRectangular superficie;
     
-    public Mapa(Coordenada dimension) {
-        this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
-        for (int x = 0; x < dimension.devolverX(); x++) {
-            for (int y = 0; y < dimension.devolverY(); y++) {
-                this.casillas.add(new Casilla(new Coordenada(x,y)));
-            }
-        }
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
-        
-        generarTerrenoInicial();
-        actualizarTerrenoEnergizado();
-    }
+
+
 
     public Mapa() { }
 
@@ -48,17 +37,42 @@ public class Mapa {
     }
 
 
+
+    ///////////////////////////
+
+
+
+    public Mapa(Coordenada dimension) {
+        this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
+        for (int x = 0; x < dimension.devolverX(); x++) {
+            for (int y = 0; y < dimension.devolverY(); y++) {
+                this.casillas.add(new Casilla(new Coordenada(x,y)));
+            }
+        }
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
+        
+        generarTerrenoInicial();
+        actualizarTerrenoEnergizado();
+    }
+
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
     }
 
-    public Casilla buscarCasilla(Coordenada coordenada) throws RuntimeException{
-        for(Casilla casilla: casillas){
-            if(casilla.compararCoordenadas(coordenada)){
-                return casilla;
-            }
+    public Casilla buscarCasilla(Coordenada coordenada) throws RuntimeException {
+        int indiceDeLaCasilla = -1;
+        if (validarCoordenada(coordenada)) {
+            for (int i = 0; i < this.casillas.size(); i++) {
+                if (this.casillas.get(i).compararCoordenadas(coordenada)) {
+                    indiceDeLaCasilla = i;
+                }
+            }            
         }
-        throw new CoordenadaFueraDelMapa();
+        if (indiceDeLaCasilla == -1) {
+            throw new CoordenadaFueraDelMapa();
+        }
+        return casillas.get(indiceDeLaCasilla);
     }
 
     private List<Casilla> buscarCasillasAdyacentes(Casilla casilla) {
@@ -73,6 +87,11 @@ public class Mapa {
         return casillasAdyacentes;
     }
 
+    public List<Casilla> buscarCasillasAdyacentes(Coordenada coordenada) {
+        Casilla casilla = this.buscarCasilla(coordenada);
+        return buscarCasillasAdyacentes(casilla);
+    }
+
     private List<Casilla> buscarCasillasAdyacentes(Casilla casilla, int radio) {
         List<Casilla> casillasAdyacentesTotales = this.buscarCasillasAdyacentes(casilla);
         List<Casilla> nuevasCasillasAdyacentes = new ArrayList<Casilla>();
@@ -85,30 +104,13 @@ public class Mapa {
         return casillasAdyacentesTotales;
     }
 
-
-
-    public List<Casilla> buscarCasillasAdyacentes(Coordenada coordenada) {
-        Casilla casilla = this.buscarCasilla(coordenada);
-        return buscarCasillasAdyacentes(casilla);
+    private List<Casilla> buscarCasillasAdyacentes(Coordenada coordenada, int radio) {
+        return buscarCasillasAdyacentes(buscarCasilla(coordenada), radio);
     }
-
     private Casilla buscarCasillaAlAzar() {
         Coordenada coordeandaAlAzar = superficie.devolverCoordenadaAlAzar();
         return this.buscarCasilla(coordeandaAlAzar);
     }
-
-    /*
-    private void sobreescribirCasillas(List<Casilla> casillas) {
-        for (Casilla casillaNueva : casillas) {
-            for (Casilla casillaDelMapa : this.casillas) {
-                if (casillaNueva.compararCoordenadas(casillaDelMapa)) {
-                    // Coordenada esta dentro del mapa
-                    casillaDelMapa = casillaNueva;
-                }            
-            }
-        }
-    }
-    */
 
     public void actualizar(int turno) {
         actualizarTerrenoEnergizado();
@@ -134,12 +136,12 @@ public class Mapa {
 
     private void generarTerrenoInicial() {
         List<Coordenada> coordenadasDeVolcanes = hallarCoordenadasParaBases();
-        List<Coordenada> coordenadasDeMinerales;
+        List<Casilla> casillasConMinerales;
         for (Coordenada coordenadaDeVolcan : coordenadasDeVolcanes) {
             buscarCasilla(coordenadaDeVolcan).establecerTerreno(new TerrenoVolcan());
-            coordenadasDeMinerales = coordenadaDeVolcan.hallarCoordenadasAdyacentes();
-            for (Coordenada coordenadaDeMinerales : coordenadasDeMinerales) {
-                buscarCasilla(coordenadaDeMinerales).establecerTerreno(new TerrenoMineral());
+            casillasConMinerales = buscarCasillasAdyacentes(coordenadaDeVolcan);
+            for (Casilla casillaConMinerales : casillasConMinerales) {
+                casillaConMinerales.establecerTerreno(new TerrenoMineral());
             }
         }
         // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
@@ -152,6 +154,8 @@ public class Mapa {
         this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
     }
+
+
 
     /*
     
@@ -296,7 +300,7 @@ public class Mapa {
     }
 
     private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
-        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero);
+        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,3);
         for (Casilla casillaConMoho : casillasConMoho) {
             casillaConMoho.establecerTerreno(new TerrenoMoho());
         }
