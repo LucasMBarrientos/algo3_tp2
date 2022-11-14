@@ -4,63 +4,54 @@ import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
+
 public class CasoDeUso5 {
-/*
+
     @Test
-    public void ErrorAlConstruirEdificioLejosDeUnPilon() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
+    public void seProduceUnErrorAlIntentarConstruirUnEdificioProtossLejosDeUnPilon() {
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Mapa mapa = algoStar.devolverMapa();
+        algoStar.pasarTurno();
+        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-1,-1);
 
-      algoStar.construirEdificio(6,6, new Pilon());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-      Assertions.assertFalse(algoStar.seleccionarCasilla(6,6).devolverEdificio() instanceof Pilon);
-
-      algoStar.construirEdificio(9,8, new Pilon());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-
-      Assertions.assertTrue(algoStar.seleccionarCasilla(9,8).devolverEdificio() instanceof Pilon);
-
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
+            jugadorProtoss.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Acceso());
+        });
     }
 
     @Test
-    public void ErrorAlConstruirEdificioFueraDelMoho() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
-
-      algoStar.generarUnidad(1,1);
-
-      algoStar.moverDerecha(1, 1);
-      algoStar.moverDerecha(2, 1);
-      algoStar.moverDerecha(3, 1);
-      algoStar.moverDerecha(4, 1);
-      algoStar.moverDerecha(5, 1);
-      algoStar.moverAbajo(6,1);
-      algoStar.moverAbajo(6,2);
-      algoStar.moverAbajo(6,3);
-      algoStar.moverAbajo(6,4);
-
-      // CONTRUYE UN CRIADERO LEJOS DEL MOHO
-      algoStar.construirEdificio(6, 1, new Criadero());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-      Assertions.assertFalse(algoStar.seleccionarCasilla(6,1).devolverEdificio() instanceof Criadero);
-      // DEBERIA DEVOLVER ERROR AL TRATAR DE CONSTRUIR LEJOS DEL MOHO
-    }*/
+    public void seProduceUnErrorAlIntentarConstruirUnEdificioZergEnUnTerrenoSinMoho() {
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        Mapa mapa = algoStar.devolverMapa();
+        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for (int i = 0; i < 6; i++) { // Se construye un extractor para obtener la cantidad de gas necesaria para construir una Guarida
+            algoStar.pasarTurno();
+        }
+        Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+        jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+        jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+        for (int i=0; i < 10) { // Se obtiene la cantidad de gas necesaria para construir una Guarida
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
+        }
+        
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
+            jugadorZerg.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Guarida());
+        });
+        */
+    }
+    
 }

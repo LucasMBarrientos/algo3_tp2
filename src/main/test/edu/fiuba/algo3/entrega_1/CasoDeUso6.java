@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
 public class CasoDeUso6 {
+
+
   /*
-  @Test
+    @Test
     public void ConstruirEdificioZanganoTieneQueEsperarCrecimientoMoho() {
       AlgoStar algoStar = new AlgoStar();
       algoStar.empezarJuego();
