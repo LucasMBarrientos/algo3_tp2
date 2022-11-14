@@ -12,8 +12,6 @@ public class CasoDeUso15 {
     @Test
     public void extractorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado() {
 
-
-
     }
 
 }

@@ -16,23 +16,24 @@ public class Pilon extends EdificioProtoss {
 
     private int tiempoDeConstruccion = 5;
     private Coordenada coordenada;
-
+    private EstadoPilon estado = new PilonEnConstruccion();
     private final Vida vida = new Vida(300);
-
     private final Escudo escudo = new Escudo(300);
-
-    public Pilon(Coordenada coordenada) {
-    }
+    public Pilon(Coordenada coordenada) { }
     public Pilon() {
         this.costoEnMinerales = new Minerales(100);
     }
 
     public void actualizar(Inventario inventario) {
-        vida.regenerar();
+        tiempoDeConstruccion--;
+        if (tiempoDeConstruccion == 0) {
+            estado = new PilonOperativo();
+        }
+        escudo.regenerar();
     }
     @Override
     public boolean generaTerrenoEnergizado() {
-        return true;
+        return estado.generaTerrenoEnergizado();
     }
 
     public void recibirGolpe(Danio danio) throws EdificioDestruido {

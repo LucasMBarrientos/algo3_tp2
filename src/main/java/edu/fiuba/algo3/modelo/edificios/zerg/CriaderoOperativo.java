@@ -8,7 +8,7 @@ public class CriaderoOperativo implements EstadoCriadero {
 
     private int larvas = 3; //hacer clase Larva (?
 
-    public Zangano generarZangano() throws NoHayLarvasDisponibles { //ZANGANO NO ES UNA UNIDAD, TIENE COMPORTAMIENTO DISTINTO!!
+    public Zangano generarZangano() throws NoHayLarvasDisponibles {
         if (larvas <= 0) {
             throw new NoHayLarvasDisponibles();
         }

@@ -50,6 +50,7 @@ public class Extractor extends EdificioZerg {
             estado = new ExtractorOperativo();
         }
         vida.regenerar();
+        recolectarRecursos(inventario);
     }
 
     public void actualizar() {
@@ -59,7 +60,6 @@ public class Extractor extends EdificioZerg {
         }
         vida.regenerar();
     }
-
 
 
     public void recolectarRecursos(Inventario inventario) {

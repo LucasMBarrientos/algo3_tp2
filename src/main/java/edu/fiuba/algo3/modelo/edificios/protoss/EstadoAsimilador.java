@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
-public interface EstadoNexoMineral {
+public interface EstadoAsimilador {
 
-    public abstract void recolectarRecursos(Terreno terreno, Inventario inventario );
+    public void recolectarRecursos(Terreno terreno, Inventario inventario);
 }

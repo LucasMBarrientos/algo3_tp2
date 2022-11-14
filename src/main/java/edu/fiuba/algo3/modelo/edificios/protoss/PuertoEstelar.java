@@ -11,13 +11,15 @@ import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class PuertoEstelar extends EdificioProtoss {
 
+    private EstadoPuertoEstelar estado = new PuertoEstelarEnConstruccion();
+    private int tiempoDeConstruccion = 10;
     private Recursos costoEnGas= new GasVespeno(150);
 
     private final Vida vida = new Vida(600);
-
     private final Escudo escudo = new Escudo(600);
 
     public PuertoEstelar(){
@@ -30,13 +32,20 @@ public class PuertoEstelar extends EdificioProtoss {
         inventario.consumirGasVespeno(costoEnGas);
     }
 
-
     public void ocupar(Casilla casilla, Terreno terreno){
         terreno.ocuparPorEdificio(this, casilla);
     }
 
     public void actualizar(Inventario inventario) {
-        vida.regenerar();
+        tiempoDeConstruccion--;
+        if (tiempoDeConstruccion == 0) {
+            estado = new PuertoEstelarOperativo();
+        }
+        escudo.regenerar();
+    }
+
+    public Unidad generarUnidad(Unidad unidad) {
+        return estado.generarUnidad(unidad);
     }
 
 

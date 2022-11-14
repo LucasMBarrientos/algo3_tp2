@@ -23,7 +23,6 @@ public class ExtractorOperativo implements EstadoExtractor {
         }
     }
 
-
     public void recolectarRecursos(Terreno terreno, Inventario inventario){
         recursosAExtraer = new GasVespeno(10 * zanganosTrabajando.size());
         Recursos gasDelVolcan = terreno.obtenerRecursos();

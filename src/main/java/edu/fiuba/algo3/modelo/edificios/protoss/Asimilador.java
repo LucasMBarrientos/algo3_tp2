@@ -12,21 +12,37 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class Asimilador extends EdificioProtoss {
 
+    private EstadoAsimilador estado = new AsimiladorEnConstruccion();
 
-    private final Vida vida = new Vida(300);
+    Terreno terreno;
+    private int tiempoDeConstruccion = 6;
+    private final Vida vida = new Vida(450);
 
-    private final Escudo escudo = new Escudo(300);
+    private final Escudo escudo = new Escudo(450);
     public Asimilador(){
         this.costoEnMinerales = new Minerales(100);
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
         terreno.ocuparPorEdificio(this, casilla);
+        this.terreno = terreno;
     }
 
     public void actualizar(Inventario inventario) {
+        tiempoDeConstruccion--;
+        if (tiempoDeConstruccion == 0) {
+            estado = new AsimiladorOperativo();
+        }
         vida.regenerar();
+        recolectarRecursos(inventario);
     }
+    public void recolectarRecursos(Inventario inventario) {
+        estado.recolectarRecursos(terreno, inventario);
+    }
+
+
+
+
 
 
 /*
