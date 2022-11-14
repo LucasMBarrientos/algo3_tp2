@@ -17,6 +17,9 @@ public abstract class Recursos {
         unidadesDisponibles -= recurso.devolverCantidadUnidades();
     }
 
+    public void agregarUnidades(Recursos recurso){
+        unidadesDisponibles += recurso.devolverCantidadUnidades();
+    }
 
     public void gastarUnidades(int unidadesAConsumir) throws RecursosInsuficientes{
         if(unidadesDisponibles < unidadesAConsumir){
@@ -29,7 +32,7 @@ public abstract class Recursos {
         unidadesDisponibles += costoEnMinerales;
     }
 
-    public int devolverCantidadUnidades(){
+    private int devolverCantidadUnidades(){
         return this.unidadesDisponibles;
     }
 

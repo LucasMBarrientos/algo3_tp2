@@ -12,10 +12,13 @@ public abstract class EdificioZerg extends Edificio {
 
     public Recursos costoEnMinerales;
 
-    public void actualizar() { }
+    public abstract void actualizar(Inventario inventario);
 
     public void construirse(Casilla casilla, Inventario inventario){
-        //TODO Leti: verificar que exista un zangano parado en esa casilla, sino lanzar exepcion
+        if(casilla.devolverEdificio() != null){
+            throw new CasillaOcupadaPorEdificio();
+        }
+        //TODO: verificar que exista un zangano parado en esa casilla, sino lanzar exepcion
 
         this.ocupar(casilla, casilla.devolverTerreno());
 
@@ -25,6 +28,8 @@ public abstract class EdificioZerg extends Edificio {
             casilla.establecerEdificio(null);  //sino habian recursos, saco el edificio de la casilla
             throw new RecursosInsuficientes(); //y vuelvo a lanzar la excepcion
         }
+
+        inventario.agregarEdificio(this);
     }
 
     public void consumirRecursosParaConstruccion(Inventario inventario){

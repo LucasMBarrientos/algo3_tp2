@@ -36,6 +36,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
         terreno.ocuparPorEdificio(this, casilla);
     }
 
+    public void actualizar(Inventario inventario){}
 /*
     public ReservaDeReproduccion() {
         this.tiempoConstruccion = 12;

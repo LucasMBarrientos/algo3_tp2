@@ -42,6 +42,8 @@ public class Guarida extends EdificioZerg {
         terreno.ocuparPorEdificio(this, casilla);
     }
 
+    public void actualizar(Inventario inventario){}
+
 /*
     public Guarida() {
         this.tiempoConstruccion = 12;

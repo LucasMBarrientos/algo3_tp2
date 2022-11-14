@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.zerg;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
@@ -17,12 +18,16 @@ public class Extractor extends EdificioZerg {
 
     private EstadoExtractor estado = new ExtractorEnConstruccion();
 
+    private Terreno terreno;
+
+    private final Vida vida = new Vida(750);
+
     private int tiempoDeConstruccion = 6;
 
     private Coordenada coordenada;
 
     public Extractor() {
-        this.costoEnMinerales = new Minerales(50);
+        this.costoEnMinerales = new GasVespeno(50);
     }
     public Extractor(Coordenada coordenada) {
         this.coordenada = coordenada;
@@ -32,19 +37,24 @@ public class Extractor extends EdificioZerg {
         estado.ingresarUnidad(zangano);
     }
 
-    public void actualizar() {
-        estado.actualizar();
+    public void ocupar(Casilla casilla, Terreno terreno){
+        terreno.ocuparPorEdificio(this, casilla);
+        this.terreno = terreno;
+    }
+
+
+    public void actualizar(Inventario inventario){
         tiempoDeConstruccion--;
         if(tiempoDeConstruccion == 0){
             estado = new ExtractorOperativo();
         }
+        recolectarRecursos(inventario);
+        vida.regenerar();
     }
 
-    public void ocupar(Casilla casilla, Terreno terreno){
-        terreno.ocuparPorEdificio(this, casilla);
+    public void recolectarRecursos(Inventario inventario) {
+        estado.recolectarRecursos(terreno, inventario);
     }
-
-
 
 
 /*

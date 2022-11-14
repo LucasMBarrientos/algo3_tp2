@@ -2,11 +2,20 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
-public class TerrenoVolcan extends Terreno {
+public class TerrenoVolcan extends Terreno implements TieneRecursos {
+
+    public GasVespeno gasVespeno = new GasVespeno(5000);
+
+    public Recursos obtenerRecursos(){
+        return gasVespeno;
+    }
 
     public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
         casilla.establecerEdificio(asimilador);

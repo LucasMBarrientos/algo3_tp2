@@ -4,8 +4,7 @@ import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public interface TieneRecursos {
 
-    public Recursos recolectarRecursos();
+    public Recursos obtenerRecursos();
 
-    public boolean tieneRecursos();
 
 }

@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 
-public abstract class Edificio implements Actualizable {
+public abstract class Edificio  {
 
     public boolean generaTerrenoEnergizado() {
         return false;
@@ -25,7 +25,7 @@ public abstract class Edificio implements Actualizable {
 
     //public abstract void recibirGolpe(int danio);
 
-
+    public abstract void actualizar(Inventario inventario);
 
 
     

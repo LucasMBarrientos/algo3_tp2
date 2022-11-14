@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public class TerrenoVacio extends Terreno {
     //TODO Leti YO xd: codigo repetido x1000, hace un refactor a esto  plis. Nuevas interfaces o excepciones mas especificas?
@@ -56,6 +57,7 @@ public class TerrenoVacio extends Terreno {
         throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
+    public Recursos obtenerRecursos(){return null;}
 
     public boolean esReemplazable(){
         return true;

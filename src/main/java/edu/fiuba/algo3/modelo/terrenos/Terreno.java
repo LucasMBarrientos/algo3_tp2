@@ -7,10 +7,13 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 import java.util.List;
 
 public abstract class Terreno {
+
+    public abstract Recursos obtenerRecursos();
 
     public abstract void ocuparPorEdificio(Pilon pilon, Casilla casilla);
 
@@ -32,8 +35,7 @@ public abstract class Terreno {
 
     public abstract void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion, Casilla casilla);
 
-
-    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho, Coordenada coordenadaActual) {
+    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho) {
         return;
     }
 

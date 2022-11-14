@@ -17,6 +17,9 @@ public abstract class EdificioProtoss extends Edificio {
     }
 
     public void construirse(Casilla casilla, Inventario inventario){
+        if(casilla.devolverEdificio() != null){
+            throw new CasillaOcupadaPorEdificio();
+        }
         this.ocupar(casilla, casilla.devolverTerreno());
 
         try {

@@ -14,7 +14,7 @@ public class Criadero extends EdificioZerg {
     private int tiempoDeConstruccion = 4;
     private Coordenada coordenada;
 
-    private final Vida vida = new Vida(300);
+    private final Vida vida = new Vida(300); //TODO AGUSTIN: CAMBIA LAS PRUEBAS
 
     public Criadero() {
         this.costoEnMinerales = new Minerales(50);
@@ -33,6 +33,7 @@ public class Criadero extends EdificioZerg {
         return estado.generarUnidad(unidad);
     }
 
+    public void actualizar(Inventario inventario){}
     public void actualizar() {
         estado.actualizar();
         tiempoDeConstruccion--;

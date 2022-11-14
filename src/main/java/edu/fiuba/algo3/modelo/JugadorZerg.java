@@ -11,7 +11,6 @@ import java.util.List;
 
 public class JugadorZerg extends Jugador {
 
-
     public JugadorZerg(Mapa mapa) {
         this.mapa = mapa;
         inventario = new Inventario(new GasVespeno(0), new Minerales(200));
@@ -20,6 +19,10 @@ public class JugadorZerg extends Jugador {
     @Override
     public void construirEdificio(Coordenada coord, Edificio edificio) {
         edificio.construirse(mapa.buscarCasilla(coord), inventario);
+    }
+
+    public void actualizar() {
+        inventario.actualizar();
     }
 
 

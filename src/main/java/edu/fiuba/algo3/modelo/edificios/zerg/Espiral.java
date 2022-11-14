@@ -46,6 +46,8 @@ public class Espiral extends EdificioZerg {
         terreno.ocuparPorEdificio(this, casilla);
     }
 
+    public void actualizar(Inventario inventario){}
+
 /*
     public Espiral() {
         this.tiempoConstruccion = 10;

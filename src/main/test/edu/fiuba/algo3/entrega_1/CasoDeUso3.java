@@ -23,8 +23,8 @@ public class CasoDeUso3 {
         Mapa mapa = new Mapa();
         mapa.inicializandoMapaParaPrueba(new Coordenada(10,10)); //hay un terreno vacio en el (2,2)
         Inventario inventario= new Inventario(new GasVespeno(0), new Minerales(200));
-        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario);
-
+        JugadorProtoss jugador = new JugadorProtoss(mapa, inventario); //TODO jugadorProtoss puede construir edificioZerg, corregir esto
+                                                                //Se soluciona pasando el codigo a EdificioZerg
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugador.construirEdificio(new Coordenada(2,2), new Extractor());
         });

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
@@ -10,6 +11,8 @@ import java.util.List;
 
 public class Inventario {
 
+    private List<Edificio> edificios = new ArrayList<Edificio>();
+    private List<Unidad> unidades = new ArrayList<Unidad>();
     public GasVespeno gasVespeno;
     public Minerales minerales;
 
@@ -18,12 +21,31 @@ public class Inventario {
         this.minerales = minerales;
     }
 
+
+    public void agregarEdificio(Edificio edificioNuevo){
+        edificios.add(edificioNuevo);
+    }
+
+    public void actualizarGasVespeno(Recursos gasVespeno){
+        this.gasVespeno.agregarUnidades(gasVespeno);
+    }
+
+    public void agregarUnidad(Unidad unidadNueva){
+        unidades.add(unidadNueva);
+    }
+
     public void consumirMinerales(Recursos RecursoRequerido){
         minerales.gastar(RecursoRequerido);
     }
 
     public void consumirGasVespeno(Recursos RecursoRequerido){
         gasVespeno.gastar(RecursoRequerido);
+    }
+
+    public void actualizar(){
+        for(Edificio edificio: edificios){
+            edificio.actualizar(this);
+        }
     }
 
 

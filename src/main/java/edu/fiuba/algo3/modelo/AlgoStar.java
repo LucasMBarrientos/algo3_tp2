@@ -25,6 +25,7 @@ public class AlgoStar {
 
     public void pasarTurno(){
         mapa.actualizarMapa();
+
     }
 
     /*
