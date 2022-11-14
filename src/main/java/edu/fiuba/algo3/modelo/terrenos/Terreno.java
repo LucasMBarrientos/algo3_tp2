@@ -13,7 +13,9 @@ import java.util.List;
 
 public abstract class Terreno {
 
-    public abstract Recursos obtenerRecursos();
+    public Recursos obtenerRecursos() {
+        return null;
+    }
 
     public abstract void ocuparPorEdificio(Pilon pilon, Casilla casilla);
 

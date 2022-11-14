@@ -110,12 +110,43 @@ public class Mapa {
         }
     }
 
-    /*
     private List<Coordenada> hallarCoordenadasParaBases() {
-        
+        int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
+        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
+        List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
+        // Base inicial para el jugador Zerg
+        coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(0).devolverCoordenadaRelativa(2,2));
+        // Base inicial para el jugador Protoss
+        coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(1).devolverCoordenadaRelativa(-2,-2));
+        for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
+            coordenadasCentralesDeBases.add(this.superficie.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
+        }
+        return coordenadasCentralesDeBases;
     }
-    */
 
+    private void generarTerrenoInicial() {
+        List<Coordenada> coordenadasDeVolcanes = hallarCoordenadasParaBases();
+        List<Coordenada> coordenadasDeMinerales;
+        for (Coordenada coordenadaDeVolcan : coordenadasDeVolcanes) {
+            buscarCasilla(coordenadaDeVolcan).establecerTerreno(new TerrenoVolcan());
+            coordenadasDeMinerales = coordenadaDeVolcan.hallarCoordenadasAdyacentes();
+            for (Coordenada coordenadaDeMinerales : coordenadasDeMinerales) {
+                buscarCasilla(coordenadaDeMinerales).establecerTerreno(new TerrenoMineral());
+            }
+        }
+        // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
+        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho());
+        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
+        // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
+        ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
+    }
+
+    /*
+    
     private List<SuperficieRectangular> calcularBases() {
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
         int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
@@ -183,6 +214,12 @@ public class Mapa {
         this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
     }
+
+    */
+
+
+
+
 
     public void DEBUGMOSTRARMAPA() {
         String lineaDelMapa = "";

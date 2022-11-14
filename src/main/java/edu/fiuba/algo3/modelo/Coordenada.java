@@ -57,7 +57,7 @@ public class Coordenada {
 
     public List<Coordenada> hallarCoordenadasAdyacentes(Coordenada coordenadaCentral, int radio) {
         List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>();
-        coordenadasAdyacentesTotales.add(this);
+        coordenadasAdyacentesTotales.addAll(this.hallarCoordenadasAdyacentes());
         List<Coordenada> nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
         for (int i = 0; i < radio - 1; i++) {
             for (Coordenada coordenada : coordenadasAdyacentesTotales) {
