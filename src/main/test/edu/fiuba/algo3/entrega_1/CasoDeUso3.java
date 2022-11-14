@@ -50,13 +50,9 @@ public class CasoDeUso3 {
         algoStar.empezarJuego();
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarVolcanInicialDelJugador();
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
-        });
-
         boolean intentoFueExitoso = true;
         try {
-            jugadorZerg.construirEdificio(new Coordenada(4,4), new Extractor());
+            jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
             intentoFueExitoso = false;
         }

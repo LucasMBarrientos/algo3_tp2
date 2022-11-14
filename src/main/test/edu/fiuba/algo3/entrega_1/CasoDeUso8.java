@@ -42,6 +42,8 @@ public class CasoDeUso8 {
     Assertions.assertFalse(algoStar.seleccionarCasilla(2, 2).devolverEdificio() instanceof NexoMineral);
   }
 */
+
+    /*
   @Test
   public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
       Mapa mapa = new Mapa();
@@ -53,6 +55,9 @@ public class CasoDeUso8 {
           jugador.construirEdificio(new Coordenada(2,2), new Pilon());
       });
   }
+
+
+     */
 /*
   @Test
   public void protossSoloPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
