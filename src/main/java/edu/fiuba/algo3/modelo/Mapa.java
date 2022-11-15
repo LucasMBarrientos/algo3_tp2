@@ -19,28 +19,6 @@ public class Mapa {
     List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
 
     SuperficieRectangular superficie;
-    
-
-
-
-    public Mapa() { }
-
-    public void inicializandoMapaParaPrueba(Coordenada dimension){
-        for (int x = 0; x < dimension.devolverX(); x++) {
-            for (int y = 0; y < dimension.devolverY(); y++) {
-                this.casillas.add(new Casilla(new Coordenada(x,y)));
-            }
-        }
-        this.buscarCasilla(new Coordenada(2,2)).vaciarTerreno();
-        this.buscarCasilla(new Coordenada(3,3)).cubrirDeMoho();
-        this.buscarCasilla(new Coordenada(4,4)).generarVolcan();
-    }
-
-
-
-    ///////////////////////////
-
-
 
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
@@ -51,7 +29,6 @@ public class Mapa {
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
-        
         generarTerrenoInicial();
         actualizarTerrenoEnergizado();
     }
@@ -167,15 +144,21 @@ public class Mapa {
                 casillaConMinerales.generarMina();
             }
         }
-        // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
-        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
+    }
+
+    public void establecerInicioProtoss(int idDelJguador) {
+        // Generar el terreno inicial del criadero de los zerg
+        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
         this.buscarCasilla(ubicacionInicialDeJugador).cubrirDeMoho();
         this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
-        // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
-        ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
+    }
+
+    public void establecerInicioZerg(int idDelJguador) {
+        // Generar el terreno inicial del pilon de los protoss
+        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
         this.buscarCasilla(ubicacionInicialDeJugador).energizarTerreno();
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));        
     }
 
 

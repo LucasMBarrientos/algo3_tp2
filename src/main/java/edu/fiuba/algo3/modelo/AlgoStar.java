@@ -16,14 +16,25 @@ public class AlgoStar {
 
     private Mapa mapa;
 
+    public void agregarJugador(Jugador jugador) {
+        if (jugadores.size() < 2) {
+            jugador.establecerId(jugadores.size());
+            jugadores.add(jugador);
+        } else {
+            // TODO: Lanzar excepcion "SeEstaTratandoDePonerMasDe2Jugadores"
+        }
+    }
+
     public void empezarJuego() {
         this.mapa = new Mapa(new Coordenada(150,100));
-        jugadores.add(new JugadorZerg(mapa));
-        jugadores.add(new JugadorProtoss(mapa));
+        for (Jugador jugador : jugadores) {
+            jugador.establecerMapa(mapa);
+        }
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;
     }
+
     public Jugador hallarJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
