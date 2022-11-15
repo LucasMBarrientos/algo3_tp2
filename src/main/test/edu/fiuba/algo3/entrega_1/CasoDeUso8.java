@@ -48,18 +48,21 @@ public class CasoDeUso8 {
     @Test
     public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
-        Mapa mapa = algoStar.devolverMapa();
-        algoStar.pasarTurno();
-        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
-        Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-        Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-2,-2);
-        List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
-        jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
-        jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new Pilon());
-        
+
+        Casilla casillaConPilon = jugadorProtoss.hallarCasillaConEdificioInicial();
+        List<Coordenada> coordenadasConTerrenosEnergizados = casillaConPilon.hallarCoordenadasAdyacentes();
+        // El jugador protoss deberia tener 200 minerales
+
+        jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
+        jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(1), new Pilon());
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(2).devolverCoordendas(), new Pilon());
+             // El jugador no deberia ser capaz de construir un tercer pilon
+            jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(2), new Pilon());
         });
     }
 
