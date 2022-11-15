@@ -28,7 +28,7 @@ public class JugadorZerg extends Jugador {
     }
 
     protected void iniciarseEnMapa() {
-        mapa.establecerInicioProtoss(id);
+        mapa.establecerInicioZerg(id);
     }
 
 

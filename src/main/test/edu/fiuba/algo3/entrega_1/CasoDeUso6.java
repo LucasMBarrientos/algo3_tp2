@@ -33,6 +33,7 @@ public class CasoDeUso6 {
             algoStar.pasarTurno();
             algoStar.pasarTurno();
         }
+    }
 
 
     @Test

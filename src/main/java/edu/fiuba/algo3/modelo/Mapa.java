@@ -147,18 +147,18 @@ public class Mapa {
     }
 
     public void establecerInicioProtoss(int idDelJguador) {
+        // Generar el terreno inicial del pilon de los protoss
+        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
+        this.buscarCasilla(ubicacionInicialDeJugador).energizarTerreno();
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));  
+    }
+
+    public void establecerInicioZerg(int idDelJguador) {
         // Generar el terreno inicial del criadero de los zerg
         Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
         this.buscarCasilla(ubicacionInicialDeJugador).cubrirDeMoho();
-        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
-    }
-
-    public void establecerInicioZerg(int idDelJguador) {
-        // Generar el terreno inicial del pilon de los protoss
-        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
-        this.buscarCasilla(ubicacionInicialDeJugador).energizarTerreno();
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));        
+        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);      
     }
 
 
