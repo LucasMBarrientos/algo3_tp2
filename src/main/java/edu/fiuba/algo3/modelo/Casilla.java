@@ -2,11 +2,9 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.CasillaOcupadaPorEdificio;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Casilla {
@@ -35,9 +33,6 @@ public class Casilla {
         this.unidad = unidad;
     }
 
-    public void establecerTerreno(EstadoTerreno estadoTerreno) {
-      this.terreno.setState(estadoTerreno);
-    }
 
     public void vaciarTerreno() {
       this.terreno.vaciarTerreno();

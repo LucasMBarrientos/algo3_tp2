@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -23,6 +23,7 @@ public class JugadorProtoss extends Jugador {
     @Override
     public void construirEdificio(Coordenada coord, Edificio edificio) {
         mapa.buscarCasilla(coord).ponerEdificio(edificio.construir(inventario));
+        inventario.agregarEdificio(edificio);
     }
 
     /*

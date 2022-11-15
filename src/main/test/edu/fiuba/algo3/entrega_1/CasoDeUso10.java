@@ -1,22 +1,21 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 
 public class CasoDeUso10 {
 
     @Test
     public void laVidaFuncionaComoDebe() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
+        Criadero criadero = new Criadero();
         for(int i=0; i<5; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
 
 
@@ -37,8 +36,7 @@ public class CasoDeUso10 {
 
     @Test
     public void laVidaSeRegeneraComoDebe() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
+        Criadero criadero = new Criadero();
         for(int i=0; i<6; i++){ criadero.actualizar(); } //paso los turnos para que se termine de construir
 
 

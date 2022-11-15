@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-
 import java.util.ArrayList;
 import java.util.List;
 

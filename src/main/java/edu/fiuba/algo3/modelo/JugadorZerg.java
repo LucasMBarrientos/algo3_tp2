@@ -23,7 +23,7 @@ public class JugadorZerg extends Jugador {
     }
 
     public void actualizar() {
-        inventario.actualizar();
+        //inventario.actualizar();
     }
 
     public Inventario devolInventario() {

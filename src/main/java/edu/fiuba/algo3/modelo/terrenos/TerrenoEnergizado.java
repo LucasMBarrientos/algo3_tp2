@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class TerrenoEnergizado implements EstadoTerreno {
@@ -57,6 +58,12 @@ public class TerrenoEnergizado implements EstadoTerreno {
   public void generarMina() {
     terreno.setState(new TerrenoMineral());
   }
+
+  @Override
+  public void consumirMinerales(Recursos recursoRequerido) {}
+
+  @Override
+  public void consumirGasVespeno(Recursos recursoRequerido) {}
 
 /* 
     public void ocuparPorEdificio(Pilon pilon, Casilla casilla){

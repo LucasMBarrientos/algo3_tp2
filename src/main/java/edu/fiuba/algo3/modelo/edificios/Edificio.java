@@ -2,11 +2,8 @@ package edu.fiuba.algo3.modelo.edificios;
 
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.Actualizable;
 import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
@@ -31,7 +28,7 @@ public abstract class Edificio  {
     
     //public abstract void recibirGolpe(int danio);
 
-    public abstract void actualizar(Inventario inventario);
+    public abstract void actualizar();
 
     public abstract boolean compararCon(Edificio edificoAComparar);
 

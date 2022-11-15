@@ -2,8 +2,9 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +12,8 @@ public class CasoDeUso1 {
     
     @Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
-        for(int i=0; i<5; i++) { // paso los turnos para que se termine de construir
-            criadero.actualizar();
-        }
+        Criadero criadero = new Criadero().terminarConstruccion();
+
         criadero.generarZangano();
         criadero.generarZangano();
         criadero.generarZangano();
@@ -28,10 +26,8 @@ public class CasoDeUso1 {
     @Test
     public void criaderoGeneraDosZanganosYPuedeGenerarUnoMasEnEseTurno() {
         boolean expected = true;
-        Criadero criadero = new Criadero();
-        for(int i=0; i<5; i++) {
-            criadero.actualizar();
-        }
+        Criadero criadero = new Criadero().terminarConstruccion();
+        
 
         criadero.generarZangano();
         criadero.generarZangano();
@@ -46,10 +42,8 @@ public class CasoDeUso1 {
 
     @Test
     public void criaderoGeneraTresZanganosYAlOtroTurnoPuedeGenerarUnoMas() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
-        for(int i=0; i<5; i++){ criadero.actualizar(); }
-
+        Criadero criadero = new Criadero().terminarConstruccion();
+        
         criadero.generarZangano();
         criadero.generarZangano();
         criadero.generarZangano();
@@ -67,9 +61,7 @@ public class CasoDeUso1 {
 
     @Test
     public void criaderoGeneraTresZanganosYEnDosTurnosPuedeGenerarDosMas() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
-        for(int i=0; i<5; i++){ criadero.actualizar(); }
+        Criadero criadero = new Criadero().terminarConstruccion();
 
         criadero.generarZangano();
         criadero.generarZangano();
@@ -90,9 +82,7 @@ public class CasoDeUso1 {
 
     @Test
     public void criaderoNoPuedeTenerMasDeTresLarvasQueGenerenZanganos() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
-        for(int i=0; i<5; i++){ criadero.actualizar(); }
+        Criadero criadero = new Criadero().terminarConstruccion();
 
         criadero.generarZangano();
         criadero.generarZangano();

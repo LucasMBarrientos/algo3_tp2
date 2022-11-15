@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 
 public class CasoDeUso6 {
 

@@ -2,8 +2,13 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 import org.junit.jupiter.api.Assertions;
@@ -14,8 +19,7 @@ public class CasoDeUso2 {
     @Test
     public void criaderoSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
+        Criadero criadero = new Criadero();
 
         criadero.actualizar();
         criadero.actualizar();
@@ -31,9 +35,7 @@ public class CasoDeUso2 {
     }
     @Test
     public void criaderoNoEstaOperativoAntesDe4Turnos() {
-
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacion);
+        Criadero criadero = new Criadero();
 
         criadero.actualizar();
         criadero.actualizar();
@@ -47,10 +49,8 @@ public class CasoDeUso2 {
     @Test
     public void reservaDeProduccionSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
-        Coordenada ubicacionCriadero = new Coordenada(1 , 2);
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacionCriadero);
-        ReservaDeReproduccion reserva = new ReservaDeReproduccion(ubicacion);
+        Criadero criadero = new Criadero();
+        ReservaDeReproduccion reserva = new ReservaDeReproduccion();
 
         for(int i=0; i<12; i++){
             criadero.actualizar();
@@ -66,10 +66,8 @@ public class CasoDeUso2 {
     }
     @Test
     public void reservaDeProduccionNoEstaOperativaAntesDe12Turnos() {
-        Coordenada ubicacionCriadero = new Coordenada(1 , 2);
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacionCriadero);
-        ReservaDeReproduccion reserva = new ReservaDeReproduccion(ubicacion);
+        Criadero criadero = new Criadero();
+        ReservaDeReproduccion reserva = new ReservaDeReproduccion();
 
         for(int i=0; i<11; i++){
             criadero.actualizar();
@@ -84,10 +82,8 @@ public class CasoDeUso2 {
     @Test
     public void guaridaSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
-        Coordenada ubicacionCriadero = new Coordenada(1 , 2);
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacionCriadero);
-        Guarida guarida = new Guarida(ubicacion);
+        Criadero criadero = new Criadero();
+        Guarida guarida = new Guarida();
 
         for(int i=0; i<12; i++){
             criadero.actualizar();
@@ -103,10 +99,8 @@ public class CasoDeUso2 {
     }
     @Test
     public void guaridaNoEstaOperativaAntesDe12Turnos() {
-        Coordenada ubicacionCriadero = new Coordenada(1 , 2);
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacionCriadero);
-        Guarida guarida = new Guarida(ubicacion);
+        Criadero criadero = new Criadero();
+        Guarida guarida = new Guarida();
 
         for(int i=0; i<11; i++){
             criadero.actualizar();
@@ -121,10 +115,8 @@ public class CasoDeUso2 {
     @Test
     public void espiralSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
-        Coordenada ubicacionCriadero = new Coordenada(1 , 2);
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacionCriadero);
-        Espiral espiral = new Espiral(ubicacion);
+        Criadero criadero = new Criadero();
+        Espiral espiral = new Espiral();
 
         for(int i=0; i<10; i++){
             criadero.actualizar();
@@ -140,10 +132,8 @@ public class CasoDeUso2 {
     }
     @Test
     public void espiralNoEstaOperativaAntesDe10Turnos() {
-        Coordenada ubicacionCriadero = new Coordenada(1 , 2);
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Criadero criadero = new Criadero(ubicacionCriadero);
-        Espiral espiral = new Espiral(ubicacion);
+        Criadero criadero = new Criadero();
+        Espiral espiral = new Espiral();
 
         for(int i=0; i<9; i++){
             criadero.actualizar();
@@ -158,8 +148,7 @@ public class CasoDeUso2 {
     @Test
     public void extractorSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Extractor extractor = new Extractor(ubicacion);
+        Extractor extractor = new Extractor();
 
         for(int i=0; i<6; i++){
             extractor.actualizar();
@@ -174,8 +163,7 @@ public class CasoDeUso2 {
     }
     @Test
     public void extractorNoEstaOperativoAntesDe6Turnos() {
-        Coordenada ubicacion = new Coordenada(2 , 2);
-        Extractor extractor = new Extractor(ubicacion);
+        Extractor extractor = new Extractor();
 
         for(int i=0; i<5; i++){
             extractor.actualizar();

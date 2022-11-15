@@ -3,8 +3,8 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.terrenos.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import javafx.scene.layout.CornerRadii;
 
 import java.util.ArrayList;
@@ -169,13 +169,13 @@ public class Mapa {
         }
         // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
         Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero().terminarConstruccion());
         this.buscarCasilla(ubicacionInicialDeJugador).cubrirDeMoho();
         this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
         ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
         this.buscarCasilla(ubicacionInicialDeJugador).energizarTerreno();
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon().terminarConstruccion());
     }
 
 

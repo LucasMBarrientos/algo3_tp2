@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class TerrenoMineral implements EstadoTerreno{
@@ -22,16 +23,10 @@ public class TerrenoMineral implements EstadoTerreno{
   }
 
   @Override
-  public void energizarTerreno() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void energizarTerreno() {}
 
   @Override
-  public void cubrirTerrenoDeMoho() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void cubrirTerrenoDeMoho() {}
 
   @Override
   public void setTerreno(Terreno terreno) {
@@ -57,60 +52,13 @@ public class TerrenoMineral implements EstadoTerreno{
   }
   @Override
   public void generarMina() {}
-  /* 
-    public Minerales minerales = new Minerales(2000);
 
-    public void ocuparPorEdificio(NexoMineral nexoMineral, Casilla casilla){
-        casilla.establecerEdificio(nexoMineral);
-    }
+  @Override
+  public void consumirMinerales(Recursos recursoRequerido) {
+    this.terreno.minerales.gastar(recursoRequerido);
+  }
 
-    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(Acceso acceso, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(PuertoEstelar puertoEstelar, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    @Override
-    public void ocuparPorEdificio(Criadero criadero, Casilla casilla) {
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    @Override
-    public void ocuparPorEdificio(Espiral espiral, Casilla casilla) {
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    @Override
-    public void ocuparPorEdificio(Extractor extractor, Casilla casilla) {
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    @Override
-    public void ocuparPorEdificio(Guarida guarida, Casilla casilla) {
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    @Override
-    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion, Casilla casilla) {
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-    public boolean esReemplazable(){
-        return false;
-    }
-
-    public boolean validarTransitable(Unidad unidad) {
-        return true;
-    }
-    */
+  @Override
+  public void consumirGasVespeno(Recursos recursoRequerido) {}
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.recursos.EdificioRequiereDeOtro;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
@@ -15,23 +17,24 @@ public abstract class EdificioZerg extends Edificio {
 
     public Terreno terreno;
     public Recursos costoEnMinerales;
+    public Recursos costoEnGas;
     public List<EstadoTerreno> posiblesTerrenos;
     public List<Edificio> edificiosNecesarios;
     private String nombre;
-
-    public abstract void actualizar(Inventario inventario);
-
+    public int tiempoDeConstruccion;
+    public Vida vida;
 
     public Edificio construir(Inventario inventario){
       try {
         if(this.validarCorrelativas(inventario)){
           this.consumirRecursosParaConstruccion(inventario);
           return this;
+        }else{
+          throw new EdificioRequiereDeOtro();
         }
       } catch(RecursosInsuficientes e) {
         throw new RecursosInsuficientes();
       }
-      return null;
     }
 
     public void consumirRecursosParaConstruccion(Inventario inventario){
@@ -57,6 +60,15 @@ public abstract class EdificioZerg extends Edificio {
 
     public String devolverNombre(){
       return this.nombre;
+    }
+
+    public boolean reducirTiempoConstruccion(int tiempoAReducir){
+      if(this.tiempoDeConstruccion-tiempoAReducir > 0){
+        this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
+        return false;
+      }else{
+        return true;
+      }
     }
 /*
     protected void regenerarVida() {

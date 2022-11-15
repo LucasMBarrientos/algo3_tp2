@@ -56,6 +56,13 @@ public class TerrenoVolcan implements EstadoTerreno {
     terreno.setState(new TerrenoMineral());
   }
 
+  @Override
+  public void consumirMinerales(Recursos recursoRequerido) {}
+
+  @Override
+  public void consumirGasVespeno(Recursos recursoRequerido) {
+    this.terreno.gasVespeno.gastar(recursoRequerido);
+  }
 /*
     public GasVespeno gasVespeno = new GasVespeno(5000);
 
