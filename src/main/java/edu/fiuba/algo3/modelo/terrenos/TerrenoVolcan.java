@@ -28,10 +28,7 @@ public class TerrenoVolcan implements EstadoTerreno {
   }
 
   @Override
-  public void cubrirTerrenoDeMoho() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void cubrirTerrenoDeMoho() {}
 
   @Override
   public void setTerreno(Terreno terreno) {
@@ -51,6 +48,13 @@ public class TerrenoVolcan implements EstadoTerreno {
   @Override
   public void vaciarTerreno(){}
 
+  @Override
+  public void generarVolcan() {}
+
+  @Override
+  public void generarMina() {
+    terreno.setState(new TerrenoMineral());
+  }
 
 /*
     public GasVespeno gasVespeno = new GasVespeno(5000);

@@ -48,6 +48,16 @@ public class TerrenoEnergizado implements EstadoTerreno {
     terreno.setState(new TerrenoVacio());
   }
 
+  @Override
+  public void generarVolcan() {
+    terreno.setState(new TerrenoVolcan());
+  }
+
+  @Override
+  public void generarMina() {
+    terreno.setState(new TerrenoMineral());
+  }
+
 /* 
     public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
         casilla.establecerEdificio(pilon);

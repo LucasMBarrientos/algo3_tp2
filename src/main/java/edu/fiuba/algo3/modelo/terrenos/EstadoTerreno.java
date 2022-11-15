@@ -15,6 +15,10 @@ public interface EstadoTerreno {
   
   void cubrirTerrenoDeMoho();
 
+  void generarVolcan();
+
+  void generarMina();
+
   boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos);
 
   void setTerreno(Terreno terreno);

@@ -39,6 +39,15 @@ public class Terreno {
   public void cubrirTerrenoDeMoho() {
     this.estado.cubrirTerrenoDeMoho();
   }
+
+  public void generarVolcan() {
+    this.estado.generarVolcan();
+  }
+
+
+  public void generarMina() {
+    this.estado.generarMina();
+  }
     /*public Recursos obtenerRecursos() {
         return null;
     }

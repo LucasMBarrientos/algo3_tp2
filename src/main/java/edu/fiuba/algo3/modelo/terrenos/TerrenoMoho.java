@@ -44,6 +44,16 @@ public class TerrenoMoho implements EstadoTerreno {
 
   @Override
   public void vaciarTerreno(){}
+
+  @Override
+  public void generarVolcan() {
+    terreno.setState(new TerrenoVolcan());
+  }
+  
+  @Override
+  public void generarMina() {
+    terreno.setState(new TerrenoMineral());
+  }
 /*
     public TerrenoMoho() {
 

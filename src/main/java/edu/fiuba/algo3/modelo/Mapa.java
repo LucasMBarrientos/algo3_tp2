@@ -31,9 +31,9 @@ public class Mapa {
                 this.casillas.add(new Casilla(new Coordenada(x,y)));
             }
         }
-        this.buscarCasilla(new Coordenada(2,2)).establecerTerreno(new TerrenoVacio());
-        this.buscarCasilla(new Coordenada(3,3)).establecerTerreno(new TerrenoMoho());
-        this.buscarCasilla(new Coordenada(4,4)).establecerTerreno(new TerrenoVolcan());
+        this.buscarCasilla(new Coordenada(2,2)).vaciarTerreno();
+        this.buscarCasilla(new Coordenada(3,3)).cubrirDeMoho();
+        this.buscarCasilla(new Coordenada(4,4)).generarVolcan();
     }
 
 
@@ -78,7 +78,7 @@ public class Mapa {
     public Casilla hallarVolcanInicialDelJugador(int idJugador) {
         Coordenada coordenadaDelVolcan;
         if (idJugador == 0) {
-            coordenadaDelVolcan = ubicacionesInicialesDeLosJugadores.get(idJugador).devolverCoordenadaRelativa(2, 2);
+            coordenadaDelVolcan = ubicacionesInicialesDeLosJugadores.get(idJugador).devolverCoordenadaRelativa(2,2);
         } else {
             coordenadaDelVolcan = ubicacionesInicialesDeLosJugadores.get(idJugador).devolverCoordenadaRelativa(-2, -2);
         }
@@ -161,20 +161,20 @@ public class Mapa {
         List<Coordenada> coordenadasDeVolcanes = hallarCoordenadasParaBases();
         List<Casilla> casillasConMinerales;
         for (Coordenada coordenadaDeVolcan : coordenadasDeVolcanes) {
-            buscarCasilla(coordenadaDeVolcan).establecerTerreno(new TerrenoVolcan());
+            buscarCasilla(coordenadaDeVolcan).generarVolcan();
             casillasConMinerales = buscarCasillasAdyacentes(coordenadaDeVolcan);
             for (Casilla casillaConMinerales : casillasConMinerales) {
-                casillaConMinerales.establecerTerreno(new TerrenoMineral());
+                casillaConMinerales.generarMina();
             }
         }
         // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
         Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho());
+        this.buscarCasilla(ubicacionInicialDeJugador).cubrirDeMoho();
         this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
         // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
         ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
+        this.buscarCasilla(ubicacionInicialDeJugador).energizarTerreno();
         this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
     }
 
@@ -325,7 +325,7 @@ public class Mapa {
     private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
         List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,5);
         for (Casilla casillaConMoho : casillasConMoho) {
-            casillaConMoho.establecerTerreno(new TerrenoMoho());
+            casillaConMoho.cubrirDeMoho();
         }
     }
 

@@ -28,6 +28,7 @@ public abstract class Edificio  {
     public abstract void ocupar(Casilla casilla, Terreno terreno);
 
     public abstract void establecerTerreno(Terreno terreno);
+    
     //public abstract void recibirGolpe(int danio);
 
     public abstract void actualizar(Inventario inventario);

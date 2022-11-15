@@ -49,6 +49,16 @@ public class TerrenoVacio implements EstadoTerreno {
   @Override
   public void vaciarTerreno() {}
 
+  @Override
+  public void generarVolcan() {
+    terreno.setState(new TerrenoVolcan());
+  }
+  
+  @Override
+  public void generarMina() {
+    terreno.setState(new TerrenoMineral());
+  }
+
     //TODO Leti YO xd: codigo repetido x1000, hace un refactor a esto  plis. Nuevas interfaces o excepciones mas especificas?
     /*
     public void ocuparPorEdificio(Edificio edificio, Casilla casilla){

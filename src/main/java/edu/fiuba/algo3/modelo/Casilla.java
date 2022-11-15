@@ -51,6 +51,14 @@ public class Casilla {
       this.terreno.cubrirTerrenoDeMoho();
     }
 
+    public void generarVolcan() {
+      this.terreno.generarVolcan();
+    }
+
+    public void generarMina(){
+      this.terreno.generarMina();
+    }
+
     public void ponerEdificio(Edificio edificio) {
       terreno.ocuparPorEdificio(edificio,this);
     }
