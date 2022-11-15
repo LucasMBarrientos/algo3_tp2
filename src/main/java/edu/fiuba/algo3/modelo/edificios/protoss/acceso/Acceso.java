@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.acceso;
 
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
@@ -36,16 +37,12 @@ public class Acceso extends EdificioProtoss {
       this.estado.setAcceso(this);
     }
 
-    public Unidad generarUnidad(Unidad unidad) {
-        return estado.generarUnidad(unidad);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
+        return estado.generarUnidad( edificioConLarvas,  gasVespeno,  minerales,  coordenada);
     }
 
     public void actualizar() {
       this.estado.actualizar();
     }
 
-    @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
-        return null;
-    }
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar;
 
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -37,7 +38,7 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         return null;
     }
 

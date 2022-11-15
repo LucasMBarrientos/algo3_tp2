@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -34,7 +35,7 @@ public class Pilon extends EdificioProtoss {
     }
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         return null;
     }
 

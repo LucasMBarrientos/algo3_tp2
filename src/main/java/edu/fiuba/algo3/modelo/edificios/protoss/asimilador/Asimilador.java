@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss.asimilador;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
@@ -44,7 +45,7 @@ public class Asimilador extends EdificioProtoss {
     }
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         return null;
     }
 
