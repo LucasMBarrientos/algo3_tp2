@@ -31,16 +31,16 @@ public class JugadorZerg extends Jugador {
         }
         unidad.atacar(direccion, mapa);
     }
-
+/*
     public void moverse(Coordenada coordenadaUnidad, Direccion direccion){
         Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
         if(unidad == null){
             throw new UnidadInexistente();
         }
         unidad.moverse(direccion, mapa);
-
     }
 
+    */
     protected void iniciarseEnMapa() {
         mapa.establecerInicioZerg(id);
     }

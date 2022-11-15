@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 import java.util.List;
 
@@ -27,8 +29,11 @@ public class CasoDeUso4 {
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
         /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
         */
+        casillaConCriadero.establecerUnidad(new Zangano());
+        jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
+        jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
+
         jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
             algoStar.pasarTurno();

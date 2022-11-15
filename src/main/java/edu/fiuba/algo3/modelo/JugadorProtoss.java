@@ -32,7 +32,7 @@ public class JugadorProtoss extends Jugador {
         mapa.establecerInicioProtoss(id);
     }
 
-
+/*
     public void moverse(Coordenada coordenadaUnidad, Direccion direccion){
         Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
         if(unidad == null){
@@ -41,6 +41,10 @@ public class JugadorProtoss extends Jugador {
         unidad.moverse(direccion, mapa);
 
     }
+*/
+
+
+
     /*
 
     public JugadorProtoss(Mapa mapa) {

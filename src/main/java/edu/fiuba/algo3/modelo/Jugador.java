@@ -56,7 +56,18 @@ public abstract class Jugador {
         this.id = id;
     }
 
-    public abstract void moverse(Coordenada coordenadaUnidad, Direccion direccion);
+    public void moverUnidad(Casilla casillaUnidad, Direccion direccion){
+        Unidad unidad = casillaUnidad.devolverUnidad();
+        if(unidad == null) {
+            throw new UnidadInexistente();
+        }
+        unidad.moverse(direccion, mapa);
+    }
+
+    public void moverUnidad(Coordenada coordenadaUnidad, Direccion direccion){
+        Casilla casillaUnidad = mapa.buscarCasilla(coordenadaUnidad);
+        moverUnidad(casillaUnidad, direccion);
+    }
 /*
     protected Mapa mapa;
 
