@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.JugadorProtoss;
+import edu.fiuba.algo3.modelo.JugadorZerg;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
@@ -16,16 +19,16 @@ public class CasoDeUso9 {
   @Test
   public void verificarSiEdificioProtossOperaCuandoDebe() {
     AlgoStar algoStar = new AlgoStar();
+    JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+    algoStar.agregarJugador(jugadorProtoss);
+    JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+    algoStar.agregarJugador(jugadorZerg);
     algoStar.empezarJuego();
-    Mapa mapa = algoStar.devolverMapa();
+    algoStar.pasarTurno();
 
-    algoStar.pasarTurno();// Ahora es el turno de los protoss
-    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
-
-    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
-    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
-    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
+    Casilla casillaConPilon = jugadorProtoss.hallarCasillaConEdificioInicial();
+    List<Coordenada> coordenadasConTerrenosEnergizados = casillaConPilon.hallarCoordenadasAdyacentes();
+    jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
 
     List<Casilla> casillasMinerales = jugadorProtoss.hallarCasillasConMineralesIniciales();
     jugadorProtoss.construirEdificio(casillasMinerales.get(0).devolverCoordendas(), new NexoMineral());

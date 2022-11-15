@@ -108,8 +108,8 @@ public class Mapa {
     }
 
     public void actualizar(int turno) {
-       /* actualizarTerrenoEnergizado();
-        if(turno % 2 == 0) {
+       actualizarTerrenoEnergizado();
+        /* if(turno % 2 == 0) {
             // Se expande el moho una vez cada 2 turnos
            expandirMoho();
         }*/

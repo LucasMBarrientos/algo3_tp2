@@ -10,6 +10,10 @@ import edu.fiuba.algo3.modelo.estadisticas.Vida;
 
 public class Zangano extends UnidadZerg {
 
+    public Zangano() {
+      this.vida = new Vida(10);
+    }
+
     public Zangano(Coordenada coordenada ) {
         this.coordenada = coordenada;
         this.vida = new Vida(10);

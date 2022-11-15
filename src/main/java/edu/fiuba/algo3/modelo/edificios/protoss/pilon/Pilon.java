@@ -14,7 +14,7 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 
 public class Pilon extends EdificioProtoss {
     private EstadoPilon estado;
-    
+
     public Pilon() {
         this.costoEnMinerales = new Minerales(100);
         this.posiblesTerrenos = List.of(new TerrenoEnergizado());
