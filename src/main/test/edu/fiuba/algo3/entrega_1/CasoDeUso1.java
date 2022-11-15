@@ -25,6 +25,8 @@ public class CasoDeUso1 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         jugadorZerg.moverUnidad(casillaConCriadero, new Arriba());
+        Coordenada coordenadaArriba = casillaConCriadero.devolverCoordendas().devolverCoordenadaRelativa(0,-1);
+        Casilla casillaArriba = algoStar.devolverMapa().buscarCasilla(coordenadaArriba);
         jugadorZerg.generarUnidad(casillaConCriadero);
         algoStar.pasarTurno();
         algoStar.pasarTurno();

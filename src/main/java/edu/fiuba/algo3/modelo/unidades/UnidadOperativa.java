@@ -20,9 +20,11 @@ public class UnidadOperativa implements EstadoUnidad{
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada, Unidad unidad){
         Coordenada nuevaPosicion = direccion.siguiente(coordenada);
-        Casilla casilla =  mapa.buscarCasilla(nuevaPosicion);
-        if(casilla.devolverUnidad() != null){
-            casilla.establecerUnidad(unidad);
+        Casilla nuevaCasilla =  mapa.buscarCasilla(nuevaPosicion);
+        Casilla casillaActual = mapa.buscarCasilla(coordenada);
+        if(nuevaCasilla.devolverUnidad() == null) { //
+            nuevaCasilla.establecerUnidad(unidad);
+            casillaActual.establecerUnidad(null);
         }
     }
 

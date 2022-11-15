@@ -24,7 +24,7 @@ public class CasoDeUso20 {
 
         Casilla casillaConAreaEspacial = mapa.buscarCasilla(new Coordenada(10,10));
 
-        algoStar.devolverMapa().buscarCasilla(new Coordenada(10,9)).establecerUnidad(new Zangano());
+        //algoStar.devolverMapa().buscarCasilla(new Coordenada(10,9)).establecerUnidad(new Zangano());
 
         jugadorZerg.construirEdificio(new Coordenada(10,9),new Criadero());
 

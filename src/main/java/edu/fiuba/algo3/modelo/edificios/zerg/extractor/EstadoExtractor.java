@@ -8,7 +8,7 @@ public interface EstadoExtractor {
 
     public void ingresarUnidad(Zangano zangano);
 
-    public void recolectarRecursos(Terreno terreno, Inventario inventario );
+    public void recolectarRecursos(Terreno terreno, Inventario inventario);
 
     Extractor terminarConstruccion();
   

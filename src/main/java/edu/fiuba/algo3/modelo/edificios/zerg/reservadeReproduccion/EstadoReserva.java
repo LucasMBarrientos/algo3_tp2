@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public interface EstadoReserva {
+    
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada);
 
     ReservaDeReproduccion terminarConstruccion();

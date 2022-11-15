@@ -39,8 +39,8 @@ public class Espiral extends EdificioZerg {
     }
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
-        return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralesDelJugador);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
+        return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralesDelJugador, coordenada);
     }
 
     public void setState(EstadoEspiral estado){

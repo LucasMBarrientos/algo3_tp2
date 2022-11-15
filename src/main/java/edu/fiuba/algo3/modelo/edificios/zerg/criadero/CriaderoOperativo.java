@@ -11,14 +11,6 @@ public class CriaderoOperativo implements EstadoCriadero {
     private Criadero criadero;
     private int larvas = 3;
 
-    public Zangano generarZangano() throws NoHayLarvasDisponibles {
-        if (larvas <= 0) {
-            throw new NoHayLarvasDisponibles();
-        }
-        this.larvas--;
-        return new Zangano();
-    }
-
     public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles {
         if (larvas <= 0) {
             throw new NoHayLarvasDisponibles();

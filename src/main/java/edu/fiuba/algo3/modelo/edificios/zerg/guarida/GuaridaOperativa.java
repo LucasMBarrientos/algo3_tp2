@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.guarida;
 
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -12,7 +13,7 @@ public class GuaridaOperativa implements EstadoGuarida{
     private Guarida guarida;
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
-        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Hidralisco(gasVespeno,minerales));
+        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Hidralisco(gasVespeno, minerales, coordenada));
     }
     @Override
     public Guarida terminarConstruccion() {return guarida;}

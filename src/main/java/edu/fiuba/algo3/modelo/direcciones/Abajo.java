@@ -8,6 +8,6 @@ public class Abajo implements Direccion{
 
     public Coordenada siguiente(Coordenada posicion){
 
-        return posicion.devolverCoordenadaRelativa(0,-1);
+        return posicion.devolverCoordenadaRelativa(0,1);
     }
 }

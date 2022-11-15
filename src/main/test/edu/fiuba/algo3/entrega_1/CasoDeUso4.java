@@ -30,7 +30,6 @@ public class CasoDeUso4 {
         /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         */
-        casillaConCriadero.establecerUnidad(new Zangano());
         jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
         jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
 

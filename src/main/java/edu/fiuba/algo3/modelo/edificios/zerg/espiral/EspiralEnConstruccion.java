@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.espiral;
 
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -12,7 +13,7 @@ public class EspiralEnConstruccion implements EstadoEspiral {
 
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         throw new EdificioNoTerminoDeConstruirse();
     }
 
