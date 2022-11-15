@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
 
 public class CasoDeUso6 {
 
@@ -49,12 +51,25 @@ public class CasoDeUso6 {
         Mapa mapa = algoStar.devolverMapa();
         Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+        for (int i = 0; i < 6; i++) { // Se construye un extractor para obtener la cantidad de gas necesaria para construir una Guarida
+            algoStar.pasarTurno();
+        }
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
+        jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
+        jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
+        */
+        for (int i=0; i < 10; i++) { // Se obtiene la cantidad de gas necesaria para construir una Guarida
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
+        }
+        mapa.DEBUGMOSTRARMAPA();
         Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConElCriadero, 6, 0);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillaConMoho.devolverCoordendas(), new Criadero());
+            jugadorZerg.construirEdificio(casillaConMoho.devolverCoordendas(), new Guarida());
         });
     }
     

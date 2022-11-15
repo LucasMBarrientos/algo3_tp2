@@ -255,7 +255,7 @@ public class Mapa {
 
 
 
-/*/
+
     public void DEBUGMOSTRARMAPA() {
         String lineaDelMapa = "";
         int dimensionX = this.superficie.devolverXMax();
@@ -288,7 +288,8 @@ public class Mapa {
         }
         System.out.println("█" + lineaDelMapa + "█");
     }
-*//*
+    
+/*
     private List<Casilla> buscarCasillasConMoho() {
         // Buscar casilllas que en este turno van a tener moho
         List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
@@ -314,11 +315,12 @@ public class Mapa {
             return false;
         }
     }
-
+ 
     private void expandirMoho() {
         List<Casilla> casillasConMoho = buscarCasillasConMoho();
         for (Casilla casillaConMoho : casillasConMoho) {
-            casillaConMoho.establecerTerreno(new TerrenoMoho());
+            casillaConMoho.cubrirDeMoho();
+            //casillaConMoho.establecerTerreno(new TerrenoMoho());
         }
     }
 */
