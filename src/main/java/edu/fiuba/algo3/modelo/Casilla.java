@@ -1,10 +1,150 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.areas.Area;
+import edu.fiuba.algo3.modelo.edificios.CasillaOcupadaPorEdificio;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.terrenos.*;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-public class Casilla implements Actualizable {
+import java.util.List;
 
+public class Casilla {
+
+    private Coordenada coordenada;
+    private Edificio edificio;
+    private Unidad unidad;
+    private Terreno terreno;
+
+    private Area area;
+
+    public Casilla (Coordenada coordenada) {
+        this.coordenada = coordenada;
+        this.terreno = new Terreno();
+        //this
+    }
+/*
+    public void ocuparPorEdificio(Edificio edificio) {
+        if (this.edificio != null) {
+            throw new TerrenoNoAptoParaConstruirEsteEdificio(); //cambiar por excepcion TerrenoOcupado?
+        }
+        terreno.ocuparPorEdificio(edificio, this);
+    }*/
+    public void establecerEdificio(Edificio edificio) {
+        this.edificio = edificio;
+    }
+
+    public void establecerArea(Area area){
+        this.area = area; //TODO esto quizas deberia ser pasado x constructor
+    }
+
+    public void establecerUnidad(Unidad unidad) {
+        this.unidad = unidad;
+    }
+
+
+    public void vaciarTerreno() {
+      this.terreno.vaciarTerreno();
+    }
+
+    public void energizarTerreno() {
+      this.terreno.energizarTerreno();
+    }
+
+    public void cubrirDeMoho() {
+      this.terreno.cubrirTerrenoDeMoho();
+    }
+
+    public void generarVolcan() {
+      this.terreno.generarVolcan();
+    }
+
+    public void generarMina(){
+      this.terreno.generarMina();
+    }
+
+    public void ponerEdificio(Edificio edificio) {
+      terreno.ocuparPorEdificio(edificio,this);
+    }
+
+    public void ocupar(Edificio edificio) {
+      if(this.devolverEdificio() != null){
+        throw new CasillaOcupadaPorEdificio();
+      }else{
+        edificio.establecerTerreno(this.terreno);
+        this.edificio = edificio;
+      }
+    }
+
+    public void ocuparPorUnidad(Edificio edificio) {
+        if(this.devolverEdificio() != null){
+            throw new CasillaOcupadaPorEdificio();
+        }else{
+            edificio.establecerTerreno(this.terreno);
+            this.edificio = edificio;
+        }
+    }
+
+    /*public void actualizarListaDeCoordenadasConMoho(List<Coordenada> coordenadasConMoho) {
+        terreno.actualizarListaDeCoordenadasConMoho(coordenadasConMoho, this.coordenada);
+    }*/
+
+    public List<Coordenada> hallarCoordenadasAdyacentes() {
+        return coordenada.hallarCoordenadasAdyacentes();
+    }
+
+    public boolean compararCoordenadas(Coordenada coordenada) {
+        return this.coordenada.esIgual(coordenada);
+    }
+
+    public boolean compararCoordenadas(Casilla casilla) {
+        return this.coordenada.esIgual(casilla.devolverCoordendas());
+    }
+
+    public Coordenada devolverCoordendas() {
+        return coordenada;
+    }
+
+    public Edificio devolverEdificio() {
+        return edificio;
+    }
+
+    public Terreno devolverTerreno() {
+        return terreno;
+    }
+    
+    public boolean generaTerrenoEnergizado() {
+        if (edificio == null) { return false; }
+        return this.edificio.generaTerrenoEnergizado();
+    }
+
+    public Unidad devolverUnidad(){
+        return unidad;
+    }
+
+    /*public boolean terrenoEsReemplazable() {
+        return this.terreno.esReemplazable();
+    }
+
+    public boolean terrenoRepeleMoho() {
+        return this.terreno.repeleMoho();
+    }*/
+
+    public void actualizar(){
+        if (edificio != null) {
+            edificio.actualizar();
+        }
+        if (unidad != null) {
+            unidad.actualizar();
+        }
+    }
+
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
+        return edificio.generarUnidad(edificioConLarvas, gasVespenoDelJugador, mineralesDelJugador, coordenada);
+    }
+
+/*
     private int x,y;
     public Edificio edificio;
     public Unidad unidad;
@@ -77,7 +217,7 @@ public class Casilla implements Actualizable {
         }
     }
     */
-    
+    /*
     public boolean validarCasillaAdyacente(Casilla casillaComparada) {
         int x = casillaComparada.devolverX();
         int y = casillaComparada.devolverY();
@@ -104,5 +244,5 @@ public class Casilla implements Actualizable {
         if(unidad != null){
             unidad.actualizar();
         }
-    }
+    }*/
 }

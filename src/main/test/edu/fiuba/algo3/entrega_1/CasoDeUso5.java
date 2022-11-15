@@ -3,64 +3,47 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
+
 public class CasoDeUso5 {
 
     @Test
-    public void ErrorAlConstruirEdificioLejosDeUnPilon() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
+    public void seProduceUnErrorAlIntentarConstruirUnEdificioProtossLejosDeUnPilon() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        algoStar.empezarJuego();
 
-      algoStar.construirEdificio(6,6, new Pilon());
+        Mapa mapa = algoStar.devolverMapa();
+        Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
 
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-      Assertions.assertFalse(algoStar.seleccionarCasilla(6,6).devolverEdificio() instanceof Pilon);
-
-      algoStar.construirEdificio(9,8, new Pilon());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-
-      Assertions.assertTrue(algoStar.seleccionarCasilla(9,8).devolverEdificio() instanceof Pilon);
-
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
+            jugadorProtoss.construirEdificio(casillaConTerenoVacio, new Acceso());
+        });
     }
 
     @Test
-    public void ErrorAlConstruirEdificioFueraDelMoho() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
+    public void seProduceUnErrorAlIntentarConstruirUnEdificioZergEnUnTerrenoSinMoho() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
-      algoStar.generarUnidad(1,1);
+        Mapa mapa = algoStar.devolverMapa();
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
 
-      algoStar.moverDerecha(1, 1);
-      algoStar.moverDerecha(2, 1);
-      algoStar.moverDerecha(3, 1);
-      algoStar.moverDerecha(4, 1);
-      algoStar.moverDerecha(5, 1);
-      algoStar.moverAbajo(6,1);
-      algoStar.moverAbajo(6,2);
-      algoStar.moverAbajo(6,3);
-      algoStar.moverAbajo(6,4);
-
-      // CONTRUYE UN CRIADERO LEJOS DEL MOHO
-      algoStar.construirEdificio(6, 1, new Criadero());
-
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-
-      Assertions.assertFalse(algoStar.seleccionarCasilla(6,1).devolverEdificio() instanceof Criadero);
-      // DEBERIA DEVOLVER ERROR AL TRATAR DE CONSTRUIR LEJOS DEL MOHO
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
+            jugadorZerg.construirEdificio(casillaConTerenoVacio, new ReservaDeReproduccion());
+        });
     }
+    
 }

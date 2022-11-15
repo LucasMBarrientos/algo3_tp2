@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 
-public class ConstruccionProtoss extends Unidad implements Constructor{
-
+public class ConstruccionProtoss {
+/*
     private Construccion construccion;
 
     public ConstruccionProtoss(Edificio edificio, Casilla casilla) {
@@ -21,5 +21,5 @@ public class ConstruccionProtoss extends Unidad implements Constructor{
     }
 
     @Override
-    public void construir(Edificio edificio, Casilla casilla) {}
+    public void construir(Edificio edificio, Casilla casilla) {}*/
 }

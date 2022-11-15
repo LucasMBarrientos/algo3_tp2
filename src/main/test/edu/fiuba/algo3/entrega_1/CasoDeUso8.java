@@ -1,13 +1,19 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.edificios.protoss.*;
-import edu.fiuba.algo3.modelo.edificios.zerg.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.terrenos.*;
 
 public class CasoDeUso8 {
 
@@ -15,201 +21,134 @@ public class CasoDeUso8 {
   public void protossSoloPuedeConstruirNexoMineralSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
-    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
+    Mapa mapa = algoStar.devolverMapa();
 
-    algoStar.pasarTurno(); // Ahora es el turno de los protoss
+    algoStar.pasarTurno();// Ahora es el turno de los protoss
+    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+
+    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
+    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
+
+    List<Casilla> casillasMinerales = jugadorProtoss.hallarCasillasConMineralesIniciales();
+    jugadorProtoss.construirEdificio(casillasMinerales.get(0).devolverCoordendas(), new NexoMineral());
+    jugadorProtoss.construirEdificio(casillasMinerales.get(1).devolverCoordendas(), new NexoMineral());
     
-    algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-    algoStar.seleccionarCasilla(1, 2).establecerTerreno(new TerrenoMineral());
-    algoStar.seleccionarCasilla(2, 2).establecerTerreno(new TerrenoMineral());
+    Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+      jugadorProtoss.construirEdificio(casillasMinerales.get(2).devolverCoordendas(), new NexoMineral());
+    });
+  }
 
-    algoStar.construirEdificio(2, 1, new NexoMineral());
-    Assertions.assertEquals(150, algoStar.devolverCantidadMinerales());
+    @Test
+    public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
-    algoStar.construirEdificio(1, 2, new NexoMineral());
-    Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
-    algoStar.construirEdificio(2, 1, new NexoMineral());
+        Casilla casillaConPilon = jugadorProtoss.hallarCasillaConEdificioInicial();
+        List<Coordenada> coordenadasConTerrenosEnergizados = casillaConPilon.hallarCoordenadasAdyacentes();
+        // El jugador protoss deberia tener 200 minerales
+
+        jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
+        jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(1), new Pilon());
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+             // El jugador no deberia ser capaz de construir un tercer pilon
+            jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(2), new Pilon());
+        });
+    }
+
+  /*@Test
+  public void jugadorProtossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
+    AlgoStar algoStar = new AlgoStar();
+    algoStar.empezarJuego();
+    Mapa mapa = algoStar.devolverMapa();
+    algoStar.pasarTurno();
+    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
+    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new Pilon());
     
+    Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+      jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(2).devolverCoordendas(), new Pilon());
+    });
+  }*/
+
+  @Test
+  public void protossPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
+    AlgoStar algoStar = new AlgoStar();
+    algoStar.empezarJuego();
+    Mapa mapa = algoStar.devolverMapa();
     algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof NexoMineral);
-    Assertions.assertTrue(algoStar.seleccionarCasilla(1, 2).devolverEdificio() instanceof NexoMineral);
-    Assertions.assertFalse(algoStar.seleccionarCasilla(2, 2).devolverEdificio() instanceof NexoMineral);
+    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
+    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
+    
+    jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Asimilador());
+    /*Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+      jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Pilon());
+    });*/
   }
 
   @Test
-  public void protossSoloPuedeConstruirPilonSiTieneMasDe100Minerales() {
+  public void protossNoPuedeConstruirAsimiladorSiNoTienesuficientesMinerales() {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
-    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
-
+    Mapa mapa = algoStar.devolverMapa();
     algoStar.pasarTurno();
+    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
+    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Pilon());
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new Pilon());
 
-    algoStar.construirEdificio(9, 8, new Pilon());
-    Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
     
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(9, 8).devolverEdificio() instanceof Pilon);
-  }
-
-  @Test
-  public void protossSoloPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
-    AlgoStar algoStar = new AlgoStar();
-    algoStar.empezarJuego();
-    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
-
-    algoStar.pasarTurno();
-
-    algoStar.seleccionarCasilla(9,8).establecerTerreno(new TerrenoVolcan());
-    algoStar.construirEdificio(9, 8, new Asimilador());
-    Assertions.assertEquals(100, algoStar.devolverCantidadMinerales());
-
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(9, 8).devolverEdificio() instanceof Asimilador);
+    Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+      jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Asimilador());
+    });
   }
 
   @Test
   public void protossSoloPuedeConstruirAccesoSiTieneMasDe150Minerales() {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
-
-    algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-
+    Mapa mapa = algoStar.devolverMapa();
     algoStar.pasarTurno();
+    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
+    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(0).devolverCoordendas(), new Acceso());
 
-    Assertions.assertEquals(200, algoStar.devolverCantidadMinerales());
-    
-    algoStar.construirEdificio(2, 1, new NexoMineral());
-
-    Assertions.assertEquals(150, algoStar.devolverCantidadMinerales());
-
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof NexoMineral);
-
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-
-    Assertions.assertEquals(210, algoStar.devolverCantidadMinerales());
-    algoStar.construirEdificio(9, 8, new Acceso());
-    Assertions.assertEquals(60, algoStar.devolverCantidadMinerales());
-    algoStar.construirEdificio(8, 9, new Acceso());
-
-    for (int i = 0; i < 10; i++) {
-      algoStar.pasarTurno();
-    }
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(9, 8).devolverEdificio() instanceof Acceso);
-    Assertions.assertFalse(algoStar.seleccionarCasilla(8, 9).devolverEdificio() instanceof Acceso);
-  }/*
+    Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+      jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new Acceso());
+    });
+  }
 
   @Test
   public void protossSoloPuedeConstruirPuertoEstelarSiTieneMasDe150MineralesY150Gas() {
     AlgoStar algoStar = new AlgoStar();
     algoStar.empezarJuego();
-
-    algoStar.seleccionarCasilla(2, 1).establecerTerreno(new TerrenoMineral());
-    algoStar.seleccionarCasilla(1, 2).establecerTerreno(new TerrenoVolcan());
-
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 200);
-    
-    algoStar.construirEdificio(2, 1, new NexoMineral());
-    
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 150);
-
+    Mapa mapa = algoStar.devolverMapa();
     algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(2, 1).devolverEdificio() instanceof NexoMineral);
-
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 200);
-    
-    algoStar.construirEdificio(1, 2, new Asimilador());
-
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
-
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-    algoStar.pasarTurno(); //+10 Minerales
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(1, 2).devolverEdificio() instanceof Asimilador);
-    
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 160);
-    Assertions.assertTrue(algoStar.devolverCantidadGas() == 200);
-
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-    algoStar.pasarTurno(); //+10 Minerales y +20 gas
-
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 250);
-    Assertions.assertTrue(algoStar.devolverCantidadGas() == 380);
-
-    algoStar.construirEdificio(2, 2, new PuertoEstelar());
-
-    Assertions.assertTrue(algoStar.devolverCantidadMinerales() == 100);
-    Assertions.assertTrue(algoStar.devolverCantidadGas() == 230);
-
-    algoStar.construirEdificio(2, 3, new PuertoEstelar());
-
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(2, 2).devolverEdificio() instanceof PuertoEstelar);
-    Assertions.assertFalse(algoStar.seleccionarCasilla(2, 3).devolverEdificio() instanceof PuertoEstelar);
+    Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+    Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    Casilla casillaConPilon = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,2,2);
+    List<Casilla> casillasConTerrenosEnergizados = mapa.buscarCasillasAdyacentes(casillaConPilon);
+    jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new PuertoEstelar());
+    Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+      jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new PuertoEstelar());
+    });
   }
-
+/*
   @Test
   public void zergSoloPuedeConstruirCriaderoSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();

@@ -1,16 +1,69 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.zerg.*;
-import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.recursos.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class JugadorZerg extends Jugador {
 
+    public JugadorZerg(String nombre, String color) {
+        establecerAtributosBasicos(nombre, color, 0, 200);
+    }
+
+    public JugadorZerg(String nombre, String color, int recursosExtra) {
+        establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
+    }
+
+    public int contarLarvas() {
+        return inventario.contarLarvas();
+    }
+
+    public void actualizar() {
+        //inventario.actualizar();
+    }
+
+    public Inventario devolInventario() {
+        return this.inventario;
+    }
+
+    public void atacar(Coordenada coordenadaUnidad, Direccion direccion){
+        Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
+        if(unidad == null){
+            throw new UnidadInexistente();
+        }
+        unidad.atacar(direccion, mapa);
+    }
+/*
+    public void moverse(Coordenada coordenadaUnidad, Direccion direccion){
+        Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
+        if(unidad == null){
+            throw new UnidadInexistente();
+        }
+        unidad.moverse(direccion, mapa);
+    }
+
+    */
+    protected void iniciarseEnMapa() {
+        Criadero criaderoInicial = mapa.establecerInicioZerg(id);
+        this.inventario.agregarEdificio(criaderoInicial);
+    }
+
+    public void generarUnidad(Casilla casilla) {
+        Unidad unidadNueva = inventario.generarUnidad(casilla);
+        casilla.establecerUnidad(unidadNueva);
+    }
+
+    public void generarUnidad(Coordenada coordenada){
+        Casilla casilla = mapa.buscarCasilla(coordenada);
+        generarUnidad(casilla);
+    }
+
+
+
+    /*
     public JugadorZerg(Mapa mapa) {
         Criadero criaderoInicial = new Criadero();
         mapa.buscarCasilla(1,1).establecerEdificio(criaderoInicial);
@@ -61,5 +114,5 @@ public class JugadorZerg extends Jugador {
             }
             zanganoExtrayendoMinerales = this.mapa.buscarMineralesConZanganos();
         }
-    }
+    }*/
 }
