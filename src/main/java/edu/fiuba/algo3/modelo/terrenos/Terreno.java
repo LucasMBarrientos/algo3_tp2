@@ -48,6 +48,13 @@ public class Terreno {
   public void generarMina() {
     this.estado.generarMina();
   }
+
+
+    public EstadoTerreno DEBUGDEVOLVERESTADO() {
+        return estado;
+    }
+
+
     /*public Recursos obtenerRecursos() {
         return null;
     }
