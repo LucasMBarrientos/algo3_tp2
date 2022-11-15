@@ -7,8 +7,9 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 
 public class CriaderoOperativo implements EstadoCriadero {
+    
     private Criadero criadero;
-    private int larvas = 3; //hacer clase Larva (?
+    private int larvas = 3;
 
     public Zangano generarZangano() throws NoHayLarvasDisponibles {
         if (larvas <= 0) {
@@ -24,10 +25,6 @@ public class CriaderoOperativo implements EstadoCriadero {
         }
         this.larvas--;
         return unidad;
-    }
-
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
-        return null;
     }
 
     public int contarLarvas() {

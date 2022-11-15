@@ -33,6 +33,11 @@ public class Criadero extends EdificioZerg {
         return estado.contarLarvas();
     }
 
+    @Override
+    public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
+        return estado.generarUnidad(unidad);
+    }
+
     /*public Criadero(Coordenada coordenada) {
         this.coordenada = coordenada;
     }*/
@@ -46,7 +51,7 @@ public class Criadero extends EdificioZerg {
     
     @Override
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
-        return this.estado.generarZangano();
+        return estado.generarUnidad(new Zangano());
     }
 
 

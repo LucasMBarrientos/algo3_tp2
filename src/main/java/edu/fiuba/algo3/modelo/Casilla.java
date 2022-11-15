@@ -132,11 +132,16 @@ public class Casilla {
     }*/
 
     public void actualizar(){
-        edificio.actualizar();
+        if (edificio != null) {
+            edificio.actualizar();
+        }
+        if (unidad != null) {
+            unidad.actualizar();
+        }
     }
 
-    public void generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
-        edificio.generarUnidad(edificioConLarvas, gasVespenoDelJugador, mineralesDelJugador);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
+        return edificio.generarUnidad(edificioConLarvas, gasVespenoDelJugador, mineralesDelJugador, coordenada);
     }
 
 /*

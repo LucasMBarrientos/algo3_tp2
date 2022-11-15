@@ -3,6 +3,9 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.areas.AreaEspacial;
 import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
 import edu.fiuba.algo3.modelo.terrenos.*;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import java.util.ArrayList;
@@ -154,19 +157,23 @@ public class Mapa {
         }
     }
 
-    public void establecerInicioProtoss(int idDelJguador) {
+    public Pilon establecerInicioProtoss(int idDelJguador) {
         // Generar el terreno inicial del pilon de los protoss
         Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
         this.buscarCasilla(ubicacionInicialDeJugador).energizarTerreno();
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon().terminarConstruccion());  
+        Pilon pilonInicial = new Pilon().terminarConstruccion();
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(pilonInicial);
+        return pilonInicial;
     }
 
-    public void establecerInicioZerg(int idDelJguador) {
+    public Criadero establecerInicioZerg(int idDelJguador) {
         // Generar el terreno inicial del criadero de los zerg
         Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(idDelJguador);
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero().terminarConstruccion());
+        Criadero criaderoInicial = new Criadero().terminarConstruccion();
+        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(criaderoInicial);
         this.buscarCasilla(ubicacionInicialDeJugador).cubrirDeMoho();
-        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);      
+        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);     
+        return criaderoInicial; 
     }
 
 
@@ -243,7 +250,7 @@ public class Mapa {
 
     */
 
-    public void DEBUGMOSTRARMAPA() {
+    public void DEBUGMOSTRARMAPATERRENO() {
         String lineaDelMapa = "";
         int dimensionX = this.superficie.devolverXMax();
         int dimensionY = this.superficie.devolverYMax();
@@ -265,6 +272,33 @@ public class Mapa {
                     lineaDelMapa += "V";
                 } else if (terreno instanceof TerrenoMineral) {
                     lineaDelMapa += "M";
+                }
+            }
+            System.out.println("█" + lineaDelMapa + "█");
+        }
+        lineaDelMapa = "";
+        for (int x=0; x < dimensionX ; x++) {
+            lineaDelMapa += "█";
+        }
+        System.out.println("█" + lineaDelMapa + "█");
+    }
+
+    public void DEBUGMOSTRARMAPAUNIDADES() {
+        String lineaDelMapa = "";
+        int dimensionX = this.superficie.devolverXMax();
+        int dimensionY = this.superficie.devolverYMax();
+        for (int x=0; x < dimensionX ; x++) {
+            lineaDelMapa += "█";
+        }
+        System.out.println("█" + lineaDelMapa + "█");
+        for (int y=0; y < dimensionY; y++) {
+            lineaDelMapa = "";
+            for (int x=0; x < dimensionX ; x++) {
+                Unidad unidad = this.buscarCasilla(new Coordenada(x, y)).devolverUnidad();
+                if (unidad instanceof Zangano) {
+                    lineaDelMapa += "Z";
+                } else if (unidad == null) {
+                    lineaDelMapa += " ";
                 }
             }
             System.out.println("█" + lineaDelMapa + "█");

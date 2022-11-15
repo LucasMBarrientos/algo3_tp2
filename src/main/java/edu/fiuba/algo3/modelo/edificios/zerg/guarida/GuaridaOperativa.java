@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 public class GuaridaOperativa implements EstadoGuarida{
     private Guarida guarida;
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         return edificioConLarvas.consumirLarvasYGenerarUnidad(new Hidralisco(gasVespeno,minerales));
     }
     @Override

@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -39,7 +40,7 @@ public abstract class Edificio  {
 
     public abstract String devolverNombre();
 
-    public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador);
+    public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada);
 
     public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
         return null;

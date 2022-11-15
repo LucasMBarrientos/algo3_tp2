@@ -12,19 +12,15 @@ import edu.fiuba.algo3.modelo.estadisticas.Vida;
 
 public class Zangano extends UnidadZerg {
 
-    public Zangano(Coordenada coordenada ) {
-        this.coordenada = coordenada;
-        this.vida = new Vida(25);
-    }
-
-    public Zangano() {
-        this.costoEnMinerales = new Minerales(25);
-        this.costoEnGas = new GasVespeno(0);
+    public Zangano(GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenadaDeLaUnidad) {
+        gasVespenoDelJugador.gastar(new GasVespeno(0));
+        mineralesDelJugador.gastar(new Minerales(25));
         this.tiempoConstruccion = 1;
         this.danioAereo = new Danio(0);
         this.danioTerrestre = new Danio(0);
         this.rango = 0;
         this.vida = new Vida(25);
+        this.coordenada = coordenadaDeLaUnidad;
     }
 
     public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {

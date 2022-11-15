@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
@@ -24,6 +25,10 @@ public class Inventario {
 
     public void agregarEdificio(Edificio edificioNuevo){
         edificios.add(edificioNuevo);
+    }
+
+    public void agregarPilon(Pilon pilon) {
+        edificios.add(pilon);
     }
 
     public void actualizarGasVespeno(Recursos gasVespeno){
@@ -58,9 +63,12 @@ public class Inventario {
         return edificioConLarvas;
     }
 
-    public void generarUnidad(Casilla casillaConEdifico) {
+    public Unidad generarUnidad(Casilla casillaConEdifico) {
         Edificio edificioConLarvas = this.devolverEdificioConLarvas();
-        casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, minerales);
+        Unidad unidadNueva = casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, minerales, casillaConEdifico.devolverCoordendas());
+        return unidadNueva;
+
+
         //casillaConEdifico.generarUnidad(edificioConLarvas);
     }
 

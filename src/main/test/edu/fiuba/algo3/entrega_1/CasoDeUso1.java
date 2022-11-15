@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.direcciones.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -21,12 +22,28 @@ public class CasoDeUso1 {
 
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         jugadorZerg.generarUnidad(casillaConCriadero);
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        jugadorZerg.moverUnidad(casillaConCriadero, new Arriba());
         jugadorZerg.generarUnidad(casillaConCriadero);
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
         jugadorZerg.generarUnidad(casillaConCriadero);
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        jugadorZerg.moverUnidad(casillaConCriadero, new Abajo());
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
 
         Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
             jugadorZerg.generarUnidad(casillaConCriadero);
         });
+
+
+        Mapa mapa = algoStar.devolverMapa();
+        mapa.DEBUGMOSTRARMAPATERRENO();
+        mapa.DEBUGMOSTRARMAPAUNIDADES();
     }
 /*
     @Test

@@ -29,7 +29,8 @@ public class JugadorProtoss extends Jugador {
     }
 
     protected void iniciarseEnMapa() {
-        mapa.establecerInicioProtoss(id);
+        Pilon pilonInicial = mapa.establecerInicioProtoss(id);
+        this.inventario.agregarEdificio(pilonInicial);
     }
 
 /*
