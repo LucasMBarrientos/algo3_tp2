@@ -1,13 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,25 @@ public class JugadorProtoss extends Jugador {
     public JugadorProtoss(String nombre, String color, int recursosExtra) {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
-    
+
+    @Override
+    public void generarUnidad(Coordenada coordenada) {
+
+    }
+
     protected void iniciarseEnMapa() {
         mapa.establecerInicioProtoss(id);
     }
 
+
+    public void moverse(Coordenada coordenadaUnidad, Direccion direccion){
+        Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
+        if(unidad == null){
+            throw new UnidadInexistente();
+        }
+        unidad.moverse(direccion, mapa);
+
+    }
     /*
 
     public JugadorProtoss(Mapa mapa) {

@@ -2,8 +2,6 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.terrenos.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.*;
-import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

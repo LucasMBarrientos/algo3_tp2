@@ -54,8 +54,15 @@ public class Criadero extends EdificioZerg {
     }
 
 
+
+
     public void actualizar() {
       this.estado.actualizar();
+    }
+
+    @Override
+    public Unidad generarUnidad(Criadero criadero) {
+        return null;
     }
 
     public void setState(EstadoCriadero estado){

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
@@ -42,6 +43,12 @@ public class JugadorZerg extends Jugador {
 
     protected void iniciarseEnMapa() {
         mapa.establecerInicioZerg(id);
+    }
+
+    public void generarUnidad(Coordenada coordenada){
+        Casilla casilla = mapa.buscarCasilla(coordenada);
+        casilla.devolverEdificio().generarUnidad(new Criadero());
+
     }
 
 

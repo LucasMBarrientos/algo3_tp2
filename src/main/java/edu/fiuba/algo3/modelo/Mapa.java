@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.areas.AreaEspacial;
+import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -24,6 +26,7 @@ public class Mapa {
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
+        generarAreasIniciales();
         generarTerrenoInicial();
         actualizarTerrenoEnergizado();
     }
@@ -75,6 +78,13 @@ public class Mapa {
             }
         }
         return casillasAdyacentes;
+    }
+
+    private void generarAreasIniciales(){
+        for(Casilla casilla: casillas){
+            casilla.establecerArea(new AreaTerrestre());
+        }
+        buscarCasilla(new Coordenada(10,10)).establecerArea(new AreaEspacial()); //TODO cambiar esto por una generacion aleatoria (o controlada)
     }
 
     public List<Casilla> buscarCasillasAdyacentes(Coordenada coordenada) {
@@ -229,10 +239,6 @@ public class Mapa {
     }
 
     */
-
-
-
-
 
     public void DEBUGMOSTRARMAPA() {
         String lineaDelMapa = "";

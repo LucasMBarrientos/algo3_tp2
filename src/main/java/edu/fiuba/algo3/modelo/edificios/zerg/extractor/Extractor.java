@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.extractor;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 
@@ -31,7 +33,12 @@ public class Extractor extends EdificioZerg {
     public void actualizar() {
       this.estado.actualizar();
     }
-  
+
+    @Override
+    public Unidad generarUnidad(Criadero criadero) {
+        return null;
+    }
+
     public void setState(EstadoExtractor estado){
       this.estado = estado;
       this.estado.setExtractor(this);

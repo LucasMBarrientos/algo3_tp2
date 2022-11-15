@@ -4,12 +4,14 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class NexoMineral extends EdificioProtoss {
     private EstadoNexoMineral estado;
@@ -32,6 +34,11 @@ public class NexoMineral extends EdificioProtoss {
     
     public void actualizar() {
       this.estado.actualizar();
+    }
+
+    @Override
+    public Unidad generarUnidad(Criadero criadero) {
+        return null;
     }
 
     public void setState(EstadoNexoMineral estado){

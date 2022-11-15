@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
 import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +48,15 @@ public abstract class Jugador {
         iniciarseEnMapa();
     }
 
+    public abstract void generarUnidad(Coordenada coordenada);
+
     protected abstract void iniciarseEnMapa();
 
     public void establecerId(int id) {
         this.id = id;
     }
+
+    public abstract void moverse(Coordenada coordenadaUnidad, Direccion direccion);
 /*
     protected Mapa mapa;
 

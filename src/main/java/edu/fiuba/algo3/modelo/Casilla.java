@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.areas.Area;
 import edu.fiuba.algo3.modelo.edificios.CasillaOcupadaPorEdificio;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
@@ -14,9 +15,12 @@ public class Casilla {
     private Unidad unidad;
     private Terreno terreno;
 
+    private Area area;
+
     public Casilla (Coordenada coordenada) {
         this.coordenada = coordenada;
         this.terreno = new Terreno();
+        //this
     }
 /*
     public void ocuparPorEdificio(Edificio edificio) {
@@ -27,6 +31,10 @@ public class Casilla {
     }*/
     public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;
+    }
+
+    public void establecerArea(Area area){
+        this.area = area; //TODO esto quizas deberia ser pasado x constructor
     }
 
     public void establecerUnidad(Unidad unidad) {
@@ -65,6 +73,15 @@ public class Casilla {
         edificio.establecerTerreno(this.terreno);
         this.edificio = edificio;
       }
+    }
+
+    public void ocuparPorUnidad(Edificio edificio) {
+        if(this.devolverEdificio() != null){
+            throw new CasillaOcupadaPorEdificio();
+        }else{
+            edificio.establecerTerreno(this.terreno);
+            this.edificio = edificio;
+        }
     }
 
     /*public void actualizarListaDeCoordenadasConMoho(List<Coordenada> coordenadasConMoho) {
