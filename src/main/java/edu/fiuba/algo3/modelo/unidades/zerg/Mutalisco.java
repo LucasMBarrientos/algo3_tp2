@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.unidades.UnidadOperativa;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 
 public class Mutalisco extends UnidadZerg {
@@ -18,5 +19,6 @@ public class Mutalisco extends UnidadZerg {
         this.vida = new Vida(120);
         this.aerea = true;
     }
+
 
 }

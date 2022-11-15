@@ -12,7 +12,7 @@ public class UnidadEnConstruccion implements EstadoUnidad{
         throw new UnidadNoTerminoDeConstruirse();
     }
 
-    public void atacar (Direccion direccion, Mapa mapa, Coordenada coordenada){
+    public void atacar(Direccion direccion, Mapa mapa, Coordenada coordenada){
         throw new UnidadNoTerminoDeConstruirse();
     }
 }

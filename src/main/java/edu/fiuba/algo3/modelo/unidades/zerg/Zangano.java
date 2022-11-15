@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
+import edu.fiuba.algo3.modelo.unidades.UnidadOperativa;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 

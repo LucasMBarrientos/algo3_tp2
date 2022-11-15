@@ -19,7 +19,7 @@ public abstract class Unidad {
     protected Danio danioTerrestre;
     protected int rango = 0;
     protected Vida vida;
-    protected EstadoUnidad estado;
+    protected EstadoUnidad estado = new UnidadEnConstruccion();
     protected boolean aerea = false;
 
     public int devolverTiempoConstruccion() {
@@ -39,7 +39,13 @@ public abstract class Unidad {
     }
 
 
-    public abstract void actualizar(Inventario inventario);
+    public void actualizar(){
+        tiempoConstruccion--;
+        if(tiempoConstruccion == 0){
+            estado = new UnidadOperativa(danioAereo, danioTerrestre, rango);
+        }
+        vida.regenerar();
+    }
 
     public void moverse(Direccion direccion, Mapa mapa){
         estado.moverse(direccion,mapa, coordenada, this);
@@ -48,8 +54,6 @@ public abstract class Unidad {
     public void atacar (Direccion direccion, Mapa mapa){
         estado.atacar(direccion, mapa, coordenada);
     }
-
-
 
 
 
