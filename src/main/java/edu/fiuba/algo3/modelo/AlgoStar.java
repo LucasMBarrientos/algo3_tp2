@@ -26,7 +26,7 @@ public class AlgoStar {
     }
 
     public void empezarJuego() {
-        this.mapa = new Mapa(new Coordenada(150,100));
+        this.mapa = new Mapa(new Coordenada(100,20));
         for (Jugador jugador : jugadores) {
             jugador.establecerMapa(mapa);
         }
