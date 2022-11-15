@@ -29,7 +29,7 @@ public class CasoDeUso10 {
 
         Assertions.assertThrows(EdificioDestruido.class,() ->{
             criadero.recibirGolpe(new Danio(300));
-                });
+        });
 
     }
 

@@ -1,31 +1,26 @@
 package edu.fiuba.algo3.modelo.unidades;
 
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
-public abstract class Unidad { // seguramente deba ser abstracta
+public abstract class Unidad {
 
-    protected int requerimientosMinerales = 0;
-    protected int requerimientosGas = 0;
+    protected Recursos costoEnMinerales;
+    protected Recursos costoEnGas;
     protected int tiempoConstruccion = 1;
     protected Coordenada coordenada;
     protected Danio danioAereo;
     protected Danio danioTerrestre;
     protected int rango = 0;
     protected Vida vida;
+    protected EstadoUnidad estado;
     protected boolean aerea = false;
-
-    public int devolverRequerimientosDeGas() {
-        return requerimientosGas;
-    }
-
-    public int devolverRequerimientosMinerales() {
-        return requerimientosMinerales;
-    }
 
     public int devolverTiempoConstruccion() {
         return tiempoConstruccion;
@@ -44,25 +39,20 @@ public abstract class Unidad { // seguramente deba ser abstracta
     }
 
 
+    public abstract void actualizar(Inventario inventario);
 
     public void moverse(Direccion direccion, Mapa mapa){
-        Coordenada nuevaPosicion = direccion.siguiente(coordenada);
-        //chequear que se pueda para aca
-        mapa.buscarCasilla(nuevaPosicion).establecerUnidad(this);
-
+        estado.moverse(direccion,mapa, coordenada, this);
     }
 
     public void atacar (Direccion direccion, Mapa mapa){
-        Coordenada coordenadaDelObjetivo= direccion.siguiente(coordenada);
-
-        for (int i = 0; i < rango; i++) {
-            coordenadaDelObjetivo = direccion.siguiente(coordenadaDelObjetivo);
-        }
-
-        Casilla casillaDelObjetivo = mapa.buscarCasilla(coordenadaDelObjetivo);
-        casillaDelObjetivo.devolverEdificio().recibirGolpe(danioTerrestre);
-        //implementar el recibir daño a una unidad
+        estado.atacar(direccion, mapa, coordenada);
     }
+
+
+
+
+
 
 /*
     protected boolean disponible = true;

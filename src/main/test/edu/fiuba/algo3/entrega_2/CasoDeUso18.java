@@ -12,7 +12,7 @@ public class CasoDeUso18 {
         for(int i=0; i<5; i++) { // paso los turnos para que se termine de construir
             criadero.actualizar();
         }
-        criadero.generarZangano();
+
 
     }
 }

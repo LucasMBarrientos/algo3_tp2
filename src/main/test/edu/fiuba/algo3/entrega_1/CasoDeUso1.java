@@ -37,7 +37,7 @@ public class CasoDeUso1 {
         } catch (NoHayLarvasDisponibles e){
             expected = false;
         }
-        Assertions.assertTrue(expected); // TODO: buscar forma mas elegante para hacer esto
+        Assertions.assertTrue(expected);
     }
 
     @Test

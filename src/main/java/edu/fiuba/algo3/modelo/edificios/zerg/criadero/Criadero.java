@@ -28,7 +28,7 @@ public class Criadero extends EdificioZerg {
         this.coordenada = coordenada;
     }*/
 
-    public Zangano generarZangano() throws NoHayLarvasDisponibles{ //Leti: refactor aca.
+    public Zangano generarZangano() throws NoHayLarvasDisponibles{
         return estado.generarZangano();
     }
 
