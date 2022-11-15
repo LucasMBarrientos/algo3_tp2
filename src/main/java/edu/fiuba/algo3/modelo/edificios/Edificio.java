@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.Actualizable;
 import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Coordenada;
@@ -36,6 +37,8 @@ public abstract class Edificio  {
     public abstract boolean compararCon(Edificio edificoAComparar);
 
     public abstract String devolverNombre();
+
+    public abstract void recibirGolpe(Danio danio);
 /*
     public int tiempoConstruccion;
     public int requerimientosGas;

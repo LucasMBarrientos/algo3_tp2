@@ -105,6 +105,10 @@ public class Casilla {
         return this.edificio.generaTerrenoEnergizado();
     }
 
+    public Unidad devolverUnidad(){
+        return unidad;
+    }
+
     /*public boolean terrenoEsReemplazable() {
         return this.terreno.esReemplazable();
     }
@@ -114,8 +118,8 @@ public class Casilla {
     }*/
 
     public void actualizar(){
-       // if
     }
+
 
 
 /*
