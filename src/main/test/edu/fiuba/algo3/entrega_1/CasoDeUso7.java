@@ -59,9 +59,9 @@ public class CasoDeUso7 {
 
         Casilla casillaConPilon = jugadorProtoss.hallarCasillaConEdificioInicial();
         List<Coordenada> coordenadasConTerrenosEnergizados = casillaConPilon.hallarCoordenadasAdyacentes();
+        jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
         boolean intentoExitoso = true;
         try {
-            jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
             jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(1), new Pilon());
         } catch (RecursosInsuficientes e){
             intentoExitoso = false;
@@ -89,9 +89,9 @@ public class CasoDeUso7 {
         }
 
         List<Coordenada> coordenadasConMoho = casillaConVolcan.hallarCoordenadasAdyacentes();
+        jugadorZerg.construirEdificio(coordenadasConMoho.get(0), new ReservaDeReproduccion());
         boolean intentoExitoso = true;
         try {
-            jugadorZerg.construirEdificio(coordenadasConMoho.get(0), new ReservaDeReproduccion());
             jugadorZerg.construirEdificio(coordenadasConMoho.get(1), new ReservaDeReproduccion());
         } catch (RecursosInsuficientes e){
             intentoExitoso = false;
