@@ -26,12 +26,14 @@ public class Guarida extends EdificioZerg {
         setState(new GuaridaEnConstruccion());
     }
 
-    public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
-        return estado.generarUnidad(criadero);
-    }
 
     public void actualizar() {
       this.estado.actualizar();
+    }
+
+    @Override
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+        return null;
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){

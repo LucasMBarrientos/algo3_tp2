@@ -25,7 +25,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     }
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) throws NoHayLarvasDisponibles {
-        return estado.generarUnidad(edificioConLarvas);
+        return estado.generarUnidad(edificioConLarvas,  gasVespenoDelJugador,  mineralesDelJugador);
     }
     public void actualizar() {
       this.estado.actualizar();

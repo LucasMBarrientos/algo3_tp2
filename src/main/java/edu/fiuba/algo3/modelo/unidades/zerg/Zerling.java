@@ -11,9 +11,9 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 
 public class Zerling extends UnidadZerg {
 
-    public Zerling() {
-        this.costoEnMinerales = new Minerales(25);
-        this.costoEnGas = new GasVespeno(0);
+    public Zerling(GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+        gasVespenoDelJugador.gastar(new GasVespeno(0));
+        mineralesDelJugador.gastar(new Minerales(25));
         this.tiempoConstruccion = 2;
         this.danioAereo = new Danio(0);
         this.danioTerrestre = new Danio(4);

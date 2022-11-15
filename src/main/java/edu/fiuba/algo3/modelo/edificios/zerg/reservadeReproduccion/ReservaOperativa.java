@@ -1,14 +1,16 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class ReservaOperativa implements EstadoReserva {
     private ReservaDeReproduccion reserva;
 
-    public Unidad generarUnidad(Edificio edificioConLarvas) {
-        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Zerling());
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales) {
+        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Zerling(gasVespeno,minerales));
     }
     
     @Override

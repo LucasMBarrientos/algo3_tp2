@@ -12,17 +12,23 @@ public class CasoDeUso1 {
     
     @Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-        Criadero criadero = new Criadero().terminarConstruccion();
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo",50); // El jugador zerg empieza con 250 unidades de minerales y 50 unidades de gas
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
-        criadero.generarZangano();
-        criadero.generarZangano();
-        criadero.generarZangano();
+        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        jugadorZerg.generarUnidad(casillaConCriadero);
+        jugadorZerg.generarUnidad(casillaConCriadero);
+        jugadorZerg.generarUnidad(casillaConCriadero);
 
         Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
-            criadero.generarZangano();
+            jugadorZerg.generarUnidad(casillaConCriadero);
         });
     }
-
+/*
     @Test
     public void criaderoGeneraDosZanganosYPuedeGenerarUnoMasEnEseTurno() {
         boolean expected = true;

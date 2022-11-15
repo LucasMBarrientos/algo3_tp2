@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.JugadorProtoss;
-import edu.fiuba.algo3.modelo.JugadorZerg;
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.direcciones.Arriba;
 import edu.fiuba.algo3.modelo.direcciones.Derecha;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso20 {
@@ -14,19 +14,31 @@ public class CasoDeUso20 {
     @Test
     public void unidadTerrestreNoPuedeEntrarAAreaEspacial(){
         AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
         algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
-        jugadorZerg.construirEdificio(new Coordenada(10,9),new Espiral());
+        Mapa mapa = algoStar.devolverMapa();
 
-        //jugadorZerg.devolInventario().;
+        Casilla casillaConAreaEspacial = mapa.buscarCasilla(new Coordenada(10,10));
 
-        algoStar.hallarJugadorActual().generarUnidad(new Coordenada(10,9));
+        algoStar.devolverMapa().buscarCasilla(new Coordenada(10,9)).establecerUnidad(new Zangano());
 
-        algoStar.hallarJugadorActual().moverse(new Coordenada(10,9),new Arriba());
+        jugadorZerg.construirEdificio(new Coordenada(10,9),new Criadero());
+
+        for (int i = 0; i < 5; i++) {
+            algoStar.pasarTurno();
+        }
+
+        Casilla casillaConCriadero = algoStar.devolverMapa().buscarCasilla(new Coordenada(10,9));
+
+        jugadorZerg.generarUnidad(casillaConCriadero);
+
+        jugadorZerg.moverUnidad(casillaConCriadero,new Arriba());
+
+        Assertions.assertNull(casillaConAreaEspacial.devolverEdificio());
 
 
     }

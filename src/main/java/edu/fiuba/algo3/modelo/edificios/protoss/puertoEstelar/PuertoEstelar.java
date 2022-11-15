@@ -37,9 +37,10 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     @Override
-    public Unidad generarUnidad(Criadero criadero) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
         return null;
     }
+
 
     public void setState(EstadoPuertoEstelar estado){
       this.estado = estado;

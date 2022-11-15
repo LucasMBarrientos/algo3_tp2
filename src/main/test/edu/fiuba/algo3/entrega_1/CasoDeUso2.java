@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso2 {
 
+    /*
     @Test
     public void criaderoSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;

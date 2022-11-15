@@ -37,7 +37,12 @@ public class Espiral extends EdificioZerg {
     public void actualizar() {
       this.estado.actualizar();
     }
-  
+
+    @Override
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+        return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralesDelJugador);
+    }
+
     public void setState(EstadoEspiral estado){
       this.estado = estado;
       this.estado.setEspiral(this);
@@ -51,9 +56,6 @@ public class Espiral extends EdificioZerg {
       return this.estado.deshacerConstruccion();
     }
 
-    public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
-      return estado.generarUnidad(criadero);
-    }
 
     public void recibirGolpe(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);

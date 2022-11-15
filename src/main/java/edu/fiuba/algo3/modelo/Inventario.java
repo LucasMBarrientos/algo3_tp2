@@ -60,7 +60,7 @@ public class Inventario {
 
     public void generarUnidad(Casilla casillaConEdifico) {
         Edificio edificioConLarvas = this.devolverEdificioConLarvas();
-        casillaConEdifico.generarUnidad(edificioConLarvas, minerales, gasVespeno);
+        casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, minerales);
         //casillaConEdifico.generarUnidad(edificioConLarvas);
     }
 
