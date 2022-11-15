@@ -4,15 +4,15 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.EdificioRequiereDeOtro;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
 
 public abstract class EdificioProtoss extends Edificio {
 
@@ -22,10 +22,10 @@ public abstract class EdificioProtoss extends Edificio {
     public Recursos costoEnGas;
     public List<EstadoTerreno> posiblesTerrenos;
     public List<Edificio> edificiosNecesarios;
-    private String nombre;
-    public int tiempoDeConstruccion;
     public Vida vida;
     public Escudo escudo;
+    private String nombre;
+    public int tiempoDeConstruccion;
 
     public Edificio construir(Inventario inventario){
       try {
@@ -75,6 +75,14 @@ public abstract class EdificioProtoss extends Edificio {
         return true;
       }
     }
+    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+        int escudoRestante;
+        escudoRestante = escudo.recibirDanio(danio);
+        if(escudoRestante < 0){
+            vida.recibirDanio(new Danio(escudoRestante * (-1)));
+        }
+    }
+
 
     /*
     protected int escudo;

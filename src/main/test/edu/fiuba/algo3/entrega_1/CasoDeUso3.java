@@ -23,36 +23,63 @@ public class CasoDeUso3 {
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoVacio() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
+
         Mapa mapa = algoStar.devolverMapa();
-        Jugador jugadorZerg = algoStar.devolverJugadorActual();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
+        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConCriadero);
+        jugadorZerg.moverUnidad(casillaConCriadero, casillaConTerenoVacio);
+        */
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Extractor());
+            jugadorZerg.construirEdificio(casillaConTerenoVacio, new Extractor());
         });
     }
 
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoConMoho() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
+
         Mapa mapa = algoStar.devolverMapa();
-        Jugador jugadorZerg = algoStar.devolverJugadorActual();
-        List<Casilla> casillasConMoho = mapa.buscarCasillasAdyacentes(jugadorZerg.hallarCasillaConEdificioInicial());
+        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConCriadero);
+        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
+        */
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillasConMoho.get(0).devolverCoordendas(), new Extractor());
+            jugadorZerg.construirEdificio(casillaConMoho, new Extractor());
         });
     }
 
     @Test
     public void extractorPuedeConstruirseSobreUnVolcan() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
-        Jugador jugadorZerg = algoStar.devolverJugadorActual();
+
+        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConCriadero);
+        jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
+        */
 
         boolean intentoExitoso = true;
         try {
@@ -66,44 +93,53 @@ public class CasoDeUso3 {
     @Test
     public void asimiladorNoPuedeConstruirseSobreUnTerrenoVacio() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
         algoStar.empezarJuego();
-        algoStar.pasarTurno();
+
         Mapa mapa = algoStar.devolverMapa();
-        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
-        Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,-1,-1);
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Asimilador());
+            jugadorProtoss.construirEdificio(casillaConTerenoVacio, new Asimilador());
         });
     }
 
     @Test
     public void asimiladorNoPuedeConstruirseSobreUnTerrenoConMoho() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
         algoStar.empezarJuego();
+
         Mapa mapa = algoStar.devolverMapa();
-        Jugador jugadorZerg = algoStar.devolverJugadorActual();
-        algoStar.pasarTurno();
-        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
-        List<Casilla> casillasConMoho = mapa.buscarCasillasAdyacentes(jugadorZerg.hallarCasillaConEdificioInicial());
+        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillasConMoho.get(0).devolverCoordendas(), new Asimilador());
+            jugadorProtoss.construirEdificio(casillaConMoho, new Asimilador());
         });
     }
 
     @Test
     public void asimiladorPuedeConstruirseSobreUnVolcan() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
         algoStar.empezarJuego();
-        algoStar.pasarTurno();
-        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+        
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
 
         boolean intentoExitoso = true;
         try {
-            jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
+            jugadorProtoss.construirEdificio(casillaConVolcan, new Asimilador());
         } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
             intentoExitoso = false;
         }

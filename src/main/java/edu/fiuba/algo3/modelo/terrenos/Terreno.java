@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public class Terreno {
   private EstadoTerreno estado;
@@ -46,11 +45,21 @@ public class Terreno {
     this.estado.generarMina();
   }
 
+
+    public EstadoTerreno DEBUGDEVOLVERESTADO() {
+        return estado;
+    }
+
+
+    /*public Recursos obtenerRecursos() {
+        return null;
+    }
+
   public void consumirMinerales(Recursos recursoRequerido){
     this.estado.consumirMinerales(recursoRequerido);
   }
 
   public void consumirGasVespeno(Recursos recursoRequerido){
     this.estado.consumirGasVespeno(recursoRequerido);
-  }
+  }*/
 }

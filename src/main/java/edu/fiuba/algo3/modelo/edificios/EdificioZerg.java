@@ -4,10 +4,10 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.EdificioRequiereDeOtro;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
@@ -20,9 +20,9 @@ public abstract class EdificioZerg extends Edificio {
     public Recursos costoEnGas;
     public List<EstadoTerreno> posiblesTerrenos;
     public List<Edificio> edificiosNecesarios;
+    public Vida vida;
     private String nombre;
     public int tiempoDeConstruccion;
-    public Vida vida;
 
     public Edificio construir(Inventario inventario){
       try {
@@ -69,6 +69,10 @@ public abstract class EdificioZerg extends Edificio {
       }else{
         return true;
       }
+    }
+
+    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+        vida.recibirDanio(danio);
     }
 /*
     protected void regenerarVida() {

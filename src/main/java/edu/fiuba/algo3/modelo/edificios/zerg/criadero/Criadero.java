@@ -4,8 +4,6 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
-import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -43,9 +41,6 @@ public class Criadero extends EdificioZerg {
         inventario.consumirMinerales(costoEnMinerales);
     }*/
 
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
-        vida.recibirDanio(danio);
-    }
 
     /*public void ocupar(Casilla casilla, Terreno terreno){
 

@@ -1,25 +1,18 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.zerg.*;
-import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class JugadorZerg extends Jugador {
 
-    public JugadorZerg(Mapa mapa) {
-        this.id = 0;
-        this.mapa = mapa;
-        this.inventario = new Inventario(new GasVespeno(0), new Minerales(200));
+    public JugadorZerg(String nombre, String color) {
+        establecerAtributosBasicos(nombre, color, 0, 200);
     }
 
-    @Override
-    public void construirEdificio(Coordenada coord, Edificio edificio) {
-      mapa.buscarCasilla(coord).ponerEdificio(edificio.construir(inventario));
+    public JugadorZerg(String nombre, String color, int recursosExtra) {
+        establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
 
     public void actualizar() {
@@ -30,7 +23,26 @@ public class JugadorZerg extends Jugador {
         return this.inventario;
     }
 
+    public void atacar(Coordenada coordenadaUnidad, Direccion direccion){
+        Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
+        if(unidad == null){
+            throw new UnidadInexistente();
+        }
+        unidad.atacar(direccion, mapa);
+    }
 
+    public void moverse(Coordenada coordenadaUnidad, Direccion direccion){
+        Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
+        if(unidad == null){
+            throw new UnidadInexistente();
+        }
+        unidad.moverse(direccion, mapa);
+
+    }
+
+    protected void iniciarseEnMapa() {
+        mapa.establecerInicioZerg(id);
+    }
 
 
 

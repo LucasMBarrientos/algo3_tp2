@@ -10,12 +10,24 @@ import java.util.List;
 public abstract class Jugador {
 
     protected int id;
-
     protected Mapa mapa;
-
     public Inventario inventario;
+    protected String nombre;
+    protected String color;
 
-    public abstract void construirEdificio(Coordenada coord, Edificio edificio);
+    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
+        this.construirEdificio(mapa.buscarCasilla(coordenada), edificio);
+    }
+
+    public void construirEdificio(Casilla casilla, Edificio edificio) {
+        casilla.ponerEdificio(edificio.construir(inventario));
+    }
+
+    protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales) {
+        this.nombre = nombre;
+        this.color = color;
+        this.inventario = new Inventario(new GasVespeno(gasInicial), new Minerales(mineralesIniciales));
+    }
 
     public Casilla hallarCasillaConVolcanInicial() {
         return mapa.hallarVolcanInicialDelJugador(id);
@@ -29,6 +41,16 @@ public abstract class Jugador {
         return mapa.hallarCasillaConEdificioInicialDelJugador(id);
     }
 
+    public void establecerMapa(Mapa mapa) {
+        this.mapa = mapa;
+        iniciarseEnMapa();
+    }
+
+    protected abstract void iniciarseEnMapa();
+
+    public void establecerId(int id) {
+        this.id = id;
+    }
 /*
     protected Mapa mapa;
 
