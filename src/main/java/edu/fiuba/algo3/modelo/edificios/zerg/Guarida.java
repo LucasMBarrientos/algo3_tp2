@@ -1,11 +1,14 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class Guarida extends EdificioZerg {
@@ -18,6 +21,8 @@ public class Guarida extends EdificioZerg {
     public Guarida() {
         this.costoEnMinerales = new Minerales(200);
         this.costoEnGas = new GasVespeno(100);
+        this.posiblesTerrenos = List.of(new TerrenoMoho());
+        this.edificiosNecesarios = List.of();
     }
     public Guarida(Coordenada coordenada) {
         this.coordenada = coordenada;

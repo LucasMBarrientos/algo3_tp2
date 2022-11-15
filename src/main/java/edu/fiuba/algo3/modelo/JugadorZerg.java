@@ -19,7 +19,7 @@ public class JugadorZerg extends Jugador {
 
     @Override
     public void construirEdificio(Coordenada coord, Edificio edificio) {
-        edificio.construirse(mapa.buscarCasilla(coord), inventario);
+      mapa.buscarCasilla(coord).ponerEdificio(edificio.construir(inventario));
     }
 
     public void actualizar() {

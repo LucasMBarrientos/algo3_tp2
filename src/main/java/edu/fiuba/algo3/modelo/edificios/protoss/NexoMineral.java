@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
@@ -14,6 +16,7 @@ import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 
 public class NexoMineral extends EdificioProtoss {
     private int tiempoDeConstruccion = 4;
@@ -26,6 +29,8 @@ public class NexoMineral extends EdificioProtoss {
 
     public NexoMineral(){
         this.costoEnMinerales = new Minerales(50);
+        this.posiblesTerrenos = List.of(new TerrenoMineral());
+        this.edificiosNecesarios = List.of();
     }
 
     public void actualizar() {}

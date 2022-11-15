@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -7,6 +9,7 @@ import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
@@ -20,6 +23,8 @@ public class Criadero extends EdificioZerg {
 
     public Criadero() {
         this.costoEnMinerales = new Minerales(50);
+        this.posiblesTerrenos = List.of(new TerrenoMoho());
+        this.edificiosNecesarios = List.of();
     }
 
 

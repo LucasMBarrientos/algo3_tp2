@@ -47,6 +47,21 @@ public class Inventario {
         gasVespeno.gastar(RecursoRequerido);
     }
 
+    public boolean faltanEdificios(List<Edificio> edificiosAComprobar){
+      boolean faltanEdificios = false;
+      for (int i = 0; i < edificiosAComprobar.size(); i++) {
+        for (int j = 0; j < edificios.size(); j++) {
+          if (edificiosAComprobar.get(i).compararCon(edificios.get(j))){
+            faltanEdificios = false;
+          }
+        }
+        if (faltanEdificios){
+          return true;
+        }
+      }
+      return faltanEdificios;
+    }
+
     public void actualizar(){
         for(Edificio edificio: edificios){
             edificio.actualizar(this);

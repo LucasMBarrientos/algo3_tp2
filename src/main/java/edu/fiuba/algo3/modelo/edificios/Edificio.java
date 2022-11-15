@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 
@@ -16,19 +17,24 @@ public abstract class Edificio  {
         return false;
     }
 
-
-    public abstract void construirse(Casilla casilla, Inventario inventario);
+    public abstract Edificio construir(Inventario inventario);
+    
+    public abstract List<EstadoTerreno> posiblesEstados();
 
     protected abstract void consumirRecursosParaConstruccion(Inventario inventario);
 
+    public abstract boolean validarCorrelativas(Inventario inventario);
+
     public abstract void ocupar(Casilla casilla, Terreno terreno);
 
+    public abstract void establecerTerreno(Terreno terreno);
     //public abstract void recibirGolpe(int danio);
 
     public abstract void actualizar(Inventario inventario);
 
+    public abstract boolean compararCon(Edificio edificoAComparar);
 
-    
+    public abstract String devolverNombre();
 /*
     public int tiempoConstruccion;
     public int requerimientosGas;

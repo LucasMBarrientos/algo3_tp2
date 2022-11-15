@@ -14,11 +14,17 @@ public class NexoMineralOperativo implements EstadoNexoMineral{
 
     private Recursos recursosAExtraer;
 
+    @Override
+    public void recolectarRecursos(Terreno terreno, Inventario inventario) {
+      // TODO Auto-generated method stub
+      
+    }
 
-    public void recolectarRecursos(Terreno terreno, Inventario inventario){
+
+    /*public void recolectarRecursos(Terreno terreno, Inventario inventario){
         recursosAExtraer = new Minerales(10);
         Recursos gasDelVolcan = terreno.obtenerRecursos();
         gasDelVolcan.gastar(recursosAExtraer);
         inventario.actualizarMinerales(recursosAExtraer);
-    }
+    }*/
 }

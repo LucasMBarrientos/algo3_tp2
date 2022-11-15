@@ -9,8 +9,42 @@ import edu.fiuba.algo3.modelo.*;
 
 import java.util.List;
 
-public class TerrenoMoho extends Terreno {
+public class TerrenoMoho implements EstadoTerreno {
+  private Terreno terreno;
 
+  @Override
+  public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
+    if(this.validarEstado(edificio.posiblesEstados())){
+      casilla.ocupar(edificio);
+    }else{
+      throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+  }
+
+  @Override
+  public void energizarTerreno() {}
+
+  @Override
+  public void cubrirTerrenoDeMoho() {}
+
+  @Override
+  public void setTerreno(Terreno terreno) {
+    this.terreno = terreno;
+  }
+
+  @Override
+  public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
+    for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
+      if(listaDePosiblesTerrenos.get(i) instanceof TerrenoMoho){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public void vaciarTerreno(){}
+/*
     public TerrenoMoho() {
 
     }
@@ -69,9 +103,7 @@ public class TerrenoMoho extends Terreno {
         }
     }
     */
-
-
-
+/*
     @Override
     public void actualizarListaDeCoordenadasConMoho(List<Coordenada> cooordenadasDeCasillasConMoho, Coordenada coordenadaActual) {
         List<Coordenada> coordenadasAdyacentes = coordenadaActual.hallarCoordenadasAdyacentes();
@@ -82,5 +114,5 @@ public class TerrenoMoho extends Terreno {
     public void actualizar() {
 
     }
-
+*/
 }

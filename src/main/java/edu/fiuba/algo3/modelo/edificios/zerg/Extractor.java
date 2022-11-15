@@ -29,6 +29,8 @@ public class Extractor extends EdificioZerg {
 
     public Extractor() {
         this.costoEnMinerales = new GasVespeno(50);
+        this.posiblesTerrenos = List.of(new TerrenoVolcan());
+        this.edificiosNecesarios = List.of();
     }
     public Extractor(Coordenada coordenada) {
         this.coordenada = coordenada;

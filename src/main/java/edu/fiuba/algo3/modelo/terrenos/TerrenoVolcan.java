@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
@@ -10,8 +12,47 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-public class TerrenoVolcan extends Terreno implements TieneRecursos {
+public class TerrenoVolcan implements EstadoTerreno {
+  private Terreno terreno;
 
+  @Override
+  public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
+    if(this.validarEstado(edificio.posiblesEstados())){
+      casilla.ocupar(edificio);
+    }
+  }
+
+  @Override
+  public void energizarTerreno() {
+    terreno.setState(new TerrenoEnergizado());
+  }
+
+  @Override
+  public void cubrirTerrenoDeMoho() {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void setTerreno(Terreno terreno) {
+    this.terreno = terreno;
+  }
+
+  @Override
+  public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
+    for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
+      if(listaDePosiblesTerrenos.get(i) instanceof TerrenoVolcan){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public void vaciarTerreno(){}
+
+
+/*
     public GasVespeno gasVespeno = new GasVespeno(5000);
 
     public Recursos obtenerRecursos(){
@@ -67,11 +108,11 @@ public class TerrenoVolcan extends Terreno implements TieneRecursos {
         }
         return  (unidad instanceof Zangano);
         */
-
+/*
     }
 
     public boolean esReemplazable(){
         return false;
     }
-
+*/
 }

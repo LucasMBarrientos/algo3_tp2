@@ -22,11 +22,17 @@ public class ExtractorOperativo implements EstadoExtractor {
             zanganosTrabajando.add(zangano);
         }
     }
-
+    /* 
     public void recolectarRecursos(Terreno terreno, Inventario inventario){
         recursosAExtraer = new GasVespeno(10 * zanganosTrabajando.size());
         Recursos gasDelVolcan = terreno.obtenerRecursos();
         gasDelVolcan.gastar(recursosAExtraer);
         inventario.actualizarGasVespeno(recursosAExtraer);
+    }*/
+
+    @Override
+    public void recolectarRecursos(Terreno terreno, Inventario inventario) {
+      // TODO Auto-generated method stub
+      
     }
 }

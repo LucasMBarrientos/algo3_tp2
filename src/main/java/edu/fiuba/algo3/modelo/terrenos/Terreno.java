@@ -11,9 +11,35 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.List;
 
-public abstract class Terreno {
+public class Terreno {
+ 
+  private EstadoTerreno estado;
 
-    public Recursos obtenerRecursos() {
+  public Terreno(){
+    setState(new TerrenoVacio());
+  }
+
+  public void setState(EstadoTerreno estado){
+    this.estado = estado;
+    this.estado.setTerreno(this);
+  }
+
+  public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
+    this.estado.ocuparPorEdificio(edificio,casilla);
+  }
+
+  public void vaciarTerreno(){
+    this.estado.vaciarTerreno();
+  }
+
+  public void energizarTerreno(){
+    this.estado.energizarTerreno();
+  }
+
+  public void cubrirTerrenoDeMoho() {
+    this.estado.cubrirTerrenoDeMoho();
+  }
+    /*public Recursos obtenerRecursos() {
         return null;
     }
 
@@ -48,6 +74,6 @@ public abstract class Terreno {
     public boolean repeleMoho() {
         return true;
     }
-
+*/
 
 }

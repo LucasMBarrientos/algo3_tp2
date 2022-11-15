@@ -10,6 +10,10 @@ import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
+
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
@@ -24,6 +28,8 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public PuertoEstelar(){
         this.costoEnMinerales = new Minerales(150);
+        this.posiblesTerrenos = List.of(new TerrenoEnergizado());
+        this.edificiosNecesarios = List.of(new Acceso());;
     }
 
     @Override

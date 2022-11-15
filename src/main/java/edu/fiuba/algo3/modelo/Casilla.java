@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.edificios.CasillaOcupadaPorEdificio;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.terrenos.*;
@@ -17,7 +18,7 @@ public class Casilla {
 
     public Casilla (Coordenada coordenada) {
         this.coordenada = coordenada;
-        this.terreno = new TerrenoVacio();
+        this.terreno = new Terreno();
     }
 /*
     public void ocuparPorEdificio(Edificio edificio) {
@@ -34,15 +35,38 @@ public class Casilla {
         this.unidad = unidad;
     }
 
-    public void establecerTerreno(Terreno terreno) {
-        if (this.terreno.esReemplazable()) {
-            this.terreno = terreno;
-        }
+    public void establecerTerreno(EstadoTerreno estadoTerreno) {
+      this.terreno.setState(estadoTerreno);
     }
 
-    public void actualizarListaDeCoordenadasConMoho(List<Coordenada> coordenadasConMoho) {
-        terreno.actualizarListaDeCoordenadasConMoho(coordenadasConMoho, this.coordenada);
+    public void vaciarTerreno() {
+      this.terreno.vaciarTerreno();
     }
+
+    public void energizarTerreno() {
+      this.terreno.energizarTerreno();
+    }
+
+    public void cubrirDeMoho() {
+      this.terreno.cubrirTerrenoDeMoho();
+    }
+
+    public void ponerEdificio(Edificio edificio) {
+      terreno.ocuparPorEdificio(edificio,this);
+    }
+
+    public void ocupar(Edificio edificio) {
+      if(this.devolverEdificio() != null){
+        throw new CasillaOcupadaPorEdificio();
+      }else{
+        edificio.establecerTerreno(this.terreno);
+        this.edificio = edificio;
+      }
+    }
+
+    /*public void actualizarListaDeCoordenadasConMoho(List<Coordenada> coordenadasConMoho) {
+        terreno.actualizarListaDeCoordenadasConMoho(coordenadasConMoho, this.coordenada);
+    }*/
 
     public List<Coordenada> hallarCoordenadasAdyacentes() {
         return coordenada.hallarCoordenadasAdyacentes();
@@ -73,13 +97,13 @@ public class Casilla {
         return this.edificio.generaTerrenoEnergizado();
     }
 
-    public boolean terrenoEsReemplazable() {
+    /*public boolean terrenoEsReemplazable() {
         return this.terreno.esReemplazable();
     }
 
     public boolean terrenoRepeleMoho() {
         return this.terreno.repeleMoho();
-    }
+    }*/
 
     public void actualizar(){
        // if

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Inventario;
@@ -11,6 +13,8 @@ import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
 
 public class Pilon extends EdificioProtoss {
 
@@ -22,6 +26,8 @@ public class Pilon extends EdificioProtoss {
     public Pilon(Coordenada coordenada) { }
     public Pilon() {
         this.costoEnMinerales = new Minerales(100);
+        this.posiblesTerrenos = List.of(new TerrenoEnergizado());
+        this.edificiosNecesarios = List.of();
     }
 
     public void actualizar(Inventario inventario) {

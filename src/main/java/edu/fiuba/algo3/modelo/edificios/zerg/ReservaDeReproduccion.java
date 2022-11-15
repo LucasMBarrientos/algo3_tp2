@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class ReservaDeReproduccion extends EdificioZerg {
@@ -16,6 +19,8 @@ public class ReservaDeReproduccion extends EdificioZerg {
 
     public ReservaDeReproduccion() {
         this.costoEnMinerales = new Minerales(150);
+        this.posiblesTerrenos = List.of(new TerrenoMoho());
+        this.edificiosNecesarios = List.of();
     }
 
     public ReservaDeReproduccion(Coordenada coordenada) {

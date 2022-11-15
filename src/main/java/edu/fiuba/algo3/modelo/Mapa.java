@@ -136,11 +136,11 @@ public class Mapa {
     }
 
     public void actualizar(int turno) {
-        actualizarTerrenoEnergizado();
+       /* actualizarTerrenoEnergizado();
         if(turno % 2 == 0) {
             // Se expande el moho una vez cada 2 turnos
            expandirMoho();
-        }
+        }*/
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {
@@ -255,7 +255,7 @@ public class Mapa {
 
 
 
-
+/*/
     public void DEBUGMOSTRARMAPA() {
         String lineaDelMapa = "";
         int dimensionX = this.superficie.devolverXMax();
@@ -288,7 +288,7 @@ public class Mapa {
         }
         System.out.println("█" + lineaDelMapa + "█");
     }
-
+*//*
     private List<Casilla> buscarCasillasConMoho() {
         // Buscar casilllas que en este turno van a tener moho
         List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
@@ -321,7 +321,7 @@ public class Mapa {
             casillaConMoho.establecerTerreno(new TerrenoMoho());
         }
     }
-
+*/
     private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
         List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,3);
         for (Casilla casillaConMoho : casillasConMoho) {
@@ -335,7 +335,7 @@ public class Mapa {
         for (Casilla casillaConUnPilon : casillasConPilones) {
             casillasConEnergia = buscarCasillasAdyacentes(casillaConUnPilon,2);
             for (Casilla casillaConEnergia : casillasConEnergia) {
-                casillaConEnergia.establecerTerreno(new TerrenoEnergizado());
+                casillaConEnergia.energizarTerreno();
             }
         }
     }
@@ -344,10 +344,10 @@ public class Mapa {
         List<Casilla> casillasConPilones = new ArrayList<Casilla>();
         for (Casilla casilla : casillas) {
             if (casilla.generaTerrenoEnergizado()) {
-                casilla.establecerTerreno(new TerrenoEnergizado());
+                casilla.energizarTerreno();
                 casillasConPilones.add(casilla);
             } else {
-                casilla.establecerTerreno(new TerrenoVacio());
+                casilla.vaciarTerreno();
             }
         }
         return casillasConPilones;

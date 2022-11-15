@@ -9,11 +9,17 @@ public class AsimiladorOperativo implements EstadoAsimilador{
 
     private Recursos recursosAExtraer;
 
+    @Override
+    public void recolectarRecursos(Terreno terreno, Inventario inventario) {
+      // TODO Auto-generated method stub
+      
+    }
 
-    public void recolectarRecursos(Terreno terreno, Inventario inventario){
+
+    /*public void recolectarRecursos(Terreno terreno, Inventario inventario){
         recursosAExtraer = new GasVespeno(20);
         Recursos gasDelVolcan = terreno.obtenerRecursos();
         gasDelVolcan.gastar(recursosAExtraer);
         inventario.actualizarGasVespeno(recursosAExtraer);
-    }
+    }*/
 }
