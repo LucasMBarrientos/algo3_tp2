@@ -8,6 +8,9 @@ import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -36,14 +39,13 @@ public class CasoDeUso4 {
             algoStar.pasarTurno();
         }
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
+        Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
         /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
+        jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
         */
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            jugadorZerg.construirEdificio(casillaConMoho, new Espiral());
+            jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
         });
     }
 
@@ -75,15 +77,14 @@ public class CasoDeUso4 {
             algoStar.pasarTurno();
         }
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
+        Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
         /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
+        jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
         */
         boolean intentoExitoso = true;
         try {
-            jugadorZerg.construirEdificio(casillaConMoho, new Espiral());
+            jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
         } catch (RecursosInsuficientes e){
             intentoExitoso = false;
         }
@@ -123,15 +124,14 @@ public class CasoDeUso4 {
             algoStar.pasarTurno();
         }
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
+        Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
         /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
+        jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
         */
         boolean intentoExitoso = true;
         try {
-            jugadorZerg.construirEdificio(casillaConMoho, new Espiral());
+            jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
         } catch (RecursosInsuficientes e){
             intentoExitoso = false;
         }
@@ -168,15 +168,14 @@ public class CasoDeUso4 {
             algoStar.pasarTurno();
         }
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
+        Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
         /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
+        jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
         */
         boolean intentoExitoso = true;
         try {
-            jugadorZerg.construirEdificio(casillaConMoho, new Espiral());
+            jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
         } catch (RecursosInsuficientes e){
             intentoExitoso = false;
         }

@@ -9,7 +9,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
 
 public class CasoDeUso7 {
@@ -17,15 +20,18 @@ public class CasoDeUso7 {
     @Test
     public void verificarQueElNexoMineralSeaConstruibleSobreUnMineral() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
         algoStar.empezarJuego();
-        algoStar.pasarTurno();
-        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-        List<Coordenada> coordenadasConTerrenosMinerales = casillaConVolcan.hallarCoordenadasAdyacentes();
+        Coordenada coordenadaConTerrenosMinerales = casillaConVolcan.hallarCoordenadasAdyacentes().get(0);
 
         boolean intentoFueExitoso = true;
         try {
-            jugadorProtoss.construirEdificio(coordenadasConTerrenosMinerales.get(0), new NexoMineral());
+            jugadorProtoss.construirEdificio(coordenadaConTerrenosMinerales, new NexoMineral());
         } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
             intentoFueExitoso = false;
         }
@@ -35,41 +41,61 @@ public class CasoDeUso7 {
     @Test
     public void verificarQueProtossRecolecteMineralesPorRonda() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
         algoStar.empezarJuego();
-        algoStar.pasarTurno();
-        Jugador jugadorProtoss = algoStar.devolverJugadorActual();
+
         Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
-        Coordenada coordenadaDeCasillaConMinerales = casillaConVolcan.hallarCoordenadasAdyacentes().get(0);
-        jugadorProtoss.construirEdificio(coordenadaDeCasillaConMinerales, new NexoMineral());
-        for (int i = 0; i < 4; i++) {
+        Coordenada coordenadaConTerrenosMinerales = casillaConVolcan.hallarCoordenadasAdyacentes().get(0);
+        jugadorProtoss.construirEdificio(coordenadaConTerrenosMinerales, new NexoMineral());
+        for(int i = 0; i < 4; i++) { // Se finaliza la construccion del nexo mineral
             algoStar.pasarTurno();
         }
-        /* TODO: Implementar esto
-        int cantidadDeMineralesOriginalmente = jugadorProtoss.devolverCantidadMinerales();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        int cantidadDeMineralesObtenidos = jugadorProtoss.devolverCantidadMinerales() - cantidadDeMineralesOriginalmente;
-        Assertions.assertEquals(10, cantidadDeMineralesObtenidos);
-        */
+        for(int i = 0; i < 10; i++) { // Despues de 5 turnos del jugador protoss (10 turnos totales), el jugador deberia tener 200 minerales
+            algoStar.pasarTurno();
+        }
+
+        Casilla casillaConPilon = jugadorProtoss.hallarCasillaConEdificioInicial();
+        List<Coordenada> coordenadasConTerrenosEnergizados = casillaConPilon.hallarCoordenadasAdyacentes();
+        boolean intentoExitoso = true;
+        try {
+            jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
+            jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(1), new Pilon());
+        } catch (RecursosInsuficientes e){
+            intentoExitoso = false;
+        }
+        Assertions.assertTrue(intentoExitoso);
     }
         
     public void verificarQueZergPuedaRecolectarMinerales() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
-        Mapa mapa = algoStar.devolverMapa();
-        Jugador jugadorZerg = algoStar.devolverJugadorActual();
-        Casilla casillaConElCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        Coordenada coordenadaDeCasillaConMinerales = casillaConVolcan.hallarCoordenadasAdyacentes().get(0);
-        /* TODO: Implementar esto
-        jugadorZerg.generarUnidad(casillaConElCriadero.devolverCoordendas());
-        jugadorZerg.moverUnidad(casillaConElCriadero.devolverCoordendas(), coordenadaDeCasillaConMinerales); // Mover la unidad desde el criadero hasta la casilla con minerales
         
-        int cantidadDeMineralesOriginalmente = jugadorZerg.devolverCantidadMinerales();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        int cantidadDeMineralesObtenidos = jugadorZerg.devolverCantidadMinerales() - cantidadDeMineralesOriginalmente;
-        Assertions.assertEquals(10, cantidadDeMineralesObtenidos);
+        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
+        Coordenada coordenadaConTerrenosMinerales = casillaConVolcan.hallarCoordenadasAdyacentes().get(0);
+        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
+        /* TODO: Implementar esto
+        jugadorZerg.generarUnidad(casillaConCriadero);
+        jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConTerrenosMinerales);
         */
+        for(int i = 0; i < 10; i++) { // Despues de 5 turnos del jugador zerg (10 turnos totales), el jugador deberia tener 300 minerales
+            algoStar.pasarTurno();
+        }
+
+        List<Coordenada> coordenadasConMoho = casillaConVolcan.hallarCoordenadasAdyacentes();
+        boolean intentoExitoso = true;
+        try {
+            jugadorZerg.construirEdificio(coordenadasConMoho.get(0), new ReservaDeReproduccion());
+            jugadorZerg.construirEdificio(coordenadasConMoho.get(1), new ReservaDeReproduccion());
+        } catch (RecursosInsuficientes e){
+            intentoExitoso = false;
+        }
+        Assertions.assertTrue(intentoExitoso);
     }
 }
