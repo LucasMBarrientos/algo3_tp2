@@ -26,7 +26,7 @@ public class CasoDeUso5 {
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new Acceso());
+            jugadorProtoss.construirEdificio(casillaConTerenoVacio, new Acceso());
         });
     }
 
@@ -44,7 +44,7 @@ public class CasoDeUso5 {
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillaConTerenoVacio.devolverCoordendas(), new ReservaDeReproduccion());
+            jugadorZerg.construirEdificio(casillaConTerenoVacio, new ReservaDeReproduccion());
         });
     }
     
