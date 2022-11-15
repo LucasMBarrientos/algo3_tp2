@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion;
 
 import edu.fiuba.algo3.modelo.EdificioNoTerminoDeConstruirse;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class ReservaEnConstruccion implements  EstadoReserva{
     private ReservaDeReproduccion reserva;
 
     @Override
-    public Unidad generarUnidad(Criadero criadero) throws EdificioNoTerminoDeConstruirse{
+    public Unidad generarUnidad(Edificio edificioConLarvas) throws EdificioNoTerminoDeConstruirse{
         throw new EdificioNoTerminoDeConstruirse();
     }
 

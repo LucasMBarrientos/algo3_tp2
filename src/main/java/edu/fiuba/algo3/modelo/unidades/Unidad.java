@@ -38,7 +38,6 @@ public abstract class Unidad {
         return aerea;
     }
 
-
     public void actualizar(){
         tiempoConstruccion--;
         if(tiempoConstruccion == 0){

@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
 import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 
 public class CriaderoOperativo implements EstadoCriadero {
     private Criadero criadero;
@@ -16,12 +18,24 @@ public class CriaderoOperativo implements EstadoCriadero {
         return new Zangano();
     }
 
-    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles{
+    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles {
         if (larvas <= 0) {
             throw new NoHayLarvasDisponibles();
         }
         this.larvas--;
         return unidad;
+    }
+
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+        return null;
+    }
+
+    public int contarLarvas() {
+        return this.larvas;
+    }
+
+    public void consumirLarva() {
+        this.larvas--;
     }
     
     @Override

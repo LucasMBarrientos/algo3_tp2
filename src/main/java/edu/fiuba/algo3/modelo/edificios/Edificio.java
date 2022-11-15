@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -37,9 +39,22 @@ public abstract class Edificio  {
 
     public abstract String devolverNombre();
 
-    public abstract Unidad generarUnidad(Criadero criadero);
+    public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador);
+
+    public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
+        return null;
+    }
 
     public abstract void recibirGolpe(Danio danio);
+
+    public int contarLarvas() {
+        return 0;
+    }
+
+    public void consumirLarva() {
+        return;
+    }
+
 /*
     public int tiempoConstruccion;
     public int requerimientosGas;

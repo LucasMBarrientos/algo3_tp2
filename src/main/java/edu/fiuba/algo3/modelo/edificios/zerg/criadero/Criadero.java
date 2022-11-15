@@ -3,9 +3,10 @@ package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -24,17 +25,30 @@ public class Criadero extends EdificioZerg {
         setState(new CriaderoEnConstruccion());
     }
 
+    public void consumirLarva() {
+        estado.consumirLarva();
+    }
+
+    public int contarLarvas() {
+        return estado.contarLarvas();
+    }
+
     /*public Criadero(Coordenada coordenada) {
         this.coordenada = coordenada;
     }*/
-
-    public Zangano generarZangano() throws NoHayLarvasDisponibles{
-        return estado.generarZangano();
-    }
-
-    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles{
+    
+    /*
+    @Override
+    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles {
         return estado.generarUnidad(unidad);
     }
+    */
+    
+    @Override
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+        return this.estado.generarZangano();
+    }
+
 
     /*@Override
     public void consumirRecursosParaConstruccion(Inventario inventario){
@@ -60,11 +74,6 @@ public class Criadero extends EdificioZerg {
       this.estado.actualizar();
     }
 
-    @Override
-    public Unidad generarUnidad(Criadero criadero) {
-        return null;
-    }
-
     public void setState(EstadoCriadero estado){
       this.estado = estado;
       this.estado.setCriadero(this);
@@ -77,6 +86,7 @@ public class Criadero extends EdificioZerg {
     public Criadero deshacerConstruccion(){
       return this.estado.deshacerConstruccion();
     }
+
 
 /*
     private int larvas;

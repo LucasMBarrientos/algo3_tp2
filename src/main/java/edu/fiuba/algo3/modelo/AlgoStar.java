@@ -27,6 +27,7 @@ public class AlgoStar {
         for (Jugador jugador : jugadores) {
             jugador.establecerMapa(mapa);
         }
+        mapa.actualizar(turnoActual);
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;

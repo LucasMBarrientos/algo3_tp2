@@ -62,15 +62,16 @@ public abstract class EdificioZerg extends Edificio {
 
 
 
+
     public String devolverNombre(){
       return this.nombre;
     }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir){
-      if(this.tiempoDeConstruccion-tiempoAReducir > 0){
+      if (this.tiempoDeConstruccion-tiempoAReducir > 0) {
         this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
         return false;
-      }else{
+      } else {
         return true;
       }
     }

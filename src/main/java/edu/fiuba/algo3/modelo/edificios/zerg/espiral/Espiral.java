@@ -51,7 +51,6 @@ public class Espiral extends EdificioZerg {
       return this.estado.deshacerConstruccion();
     }
 
-    
     public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
       return estado.generarUnidad(criadero);
     }

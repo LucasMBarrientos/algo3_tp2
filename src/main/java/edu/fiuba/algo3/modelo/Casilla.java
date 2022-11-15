@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.areas.Area;
 import edu.fiuba.algo3.modelo.edificios.CasillaOcupadaPorEdificio;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
@@ -130,9 +132,12 @@ public class Casilla {
     }*/
 
     public void actualizar(){
-      //TODO
+        edificio.actualizar();
     }
 
+    public void generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) {
+        edificio.generarUnidad(edificioConLarvas, gasVespenoDelJugador, mineralesDelJugador);
+    }
 
 /*
     private int x,y;

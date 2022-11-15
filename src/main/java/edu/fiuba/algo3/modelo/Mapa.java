@@ -123,6 +123,9 @@ public class Mapa {
             // Se expande el moho una vez cada 2 turnos
            expandirMoho();
         }*/
+        for (Casilla casilla : casillas) {
+            casilla.actualizar();
+        }
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {

@@ -16,6 +16,10 @@ public class JugadorZerg extends Jugador {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
 
+    public int contarLarvas() {
+        return inventario.contarLarvas();
+    }
+
     public void actualizar() {
         //inventario.actualizar();
     }
@@ -45,10 +49,13 @@ public class JugadorZerg extends Jugador {
         mapa.establecerInicioZerg(id);
     }
 
+    public void generarUnidad(Casilla casilla) {
+        inventario.generarUnidad(casilla);
+    }
+
     public void generarUnidad(Coordenada coordenada){
         Casilla casilla = mapa.buscarCasilla(coordenada);
-        casilla.devolverEdificio().generarUnidad(new Criadero());
-
+        generarUnidad(casilla);
     }
 
 

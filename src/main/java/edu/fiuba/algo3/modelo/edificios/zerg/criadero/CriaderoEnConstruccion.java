@@ -15,6 +15,13 @@ public class CriaderoEnConstruccion implements EstadoCriadero {
         throw new EdificioNoTerminoDeConstruirse();
     }
   
+    public int contarLarvas() {
+        return 0;
+    }
+
+    public void consumirLarva() {
+        return;
+    }
 
     @Override
     public Criadero terminarConstruccion() {

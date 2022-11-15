@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -24,10 +24,9 @@ public class ReservaDeReproduccion extends EdificioZerg {
         setState(new ReservaEnConstruccion());
     }
 
-    public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
-        return estado.generarUnidad(criadero);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador) throws NoHayLarvasDisponibles {
+        return estado.generarUnidad(edificioConLarvas);
     }
-
     public void actualizar() {
       this.estado.actualizar();
     }

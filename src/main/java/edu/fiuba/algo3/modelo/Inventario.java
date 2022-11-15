@@ -22,13 +22,46 @@ public class Inventario {
         this.minerales = minerales;
     }
 
-
     public void agregarEdificio(Edificio edificioNuevo){
         edificios.add(edificioNuevo);
     }
 
     public void actualizarGasVespeno(Recursos gasVespeno){
         this.gasVespeno.agregarUnidades(gasVespeno);
+    }
+
+    public int contarLarvas() {
+        int larvasTotales = 0;
+        for (Edificio edificio : edificios) {
+            larvasTotales += edificio.contarLarvas();
+        }
+        return larvasTotales;
+    }
+
+
+    public void consumirLarva() {
+        for (Edificio edificio : edificios) {
+            if (edificio.contarLarvas() > 0) {
+                edificio.consumirLarva();
+            }
+        }
+    }
+
+
+    public Edificio devolverEdificioConLarvas() {
+        Edificio edificioConLarvas = null;
+        for (Edificio edificio : edificios) {
+            if (edificio.contarLarvas() > 0) {
+                edificioConLarvas = edificio;
+            }
+        }
+        return edificioConLarvas;
+    }
+
+    public void generarUnidad(Casilla casillaConEdifico) {
+        Edificio edificioConLarvas = this.devolverEdificioConLarvas();
+        casillaConEdifico.generarUnidad(edificioConLarvas, minerales, gasVespeno);
+        //casillaConEdifico.generarUnidad(edificioConLarvas);
     }
 
     public void actualizarMinerales(Recursos minerales){

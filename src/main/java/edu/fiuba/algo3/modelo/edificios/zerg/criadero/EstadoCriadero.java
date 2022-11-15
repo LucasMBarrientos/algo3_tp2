@@ -17,4 +17,7 @@ public interface EstadoCriadero {
   
     void actualizar();
 
+    int contarLarvas();
+
+    void consumirLarva();
 }
