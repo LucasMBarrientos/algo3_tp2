@@ -323,7 +323,7 @@ public class Mapa {
     }
 */
     private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
-        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,3);
+        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,5);
         for (Casilla casillaConMoho : casillasConMoho) {
             casillaConMoho.establecerTerreno(new TerrenoMoho());
         }

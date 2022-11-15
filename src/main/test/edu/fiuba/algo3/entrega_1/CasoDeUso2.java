@@ -22,7 +22,7 @@ public class CasoDeUso2 {
         criadero.actualizar();
         criadero.actualizar();
 
-        try{
+        try {
             criadero.generarZangano();
         } catch (EdificioNoTerminoDeConstruirse e){
             expected = false;
@@ -82,7 +82,7 @@ public class CasoDeUso2 {
     }
 
     @Test
-    public void GuaridaSeConstruyeEnTiempoAdecuado() {
+    public void guaridaSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
         Coordenada ubicacionCriadero = new Coordenada(1 , 2);
         Coordenada ubicacion = new Coordenada(2 , 2);
@@ -102,7 +102,7 @@ public class CasoDeUso2 {
         Assertions.assertTrue(expected);
     }
     @Test
-    public void GuaridaNoEstaOperativaAntesDe12Turnos() {
+    public void guaridaNoEstaOperativaAntesDe12Turnos() {
         Coordenada ubicacionCriadero = new Coordenada(1 , 2);
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacionCriadero);
@@ -119,7 +119,7 @@ public class CasoDeUso2 {
     }
 
     @Test
-    public void EspiralSeConstruyeEnTiempoAdecuado() {
+    public void espiralSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
         Coordenada ubicacionCriadero = new Coordenada(1 , 2);
         Coordenada ubicacion = new Coordenada(2 , 2);
@@ -139,7 +139,7 @@ public class CasoDeUso2 {
         Assertions.assertTrue(expected);
     }
     @Test
-    public void EspiralNoEstaOperativaAntesDe10Turnos() {
+    public void espiralNoEstaOperativaAntesDe10Turnos() {
         Coordenada ubicacionCriadero = new Coordenada(1 , 2);
         Coordenada ubicacion = new Coordenada(2 , 2);
         Criadero criadero = new Criadero(ubicacionCriadero);
@@ -156,7 +156,7 @@ public class CasoDeUso2 {
     }
 
     @Test
-    public void ExtractorSeConstruyeEnTiempoAdecuado() {
+    public void extractorSeConstruyeEnTiempoAdecuado() {
         boolean expected = true;
         Coordenada ubicacion = new Coordenada(2 , 2);
         Extractor extractor = new Extractor(ubicacion);
@@ -173,7 +173,7 @@ public class CasoDeUso2 {
         Assertions.assertTrue(expected);
     }
     @Test
-    public void ExtractorNoEstaOperativoAntesDe6Turnos() {
+    public void extractorNoEstaOperativoAntesDe6Turnos() {
         Coordenada ubicacion = new Coordenada(2 , 2);
         Extractor extractor = new Extractor(ubicacion);
 
