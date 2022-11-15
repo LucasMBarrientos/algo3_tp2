@@ -19,12 +19,11 @@ public class Criadero extends EdificioZerg {
     private int tiempoDeConstruccion = 4;
     private Coordenada coordenada;
 
-    private final Vida vida = new Vida(300); //TODO AGUSTIN: CAMBIA LAS PRUEBAS
-
     public Criadero() {
         this.costoEnMinerales = new Minerales(50);
         this.posiblesTerrenos = List.of(new TerrenoMoho());
         this.edificiosNecesarios = List.of();
+        this.vida = new Vida(300);
     }
 
 
@@ -63,9 +62,6 @@ public class Criadero extends EdificioZerg {
         inventario.consumirMinerales(costoEnMinerales);
     }
 
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
-        vida.recibirDanio(danio);
-    }
 
     public void ocupar(Casilla casilla, Terreno terreno){
 
