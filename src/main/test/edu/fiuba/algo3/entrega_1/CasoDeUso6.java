@@ -65,8 +65,7 @@ public class CasoDeUso6 {
             algoStar.pasarTurno();
             algoStar.pasarTurno();
         }
-        mapa.DEBUGMOSTRARMAPA();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConElCriadero, 6, 0);
+        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConElCriadero, 11, 0);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorZerg.construirEdificio(casillaConMoho.devolverCoordendas(), new Guarida());

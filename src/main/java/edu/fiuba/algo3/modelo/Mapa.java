@@ -267,7 +267,7 @@ public class Mapa {
         for (int y=0; y < dimensionY; y++) {
             lineaDelMapa = "";
             for (int x=0; x < dimensionX ; x++) {
-                Terreno terreno = this.buscarCasilla(new Coordenada(x, y)).devolverTerreno();
+                EstadoTerreno terreno = this.buscarCasilla(new Coordenada(x, y)).devolverTerreno().DEBUGDEVOLVERESTADO();
                 if (terreno instanceof TerrenoMoho) {
                     lineaDelMapa += "#";
                 } else if (terreno instanceof TerrenoVacio) {
@@ -288,7 +288,7 @@ public class Mapa {
         }
         System.out.println("█" + lineaDelMapa + "█");
     }
-    
+
 /*
     private List<Casilla> buscarCasillasConMoho() {
         // Buscar casilllas que en este turno van a tener moho
