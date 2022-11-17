@@ -1,169 +1,59 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.direcciones.*;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 public class CasoDeUso1 {
-    
-    @Test
+
+    /*
+
+	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo",50); // El jugador zerg empieza con 250 unidades de minerales y 50 unidades de gas
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
-
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(casillaConCriadero, new Arriba());
-        Coordenada coordenadaArriba = casillaConCriadero.devolverCoordendas().devolverCoordenadaRelativa(0,-1);
-        Casilla casillaArriba = algoStar.devolverMapa().buscarCasilla(coordenadaArriba);
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(casillaConCriadero, new Abajo());
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
-            jugadorZerg.generarUnidad(casillaConCriadero);
-        });
-
-
-        Mapa mapa = algoStar.devolverMapa();
-        mapa.DEBUGMOSTRARMAPATERRENO();
-        mapa.DEBUGMOSTRARMAPAUNIDADES();
-    }
-/*
-    @Test
-    public void criaderoGeneraDosZanganosYPuedeGenerarUnoMasEnEseTurno() {
-        boolean expected = true;
-        Criadero criadero = new Criadero().terminarConstruccion();
-        
-
-        criadero.generarZangano();
-        criadero.generarZangano();
-
-        try{
-            criadero.generarZangano();
-        } catch (NoHayLarvasDisponibles e){
-            expected = false;
-        }
-        Assertions.assertTrue(expected);
-    }
-
-    @Test
-    public void criaderoGeneraTresZanganosYAlOtroTurnoPuedeGenerarUnoMas() {
-        Criadero criadero = new Criadero().terminarConstruccion();
-        
-        criadero.generarZangano();
-        criadero.generarZangano();
-        criadero.generarZangano();
-
-        criadero.actualizar();
-
-        boolean intentoExitoso = true;
-        try{
-            criadero.generarZangano();
-        } catch (NoHayLarvasDisponibles e){
-            intentoExitoso = false;
-        }
-        Assertions.assertTrue(intentoExitoso);
-    }
-
-    @Test
-    public void criaderoGeneraTresZanganosYEnDosTurnosPuedeGenerarDosMas() {
-        Criadero criadero = new Criadero().terminarConstruccion();
-
-        criadero.generarZangano();
-        criadero.generarZangano();
-        criadero.generarZangano();
-
-        criadero.actualizar();
-        criadero.actualizar();
-
-        boolean intentoExitoso = true;
-        try {
-            criadero.generarZangano();
-            criadero.generarZangano();
-        } catch (NoHayLarvasDisponibles e){
-            intentoExitoso = false;
-        }
-        Assertions.assertTrue(intentoExitoso);
-    }
-
-    @Test
-    public void criaderoNoPuedeTenerMasDeTresLarvasQueGenerenZanganos() {
-        Criadero criadero = new Criadero().terminarConstruccion();
-
-        criadero.generarZangano();
-        criadero.generarZangano();
-        criadero.generarZangano();
-
-        for(int i=0; i<10; i++){ //paso varios turnos
+        Criadero criadero = new Criadero();
+        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
             criadero.actualizar();
         }
 
-        Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
-            for(int i=0; i<4; i++){criadero.generarZangano();} //trato de generar mas de 3 zanganos
+        criadero.generarUnidad(new Zangano());
+        criadero.generarUnidad(new Zangano());
+        criadero.generarUnidad(new Zangano());
+
+        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
+            criadero.generarUnidad(new Zangano());
         });
     }
-/*
-    @Test
-    public void zanganoSeGeneraCorrectamente() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1,1);
-        Unidad zanganoGenerado = algoStar.seleccionarCasilla(1,1).devolverUnidad();
-        Assertions.assertTrue(zanganoGenerado instanceof Zangano);
+
+	@Test
+    public void criaderoGeneraTresZanganosYTrasUnTurnoDeberiaPoderGenerarHastaUnZanganoMas() {
+        Criadero criadero = new Criadero();
+        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
+            criadero.actualizar();
+        }
+
+        criadero.generarUnidad(new Zangano());
+        criadero.generarUnidad(new Zangano());
+        criadero.generarUnidad(new Zangano());
+        criadero.actualizar(); // Criadero regenera 1 larva mas
+        criadero.generarUnidad(new Zangano());
+
+        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
+            criadero.generarUnidad(new Zangano());
+        });
     }
 
-    @Test
-    public void sePasaUnTurnoYSeAgregaUnaLarva() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1,1);
-        int cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 2);
-        algoStar.pasarTurno();
-        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 3);
+	@Test
+    public void unCriaderoNuncaVaATenerMasDe3LarvasALaVez() {
+        Criadero criadero = new Criadero();
+        for (int i = 0; i < 10; i++) { // Se finaliza la construccion del criadero y se pasan varios turnos intentando generar mas zanganos
+            criadero.actualizar();
+        }
+
+        criadero.generarUnidad(new Zangano());
+        criadero.generarUnidad(new Zangano());
+        criadero.generarUnidad(new Zangano());
+
+        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
+            criadero.generarUnidad(new Zangano());
+        });
     }
 
-    @Test
-    public void criaderoRegeneraLarvasCorrectamente() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1,1);
-        algoStar.generarUnidad(1,1);
-        algoStar.generarUnidad(1,1);   
-        int cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 0);
-        algoStar.pasarTurno();
-        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 1);
-        algoStar.pasarTurno();        
-        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 2);
-        algoStar.pasarTurno();
-        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 3);
-        algoStar.pasarTurno();
-        cantidadDeLarvas = ((Criadero) algoStar.seleccionarCasilla(1,1).devolverEdificio()).devolverCantidadDeLarvas();
-        Assertions.assertTrue(cantidadDeLarvas == 3);
-    }
-*/
+    */
+
 }
