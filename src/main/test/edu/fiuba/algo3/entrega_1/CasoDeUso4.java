@@ -27,7 +27,9 @@ public class CasoDeUso4 {
 
         GasVespeno gas = extractor.extraerRecursos();
 
-        Assertions.assertThrows(gas.gastar(10));
+        Assertions.assertThrows(RecursosInsuficientes.class,()->{
+            gas.gastar(new GasVespeno(10));
+        });
 
     }
 
@@ -40,7 +42,9 @@ public class CasoDeUso4 {
 
         GasVespeno gas = extractor.extraerRecursos();
 
-        Assertions.assertThrows(gas.gastar(20));
+        Assertions.assertThrows(RecursosInsuficientes.class,()->{
+            gas.gastar(new GasVespeno(20));
+        });
     }
 
     @Test
@@ -54,7 +58,9 @@ public class CasoDeUso4 {
 
         GasVespeno gas = extractor.extraerRecursos();
 
-        Assertions.assertThrows(gas.gastar(30));
+        Assertions.assertThrows(RecursosInsuficientes.class,()->{
+            gas.gastar(new GasVespeno(30));
+        });
     }
 
     @Test
@@ -70,7 +76,9 @@ public class CasoDeUso4 {
 
         GasVespeno gas = extractor.extraerRecursos();
 
-        Assertions.assertThrows(gas.gastar(40));
+        Assertions.assertThrows(RecursosInsuficientes.class,()->{
+            gas.gastar(new GasVespeno(40));
+        });
     }
 
 }
