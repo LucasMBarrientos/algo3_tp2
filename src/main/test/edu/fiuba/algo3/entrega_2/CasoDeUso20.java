@@ -10,36 +10,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso20 {
-
+   /*
     @Test
-    public void unidadTerrestreNoPuedeEntrarAAreaEspacial(){
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+    public void unaUnidadTerrestreNoPuedeEntrarAAreaEspacial(){
+        JugadorZerg jugador = new JugadorZerg();
+        jugador.construirEdificio(new Coordenada(2,2), new Criadero());
+        for(int i=0; i<6; i++ ){ jugador.actualizar(); }
 
-        Mapa mapa = algoStar.devolverMapa();
+        jugador.generarUnidad(new Coordenada(2,2), new Zangano());
 
-        Casilla casillaConAreaEspacial = mapa.buscarCasilla(new Coordenada(10,10));
+        for(int i=0; i<3; i++ ){ jugador.actualizar(); }
 
-        //algoStar.devolverMapa().buscarCasilla(new Coordenada(10,9)).establecerUnidad(new Zangano());
+        jugador.moverUnidad(new Coordenada(2,2), new Arriba());
 
-        jugadorZerg.construirEdificio(new Coordenada(10,9),new Criadero());
-
-        for (int i = 0; i < 5; i++) {
-            algoStar.pasarTurno();
-        }
-
-        Casilla casillaConCriadero = algoStar.devolverMapa().buscarCasilla(new Coordenada(10,9));
-
-        jugadorZerg.generarUnidad(casillaConCriadero);
-
-        jugadorZerg.moverUnidad(casillaConCriadero,new Arriba());
-
-        Assertions.assertNull(casillaConAreaEspacial.devolverEdificio());
-
-
+        //en la coordenada en (2,0) hay area espacial
+        Assertions.assertThrows(AreaNoAptaParaEstaUnidad.class, ()->{
+            jugador.moverUnidad(new Coordenada(2,1), new Arriba());
+        });
     }
+    */
 }
