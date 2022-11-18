@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.estadisticas;
+package edu.fiuba.algo3.modelo.excepciones;
 
 public class EdificioDestruido extends RuntimeException {
     

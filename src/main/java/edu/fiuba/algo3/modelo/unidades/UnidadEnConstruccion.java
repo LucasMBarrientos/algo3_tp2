@@ -5,8 +5,9 @@ import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.UnidadNoTerminoDeConstruirse;
 
-public class UnidadEnConstruccion implements EstadoUnidad{
+public class UnidadEnConstruccion implements EstadoUnidad {
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada, Unidad unidad){
         throw new UnidadNoTerminoDeConstruirse();

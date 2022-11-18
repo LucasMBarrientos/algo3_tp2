@@ -6,5 +6,4 @@ public interface TieneRecursos {
 
     public Recursos obtenerRecursos();
 
-
 }

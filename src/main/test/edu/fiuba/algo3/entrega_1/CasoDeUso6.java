@@ -2,7 +2,8 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirEsteEdificio;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -5,12 +5,12 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.recursos.EdificioRequiereDeOtro;
+import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioRequiereDeOtro;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
-import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 

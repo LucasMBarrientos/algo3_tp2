@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.recursos;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 
 public abstract class Recursos {
 

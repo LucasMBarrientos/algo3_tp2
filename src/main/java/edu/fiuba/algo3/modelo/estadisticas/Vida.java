@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
+import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+
 public class Vida extends Estadisticas {
     private final double porcentajeDeRegeneracion = 0.05;
     private final int vidaMaxima;

@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirEsteEdificio;
 
 public class CasoDeUso7 {
 
