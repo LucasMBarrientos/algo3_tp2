@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.extractor;
 
-import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 

@@ -3,12 +3,12 @@ package edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;

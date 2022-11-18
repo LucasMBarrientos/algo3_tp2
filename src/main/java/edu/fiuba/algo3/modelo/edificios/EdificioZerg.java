@@ -3,13 +3,13 @@ package edu.fiuba.algo3.modelo.edificios;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;

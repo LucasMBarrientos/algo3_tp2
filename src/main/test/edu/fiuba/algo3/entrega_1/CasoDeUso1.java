@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -41,8 +43,8 @@ public class CasoDeUso1 {
         algoStar.pasarTurno();
 
         Mapa mapa = algoStar.devolverMapa();
-        mapa.DEBUGMOSTRARMAPATERRENO();
-        mapa.DEBUGMOSTRARMAPAUNIDADES();
+        mapa.DEBUG_MOSTRARMAPATERRENO();
+        mapa.DEBUG_MOSTRARMAPAUNIDADES();
 
         Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
             jugadorZerg.generarUnidad(casillaConCriadero);

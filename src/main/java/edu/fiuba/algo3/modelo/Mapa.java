@@ -19,9 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Mapa {
 
     private List<Casilla> casillas = new ArrayList<Casilla>();
-
     List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
-
     SuperficieRectangular superficie;
 
     public Mapa(Coordenada dimension) {
@@ -124,12 +122,11 @@ public class Mapa {
         return this.buscarCasilla(coordeandaAlAzar);
     }
 
-    public void actualizar(int turno) {
+    public void actualizar(int turnoActual) {
        actualizarTerrenoEnergizado();
-        /* if(turno % 2 == 0) {
-            // Se expande el moho una vez cada 2 turnos
-           expandirMoho();
-        }*/
+        if (turnoActual % 2 == 0) {
+            // Se expande el moho
+        }
         for (Casilla casilla : casillas) {
             casilla.actualizar();
         }
@@ -180,81 +177,40 @@ public class Mapa {
         return criaderoInicial; 
     }
 
-
-
-    /*
-    
-    private List<SuperficieRectangular> calcularBases() {
-        int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
-        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
-        List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
-        for (int i=0; i < cantidadDeJugadores; i++) {
-            // El volcan inicial de cada jugador empieza a la derecha de su ubicacion inicial
-            coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i).devolverCoordenadaRelativa(1,0));
+    private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
+        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,5);
+        for (Casilla casillaConMoho : casillasConMoho) {
+            casillaConMoho.cubrirDeMoho();
         }
-        for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
-            coordenadasCentralesDeBases.add(this.superficie.devolverCoordenadaAlAzarEvitando(coordenadasCentralesDeBases));
-        }
-
-        int tamanioDeLasBases = this.superficie.devolverLongitudPromedio() / 10;
-        List<SuperficieRectangular> bases = new ArrayList<SuperficieRectangular>();
-        Coordenada coordenadaInicial, coordenadaFinal;
-        int x,y;
-        for (Coordenada coordenadaCentral : coordenadasCentralesDeBases) {
-            x = coordenadaCentral.devolverX() - tamanioDeLasBases / 2;
-            y = coordenadaCentral.devolverY() - tamanioDeLasBases / 2;
-            coordenadaInicial = new Coordenada(x,y);
-            while (!this.superficie.contieneCoordenada(coordenadaInicial)) {
-                x++;
-                y++;
-                coordenadaInicial = new Coordenada(x,y);
-            }
-            x = coordenadaCentral.devolverX() + tamanioDeLasBases / 2;
-            y = coordenadaCentral.devolverY() + tamanioDeLasBases / 2;
-            coordenadaFinal = new Coordenada(x,y);
-            while (!this.superficie.contieneCoordenada(coordenadaFinal)) {
-                x--;
-                y--;
-                coordenadaFinal = new Coordenada(x,y);
-            }
-            bases.add(new SuperficieRectangular(coordenadaInicial, coordenadaFinal));
-        }
-        return bases;
     }
 
-    public void generarTerrenoInicial() {
-        List<SuperficieRectangular> bases = calcularBases();
-        int cantidadDeMineralesGenerados, cantidadMaximaDeMineralesGenerados;
-        Coordenada coordenadaDeTerreno;
-        for (SuperficieRectangular superficieDeBase : bases) {
-            // Generacion del volcan de esta base
-            coordenadaDeTerreno = superficieDeBase.devolverCoordenadaCentral();
-            this.buscarCasilla(coordenadaDeTerreno).establecerTerreno(new TerrenoVolcan());
-            // Generacion de los minerales alrededor de dicho volcan
-            cantidadMaximaDeMineralesGenerados = superficieDeBase.calcularSuperficie() / 4; // Una base tiene hasta un 25% de cristales
-            if (cantidadMaximaDeMineralesGenerados < 2) {
-                cantidadMaximaDeMineralesGenerados = 2;
-            }
-            cantidadDeMineralesGenerados = ThreadLocalRandom.current().nextInt(1, cantidadMaximaDeMineralesGenerados);  
-            for (int i=0; i < cantidadDeMineralesGenerados; i++) {
-                coordenadaDeTerreno = superficieDeBase.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores);
-                this.buscarCasilla(coordenadaDeTerreno).establecerTerreno(new TerrenoMineral());                
+    private void actualizarTerrenoEnergizado() {
+        List<Casilla> casillasConPilones = generarTerrenoEnergizadoEnLosPilones();
+        List<Casilla> casillasConEnergia = new ArrayList<Casilla>();
+        for (Casilla casillaConUnPilon : casillasConPilones) {
+            casillasConEnergia = buscarCasillasAdyacentes(casillaConUnPilon,2);
+            for (Casilla casillaConEnergia : casillasConEnergia) {
+                casillaConEnergia.energizarTerreno();
             }
         }
-        // Generar el terreno inicial del criadero de los zerg (En la esquina superior izquierda del mapa)
-        Coordenada ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(0);
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Criadero(ubicacionInicialDeJugador));
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoMoho());
-        this.generarMohoAlrededorDeCriadero(ubicacionInicialDeJugador);
-        // Generar el terreno inicial del pilon de los protoss (En la esquina inferior derecha del mapa)
-        ubicacionInicialDeJugador = ubicacionesInicialesDeLosJugadores.get(1);
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerTerreno(new TerrenoEnergizado());
-        this.buscarCasilla(ubicacionInicialDeJugador).establecerEdificio(new Pilon(ubicacionInicialDeJugador));
     }
 
-    */
+    public List<Casilla> generarTerrenoEnergizadoEnLosPilones() {
+        List<Casilla> casillasConPilones = new ArrayList<Casilla>();
+        for (Casilla casilla : casillas) {
+            if (casilla.generaTerrenoEnergizado()) {
+                casilla.energizarTerreno();
+                casillasConPilones.add(casilla);
+            } else {
+                casilla.vaciarTerreno();
+            }
+        }
+        return casillasConPilones;
+    }
 
-    public void DEBUGMOSTRARMAPATERRENO() {
+    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
+
+    public void DEBUG_MOSTRARMAPATERRENO() {
         String lineaDelMapa = "";
         int dimensionX = this.superficie.calcularLongitudX();
         int dimensionY = this.superficie.calcularLongitudY();
@@ -287,7 +243,7 @@ public class Mapa {
         System.out.println("█" + lineaDelMapa + "█");
     }
 
-    public void DEBUGMOSTRARMAPAUNIDADES() {
+    public void DEBUG_MOSTRARMAPAUNIDADES() {
         String lineaDelMapa = "";
         int dimensionX = this.superficie.calcularLongitudX();
         int dimensionY = this.superficie.calcularLongitudY();
@@ -313,332 +269,5 @@ public class Mapa {
         }
         System.out.println("█" + lineaDelMapa + "█");
     }
-
-/*
-    private List<Casilla> buscarCasillasConMoho() {
-        // Buscar casilllas que en este turno van a tener moho
-        List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
-        for (Casilla casilla : casillas) {
-            casilla.actualizarListaDeCoordenadasConMoho(coordenadasConMoho);
-        }
-        // Recorre las casillas que en este turno van a tener moho
-        List<Casilla> casillasConMoho = new ArrayList<Casilla>();
-        for (Coordenada coordenadaConMoho : coordenadasConMoho) {
-            if (validarCoordenadaOcupableConMoho(coordenadaConMoho)) {
-                casillasConMoho.add(this.buscarCasilla(coordenadaConMoho));
-            }
-        }
-        return casillasConMoho;
-    }
-
-    private boolean validarCoordenadaOcupableConMoho(Coordenada coordenadaConMoho) {
-        Boolean casillaPertenceAlMapa = this.validarCoordenada(coordenadaConMoho);
-        if (casillaPertenceAlMapa) {
-            Casilla casilla = this.buscarCasilla(coordenadaConMoho);
-            return (casilla.terrenoEsReemplazable() && !casilla.terrenoRepeleMoho());
-        } else {
-            return false;
-        }
-    }
- 
-    private void expandirMoho() {
-        List<Casilla> casillasConMoho = buscarCasillasConMoho();
-        for (Casilla casillaConMoho : casillasConMoho) {
-            casillaConMoho.cubrirDeMoho();
-            //casillaConMoho.establecerTerreno(new TerrenoMoho());
-        }
-    }
-*/
-    private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDeCriadero) {
-        List<Casilla> casillasConMoho = this.buscarCasillasAdyacentes(coordenadaDeCriadero,5);
-        for (Casilla casillaConMoho : casillasConMoho) {
-            casillaConMoho.cubrirDeMoho();
-        }
-    }
-
-    private void actualizarTerrenoEnergizado() {
-        List<Casilla> casillasConPilones = generarTerrenoEnergizadoEnLosPilones();
-        List<Casilla> casillasConEnergia = new ArrayList<Casilla>();
-        for (Casilla casillaConUnPilon : casillasConPilones) {
-            casillasConEnergia = buscarCasillasAdyacentes(casillaConUnPilon,2);
-            for (Casilla casillaConEnergia : casillasConEnergia) {
-                casillaConEnergia.energizarTerreno();
-            }
-        }
-    }
-
-    public List<Casilla> generarTerrenoEnergizadoEnLosPilones() {
-        List<Casilla> casillasConPilones = new ArrayList<Casilla>();
-        for (Casilla casilla : casillas) {
-            if (casilla.generaTerrenoEnergizado()) {
-                casilla.energizarTerreno();
-                casillasConPilones.add(casilla);
-            } else {
-                casilla.vaciarTerreno();
-            }
-        }
-        return casillasConPilones;
-    }
-
-
-
-
-
-
-
-
-    /*
-
-    public void generarTerrenoEnergizadoEnLosPilones() {
-        for (Casilla casillaCentral : this.casillas) {
-            if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
-                casillaCentral.establecerTerreno(new TerrenoVacio());
-            }
-            if (casillaCentral.devolverEdificio() instanceof Pilon) {
-                casillaCentral.establecerTerreno(new TerrenoEnergizado());
-            }
-        }
-        generarTerrenoEnergizado();
-        generarTerrenoEnergizado();
-        generarTerrenoEnergizado();
-    }
-
-    private void generarTerrenoEnergizado() {
-        List<Casilla> casillasConEnergia = new ArrayList<Casilla>();
-        for (Casilla casillaCentral : this.casillas) {
-            if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
-                casillasConEnergia.add(casillaCentral);
-            }
-        }
-        for (Casilla casillaConEnergia : casillasConEnergia){
-            expandirEnergia(casillaConEnergia);
-        }
-
-    }
-
-    public void generarMoho() {
-        List<Casilla> casillasConMoho = new ArrayList<Casilla>();
-        for (Casilla casillaCentral : this.casillas) {
-            if (casillaCentral.devolverTerreno() instanceof TerrenoMoho) {
-                casillasConMoho.add(casillaCentral);
-
-            }
-        }
-        for(Casilla casillaConMoho : casillasConMoho){
-            expandirMoho(casillaConMoho);
-        }
-    }
-
-    public void generarMoho(int radio) {
-        for (int i = 0; i < radio; i++) {
-            List<Casilla> casillasConMoho = new ArrayList<Casilla>();
-            for (Casilla casillaCentral : this.casillas) {
-                if (casillaCentral.devolverTerreno() instanceof TerrenoMoho) {
-                    casillasConMoho.add(casillaCentral);
-                }
-            }
-            for (Casilla casillaConMoho : casillasConMoho) {
-                expandirMoho(casillaConMoho);
-            }
-        }
-    }
-
-    public void expandirMoho(Casilla casillaInicial){
-        int x = casillaInicial.devolverX();
-        int y = casillaInicial.devolverY();
-
-        if(validarCasillaDentroDeLimites(x-1,y)){
-            if (buscarCasilla(x-1,y).devolverTerreno() instanceof TerrenoVacio){
-                buscarCasilla(x-1,y).establecerTerreno(new TerrenoMoho());
-            }
-        }
-        if(validarCasillaDentroDeLimites(x+1,y)){
-            if (buscarCasilla(x+1,y).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x + 1, y).establecerTerreno(new TerrenoMoho());
-            }
-        }
-        if(validarCasillaDentroDeLimites(x,y+1)){
-            if (buscarCasilla(x,y+1).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x, y + 1).establecerTerreno(new TerrenoMoho());
-            }
-        }
-        if(validarCasillaDentroDeLimites(x,y-1)){
-            if (buscarCasilla(x,y-1).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x, y - 1).establecerTerreno(new TerrenoMoho());
-            }
-        }
-    }
-
-    public void generarEnergizadosIniciales() {
-        List<Casilla> casillasEnergizadas = new ArrayList<Casilla>();
-        for (Casilla casillaCentral : this.casillas) {
-            if (casillaCentral.devolverTerreno() instanceof TerrenoEnergizado) {
-                casillasEnergizadas.add(casillaCentral);
-
-            }
-        }
-        for(Casilla casillaEnergia : casillasEnergizadas){
-            expandirEnergia(casillaEnergia);
-        }
-    }
-
-    public void expandirEnergia(Casilla casillaInicial){
-        int x = casillaInicial.devolverX();
-        int y = casillaInicial.devolverY();
-
-        if(validarCasillaDentroDeLimites(x-1,y)){
-            if (buscarCasilla(x-1,y).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x - 1, y).establecerTerreno(new TerrenoEnergizado());
-            }
-        }
-        if(validarCasillaDentroDeLimites(x+1,y)){
-            if (buscarCasilla(x+1,y).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x + 1, y).establecerTerreno(new TerrenoEnergizado());
-            }
-        }
-        if(validarCasillaDentroDeLimites(x,y+1)){
-            if (buscarCasilla(x,y+1).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x, y + 1).establecerTerreno(new TerrenoEnergizado());
-            }
-        }
-        if(validarCasillaDentroDeLimites(x,y-1)){
-            if (buscarCasilla(x,y-1).devolverTerreno() instanceof TerrenoVacio) {
-                buscarCasilla(x, y - 1).establecerTerreno(new TerrenoEnergizado());
-            }
-        }
-    }
-
-    public Casilla hallarCasillaAdyacenteDesocupada(Casilla casillaCentral) {
-        int x = casillaCentral.devolverX() - 1;
-        int y = casillaCentral.devolverY() - 1;
-        Casilla casillaPosible;
-        for (int i = 0; i < 9; i++) {
-            casillaPosible = new Casilla(x,y);
-            for (Casilla casilla : casillas) {
-                if (casillaPosible.compararUbicaciones(casilla)) {
-                    // Encontre la casilla del mapa en la misma posicion que casillaPosible
-                    if (!casilla.ocupada()) {
-                        return casilla;
-                    }
-                }
-            }
-            x++;
-            if (x == casillaCentral.devolverX() + 1) {
-                x -= 2;
-                y++;
-            }
-        }
-        return null;
-    }
-
-    private Casilla hallarCasillaAdyacenteConTerrenoVacio(Casilla casillaCentral) {
-        int x = casillaCentral.devolverX() - 1;
-        int y = casillaCentral.devolverY() - 1;
-        Casilla casillaPosible;
-        for (int i = 0; i < 9; i++) {
-            casillaPosible = new Casilla(x,y);
-            for (Casilla casilla : casillas) {
-                if (casillaPosible.compararUbicaciones(casilla)) {
-                    // Encontre la casilla del mapa en la misma posicion que casillaPosible
-                    if (casilla.devolverTerreno() instanceof TerrenoVacio) {
-                        return casilla;
-                    }
-                }
-            }
-            x++;
-            if (x == casillaCentral.devolverX() + 1) {
-                x -= 2;
-                y++;
-            }
-        }
-        return null;
-    }
-
-    public boolean validarMovimiento(Unidad unidad, Casilla nuevaCasilla) {
-        if (nuevaCasilla == null) {
-            return false;
-        }
-        return (nuevaCasilla.devolverUnidad() == null && nuevaCasilla.devolverTerreno().validarTransitable(unidad));
-    }
-
-    public void actualizar(int ronda) {
-        if(ronda % 2 == 0){
-            generarMoho();
-        }
-        for (Casilla casilla : casillas) {
-            casilla.actualizar();
-            generarTerrenoEnergizadoEnLosPilones();
-            if (casilla.devolverEdificio() instanceof EdificioProtoss) {
-                if (casilla.devolverTerreno() instanceof TerrenoEnergizado || casilla.devolverEdificio() instanceof NexoMineral || casilla.devolverEdificio() instanceof Asimilador) {
-                    // TODO: Implementar interface "NecesitaEnergia" para simplificar esto
-                    ((EdificioProtoss) casilla.devolverEdificio()).establecerOperatividad(true);
-                } else {
-                    ((EdificioProtoss) casilla.devolverEdificio()).establecerOperatividad(false);
-                }
-            }
-        }
-    }
-
-    public TieneRecursos buscarEdificiosZergConRecursos(){
-        for(Casilla casilla : casillas) {
-            // Recorre todas las casillas del mapa
-            if(casilla.devolverEdificio() instanceof TieneRecursos && casilla.devolverEdificio() instanceof EdificioZerg) {
-                // Se halla un edificio que extrae recursos
-                if (((TieneRecursos) casilla.devolverEdificio()).tieneRecursos()) {
-                    // El edificio ademas tiene recursos extraidos
-                    return (TieneRecursos) casilla.devolverEdificio();
-                }
-            }
-        }
-        return null;
-    }
-
-    public TieneRecursos buscarEdificiosProtossConRecursos(){
-        for(Casilla casilla : casillas) {
-            // Recorre todas las casillas del mapa
-            if(casilla.devolverEdificio() instanceof TieneRecursos && casilla.devolverEdificio() instanceof EdificioProtoss) {
-                // Se halla un edificio que extrae recursos
-                if (((TieneRecursos) casilla.devolverEdificio()).tieneRecursos()) {
-                    // El edificio ademas tiene recursos extraidos
-                    return (TieneRecursos) casilla.devolverEdificio();
-                }
-            }
-        }
-        return null;
-    }
-
-    public TieneRecursos buscarMineralesConZanganos(){
-        for(Casilla casilla : casillas) {
-            // Recorre todas las casillas del mapa
-            if(casilla.devolverTerreno() instanceof TerrenoMineral && casilla.devolverUnidad() instanceof Zangano) {
-                // Se halla un mineral con un zangano arriba
-                if (((TieneRecursos) casilla.devolverUnidad()).tieneRecursos()) {
-                    // El edificio ademas tiene recursos extraidos
-                    return (TieneRecursos) casilla.devolverUnidad();
-                }
-            }
-        }
-        return null;
-    }
-
-    public boolean buscarEdificioGuarida() {
-        for(Casilla casilla : casillas) {
-            // Recorre todas las casillas del mapa
-            if(casilla.devolverEdificio() instanceof Guarida) {
-                return true;
-            } 
-        }
-        return false;
-    }
-
-    public boolean buscarEdificioAcceso() {
-        for(Casilla casilla : casillas) {
-            // Recorre todas las casillas del mapa
-            if(casilla.devolverEdificio() instanceof Acceso) {
-                return true;
-            } 
-        }
-        return false;
-    }*/
 
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral;
 
-import edu.fiuba.algo3.modelo.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public interface EstadoNexoMineral {
