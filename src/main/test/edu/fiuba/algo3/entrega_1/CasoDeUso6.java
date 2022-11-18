@@ -57,7 +57,7 @@ public class CasoDeUso6 {
         for(int i=0; i<40; i++){
             reservaDeReproduccion.actualizar();
         }
-        
+
         Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
     }
 }
