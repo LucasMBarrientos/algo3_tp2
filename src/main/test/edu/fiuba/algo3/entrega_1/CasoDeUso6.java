@@ -44,7 +44,8 @@ public class CasoDeUso6 {
 
     @Test
     public void mohoSeExpande1CasillaCada2Turnos() {
-        AlgoStar a = new AlgoStar();
+        AlgoStar a = new AlgoStar();  //Me di cuenta que en esta prueba en especíufico es necesario testear desde arriba,
+        a.empezarJuego();               // pq la prueba es "probar q crece bien" osea, probar q pase cada dos turnos
         JugadorZerg jugadorZerg = new JugadorZerg();
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
 

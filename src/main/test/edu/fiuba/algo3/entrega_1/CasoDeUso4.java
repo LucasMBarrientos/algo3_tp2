@@ -20,10 +20,7 @@ public class CasoDeUso4 {
 
     @Test
     public void extractorCon0ZanganoGenera0UnidadesDeGas() {
-        Extractor extractor = new Extractor(); // Aca podría faltar el terreno
-        //Zangano zangano = new Zangano();
-
-        //extractor.ingresarUnidad(zangano);
+        Extractor extractor = new Extractor();
 
         GasVespeno gas = extractor.extraerRecursos();
 
