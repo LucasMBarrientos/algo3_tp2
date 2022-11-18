@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.areas.Area;
-import edu.fiuba.algo3.modelo.excepciones.CasillaOcupadaPorEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
@@ -70,7 +71,7 @@ public class Casilla {
 
     public void ocupar(Edificio edificio) {
       if(this.devolverEdificio() != null){
-        throw new CasillaOcupadaPorEdificio();
+        throw new TerrenoOcupadoPorUnEdificio();
       } else {
         edificio.establecerTerreno(this.terreno);
         this.edificio = edificio;
@@ -79,7 +80,7 @@ public class Casilla {
 
     public void ocuparPorUnidad(Edificio edificio) {
         if(this.devolverEdificio() != null){
-            throw new CasillaOcupadaPorEdificio();
+            throw new TerrenoOcupadoPorUnEdificio();
         } else {
             edificio.establecerTerreno(this.terreno);
             this.edificio = edificio;

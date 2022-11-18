@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.excepciones.UnidadInexistente;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
@@ -60,7 +61,7 @@ public abstract class Jugador {
     public void moverUnidad(Casilla casillaUnidad, Direccion direccion){
         Unidad unidad = casillaUnidad.devolverUnidad();
         if(unidad == null) {
-            throw new UnidadInexistente();
+            throw new TerrenoNoPoseeUnaUnidad();
         }
         unidad.moverse(direccion, mapa);
     }

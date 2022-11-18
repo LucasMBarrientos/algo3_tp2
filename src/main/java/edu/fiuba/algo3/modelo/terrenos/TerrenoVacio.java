@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirEsteEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+
+import java.util.List;
 
 public class TerrenoVacio implements EstadoTerreno {
   private Terreno terreno;
@@ -16,7 +16,7 @@ public class TerrenoVacio implements EstadoTerreno {
     if(this.validarEstado(edificio.posiblesEstados())){
       casilla.ocupar(edificio);
     }else{
-      throw new TerrenoNoAptoParaConstruirEsteEdificio();
+      throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
   }
 

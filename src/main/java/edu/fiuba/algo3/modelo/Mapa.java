@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.SuperficieRectangular;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +26,13 @@ public class Mapa {
 
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
-        for (int x = 0; x < dimension.devolverX(); x++) {
-            for (int y = 0; y < dimension.devolverY(); y++) {
+        for (int x = 0; x < superficie.calcularLongitudX(); x++) {
+            for (int y = 0; y < superficie.calcularLongitudY(); y++) {
                 this.casillas.add(new Casilla(new Coordenada(x,y)));
             }
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(dimension.devolverX() - 2, dimension.devolverY() - 2));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
         generarAreasIniciales();
         generarTerrenoInicial();
         actualizarTerrenoEnergizado();
@@ -254,8 +256,8 @@ public class Mapa {
 
     public void DEBUGMOSTRARMAPATERRENO() {
         String lineaDelMapa = "";
-        int dimensionX = this.superficie.devolverXMax();
-        int dimensionY = this.superficie.devolverYMax();
+        int dimensionX = this.superficie.calcularLongitudX();
+        int dimensionY = this.superficie.calcularLongitudY();
         for (int x=0; x < dimensionX ; x++) {
             lineaDelMapa += "█";
         }
@@ -287,8 +289,8 @@ public class Mapa {
 
     public void DEBUGMOSTRARMAPAUNIDADES() {
         String lineaDelMapa = "";
-        int dimensionX = this.superficie.devolverXMax();
-        int dimensionY = this.superficie.devolverYMax();
+        int dimensionX = this.superficie.calcularLongitudX();
+        int dimensionY = this.superficie.calcularLongitudY();
         for (int x=0; x < dimensionX ; x++) {
             lineaDelMapa += "█";
         }

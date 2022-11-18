@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
-import edu.fiuba.algo3.modelo.excepciones.EdificioRequiereDeOtro;
+import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
@@ -26,13 +26,13 @@ public abstract class EdificioZerg extends Edificio {
     private String nombre;
     public int tiempoDeConstruccion;
 
-    public Edificio construir(Inventario inventario){
+    public Edificio construir(Inventario inventario) {
       try {
         if(this.validarCorrelativas(inventario)){
           this.consumirRecursosParaConstruccion(inventario);
           return this;
-        }else{
-          throw new EdificioRequiereDeOtro();
+        } else {
+          throw new ConstruccionRequiereDeOtroEdificio();
         }
       } catch(RecursosInsuficientes e) {
         throw new RecursosInsuficientes();

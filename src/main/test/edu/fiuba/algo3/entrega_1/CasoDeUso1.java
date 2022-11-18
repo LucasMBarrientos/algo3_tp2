@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.direcciones.*;
+import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasDisponibles;
+import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -39,14 +40,15 @@ public class CasoDeUso1 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
 
-        Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
+        Mapa mapa = algoStar.devolverMapa();
+        mapa.DEBUGMOSTRARMAPATERRENO();
+        mapa.DEBUGMOSTRARMAPAUNIDADES();
+
+        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
             jugadorZerg.generarUnidad(casillaConCriadero);
         });
 
 
-        Mapa mapa = algoStar.devolverMapa();
-        mapa.DEBUGMOSTRARMAPATERRENO();
-        mapa.DEBUGMOSTRARMAPAUNIDADES();
     }
 /*
     @Test

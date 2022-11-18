@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import edu.fiuba.algo3.modelo.recursos.Recursos;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirEsteEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.*;
 
 import java.util.List;
@@ -14,8 +14,8 @@ public class TerrenoMoho implements EstadoTerreno {
   public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
     if(this.validarEstado(edificio.posiblesEstados())){
       casilla.ocupar(edificio);
-    }else{
-      throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    } else {
+      throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
   }
 

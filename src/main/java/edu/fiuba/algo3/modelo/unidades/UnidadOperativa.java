@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo.unidades;
 
 import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.Direccion;
 
 public class UnidadOperativa implements EstadoUnidad{
 
@@ -19,7 +19,7 @@ public class UnidadOperativa implements EstadoUnidad{
     }
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada, Unidad unidad){
-        Coordenada nuevaPosicion = direccion.siguiente(coordenada);
+        Coordenada nuevaPosicion = direccion.hallarCoordenadaSiguiente(coordenada);
         Casilla nuevaCasilla =  mapa.buscarCasilla(nuevaPosicion);
         Casilla casillaActual = mapa.buscarCasilla(coordenada);
         if(nuevaCasilla.devolverUnidad() == null) { //
@@ -29,10 +29,10 @@ public class UnidadOperativa implements EstadoUnidad{
     }
 
     public void atacar (Direccion direccion, Mapa mapa, Coordenada coordenada){
-        Coordenada coordenadaDelObjetivo= direccion.siguiente(coordenada);
+        Coordenada coordenadaDelObjetivo = direccion.hallarCoordenadaSiguiente(coordenada);
 
         for (int i = 0; i < rango; i++) {
-            coordenadaDelObjetivo = direccion.siguiente(coordenadaDelObjetivo);
+            coordenadaDelObjetivo = direccion.hallarCoordenadaSiguiente(coordenadaDelObjetivo);
         }
 
         Casilla casillaDelObjetivo = mapa.buscarCasilla(coordenadaDelObjetivo);

@@ -1,10 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.direcciones.Direccion;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.excepciones.UnidadInexistente;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
@@ -33,7 +34,7 @@ public class JugadorZerg extends Jugador {
     public void atacar(Coordenada coordenadaUnidad, Direccion direccion){
         Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
         if(unidad == null){
-            throw new UnidadInexistente();
+            throw new TerrenoNoPoseeUnaUnidad();
         }
         unidad.atacar(direccion, mapa);
     }

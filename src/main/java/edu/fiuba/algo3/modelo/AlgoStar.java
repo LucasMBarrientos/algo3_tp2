@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+
 public class AlgoStar {
 
     public List<Jugador> jugadores = new ArrayList<Jugador>();
