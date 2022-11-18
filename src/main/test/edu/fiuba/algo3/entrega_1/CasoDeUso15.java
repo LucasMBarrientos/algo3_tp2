@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class CasoDeUso15 {
-
+/*
     @Test
     public void extractorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
       TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
@@ -85,5 +85,5 @@ public class CasoDeUso15 {
         nexoMineral.extraerRecursos();
       });
     }
-
+*/
 }
