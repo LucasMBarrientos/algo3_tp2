@@ -7,12 +7,10 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.JugadorProtoss;
 import edu.fiuba.algo3.modelo.JugadorZerg;
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.pilon.Pilon;
 
 public class CasoDeUso9 {
 

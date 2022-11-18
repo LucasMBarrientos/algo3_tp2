@@ -8,11 +8,11 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.puertoEstelar.PuertoEstelar;
 import edu.fiuba.algo3.modelo.AlgoStar;
 
 public class CasoDeUso8 {

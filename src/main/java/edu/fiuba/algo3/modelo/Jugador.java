@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.direcciones.Direccion;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.unidades.edificios.Edificio;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Jugador {
@@ -67,6 +65,32 @@ public abstract class Jugador {
     public void moverUnidad(Coordenada coordenadaUnidad, Direccion direccion){
         Casilla casillaUnidad = mapa.buscarCasilla(coordenadaUnidad);
         moverUnidad(casillaUnidad, direccion);
+    }
+
+    public boolean validarNombre() {
+        if(this.nombre.length()>5){return true;}else{return false;}
+    }
+
+    public boolean validarDiferenteColor(Jugador jugador2) {
+
+        if(!this.color.equals(jugador2.color)){
+            return true;
+        }else {return false;}
+    }
+
+    public boolean validarDiferenteNombre(Jugador jugador2) {
+
+        if(!this.nombre.equals(jugador2.nombre)){
+            return true;
+        }else {return false;}
+    }
+
+
+    public boolean validarDiferenteRaza(Jugador jugador2) {
+        if(!jugador2.getClass().equals(getClass()) ){
+            return true;
+        }else {return false;}
+
     }
 /*
     protected Mapa mapa;

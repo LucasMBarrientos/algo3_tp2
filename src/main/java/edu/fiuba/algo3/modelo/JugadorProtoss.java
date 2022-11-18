@@ -1,17 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.direcciones.Direccion;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
-
-import java.util.ArrayList;
-import java.util.List;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.pilon.Pilon;
 
 public class JugadorProtoss extends Jugador {
 

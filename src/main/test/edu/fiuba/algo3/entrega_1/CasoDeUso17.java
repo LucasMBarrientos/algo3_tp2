@@ -1,64 +1,91 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.terrenos.*;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+import edu.fiuba.algo3.modelo.Coordenada;
+import edu.fiuba.algo3.modelo.JugadorProtoss;
+import edu.fiuba.algo3.modelo.JugadorZerg;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.unidades.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.unidades.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.unidades.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.unidades.edificios.zerg.guarida.Guarida;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso17 {/*
-
+public class CasoDeUso17 {
     @Test
     public void noSePuedeConstruirUnPuertoEstelarSinUnAcceso() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 325, 0);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
-        algoStar.pasarTurno();
-
-        algoStar.construirEdificio(8,8, new PuertoEstelar());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
+        jugadorProtoss.construirEdificio(new Coordenada(4, 4), new Pilon());
+        for (int i = 0; i < 6; i++) {
             algoStar.pasarTurno();
         }
 
-        Assertions.assertTrue(algoStar.seleccionarCasilla(8,8).devolverEdificio() == null);
+        Assertions.assertFalse(jugadorProtoss.construirEdificio(new Coordenada(4, 4), new PuertoEstelar()));
+    }
 
-        algoStar.seleccionarCasilla(9, 8).establecerEdificio(new Acceso());
-
-        algoStar.construirEdificio(8,8, new PuertoEstelar());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
+    @Test
+    public void SePuedeConstruirUnPuertoEstelarSiHayUnAcceso() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 325, 0);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
+        jugadorProtoss.construirEdificio(new Coordenada(4, 4), new Pilon());
+        for (int i = 0; i < 6; i++) {
+            algoStar.pasarTurno();
+        }
+        jugadorProtoss.construirEdificio(new Coordenada(4, 5), new Acceso());
+        for (int i = 0; i < 8; i++) {
             algoStar.pasarTurno();
         }
 
-        Assertions.assertTrue(algoStar.seleccionarCasilla(8,8).devolverEdificio() instanceof PuertoEstelar);
+        Assertions.assertTrue(jugadorProtoss.construirEdificio(new Coordenada(4, 4), new PuertoEstelar()));
     }
 
     @Test
     public void noSePuedeConstruirUnEspiralSinUnaGuarida() {
         AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 325, 0);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
-        algoStar.moverDerecha(1,1);
-
-        algoStar.construirEdificio(2,1, new Espiral());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
+        jugadorZerg.construirEdificio(new Coordenada(4, 4), new Criadero());
+        for (int i = 0; i < 8; i++) {
             algoStar.pasarTurno();
         }
 
-        Assertions.assertNull(algoStar.seleccionarCasilla(2, 1).devolverEdificio());
+        Assertions.assertFalse(jugadorZerg.construirEdificio(new Espiral(5, 5), new PuertoEstelar()));
+    }
 
-        algoStar.seleccionarCasilla(2, 2).establecerEdificio(new Guarida());
-
-        algoStar.generarUnidad(1,1);
-        algoStar.moverDerecha(1,1);
-
-        algoStar.construirEdificio(2,1, new Espiral());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
+    @Test
+    public void SePuedeConstruirUnEspiralSiHayUnaGuarida() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 325, 0);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
+        jugadorZerg.construirEdificio(new Coordenada(4, 4), new Criadero());
+        for (int i = 0; i < 8; i++) {
+            algoStar.pasarTurno();
+        }
+        jugadorZerg.construirEdificio(new Coordenada(4, 5), new Guarida());
+        for (int i = 0; i < 8; i++) {
             algoStar.pasarTurno();
         }
 
-        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Espiral);
-    }*/
-    
+        Assertions.assertTrue(jugadorZerg.construirEdificio(new Coordenada(5, 5), new Espiral()));
+    }
 }
+
+
+

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.unidades.edificios.zerg.criadero.Criadero;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.areas.Area;
-import edu.fiuba.algo3.modelo.edificios.CasillaOcupadaPorEdificio;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.unidades.edificios.CasillaOcupadaPorEdificio;
+import edu.fiuba.algo3.modelo.unidades.edificios.Edificio;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.*;

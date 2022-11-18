@@ -1,0 +1,130 @@
+package edu.fiuba.algo3.modelo.unidades.edificios.zerg.criadero;
+
+import java.util.List;
+
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.unidades.edificios.Edificio;
+import edu.fiuba.algo3.modelo.unidades.edificios.EdificioZerg;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+
+public class Criadero extends EdificioZerg {
+    private EstadoCriadero estado;
+    Terreno terreno;
+
+    public Criadero() {
+        this.costoEnMinerales = new Minerales(50);
+        this.posiblesTerrenos = List.of(new TerrenoMoho());
+        this.edificiosNecesarios = List.of();
+        this.tiempoDeConstruccion = 4;
+        this.vida = new Vida(300);
+        setState(new CriaderoEnConstruccion());
+    }
+
+    public void consumirLarva() {
+        estado.consumirLarva();
+    }
+
+    public int contarLarvas() {
+        return estado.contarLarvas();
+    }
+
+    @Override
+    public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
+        return estado.generarUnidad(unidad);
+    }
+
+    /*public Criadero(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }*/
+    
+    /*
+    @Override
+    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles {
+        return estado.generarUnidad(unidad);
+    }
+    */
+    
+    @Override
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
+        return estado.generarUnidad(new Zangano(gasVespenoDelJugador, mineralesDelJugador, coordenada));
+    }
+
+
+    /*@Override
+    public void consumirRecursosParaConstruccion(Inventario inventario){
+        inventario.consumirMinerales(costoEnMinerales);
+    }*/
+
+
+    /*public void ocupar(Casilla casilla, Terreno terreno){
+
+        terreno.ocuparPorEdificio(this, casilla);
+    }*/
+
+
+    public void ocupar(Casilla casilla, Terreno terreno){
+      terreno.ocuparPorEdificio(this, casilla);
+      this.terreno = terreno;
+    }
+
+
+
+
+    public void actualizar() {
+      this.estado.actualizar();
+    }
+
+    public void setState(EstadoCriadero estado){
+      this.estado = estado;
+      this.estado.setCriadero(this);
+    }
+
+    public Criadero terminarConstruccion(){
+      return this.estado.terminarConstruccion();
+    }
+
+    public Criadero deshacerConstruccion(){
+      return this.estado.deshacerConstruccion();
+    }
+
+
+/*
+    private int larvas;
+
+    public Criadero() {
+        this.larvas = 3;
+        this.tiempoConstruccion = 4;
+        this.requerimientosGas = 0;
+        this.requerimientosMinerales = 50;
+    }
+
+    public boolean validarRequerimientosDelCasillero(Casilla casilla) {
+        return (casilla.devolverTerreno() instanceof TerrenoMoho);
+    }
+
+    public void actualizar() {
+        if (larvas < 3) {
+            this.larvas++;
+        }
+        regenerarVida();
+    }
+
+    public int devolverCantidadDeLarvas() {
+        return this.larvas;
+    }
+
+    public void generarUnidad(Casilla casilla) {
+        Unidad unidadGenerada = null;
+        if (larvas > 0) {
+            unidadGenerada = new Zangano();
+            this.larvas--;
+             casilla.establecerUnidad(unidadGenerada);
+        }
+    }
+    */
+}

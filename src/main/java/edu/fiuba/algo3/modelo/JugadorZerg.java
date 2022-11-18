@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.direcciones.Direccion;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.unidades.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class JugadorZerg extends Jugador {
