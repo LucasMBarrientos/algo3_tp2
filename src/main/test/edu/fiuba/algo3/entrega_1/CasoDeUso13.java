@@ -37,7 +37,7 @@ public class CasoDeUso13 {
             algoStar.pasarTurno();
         }
 
-        // Se construye una reserva de reproduccion fuera del rango del moho generado por ese criadero
+        // Se intenta construir una reserva de reproduccion fuera del rango del moho generado por ese criadero
         for (int x = 4; x < 15; x++) {
             jugadorZerg.moverUnidad(new Coordenada(x,2), new Derecha());
             algoStar.pasarTurno();
