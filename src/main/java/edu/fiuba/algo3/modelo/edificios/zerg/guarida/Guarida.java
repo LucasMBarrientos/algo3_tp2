@@ -5,6 +5,7 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -35,6 +36,11 @@ public class Guarida extends EdificioZerg {
     @Override
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
         return null;
+    }
+
+    @Override
+    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){

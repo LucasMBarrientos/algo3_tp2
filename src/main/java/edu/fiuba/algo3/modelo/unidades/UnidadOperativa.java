@@ -28,16 +28,10 @@ public class UnidadOperativa implements EstadoUnidad {
         }
     }
 
-    public void atacar(Direccion direccion, Mapa mapa, Coordenada coordenada) {
-        Coordenada coordenadaDelObjetivo = direccion.hallarCoordenadaSiguiente(coordenada);
-
-        for (int i = 0; i < rango; i++) {
-            coordenadaDelObjetivo = direccion.hallarCoordenadaSiguiente(coordenadaDelObjetivo);
+    public void atacar(Coordenada objetivo, Mapa mapa) {
+        if(this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)){
+            mapa.buscarTerreno(objetivo).recibirGolpe(danioTerrestre,danioAereo); //la logica seria pasarle ambos daños, q despues la unidad objetivo se encargue de ver cual
         }
-
-        Casilla casillaDelObjetivo = mapa.buscarCasilla(coordenadaDelObjetivo);
-        casillaDelObjetivo.devolverEdificio().recibirGolpe(danioTerrestre);
-        //implementar el recibir daño a una unidad
     }
 
 }

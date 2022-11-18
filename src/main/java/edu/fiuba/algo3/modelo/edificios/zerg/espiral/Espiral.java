@@ -58,8 +58,9 @@ public class Espiral extends EdificioZerg {
     }
 
 
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
-        vida.recibirDanio(danio);
+    @Override
+    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+
     }
     
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -43,6 +44,15 @@ public class Acceso extends EdificioProtoss {
 
     public void actualizar() {
       this.estado.actualizar();
+    }
+
+    @Override
+    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+        int escudoRestante;
+        escudoRestante = escudo.recibirDanio(danioTerestre);
+        if(escudoRestante < 0){
+            vida.recibirDanio(new Danio(escudoRestante * (-1)));
+        }
     }
 
 }

@@ -57,9 +57,11 @@ public class Pilon extends EdificioProtoss {
       return estado.generaTerrenoEnergizado();
     }
 
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+
+    @Override
+    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
         int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danio);
+        escudoRestante = escudo.recibirDanio(danioTerestre);
         if(escudoRestante < 0){
             vida.recibirDanio(new Danio(escudoRestante * (-1)));
         }

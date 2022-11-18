@@ -5,6 +5,7 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.*;
@@ -56,24 +57,10 @@ public class Criadero extends EdificioZerg {
     }
 
 
-    /*@Override
-    public void consumirRecursosParaConstruccion(Inventario inventario){
-        inventario.consumirMinerales(costoEnMinerales);
-    }*/
-
-
-    /*public void ocupar(Casilla casilla, Terreno terreno){
-
-        terreno.ocuparPorEdificio(this, casilla);
-    }*/
-
-
     public void ocupar(Casilla casilla, Terreno terreno){
       terreno.ocuparPorEdificio(this, casilla);
       this.terreno = terreno;
     }
-
-
 
 
     public void actualizar() {
@@ -93,39 +80,8 @@ public class Criadero extends EdificioZerg {
       return this.estado.deshacerConstruccion();
     }
 
+    @Override
+    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
 
-/*
-    private int larvas;
-
-    public Criadero() {
-        this.larvas = 3;
-        this.tiempoConstruccion = 4;
-        this.requerimientosGas = 0;
-        this.requerimientosMinerales = 50;
     }
-
-    public boolean validarRequerimientosDelCasillero(Casilla casilla) {
-        return (casilla.devolverTerreno() instanceof TerrenoMoho);
-    }
-
-    public void actualizar() {
-        if (larvas < 3) {
-            this.larvas++;
-        }
-        regenerarVida();
-    }
-
-    public int devolverCantidadDeLarvas() {
-        return this.larvas;
-    }
-
-    public void generarUnidad(Casilla casilla) {
-        Unidad unidadGenerada = null;
-        if (larvas > 0) {
-            unidadGenerada = new Zangano();
-            this.larvas--;
-             casilla.establecerUnidad(unidadGenerada);
-        }
-    }
-    */
 }

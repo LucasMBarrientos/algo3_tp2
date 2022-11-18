@@ -74,9 +74,9 @@ public abstract class EdificioProtoss extends Edificio {
             return true;
         }
     }
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo) throws EdificioDestruido {
         int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danio);
+        escudoRestante = escudo.recibirDanio(danioTerrestre);
         if (escudoRestante < 0) {
             vida.recibirDanio(new Danio(escudoRestante * (-1)));
         }

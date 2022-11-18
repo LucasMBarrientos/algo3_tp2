@@ -45,7 +45,7 @@ public abstract class Edificio  {
         return null;
     }
 
-    public abstract void recibirGolpe(Danio danio);
+    public abstract void recibirGolpe(Danio danioTerestre, Danio danioAereo);
 
     public int contarLarvas() {
         return 0;
