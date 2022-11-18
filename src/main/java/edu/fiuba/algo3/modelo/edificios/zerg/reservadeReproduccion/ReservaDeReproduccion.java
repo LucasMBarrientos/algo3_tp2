@@ -14,7 +14,7 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-    private EstadoReserva estado;
+    private EstadoReservaDeReproduccion estado;
     Terreno terreno;
 
     public ReservaDeReproduccion() {
@@ -23,7 +23,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
         this.edificiosNecesarios = List.of();
         this.vida = new Vida(1000);
         this.tiempoDeConstruccion = 12;
-        setState(new ReservaEnConstruccion());
+        establecerEstado(new ReservaDeReproduccionEnConstruccion());
     }
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) throws NoHayLarvasSuficientes {
@@ -39,9 +39,9 @@ public class ReservaDeReproduccion extends EdificioZerg {
       this.terreno = terreno;
     }
 
-    public void setState(EstadoReserva estado){
-      this.estado = estado;
-      this.estado.setReserva(this);
+    public void establecerEstado(EstadoReservaDeReproduccion estado){
+        this.estado = estado;
+        this.estado.establecerReservaDeReproduccion(this);
     }
   
     public ReservaDeReproduccion terminarConstruccion(){

@@ -16,7 +16,7 @@ public class AccesoEnConstruccion implements EstadoAcceso{
 
     @Override
     public Acceso terminarConstruccion() {
-      acceso.setState(new AccesoOperativo());
+      acceso.establecerEstado(new AccesoOperativo());
       return acceso;
     }
 

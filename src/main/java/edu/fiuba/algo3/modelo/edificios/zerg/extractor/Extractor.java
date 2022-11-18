@@ -25,7 +25,7 @@ public class Extractor extends EdificioZerg {
       this.edificiosNecesarios = List.of();
       this.vida = new Vida(750);
       this.tiempoDeConstruccion = 6;
-      setState(new ExtractorEnConstruccion());
+      establecerEstado(new ExtractorEnConstruccion());
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
@@ -42,8 +42,7 @@ public class Extractor extends EdificioZerg {
         return null;
     }
 
-
-    public void setState(EstadoExtractor estado){
+    public void establecerEstado(EstadoExtractor estado){
       this.estado = estado;
       this.estado.setExtractor(this);
     }

@@ -16,7 +16,7 @@ public class ExtractorOperativo implements EstadoExtractor {
 
   @Override
   public Extractor deshacerConstruccion() {
-    extractor.setState(new ExtractorEnConstruccion());
+    extractor.establecerEstado(new ExtractorEnConstruccion());
     return extractor;
   }
 

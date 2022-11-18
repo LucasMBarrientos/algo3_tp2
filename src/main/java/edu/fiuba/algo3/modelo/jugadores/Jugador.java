@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
@@ -21,8 +21,18 @@ public abstract class Jugador {
     protected String nombre;
     protected String color;
 
+    public void establecerNombre(String nombre) throws NombreDeJugadorInvalido {
+        if (nombre.length() < 6) {
+            throw new NombreDeJugadorInvalido();
+        }
+        this.nombre = nombre;
+    }
 
-    // Movimiento de unidades
+    protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales) {
+        this.establecerNombre(nombre);
+        this.color = color;
+        this.inventario = new Inventario(new GasVespeno(gasInicial), new Minerales(mineralesIniciales));
+    }
 
     public void moverUnidad(Casilla casillaUnidad, Direccion direccion){
         Unidad unidad = casillaUnidad.devolverUnidad();
@@ -32,16 +42,12 @@ public abstract class Jugador {
         unidad.moverse(direccion, mapa);
     }
 
-    public void moverUnidad(Coordenada coordenadaUnidad, Direccion direccion){
+    public void moverUnidad(Coordenada coordenadaUnidad, Direccion direccion) {
         Casilla casillaUnidad = mapa.buscarCasilla(coordenadaUnidad);
         moverUnidad(casillaUnidad, direccion);
     }
 
-    // Creacion de nuevas unidades
-
     public abstract void generarUnidad(Coordenada coordenada);
-
-    // Construccion de nuevos edificios
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         this.construirEdificio(mapa.buscarCasilla(coordenada), edificio);
@@ -49,14 +55,6 @@ public abstract class Jugador {
 
     public void construirEdificio(Casilla casilla, Edificio edificio) {
         casilla.ponerEdificio(edificio.construir(inventario));
-    }
-
-    /////////////////////////////////////////////////
-
-    protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales) {
-        this.nombre = nombre;
-        this.color = color;
-        this.inventario = new Inventario(new GasVespeno(gasInicial), new Minerales(mineralesIniciales));
     }
 
     public Casilla hallarCasillaConVolcanInicial() {

@@ -21,6 +21,8 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 
 public class CasoDeUso8 {
 
+    /*
+
   @Test
   public void protossSoloPuedeConstruirNexoMineralSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();
@@ -81,7 +83,7 @@ public class CasoDeUso8 {
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
       jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(2).devolverCoordendas(), new Pilon());
     });
-  }*/
+  }
 
   @Test
   public void protossPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
@@ -98,7 +100,7 @@ public class CasoDeUso8 {
     jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Asimilador());
     /*Assertions.assertThrows(RecursosInsuficientes.class, ()->{
       jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Pilon());
-    });*/
+    });
   }
 
   @Test
@@ -152,7 +154,7 @@ public class CasoDeUso8 {
       jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new PuertoEstelar());
     });
   }
-/*
+
   @Test
   public void zergSoloPuedeConstruirCriaderoSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();

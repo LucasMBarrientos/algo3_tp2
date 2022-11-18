@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public interface EstadoAcceso {
+    
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada);
 
     Acceso terminarConstruccion();
@@ -16,4 +17,5 @@ public interface EstadoAcceso {
     void setAcceso(Acceso acceso);
   
     void actualizar();
+
 }

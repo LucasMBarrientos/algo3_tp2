@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.edificios;
 
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -13,6 +11,7 @@ import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
+import java.util.List;
 
 public abstract class Edificio  {
 
@@ -56,54 +55,4 @@ public abstract class Edificio  {
         return;
     }
 
-/*
-    public int tiempoConstruccion;
-    public int requerimientosGas;
-    public int requerimientosMinerales;
-    public int vidaMax;
-    public int vida;
-
-    public abstract boolean validarRequerimientosDelCasillero(Casilla casilla);
-
-    public int devolverTiempoConstruccion() {
-        return this.tiempoConstruccion;
-    }
-
-    public boolean validarRequirimientos(Inventario inventario) {
-        boolean requerimientosDeGasAlcanzados = inventario.devolverCantidadGas() >= requerimientosGas;
-        boolean requerimientosDeMineralesAlcanzados = inventario.devolverCantidadMinerales() >= requerimientosMinerales;
-        return requerimientosDeGasAlcanzados && requerimientosDeMineralesAlcanzados;
-    }
-
-    public void consumirRecursosDelJugador(Inventario inventario) {
-        inventario.restarGas(requerimientosGas);
-        inventario.restarMinerales(requerimientosMinerales);
-    }
-
-    public int devolverRequerimientosDeMinerales() {
-        return requerimientosMinerales;
-    }
-
-    public int devolverRequerimientosDeGas() {
-        return requerimientosGas;
-    }
-
-    public abstract void actualizar();
-
-    public void consumirRecursos(Recursos recursos){
-
-    }
-
-    public abstract void ocupar(Casilla casilla, Terreno terreno);
-
-
-    public abstract boolean recibirDanio(int unidades);
-
-    public void reducirVida(int unidades) {
-        this.vida -= unidades;
-    }
-
-    public int devolverVida(){
-        return vida;
-    }*/
 }

@@ -24,7 +24,4 @@ public class Zerling extends UnidadZerg {
         this.coordenada = coordenadaDeLaUnidad;
     }
 
-
-
-
 }

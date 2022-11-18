@@ -15,22 +15,26 @@ public class GuaridaOperativa implements EstadoGuarida{
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         return edificioConLarvas.consumirLarvasYGenerarUnidad(new Hidralisco(gasVespeno, minerales, coordenada));
     }
-    @Override
-    public Guarida terminarConstruccion() {return guarida;}
 
     @Override
-    public Guarida deshacerConstruccion() {
-      guarida.setState(new GuaridaEnConstruccion());
-      return guarida;
+    public Guarida terminarConstruccion() {
+        return guarida;
     }
 
     @Override
-    public void setGuarida(Guarida guarida) {
-      this.guarida = guarida;
+    public Guarida deshacerConstruccion() {
+        guarida.establecerEstado(new GuaridaEnConstruccion());
+        return guarida;
+    }
+
+    @Override
+    public void establecerGuarida(Guarida guarida) {
+        this.guarida = guarida;
     }
 
     @Override
     public void actualizar() {
-      this.guarida.vida.regenerar();
+        this.guarida.vida.regenerar();
     }
+    
 }

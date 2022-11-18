@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-public class ReservaEnConstruccion implements  EstadoReserva {
+public class ReservaDeReproduccionEnConstruccion implements EstadoReservaDeReproduccion {
 
     private ReservaDeReproduccion reservaDeReproduccion;
 
@@ -18,24 +18,24 @@ public class ReservaEnConstruccion implements  EstadoReserva {
 
     @Override
     public ReservaDeReproduccion terminarConstruccion() {
-        reservaDeReproduccion.setState(new ReservaOperativa());
+        reservaDeReproduccion.establecerEstado(new ReservaDeReproduccionOperativa());
         return reservaDeReproduccion;
     }
 
     @Override
     public ReservaDeReproduccion deshacerConstruccion() {
-      return reservaDeReproduccion;
+        return reservaDeReproduccion;
     }
 
     @Override
-    public void setReserva(ReservaDeReproduccion reservaDeReproduccion) {
+    public void establecerReservaDeReproduccion(ReservaDeReproduccion reservaDeReproduccion) {
         this.reservaDeReproduccion = reservaDeReproduccion;
     }
 
     @Override
     public void actualizar() {
-      if(this.reservaDeReproduccion.reducirTiempoConstruccion(1)){
-        this.terminarConstruccion();
-      }
+        if(this.reservaDeReproduccion.reducirTiempoConstruccion(1)) {
+            this.terminarConstruccion();
+        }
     }
 }

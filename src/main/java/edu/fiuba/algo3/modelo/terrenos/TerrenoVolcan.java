@@ -1,126 +1,70 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recursos;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
+
+import java.util.List;
 
 public class TerrenoVolcan implements EstadoTerreno {
-  private Terreno terreno;
 
-  @Override
-  public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
-    if(this.validarEstado(edificio.posiblesEstados())){
-      casilla.ocupar(edificio);
-    }
-  }
+    private Terreno terreno;
 
-  @Override
-  public void energizarTerreno() {
-    terreno.setState(new TerrenoEnergizado());
-  }
-
-  @Override
-  public void cubrirTerrenoDeMoho() {}
-
-  @Override
-  public void setTerreno(Terreno terreno) {
-    this.terreno = terreno;
-  }
-
-  @Override
-  public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
-    for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
-      if(listaDePosiblesTerrenos.get(i) instanceof TerrenoVolcan){
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @Override
-  public void vaciarTerreno(){}
-
-  @Override
-  public void generarVolcan() {}
-
-  @Override
-  public void generarMina() {
-    terreno.setState(new TerrenoMineral());
-  }
-
-  @Override
-  public void consumirMinerales(Recursos recursoRequerido) {}
-
-  @Override
-  public void consumirGasVespeno(Recursos recursoRequerido) {
-    this.terreno.gasVespeno.gastar(recursoRequerido);
-  }
-/*
-    public GasVespeno gasVespeno = new GasVespeno(5000);
-
-    public Recursos obtenerRecursos(){
-        return gasVespeno;
+    @Override
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
+        if (this.validarEstado(edificio.posiblesEstados())){
+            casilla.ocupar(edificio);
+        }
     }
 
-    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
-        casilla.establecerEdificio(asimilador);
+    @Override
+    public void energizarTerreno() {
+        terreno.establecerEstado(new TerrenoEnergizado());
     }
 
-    public void ocuparPorEdificio(Extractor extractor, Casilla casilla){
-        casilla.establecerEdificio(extractor);
+    @Override
+    public void cubrirTerrenoDeMoho() {
+
     }
 
-    public void ocuparPorEdificio(Criadero criadero, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    @Override
+    public void setTerreno(Terreno terreno) {
+        this.terreno = terreno;
     }
 
-    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(ReservaDeReproduccion reserva, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(Guarida guarida, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(Espiral espiral, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(Acceso acceso, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(PuertoEstelar puertoEstelar, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-    public void ocuparPorEdificio(NexoMineral nexoMineral, Casilla casilla){
-        throw new TerrenoNoAptoParaConstruirEsteEdificio();
-    }
-
-
-    public boolean validarTransitable(Unidad unidad){
-        return true;
-        /*
-        if (unidad == null || unidad instanceof ConstruccionProtoss) {
+    @Override
+    public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
+        for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
+        if(listaDePosiblesTerrenos.get(i) instanceof TerrenoVolcan){
             return true;
         }
-        return  (unidad instanceof Zangano);
-        */
-/*
-    }
-
-    public boolean esReemplazable(){
+        }
         return false;
     }
-*/
+
+    @Override
+    public void vaciarTerreno() {
+
+    }
+
+    @Override
+    public void generarVolcan() {
+
+    }
+
+    @Override
+    public void generarMina() {
+        terreno.establecerEstado(new TerrenoMineral());
+    }
+
+    @Override
+    public void consumirMinerales(Recursos recursoRequerido) {
+
+    }
+
+    @Override
+    public void consumirGasVespeno(Recursos recursoRequerido) {
+        this.terreno.gasVespeno.gastar(recursoRequerido);
+    }
+
 }

@@ -5,11 +5,5 @@ public class GasVespeno extends Recursos {
     public GasVespeno(int unidades) {
         super(unidades);
     }
-
-
-/*
-    public GasVespeno(int unidades) {
-        super(unidades);
-    }
-*/
+    
 }

@@ -22,5 +22,4 @@ public class Mutalisco extends UnidadZerg {
         this.coordenada = coordenadaDeLaUnidad;
     }
 
-
 }

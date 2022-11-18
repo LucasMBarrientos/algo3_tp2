@@ -26,7 +26,7 @@ public class NexoMineral extends EdificioProtoss {
         this.tiempoDeConstruccion = 4;
         this.vida = new Vida(300);
         this.escudo = new Escudo(300);
-        setState(new NexoMineralEnConstruccion());
+        establecerEstado(new NexoMineralEnConstruccion());
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
@@ -45,7 +45,7 @@ public class NexoMineral extends EdificioProtoss {
     }
 
 
-    public void setState(EstadoNexoMineral estado){
+    public void establecerEstado(EstadoNexoMineral estado){
       this.estado = estado;
       this.estado.setNexoMineral(this);
     }

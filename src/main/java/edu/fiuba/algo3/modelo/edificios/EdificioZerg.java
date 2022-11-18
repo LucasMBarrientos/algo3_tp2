@@ -27,71 +27,54 @@ public abstract class EdificioZerg extends Edificio {
     public int tiempoDeConstruccion;
 
     public Edificio construir(Inventario inventario) {
-      try {
-        if(this.validarCorrelativas(inventario)){
-          this.consumirRecursosParaConstruccion(inventario);
-          return this;
-        } else {
-          throw new ConstruccionRequiereDeOtroEdificio();
+        try {
+            if(this.validarCorrelativas(inventario)) {
+                this.consumirRecursosParaConstruccion(inventario);
+                return this;
+            } else {
+                throw new ConstruccionRequiereDeOtroEdificio();
+            }
+        } catch(RecursosInsuficientes e) {
+            throw new RecursosInsuficientes();
         }
-      } catch(RecursosInsuficientes e) {
-        throw new RecursosInsuficientes();
-      }
     }
 
-    public void consumirRecursosParaConstruccion(Inventario inventario){
+    public void consumirRecursosParaConstruccion(Inventario inventario) {
         inventario.consumirMinerales(costoEnMinerales);
     }
 
-    public boolean validarCorrelativas(Inventario inventario){
-      return !inventario.faltanEdificios(edificiosNecesarios);
+    public boolean validarCorrelativas(Inventario inventario) {
+        return !inventario.faltanEdificios(edificiosNecesarios);
     }
 
     public abstract void ocupar(Casilla casilla, Terreno terreno);
 
-    public void establecerTerreno(Terreno terreno){
-      this.terreno = terreno;
+    public void establecerTerreno(Terreno terreno) {
+        this.terreno = terreno;
     }
     public List<EstadoTerreno> posiblesEstados(){
-      return posiblesTerrenos;
+        return posiblesTerrenos;
     }
 
-    public boolean compararCon(Edificio edificoAComparar){
-      return (this.nombre == edificoAComparar.devolverNombre());
+    public boolean compararCon(Edificio edificoAComparar) {
+        return (this.nombre == edificoAComparar.devolverNombre());
     }
-
-
-
 
     public String devolverNombre(){
-      return this.nombre;
+        return this.nombre;
     }
 
-    public boolean reducirTiempoConstruccion(int tiempoAReducir){
-      if (this.tiempoDeConstruccion-tiempoAReducir > 0) {
-        this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
-        return false;
-      } else {
-        return true;
-      }
+    public boolean reducirTiempoConstruccion(int tiempoAReducir) {
+        if (this.tiempoDeConstruccion-tiempoAReducir > 0) {
+            this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void recibirGolpe(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);
     }
-/*
-    protected void regenerarVida() {
-        if (vida < vidaMax) {
-            vida += (0.1 * vidaMax);
-        }
-        if (vida > vidaMax) {
-            vida = vidaMax;
-        }
-    }
 
-    public boolean recibirDanio(int unidades) {
-        reducirVida(unidades);
-        return (vida <= 0);
-    }
-*/
 }

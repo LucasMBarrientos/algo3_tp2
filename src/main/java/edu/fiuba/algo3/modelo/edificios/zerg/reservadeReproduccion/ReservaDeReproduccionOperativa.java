@@ -7,29 +7,32 @@ import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
-public class ReservaOperativa implements EstadoReserva {
-    private ReservaDeReproduccion reserva;
+public class ReservaDeReproduccionOperativa implements EstadoReservaDeReproduccion {
+
+    private ReservaDeReproduccion reservaDeReproduccion;
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Minerales minerales, Coordenada coordenada) {
         return edificioConLarvas.consumirLarvasYGenerarUnidad(new Zerling(gasVespeno, minerales, coordenada));
     }
     
     @Override
-    public ReservaDeReproduccion terminarConstruccion() {return reserva;}
-
-    @Override
-    public ReservaDeReproduccion deshacerConstruccion() {
-      reserva.setState(new ReservaEnConstruccion());
-      return reserva;
+    public ReservaDeReproduccion terminarConstruccion() {
+        return reservaDeReproduccion;
     }
 
     @Override
-    public void setReserva(ReservaDeReproduccion reserva) {
-      this.reserva = reserva;
+    public ReservaDeReproduccion deshacerConstruccion() {
+        reservaDeReproduccion.establecerEstado(new ReservaDeReproduccionEnConstruccion());
+        return reservaDeReproduccion;
+    }
+
+    @Override
+    public void establecerReservaDeReproduccion(ReservaDeReproduccion reservaDeReproduccion) {
+        this.reservaDeReproduccion = reservaDeReproduccion;
     }
 
     @Override
     public void actualizar() {
-      this.reserva.vida.regenerar();
+        this.reservaDeReproduccion.vida.regenerar();
     }
 }

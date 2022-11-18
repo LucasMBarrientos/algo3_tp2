@@ -208,6 +208,22 @@ public class Mapa {
         return casillasConPilones;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 
     public void DEBUG_MOSTRARMAPATERRENO() {

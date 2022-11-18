@@ -23,7 +23,7 @@ public class Criadero extends EdificioZerg {
         this.edificiosNecesarios = List.of();
         this.tiempoDeConstruccion = 4;
         this.vida = new Vida(300);
-        setState(new CriaderoEnConstruccion());
+        establecerEstado(new CriaderoEnConstruccion());
     }
 
     public void consumirLarva() {
@@ -80,7 +80,7 @@ public class Criadero extends EdificioZerg {
       this.estado.actualizar();
     }
 
-    public void setState(EstadoCriadero estado){
+    public void establecerEstado(EstadoCriadero estado){
       this.estado = estado;
       this.estado.setCriadero(this);
     }

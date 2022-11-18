@@ -27,7 +27,7 @@ public class Asimilador extends EdificioProtoss {
         this.tiempoDeConstruccion = 6;
         this.vida = new Vida(450);
         this.escudo = new Escudo(450);
-        setState(new AsimiladorEnConstruccion());
+        establecerEstado(new AsimiladorEnConstruccion());
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
@@ -50,7 +50,7 @@ public class Asimilador extends EdificioProtoss {
     }
 
 
-    public void setState(EstadoAsimilador estado){
+    public void establecerEstado(EstadoAsimilador estado){
       this.estado = estado;
       this.estado.setAsimilador(this);
     }

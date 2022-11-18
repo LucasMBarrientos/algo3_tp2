@@ -38,7 +38,7 @@ public abstract class Unidad {
         return aerea;
     }
 
-    public void actualizar(){
+    public void actualizar() {
         tiempoConstruccion--;
         if(tiempoConstruccion == 0){
             estado = new UnidadOperativa(danioAereo, danioTerrestre, rango);
@@ -46,41 +46,12 @@ public abstract class Unidad {
         vida.regenerar();
     }
 
-    public void moverse(Direccion direccion, Mapa mapa){
+    public void moverse(Direccion direccion, Mapa mapa) {
         estado.moverse(direccion,mapa, coordenada, this);
     }
 
-    public void atacar (Direccion direccion, Mapa mapa){
+    public void atacar(Direccion direccion, Mapa mapa) {
         estado.atacar(direccion, mapa, coordenada);
     }
 
-
-
-
-/*
-    protected boolean disponible = true;
-
-    public boolean devolverDisponibilidad() {
-        return disponible;
-    }
-
-    public boolean intentarMoverse(Casilla nuevaCasilla) {
-        if (this.disponible) {
-            this.disponible = false;
-            return true;
-        }
-        return false;
-    }
-
-    protected void actualizarDisponibilidad() {
-        this.disponible = true;
-    }
-
-    public int emitirDanio() {
-        this.disponible = false;
-        return 100;
-    }
-
-    public abstract void actualizar();
-*/
 }

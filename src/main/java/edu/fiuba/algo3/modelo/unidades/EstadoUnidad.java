@@ -11,6 +11,4 @@ public interface EstadoUnidad {
 
     public void atacar (Direccion direccion, Mapa mapa, Coordenada coordenada);
 
-    }
-
-
+}

@@ -10,7 +10,7 @@ public class AsimiladorEnConstruccion implements EstadoAsimilador{
     
     @Override
     public Asimilador terminarConstruccion() {
-      asimilador.setState(new AsimiladorOperativo());
+      asimilador.establecerEstado(new AsimiladorOperativo());
       return asimilador;
     }
 

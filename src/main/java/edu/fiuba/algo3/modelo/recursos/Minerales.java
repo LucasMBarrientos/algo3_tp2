@@ -6,9 +6,4 @@ public class Minerales extends Recursos {
         super(unidades);
     }
 
-    /*
-    public Minerales(int unidades) {
-        super(unidades);
-    }
-*/
 }

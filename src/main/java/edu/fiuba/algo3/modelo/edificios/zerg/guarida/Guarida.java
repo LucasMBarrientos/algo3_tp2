@@ -14,8 +14,9 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class Guarida extends EdificioZerg {
+
     private EstadoGuarida estado;
-    Terreno terreno;
+    private Terreno terreno;
     
     public Guarida() {
         this.costoEnMinerales = new Minerales(200);
@@ -24,12 +25,11 @@ public class Guarida extends EdificioZerg {
         this.edificiosNecesarios = List.of();
         this.vida = new Vida(1250);
         this.tiempoDeConstruccion = 12;
-        setState(new GuaridaEnConstruccion());
+        establecerEstado(new GuaridaEnConstruccion());
     }
 
-
     public void actualizar() {
-      this.estado.actualizar();
+        this.estado.actualizar();
     }
 
     @Override
@@ -38,21 +38,21 @@ public class Guarida extends EdificioZerg {
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
-      terreno.ocuparPorEdificio(this, casilla);
-      this.terreno = terreno;
+        terreno.ocuparPorEdificio(this, casilla);
+        this.terreno = terreno;
     }
 
-    public void setState(EstadoGuarida estado){
-      this.estado = estado;
-      this.estado.setGuarida(this);
+    public void establecerEstado(EstadoGuarida estado){
+        this.estado = estado;
+        this.estado.establecerGuarida(this);
     }
   
     public Guarida terminarConstruccion(){
-      return this.estado.terminarConstruccion();
+        return this.estado.terminarConstruccion();
     }
   
     public Guarida deshacerConstruccion(){
-      return this.estado.deshacerConstruccion();
+        return this.estado.deshacerConstruccion();
     }
 
     /*

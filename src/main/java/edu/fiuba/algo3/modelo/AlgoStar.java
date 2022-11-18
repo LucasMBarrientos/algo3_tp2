@@ -50,12 +50,21 @@ public class AlgoStar {
         mapa.actualizar(turnoActual);
     }
 
-    public Mapa devolverMapa() {
-        return mapa;
-    }
 
     public Jugador devolverJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
+
+
+
+
+
+
     
+    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
+
+    public Mapa DEBUG_DEVOLVERMAPA() {
+        return mapa;
+    }
+
 }

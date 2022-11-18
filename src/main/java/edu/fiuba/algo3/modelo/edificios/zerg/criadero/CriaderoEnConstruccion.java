@@ -25,7 +25,7 @@ public class CriaderoEnConstruccion implements EstadoCriadero {
 
     @Override
     public Criadero terminarConstruccion() {
-      criadero.setState(new CriaderoOperativo());
+      criadero.establecerEstado(new CriaderoOperativo());
       return criadero;
     }
 

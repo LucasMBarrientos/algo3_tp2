@@ -43,7 +43,7 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
 
-    public void setState(EstadoPuertoEstelar estado){
+    public void establecerEstado(EstadoPuertoEstelar estado){
       this.estado = estado;
       this.estado.setPuertoEstelar(this);
     }

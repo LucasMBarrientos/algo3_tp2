@@ -27,12 +27,12 @@ public class TerrenoVacio implements EstadoTerreno {
 
   @Override
   public void energizarTerreno() {
-    terreno.setState(new TerrenoEnergizado());
+    terreno.establecerEstado(new TerrenoEnergizado());
   }
 
   @Override
   public void cubrirTerrenoDeMoho() {
-    terreno.setState(new TerrenoMoho());    
+    terreno.establecerEstado(new TerrenoMoho());    
   }
 
   @Override
@@ -50,12 +50,12 @@ public class TerrenoVacio implements EstadoTerreno {
 
   @Override
   public void generarVolcan() {
-    terreno.setState(new TerrenoVolcan());
+    terreno.establecerEstado(new TerrenoVolcan());
   }
   
   @Override
   public void generarMina() {
-    terreno.setState(new TerrenoMineral());
+    terreno.establecerEstado(new TerrenoMineral());
   }
   
   @Override

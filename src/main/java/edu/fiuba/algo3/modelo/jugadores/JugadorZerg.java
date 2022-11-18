@@ -28,7 +28,7 @@ public class JugadorZerg extends Jugador {
         //inventario.actualizar();
     }
 
-    public void atacar(Coordenada coordenadaUnidad, Direccion direccion){
+    public void atacar(Coordenada coordenadaUnidad, Direccion direccion) {
         Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
         if(unidad == null){
             throw new TerrenoNoPoseeUnaUnidad();
@@ -46,7 +46,7 @@ public class JugadorZerg extends Jugador {
         casilla.establecerUnidad(unidadNueva);
     }
 
-    public void generarUnidad(Coordenada coordenada){
+    public void generarUnidad(Coordenada coordenada) {
         Casilla casilla = mapa.buscarCasilla(coordenada);
         generarUnidad(casilla);
     }

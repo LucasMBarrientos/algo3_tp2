@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
-public class Estadisticas {
+public abstract class Estadistica {
+
 }

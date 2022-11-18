@@ -18,24 +18,24 @@ public class GuaridaEnConstruccion implements EstadoGuarida {
 
     @Override
     public Guarida terminarConstruccion() {
-      guarida.setState(new GuaridaOperativa());
-      return guarida;
+        guarida.establecerEstado(new GuaridaOperativa());
+        return guarida;
     }
 
     @Override
     public Guarida deshacerConstruccion() {
-      return guarida;
+        return guarida;
     }
 
     @Override
-    public void setGuarida(Guarida guarida) {
-      this.guarida = guarida;
+    public void establecerGuarida(Guarida guarida) {
+        this.guarida = guarida;
     }
 
     @Override
     public void actualizar() {
-      if(this.guarida.reducirTiempoConstruccion(1)){
-        this.terminarConstruccion();
-      }
+        if(this.guarida.reducirTiempoConstruccion(1)){
+            this.terminarConstruccion();
+        }
     }
 }

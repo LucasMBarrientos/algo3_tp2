@@ -25,14 +25,14 @@ public class Acceso extends EdificioProtoss {
         this.tiempoDeConstruccion = 8;
         this.vida = new Vida(500);
         this.escudo = new Escudo(500);
-        setState(new AccesoEnConstruccion());
+        establecerEstado(new AccesoEnConstruccion());
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
         terreno.ocuparPorEdificio(this, casilla);
     }
 
-    public void setState(EstadoAcceso estado){
+    public void establecerEstado(EstadoAcceso estado){
       this.estado = estado;
       this.estado.setAcceso(this);
     }

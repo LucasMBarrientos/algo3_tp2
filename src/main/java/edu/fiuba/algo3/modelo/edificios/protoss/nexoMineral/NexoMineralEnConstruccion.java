@@ -9,7 +9,7 @@ public class NexoMineralEnConstruccion implements EstadoNexoMineral {
 
     @Override
     public NexoMineral terminarConstruccion() {
-      nexoMineral.setState(new NexoMineralOperativo());
+      nexoMineral.establecerEstado(new NexoMineralOperativo());
       return nexoMineral;
     }
 

@@ -27,7 +27,7 @@ public class Pilon extends EdificioProtoss {
         this.tiempoDeConstruccion = 5;
         this.vida = new Vida(300);
         this.escudo = new Escudo(300);
-        setState(new PilonEnConstruccion());
+        establecerEstado(new PilonEnConstruccion());
     }
 
     public void actualizar() {
@@ -40,7 +40,7 @@ public class Pilon extends EdificioProtoss {
     }
 
 
-    public void setState(EstadoPilon estado){
+    public void establecerEstado(EstadoPilon estado){
       this.estado = estado;
       this.estado.setPilon(this);
     }

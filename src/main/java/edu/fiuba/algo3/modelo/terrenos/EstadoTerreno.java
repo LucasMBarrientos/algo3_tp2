@@ -27,4 +27,5 @@ public interface EstadoTerreno {
   void consumirMinerales(Recursos recursoRequerido);
 
   void consumirGasVespeno(Recursos recursoRequerido);
+  
 }

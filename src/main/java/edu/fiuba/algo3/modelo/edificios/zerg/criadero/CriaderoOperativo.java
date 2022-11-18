@@ -32,7 +32,7 @@ public class CriaderoOperativo implements EstadoCriadero {
 
     @Override
     public Criadero deshacerConstruccion() {
-      criadero.setState(new CriaderoEnConstruccion());
+      criadero.establecerEstado(new CriaderoEnConstruccion());
       return criadero;
     }
 

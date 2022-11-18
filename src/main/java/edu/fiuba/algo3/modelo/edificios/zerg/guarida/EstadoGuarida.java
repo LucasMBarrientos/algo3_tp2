@@ -15,7 +15,7 @@ public interface EstadoGuarida {
   
     Guarida deshacerConstruccion();
   
-    void setGuarida(Guarida guarida);
+    void establecerGuarida(Guarida guarida);
   
     void actualizar();
 }

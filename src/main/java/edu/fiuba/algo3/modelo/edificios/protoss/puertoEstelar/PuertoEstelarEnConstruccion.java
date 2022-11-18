@@ -3,15 +3,17 @@ package edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-public class PuertoEstelarEnConstruccion implements EstadoPuertoEstelar{
+public class PuertoEstelarEnConstruccion implements EstadoPuertoEstelar {
+
     private PuertoEstelar puertoEstelar;
+
     public Unidad generarUnidad(Unidad unidad) throws EdificioNoTerminoDeConstruirse {
         throw new EdificioNoTerminoDeConstruirse();
     }
 
     @Override
     public PuertoEstelar terminarConstruccion() {
-      puertoEstelar.setState(new PuertoEstelarOperativo());
+      puertoEstelar.establecerEstado(new PuertoEstelarOperativo());
       return puertoEstelar;
     }
 

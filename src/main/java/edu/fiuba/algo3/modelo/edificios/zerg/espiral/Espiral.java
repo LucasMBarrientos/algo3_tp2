@@ -27,7 +27,7 @@ public class Espiral extends EdificioZerg {
         this.edificiosNecesarios = List.of(new Guarida());
         this.vida = new Vida(300);
         this.tiempoDeConstruccion = 10;
-        setState(new EspiralEnConstruccion());
+        establecerEstado(new EspiralEnConstruccion());
     }
 
     public void ocupar(Casilla casilla, Terreno terreno){
@@ -44,7 +44,7 @@ public class Espiral extends EdificioZerg {
         return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralesDelJugador, coordenada);
     }
 
-    public void setState(EstadoEspiral estado){
+    public void establecerEstado(EstadoEspiral estado){
       this.estado = estado;
       this.estado.setEspiral(this);
     }
