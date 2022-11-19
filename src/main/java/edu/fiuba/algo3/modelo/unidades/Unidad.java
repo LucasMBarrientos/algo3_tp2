@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades;
 
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -53,8 +54,10 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
-    public Unidad generarse(Inventario inventario){
-        consumirRecursosParaGenerarse(inventario);
+    public Unidad generarse(Coordenada coordenadaDelEdificio, Inventario inventario){
+        Edificio edificioConstructor = inventario.buscarEdificio(coordenadaDelEdificio);
+        //edificioConstructor.generarUnidad(this);
+        consumirRecursosParaGenerarse(inventario); //hacer que el generar unidad de los edificios se encargue de esto (?
         return  this;
     }
 

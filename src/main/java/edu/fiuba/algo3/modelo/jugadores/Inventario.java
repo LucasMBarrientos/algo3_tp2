@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontradoEnEstaPosicion;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -29,6 +30,15 @@ public class Inventario {
            return nombreDeEdifico.esIgual(edificio.devolverNombre());
         }
         return false;
+    }
+
+    public Edificio buscarEdificio(Coordenada coordenada){
+        for(Edificio edificio : edificios){
+            if(edificio.compararCoordenadas(coordenada)){
+                return edificio;
+            }
+        }
+        throw new EdificioNoEncontradoEnEstaPosicion();
     }
 
 

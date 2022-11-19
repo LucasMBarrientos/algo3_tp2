@@ -62,6 +62,10 @@ public abstract class Edificio  {
         coordenada = ubicacion;
     }
 
+    public Unidad generarUnidad(Unidad unidad){
+        return null; //terminar bien
+    }
+
     public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada);
 
     public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
@@ -76,6 +80,10 @@ public abstract class Edificio  {
 
     public void consumirLarva() {
         return;
+    }
+
+    public boolean compararCoordenadas(Coordenada coordenadaAComparar) {
+        return coordenada.esIgual(coordenadaAComparar);
     }
 
     //public abstract void recibirGolpe(int danio);
