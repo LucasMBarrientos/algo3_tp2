@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
@@ -9,9 +10,9 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public class Zangano extends UnidadZerg {
 
-    public Zangano(GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenadaDeLaUnidad) {
-        gasVespenoDelJugador.gastar(new GasVespeno(0));
-        mineralDelJugador.gastar(new Mineral(25));
+    public Zangano(Coordenada coordenadaDeLaUnidad) {
+        this.costoEnGas = new GasVespeno(0);
+        this.costoEnMinerales = new Mineral(25);
         this.tiempoConstruccion = 1;
         this.danioAereo = new Danio(0);
         this.danioTerrestre = new Danio(0);
@@ -22,6 +23,10 @@ public class Zangano extends UnidadZerg {
 
     public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {
         // TODO: Implementar esto
+    }
+
+    public void consumirRecursosParaGenerarse(Inventario inventario){
+
     }
 
 }

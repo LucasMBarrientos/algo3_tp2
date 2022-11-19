@@ -50,7 +50,6 @@ public abstract class Jugador {
         moverUnidad(casillaUnidad, direccion);
     }
 
-    public abstract void generarUnidad(Coordenada coordenada);
 
     public Casilla hallarCasillaConVolcanInicial() {
         return mapa.hallarVolcanInicialDelJugador(id);

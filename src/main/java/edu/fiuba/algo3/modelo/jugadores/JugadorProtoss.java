@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class JugadorProtoss extends Jugador {
 
@@ -24,12 +25,20 @@ public class JugadorProtoss extends Jugador {
             edificio.devolverRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
+        edificioNuevo.establecerPosicion(coordenada);
         inventario.agregarEdificio(edificioNuevo);
     }
 
-    @Override
-    public void generarUnidad(Coordenada coordenada) {
+    //unidad consume recursos
+    //edificio genera la unidad si existe
+    //unidad se pone en el mapa
+
+    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
+        //TODO dar asilo a Leti el sabado 26... me invitas?
+        unidad.generarse(inventario);
     }
+
+
 
     protected void iniciarseEnMapa() {
         Pilon pilonInicial = mapa.establecerInicioProtoss(id);

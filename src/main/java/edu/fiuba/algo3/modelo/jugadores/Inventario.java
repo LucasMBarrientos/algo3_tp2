@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
@@ -29,6 +30,7 @@ public class Inventario {
         }
         return false;
     }
+
 
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);

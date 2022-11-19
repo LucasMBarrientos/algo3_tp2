@@ -57,14 +57,7 @@ public class JugadorZerg extends Jugador {
         this.inventario.agregarEdificio(criaderoInicial);
     }
 
-    public void generarUnidad(Casilla casilla) {
-        Unidad unidadNueva = inventario.generarUnidad(casilla); // TODO: -> >:( MAL LALASMDALSMDLASMDLASDMALSMDLA MAL
-        casilla.establecerUnidad(unidadNueva);
-    }
+ }
 
-    public void generarUnidad(Coordenada coordenada) {
-        Casilla casilla = mapa.buscarCasilla(coordenada);
-        generarUnidad(casilla);
-    }
 
-}
+

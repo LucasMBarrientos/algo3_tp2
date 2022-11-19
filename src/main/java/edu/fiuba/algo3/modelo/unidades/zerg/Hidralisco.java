@@ -10,8 +10,8 @@ import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 public class Hidralisco extends UnidadZerg {
 
     public Hidralisco(GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenadaDeLaUnidad) {
-        gasVespenoDelJugador.gastar(new GasVespeno(25));
-        mineralDelJugador.gastar(new Mineral(75));
+        this.costoEnGas = new GasVespeno(25);
+        this.costoEnMinerales = new Mineral(75);
         this.tiempoConstruccion = 4;
         this.danioAereo = new Danio(10);
         this.danioTerrestre = new Danio(10);

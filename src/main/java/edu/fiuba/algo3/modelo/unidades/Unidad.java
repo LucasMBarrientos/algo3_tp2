@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 
 public abstract class Unidad {
@@ -52,4 +53,13 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
+    public Unidad generarse(Inventario inventario){
+        consumirRecursosParaGenerarse(inventario);
+        return  this;
+    }
+
+    public void consumirRecursosParaGenerarse(Inventario inventario){
+        inventario.consumirMinerales(costoEnMinerales);
+        inventario.consumirGasVespeno(costoEnGas);
+    }
 }

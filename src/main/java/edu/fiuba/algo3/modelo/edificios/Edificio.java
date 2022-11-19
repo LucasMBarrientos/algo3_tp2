@@ -23,14 +23,15 @@ public abstract class Edificio  {
     public Vida vida;
     protected Nombre nombre;
     public int tiempoDeConstruccion;
+    public Coordenada coordenada;
 
     public boolean generaTerrenoEnergizado() {
         return false;
     }
 
     public Edificio construir(Inventario inventario){
-        this.validarCorrelativasDeConstruccion(inventario);
-        this.consumirRecursosParaConstruccion(inventario);
+        validarCorrelativasDeConstruccion(inventario);
+        consumirRecursosParaConstruccion(inventario);
         return this;
     }
 
@@ -55,6 +56,10 @@ public abstract class Edificio  {
 
     public Nombre devolverNombre(){
         return nombre;
+    }
+
+    public void establecerPosicion(Coordenada ubicacion){
+        coordenada = ubicacion;
     }
 
     public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada);
