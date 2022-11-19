@@ -48,8 +48,8 @@ public abstract class Unidad {
         estado.moverse(direccion,mapa, coordenada, this);
     }
 
-    public void atacar(Direccion direccion, Mapa mapa) {
-        estado.atacar(direccion, mapa, coordenada);
+    public void atacar(Coordenada objetivo, Mapa mapa) {
+        estado.atacar(objetivo, mapa);
     }
 
 }

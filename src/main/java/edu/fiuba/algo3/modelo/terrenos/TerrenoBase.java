@@ -16,7 +16,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public class TerrenoBase extends Terreno {
 
-    private Edificio edificio;
+
     private EstadoTerreno estado = new TerrenoVacio(this);
 
     public TerrenoBase(Coordenada coordenada) {

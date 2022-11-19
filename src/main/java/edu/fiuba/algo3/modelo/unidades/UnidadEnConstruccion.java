@@ -11,7 +11,9 @@ public class UnidadEnConstruccion implements EstadoUnidad {
         throw new UnidadNoTerminoDeConstruirse();
     }
 
-    public void atacar(Direccion direccion, Mapa mapa, Coordenada coordenada) {
-        throw new UnidadNoTerminoDeConstruirse();
+    @Override
+    public void atacar(Coordenada objetivo, Mapa mapa) {
+
     }
+
 }

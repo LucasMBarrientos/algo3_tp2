@@ -43,12 +43,13 @@ public class JugadorZerg extends Jugador {
         //inventario.actualizar();
     }
 
-    public void atacar(Coordenada coordenadaUnidad, Direccion direccion) {
+    public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
-        if(unidad == null){
+        Unidad unidadObjetivo = mapa.buscarCasilla(coordenadaObjetivo).devolverUnidad();
+        if(unidad == null || unidadObjetivo  == null){
             throw new TerrenoNoPoseeUnaUnidad();
         }
-        unidad.atacar(direccion, mapa);
+        unidad.atacar(coordenadaObjetivo, mapa);
     }
 
     protected void iniciarseEnMapa() {
@@ -57,7 +58,7 @@ public class JugadorZerg extends Jugador {
     }
 
     public void generarUnidad(Casilla casilla) {
-        Unidad unidadNueva = inventario.generarUnidad(casilla);
+        Unidad unidadNueva = inventario.generarUnidad(casilla); // TODO: -> >:( MAL LALASMDALSMDLASMDLASDMALSMDLA MAL
         casilla.establecerUnidad(unidadNueva);
     }
 

@@ -11,12 +11,15 @@ import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
 
 public abstract class Terreno {
 
     protected Coordenada coordenada;
+
+    protected Edificio edificio;
     /*
     public void establecerEstado(EstadoTerreno estado) {
         this.estado = estado;
@@ -53,6 +56,10 @@ public abstract class Terreno {
     public abstract void energizarTerreno();
 
     public abstract void cubrirTerrenoDeMoho();
+
+    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo){
+        edificio.recibirGolpe(danioTerrestre,danioAereo);
+    }
 
     /*
     public EstadoTerreno DEBUGDEVOLVERESTADO() {

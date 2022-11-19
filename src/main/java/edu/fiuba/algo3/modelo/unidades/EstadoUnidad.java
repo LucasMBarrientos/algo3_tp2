@@ -9,6 +9,6 @@ public interface EstadoUnidad {
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada, Unidad unidad);
 
-    public void atacar (Direccion direccion, Mapa mapa, Coordenada coordenada);
+    public void atacar(Coordenada objetivo, Mapa mapa);
 
 }
