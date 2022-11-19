@@ -4,7 +4,8 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

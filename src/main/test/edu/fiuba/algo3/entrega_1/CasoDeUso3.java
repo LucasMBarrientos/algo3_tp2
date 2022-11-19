@@ -1,24 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 
 public class CasoDeUso3 {
+
+    /*
 
     @Test
     public void extractorNoPuedeConstruirseSobreUnTerrenoVacio() {
@@ -33,10 +20,8 @@ public class CasoDeUso3 {
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
         Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, casillaConTerenoVacio);
-        */
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorZerg.construirEdificio(casillaConTerenoVacio, new Extractor());
@@ -55,10 +40,8 @@ public class CasoDeUso3 {
         Mapa mapa = algoStar.devolverMapa();
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-        */
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
             jugadorZerg.construirEdificio(casillaConMoho, new Extractor());
@@ -76,10 +59,8 @@ public class CasoDeUso3 {
 
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
-        */
 
         boolean intentoExitoso = true;
         try {
@@ -145,5 +126,7 @@ public class CasoDeUso3 {
         }
         Assertions.assertTrue(intentoExitoso);
     }
+
+    */
 
 }
