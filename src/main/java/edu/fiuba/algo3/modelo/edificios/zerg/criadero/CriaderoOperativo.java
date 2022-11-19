@@ -1,19 +1,19 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
 
+import edu.fiuba.algo3.modelo.NoHayLarvasDisponibles;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 
 public class CriaderoOperativo implements EstadoCriadero {
     
     private Criadero criadero;
     private int larvas = 3;
 
-    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasSuficientes {
+    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles {
         if (larvas <= 0) {
-            throw new NoHayLarvasSuficientes();
+            throw new NoHayLarvasDisponibles();
         }
         this.larvas--;
         return unidad;
@@ -32,7 +32,7 @@ public class CriaderoOperativo implements EstadoCriadero {
 
     @Override
     public Criadero deshacerConstruccion() {
-      criadero.establecerEstado(new CriaderoEnConstruccion());
+      criadero.setState(new CriaderoEnConstruccion());
       return criadero;
     }
 

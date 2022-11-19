@@ -3,14 +3,14 @@ package edu.fiuba.algo3.modelo.unidades.protoss;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.unidades.UnidadProtoss;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 
 public class Scout extends UnidadProtoss {
 
     public Scout() {
-        this.costoEnMinerales = new Mineral(300);
+        this.costoEnMinerales = new Minerales(300);
         this.costoEnGas = new GasVespeno(150);
         this.tiempoConstruccion = 9;
         this.danioAereo = new Danio(14);

@@ -2,13 +2,10 @@ package edu.fiuba.algo3.modelo.edificios.zerg.extractor;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -22,16 +19,16 @@ public class Extractor extends EdificioZerg {
     Terreno terreno;
 
     public Extractor() {
-      this.costoEnMinerales = new Mineral(50);
-      this.costoEnGas = new GasVespeno(0);
+      this.costoEnMinerales = new GasVespeno(50);
+      this.posiblesTerrenos = List.of(new TerrenoVolcan());
+      this.edificiosNecesarios = List.of();
       this.vida = new Vida(750);
       this.tiempoDeConstruccion = 6;
-      this.nombre = new Nombre("Extractor");
-      establecerEstado(new ExtractorEnConstruccion());
+      setState(new ExtractorEnConstruccion());
     }
 
-    public void ocupar(Terreno terreno){
-      terreno.ocuparPorEdificio(this);
+    public void ocupar(Casilla casilla, Terreno terreno){
+      terreno.ocuparPorEdificio(this, casilla);
       this.terreno = terreno;
     }
     
@@ -40,11 +37,12 @@ public class Extractor extends EdificioZerg {
     }
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
         return null;
     }
 
-    public void establecerEstado(EstadoExtractor estado){
+
+    public void setState(EstadoExtractor estado){
       this.estado = estado;
       this.estado.setExtractor(this);
     }
@@ -61,15 +59,11 @@ public class Extractor extends EdificioZerg {
       estado.ingresarUnidad(zangano);
     }
 
-    public void validarCorrelativasDeConstruccion(Inventario inventario) { }
-
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) { }
-
     /*
     public void recibirGolpe(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);
     }
-
+    
 
     //recolectarRecursos(inventario);
     public void recolectarRecursos(Inventario inventario) {
@@ -83,7 +77,7 @@ public class Extractor extends EdificioZerg {
     private Boolean recursosRecolectados = false;
 
     public int recursosRestantes = 5000;
-
+        
     public Extractor() {
         this.tiempoConstruccion = 6;
         this.requerimientosGas = 0;
@@ -108,7 +102,17 @@ public class Extractor extends EdificioZerg {
     }
 
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    public Recursos recolectarRecursos() {
+        recursosRecolectados = true;
+        if(recursosRestantes > 0){
+            recursosRestantes -= (10 * zanganosTrabajando.size());
+            return new GasVespeno(10 * zanganosTrabajando.size());
+        }
+        return new GasVespeno(0);
+    }
 
+    @Override
+    public boolean tieneRecursos() {
+        return !(recursosRecolectados);
     }*/
 }

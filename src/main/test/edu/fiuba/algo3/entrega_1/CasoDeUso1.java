@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.geometria.direcciones.*;
-import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
-import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.direcciones.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,6 +25,8 @@ public class CasoDeUso1 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         jugadorZerg.moverUnidad(casillaConCriadero, new Arriba());
+        Coordenada coordenadaArriba = casillaConCriadero.devolverCoordendas().devolverCoordenadaRelativa(0,-1);
+        Casilla casillaArriba = algoStar.devolverMapa().buscarCasilla(coordenadaArriba);
         jugadorZerg.generarUnidad(casillaConCriadero);
         algoStar.pasarTurno();
         algoStar.pasarTurno();
@@ -40,15 +38,14 @@ public class CasoDeUso1 {
         algoStar.pasarTurno();
         algoStar.pasarTurno();
 
-        Mapa mapa = algoStar.DEBUG_DEVOLVERMAPA();
-        mapa.DEBUG_MOSTRARMAPATERRENO();
-        mapa.DEBUG_MOSTRARMAPAUNIDADES();
-
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
+        Assertions.assertThrows(NoHayLarvasDisponibles.class, ()->{
             jugadorZerg.generarUnidad(casillaConCriadero);
         });
 
 
+        Mapa mapa = algoStar.devolverMapa();
+        mapa.DEBUGMOSTRARMAPATERRENO();
+        mapa.DEBUGMOSTRARMAPAUNIDADES();
     }
 /*
     @Test
