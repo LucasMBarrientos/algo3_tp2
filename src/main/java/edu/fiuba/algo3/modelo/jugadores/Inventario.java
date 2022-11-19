@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
@@ -16,11 +16,18 @@ public class Inventario {
     private List<Edificio> edificios = new ArrayList<Edificio>();
     private List<Unidad> unidades = new ArrayList<Unidad>();
     public GasVespeno gasVespeno;
-    public Minerales minerales;
+    public Mineral mineral;
 
-    public Inventario(GasVespeno gasVespeno, Minerales minerales) {
+    public Inventario(GasVespeno gasVespeno, Mineral mineral) {
         this.gasVespeno = gasVespeno;
-        this.minerales = minerales;
+        this.mineral = mineral;
+    }
+
+    public boolean tieneEdificio(Nombre nombreDeEdifico){
+        for(Edificio edificio : edificios){
+           return nombreDeEdifico.esIgual(edificio.devolverNombre());
+        }
+        return false;
     }
 
     public void agregarEdificio(Edificio edificioNuevo) {
@@ -31,7 +38,7 @@ public class Inventario {
         edificios.add(pilon);
     }
 
-    public void actualizarGasVespeno(Recursos gasVespeno) {
+    public void actualizarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);
     }
 
@@ -63,28 +70,28 @@ public class Inventario {
 
     public Unidad generarUnidad(Casilla casillaConEdifico) {
         Edificio edificioConLarvas = this.devolverEdificioConLarvas();
-        Unidad unidadNueva = casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, minerales, casillaConEdifico.devolverCoordendas());
+        Unidad unidadNueva = casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, mineral, casillaConEdifico.devolverCoordendas());
         return unidadNueva;
         //casillaConEdifico.generarUnidad(edificioConLarvas);
     }
 
-    public void actualizarMinerales(Recursos minerales){
-        this.minerales.agregarUnidades(minerales);
+    public void actualizarMinerales(Recurso minerales){
+        this.mineral.agregarUnidades(minerales);
     }
 
     public void agregarUnidad(Unidad unidadNueva){
         unidades.add(unidadNueva);
     }
 
-    public void consumirMinerales(Recursos RecursoRequerido){
-        minerales.gastar(RecursoRequerido);
+    public void consumirMinerales(Recurso RecursoRequerido){
+        mineral.gastar(RecursoRequerido);
     }
 
-    public void consumirGasVespeno(Recursos RecursoRequerido){
+    public void consumirGasVespeno(Recurso RecursoRequerido){
         gasVespeno.gastar(RecursoRequerido);
     }
 
-    public boolean faltanEdificios(List<Edificio> edificiosAComprobar){
+  /*  public boolean faltanEdificios(List<Edificio> edificiosAComprobar){
         boolean faltanEdificios = false;
         for (int i = 0; i < edificiosAComprobar.size(); i++) {
             if(edificios.isEmpty()) {
@@ -102,7 +109,7 @@ public class Inventario {
             }
         }
         return faltanEdificios;
-    }
+    }*/
 
     public void actualizar() {
         for(Edificio edificio : edificios){

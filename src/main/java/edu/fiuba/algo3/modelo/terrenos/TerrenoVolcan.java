@@ -2,69 +2,81 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
 
 import java.util.List;
 
-public class TerrenoVolcan implements EstadoTerreno {
+public class TerrenoVolcan extends Terreno {
 
-    private Terreno terreno;
+    private Edificio edificio;
+    private Recurso gasVespeno = new GasVespeno(5000);
 
-    @Override
-    public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
-        if (this.validarEstado(edificio.posiblesEstados())){
-            casilla.ocupar(edificio);
-        }
+    public TerrenoVolcan(Coordenada coordenada) {
+        this.coordenada = coordenada;
     }
 
-    @Override
-    public void energizarTerreno() {
-        terreno.establecerEstado(new TerrenoEnergizado());
+    public void ocuparPorEdificio(Pilon pilon){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    @Override
-    public void cubrirTerrenoDeMoho() {
-
+    public void ocuparPorEdificio(Acceso acceso){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    @Override
-    public void setTerreno(Terreno terreno) {
-        this.terreno = terreno;
+    public void ocuparPorEdificio(Asimilador asimilador){
+        this.edificio = asimilador;
     }
 
-    @Override
-    public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
-        for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
-        if(listaDePosiblesTerrenos.get(i) instanceof TerrenoVolcan){
-            return true;
-        }
-        }
-        return false;
+    public void ocuparPorEdificio(NexoMineral nexoMineral){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    @Override
-    public void vaciarTerreno() {
-
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    @Override
-    public void generarVolcan() {
-
+    public void ocuparPorEdificio(Criadero criadero){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    @Override
-    public void generarMina() {
-        terreno.establecerEstado(new TerrenoMineral());
+    public void ocuparPorEdificio(Espiral espiral){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    @Override
-    public void consumirMinerales(Recursos recursoRequerido) {
-
+    public void ocuparPorEdificio(Extractor extractor){
+        edificio = extractor;
     }
 
-    @Override
-    public void consumirGasVespeno(Recursos recursoRequerido) {
-        this.terreno.gasVespeno.gastar(recursoRequerido);
+    public void ocuparPorEdificio(Guarida guarida){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    }
+
+    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    }
+
+    public void energizarTerreno() { }
+
+    public void cubrirTerrenoDeMoho() { }
+
+    public void vaciarTerreno() { }
+
+    public void extraerGasVespeno(Recurso recursoRequerido) {
+        gasVespeno.gastar(recursoRequerido);
     }
 
 }

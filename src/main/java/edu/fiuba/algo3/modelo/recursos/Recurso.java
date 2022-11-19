@@ -1,24 +1,23 @@
 package edu.fiuba.algo3.modelo.recursos;
 
-import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 
-public abstract class Recursos {
+public abstract class Recurso {
 
     private int unidadesDisponibles;
 
-    public Recursos(int unidades) {
+    public Recurso(int unidades) {
         this.unidadesDisponibles = unidades;
     }
 
-    public void gastar(Recursos recurso) throws RecursosInsuficientes{
+    public void gastar(Recurso recurso) throws RecursosInsuficientes{
         if(unidadesDisponibles < recurso.devolverCantidadUnidades()){
             throw new RecursosInsuficientes();
         }
         unidadesDisponibles -= recurso.devolverCantidadUnidades();
     }
 
-    public void agregarUnidades(Recursos recurso){
+    public void agregarUnidades(Recurso recurso){
         unidadesDisponibles += recurso.devolverCantidadUnidades();
     }
 
@@ -36,6 +35,9 @@ public abstract class Recursos {
     private int devolverCantidadUnidades(){
         return this.unidadesDisponibles;
     }
+
+
+
 
 
 

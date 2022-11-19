@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
@@ -18,6 +19,19 @@ public class JugadorZerg extends Jugador {
 
     public JugadorZerg(String nombre, String color, int recursosExtra) {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
+    }
+
+
+    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
+        //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion
+        Edificio edificioNuevo = edificio.construir(inventario);
+        try {
+            mapa.establecerEdificioEn(coordenada, edificioNuevo);
+        }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
+            // todo: devolver recursos
+            throw new TerrenoNoAptoParaConstruirTalEdificio();
+        }
+        inventario.agregarEdificio(edificioNuevo);
     }
 
     public int contarLarvas() {

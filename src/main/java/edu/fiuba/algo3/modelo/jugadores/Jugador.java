@@ -3,14 +3,15 @@ package edu.fiuba.algo3.modelo.jugadores;
 import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Jugador {
@@ -28,10 +29,12 @@ public abstract class Jugador {
         this.nombre = nombre;
     }
 
+    public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
+
     protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales) {
         this.establecerNombre(nombre);
         this.color = color;
-        this.inventario = new Inventario(new GasVespeno(gasInicial), new Minerales(mineralesIniciales));
+        this.inventario = new Inventario(new GasVespeno(gasInicial), new Mineral(mineralesIniciales));
     }
 
     public void moverUnidad(Casilla casillaUnidad, Direccion direccion){
@@ -49,14 +52,6 @@ public abstract class Jugador {
 
     public abstract void generarUnidad(Coordenada coordenada);
 
-    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
-        this.construirEdificio(mapa.buscarCasilla(coordenada), edificio);
-    }
-
-    public void construirEdificio(Casilla casilla, Edificio edificio) {
-        casilla.ponerEdificio(edificio.construir(inventario));
-    }
-
     public Casilla hallarCasillaConVolcanInicial() {
         return mapa.hallarVolcanInicialDelJugador(id);
     }
@@ -73,7 +68,6 @@ public abstract class Jugador {
         this.mapa = mapa;
         iniciarseEnMapa();
     }
-
     protected abstract void iniciarseEnMapa();
 
     public void establecerId(int id) {

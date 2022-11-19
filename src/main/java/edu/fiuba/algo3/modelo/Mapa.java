@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.areas.AreaEspacial;
 import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -18,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
 
+    private List<Terreno> terrenos = new ArrayList<Terreno>();
     private List<Casilla> casillas = new ArrayList<Casilla>();
     List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
     SuperficieRectangular superficie;
@@ -38,6 +40,20 @@ public class Mapa {
 
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
+    }
+
+    public Terreno buscarTerreno(Coordenada coordenada) throws CoordenadaFueraDelMapa {
+        for (Terreno terreno : terrenos) {
+            if (terreno.compararCoordenadas(coordenada)) {
+                return terreno;
+            }
+        }
+        throw new CoordenadaFueraDelMapa();
+    }
+
+    public void establecerEdificioEn(Coordenada coordenada, Edificio edificio) throws TerrenoNoAptoParaConstruirTalEdificio {
+        Terreno terreno = buscarTerreno(coordenada);
+        edificio.ocupar(terreno);
     }
 
     public Casilla buscarCasilla(Coordenada coordenada) throws RuntimeException {

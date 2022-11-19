@@ -1,17 +1,10 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.Direccion;
-import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JugadorProtoss extends Jugador {
 
@@ -23,9 +16,19 @@ public class JugadorProtoss extends Jugador {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
 
+    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
+        Edificio edificioNuevo = edificio.construir(inventario);
+        try {
+            mapa.establecerEdificioEn(coordenada, edificioNuevo);
+        }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
+            // todo: devolver recursos
+            throw new TerrenoNoAptoParaConstruirTalEdificio();
+        }
+        inventario.agregarEdificio(edificioNuevo);
+    }
+
     @Override
     public void generarUnidad(Coordenada coordenada) {
-
     }
 
     protected void iniciarseEnMapa() {

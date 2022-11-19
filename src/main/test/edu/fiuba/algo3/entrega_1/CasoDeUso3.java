@@ -1,20 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 
 public class CasoDeUso3 {

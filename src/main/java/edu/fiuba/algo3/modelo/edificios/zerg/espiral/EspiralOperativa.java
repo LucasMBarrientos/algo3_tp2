@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.espiral;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Minerales;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 
@@ -12,8 +11,8 @@ public class EspiralOperativa implements EstadoEspiral {
 
     private Espiral espiral;
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
-        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Mutalisco(gasVespenoDelJugador,mineralesDelJugador, coordenada));
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
+        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Mutalisco(gasVespenoDelJugador, mineralDelJugador, coordenada));
     }
 
     @Override

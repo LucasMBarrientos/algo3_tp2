@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import java.util.List;
-
-import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -15,65 +12,70 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
-public class TerrenoEnergizado implements EstadoTerreno {
+public class TerrenoBase extends Terreno {
 
-    private TerrenoBase terreno;
+    private Edificio edificio;
+    private EstadoTerreno estado = new TerrenoVacio(this);
 
-    public TerrenoEnergizado(TerrenoBase terreno){
-        this.terreno = terreno;
+    public TerrenoBase(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }
+    public void establecerEdificio(Edificio edificio){
+        this.edificio = edificio;
+    }
+
+    public void establecerEstado(EstadoTerreno estado){
+        this.estado = estado;
     }
 
     public void ocuparPorEdificio(Pilon pilon){
-        terreno.establecerEdificio(pilon);
+        estado.ocuparPorEdificio(pilon);
     }
 
     public void ocuparPorEdificio(Acceso acceso){
-        terreno.establecerEdificio(acceso);
+        estado.ocuparPorEdificio(acceso);
     }
 
     public void ocuparPorEdificio(Asimilador asimilador){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(asimilador);
     }
 
     public void ocuparPorEdificio(NexoMineral nexoMineral){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(nexoMineral);
     }
 
     public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
-        terreno.establecerEdificio(puertoEstelar);
+        estado.ocuparPorEdificio(puertoEstelar);
     }
+
     public void ocuparPorEdificio(Criadero criadero){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(criadero);
     }
 
     public void ocuparPorEdificio(Espiral espiral){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(espiral);
     }
 
     public void ocuparPorEdificio(Extractor extractor){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(extractor);
     }
 
     public void ocuparPorEdificio(Guarida guarida){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(guarida);
     }
 
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+        estado.ocuparPorEdificio(reservaDeReproduccion);
     }
 
-    public void energizarTerreno() { }
+    public void energizarTerreno() { estado.energizarTerreno(); }
 
-    public void cubrirTerrenoDeMoho() {
-        terreno.establecerEstado(new TerrenoMoho(terreno));
-    }
+    public void cubrirTerrenoDeMoho() { estado.cubrirTerrenoDeMoho();}
 
+    public void vaciarTerreno() { estado.vaciarTerreno(); }
 
-    public void vaciarTerreno() {
-        terreno.establecerEstado(new TerrenoVacio(terreno));
-    }
 
 
 }

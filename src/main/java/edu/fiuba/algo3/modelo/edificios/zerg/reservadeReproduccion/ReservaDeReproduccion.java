@@ -2,12 +2,13 @@ package edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion;
 
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
@@ -18,25 +19,23 @@ public class ReservaDeReproduccion extends EdificioZerg {
     Terreno terreno;
 
     public ReservaDeReproduccion() {
-        this.costoEnMinerales = new Minerales(150);
-        this.posiblesTerrenos = List.of(new TerrenoMoho());
-        this.edificiosNecesarios = List.of();
+        this.costoEnMinerales = new Mineral(150);
         this.vida = new Vida(1000);
         this.tiempoDeConstruccion = 12;
+        this.nombre = new Nombre("ReservaDeReproduccion");
         establecerEstado(new ReservaDeReproduccionEnConstruccion());
     }
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) throws NoHayLarvasSuficientes {
-        return estado.generarUnidad(edificioConLarvas, gasVespenoDelJugador, mineralesDelJugador, coordenada);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) throws NoHayLarvasSuficientes {
+        return estado.generarUnidad(edificioConLarvas, gasVespenoDelJugador, mineralDelJugador, coordenada);
     }
 
     public void actualizar() {
       this.estado.actualizar();
     }
 
-    public void ocupar(Casilla casilla, Terreno terreno){
-      terreno.ocuparPorEdificio(this, casilla);
-      this.terreno = terreno;
+    public void ocupar(Terreno terreno){
+        terreno.ocuparPorEdificio(this);
     }
 
     public void establecerEstado(EstadoReservaDeReproduccion estado){
@@ -52,7 +51,12 @@ public class ReservaDeReproduccion extends EdificioZerg {
       return this.estado.deshacerConstruccion();
     }
 
-    /*  
+    public void validarCorrelativasDeConstruccion(Inventario inventario) { }
+
+    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    }
+
+    /*
     public void recibirGolpe(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);
     }
