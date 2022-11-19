@@ -34,7 +34,6 @@ public class JugadorProtoss extends Jugador {
     //unidad se pone en el mapa
 
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
-        //TODO dar asilo a Leti el sabado 26... me invitas?
         unidad.generarse(inventario);
     }
 

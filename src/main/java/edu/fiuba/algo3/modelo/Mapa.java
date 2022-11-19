@@ -223,22 +223,6 @@ public class Mapa {
         }
         return casillasConPilones;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 
@@ -301,5 +285,4 @@ public class Mapa {
         }
         System.out.println("█" + lineaDelMapa + "█");
     }
-
 }

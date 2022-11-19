@@ -64,16 +64,25 @@ public class TerrenoEnergizado implements EstadoTerreno {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
+
+    
     public void energizarTerreno() { }
+
+
 
     public void cubrirTerrenoDeMoho() {
         terreno.establecerEstado(new TerrenoMoho(terreno));
     }
 
 
+
+
     public void vaciarTerreno() {
         terreno.establecerEstado(new TerrenoVacio(terreno));
     }
+
+
+
 
 
 }
