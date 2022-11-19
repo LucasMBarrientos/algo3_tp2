@@ -22,6 +22,7 @@ public class Asimilador extends EdificioProtoss {
 
     public Asimilador() {
         this.costoEnMinerales = new Mineral(100);
+        this.costoEnGas = new GasVespeno(0);
         this.tiempoDeConstruccion = 6;
         this.vida = new Vida(450);
         this.escudo = new Escudo(450);

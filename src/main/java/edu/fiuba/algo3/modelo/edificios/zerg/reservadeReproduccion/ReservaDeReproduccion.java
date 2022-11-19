@@ -20,6 +20,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
 
     public ReservaDeReproduccion() {
         this.costoEnMinerales = new Mineral(150);
+        this.costoEnGas = new GasVespeno(0);
         this.vida = new Vida(1000);
         this.tiempoDeConstruccion = 12;
         this.nombre = new Nombre("ReservaDeReproduccion");

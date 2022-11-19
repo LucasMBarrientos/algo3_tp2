@@ -33,14 +33,42 @@ public class Inventario {
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);
     }
-
-    public void agregarPilon(Pilon pilon) {
-        edificios.add(pilon);
+    public void agregarUnidad(Unidad unidadNueva){
+        unidades.add(unidadNueva);
     }
 
     public void actualizarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);
     }
+    public void actualizarMinerales(Recurso minerales){
+        this.mineral.agregarUnidades(minerales);
+    }
+
+    public Unidad generarUnidad(Casilla casillaConEdifico) {
+        Edificio edificioConLarvas = this.devolverEdificioConLarvas();
+        Unidad unidadNueva = casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, mineral, casillaConEdifico.devolverCoordendas());
+        return unidadNueva;
+        //casillaConEdifico.generarUnidad(edificioConLarvas);
+    }
+
+
+    public void consumirMinerales(Recurso recursoRequerido){
+        mineral.gastar(recursoRequerido);
+    }
+
+    public void consumirGasVespeno(Recurso recursoRequerido){
+        gasVespeno.gastar(recursoRequerido);
+    }
+
+    public void devolverMinerales(Recurso recursoUtilizado){
+        mineral.agregarUnidades(recursoUtilizado);
+    }
+
+    public void devolverGasVespeno(Recurso recursoUtilizado){
+        gasVespeno.agregarUnidades(recursoUtilizado);
+    }
+
+
 
     public int contarLarvas() {
         int larvasTotales = 0;
@@ -66,29 +94,6 @@ public class Inventario {
             }
         }
         return edificioConLarvas;
-    }
-
-    public Unidad generarUnidad(Casilla casillaConEdifico) {
-        Edificio edificioConLarvas = this.devolverEdificioConLarvas();
-        Unidad unidadNueva = casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, mineral, casillaConEdifico.devolverCoordendas());
-        return unidadNueva;
-        //casillaConEdifico.generarUnidad(edificioConLarvas);
-    }
-
-    public void actualizarMinerales(Recurso minerales){
-        this.mineral.agregarUnidades(minerales);
-    }
-
-    public void agregarUnidad(Unidad unidadNueva){
-        unidades.add(unidadNueva);
-    }
-
-    public void consumirMinerales(Recurso RecursoRequerido){
-        mineral.gastar(RecursoRequerido);
-    }
-
-    public void consumirGasVespeno(Recurso RecursoRequerido){
-        gasVespeno.gastar(RecursoRequerido);
     }
 
   /*  public boolean faltanEdificios(List<Edificio> edificiosAComprobar){

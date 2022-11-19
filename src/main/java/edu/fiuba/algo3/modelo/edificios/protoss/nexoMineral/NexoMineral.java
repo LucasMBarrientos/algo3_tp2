@@ -22,6 +22,7 @@ public class NexoMineral extends EdificioProtoss {
 
     public NexoMineral(){
         this.costoEnMinerales = new Mineral(50);
+        this.costoEnGas = new GasVespeno(0);
         this.tiempoDeConstruccion = 4;
         this.vida = new Vida(300);
         this.escudo = new Escudo(300);

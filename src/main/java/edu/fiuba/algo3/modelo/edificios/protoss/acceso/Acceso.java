@@ -21,6 +21,7 @@ public class Acceso extends EdificioProtoss {
     private EstadoAcceso estado;
     public Acceso(){
         this.costoEnMinerales = new Mineral(150);
+        this.costoEnGas = new GasVespeno(0);
         this.tiempoDeConstruccion = 8;
         this.vida = new Vida(500);
         this.escudo = new Escudo(500);

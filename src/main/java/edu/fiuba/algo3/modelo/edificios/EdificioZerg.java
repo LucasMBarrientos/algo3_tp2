@@ -16,27 +16,12 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public abstract class EdificioZerg extends Edificio {
 
-    public Terreno terreno;
-    public Recurso costoEnMinerales;
-    public Recurso costoEnGas;
-    public Vida vida;
-    protected Nombre nombre;
-    public int tiempoDeConstruccion;
-
-    public void consumirRecursosParaConstruccion(Inventario inventario) {
-        inventario.consumirMinerales(costoEnMinerales);
-    }
-
     public abstract void validarCorrelativasDeConstruccion(Inventario inventario);
 
     public abstract void ocupar(Terreno terreno);
 
     public void establecerTerreno(Terreno terreno) {
         this.terreno = terreno;
-    }
-
-    public Nombre devolverNombre(){
-        return nombre;
     }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {

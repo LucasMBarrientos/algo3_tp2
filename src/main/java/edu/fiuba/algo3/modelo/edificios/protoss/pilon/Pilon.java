@@ -22,6 +22,7 @@ public class Pilon extends EdificioProtoss {
 
     public Pilon() {
         this.costoEnMinerales = new Mineral(100);
+        this.costoEnGas = new GasVespeno(0);
         this.tiempoDeConstruccion = 5;
         this.vida = new Vida(300);
         this.escudo = new Escudo(300);

@@ -22,10 +22,11 @@ public class Extractor extends EdificioZerg {
     Terreno terreno;
 
     public Extractor() {
-      this.costoEnMinerales = new GasVespeno(50);
+      this.costoEnMinerales = new Mineral(50);
+      this.costoEnGas = new GasVespeno(0);
       this.vida = new Vida(750);
       this.tiempoDeConstruccion = 6;
-        this.nombre = new Nombre("Extractor");
+      this.nombre = new Nombre("Extractor");
       establecerEstado(new ExtractorEnConstruccion());
     }
 

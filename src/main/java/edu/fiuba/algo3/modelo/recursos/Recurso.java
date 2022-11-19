@@ -28,10 +28,6 @@ public abstract class Recurso {
         unidadesDisponibles -= unidadesAConsumir;
     }
 
-    public void devolverUnidades(int costoEnMinerales){
-        unidadesDisponibles += costoEnMinerales;
-    }
-
     private int devolverCantidadUnidades(){
         return this.unidadesDisponibles;
     }

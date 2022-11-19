@@ -14,19 +14,7 @@ import java.util.List;
 
 public abstract class EdificioProtoss extends Edificio {
 
-    public Terreno terreno;
-    public Recurso costoEnMinerales;
-    public Recurso costoEnGas;
-    public Vida vida;
     public Escudo escudo;
-    protected Nombre nombre;
-    public int tiempoDeConstruccion;
-
-
-    public void consumirRecursosParaConstruccion(Inventario inventario){
-        inventario.consumirMinerales(costoEnMinerales);
-        //TODO: Revisar consumo de gas
-    }
 
     public abstract void validarCorrelativasDeConstruccion(Inventario inventario);
 
@@ -36,10 +24,6 @@ public abstract class EdificioProtoss extends Edificio {
         this.terreno = terreno;
     }
 
-
-    public Nombre devolverNombre(){
-        return nombre;
-    }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
         if (this.tiempoDeConstruccion-tiempoAReducir > 0) {

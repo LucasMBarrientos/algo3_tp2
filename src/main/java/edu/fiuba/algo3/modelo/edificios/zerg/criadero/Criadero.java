@@ -20,7 +20,8 @@ public class Criadero extends EdificioZerg {
     Terreno terreno;
 
     public Criadero() {
-        this.costoEnMinerales = new Mineral(50);
+        this.costoEnMinerales = new Mineral(200);
+        this.costoEnGas = new GasVespeno(0);
         this.tiempoDeConstruccion = 4;
         this.vida = new Vida(500);
         this.nombre = new Nombre("Criadero");

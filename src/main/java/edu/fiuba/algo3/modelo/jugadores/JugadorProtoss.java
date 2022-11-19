@@ -21,7 +21,7 @@ public class JugadorProtoss extends Jugador {
         try {
             mapa.establecerEdificioEn(coordenada, edificioNuevo);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
-            // todo: devolver recursos
+            edificio.devolverRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
         inventario.agregarEdificio(edificioNuevo);
