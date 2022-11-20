@@ -105,7 +105,7 @@ public class Mapa {
     }
 
     private Terreno buscarTerrenoAlAzar() {
-        Coordenada coordeandaAlAzar = superficie.devolverCoordenadaAlAzar();
+        Coordenada coordeandaAlAzar = superficie.buscarCoordenadaAlAzar();
         return this.buscarTerreno(coordeandaAlAzar);
     }
 

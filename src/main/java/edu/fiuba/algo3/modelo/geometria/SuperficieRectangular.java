@@ -58,13 +58,13 @@ public class SuperficieRectangular {
         return this.filtrarListaDeCoordenadas(coordenadasPosibles);
     }
 
-    public Coordenada devolverCoordenadaCentral() {
+    public Coordenada hallarCoordenadaCentral() {
         int x = calcularLongitudX() / 2;
         int y = calcularLongitudY() / 2;
         return coordenadaInicial.devolverCoordenadaRelativa(x,y);
     }
 
-    public Coordenada devolverCoordenadaAlAzar() {
+    public Coordenada buscarCoordenadaAlAzar() {
         int x = ThreadLocalRandom.current().nextInt(calcularLongitudX());
         int y = ThreadLocalRandom.current().nextInt(calcularLongitudY());
         return coordenadaInicial.devolverCoordenadaRelativa(x,y);
@@ -75,7 +75,7 @@ public class SuperficieRectangular {
         Coordenada coordenada;
         do {
             coordenadaValida = true;
-            coordenada = this.devolverCoordenadaAlAzar();
+            coordenada = this.buscarCoordenadaAlAzar();
             for (Coordenada coordenadaEvitada : coordenasEvitadas) {
                 coordenadaValida = !((!coordenadaValida) || coordenada.esIgual(coordenadaEvitada));
             }
