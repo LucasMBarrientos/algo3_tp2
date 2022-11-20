@@ -19,16 +19,8 @@ public class CasoDeUso11 {
         for(int i=0; i<6; i++){ pilon.actualizar(); } //paso los turnos para que se termine de construir
 
 
-        boolean comportamientoEsperado = false;
-        try{
-            pilon.recibirGolpe(new Danio(100));
-        }catch (EdificioDestruido edificioDestruido){
-            comportamientoEsperado = true;
-        }
-        Assertions.assertFalse(comportamientoEsperado);
-
         Assertions.assertThrows(EdificioDestruido.class,() ->{
-            pilon.recibirGolpe(new Danio(500));
+            pilon.recibirGolpe(new Danio(600));
         });
 
     }
@@ -37,59 +29,17 @@ public class CasoDeUso11 {
         Pilon pilon = new Pilon();
         for(int i=0; i<6; i++){ pilon.actualizar(); } //paso los turnos para que se termine de construir
 
+        pilon.recibirGolpe(new Danio(500));
 
-        boolean comportamientoEsperado = false;
-        try{
-            pilon.recibirGolpe(new Danio(100));
-        }catch (EdificioDestruido edificioDestruido){
-            comportamientoEsperado = true;
-        }
-        Assertions.assertFalse(comportamientoEsperado);
-
-        for(int i=0; i<6; i++){
+        for(int i=0; i<40; i++){
             pilon.actualizar();
-        } //paso los turnos para que se termine de construir
-
-        try{
-            pilon.recibirGolpe(new Danio(500));
-        }catch (EdificioDestruido edificioDestruido){
-            comportamientoEsperado = true;
         }
-        Assertions.assertFalse(comportamientoEsperado);
 
+        pilon.recibirGolpe(new Danio(300));
+        pilon.actualizar();
 
+        pilon.recibirGolpe(new Danio(600));
+
+        Assertions.assertThrows(EdificioDestruido.class, pilon::actualizar); //TODO agregar state edificio destruido @Leti
     }
-    /*
-  @Test
-    public void alDañarEdicioProtossConUnDanioMenorAlEscudoEsteSeRegenera() {
-    AlgoStar algoStar = new AlgoStar();
-    algoStar.empezarJuego();
-    algoStar.pasarTurno();
-
-    algoStar.construirEdificio(8,8,new Pilon());
-
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    // ATACAR EL CON DANIO MENOR AL ESCUDO
-    algoStar.seleccionarCasilla(8, 8).devolverEdificio().recibirDanio(100);
-
-
-      // PROBAR QUE SE REGENERA
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-
-    Assertions.assertEquals(((EdificioProtoss)algoStar.seleccionarCasilla(8,8).devolverEdificio()).devolverEscudo(), 300);
-    }*/
 }

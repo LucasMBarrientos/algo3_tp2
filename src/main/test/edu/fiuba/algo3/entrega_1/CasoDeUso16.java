@@ -2,46 +2,27 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso16 {/*
+public class CasoDeUso16 {
 
     @Test
     public void noSePuedeConstruirUnEdificioSobreOtro() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.generarUnidad(1,1);
-        algoStar.moverDerecha(1,1);
+        JugadorZerg jugadorZerg = new JugadorZerg();
+        Criadero c1 = new Criadero();
+        Criadero c2 = new Criadero();
 
-        algoStar.seleccionarCasilla(2,1).establecerTerreno(new TerrenoVolcan());
-        algoStar.construirEdificio(2,1, new Extractor());
+        jugadorZerg.construirEdificio(new Coordenada(1,1), c1);
 
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Extractor); // Extractor fue construido en (2,1)
-
-        algoStar.pasarTurno();
-
-        algoStar.generarUnidad(1,1);
-        algoStar.moverDerecha(1,1);
-        algoStar.construirEdificio(2,1, new Asimilador());
-
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Extractor);
-    }*/
+        Assertions.assertThrows(TerrenoOcupado.class, ()->{
+            jugadorZerg.construirEdificio(new Coordenada(1,1), c2);
+        });
+    }
 
 }
