@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -14,35 +13,37 @@ import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 
-public interface EstadoTerreno {
+public abstract interface EstadoTerreno {
 
-  void ocuparPorEdificio(Pilon pilon);
+    void ocuparPorEdificio(Pilon pilon);
 
-  void ocuparPorEdificio(Acceso acceso);
+    void ocuparPorEdificio(Acceso acceso);
 
-  void ocuparPorEdificio(Asimilador asimilador);
+    void ocuparPorEdificio(Asimilador asimilador);
 
-  void ocuparPorEdificio(NexoMineral nexoMineral);
+    void ocuparPorEdificio(NexoMineral nexoMineral);
 
-  void ocuparPorEdificio(PuertoEstelar puertoEstelar);
+    void ocuparPorEdificio(PuertoEstelar puertoEstelar);
 
- void ocuparPorEdificio(Criadero criadero);
+    void ocuparPorEdificio(Criadero criadero);
 
-  void ocuparPorEdificio(Espiral espiral);
+    void ocuparPorEdificio(Espiral espiral);
 
-  void ocuparPorEdificio(Extractor extractor);
+    void ocuparPorEdificio(Extractor extractor);
 
-  void ocuparPorEdificio(Guarida guarida);
+    void ocuparPorEdificio(Guarida guarida);
 
-  void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
+    void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
 
-  void energizarTerreno();
+    void energizarTerreno();
 
-  void vaciarTerreno();
-  
-  void cubrirTerrenoDeMoho();
+    void desenergizarTerreno();
 
+    boolean tieneMoho();
+    
+    void cubrirTerrenoDeMoho();
 
 }

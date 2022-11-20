@@ -110,13 +110,17 @@ public class Mapa {
     }
 
     public void actualizar(int turnoActual) {
-       //actualizarTerrenoEnergizado();
-        if (turnoActual % 2 == 0) {
-            // Se expande el moho
-        }
+        List<Coordenada> coordenadasQueTendranMoho = new ArrayList<Coordenada>();
+        List<Coordenada> coordenadasConCriaderos = new ArrayList<Coordenada>();
+        List<Coordenada> coordenadasConPilones = new ArrayList<Coordenada>();
         for (Terreno terreno : terrenos) {
-            //terreno.actualizar();
+            terreno.actualizarListaDeCoordenadas(coordenadasQueTendranMoho, coordenadasConCriaderos, coordenadasConPilones);
         }
+        if (turnoActual % 2 == 0) {
+            cubrirCoordenadasDeMoho(coordenadasQueTendranMoho, coordenadasConCriaderos);
+        }
+        actualizarTerrenosEnergizados(coordenadasConPilones);
+        generarMohoAlrededorDeCriaderos(coordenadasConCriaderos);
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {
@@ -151,12 +155,36 @@ public class Mapa {
             buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
         }
     }
+    private void generarMohoAlrededorDeCriaderos(List<Coordenada> coordenadasConCriaderos) {
+        for (Coordenada coordenadaConCriadero : coordenadasConCriaderos) {
+            generarMohoAlrededorDeCriadero(coordenadaConCriadero);
+        }
+    }
 
     private void generarTerrenoEnergizadoAlrededorDePilon(Coordenada coordenadaDelPilon) {
         List<Coordenada> coordenadasConTerrenoEnergizado = this.superficie.devolverCoordenadasAdyacentes(coordenadaDelPilon,3);
         for (Coordenada coordenadaConTerrenoEnergizado : coordenadasConTerrenoEnergizado) {
             buscarTerreno(coordenadaConTerrenoEnergizado).energizarTerreno();
         }
+    }
+
+    private void generarTerrenoEnergizadoAlrededorDePilones(List<Coordenada> coordenadasConPilones) {
+        for (Coordenada coordenadaConPilon : coordenadasConPilones) {
+            generarTerrenoEnergizadoAlrededorDePilon(coordenadaConPilon);
+        }
+    }
+
+    public void cubrirCoordenadasDeMoho(List<Coordenada> coordenadasQueTendranMoho, List<Coordenada> coordenadasConCriaderos) {
+        for (Coordenada coordenadaConMoho : coordenadasQueTendranMoho) {
+            buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
+        }
+    }
+
+    public void actualizarTerrenosEnergizados(List<Coordenada> coordenadasConPilones) {
+        for (Terreno terreno : terrenos) {
+            terreno.desenergizarTerreno();
+        }
+        generarTerrenoEnergizadoAlrededorDePilones(coordenadasConPilones);
     }
     
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
