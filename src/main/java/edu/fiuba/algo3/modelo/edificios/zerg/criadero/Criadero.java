@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public class Criadero extends EdificioZerg {
+
     private EstadoCriadero estado;
     Terreno terreno;
 
@@ -54,9 +55,13 @@ public class Criadero extends EdificioZerg {
     
     @Override
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
-        return estado.generarUnidad(new Zangano(gasVespenoDelJugador, mineralDelJugador, coordenada));
+        return estado.generarUnidad(new Zangano(coordenada));
     }
 
+    @Override
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        estado.actualizarListaDeCoordenadasConCriaderosOperativos(coordenada, coordenadasConCriaderos);
+    }
 
     /*@Override
     public void consumirRecursosParaConstruccion(Inventario inventario){

@@ -51,7 +51,6 @@ public abstract class Edificio  {
 
     public abstract void establecerTerreno(Terreno terreno);
 
-
     public abstract void actualizar();
 
     public Nombre devolverNombre(){
@@ -86,6 +85,10 @@ public abstract class Edificio  {
         return coordenada.esIgual(coordenadaAComparar);
     }
 
-    //public abstract void recibirGolpe(int danio);
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        return;
+    }
+
+    // public abstract void recibirGolpe(int danio);
 
 }

@@ -74,4 +74,11 @@ public class Pilon extends EdificioProtoss {
     public void validarCorrelativasDeConstruccion(Inventario inventario){
 
     }
+
+
+    @Override
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        estado.actualizarListaDeCoordenadasConPilonesOperativos(coordenada, coordenadasConPilones);
+    }
+
 }

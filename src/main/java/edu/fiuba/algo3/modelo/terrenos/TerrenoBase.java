@@ -89,6 +89,7 @@ public class TerrenoBase extends Terreno {
 
     @Override
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho,List<Coordenada> coordenadasConCriaderos,List<Coordenada> coordenadasConPilones) {
+        edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
         if (estado.tieneMoho()) {
             coordenadasConMoho.addAll(coordenada.hallarCoordenadasAdyacentes());
         }

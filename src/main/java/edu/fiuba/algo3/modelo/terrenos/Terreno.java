@@ -62,12 +62,12 @@ public abstract class Terreno {
 
     public abstract void cubrirTerrenoDeMoho();
 
-    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo){
+    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo) {
         edificio.recibirGolpe(danioTerrestre,danioAereo);
     }
 
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        return;
+        edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
     }
     
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa

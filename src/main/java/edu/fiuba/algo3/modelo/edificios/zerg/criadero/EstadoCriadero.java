@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
 
+import java.util.List;
+
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public interface EstadoCriadero {
@@ -17,4 +20,7 @@ public interface EstadoCriadero {
     int contarLarvas();
 
     void consumirLarva();
+
+    void actualizarListaDeCoordenadasConCriaderosOperativos(Coordenada coordenada, List<Coordenada> coordenadasConCriaderos);
+
 }

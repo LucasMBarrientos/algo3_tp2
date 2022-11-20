@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 
+import java.net.CookieHandler;
+import java.util.List;
+
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+
 public class PilonOperativo implements EstadoPilon{
     private Pilon pilon;
     
@@ -26,4 +31,10 @@ public class PilonOperativo implements EstadoPilon{
     public void actualizar() {
       this.pilon.escudo.regenerar();
     }
+
+    @Override
+    public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada, List<Coordenada> coordenadasConPilones) {
+        coordenadasConPilones.add(coordenada);
+    }
+
 }

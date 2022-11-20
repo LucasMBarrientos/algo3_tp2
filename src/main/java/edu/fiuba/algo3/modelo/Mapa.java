@@ -117,7 +117,7 @@ public class Mapa {
             terreno.actualizarListaDeCoordenadas(coordenadasQueTendranMoho, coordenadasConCriaderos, coordenadasConPilones);
         }
         if (turnoActual % 2 == 0) {
-            cubrirCoordenadasDeMoho(coordenadasQueTendranMoho, coordenadasConCriaderos);
+            cubrirCoordenadasDeMoho(coordenadasQueTendranMoho);
         }
         actualizarTerrenosEnergizados(coordenadasConPilones);
         generarMohoAlrededorDeCriaderos(coordenadasConCriaderos);
@@ -174,7 +174,7 @@ public class Mapa {
         }
     }
 
-    public void cubrirCoordenadasDeMoho(List<Coordenada> coordenadasQueTendranMoho, List<Coordenada> coordenadasConCriaderos) {
+    public void cubrirCoordenadasDeMoho(List<Coordenada> coordenadasQueTendranMoho) {
         for (Coordenada coordenadaConMoho : coordenadasQueTendranMoho) {
             buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
         }

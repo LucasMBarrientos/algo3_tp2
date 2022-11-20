@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 
+import java.net.CookieHandler;
+import java.util.List;
+
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+
 public class PilonEnConstruccion implements EstadoPilon{
     private Pilon pilon;
 
@@ -29,5 +34,10 @@ public class PilonEnConstruccion implements EstadoPilon{
       if(this.pilon.reducirTiempoConstruccion(1)){
         this.terminarConstruccion();
       }
+    }
+
+    @Override
+    public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada, List<Coordenada> coordenadasConPilones) {
+        return;
     }
 }
