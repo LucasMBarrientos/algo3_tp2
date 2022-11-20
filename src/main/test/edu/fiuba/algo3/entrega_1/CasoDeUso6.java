@@ -6,10 +6,13 @@ import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso6 {
+
+    /*
 
     @Test
     public void elRadioDelMohoDelCriaderoEsIgualA5EnElPrimerTurno() {
@@ -22,6 +25,7 @@ public class CasoDeUso6 {
 
         for(int i=0; i<40; i++){
             reservaDeReproduccion.actualizar();
+
         }
 
         Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
@@ -61,4 +65,6 @@ public class CasoDeUso6 {
 
         Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
     }
+
+*/
 }

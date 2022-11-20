@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso4 {
 
+    /*
+
     @Test
     public void extractorCon0ZanganoGenera0UnidadesDeGas() {
         Extractor extractor = new Extractor();
@@ -27,7 +29,6 @@ public class CasoDeUso4 {
         Assertions.assertThrows(RecursosInsuficientes.class,()->{
             gas.gastar(new GasVespeno(10));
         });
-
     }
 
     @Test
@@ -76,6 +77,9 @@ public class CasoDeUso4 {
         Assertions.assertThrows(RecursosInsuficientes.class,()->{
             gas.gastar(new GasVespeno(40));
         });
+
     }
+
+    */
 
 }
