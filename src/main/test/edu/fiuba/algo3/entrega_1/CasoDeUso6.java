@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoNoAptoParaConstruirEsteEdificio;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,77 +15,56 @@ public class CasoDeUso6 {
     /*
 
     @Test
-    public void elRadioDelMohoDelCriaderoInicialEsIgualA5EnElPrimerTurno() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+    public void elRadioDelMohoDelCriaderoEsIgualA5EnElPrimerTurno() {
+        JugadorZerg jugadorZerg = new JugadorZerg();
+        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,5,0);
+        jugadorZerg.construirEdificio(new Coordenada(2,2), new Criadero());
 
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-        boolean intentoExitoso = true;
-        try {
-            jugadorZerg.construirEdificio(casillaConMoho, new ReservaDeReproduccion());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e){
-            intentoExitoso = false;
+        jugadorZerg.construirEdificio(new Coordenada(7,2), reservaDeReproduccion);
+
+        for(int i=0; i<40; i++){
+            reservaDeReproduccion.actualizar();
+
         }
-        Assertions.assertTrue(intentoExitoso);
+
+        Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
     }
 
 
     @Test
     public void elRadioDelMohoDelCriaderoInicialNoEsMayorA5EnElPrimerTurno() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+        JugadorZerg jugadorZerg = new JugadorZerg();
+        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaSinMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,6,0);
+        jugadorZerg.construirEdificio(new Coordenada(2,2), new Criadero());
 
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
+        jugadorZerg.construirEdificio(new Coordenada(8,2), reservaDeReproduccion);
+
         Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillaSinMoho, new ReservaDeReproduccion());
+            jugadorZerg.construirEdificio(new Coordenada(8,2), reservaDeReproduccion);
         });
     }
 
     @Test
     public void mohoSeExpande1CasillaCada2Turnos() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+        AlgoStar a = new AlgoStar();  //Me di cuenta que en esta prueba en especíufico es necesario testear desde arriba,
+        a.empezarJuego();               // pq la prueba es "probar q crece bien" osea, probar q pase cada dos turnos
+        JugadorZerg jugadorZerg = new JugadorZerg();
+        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaSinMohoInicialmente = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,6,0);
-        for(int i = 0; i < 4; i++) { // Despues de 2 turnos del jugador zerg (4 turnos totales), el moho se deberia expandir 1 casilla mas
-            algoStar.pasarTurno();
+        jugadorZerg.construirEdificio(new Coordenada(2,2), new Criadero());
+        a.pasarTurno();
+        a.pasarTurno();
+
+        jugadorZerg.construirEdificio(new Coordenada(9,2), reservaDeReproduccion);
+
+        for(int i=0; i<40; i++){
+            reservaDeReproduccion.actualizar();
         }
 
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-        boolean intentoExitoso = true;
-        try {
-            jugadorZerg.construirEdificio(casillaSinMohoInicialmente, new ReservaDeReproduccion());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e){
-            intentoExitoso = false;
-        }
-        Assertions.assertTrue(intentoExitoso);
+        Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
     }
 
-    */
-    
+*/
 }

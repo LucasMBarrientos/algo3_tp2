@@ -21,55 +21,63 @@ public class TerrenoMoho implements EstadoTerreno {
         
     private TerrenoBase terreno;
 
-    public TerrenoMoho(TerrenoBase terreno){
+    public TerrenoMoho(TerrenoBase terreno) {
         this.terreno = terreno;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){
+    public void ocuparPorEdificio(Pilon pilon) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Acceso acceso){
+    public void ocuparPorEdificio(Acceso acceso) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Asimilador asimilador){
+    public void ocuparPorEdificio(Asimilador asimilador) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(NexoMineral nexoMineral){
+    public void ocuparPorEdificio(NexoMineral nexoMineral) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Criadero criadero){
+    public void ocuparPorEdificio(Criadero criadero) {
         terreno.establecerEdificio(criadero);
     }
-    public void ocuparPorEdificio(Espiral espiral){
+    public void ocuparPorEdificio(Espiral espiral) {
         terreno.establecerEdificio(espiral);
     }
 
-    public void ocuparPorEdificio(Extractor extractor){
+    public void ocuparPorEdificio(Extractor extractor) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Guarida guarida){
+    public void ocuparPorEdificio(Guarida guarida) {
         terreno.establecerEdificio(guarida);
     }
 
-    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
+    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion) {
         terreno.establecerEdificio(reservaDeReproduccion);
     }
 
-    public void energizarTerreno() { }
+    public void cubrirTerrenoDeMoho() {
+        return;
+    }
 
-    public void cubrirTerrenoDeMoho() { }
+    public void energizarTerreno() {
+        return;
+    }
 
-    public void vaciarTerreno() { }
-
-
+    public void desenergizarTerreno() {
+        return;
+    }
+  
+    public boolean tieneMoho() {
+        return true;
+    }
 
 }

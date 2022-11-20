@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -69,12 +71,28 @@ public class TerrenoBase extends Terreno {
         estado.ocuparPorEdificio(reservaDeReproduccion);
     }
 
-    public void energizarTerreno() { estado.energizarTerreno(); }
+    public void energizarTerreno() {
+        estado.energizarTerreno();
+    }
 
-    public void cubrirTerrenoDeMoho() { estado.cubrirTerrenoDeMoho();}
+    public void desenergizarTerreno() {
+        estado.desenergizarTerreno();
+    }
 
-    public void vaciarTerreno() { estado.vaciarTerreno(); }
+    public void cubrirTerrenoDeMoho() {
+        estado.cubrirTerrenoDeMoho();
+    }
 
+    public void vaciarTerreno() { 
+        establecerEstado(new TerrenoVacio(null));
+    }
+
+    @Override
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho,List<Coordenada> coordenadasConCriaderos,List<Coordenada> coordenadasConPilones) {
+        if (estado.tieneMoho()) {
+            coordenadasConMoho.addAll(coordenada.hallarCoordenadasAdyacentes());
+        }
+    }
 
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -50,15 +52,22 @@ public abstract class Terreno {
 
     public abstract void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
 
-
     public abstract void vaciarTerreno();
 
     public abstract void energizarTerreno();
+
+    public void desenergizarTerreno() {
+        return;
+    }
 
     public abstract void cubrirTerrenoDeMoho();
 
     public void recibirGolpe(Danio danioTerrestre, Danio danioAereo){
         edificio.recibirGolpe(danioTerrestre,danioAereo);
+    }
+
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        return;
     }
     
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
