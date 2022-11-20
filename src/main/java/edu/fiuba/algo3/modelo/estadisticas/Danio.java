@@ -2,14 +2,14 @@ package edu.fiuba.algo3.modelo.estadisticas;
 
 public class Danio {
 
-    private int poder;
+    private int danioDelGolpe;
 
-    public Danio(int poder) {
-        this.poder = poder;
+    public Danio(int danioDelGolpe){
+        this.danioDelGolpe = danioDelGolpe;
     }
 
-    public int aplicarDanio(int estadistica) {
-        return estadistica - this.poder;
+    public int aplicarDanio(int estadistica){
+        return estadistica - danioDelGolpe;
     }
 
 }

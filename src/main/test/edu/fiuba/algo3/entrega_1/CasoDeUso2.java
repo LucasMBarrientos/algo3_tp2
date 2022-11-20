@@ -1,358 +1,217 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 public class CasoDeUso2 {
+    
 
     /*
-
-    // Edificios zerg
-    
-	@Test
-    public void unCriaderoNoEstaOperativoEnMenosDe4TurnosConstruyendose() {
+    @Test
+    public void criaderoSeConstruyeEnTiempoAdecuado() {
+        boolean expected = true;
         Criadero criadero = new Criadero();
-        int tiempoDeConstruccion = 4;
-        
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            criadero.actualizar();
+
+        criadero.actualizar();
+        criadero.actualizar();
+        criadero.actualizar();
+        criadero.actualizar();
+
+        try {
+            criadero.generarZangano();
+        } catch (EdificioNoTerminoDeConstruirse e){
+            expected = false;
         }
+        Assertions.assertTrue(expected);
+    }
+    @Test
+    public void criaderoNoEstaOperativoAntesDe4Turnos() {
+        Criadero criadero = new Criadero();
+
+        criadero.actualizar();
+        criadero.actualizar();
+        criadero.actualizar();
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            criadero.generarUnidad(new Zangano());
-        });
-    }
-
-	@Test
-    public void unCriaderoEstaOperativoTras4TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        int tiempoDeConstruccion = 4;
-
-        for (int i = 0; i < tiempoDeConstruccion; i++) {
-            criadero.actualizar();
-        }
-
-        criadero.generarUnidad(new Zangano());
-        criadero.generarUnidad(new Zangano());
-        criadero.generarUnidad(new Zangano());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            criadero.generarUnidad(new Zangano());
-        });
-    }
-
-	@Test
-    public void unaReservaDeReproduccionNoEstaOperativaEnMenosDe12TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
-        int tiempoDeConstruccion = 12;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            reservaDeReproduccion.actualizar();
-        }
-
-        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        });
-    }
-
-	@Test
-    public void unaReservaDeReproduccionEstaOperativaTras12TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
-        int tiempoDeConstruccion = 12;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for (int i = 0; i < tiempoDeConstruccion; i++) {
-            reservaDeReproduccion.actualizar();
-        }
-
-        reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            reservaDeReproduccion.generarUnidad(criadero, new Zerling());
+            criadero.generarZangano();
         });
     }
 
     @Test
-    public void unaExtractorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
-        Terreno terrenoVolcan = new TerrrenoVolcan();
-        Extractor extractor = new Extractor(terrenoVolcan);
-        int tiempoDeConstruccion = 6;
-        extractor.ocupar(terrenoVolcan);
+    public void reservaDeProduccionSeConstruyeEnTiempoAdecuado() {
+        boolean expected = true;
+        Criadero criadero = new Criadero();
+        ReservaDeReproduccion reserva = new ReservaDeReproduccion();
 
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            extractor.actualizar();
+        for(int i=0; i<12; i++){
+            criadero.actualizar();
+            reserva.actualizar();
+        }
+
+        try{
+            reserva.generarUnidad(criadero);
+        } catch (EdificioNoTerminoDeConstruirse e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected);
+    }
+    @Test
+    public void reservaDeProduccionNoEstaOperativaAntesDe12Turnos() {
+        Criadero criadero = new Criadero();
+        ReservaDeReproduccion reserva = new ReservaDeReproduccion();
+
+        for(int i=0; i<11; i++){
+            criadero.actualizar();
+            reserva.actualizar();
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            extractor.extraerRecursos();
+            reserva.generarUnidad(criadero);
         });
     }
-    
-	@Test
-    public void unExtractorEstaOperativoTras6TurnosConstruyendose() {
-        Terreno terrenoVolcan = new TerrrenoVolcan();
-        Extractor extractor = new Extractor(terrenoVolcan);
-        int tiempoDeConstruccion = 6;
-        extractor.ocupar(terrenoVolcan);
-
-        for (int i = 0; i < tiempoDeConstruccion; i++) {
-            extractor.actualizar();
-        }
-
-        Recursos recursosExtraidos = extractor.extraerRecursos();
-        Assertions.assertNotNull(recursosExtraidos);
-    }
-
-	@Test
-    public void unaGuaridaNoEstaOperativaEnMenosDe12TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        Guarida guarida = new Guarida();
-        int tiempoDeConstruccion = 12;
-
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            guarida.actualizar();
-        }
-
-        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            guarida.generarUnidad(criadero, new Hidralisco());
-        });
-    }
-
-	@Test
-    public void unaGuaridaEstaOperativaTras12TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        Guarida guarida = new Guarida();
-        int tiempoDeConstruccion = 12;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for (int i = 0; i < tiempoDeConstruccion; i++) {
-            guarida.actualizar();
-        }
-
-        guarida.generarUnidad(criadero, new Hidralisco());
-        guarida.generarUnidad(criadero, new Hidralisco());
-        guarida.generarUnidad(criadero, new Hidralisco());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            guarida.generarUnidad(criadero, new Hidralisco());
-        });
-    }
-
-	@Test
-    public void unaEspiralNoEstaOperativaEnMenosDe10TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        Espiral espiral = new Espiral();
-        int tiempoDeConstruccion = 10;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            espiral.actualizar();
-        }
-
-        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            espiral.generarUnidad(criadero, new Mutalisco());
-        });
-    }
-
-	@Test
-    public void unaEspiralEstaOperativaTras10TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        Espiral espiral = new Espiral();
-        int tiempoDeConstruccion = 10;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for(int i = 0; i < tiempoDeConstruccion; i++) {
-            espiral.actualizar();
-        }
-
-        guarida.generarUnidad(criadero, new Mutalisco());
-        guarida.generarUnidad(criadero, new Mutalisco());
-        guarida.generarUnidad(criadero, new Mutalisco());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            guarida.generarUnidad(criadero, new Mutalisco());
-        });
-    }
-
-    // Edificios protoss
 
     @Test
-    public void unNexoMineralNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
-        TerrenoMineral terrenoMineral = new TerrenoMineral();
-        NexoMineral nexoMineral = new NexoMineral();
-        int tiempoDeConstruccion = 4;
-        nexoMineral.ocupar(terrenoMineral);
-        
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            nexoMineral.actualizar();
+    public void guaridaSeConstruyeEnTiempoAdecuado() {
+        boolean expected = true;
+        Criadero criadero = new Criadero();
+        Guarida guarida = new Guarida();
+
+        for(int i=0; i<12; i++){
+            criadero.actualizar();
+            guarida.actualizar();
+        }
+
+        try{
+            guarida.generarUnidad(criadero);
+        } catch (EdificioNoTerminoDeConstruirse e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected);
+    }
+    @Test
+    public void guaridaNoEstaOperativaAntesDe12Turnos() {
+        Criadero criadero = new Criadero();
+        Guarida guarida = new Guarida();
+
+        for(int i=0; i<11; i++){
+            criadero.actualizar();
+            guarida.actualizar();
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            nexoMineral.extraerRecursos();
+            guarida.generarUnidad(criadero);
         });
     }
-    
-	@Test
-    public void unNexoMineralEstaOperativoTras5TurnosConstruyendose() {
-        TerrenoMineral terrenoMineral = new TerrenoMineral();
-        NexoMineral nexoMineral = new NexoMineral();
-        int tiempoDeConstruccion = 4;
-        nexoMineral.ocupar(terrenoMineral);
 
-        for (int i = 0; i < tiempoDeConstruccion; i++) {
-            nexoMineral.actualizar();
+    @Test
+    public void espiralSeConstruyeEnTiempoAdecuado() {
+        boolean expected = true;
+        Criadero criadero = new Criadero();
+        Espiral espiral = new Espiral();
+
+        for(int i=0; i<10; i++){
+            criadero.actualizar();
+            espiral.actualizar();
         }
 
-        Recursos recursosExtraidos = nexoMineral.extraerRecursos();
-        Assertions.assertNotNull(recursosExtraidos);
+        try{
+            espiral.generarUnidad(criadero);
+        } catch (EdificioNoTerminoDeConstruirse e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected);
+    }
+    @Test
+    public void espiralNoEstaOperativaAntesDe10Turnos() {
+        Criadero criadero = new Criadero();
+        Espiral espiral = new Espiral();
+
+        for(int i=0; i<9; i++){
+            criadero.actualizar();
+            espiral.actualizar();
+        }
+
+        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
+            espiral.generarUnidad(criadero);
+        });
     }
 
-	@Test
-    public void unPilonNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
+    @Test
+    public void extractorSeConstruyeEnTiempoAdecuado() {
+        boolean expected = true;
+        Extractor extractor = new Extractor();
+
+        for(int i=0; i<6; i++){
+            extractor.actualizar();
+        }
+
+        try{
+            extractor.ingresarUnidad(new Zangano());
+        } catch (EdificioNoTerminoDeConstruirse e){
+            expected = false;
+        }
+        Assertions.assertTrue(expected);
+    }
+    @Test
+    public void extractorNoEstaOperativoAntesDe6Turnos() {
+        Extractor extractor = new Extractor();
+
+        for(int i=0; i<5; i++){
+            extractor.actualizar();
+        }
+
+        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
+            extractor.ingresarUnidad(new Zangano());
+        });
+    }
+
+
+
+/*
+    @Test
+    public void criaderoSeConstruyeEnTiempoAdecuado() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.agregarJugador(new JugadorZerg("La mente suprema", "#ff0000"););
         algoStar.empezarJuego();
-        int tiempoDeConstruccion = 5;
-
-        jugadorProtoss.construirEdificio(new Coordenada(2,2), new Pilon());
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            algoStar.pasarTurno();
-            algoStar.pasarTurno();
-        }
-
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(new Coordenada(3,2), new Acceso());
-        }        
-    }
-
-	@Test
-    public void unPilonEstaOperativoTras5TurnosConstruyendose() {
-    	// TODO: Pensar como probar la operatividad del pilon
+        Edificio edificioEnCasilla = algoStar.seleccionarCasilla(1,1).devolverEdificio();
+        algoStar.generarUnidad(1,1); // Se generara una unidad en la casilla(1,1)
+        Unidad zanganoDisponible = algoStar.seleccionarCasilla(1,1).devolverUnidad();
+        algoStar.moverDerecha(1,1);
+        Casilla casillaConZangano = algoStar.seleccionarCasilla(2,1);
+        Assertions.assertTrue( casillaConZangano.devolverUnidad() instanceof Zangano);
+        algoStar.construirEdificio(2,1, new Criadero());
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        Assertions.assertFalse(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Criadero);
+        algoStar.pasarTurno();
+        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Criadero);
     }
 
     @Test
-    public void unAsimiladorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
-        TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
-        Asimilador asimilador = new Asimilador();
-        int tiempoDeConstruccion = 6;
-        asimilador.ocupar(terrenoVolcan);
+    public void criaderoEstaOperativoLuegoDeConstruirse() {
+        AlgoStar algoStar = new AlgoStar();
+        algoStar.empezarJuego();
+        algoStar.generarUnidad(1,1); // Se generara una unidad en la casilla(0,0)
+        algoStar.moverDerecha(1,1);
+        algoStar.construirEdificio(2,1, new Criadero());
 
-        for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            asimilador.actualizar();
-        }
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
 
-        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            asimilador.extraerRecursos();
-        });
+        algoStar.generarUnidad(2,1);
+        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverUnidad() instanceof Zangano);
     }
-    
-	@Test
-    public void unAsimiladorEstaOperativoTras6TurnosConstruyendose() {
-        TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
-        Asimilador asimilador = new Asimilador();
-        int tiempoDeConstruccion = 6;
-        asimilador.ocupar(terrenoVolcan);
-
-        for (int i = 0; i < tiempoDeConstruccion; i++) {
-            asimilador.actualizar();
-        }
-
-        Recursos recursosExtraidos = asimilador.extraerRecursos();
-        Assertions.assertNotNull(recursosExtraidos);
-    }
-
-	@Test
-    public void unAccesoNoEstaOperativoEnMenosDe8TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        Acceso acceso = new Acceso();
-        int tiempoDeConstruccion = 8;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            acceso.actualizar();
-        }
-
-        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            acceso.generarUnidad(criadero, new Zealot());
-        });
-    }
-
-	@Test
-    public void unAccesoEstaOperativoTras8TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        Acceso acceso = new Acceso();
-        int tiempoDeConstruccion = 8;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            acceso.actualizar();
-        }
-
-        acceso.generarUnidad(criadero, new Zealot());
-        acceso.generarUnidad(criadero, new Zealot());
-        acceso.generarUnidad(criadero, new Zealot());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            acceso.generarUnidad(criadero, new Zealot());
-        });
-    }
-
-	@Test
-    public void unPuertoEstelarNoEstaOperativoEnMenosDe10TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        PuertoEstelar puertoEstelar = new PuertoEstelar();
-        int tiempoDeConstruccion = 10;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            puertoEstelar.actualizar();
-        }
-
-        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            puertoEstelar.generarUnidad(criadero, new Scout());
-        });
-    }
-
-	@Test
-    public void unPuertoEstelarEstaOperativoTras8TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
-        PuertoEstelar puertoEstelar = new PuertoEstelar();
-        int tiempoDeConstruccion = 10;
-
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
-        for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            puertoEstelar.actualizar();
-        }
-
-        puertoEstelar.generarUnidad(criadero, new Scout());
-        puertoEstelar.generarUnidad(criadero, new Scout());
-        puertoEstelar.generarUnidad(criadero, new Scout());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            puertoEstelar.generarUnidad(criadero, new Scout());
-        });
-    }
-
     */
-
 }

@@ -2,17 +2,15 @@ package edu.fiuba.algo3.modelo.edificios.zerg.espiral;
 
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
-import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -22,16 +20,18 @@ public class Espiral extends EdificioZerg {
     Terreno terreno;
 
     public Espiral() {
-        this.costoEnMinerales = new Mineral(150);
+        this.costoEnMinerales = new Minerales(150);
         this.costoEnGas = new GasVespeno(100);
+        this.posiblesTerrenos = List.of(new TerrenoMoho());
+        this.edificiosNecesarios = List.of(new Guarida());
         this.vida = new Vida(300);
         this.tiempoDeConstruccion = 10;
-        this.nombre = new Nombre("Espiral");
-        establecerEstado(new EspiralEnConstruccion());
+        setState(new EspiralEnConstruccion());
     }
 
-    public void ocupar(Terreno terreno){
-        terreno.ocuparPorEdificio(this);
+    public void ocupar(Casilla casilla, Terreno terreno){
+      terreno.ocuparPorEdificio(this, casilla);
+      this.terreno = terreno;
     }
     
     public void actualizar() {
@@ -39,11 +39,11 @@ public class Espiral extends EdificioZerg {
     }
 
     @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
-        return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralDelJugador, coordenada);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Minerales mineralesDelJugador, Coordenada coordenada) {
+        return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralesDelJugador, coordenada);
     }
 
-    public void establecerEstado(EstadoEspiral estado){
+    public void setState(EstadoEspiral estado){
       this.estado = estado;
       this.estado.setEspiral(this);
     }
@@ -56,14 +56,10 @@ public class Espiral extends EdificioZerg {
       return this.estado.deshacerConstruccion();
     }
 
-    public void validarCorrelativasDeConstruccion(Inventario inventario) throws ConstruccionRequiereDeOtroEdificio {
-        if(!inventario.tieneEdificio(new Nombre("Guarida"))){
-            throw new ConstruccionRequiereDeOtroEdificio();
-        }
+
+    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+        vida.recibirDanio(danio);
     }
-
-    @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {}
-
+    
 
 }

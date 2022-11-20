@@ -13,7 +13,7 @@ public class PilonOperativo implements EstadoPilon{
 
     @Override
     public Pilon deshacerConstruccion() {
-      pilon.establecerEstado(new PilonEnConstruccion());
+      pilon.setState(new PilonEnConstruccion());
       return pilon;
     }
 

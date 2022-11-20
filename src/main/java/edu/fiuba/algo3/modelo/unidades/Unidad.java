@@ -1,18 +1,18 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.direcciones.Direccion;
+import edu.fiuba.algo3.modelo.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.Direccion;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
 
 public abstract class Unidad {
 
-    protected Recurso costoEnMinerales;
-    protected Recurso costoEnGas;
+    protected Recursos costoEnMinerales;
+    protected Recursos costoEnGas;
     protected int tiempoConstruccion = 1;
     protected Coordenada coordenada;
     protected Danio danioAereo;
@@ -38,7 +38,7 @@ public abstract class Unidad {
         return aerea;
     }
 
-    public void actualizar() {
+    public void actualizar(){
         tiempoConstruccion--;
         if(tiempoConstruccion == 0){
             estado = new UnidadOperativa(danioAereo, danioTerrestre, rango);
@@ -46,23 +46,41 @@ public abstract class Unidad {
         vida.regenerar();
     }
 
-    public void moverse(Direccion direccion, Mapa mapa) {
+    public void moverse(Direccion direccion, Mapa mapa){
         estado.moverse(direccion,mapa, coordenada, this);
     }
 
-    public void atacar(Coordenada objetivo, Mapa mapa) {
-        estado.atacar(objetivo, mapa);
+    public void atacar (Direccion direccion, Mapa mapa){
+        estado.atacar(direccion, mapa, coordenada);
     }
 
-    public Unidad generarse(Coordenada coordenadaDelEdificio, Inventario inventario){
-        Edificio edificioConstructor = inventario.buscarEdificio(coordenadaDelEdificio);
-        //edificioConstructor.generarUnidad(this);
-        consumirRecursosParaGenerarse(inventario); //hacer que el generar unidad de los edificios se encargue de esto (?
-        return  this;
+
+
+
+/*
+    protected boolean disponible = true;
+
+    public boolean devolverDisponibilidad() {
+        return disponible;
     }
 
-    public void consumirRecursosParaGenerarse(Inventario inventario){
-        inventario.consumirMinerales(costoEnMinerales);
-        inventario.consumirGasVespeno(costoEnGas);
+    public boolean intentarMoverse(Casilla nuevaCasilla) {
+        if (this.disponible) {
+            this.disponible = false;
+            return true;
+        }
+        return false;
     }
+
+    protected void actualizarDisponibilidad() {
+        this.disponible = true;
+    }
+
+    public int emitirDanio() {
+        this.disponible = false;
+        return 100;
+    }
+
+    public abstract void actualizar();
+*/
 }

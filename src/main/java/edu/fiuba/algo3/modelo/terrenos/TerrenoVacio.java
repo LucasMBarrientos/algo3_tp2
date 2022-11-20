@@ -1,78 +1,128 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import edu.fiuba.algo3.modelo.Casilla;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
-
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.Casilla;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+
 public class TerrenoVacio implements EstadoTerreno {
-  private TerrenoBase terreno;
+  private Terreno terreno;
 
-  public TerrenoVacio(TerrenoBase terreno){
-    this.terreno = terreno;
+  @Override
+  public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
+    if(this.validarEstado(edificio.posiblesEstados())){
+      casilla.ocupar(edificio);
+    }else{
+      throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
   }
 
-  public void ocuparPorEdificio(Pilon pilon){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
+  @Override
+  public void setTerreno(Terreno terreno) {
+    this.terreno = terreno;    
   }
 
-  public void ocuparPorEdificio(Acceso acceso){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(Asimilador asimilador){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(NexoMineral nexoMineral){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(Criadero criadero){
-    terreno.establecerEdificio(criadero);
-  }
-
-  public void ocuparPorEdificio(Espiral espiral){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(Extractor extractor){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(Guarida guarida){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
-  public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
-    throw new TerrenoNoAptoParaConstruirTalEdificio();
-  }
-
+  @Override
   public void energizarTerreno() {
-    terreno.establecerEstado(new TerrenoEnergizado(terreno));
+    terreno.setState(new TerrenoEnergizado());
   }
 
+  @Override
   public void cubrirTerrenoDeMoho() {
-    terreno.establecerEstado(new TerrenoMoho(terreno));
+    terreno.setState(new TerrenoMoho());    
   }
 
-  public void vaciarTerreno() { }
+  @Override
+  public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
+    for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
+      if(listaDePosiblesTerrenos.get(i) instanceof TerrenoVacio){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public void vaciarTerreno() {}
+
+  @Override
+  public void generarVolcan() {
+    terreno.setState(new TerrenoVolcan());
+  }
+  
+  @Override
+  public void generarMina() {
+    terreno.setState(new TerrenoMineral());
+  }
+  
+  @Override
+  public void consumirMinerales(Recursos recursoRequerido) {}
+
+  @Override
+  public void consumirGasVespeno(Recursos recursoRequerido) {}
+    //TODO Leti YO xd: codigo repetido x1000, hace un refactor a esto  plis. Nuevas interfaces o excepciones mas especificas?
+    /*
+    public void ocuparPorEdificio(Edificio edificio, Casilla casilla){
+
+    }
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
+        casilla.establecerEdificio(pilon);
+    }
+    public void ocuparPorEdificio(Criadero criadero, Casilla casilla){
+        casilla.establecerEdificio(criadero);
+    }
+
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla, TerrenoVacio terreno){
+        casilla.establecerEdificio(pilon);
+    }
+
+    public void ocuparPorEdificio(Extractor extractor, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(ReservaDeReproduccion reserva, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(Guarida guarida, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(Espiral espiral, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
 
 
+    public void ocuparPorEdificio(Acceso acceso, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public void ocuparPorEdificio(NexoMineral nexoMineral, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
+    }
+
+    public Recursos obtenerRecursos(){return null;}
+
+    public boolean esReemplazable(){
+        return true;
+    }
+    public boolean repeleMoho() {
+        return false;
+    }
+
+
+    protected boolean validarTransitable(Unidad unidad){
+        return true;
+    }
+    */
 }

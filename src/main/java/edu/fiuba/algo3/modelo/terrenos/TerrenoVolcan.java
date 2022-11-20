@@ -1,82 +1,126 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
-
 import java.util.List;
 
-public class TerrenoVolcan extends Terreno {
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.TieneRecursos;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Recursos;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-    private Edificio edificio;
-    private Recurso gasVespeno = new GasVespeno(5000);
+public class TerrenoVolcan implements EstadoTerreno {
+  private Terreno terreno;
 
-    public TerrenoVolcan(Coordenada coordenada) {
-        this.coordenada = coordenada;
+  @Override
+  public void ocuparPorEdificio(Edificio edificio, Casilla casilla) {
+    if(this.validarEstado(edificio.posiblesEstados())){
+      casilla.ocupar(edificio);
+    }
+  }
+
+  @Override
+  public void energizarTerreno() {
+    terreno.setState(new TerrenoEnergizado());
+  }
+
+  @Override
+  public void cubrirTerrenoDeMoho() {}
+
+  @Override
+  public void setTerreno(Terreno terreno) {
+    this.terreno = terreno;
+  }
+
+  @Override
+  public boolean validarEstado(List<EstadoTerreno> listaDePosiblesTerrenos) {
+    for (int i = 0; i < listaDePosiblesTerrenos.size(); i++) {
+      if(listaDePosiblesTerrenos.get(i) instanceof TerrenoVolcan){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public void vaciarTerreno(){}
+
+  @Override
+  public void generarVolcan() {}
+
+  @Override
+  public void generarMina() {
+    terreno.setState(new TerrenoMineral());
+  }
+
+  @Override
+  public void consumirMinerales(Recursos recursoRequerido) {}
+
+  @Override
+  public void consumirGasVespeno(Recursos recursoRequerido) {
+    this.terreno.gasVespeno.gastar(recursoRequerido);
+  }
+/*
+    public GasVespeno gasVespeno = new GasVespeno(5000);
+
+    public Recursos obtenerRecursos(){
+        return gasVespeno;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(Asimilador asimilador, Casilla casilla){
+        casilla.establecerEdificio(asimilador);
     }
 
-    public void ocuparPorEdificio(Acceso acceso){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(Extractor extractor, Casilla casilla){
+        casilla.establecerEdificio(extractor);
     }
 
-    public void ocuparPorEdificio(Asimilador asimilador){
-        this.edificio = asimilador;
+    public void ocuparPorEdificio(Criadero criadero, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(NexoMineral nexoMineral){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(Pilon pilon, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(ReservaDeReproduccion reserva, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(Criadero criadero){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(Guarida guarida, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(Espiral espiral){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(Espiral espiral, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(Extractor extractor){
-        edificio = extractor;
+    public void ocuparPorEdificio(Acceso acceso, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(Guarida guarida){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(NexoMineral nexoMineral, Casilla casilla){
+        throw new TerrenoNoAptoParaConstruirEsteEdificio();
     }
 
-    public void energizarTerreno() { }
 
-    public void cubrirTerrenoDeMoho() { }
-
-    public void vaciarTerreno() { }
-
-    public void extraerGasVespeno(Recurso recursoRequerido) {
-        gasVespeno.gastar(recursoRequerido);
+    public boolean validarTransitable(Unidad unidad){
+        return true;
+        /*
+        if (unidad == null || unidad instanceof ConstruccionProtoss) {
+            return true;
+        }
+        return  (unidad instanceof Zangano);
+        */
+/*
     }
 
+    public boolean esReemplazable(){
+        return false;
+    }
+*/
 }
