@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Minerales;
 import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 
+
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -15,10 +16,16 @@ import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Jugador;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.AlgoStar;
 
 public class CasoDeUso8 {
 /*
+
   @Test
   public void noSePuedeConstruirNexoMineralconMenosDe50Minerales() {
     Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(49));
@@ -28,6 +35,7 @@ public class CasoDeUso8 {
       nexoMineral.consumirRecursosParaConstruccion(inventario);
     });
   }
+
 
   @Test
   public void sePuedeConstruirNexoMineralcon50Minerales() {

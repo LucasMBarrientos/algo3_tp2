@@ -1,20 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.direcciones.Derecha;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.recursos.Recursos;
-import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 public class CasoDeUso4 {
+
+    /*
 
     @Test
     public void extractorSinZanganosNoGeneraGas() {
@@ -27,9 +15,7 @@ public class CasoDeUso4 {
 
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
-        */
         jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
         jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
 
@@ -42,10 +28,8 @@ public class CasoDeUso4 {
         }
 
         Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
-        */
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
             jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
         });
@@ -62,28 +46,22 @@ public class CasoDeUso4 {
 
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
-        */
         jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
             algoStar.pasarTurno();
         }
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero.devolverCoordendas());
         jugadorZerg.moverUnidad(casillaConCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
         jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
-        */
         for(int i = 0; i < 10; i++) { // Despues de 5 turnos del jugador zerg (10 turnos totales), el jugador deberia tener 100 unidades de gas
             algoStar.pasarTurno();
         }
 
         Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
-        */
         boolean intentoExitoso = true;
         try {
             jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
@@ -92,9 +70,6 @@ public class CasoDeUso4 {
         }
         Assertions.assertTrue(intentoExitoso);
     }
-
-
-
 
     @Test
     public void extractorCon2ZanganoGenera20UnidadesDeGas() {
@@ -107,30 +82,24 @@ public class CasoDeUso4 {
 
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
-        */
         jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
             algoStar.pasarTurno();
         }
-        /* TODO: Implementar esto
         for (int i=0; i < 2; i++) {
             jugadorZerg.generarUnidad(casillaConCriadero.devolverCoordendas());
             jugadorZerg.moverUnidad(casillaConCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
             jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
         }
-        */
         for(int i = 0; i < 6; i++) { // Despues de 3 turnos del jugador zerg (6 turnos totales), el jugador deberia tener 120 unidades de gas
             algoStar.pasarTurno();
         }
 
         Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
-        */
         boolean intentoExitoso = true;
         try {
             jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
@@ -151,30 +120,24 @@ public class CasoDeUso4 {
 
         Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
         Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
-        */
         jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
         for(int i = 0; i < 6; i++) { // Se finaliza la construccion del extractor
             algoStar.pasarTurno();
         }
-        /* TODO: Implementar esto
         for (int i=0; i < 2; i++) {
             jugadorZerg.generarUnidad(casillaConCriadero.devolverCoordendas());
             jugadorZerg.moverUnidad(casillaConCriadero.devolverCoordendas(), casillaConVolcan.devolverCoordenada()); // Mover la unidad desde el criadero hasta la casilla con el extractor
             jugadorZerg.ingresarUnidadAlEdificio(casillaConVolcan.devolverCoordenada()); // Meter al zangano adentro extractor
         }
-        */
         for(int i = 0; i < 4; i++) { // Despues de 2 turnos del jugador zerg (4 turnos totales), el jugador deberia tener 110 unidades de gas
             algoStar.pasarTurno();
         }
 
         Coordenada coordenadaConMoho = casillaConCriadero.hallarCoordenadasAdyacentes().get(0);
-        /* TODO: Implementar esto
         jugadorZerg.generarUnidad(casillaConCriadero);
         jugadorZerg.moverUnidad(casillaConCriadero, coordenadaConMoho);
-        */
         boolean intentoExitoso = true;
         try {
             jugadorZerg.construirEdificio(coordenadaConMoho, new Espiral());
@@ -183,5 +146,7 @@ public class CasoDeUso4 {
         }
         Assertions.assertTrue(intentoExitoso);
     }
+
+    */
 
 }
