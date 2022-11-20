@@ -61,11 +61,11 @@ public abstract class Edificio  {
         coordenada = ubicacion;
     }
 
-    public Unidad generarUnidad(Unidad unidad){
-        return null; //terminar bien
-    }
+  //  public Unidad generarUnidad(Unidad unidad){
+   //     return null; //terminar bien
+    //}
 
-    public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada);
+   // public abstract Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada);
 
     public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
         return null;

@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.JugadorProtoss;
-import edu.fiuba.algo3.modelo.unidades.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

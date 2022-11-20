@@ -10,52 +10,13 @@ import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso1 {
-    
-    @Test
-    public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo",50); // El jugador zerg empieza con 250 unidades de minerales y 50 unidades de gas
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
-
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(casillaConCriadero, new Arriba());
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(casillaConCriadero, new Derecha());
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(casillaConCriadero, new Abajo());
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-
-        Mapa mapa = algoStar.DEBUG_DEVOLVERMAPA();
-        mapa.DEBUG_MOSTRARMAPATERRENO();
-        mapa.DEBUG_MOSTRARMAPAUNIDADES();
-
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            jugadorZerg.generarUnidad(casillaConCriadero);
-        });
-
-    }
 
 
-
-
-
-
-    /*
 	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
         Criadero criadero = new Criadero();
@@ -97,5 +58,5 @@ public class CasoDeUso1 {
             criadero.generarUnidad(new Zangano());
         });
     }
-    */
+    
 }

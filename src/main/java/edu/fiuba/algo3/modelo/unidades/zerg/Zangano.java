@@ -21,6 +21,16 @@ public class Zangano extends UnidadZerg {
         this.coordenada = coordenadaDeLaUnidad;
     }
 
+    public Zangano() {
+        this.costoEnGas = new GasVespeno(0);
+        this.costoEnMinerales = new Mineral(25);
+        this.tiempoConstruccion = 1;
+        this.danioAereo = new Danio(0);
+        this.danioTerrestre = new Danio(0);
+        this.rango = 0;
+        this.vida = new Vida(25);
+    }
+
     public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {
         // TODO: Implementar esto
     }

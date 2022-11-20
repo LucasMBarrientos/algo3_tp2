@@ -55,11 +55,8 @@ public class Inventario {
         this.mineral.agregarUnidades(minerales);
     }
 
-    public Unidad generarUnidad(Casilla casillaConEdifico) {
-        Edificio edificioConLarvas = this.devolverEdificioConLarvas();
-        Unidad unidadNueva = casillaConEdifico.generarUnidad(edificioConLarvas, gasVespeno, mineral, casillaConEdifico.devolverCoordendas());
-        return unidadNueva;
-        //casillaConEdifico.generarUnidad(edificioConLarvas);
+    public Unidad generarUnidad() {
+        return null;
     }
 
 

@@ -36,31 +36,6 @@ public abstract class Jugador {
         this.inventario = new Inventario(new GasVespeno(gasInicial), new Mineral(mineralesIniciales));
     }
 
-    public void moverUnidad(Casilla casillaUnidad, Direccion direccion){
-        Unidad unidad = casillaUnidad.devolverUnidad();
-        if(unidad == null) {
-            throw new TerrenoNoPoseeUnaUnidad();
-        }
-        unidad.moverse(direccion, mapa);
-    }
-
-    public void moverUnidad(Coordenada coordenadaUnidad, Direccion direccion) {
-        Casilla casillaUnidad = mapa.buscarCasilla(coordenadaUnidad);
-        moverUnidad(casillaUnidad, direccion);
-    }
-
-
-    public Casilla hallarCasillaConVolcanInicial() {
-        return mapa.hallarVolcanInicialDelJugador(id);
-    }
-
-    public List<Casilla> hallarCasillasConMineralesIniciales() {
-        return mapa.hallarMineralesInicialesDelJugador(id);
-    }
-
-    public Casilla hallarCasillaConEdificioInicial() {
-        return mapa.hallarCasillaConEdificioInicialDelJugador(id);
-    }
 
     public void establecerMapa(Mapa mapa) {
         this.mapa = mapa;

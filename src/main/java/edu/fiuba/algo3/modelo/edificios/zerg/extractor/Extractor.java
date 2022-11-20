@@ -39,7 +39,7 @@ public class Extractor extends EdificioZerg {
       this.estado.actualizar();
     }
 
-    @Override
+
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
         return null;
     }

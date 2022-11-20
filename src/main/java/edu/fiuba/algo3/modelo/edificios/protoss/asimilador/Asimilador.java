@@ -42,7 +42,6 @@ public class Asimilador extends EdificioProtoss {
         this.estado.actualizar();
     }
 
-    @Override
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
         return null;
     }

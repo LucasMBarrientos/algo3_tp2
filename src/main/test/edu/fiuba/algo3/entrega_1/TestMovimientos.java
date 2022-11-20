@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import org.junit.jupiter.api.Test;
 
 public class TestMovimientos {
-    @Test
+  /*  @Test
     public void moverseDerechaFunciona(){
         AlgoStar a = new AlgoStar();
         a.empezarJuego();
@@ -18,5 +18,5 @@ public class TestMovimientos {
         a.devolverJugadorActual().construirEdificio(new Coordenada(5,5), new Criadero());
 
 
-    }
+    }*/
 }
