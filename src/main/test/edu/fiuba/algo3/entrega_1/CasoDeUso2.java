@@ -159,7 +159,7 @@ public class CasoDeUso2 {
             guarida.actualizar();
         }
 
-        Assertions.assertNotNull(guarida.generarUnidad(new Zerling()));
+        Assertions.assertNotNull(guarida.generarUnidad(new Hidralisco()));
     }
 
 	@Test
