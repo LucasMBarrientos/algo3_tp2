@@ -48,10 +48,10 @@ public class Inventario {
         unidades.add(unidadNueva);
     }
 
-    public void actualizarGasVespeno(Recurso gasVespeno) {
+    public void agregarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);
     }
-    public void actualizarMinerales(Recurso minerales){
+    public void agregarMinerales(Recurso minerales){
         this.mineral.agregarUnidades(minerales);
     }
 

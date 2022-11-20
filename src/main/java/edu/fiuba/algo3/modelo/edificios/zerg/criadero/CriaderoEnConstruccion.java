@@ -15,10 +15,9 @@ public class CriaderoEnConstruccion implements EstadoCriadero {
         throw new EdificioNoTerminoDeConstruirse();
     }
 
-    public Unidad generarUnidad(Unidad unidad) throws EdificioNoTerminoDeConstruirse{
+    public Unidad generarUnidad(Zangano unidad) throws EdificioNoTerminoDeConstruirse{
         throw new EdificioNoTerminoDeConstruirse();
     }
-  
     public int contarLarvas() {
         return 0;
     }

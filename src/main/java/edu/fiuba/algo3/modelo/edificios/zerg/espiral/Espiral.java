@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
@@ -16,6 +17,13 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class Espiral extends EdificioZerg {
     private EstadoEspiral estado;
@@ -38,11 +46,6 @@ public class Espiral extends EdificioZerg {
       this.estado.actualizar();
     }
 
-
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
-        return estado.generarUnidad(edificioConLarvas , gasVespenoDelJugador, mineralDelJugador, coordenada);
-    }
-
     public void establecerEstado(EstadoEspiral estado){
       this.estado = estado;
       this.estado.setEspiral(this);
@@ -62,6 +65,28 @@ public class Espiral extends EdificioZerg {
         }
     }
 
+    public Unidad generarUnidad(Mutalisco unidad){
+        return estado.generarUnidad(unidad);
+    }
+    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zerling unidad)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Hidralisco unidad)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Scout unidad) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Dragon unidad)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
     @Override
     public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {}
 

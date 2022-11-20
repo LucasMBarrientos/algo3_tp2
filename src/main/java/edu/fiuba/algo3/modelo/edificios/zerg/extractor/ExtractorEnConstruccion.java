@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.extractor;
 
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -12,7 +13,9 @@ public class ExtractorEnConstruccion  implements EstadoExtractor{
         throw new EdificioNoTerminoDeConstruirse();
     }
 
-    public void recolectarRecursos(Terreno terreno, Inventario inventario) { }
+    public void recolectarRecursos(Terreno terreno, Inventario inventario) throws EdificioNoTerminoDeConstruirse{
+        throw new EdificioNoTerminoDeConstruirse();
+    }
 
     @Override
     public Extractor terminarConstruccion() {

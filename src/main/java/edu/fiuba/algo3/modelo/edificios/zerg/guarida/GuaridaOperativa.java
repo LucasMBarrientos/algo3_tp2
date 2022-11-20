@@ -10,10 +10,9 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 public class GuaridaOperativa implements EstadoGuarida{
     private Guarida guarida;
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
-        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Hidralisco(gasVespeno, mineral, coordenada));
+    public Unidad generarUnidad(Hidralisco unidad){
+        return unidad;
     }
-
     @Override
     public Guarida terminarConstruccion() {
         return guarida;

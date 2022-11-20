@@ -1,8 +1,31 @@
 package edu.fiuba.algo3.entrega_1;
 
+import com.tngtech.archunit.lang.ArchRule;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
+import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 public class CasoDeUso2 {
 
-    /*
+
 
     // Edificios zerg
     
@@ -51,35 +74,28 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            reservaDeReproduccion.generarUnidad(criadero, new Zerling());
+            reservaDeReproduccion.generarUnidad(new Zerling());
         });
     }
 
 	@Test
     public void unaReservaDeReproduccionEstaOperativaTras12TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
         int tiempoDeConstruccion = 12;
 
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
+
         for (int i = 0; i < tiempoDeConstruccion; i++) {
             reservaDeReproduccion.actualizar();
         }
 
-        reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            reservaDeReproduccion.generarUnidad(criadero, new Zerling());
-        });
+        Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
+
     }
 
     @Test
     public void unaExtractorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
-        Terreno terrenoVolcan = new TerrrenoVolcan();
-        Extractor extractor = new Extractor(terrenoVolcan);
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        Extractor extractor = new Extractor();
         int tiempoDeConstruccion = 6;
         extractor.ocupar(terrenoVolcan);
 
@@ -88,23 +104,30 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            extractor.extraerRecursos();
+            extractor.recolectarRecursos(new Inventario(new GasVespeno(0), new Mineral(0)));
         });
     }
-    
+
 	@Test
     public void unExtractorEstaOperativoTras6TurnosConstruyendose() {
-        Terreno terrenoVolcan = new TerrrenoVolcan();
-        Extractor extractor = new Extractor(terrenoVolcan);
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        Extractor extractor = new Extractor();
         int tiempoDeConstruccion = 6;
         extractor.ocupar(terrenoVolcan);
 
         for (int i = 0; i < tiempoDeConstruccion; i++) {
             extractor.actualizar();
         }
+        extractor.ingresarUnidad(new Zangano());
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
 
-        Recursos recursosExtraidos = extractor.extraerRecursos();
-        Assertions.assertNotNull(recursosExtraidos);
+        extractor.recolectarRecursos(inv);
+
+        inv.consumirGasVespeno(new GasVespeno(1));
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            inv.consumirGasVespeno(new GasVespeno(100));
+        });
     }
 
 	@Test
@@ -122,29 +145,21 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            guarida.generarUnidad(criadero, new Hidralisco());
+            guarida.generarUnidad( new Hidralisco());
         });
     }
 
 	@Test
     public void unaGuaridaEstaOperativaTras12TurnosConstruyendose() {
-        Criadero criadero = new Criadero();
         Guarida guarida = new Guarida();
         int tiempoDeConstruccion = 12;
 
-        for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
-            criadero.actualizar();
-        }
+
         for (int i = 0; i < tiempoDeConstruccion; i++) {
             guarida.actualizar();
         }
 
-        guarida.generarUnidad(criadero, new Hidralisco());
-        guarida.generarUnidad(criadero, new Hidralisco());
-        guarida.generarUnidad(criadero, new Hidralisco());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            guarida.generarUnidad(criadero, new Hidralisco());
-        });
+        Assertions.assertNotNull(guarida.generarUnidad(new Zerling()));
     }
 
 	@Test
@@ -161,7 +176,7 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            espiral.generarUnidad(criadero, new Mutalisco());
+            espiral.generarUnidad( new Mutalisco());
         });
     }
 
@@ -178,16 +193,12 @@ public class CasoDeUso2 {
             espiral.actualizar();
         }
 
-        guarida.generarUnidad(criadero, new Mutalisco());
-        guarida.generarUnidad(criadero, new Mutalisco());
-        guarida.generarUnidad(criadero, new Mutalisco());
-        Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
-            guarida.generarUnidad(criadero, new Mutalisco());
-        });
+
+        Assertions.assertNotNull(espiral.generarUnidad(new Mutalisco()));
     }
 
     // Edificios protoss
-
+/*
     @Test
     public void unNexoMineralNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         TerrenoMineral terrenoMineral = new TerrenoMineral();

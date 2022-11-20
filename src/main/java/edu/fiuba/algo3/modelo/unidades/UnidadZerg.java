@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.modelo.unidades;
 
-public class UnidadZerg extends Unidad {
-    
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+
+public abstract class UnidadZerg extends Unidad {
+
+    public abstract Unidad generarse(Edificio edificio);
+
 }

@@ -58,5 +58,5 @@ public class CasoDeUso1 {
             criadero.generarUnidad(new Zangano());
         });
     }
-    
+
 }

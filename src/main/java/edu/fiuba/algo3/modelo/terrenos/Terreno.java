@@ -15,6 +15,8 @@ import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
 
 public abstract class Terreno {
@@ -68,6 +70,10 @@ public abstract class Terreno {
 
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+    }
+
+    public void extraerGasVespeno(Recurso recursoRequerido) {
+
     }
     
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa

@@ -54,12 +54,7 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
-    public Unidad generarse(Coordenada coordenadaDelEdificio, Inventario inventario){
-        Edificio edificioConstructor = inventario.buscarEdificio(coordenadaDelEdificio);
-        //edificioConstructor.generarUnidad(this);
-        consumirRecursosParaGenerarse(inventario); //hacer que el generar unidad de los edificios se encargue de esto (?
-        return  this;
-    }
+    public abstract Unidad generarse(Edificio edificio);
 
     public void consumirRecursosParaGenerarse(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);

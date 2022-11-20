@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.extractor;
 
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
@@ -32,7 +33,10 @@ public class ExtractorOperativo implements EstadoExtractor {
 
 
   //TODO: REVISAR
-  public void recolectarRecursos(Terreno terreno, Inventario inventario){ }
+  public void recolectarRecursos(Terreno terreno, Inventario inventario){
+    terreno.extraerGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
+    inventario.agregarGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
+  }
 
   public void ingresarUnidad(Zangano zangano) {
     if(zanganosTrabajando.size() < 3){

@@ -6,12 +6,12 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 
 public class EspiralEnConstruccion implements EstadoEspiral {
     private Espiral espiral;
 
-    @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
+    public Unidad generarUnidad(Mutalisco unidad) throws EdificioNoTerminoDeConstruirse{
         throw new EdificioNoTerminoDeConstruirse();
     }
 

@@ -34,8 +34,9 @@ public class JugadorProtoss extends Jugador {
     //unidad se pone en el mapa
 
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
-        unidad.generarse(coordenadaDelEdificio, inventario);
-        //Double distpatch en los edificios ?
+        Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
+        unidad.consumirRecursosParaGenerarse(inventario);
+        unidad.generarse(edificio);
     }
 
 

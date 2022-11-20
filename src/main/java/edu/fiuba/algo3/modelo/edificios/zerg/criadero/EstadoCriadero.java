@@ -4,10 +4,11 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public interface EstadoCriadero {
     
-    public Unidad generarUnidad(Unidad unidad);
+    public Unidad generarUnidad(Zangano unidad);
 
     Criadero terminarConstruccion();
   

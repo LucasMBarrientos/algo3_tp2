@@ -11,8 +11,8 @@ public class EspiralOperativa implements EstadoEspiral {
 
     private Espiral espiral;
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
-        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Mutalisco(gasVespenoDelJugador, mineralDelJugador, coordenada));
+    public Unidad generarUnidad(Mutalisco unidad){
+        return unidad;
     }
 
     @Override

@@ -75,6 +75,7 @@ public class TerrenoVolcan extends Terreno {
 
     public void vaciarTerreno() { }
 
+    @Override
     public void extraerGasVespeno(Recurso recursoRequerido) {
         gasVespeno.gastar(recursoRequerido);
     }

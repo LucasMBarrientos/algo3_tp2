@@ -15,7 +15,7 @@ public class CriaderoOperativo implements EstadoCriadero {
     private Criadero criadero;
     private int larvas = 3;
 
-    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasSuficientes {
+    public Unidad generarUnidad(Zangano unidad) throws NoHayLarvasSuficientes {
         if (larvas <= 0) {
             throw new NoHayLarvasSuficientes();
         }
