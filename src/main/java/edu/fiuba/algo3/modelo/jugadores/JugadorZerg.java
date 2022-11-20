@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
-import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -26,7 +25,7 @@ public class JugadorZerg extends Jugador {
         //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion
         Edificio edificioNuevo = edificio.construir(inventario);
         try {
-            mapa.establecerEdificioEn(coordenada, edificioNuevo);
+            mapa.establecerEdificio(coordenada, edificioNuevo);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
@@ -44,17 +43,21 @@ public class JugadorZerg extends Jugador {
     }
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
-        Unidad unidad = mapa.buscarCasilla(coordenadaUnidad).devolverUnidad();
+        /*
+        Unidad unidad = mapa.buscarTerreno(coordenadaUnidad).devolverUnidad();
         Unidad unidadObjetivo = mapa.buscarCasilla(coordenadaObjetivo).devolverUnidad();
         if(unidad == null || unidadObjetivo  == null){
             throw new TerrenoNoPoseeUnaUnidad();
         }
         unidad.atacar(coordenadaObjetivo, mapa);
+        */
     }
 
     protected void iniciarseEnMapa() {
+        /*
         Criadero criaderoInicial = mapa.establecerInicioZerg(id);
         this.inventario.agregarEdificio(criaderoInicial);
+        */
     }
 
  }

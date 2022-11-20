@@ -12,7 +12,7 @@ public class ReservaDeReproduccionOperativa implements EstadoReservaDeReproducci
     private ReservaDeReproduccion reservaDeReproduccion;
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
-        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Zerling(gasVespeno, mineral, coordenada));
+        return edificioConLarvas.consumirLarvasYGenerarUnidad(new Zerling(coordenada));
     }
     
     @Override

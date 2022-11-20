@@ -14,7 +14,7 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.Casilla;
+
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class PuertoEstelar extends EdificioProtoss {

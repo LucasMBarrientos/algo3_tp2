@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral;
 
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;

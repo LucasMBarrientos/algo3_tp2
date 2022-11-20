@@ -20,7 +20,7 @@ public class JugadorProtoss extends Jugador {
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Edificio edificioNuevo = edificio.construir(inventario);
         try {
-            mapa.establecerEdificioEn(coordenada, edificioNuevo);
+            mapa.establecerEdificio(coordenada, edificioNuevo);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
@@ -41,8 +41,10 @@ public class JugadorProtoss extends Jugador {
 
 
     protected void iniciarseEnMapa() {
+        /* TODO: Spawnear el zangano inicial
         Pilon pilonInicial = mapa.establecerInicioProtoss(id);
-        this.inventario.agregarEdificio(pilonInicial);
+        this.inventario.agregarEdificio(pilonInical);
+        */
     }
 
 }

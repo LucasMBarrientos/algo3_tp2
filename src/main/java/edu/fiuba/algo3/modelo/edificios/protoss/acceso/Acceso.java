@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
