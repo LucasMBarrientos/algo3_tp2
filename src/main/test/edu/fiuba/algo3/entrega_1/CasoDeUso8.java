@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.recursos.RecursosInsuficientes;
 
 import java.util.List;
 
@@ -13,9 +12,16 @@ import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Jugador;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.AlgoStar;
 
 public class CasoDeUso8 {
+
+    /*
 
   @Test
   public void protossSoloPuedeConstruirNexoMineralSiTieneMasDe50Minerales() {
@@ -77,7 +83,7 @@ public class CasoDeUso8 {
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
       jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(2).devolverCoordendas(), new Pilon());
     });
-  }*/
+  }
 
   @Test
   public void protossPuedeConstruirAsimiladorSiTieneMasDe100Minerales() {
@@ -94,7 +100,7 @@ public class CasoDeUso8 {
     jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Asimilador());
     /*Assertions.assertThrows(RecursosInsuficientes.class, ()->{
       jugadorProtoss.construirEdificio(casillaConVolcan.devolverCoordendas(), new Pilon());
-    });*/
+    });
   }
 
   @Test
@@ -148,7 +154,7 @@ public class CasoDeUso8 {
       jugadorProtoss.construirEdificio(casillasConTerrenosEnergizados.get(1).devolverCoordendas(), new PuertoEstelar());
     });
   }
-/*
+
   @Test
   public void zergSoloPuedeConstruirCriaderoSiTieneMasDe50Minerales() {
     AlgoStar algoStar = new AlgoStar();

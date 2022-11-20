@@ -15,7 +15,7 @@ public class PuertoEstelarOperativo implements EstadoPuertoEstelar{
 
   @Override
   public PuertoEstelar deshacerConstruccion() {
-    puertoEstelar.setState(new PuertoEstelarEnConstruccion());
+    puertoEstelar.establecerEstado(new PuertoEstelarEnConstruccion());
     return puertoEstelar;
   }
 
