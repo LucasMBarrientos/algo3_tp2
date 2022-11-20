@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.asimilador;
 
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class AsimiladorEnConstruccion implements EstadoAsimilador{
     private Asimilador asimilador;
 
-    public void recolectarRecursos(Terreno terreno, Inventario inventario){ }
+    public void recolectarRecursos(Terreno terreno, Inventario inventario)throws EdificioNoTerminoDeConstruirse{ 
+      throw new EdificioNoTerminoDeConstruirse();
+    }
     
     @Override
     public Asimilador terminarConstruccion() {

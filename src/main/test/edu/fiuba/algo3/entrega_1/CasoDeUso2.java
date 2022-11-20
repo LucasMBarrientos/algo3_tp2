@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
 import com.tngtech.archunit.lang.ArchRule;
+
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
@@ -15,7 +19,9 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -198,11 +204,12 @@ public class CasoDeUso2 {
     }
 
     // Edificios protoss
-/*
+
     @Test
     public void unNexoMineralNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
-        TerrenoMineral terrenoMineral = new TerrenoMineral();
+        TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada( 1,1));
         NexoMineral nexoMineral = new NexoMineral();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         int tiempoDeConstruccion = 4;
         nexoMineral.ocupar(terrenoMineral);
         
@@ -211,14 +218,17 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            nexoMineral.extraerRecursos();
+          nexoMineral.recolectarRecursos(inv);
         });
     }
-    
+   
+
+           
 	@Test
     public void unNexoMineralEstaOperativoTras5TurnosConstruyendose() {
-        TerrenoMineral terrenoMineral = new TerrenoMineral();
+        TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada( 1,1));
         NexoMineral nexoMineral = new NexoMineral();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         int tiempoDeConstruccion = 4;
         nexoMineral.ocupar(terrenoMineral);
 
@@ -226,10 +236,15 @@ public class CasoDeUso2 {
             nexoMineral.actualizar();
         }
 
-        Recursos recursosExtraidos = nexoMineral.extraerRecursos();
-        Assertions.assertNotNull(recursosExtraidos);
-    }
+        nexoMineral.recolectarRecursos(inv);
 
+        inv.consumirMinerales(new Mineral(1));
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            inv.consumirMinerales(new Mineral(100));
+        });
+    }
+/*  
 	@Test
     public void unPilonNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         AlgoStar algoStar = new AlgoStar();
@@ -254,11 +269,12 @@ public class CasoDeUso2 {
     public void unPilonEstaOperativoTras5TurnosConstruyendose() {
     	// TODO: Pensar como probar la operatividad del pilon
     }
-
+*/
     @Test
     public void unAsimiladorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
-        TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
+        TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
         Asimilador asimilador = new Asimilador();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         int tiempoDeConstruccion = 6;
         asimilador.ocupar(terrenoVolcan);
 
@@ -267,14 +283,15 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-            asimilador.extraerRecursos();
+          asimilador.recolectarRecursos(inv);
         });
     }
-    
+  
 	@Test
     public void unAsimiladorEstaOperativoTras6TurnosConstruyendose() {
-        TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
+        TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
         Asimilador asimilador = new Asimilador();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         int tiempoDeConstruccion = 6;
         asimilador.ocupar(terrenoVolcan);
 
@@ -282,10 +299,15 @@ public class CasoDeUso2 {
             asimilador.actualizar();
         }
 
-        Recursos recursosExtraidos = asimilador.extraerRecursos();
-        Assertions.assertNotNull(recursosExtraidos);
-    }
+        asimilador.recolectarRecursos(inv);
 
+        inv.consumirGasVespeno(new GasVespeno(1));
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            inv.consumirGasVespeno(new GasVespeno(100));
+        });
+    }
+/*  
 	@Test
     public void unAccesoNoEstaOperativoEnMenosDe8TurnosConstruyendose() {
         Criadero criadero = new Criadero();

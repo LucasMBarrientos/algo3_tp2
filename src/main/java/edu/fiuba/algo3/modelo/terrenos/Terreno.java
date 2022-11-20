@@ -72,7 +72,12 @@ public abstract class Terreno {
         edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
     }
 
+    //TODO: Hacer que sea un solo mensaje "extraer recurso"
     public void extraerGasVespeno(Recurso recursoRequerido) {
+
+    }
+
+    public void extraerMinerales(Recurso recursoRequerido) {
 
     }
     

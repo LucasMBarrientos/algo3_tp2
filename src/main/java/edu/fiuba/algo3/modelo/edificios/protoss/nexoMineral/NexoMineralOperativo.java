@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral;
 
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class NexoMineralOperativo implements EstadoNexoMineral{
   private NexoMineral nexoMineral;
-  public void recolectarRecursos(Terreno terreno, Inventario inventario){ }
+  
 
   @Override
   public NexoMineral terminarConstruccion() {return nexoMineral;}
@@ -29,11 +30,9 @@ public class NexoMineralOperativo implements EstadoNexoMineral{
     
   }
 
-
-    /*public void recolectarRecursos(Terreno terreno, Inventario inventario){
-        recursosAExtraer = new Minerales(10);
-        Recursos gasDelVolcan = terreno.obtenerRecursos();
-        gasDelVolcan.gastar(recursosAExtraer);
-        inventario.actualizarMinerales(recursosAExtraer);
-    }*/
+  @Override
+  public void recolectarRecursos(Terreno terreno, Inventario inventario){ 
+    terreno.extraerMinerales(new Mineral(10));
+    inventario.agregarMinerales(new Mineral(10));
+  }
 }

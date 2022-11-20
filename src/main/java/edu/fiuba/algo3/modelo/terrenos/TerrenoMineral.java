@@ -71,7 +71,8 @@ public class TerrenoMineral extends Terreno {
     public void cubrirTerrenoDeMoho() { }
 
     public void vaciarTerreno() { }
-
+    
+    @Override
     public void extraerMinerales(Recurso recursoRequerido) {
         mineral.gastar(recursoRequerido);
     }

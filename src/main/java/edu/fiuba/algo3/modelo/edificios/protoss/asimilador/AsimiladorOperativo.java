@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.asimilador;
 
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public class AsimiladorOperativo implements EstadoAsimilador{
     private Asimilador asimilador;
-    public void recolectarRecursos(Terreno terreno, Inventario inventario){ }
+    
 
     @Override
     public Asimilador terminarConstruccion() {return asimilador;}
@@ -29,10 +30,8 @@ public class AsimiladorOperativo implements EstadoAsimilador{
 
     }
 
-    /*public void recolectarRecursos(Terreno terreno, Inventario inventario){
-        recursosAExtraer = new GasVespeno(20);
-        Recursos gasDelVolcan = terreno.obtenerRecursos();
-        gasDelVolcan.gastar(recursosAExtraer);
-        inventario.actualizarGasVespeno(recursosAExtraer);
-    }*/
+    public void recolectarRecursos(Terreno terreno, Inventario inventario){ 
+      terreno.extraerGasVespeno(new GasVespeno(20));
+      inventario.agregarGasVespeno(new GasVespeno(20));
+    }
 }
