@@ -60,48 +60,11 @@ public abstract class Terreno {
     public void recibirGolpe(Danio danioTerrestre, Danio danioAereo){
         edificio.recibirGolpe(danioTerrestre,danioAereo);
     }
+    
+    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 
-    /*
-    public EstadoTerreno DEBUGDEVOLVERESTADO() {
-        return estado;
+    public Edificio DEBUG_DEVOLVEREDIFICIO() {
+        return edificio;
     }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

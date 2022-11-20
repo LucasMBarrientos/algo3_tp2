@@ -16,7 +16,6 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public class TerrenoBase extends Terreno {
 
-
     private EstadoTerreno estado = new TerrenoVacio(this);
 
     public TerrenoBase(Coordenada coordenada) {
@@ -77,5 +76,10 @@ public class TerrenoBase extends Terreno {
     public void vaciarTerreno() { estado.vaciarTerreno(); }
 
 
+    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
+
+    public EstadoTerreno DEBUG_DEVOLVERESTADO() {
+        return estado;
+    }
 
 }

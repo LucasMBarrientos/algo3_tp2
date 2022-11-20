@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.geometria;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -20,6 +21,7 @@ public class SuperficieRectangular {
     public int calcularLongitudY() {
         return coordenadaFinal.calcularDiferenciaEnY(coordenadaInicial);
     }
+
     // Devuelve el promedio entre la longitud de ambos lados
     public int calcularLongitudPromedio() {
         return (calcularLongitudX() + calcularLongitudY()) / 2;
@@ -35,6 +37,25 @@ public class SuperficieRectangular {
 
     public boolean contieneCoordenada(Coordenada coordenada) {
         return (this.contieneCoordenadaEnX(coordenada) && this.contieneCoordenadaEnY(coordenada));
+    }
+
+    public List<Coordenada> filtrarListaDeCoordenadas(List<Coordenada> coordenadas) {
+        List<Coordenada> coordenadasFiltradas = new ArrayList<Coordenada>();
+        for (Coordenada coordenada : coordenadas) {
+            if (this.contieneCoordenada(coordenada)) {
+                coordenadasFiltradas.add(coordenada);
+            }
+        }
+        return coordenadasFiltradas;
+    }
+
+    public List<Coordenada> devolverCoordenadasAdyacentes(Coordenada coordenadaCentral) {
+        List<Coordenada> coordenadasPosibles = coordenadaCentral.hallarCoordenadasAdyacentes();
+        return this.filtrarListaDeCoordenadas(coordenadasPosibles);
+    }
+    public List<Coordenada> devolverCoordenadasAdyacentes(Coordenada coordenadaCentral, int rango) {
+        List<Coordenada> coordenadasPosibles = coordenadaCentral.hallarCoordenadasAdyacentes(rango);
+        return this.filtrarListaDeCoordenadas(coordenadasPosibles);
     }
 
     public Coordenada devolverCoordenadaCentral() {
