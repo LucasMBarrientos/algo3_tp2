@@ -3,7 +3,9 @@ package edu.fiuba.algo3.modelo.jugadores;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
+import edu.fiuba.algo3.modelo.excepciones.ColorDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
+import edu.fiuba.algo3.modelo.excepciones.RazaYaElegidaPorElOtroJugador;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -45,23 +47,18 @@ public abstract class Jugador {
     }
     public void compararRaza(Jugador jugador)throws NombreDeJugadorInvalido {
         if(this.getClass() == jugador.getClass()){
-            throw new NombreDeJugadorInvalido();
+            throw new RazaYaElegidaPorElOtroJugador();
         }
 
     }
     public void compararColor(Jugador jugador)throws NombreDeJugadorInvalido {
-        if(jugador.colorEsIgual(this.color)){
-            throw new NombreDeJugadorInvalido();
+        if (jugador.colorEsIgual(this.color)) {
+            throw new ColorDeJugadorInvalido();
         }
-
     }
 
-
     private boolean colorEsIgual(String color) {
-        if(this.color.equals(color)){
-            return true;
-        }
-        return  false;
+        return this.color.equals(color);
     }
 
     public void compararNombre(Jugador jugador)throws NombreDeJugadorInvalido {

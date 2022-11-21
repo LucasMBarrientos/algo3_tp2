@@ -41,8 +41,8 @@ public class Mapa {
                 this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
         //generarAreasIniciales();
         generarTerrenoInicial();
         //actualizarTerrenoEnergizado();
@@ -140,7 +140,7 @@ public class Mapa {
         coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(0).devolverCoordenadaRelativa(2,2));
         // Base inicial para el jugador Protoss
         coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(1).devolverCoordenadaRelativa(-2,-2));
-        SuperficieRectangular superficicieConBases = this.superficie.redimensionar(-3);
+        SuperficieRectangular superficicieConBases = this.superficie.redimensionar(-4);
         for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
             coordenadasCentralesDeBases.add(superficicieConBases.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
         }
