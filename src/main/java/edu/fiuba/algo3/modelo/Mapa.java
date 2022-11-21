@@ -43,7 +43,7 @@ public class Mapa {
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
         //generarAreasIniciales();
-        //generarTerrenoInicial();
+        generarTerrenoInicial();
         //actualizarTerrenoEnergizado();
     }
 

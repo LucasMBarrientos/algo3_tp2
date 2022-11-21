@@ -14,6 +14,12 @@ public class SuperficieRectangular {
         this.coordenadaFinal = coordenadaFinal;
     }
 
+    public SuperficieRectangular redimensionar(int indiceDeReescalamiento) {
+        Coordenada coordenadaInicial = this.coordenadaInicial.devolverCoordenadaRelativa(indiceDeReescalamiento, indiceDeReescalamiento);
+        Coordenada coordenadaFinal = this.coordenadaFinal.devolverCoordenadaRelativa(indiceDeReescalamiento, indiceDeReescalamiento);
+        return new SuperficieRectangular(coordenadaInicial, coordenadaFinal);
+    }
+
     public int calcularLongitudX() {
         return coordenadaFinal.calcularDiferenciaEnX(coordenadaInicial);
     }
