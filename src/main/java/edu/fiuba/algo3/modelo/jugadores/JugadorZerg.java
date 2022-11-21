@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import javafx.scene.layout.CornerRadii;
 
 public class JugadorZerg extends Jugador {
 
@@ -44,7 +45,7 @@ public class JugadorZerg extends Jugador {
     }
 
     public void actualizar() {
-        //inventario.actualizar();
+        inventario.actualizar();
     }
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
@@ -59,7 +60,10 @@ public class JugadorZerg extends Jugador {
     }
 
     protected void iniciarseEnMapa() {
-        /*
+        Criadero criaderoInicial = new Criadero();
+        this.inventario.agregarEdificio(criaderoInicial);
+        mapa.establecerEdificio(new Coordenada(1,1),criaderoInicial);
+        /**
         Criadero criaderoInicial = mapa.establecerInicioZerg(id);
         this.inventario.agregarEdificio(criaderoInicial);
         */

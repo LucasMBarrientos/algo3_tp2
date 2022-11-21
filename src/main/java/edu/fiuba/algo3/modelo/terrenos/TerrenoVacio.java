@@ -24,8 +24,7 @@ public class TerrenoVacio implements EstadoTerreno {
         this.terreno = terreno;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){
-        throw new TerrenoNoAptoParaConstruirTalEdificio();
+    public void ocuparPorEdificio(Pilon pilon){terreno.establecerEdificio(pilon);
     }
 
     public void ocuparPorEdificio(Acceso acceso){

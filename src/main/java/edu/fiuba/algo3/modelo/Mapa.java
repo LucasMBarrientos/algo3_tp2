@@ -35,16 +35,18 @@ public class Mapa {
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
         for (int x = 0; x < superficie.calcularLongitudX(); x++) {
+
             for (int y = 0; y < superficie.calcularLongitudY(); y++) {
                 this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
-        generarAreasIniciales();
-        generarTerrenoInicial();
+        //generarAreasIniciales();
+        //generarTerrenoInicial();
         //actualizarTerrenoEnergizado();
     }
+
 
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
@@ -267,6 +269,10 @@ public class Mapa {
             lineaDelMapa += "█";
         }
         System.out.println("█" + lineaDelMapa + "█");
+    }
+
+    public Coordenada iniciarEsquinaSuperior() {
+        return new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2);
     }
 
 

@@ -125,7 +125,8 @@ public class Inventario {
     }*/
 
     public void actualizar() {
-        for(Edificio edificio : edificios){
+        for(int i = 0;i<this.edificios.size();i++){
+            edificios.get(i).actualizar();
             //TODO: ACTUALIZAR LOS EDIFICIOS INDIVIDUALMENTE
             //edificio.actualizar(this);
         }

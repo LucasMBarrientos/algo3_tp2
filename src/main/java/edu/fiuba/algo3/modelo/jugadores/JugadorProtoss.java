@@ -39,10 +39,17 @@ public class JugadorProtoss extends Jugador {
         unidad.generarse(edificio);
     }
 
+    public void actualizar() {
+        inventario.actualizar();
+    }
 
 
     protected void iniciarseEnMapa() {
-        /* TODO: Spawnear el zangano inicial
+         Pilon pilonInicial =   new Pilon();
+         this.inventario.agregarEdificio(pilonInicial);
+         mapa.establecerEdificio(mapa.iniciarEsquinaSuperior(),pilonInicial);
+
+        /** TODO: Spawnear el zangano inicial
         Pilon pilonInicial = mapa.establecerInicioProtoss(id);
         this.inventario.agregarEdificio(pilonInical);
         */
