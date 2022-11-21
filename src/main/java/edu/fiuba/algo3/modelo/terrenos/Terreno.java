@@ -21,7 +21,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
 
 public abstract class Terreno {
 
-    protected Coordenada coordenada;
+    public Coordenada coordenada;
 
     protected Edificio edificio;
     /*
@@ -69,7 +69,9 @@ public abstract class Terreno {
     }
 
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+        if (edificio != null) {
+            edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+        }
     }
 
     //TODO: Hacer que sea un solo mensaje "extraer recurso"

@@ -41,6 +41,7 @@ public class Mapa {
                 this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
+        int i = buscarIdDelTerreno(new Coordenada(3,4));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
         //generarAreasIniciales();
@@ -146,8 +147,9 @@ public class Mapa {
         coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(0).devolverCoordenadaRelativa(2,2));
         // Base inicial para el jugador Protoss
         coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(1).devolverCoordenadaRelativa(-2,-2));
+        SuperficieRectangular superficicieConBases = this.superficie.redimensionar(-3);
         for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
-            coordenadasCentralesDeBases.add(this.superficie.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
+            coordenadasCentralesDeBases.add(superficicieConBases.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
         }
         return coordenadasCentralesDeBases;
     }
@@ -159,7 +161,7 @@ public class Mapa {
             terrenos.set(buscarIdDelTerreno(coordenadaDeVolcan), new TerrenoVolcan(coordenadaDeVolcan));
             coordenadasConMinerales = coordenadaDeVolcan.hallarCoordenadasAdyacentes();
             for (Coordenada coordenadaConMinerales : coordenadasConMinerales) {
-                terrenos.set(buscarIdDelTerreno(coordenadaConMinerales), new TerrenoMineral(coordenadaDeVolcan));
+                terrenos.set(buscarIdDelTerreno(coordenadaConMinerales), new TerrenoMineral(coordenadaConMinerales));
             }
         }
     }

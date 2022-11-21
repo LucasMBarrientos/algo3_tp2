@@ -23,7 +23,7 @@ public class CasoDeUso1 {
 
 	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-    /*
+
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
         algoStar.agregarJugador(jugadorZerg);
@@ -33,7 +33,7 @@ public class CasoDeUso1 {
 
         Mapa mapa = algoStar.DEBUG_DEVOLVERMAPA();
         mapa.DEBUG_MOSTRARMAPATERRENO();
-*/
+
 
         Criadero criadero = new Criadero();
         for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
