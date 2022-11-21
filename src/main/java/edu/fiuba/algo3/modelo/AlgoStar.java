@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedenAgregarMasJugadores;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
@@ -25,13 +26,11 @@ public class AlgoStar {
             // TODO: Lanzar excepcion "SeEstaTratandoDePonerMasDe2Jugadores"
         }
     }*/
-    public void agregarJugador(Jugador jugador)throws NombreDeJugadorInvalido {
-        if(jugadores.size()== 1) {
-            jugadores.get(0).compararNombre(jugador);
-            jugadores.get(0).compararColor(jugador);
-            jugadores.get(0).compararRaza(jugador);
-            // TODO: Lanzar excepcion "SeEstaTratandoDePonerMasDe2Jugadores"
+    public void agregarJugador(Jugador jugador) {
+        if (jugadores.size() > 1) {
+            throw new NoSePuedenAgregarMasJugadores();
         }
+        jugador.compararAtributosBasicoConOtrosJugadores(jugadores);
         jugador.establecerId(jugadores.size());
         jugadores.add(jugador);
     }
