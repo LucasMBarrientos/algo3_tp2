@@ -91,17 +91,23 @@ public class SuperficieRectangular {
         return coordenadaInicial.devolverCoordenadaRelativa(x,y);
     }
 
-    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
+
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas, int rango) {
         boolean coordenadaValida;
         Coordenada coordenada;
         do {
             coordenadaValida = true;
             coordenada = this.buscarCoordenadaAlAzar();
             for (Coordenada coordenadaEvitada : coordenasEvitadas) {
-                coordenadaValida = !((!coordenadaValida) || coordenada.esIgual(coordenadaEvitada));
+                coordenadaValida = !((!coordenadaValida) || coordenada.seEncuentraACiertoRangoDeOtraCoordenada(coordenadaEvitada, rango));
             }
         } while (!coordenadaValida);
         return coordenada;
+    }
+
+
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
+        return this.devolverCoordenadaAlAzarEvitando(coordenasEvitadas, 0);
     }
 
     public int calcularSuperficie() {

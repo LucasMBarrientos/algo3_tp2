@@ -141,21 +141,19 @@ public class Mapa {
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {
+        int distanciaEntreLasBases = Math.max(1, superficie.calcularLongitudPromedio() / 12);
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
-        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
         List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
-        // Base inicial para el jugador Zerg
-        coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(0).devolverCoordenadaRelativa(2,2));
-        // Base inicial para el jugador Protoss
-        coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(1).devolverCoordenadaRelativa(-2,-2));
-        SuperficieRectangular superficicieConBases = this.superficie.redimensionar(-4);
-        for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
-            coordenadasCentralesDeBases.add(superficicieConBases.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
+        for (int i = 0; i < cantidadDeJugadores; i++) {
+            coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i));
+        }
+        SuperficieRectangular superficicieConBasesAlAzar = this.superficie.redimensionar(-4);
+        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
+        for (int i = cantidadDeJugadores; i < cantidadDeBases; i++) {
+            coordenadasCentralesDeBases.add(superficicieConBasesAlAzar.devolverCoordenadaAlAzarEvitando(coordenadasCentralesDeBases, distanciaEntreLasBases));
         }
         return coordenadasCentralesDeBases;
     }
-
-
 
     public Zangano establecerZanganoInicial(int idJugador) {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
