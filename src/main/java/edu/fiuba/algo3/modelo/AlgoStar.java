@@ -26,17 +26,14 @@ public class AlgoStar {
         }
     }*/
     public void agregarJugador(Jugador jugador)throws NombreDeJugadorInvalido {
-
-        if(jugadores.size()== 0){
-            jugadores.add(jugador);
-        } else {
-
+        if(jugadores.size()== 1) {
             jugadores.get(0).compararNombre(jugador);
             jugadores.get(0).compararColor(jugador);
             jugadores.get(0).compararRaza(jugador);
-
             // TODO: Lanzar excepcion "SeEstaTratandoDePonerMasDe2Jugadores"
         }
+        jugador.establecerId(jugadores.size());
+        jugadores.add(jugador);
     }
 
     public void empezarJuego() {

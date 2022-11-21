@@ -36,14 +36,7 @@ public class JugadorProtoss extends Jugador {
 
 
     protected void iniciarseEnMapa() {
-         Pilon pilonInicial =   new Pilon();
-         this.inventario.agregarEdificio(pilonInicial);
-         mapa.establecerEdificio(mapa.iniciarEsquinaSuperior(),pilonInicial);
-
-        /** TODO: Spawnear el zangano inicial
-        Pilon pilonInicial = mapa.establecerInicioProtoss(id);
-        this.inventario.agregarEdificio(pilonInical);
-        */
+        //  TODO: Spawnear alguna unidad inicial si hace falta
     }
 
 }

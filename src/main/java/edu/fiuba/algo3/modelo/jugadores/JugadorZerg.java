@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
@@ -9,6 +10,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import javafx.scene.layout.CornerRadii;
 
 public class JugadorZerg extends Jugador {
@@ -20,8 +22,6 @@ public class JugadorZerg extends Jugador {
     public JugadorZerg(String nombre, String color, int recursosExtra) {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
-
-
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion
@@ -56,10 +56,16 @@ public class JugadorZerg extends Jugador {
     }
 
     protected void iniciarseEnMapa() {
+        Zangano zanganoInicial = mapa.establecerZanganoInicial(id);
+        inventario.agregarUnidad(zanganoInicial);
+        // Establecer el "amo supremo" inicial
+
+        /*
         Criadero criaderoInicial = new Criadero();
         this.inventario.agregarEdificio(criaderoInicial);
         mapa.establecerEdificio(new Coordenada(1,1),criaderoInicial);
-        /**
+        */
+        /*
         Criadero criaderoInicial = mapa.establecerInicioZerg(id);
         this.inventario.agregarEdificio(criaderoInicial);
         */

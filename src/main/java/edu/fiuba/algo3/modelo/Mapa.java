@@ -147,6 +147,16 @@ public class Mapa {
         return coordenadasCentralesDeBases;
     }
 
+
+
+    public Zangano establecerZanganoInicial(int idJugador) {
+        Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
+        Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
+        Zangano zanganoGenerado = new Zangano();
+        buscarTerreno(ubicacionDelZangano).ocuparPorUnidad(zanganoGenerado);
+        return zanganoGenerado;
+    }
+
     private void generarTerrenoInicial() {
         // Generamiento de terreno espacial en los bordes del mapa
         List<Coordenada> coordenadasBorde = superficie.devolverCoordenadasAlBorde();
