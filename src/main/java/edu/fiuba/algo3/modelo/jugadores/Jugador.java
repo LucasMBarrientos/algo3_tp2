@@ -30,6 +30,13 @@ public abstract class Jugador {
 
     public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
 
+    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
+        Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
+        unidad.generarse(edificio);
+        unidad.consumirRecursosParaGenerarse(inventario);
+        inventario.agregarUnidad(unidad);
+    }
+
     protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales) {
         this.establecerNombre(nombre);
         this.color = color;

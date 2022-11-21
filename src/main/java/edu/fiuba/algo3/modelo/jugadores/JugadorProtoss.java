@@ -29,15 +29,6 @@ public class JugadorProtoss extends Jugador {
         inventario.agregarEdificio(edificioNuevo);
     }
 
-    //unidad consume recursos
-    //edificio genera la unidad si existe
-    //unidad se pone en el mapa
-
-    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
-        Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
-        unidad.consumirRecursosParaGenerarse(inventario);
-        unidad.generarse(edificio);
-    }
 
     public void actualizar() {
         inventario.actualizar();

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.areas.AreaEspacial;
 import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
+import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -43,10 +44,9 @@ public class Mapa {
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
         //generarAreasIniciales();
-        //generarTerrenoInicial();
+        generarTerrenoInicial();
         //actualizarTerrenoEnergizado();
     }
-
 
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
@@ -92,6 +92,18 @@ public class Mapa {
         edificio.ocupar(terreno);
     }
 
+    public void establecerUnidad(Coordenada coordenadaDelEdificio, Unidad unidad) throws NoHayTerrenoDisponibleParaGenerarUnidad {
+        List<Terreno> terrenosPosibles = buscarTerrenosAdyacentes(coordenadaDelEdificio, 2);
+
+        for(Terreno terreno: terrenosPosibles){
+            if(unidad.ocupar(terreno)){
+                return;
+            }
+        }
+
+        throw new NoHayTerrenoDisponibleParaGenerarUnidad();
+    }
+
     private void generarAreasIniciales(){
         /*
         for(Terreno terreno : terrenos){
@@ -104,11 +116,6 @@ public class Mapa {
     public Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {
         Coordenada coordenadaBuscada = coordenada.devolverCoordenadaRelativa(distanciaX, distanciaY);
         return this.buscarTerreno(coordenadaBuscada);
-    }
-
-    private Terreno buscarTerrenoAlAzar() {
-        Coordenada coordeandaAlAzar = superficie.buscarCoordenadaAlAzar();
-        return this.buscarTerreno(coordeandaAlAzar);
     }
 
     public void actualizar(int turnoActual) {
@@ -133,20 +140,27 @@ public class Mapa {
         coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(0).devolverCoordenadaRelativa(2,2));
         // Base inicial para el jugador Protoss
         coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(1).devolverCoordenadaRelativa(-2,-2));
+        SuperficieRectangular superficicieConBases = this.superficie.redimensionar(-3);
         for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
-            coordenadasCentralesDeBases.add(this.superficie.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
+            coordenadasCentralesDeBases.add(superficicieConBases.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
         }
         return coordenadasCentralesDeBases;
     }
 
     private void generarTerrenoInicial() {
+        // Generamiento de terreno espacial en los bordes del mapa
+        List<Coordenada> coordenadasBorde = superficie.devolverCoordenadasAlBorde();
+        for (Coordenada coordenadaBorde : coordenadasBorde) {
+            terrenos.set(buscarIdDelTerreno(coordenadaBorde), new TerrenoAereo(coordenadaBorde));
+        }
+        // Generamiento de volcanes y minerales en el mapa
         List<Coordenada> coordenadasDeVolcanes = hallarCoordenadasParaBases();
         List<Coordenada> coordenadasConMinerales;
         for (Coordenada coordenadaDeVolcan : coordenadasDeVolcanes) {
             terrenos.set(buscarIdDelTerreno(coordenadaDeVolcan), new TerrenoVolcan(coordenadaDeVolcan));
             coordenadasConMinerales = coordenadaDeVolcan.hallarCoordenadasAdyacentes();
             for (Coordenada coordenadaConMinerales : coordenadasConMinerales) {
-                terrenos.set(buscarIdDelTerreno(coordenadaConMinerales), new TerrenoMineral(coordenadaDeVolcan));
+                terrenos.set(buscarIdDelTerreno(coordenadaConMinerales), new TerrenoMineral(coordenadaConMinerales));
             }
         }
     }
