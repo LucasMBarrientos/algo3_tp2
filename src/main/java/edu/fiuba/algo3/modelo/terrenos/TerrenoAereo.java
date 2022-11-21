@@ -67,7 +67,6 @@ public class TerrenoAereo extends Terreno{
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-
     public void ocuparPorUnidad(Dragon unidad){
         throw new TerrenoNoAptoParaTalUnidad();
     }
@@ -77,7 +76,8 @@ public class TerrenoAereo extends Terreno{
     }
 
     public void ocuparPorUnidad(Scout unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        verificarTerrenoSinUnidad();
+        this.unidad = unidad;
     }
 
     public void ocuparPorUnidad(Zangano unidad){
@@ -93,9 +93,9 @@ public class TerrenoAereo extends Terreno{
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        verificarTerrenoSinUnidad();
+        this.unidad = unidad;
     }
-
 
     public void vaciarTerreno() { }
 

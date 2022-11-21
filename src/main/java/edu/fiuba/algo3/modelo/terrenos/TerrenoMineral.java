@@ -47,6 +47,8 @@ public class TerrenoMineral extends Terreno {
     }
 
     public void ocuparPorEdificio(NexoMineral nexoMineral){
+        verificarTerrenoSinEdificio();
+        verificarTerrenoSinUnidad();
         this.edificio = nexoMineral;
     }
 
@@ -86,8 +88,10 @@ public class TerrenoMineral extends Terreno {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Zangano unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+    public void ocuparPorUnidad(Zangano unidad){ //todo ver como hacer que el zangano trabaje sobe un mineral
+        verificarTerrenoSinUnidad();
+        verificarTerrenoSinEdificio();
+        this.unidad = unidad;
     }
 
     public void ocuparPorUnidad(Zerling unidad){

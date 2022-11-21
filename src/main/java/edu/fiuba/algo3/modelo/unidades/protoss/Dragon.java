@@ -26,4 +26,16 @@ public class Dragon extends UnidadProtoss {
         return edificio.generarUnidad(this);
     }
 
+    public boolean ocupar(Terreno terreno){
+        boolean sePudoOcupar = true;
+
+        try {
+            terreno.ocuparPorUnidad(this);
+        } catch (RuntimeException e){ //ver que esto ande, porque puede lanzar excepciones diferentes
+            sePudoOcupar = false;
+        }
+
+        return sePudoOcupar;
+    }
+
 }

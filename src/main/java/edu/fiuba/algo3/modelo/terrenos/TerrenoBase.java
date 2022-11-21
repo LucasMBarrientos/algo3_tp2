@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeRepr
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
@@ -33,6 +34,9 @@ public class TerrenoBase extends Terreno {
     }
     public void establecerEdificio(Edificio edificio){
         this.edificio = edificio;
+    }
+    public void establecerUnidad(Unidad unidad){
+        this.unidad = unidad;
     }
 
     public void establecerEstado(EstadoTerreno estado){
@@ -80,31 +84,31 @@ public class TerrenoBase extends Terreno {
     }
 
     public void ocuparPorUnidad(Dragon unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Zealot unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Scout unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Zangano unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Hidralisco unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        estado.ocuparPorUnidad(unidad);
     }
 
     public void energizarTerreno() {

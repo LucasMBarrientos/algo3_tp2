@@ -21,7 +21,10 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Terreno {
 
@@ -59,6 +62,20 @@ public abstract class Terreno {
     public abstract void ocuparPorEdificio(Guarida guarida);
 
     public abstract void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
+
+    public abstract void ocuparPorUnidad(Dragon unidad);
+
+    public abstract void ocuparPorUnidad(Zealot unidad);
+
+    public abstract void ocuparPorUnidad(Scout unidad);
+
+    public abstract void ocuparPorUnidad(Zangano unidad);
+
+    public abstract void ocuparPorUnidad(Zerling unidad);
+
+    public abstract void ocuparPorUnidad(Hidralisco unidad);
+
+    public abstract void ocuparPorUnidad(Mutalisco unidad);
 
     public void verificarTerrenoSinEdificio(){
         if(this.edificio != null){

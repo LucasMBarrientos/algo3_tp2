@@ -23,30 +23,8 @@ public abstract class Unidad {
     protected EstadoUnidad estado = new UnidadEnConstruccion();
     protected boolean aerea = false;
 
-    //completar esto
-    public boolean ocupar(Terreno terreno){
-        //terreno.ocuparPorUnidad(this); todo: bajar esto a cada unidad y hacer un try catch para convertir la excepcion en bool
-        return false;
-    }
-
-    public int devolverTiempoConstruccion() {
-        return tiempoConstruccion;
-    }
-
     public boolean compararCoordenadas(Coordenada coordenadaAComparar) {
         return coordenada.esIgual(coordenadaAComparar);
-    }
-
-    public Vida devolverVida() {
-        return vida;
-    }
-
-    public int devolverRango() {
-        return rango;
-    }
-
-    public boolean esAerea() {
-        return aerea;
     }
 
     public void actualizar() {
@@ -66,6 +44,8 @@ public abstract class Unidad {
     }
 
     public abstract Unidad generarse(Edificio edificio);
+
+    public abstract boolean ocupar(Terreno terreno);
 
     public void consumirRecursosParaGenerarse(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);

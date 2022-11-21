@@ -32,7 +32,10 @@ public class TerrenoVacio implements EstadoTerreno {
         this.terreno = terreno;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){terreno.establecerEdificio(pilon);
+    public void ocuparPorEdificio(Pilon pilon){
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerEdificio(pilon);
     }
 
     public void ocuparPorEdificio(Acceso acceso){
@@ -52,6 +55,8 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     public void ocuparPorEdificio(Criadero criadero){
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
         terreno.establecerEdificio(criadero);
     }
 
@@ -73,31 +78,45 @@ public class TerrenoVacio implements EstadoTerreno {
 
 
     public void ocuparPorUnidad(Dragon unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Zealot unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Scout unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Zangano unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Hidralisco unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
     }
 
     public void cubrirTerrenoDeMoho() {

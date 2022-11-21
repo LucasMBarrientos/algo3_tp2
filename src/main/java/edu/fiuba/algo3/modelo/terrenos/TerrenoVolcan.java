@@ -68,7 +68,8 @@ public class TerrenoVolcan extends Terreno {
     }
 
     public void ocuparPorEdificio(Extractor extractor){
-        verificarTerrenoSinEdificio(); //revisar que hacer con los zanganos
+        verificarTerrenoSinEdificio();
+        verificarTerrenoSinUnidad();
         edificio = extractor;
     }
 
@@ -107,7 +108,6 @@ public class TerrenoVolcan extends Terreno {
     public void ocuparPorUnidad(Mutalisco unidad){
         throw new TerrenoNoAptoParaTalUnidad();
     }
-
 
     public void energizarTerreno() { }
 

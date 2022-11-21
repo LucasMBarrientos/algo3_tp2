@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 
@@ -33,5 +34,17 @@ public class Hidralisco extends UnidadZerg {
     }
     public Unidad generarse(Edificio edificio){
         return edificio.generarUnidad(this);
+    }
+
+    public boolean ocupar(Terreno terreno){
+        boolean sePudoOcupar = true;
+
+        try {
+            terreno.ocuparPorUnidad(this);
+        } catch (RuntimeException e){
+            sePudoOcupar = false;
+        }
+
+        return sePudoOcupar;
     }
 }

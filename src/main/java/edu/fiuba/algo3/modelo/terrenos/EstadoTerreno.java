@@ -13,8 +13,16 @@ import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public abstract interface EstadoTerreno {
 
@@ -37,6 +45,19 @@ public abstract interface EstadoTerreno {
     void ocuparPorEdificio(Guarida guarida);
 
     void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
+
+    void ocuparPorUnidad(Dragon unidad);
+
+    void ocuparPorUnidad(Zealot unidad);
+
+    void ocuparPorUnidad(Scout unidad);
+
+    void ocuparPorUnidad(Zangano unidad);
+
+    void ocuparPorUnidad(Zerling unidad);
+
+    void ocuparPorUnidad(Hidralisco unidad);
+    void ocuparPorUnidad(Mutalisco unidad);
 
     void energizarTerreno();
 

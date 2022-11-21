@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 
@@ -35,5 +36,10 @@ public class Guardian extends UnidadZerg {
     @Override
     public Unidad generarse(Edificio edificio) {
         return null;
+    }
+
+    public boolean ocupar(Terreno terreno){
+        //ver como tratar a esta evolucion del mutalisco
+        return  false   ;
     }
 }

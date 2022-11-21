@@ -44,11 +44,13 @@ public class Inventario {
     }
 
     public boolean tieneEdificio(Nombre nombreDelEdifico) {
-        boolean edificioHalldo = false;
+        boolean edificioHallado = false;
         for (Edificio edificio : edificios) {
-            edificioHalldo = edificioHalldo || nombreDelEdifico.esIgual(edificio.devolverNombre());
+            if(nombreDelEdifico.esIgual(edificio.devolverNombre())){
+                edificioHallado = true;
+            }
         }
-        return edificioHalldo;
+        return edificioHallado;
     }
 
     public void agregarEdificio(Edificio edificioNuevo) {
@@ -65,10 +67,6 @@ public class Inventario {
 
     public void agregarMinerales(Recurso minerales) {
         this.mineral.agregarUnidades(minerales);
-    }
-
-    public Unidad generarUnidad() {
-        return null;
     }
 
     public void consumirGasVespeno(Recurso recursoRequerido) {
