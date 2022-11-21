@@ -1,13 +1,10 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar;
 
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 
 public class PuertoEstelarOperativo implements EstadoPuertoEstelar{
     private PuertoEstelar puertoEstelar;
-    public Unidad generarUnidad(Unidad unidad) {
-        //verificar que haya recursos para la unidad y quizas el tipo de unidad(?
-        return unidad;
-    }
 
     
   @Override
@@ -29,4 +26,6 @@ public class PuertoEstelarOperativo implements EstadoPuertoEstelar{
     this.puertoEstelar.escudo.regenerar();
   }
 
+
+  public Unidad generarUnidad(Scout unidad)  { return unidad; }
 }

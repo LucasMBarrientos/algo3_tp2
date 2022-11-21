@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -32,6 +33,7 @@ public class Acceso extends EdificioProtoss {
         this.tiempoDeConstruccion = 8;
         this.vida = new Vida(500);
         this.escudo = new Escudo(500);
+        this.nombre = new Nombre("Acceso");
         establecerEstado(new AccesoEnConstruccion());
     }
 
@@ -45,15 +47,11 @@ public class Acceso extends EdificioProtoss {
       this.estado.setAcceso(this);
     }
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
-        return estado.generarUnidad( edificioConLarvas,  gasVespeno, mineral,  coordenada);
-    }
-
     public Unidad generarUnidad(Zealot unidad)  {
-        return unidad;
+        return estado.generarUnidad(unidad);
     }
     public Unidad generarUnidad(Dragon unidad){
-        return unidad;
+        return estado.generarUnidad(unidad);
     }
 
     public Unidad generarUnidad(Zerling unidad) throws EdificioNoConoceEstaUnidad {

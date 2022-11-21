@@ -6,11 +6,16 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 
 public class AccesoEnConstruccion implements EstadoAcceso{
     private Acceso acceso;
 
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) throws EdificioNoTerminoDeConstruirse{
+    public Unidad generarUnidad(Zealot unidad) throws EdificioNoTerminoDeConstruirse{
+        throw new EdificioNoTerminoDeConstruirse();
+    }
+    public Unidad generarUnidad(Dragon unidad) throws EdificioNoTerminoDeConstruirse{
         throw new EdificioNoTerminoDeConstruirse();
     }
 

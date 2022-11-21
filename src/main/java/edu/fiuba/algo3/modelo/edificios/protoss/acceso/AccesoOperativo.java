@@ -5,13 +5,16 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 
 public class AccesoOperativo implements EstadoAcceso{
     private Acceso acceso;
-
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
-        //verificar que haya recursos para la unidad y quizas el tipo de unidad(?
-        return null;
+    public Unidad generarUnidad(Zealot unidad)  {
+        return unidad;
+    }
+    public Unidad generarUnidad(Dragon unidad){
+        return unidad;
     }
 
     @Override

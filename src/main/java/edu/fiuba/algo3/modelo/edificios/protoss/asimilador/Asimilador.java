@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -33,6 +34,7 @@ public class Asimilador extends EdificioProtoss {
         this.tiempoDeConstruccion = 6;
         this.vida = new Vida(450);
         this.escudo = new Escudo(450);
+        this.nombre = new Nombre("Asimilador");
         establecerEstado(new AsimiladorEnConstruccion());
     }
 

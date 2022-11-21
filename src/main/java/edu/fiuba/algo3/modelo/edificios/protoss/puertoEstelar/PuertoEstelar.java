@@ -36,6 +36,7 @@ public class PuertoEstelar extends EdificioProtoss {
         this.vida = new Vida(600);
         this.escudo = new Escudo(600);
         this.nombre = new Nombre("PuertoEstelar");
+        establecerEstado(new PuertoEstelarEnConstruccion());
     }
 
     public void ocupar(Terreno terreno){
@@ -64,7 +65,7 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     public Unidad generarUnidad(Scout unidad)  {
-        return unidad;
+        return estado.generarUnidad(unidad);
     }
     public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
