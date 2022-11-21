@@ -14,9 +14,17 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class TerrenoMineral extends Terreno {
     private Edificio edificio;
@@ -64,6 +72,34 @@ public class TerrenoMineral extends Terreno {
 
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
         throw new TerrenoNoAptoParaConstruirTalEdificio();
+    }
+
+    public void ocuparPorUnidad(Dragon unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Zealot unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Scout unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Zangano unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Zerling unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Hidralisco unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Mutalisco unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
     }
 
     public void energizarTerreno() { }

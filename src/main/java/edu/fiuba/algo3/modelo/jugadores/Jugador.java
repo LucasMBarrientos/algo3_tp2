@@ -34,6 +34,7 @@ public abstract class Jugador {
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         unidad.generarse(edificio);
         unidad.consumirRecursosParaGenerarse(inventario);
+        mapa.establecerUnidad(coordenadaDelEdificio, unidad);
         inventario.agregarUnidad(unidad);
     }
 

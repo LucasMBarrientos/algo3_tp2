@@ -10,10 +10,18 @@ import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 import java.util.List;
 
@@ -62,6 +70,35 @@ public class TerrenoMoho implements EstadoTerreno {
 
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion) {
         terreno.establecerEdificio(reservaDeReproduccion);
+    }
+
+
+    public void ocuparPorUnidad(Dragon unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Zealot unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Scout unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Zangano unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Zerling unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Hidralisco unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Mutalisco unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
     }
 
     public void cubrirTerrenoDeMoho() {

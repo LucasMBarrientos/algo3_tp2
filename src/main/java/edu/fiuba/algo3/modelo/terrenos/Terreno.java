@@ -14,9 +14,13 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
 
 public abstract class Terreno {
@@ -24,6 +28,8 @@ public abstract class Terreno {
     public Coordenada coordenada;
 
     protected Edificio edificio;
+
+    protected Unidad unidad;
     /*
     public void establecerEstado(EstadoTerreno estado) {
         this.estado = estado;
@@ -53,6 +59,18 @@ public abstract class Terreno {
     public abstract void ocuparPorEdificio(Guarida guarida);
 
     public abstract void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
+
+    public void verificarTerrenoSinEdificio(){
+        if(this.edificio != null){
+            throw new TerrenoNoAptoParaConstruirTalEdificio(); //se podria usar otra excepcion mejor
+        }
+    }
+
+    public void verificarTerrenoSinUnidad(){
+        if(this.unidad != null){
+            throw new TerrenoNoAptoParaTalUnidad(); //se podria usar otra excepcion mejor
+        }
+    }
 
     public abstract void vaciarTerreno();
 

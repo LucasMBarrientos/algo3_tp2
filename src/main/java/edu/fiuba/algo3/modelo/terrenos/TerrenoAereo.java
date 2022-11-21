@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
@@ -13,7 +12,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
@@ -22,17 +21,14 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
-import java.util.List;
+public class TerrenoAereo extends Terreno{
 
-public class TerrenoVacio implements EstadoTerreno {
-
-    private TerrenoBase terreno;
-
-    public TerrenoVacio(TerrenoBase terreno){
-        this.terreno = terreno;
+    public TerrenoAereo(Coordenada coordenada) {
+        this.coordenada = coordenada;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){terreno.establecerEdificio(pilon);
+    public void ocuparPorEdificio(Pilon pilon){
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
     public void ocuparPorEdificio(Acceso acceso){
@@ -52,7 +48,7 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     public void ocuparPorEdificio(Criadero criadero){
-        terreno.establecerEdificio(criadero);
+        throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
     public void ocuparPorEdificio(Espiral espiral){
@@ -100,20 +96,10 @@ public class TerrenoVacio implements EstadoTerreno {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void cubrirTerrenoDeMoho() {
-        terreno.establecerEstado(new TerrenoMoho(terreno));
-    }
 
-    public void energizarTerreno() {
-        terreno.establecerEstado(new TerrenoEnergizado(terreno));
-    }
+    public void vaciarTerreno() { }
 
-    public void desenergizarTerreno() {
-        return;
-    }
+    public void energizarTerreno() { }
 
-    public boolean tieneMoho() {
-        return false;
-    }
-
+    public void cubrirTerrenoDeMoho() { }
 }

@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadProtoss;
 
@@ -24,4 +25,5 @@ public class Dragon extends UnidadProtoss {
     public Unidad generarse(Edificio edificio){
         return edificio.generarUnidad(this);
     }
+
 }
