@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public interface EstadoPilon {
@@ -17,5 +18,6 @@ public interface EstadoPilon {
     void actualizar();
 
     void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada, List<Coordenada> coordenadasConPilones);
-
+    
+    void recibirGolpe(Danio danio);
 }

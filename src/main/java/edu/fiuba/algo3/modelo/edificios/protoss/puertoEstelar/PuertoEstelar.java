@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar;
 
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
@@ -90,5 +91,11 @@ public class PuertoEstelar extends EdificioProtoss {
         if(!inventario.tieneEdificio(new Nombre("Acceso"))){
             throw new ConstruccionRequiereDeOtroEdificio();
         }
+    }
+
+    @Override
+    public void recibirGolpe(Danio danio) {
+      // TODO Auto-generated method stub
+      
     }
 }

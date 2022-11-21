@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
 
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -27,9 +28,8 @@ public class CriaderoEnConstruccion implements EstadoCriadero {
     }
 
     @Override
-    public Criadero terminarConstruccion() {
+    public void terminarConstruccion() {
         criadero.establecerEstado(new CriaderoOperativo());
-        return criadero;
     }
 
     @Override
@@ -53,6 +53,11 @@ public class CriaderoEnConstruccion implements EstadoCriadero {
     public void actualizarListaDeCoordenadasConCriaderosOperativos(Coordenada coordenada, List<Coordenada> coordenadasConCriaderos) {
         return;
     }
+
+    @Override
+    public void recibirGolpe(Danio danio) throws EdificioNoTerminoDeConstruirse {
+      throw new EdificioNoTerminoDeConstruirse();
+  }
 
 
 }

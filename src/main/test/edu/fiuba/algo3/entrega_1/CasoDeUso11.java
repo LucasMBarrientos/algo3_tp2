@@ -12,17 +12,17 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso11 {
 
-/*
+
     @Test
     public void elEscudoFuncionaComoDebe() {
         Pilon pilon = new Pilon();
         for(int i=0; i<6; i++){ pilon.actualizar(); } //paso los turnos para que se termine de construir
 
-
+        pilon.recibirGolpe(new Danio(600));
+        
         Assertions.assertThrows(EdificioDestruido.class,() ->{
-            pilon.recibirGolpe(new Danio(600));
+            pilon.recibirGolpe(new Danio(1));
         });
-
     }
     @Test
     public void elEscudoSeRegeneraComoDebe() {
@@ -40,6 +40,8 @@ public class CasoDeUso11 {
 
         pilon.recibirGolpe(new Danio(600));
 
-        Assertions.assertThrows(EdificioDestruido.class, pilon::actualizar); //TODO agregar state edificio destruido @Leti
-    }*/
+        Assertions.assertThrows(EdificioDestruido.class, () ->{
+          pilon.recibirGolpe(new Danio(1));
+        });
+    }
 }

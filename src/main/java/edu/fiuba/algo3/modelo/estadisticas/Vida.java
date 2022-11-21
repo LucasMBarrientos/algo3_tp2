@@ -13,10 +13,12 @@ public class Vida extends Estadistica {
         this.valorActual = valorMaximo;
     }
 
-    public void recibirDanio(Danio danio) throws EdificioDestruido {
+    public boolean recibirDanio(Danio danio){
         valorActual = danio.aplicarDanio(valorActual);
         if (valorActual <= 0) {
-            throw new EdificioDestruido();
+            return true;
+        }else{
+          return false;
         }
     }
 

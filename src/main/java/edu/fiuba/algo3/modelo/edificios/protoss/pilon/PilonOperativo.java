@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 import java.net.CookieHandler;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public class PilonOperativo implements EstadoPilon{
@@ -35,6 +36,14 @@ public class PilonOperativo implements EstadoPilon{
     @Override
     public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada, List<Coordenada> coordenadasConPilones) {
         coordenadasConPilones.add(coordenada);
+    }
+
+    @Override
+    public void recibirGolpe(Danio danio) {
+      if(this.pilon.vida.recibirDanio(new Danio(this.pilon.escudo.recibirDanio(danio) * (-1)))){
+        this.pilon.establecerEstado(new PilonDestruido());
+      }
+
     }
 
 }

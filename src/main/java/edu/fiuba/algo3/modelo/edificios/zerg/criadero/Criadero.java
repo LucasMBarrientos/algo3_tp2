@@ -90,8 +90,8 @@ public class Criadero extends EdificioZerg {
       this.estado.setCriadero(this);
     }
 
-    public Criadero terminarConstruccion(){
-      return this.estado.terminarConstruccion();
+    public void terminarConstruccion(){
+      this.estado.terminarConstruccion();
     }
 
     public Criadero deshacerConstruccion(){
@@ -124,7 +124,9 @@ public class Criadero extends EdificioZerg {
         throw new  EdificioNoConoceEstaUnidad();
     }
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {}
+    public void recibirGolpe(Danio danio) {
+      this.estado.recibirGolpe(danio);
+    }
 
 
 }

@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 
-import java.net.CookieHandler;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
-public class PilonEnConstruccion implements EstadoPilon{
+public class PilonDestruido implements EstadoPilon{
     private Pilon pilon;
 
     @Override
@@ -17,7 +17,6 @@ public class PilonEnConstruccion implements EstadoPilon{
 
     @Override
     public Pilon terminarConstruccion() {
-      pilon.establecerEstado(new PilonOperativo());
       return pilon;
     }
 
@@ -32,11 +31,7 @@ public class PilonEnConstruccion implements EstadoPilon{
     }
 
     @Override
-    public void actualizar() {
-      if(this.pilon.reducirTiempoConstruccion(1)){
-        this.terminarConstruccion();
-      }
-    }
+    public void actualizar() {}
 
     @Override
     public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada, List<Coordenada> coordenadasConPilones) {
@@ -44,7 +39,7 @@ public class PilonEnConstruccion implements EstadoPilon{
     }
 
     @Override
-    public void recibirGolpe(Danio danio) throws EdificioNoTerminoDeConstruirse {
-      throw new EdificioNoTerminoDeConstruirse();
+    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+      throw new EdificioDestruido();
     }
 }

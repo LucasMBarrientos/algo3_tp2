@@ -88,7 +88,7 @@ public class Espiral extends EdificioZerg {
         throw new  EdificioNoConoceEstaUnidad();
     }
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {}
+    public void recibirGolpe(Danio danio) {}
 
 
 }

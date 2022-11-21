@@ -95,9 +95,9 @@ public class Asimilador extends EdificioProtoss {
     }
 
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    public void recibirGolpe(Danio danio) {
         int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danioTerestre);
+        escudoRestante = escudo.recibirDanio(danio);
         if (escudoRestante < 0) {
             vida.recibirDanio(new Danio(escudoRestante * (-1)));
         }

@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
 public class CasoDeUso12 {
-/* 
     @Test
     public void elEscudoSeRegeneraComoDebe() {
         Pilon pilon = new Pilon();
@@ -25,7 +27,7 @@ public class CasoDeUso12 {
 
         pilon.recibirGolpe(new Danio(400));
 
-        Assertions.assertThrows(EdificioDestruido.class, pilon::actualizar); //TODO agregar state edificio destruido @Leti
-    }
-*/
+        Assertions.assertThrows(EdificioDestruido.class, () ->{
+          pilon.recibirGolpe(new Danio(1));
+        });    }
 }

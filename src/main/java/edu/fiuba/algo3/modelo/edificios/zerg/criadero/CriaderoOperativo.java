@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.recursos.*;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
@@ -32,7 +33,7 @@ public class CriaderoOperativo implements EstadoCriadero {
     }
     
     @Override
-    public Criadero terminarConstruccion() {return criadero;}
+    public void terminarConstruccion() {}
 
     @Override
     public Criadero deshacerConstruccion() {
@@ -58,6 +59,13 @@ public class CriaderoOperativo implements EstadoCriadero {
 
     public void actualizarListaDeCoordenadasConCriaderosOperativos(Coordenada coordenada, List<Coordenada> coordenadasConCriaderos) {
         coordenadasConCriaderos.add(coordenada);
+    }
+
+    @Override
+    public void recibirGolpe(Danio danio) {
+      if(this.criadero.vida.recibirDanio(danio)){
+        this.criadero.establecerEstado(new CriaderoDestruido());
+      }
     }
 
 }

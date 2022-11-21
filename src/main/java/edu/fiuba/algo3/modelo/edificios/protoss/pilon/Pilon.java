@@ -85,12 +85,8 @@ public class Pilon extends EdificioProtoss {
         throw new  EdificioNoConoceEstaUnidad();
     }
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
-        int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danioTerestre);
-        if(escudoRestante < 0){
-            vida.recibirDanio(new Danio(escudoRestante * (-1)));
-        }
+    public void recibirGolpe(Danio danio) {
+        this.estado.recibirGolpe(danio);
     }
 
     public void ocupar(Terreno terreno){
