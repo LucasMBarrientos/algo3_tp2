@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 
 
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +24,6 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.AlgoStar;
 
 public class CasoDeUso8 {
-/*
 
   @Test
   public void noSePuedeConstruirNexoMineralconMenosDe50Minerales() {
@@ -33,7 +34,6 @@ public class CasoDeUso8 {
       nexoMineral.consumirRecursosParaConstruccion(inventario);
     });
   }
-
 
   @Test
   public void sePuedeConstruirNexoMineralcon50Minerales() {
@@ -48,9 +48,8 @@ public class CasoDeUso8 {
     NexoMineral nexoMineral2 = new NexoMineral();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-      nexoMineral.consumirRecursosParaConstruccion(inventario);
+      nexoMineral2.consumirRecursosParaConstruccion(inventario);
     });
   }
 
-*/
 }

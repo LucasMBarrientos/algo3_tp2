@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso2 {
 
-
     // Edificios zerg
     
 	@Test
