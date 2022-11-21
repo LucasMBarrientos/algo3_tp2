@@ -47,10 +47,10 @@ public class CasoDeUso16 {
         Asimilador asimilador = new Asimilador();
         Extractor extractor = new Extractor();
 
-        jugadorProtoss.construirEdificio(new Coordenada(6,6), asimilador);
+        jugadorProtoss.construirEdificio(new Coordenada(4,4), asimilador);
 
         Assertions.assertThrows(UnidadNoEncontrada.class, ()->{
-            jugadorZerg.construirEdificio(new Coordenada(6,6), extractor);
+            jugadorZerg.construirEdificio(new Coordenada(4,4), extractor);
         });
     }
 

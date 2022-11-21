@@ -132,4 +132,8 @@ public abstract class Terreno {
         return edificio;
     }
 
+    public Unidad DEBUG_DEVOLERUNIDAD() {
+        return unidad;
+    }
+
 }
