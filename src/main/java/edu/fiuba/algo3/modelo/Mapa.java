@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.areas.AreaEspacial;
 import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
+import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -90,6 +91,18 @@ public class Mapa {
     public void establecerEdificio(Coordenada coordenada, Edificio edificio) throws TerrenoNoAptoParaConstruirTalEdificio {
         Terreno terreno = this.buscarTerreno(coordenada);
         edificio.ocupar(terreno);
+    }
+
+    public void establecerUnidad(Coordenada coordenadaDelEdificio, Unidad unidad) throws NoHayTerrenoDisponibleParaGenerarUnidad {
+        List<Terreno> terrenosPosibles = buscarTerrenosAdyacentes(coordenadaDelEdificio, 2);
+
+        for(Terreno terreno: terrenosPosibles){
+            if(unidad.ocupar(terreno)){
+                return;
+            }
+        }
+
+        throw new NoHayTerrenoDisponibleParaGenerarUnidad();
     }
 
     private void generarAreasIniciales(){

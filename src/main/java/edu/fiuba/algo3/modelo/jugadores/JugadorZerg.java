@@ -21,11 +21,6 @@ public class JugadorZerg extends Jugador {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
 
-    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
-        Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
-        unidad.consumirRecursosParaGenerarse(inventario);
-        unidad.generarse(edificio);
-    }
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion

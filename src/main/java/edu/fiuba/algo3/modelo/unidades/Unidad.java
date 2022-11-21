@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public abstract class Unidad {
 
@@ -21,6 +22,12 @@ public abstract class Unidad {
     protected Vida vida;
     protected EstadoUnidad estado = new UnidadEnConstruccion();
     protected boolean aerea = false;
+
+    //completar esto
+    public boolean ocupar(Terreno terreno){
+        //terreno.ocuparPorUnidad(this); todo: bajar esto a cada unidad y hacer un try catch para convertir la excepcion en bool
+        return false;
+    }
 
     public int devolverTiempoConstruccion() {
         return tiempoConstruccion;
