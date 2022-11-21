@@ -20,6 +20,20 @@ public class SuperficieRectangular {
         return new SuperficieRectangular(coordenadaInicial, coordenadaFinal);
     }
 
+    public List<Coordenada> devolverCoordenadasAlBorde() {
+        List<Coordenada> coordenadas = new ArrayList<Coordenada>();
+        Coordenada coordenada;
+        for (int y = 0; y < calcularLongitudY(); y++) {
+            for (int x = 0; x < calcularLongitudX(); x++) {
+                coordenada = new Coordenada(x, y);
+                if (coordenada.calcularDiferenciaEnX(coordenadaInicial) == 0 || coordenada.calcularDiferenciaEnY(coordenadaInicial) == 0 || coordenada.calcularDiferenciaEnX(coordenadaFinal) == -1 || coordenada.calcularDiferenciaEnY(coordenadaFinal) == -1) {
+                    coordenadas.add(coordenada);
+                }
+            }
+        }
+        return coordenadas;
+    }
+
     public int calcularLongitudX() {
         return coordenadaFinal.calcularDiferenciaEnX(coordenadaInicial);
     }

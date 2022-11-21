@@ -41,14 +41,12 @@ public class Mapa {
                 this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
-        int i = buscarIdDelTerreno(new Coordenada(3,4));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(1, 1));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2));
         //generarAreasIniciales();
         generarTerrenoInicial();
         //actualizarTerrenoEnergizado();
     }
-
 
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
@@ -120,11 +118,6 @@ public class Mapa {
         return this.buscarTerreno(coordenadaBuscada);
     }
 
-    private Terreno buscarTerrenoAlAzar() {
-        Coordenada coordeandaAlAzar = superficie.buscarCoordenadaAlAzar();
-        return this.buscarTerreno(coordeandaAlAzar);
-    }
-
     public void actualizar(int turnoActual) {
         List<Coordenada> coordenadasQueTendranMoho = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConCriaderos = new ArrayList<Coordenada>();
@@ -155,6 +148,12 @@ public class Mapa {
     }
 
     private void generarTerrenoInicial() {
+        // Generamiento de terreno espacial en los bordes del mapa
+        List<Coordenada> coordenadasBorde = superficie.devolverCoordenadasAlBorde();
+        for (Coordenada coordenadaBorde : coordenadasBorde) {
+            terrenos.set(buscarIdDelTerreno(coordenadaBorde), new TerrenoAereo(coordenadaBorde));
+        }
+        // Generamiento de volcanes y minerales en el mapa
         List<Coordenada> coordenadasDeVolcanes = hallarCoordenadasParaBases();
         List<Coordenada> coordenadasConMinerales;
         for (Coordenada coordenadaDeVolcan : coordenadasDeVolcanes) {
