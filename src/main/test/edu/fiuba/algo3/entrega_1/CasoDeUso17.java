@@ -1,64 +1,61 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso17 {/*
+public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnPuertoEstelarSinUnAcceso() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.pasarTurno();
+        JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500));
+        Mapa mapa = new Mapa(new Coordenada(30, 30));
+        jugador.establecerMapa(mapa);
 
-        algoStar.construirEdificio(8,8, new PuertoEstelar());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
-            algoStar.pasarTurno();
-        }
+        PuertoEstelar puertoEstelar = new PuertoEstelar();
 
-        Assertions.assertTrue(algoStar.seleccionarCasilla(8,8).devolverEdificio() == null);
-
-        algoStar.seleccionarCasilla(9, 8).establecerEdificio(new Acceso());
-
-        algoStar.construirEdificio(8,8, new PuertoEstelar());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
-            algoStar.pasarTurno();
-        }
-
-        Assertions.assertTrue(algoStar.seleccionarCasilla(8,8).devolverEdificio() instanceof PuertoEstelar);
+        Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
+            jugador.construirEdificio(new Coordenada(2,2), puertoEstelar);
+        });
     }
 
     @Test
-    public void noSePuedeConstruirUnEspiralSinUnaGuarida() {
-        AlgoStar algoStar = new AlgoStar();
-        algoStar.empezarJuego();
-        algoStar.moverDerecha(1,1);
+    public void noSePuedeConstruirUnaGuaridaSinUnaReservaDeReproduccion() {
+        JugadorZerg jugador = (new JugadorZerg("Goku Supersaiyan", "azul", 500));
+        Mapa mapa = new Mapa(new Coordenada(30, 30));
+        jugador.establecerMapa(mapa);
 
-        algoStar.construirEdificio(2,1, new Espiral());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
-            algoStar.pasarTurno();
-        }
+        Guarida guarida = new Guarida();
 
-        Assertions.assertNull(algoStar.seleccionarCasilla(2, 1).devolverEdificio());
+        Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
+            jugador.construirEdificio(new Coordenada(2,2), guarida);
+        });
+    }
 
-        algoStar.seleccionarCasilla(2, 2).establecerEdificio(new Guarida());
+    @Test
+    public void noSePuedeConstruirUnaEspiralSinUnaGuarida() {
+        JugadorZerg jugador = (new JugadorZerg("Princesa Leia", "azul", 500));
+        Mapa mapa = new Mapa(new Coordenada(30, 30));
+        jugador.establecerMapa(mapa);
 
-        algoStar.generarUnidad(1,1);
-        algoStar.moverDerecha(1,1);
+        Espiral espiral = new Espiral();
 
-        algoStar.construirEdificio(2,1, new Espiral());
-        // Intentar construir el edificio por un par de turnos
-        for (int i=0; i<20; i++) {
-            algoStar.pasarTurno();
-        }
-
-        Assertions.assertTrue(algoStar.seleccionarCasilla(2,1).devolverEdificio() instanceof Espiral);
-    }*/
+        Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
+            jugador.construirEdificio(new Coordenada(2,2), espiral);
+        });
+    }
     
 }

@@ -63,7 +63,6 @@ public class CasoDeUso16 {
 
         jugadorZerg.construirEdificio(new Coordenada(6,6), extractor);
 
-
         Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
             jugadorProtoss.construirEdificio(new Coordenada(6,6), asimilador);
         });
