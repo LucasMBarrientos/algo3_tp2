@@ -117,5 +117,9 @@ public class TerrenoMineral extends Terreno {
         mineral.gastar(recursoRequerido);
     }
 
+    @Override
+    public void actualizar(){
+
+    }
 
 }

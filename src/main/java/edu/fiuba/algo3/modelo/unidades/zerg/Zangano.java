@@ -57,4 +57,9 @@ public class Zangano extends UnidadZerg {
 
         return sePudoOcupar;
     }
+
+    public void recolectarRecursos(Terreno terreno, Inventario inventario){
+        terreno.extraerMinerales(new Mineral(10));
+        inventario.agregarMinerales(new Mineral(10));
+    }
 }

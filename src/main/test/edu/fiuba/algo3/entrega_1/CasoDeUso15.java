@@ -4,6 +4,11 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -13,77 +18,93 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class CasoDeUso15 {
-/*
+
     @Test
     public void extractorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
-      TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
-      Extractor extratractor = new Extractor();
-      Zangano zangano1 = new Zangano();
-      Zangano zangano2 = new Zangano();
-      Zangano zangano3 = new Zangano();
 
-      terrenoVolcan.contruirEdificio(extractor);
-      extractor.meterZangano(zangano1);
-      extractor.meterZangano(zangano2);
-      extractor.meterZangano(zangano3);
-      
-      for(int i = 0; i < 166; i++) { //166 turnos * 30 gas por turno = 4.980
-        extractor.extraerRecursos();
-      }
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada(1,1));
+        Extractor extractor = new Extractor();
+        Zangano zangano1 = new Zangano();
+        Zangano zangano2 = new Zangano();
+        Zangano zangano3 = new Zangano();
 
-      Assertions.assertThrows(VolcanAgotado.class, ()->{
-        extractor.extraerRecursos();
-      });
+        extractor.ocupar(terrenoVolcan);
 
+        for (int i = 0; i < 10; i++) {
+            extractor.actualizar();
+        }
+        extractor.ingresarUnidad(zangano1);
+        extractor.ingresarUnidad(zangano2);
+        extractor.ingresarUnidad(zangano3);
+
+        for(int i = 0; i < 166; i++) { //166 turnos * 30 gas por turno = 4.980
+            extractor.recolectarRecursos(inv);
+        }
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            extractor.recolectarRecursos(inv);
+        });
     }
 
     @Test
     public void asimiladorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
-      TerrenoVolcan terrenoVolcan = new TerrenoVolcan();
-      Asimilador asimilador = new Asimilador();
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada(1,1));
+        Asimilador asimilador = new Asimilador();
+        asimilador.ocupar(terrenoVolcan);
 
-      terrenoVolcan.contruirEdificio(asimilador);
-      
-      for(int i = 0; i < 250; i++) { //250 turnos * 20 gas por turno = 5000
-        asimilador.extraerRecursos();
-      }
+        for (int i = 0; i < 10; i++) {
+            asimilador.actualizar();
+        }
 
-      Assertions.assertThrows(VolcanAgotado.class, ()->{
-        asimilador.extraerRecursos();
-      });
+        for(int i = 0; i < 250; i++) { //166 turnos * 30 gas por turno = 4.980
+            asimilador.recolectarRecursos(inv);
+        }
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            asimilador.recolectarRecursos(inv);
+        });
     }
 
     @Test
     public void zanganoNoPuedeSeguirExtrayendoMineralUnaVezAgotado(  ) {
-      TerrenoMineral terrenoMineral = new TerrenoMineral();
-      Zangano zangano = new Zangano();
 
-      zangano.trabajarTerreno(terrenoMineral);
-      
-      for(int i = 0; i < 200; i++) { //200 turnos * ¿10 mineral por turno? = 2000
-        zangano.extraerRecursos();
-      }
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada(1,1));
+        Zangano zangano = new Zangano();
 
-      Assertions.assertThrows(MineralAgotado.class, ()->{
-        zangano.extraerRecursos();
-      });
+        zangano.ocupar(terrenoMineral);
+
+        for(int i = 0; i < 200; i++) { //200 turnos * ¿10 mineral por turno? = 2000
+            zangano.recolectarRecursos(terrenoMineral,inv);
+        }
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            zangano.recolectarRecursos(terrenoMineral,inv);
+        });
 
     }
 
     @Test
     public void nexoMineralNoPuedeSeguirExtrayendomineralUnaVezAgotado(  ) {
-      TerrenoMineral terrenoMineral = new TerrenoMineral();
-      NexoMineral nexoMineral = new NexoMineral();
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada(1,1));
+        NexoMineral nexoMineral = new NexoMineral();
 
-      TerrenoMineral.contruirEdificio(nexoMineral);
-      
-      for(int i = 0; i < 200; i++) { //200 turnos * ¿10 mineral por turno? = 2000
-        nexoMineral.extraerRecursos();
-      }
+        nexoMineral.ocupar(terrenoMineral);
 
-      Assertions.assertThrows(MineralAgotado.class, ()->{
-        nexoMineral.extraerRecursos();
-      });
+        for (int i = 0; i < 10; i++) {
+            nexoMineral.actualizar();
+        }
+
+        for(int i = 0; i < 200; i++) { //200 turnos * ¿10 mineral por turno? = 2000
+            nexoMineral.recolectarRecursos(inv);
+        }
+
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            nexoMineral.recolectarRecursos(inv);
+        });
     }
-*/
+
 }
