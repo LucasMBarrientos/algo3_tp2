@@ -33,6 +33,10 @@ public abstract class Unidad {
         return tiempoConstruccion;
     }
 
+    public boolean compararCoordenadas(Coordenada coordenadaAComparar) {
+        return coordenada.esIgual(coordenadaAComparar);
+    }
+
     public Vida devolverVida() {
         return vida;
     }

@@ -2,7 +2,8 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontradoEnEstaPosicion;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
+import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -24,34 +25,42 @@ public class Inventario {
         this.mineral = mineral;
     }
 
-    public boolean tieneEdificio(Nombre nombreDeEdifico){
+    public Edificio buscarEdificio(Coordenada coordenada) {
+        for(Edificio edificio : edificios){
+            if (edificio.compararCoordenadas(coordenada)) {
+                return edificio;
+            }
+        }
+        throw new EdificioNoEncontrado();
+    }
+
+    public Unidad buscarUnidad(Coordenada coordenada) {
+        for (Unidad unidad : unidades) {
+            if (unidad.compararCoordenadas(coordenada)) {
+                return unidad;
+            }
+        }
+        throw new UnidadNoEncontrada();
+    }
+
+    public boolean tieneEdificio(Nombre nombreDeEdifico) {
         for(Edificio edificio : edificios){
            return nombreDeEdifico.esIgual(edificio.devolverNombre());
         }
         return false;
     }
 
-    public Edificio buscarEdificio(Coordenada coordenada){
-        for(Edificio edificio : edificios){
-            if(edificio.compararCoordenadas(coordenada)){
-                return edificio;
-            }
-        }
-        throw new EdificioNoEncontradoEnEstaPosicion();
-    }
-
-
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);
     }
-    public void agregarUnidad(Unidad unidadNueva){
+    public void agregarUnidad(Unidad unidadNueva) {
         unidades.add(unidadNueva);
     }
 
     public void agregarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);
     }
-    public void agregarMinerales(Recurso minerales){
+    public void agregarMinerales(Recurso minerales) {
         this.mineral.agregarUnidades(minerales);
     }
 
@@ -59,24 +68,21 @@ public class Inventario {
         return null;
     }
 
-
-    public void consumirMinerales(Recurso recursoRequerido){
+    public void consumirMinerales(Recurso recursoRequerido) {
         mineral.gastar(recursoRequerido);
     }
 
-    public void consumirGasVespeno(Recurso recursoRequerido){
+    public void consumirGasVespeno(Recurso recursoRequerido) {
         gasVespeno.gastar(recursoRequerido);
     }
 
-    public void devolverMinerales(Recurso recursoUtilizado){
+    public void devolverMinerales(Recurso recursoUtilizado) {
         mineral.agregarUnidades(recursoUtilizado);
     }
 
-    public void devolverGasVespeno(Recurso recursoUtilizado){
+    public void devolverGasVespeno(Recurso recursoUtilizado) {
         gasVespeno.agregarUnidades(recursoUtilizado);
     }
-
-
 
     public int contarLarvas() {
         int larvasTotales = 0;
