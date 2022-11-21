@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -32,6 +33,7 @@ public class Mutalisco extends UnidadZerg {
         this.danioTerrestre = new Danio(9);
         this.rango = 3;
         this.vida = new Vida(120);
+        this.nombre = new Nombre("Mutalisco");
         this.aerea = true;
     }
     public Unidad generarse(Edificio edificio){

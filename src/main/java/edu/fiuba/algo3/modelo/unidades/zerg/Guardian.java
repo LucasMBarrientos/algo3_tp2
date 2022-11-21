@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -30,6 +31,7 @@ public class Guardian extends UnidadZerg {
         this.danioTerrestre = new Danio(25);
         this.rango = 10;
         this.vida = new Vida(100);
+        this.nombre = new Nombre("Guardian");
         this.aerea = true;
     }
 

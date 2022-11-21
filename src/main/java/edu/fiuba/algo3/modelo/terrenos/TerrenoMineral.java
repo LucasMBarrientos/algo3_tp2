@@ -91,6 +91,7 @@ public class TerrenoMineral extends Terreno {
         verificarTerrenoSinUnidad();
         verificarTerrenoSinEdificio();
         this.unidad = unidad;
+        unidad.establecerCoordenada(this.coordenada);
     }
 
     public void ocuparPorUnidad(Zerling unidad){

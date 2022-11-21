@@ -85,30 +85,37 @@ public class TerrenoBase extends Terreno {
 
     public void ocuparPorUnidad(Dragon unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zealot unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Scout unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zangano unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Hidralisco unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
         estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void energizarTerreno() {

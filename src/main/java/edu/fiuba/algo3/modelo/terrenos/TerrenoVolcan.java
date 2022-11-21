@@ -47,7 +47,7 @@ public class TerrenoVolcan extends Terreno {
     public void ocuparPorEdificio(Asimilador asimilador){
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
-        this.edificio = asimilador;
+        edificio = asimilador;
     }
 
     public void ocuparPorEdificio(NexoMineral nexoMineral){

@@ -99,7 +99,6 @@ public class Criadero extends EdificioZerg {
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
-
     }
 
     public Unidad generarUnidad(Zangano unidad){

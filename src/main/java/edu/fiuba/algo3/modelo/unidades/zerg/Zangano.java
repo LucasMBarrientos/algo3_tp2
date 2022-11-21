@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.unidades.zerg;
 
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -31,6 +32,7 @@ public class Zangano extends UnidadZerg {
         this.danioTerrestre = new Danio(0);
         this.rango = 0;
         this.vida = new Vida(25);
+        this.nombre = new Nombre("Zangano");
     }
 
     public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {

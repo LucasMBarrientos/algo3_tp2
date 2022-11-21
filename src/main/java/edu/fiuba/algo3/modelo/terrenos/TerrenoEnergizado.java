@@ -81,6 +81,7 @@ public class TerrenoEnergizado implements EstadoTerreno {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
+
     }
 
     public void ocuparPorUnidad(Zealot unidad){

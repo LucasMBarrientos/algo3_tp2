@@ -53,12 +53,21 @@ public class Inventario {
         return edificioHallado;
     }
 
+
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);
     }
 
     public void agregarUnidad(Unidad unidadNueva) {
         unidades.add(unidadNueva);
+    }
+
+    public void eliminarUnidad(Coordenada coordenada){
+        for (Unidad unidad : unidades) {
+            if (unidad.compararCoordenadas(coordenada)) {
+                unidades.remove(unidad); // esto funca ???
+            }
+        }
     }
 
     public void agregarGasVespeno(Recurso gasVespeno) {

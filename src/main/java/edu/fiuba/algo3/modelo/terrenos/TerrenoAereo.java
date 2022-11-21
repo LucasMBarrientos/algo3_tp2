@@ -78,6 +78,7 @@ public class TerrenoAereo extends Terreno{
     public void ocuparPorUnidad(Scout unidad){
         verificarTerrenoSinUnidad();
         this.unidad = unidad;
+        unidad.establecerCoordenada(this.coordenada);
     }
 
     public void ocuparPorUnidad(Zangano unidad){
@@ -95,6 +96,7 @@ public class TerrenoAereo extends Terreno{
     public void ocuparPorUnidad(Mutalisco unidad){
         verificarTerrenoSinUnidad();
         this.unidad = unidad;
+        unidad.establecerCoordenada(this.coordenada);
     }
 
     public void vaciarTerreno() { }

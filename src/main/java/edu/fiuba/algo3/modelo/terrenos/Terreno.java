@@ -89,6 +89,10 @@ public abstract class Terreno {
         }
     }
 
+    public void establecerUnidad(Unidad unidad){
+        this.unidad = unidad;
+    }
+
     public abstract void vaciarTerreno();
 
     public abstract void energizarTerreno();

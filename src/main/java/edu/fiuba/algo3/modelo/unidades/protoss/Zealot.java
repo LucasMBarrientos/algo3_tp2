@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -20,6 +21,7 @@ public class Zealot extends UnidadProtoss {
         this.rango = 1;
         this.vida = new Vida(100);
         this.escudo = new Escudo(60);
+        this.nombre = new Nombre("Zealot");
     }
     public Unidad generarse(Edificio edificio){
         return edificio.generarUnidad(this);

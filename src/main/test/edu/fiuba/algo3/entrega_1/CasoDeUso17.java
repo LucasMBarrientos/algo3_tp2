@@ -32,6 +32,21 @@ public class CasoDeUso17 {
         });
     }
 
+    /* Idem caso 16, necesito AlgoStar o un inventario con zangano
+    @Test
+    public void noSePuedeConstruirUnaEspiralSinUnaGuarida() {
+        JugadorZerg jugador = (new JugadorZerg("Princesa Leia", "azul", 500));
+        Mapa mapa = new Mapa(new Coordenada(30, 30));
+        jugador.establecerMapa(mapa);
+
+        Espiral espiral = new Espiral();
+
+        Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
+            jugador.construirEdificio(new Coordenada(2,2), espiral);
+        });
+    }
+
+
     @Test
     public void noSePuedeConstruirUnaGuaridaSinUnaReservaDeReproduccion() {
         JugadorZerg jugador = (new JugadorZerg("Goku Supersaiyan", "azul", 500));
@@ -45,17 +60,7 @@ public class CasoDeUso17 {
         });
     }
 
-    @Test
-    public void noSePuedeConstruirUnaEspiralSinUnaGuarida() {
-        JugadorZerg jugador = (new JugadorZerg("Princesa Leia", "azul", 500));
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugador.establecerMapa(mapa);
+    */
 
-        Espiral espiral = new Espiral();
-
-        Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
-            jugador.construirEdificio(new Coordenada(2,2), espiral);
-        });
-    }
     
 }

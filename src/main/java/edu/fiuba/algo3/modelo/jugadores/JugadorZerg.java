@@ -4,8 +4,10 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.excepciones.NoHayUnZanganoEnEsaCoordenada;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
+import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
@@ -24,16 +26,30 @@ public class JugadorZerg extends Jugador {
     }
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
-        //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion
-        Edificio edificioNuevo = edificio.construir(inventario);
+        Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
+        edificio.construir(inventario);
+        mapa.eliminarUnidadDelMapa(coordenada); //primero elimino al zangano porque no puedo construir sobre terrenoOcupado
+
         try {
-            mapa.establecerEdificio(coordenada, edificioNuevo);
+            mapa.establecerEdificio(coordenada, edificio);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
+            mapa.establecerUnidadDelMapa(coordenada, zanganoConstructor);//si el terreno no era apto, vuelvo a meter al zangano
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
-        //si se llego hasta aca, eliminar al zangano (del inventario y del mapa)
-        inventario.agregarEdificio(edificioNuevo);
+
+        inventario.eliminarUnidad(coordenada);
+        inventario.agregarEdificio(edificio);
+    }
+
+    public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada{
+        Unidad unidad = inventario.buscarUnidad(coordenada);
+        Nombre nombreUnidadConstructora = new Nombre("Zangano");
+
+        if(!nombreUnidadConstructora.esIgual(unidad.devolverNombre())){
+            throw new UnidadNoEncontrada();
+        }
+        return unidad;
     }
 
     public int contarLarvas() {

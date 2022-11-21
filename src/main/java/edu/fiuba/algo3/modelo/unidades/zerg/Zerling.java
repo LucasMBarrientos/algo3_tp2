@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
@@ -32,7 +33,7 @@ public class Zerling extends UnidadZerg {
         this.danioTerrestre = new Danio(4);
         this.rango = 1;
         this.vida = new Vida(35);
-
+        this.nombre = new Nombre("Zerling");
     }
 
     public Unidad generarse(Edificio edificio){

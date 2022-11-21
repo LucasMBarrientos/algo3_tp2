@@ -104,6 +104,14 @@ public class Mapa {
         throw new NoHayTerrenoDisponibleParaGenerarUnidad();
     }
 
+    public void eliminarUnidadDelMapa(Coordenada coordenada){
+        buscarTerreno(coordenada).establecerUnidad(null);
+    }
+
+    public void establecerUnidadDelMapa(Coordenada coordenada, Unidad unidad){ //esto es para meter un zangano
+        buscarTerreno(coordenada).establecerUnidad(unidad);
+    }
+
     private void generarAreasIniciales(){
         /*
         for(Terreno terreno : terrenos){
