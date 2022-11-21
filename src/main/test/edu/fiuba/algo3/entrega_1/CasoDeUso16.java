@@ -24,10 +24,10 @@ public class CasoDeUso16 {
         Criadero c1 = new Criadero();
         Criadero c2 = new Criadero();
 
-        jugadorZerg.construirEdificio(new Coordenada(2,2), c1);
+        jugadorZerg.construirEdificio(new Coordenada(1,1), c1);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
-            jugadorZerg.construirEdificio(new Coordenada(2,2), c2);
+            jugadorZerg.construirEdificio(new Coordenada(1,1), c2);
         });
     }
 

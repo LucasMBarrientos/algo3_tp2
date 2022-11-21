@@ -78,7 +78,7 @@ public abstract class Jugador {
 
     public void establecerMapa(Mapa mapa) {
         this.mapa = mapa;
-        iniciarseEnMapa();
+        //iniciarseEnMapa();
     }
     protected abstract void iniciarseEnMapa();
 
