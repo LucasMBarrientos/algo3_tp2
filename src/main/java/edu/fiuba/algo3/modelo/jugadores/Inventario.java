@@ -43,16 +43,18 @@ public class Inventario {
         throw new UnidadNoEncontrada();
     }
 
-    public boolean tieneEdificio(Nombre nombreDeEdifico) {
-        for(Edificio edificio : edificios){
-           return nombreDeEdifico.esIgual(edificio.devolverNombre());
+    public boolean tieneEdificio(Nombre nombreDelEdifico) {
+        boolean edificioHalldo = false;
+        for (Edificio edificio : edificios) {
+            edificioHalldo = edificioHalldo || nombreDelEdifico.esIgual(edificio.devolverNombre());
         }
-        return false;
+        return edificioHalldo;
     }
 
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);
     }
+
     public void agregarUnidad(Unidad unidadNueva) {
         unidades.add(unidadNueva);
     }
@@ -60,6 +62,7 @@ public class Inventario {
     public void agregarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);
     }
+
     public void agregarMinerales(Recurso minerales) {
         this.mineral.agregarUnidades(minerales);
     }
@@ -68,21 +71,22 @@ public class Inventario {
         return null;
     }
 
+    public void consumirGasVespeno(Recurso recursoRequerido) {
+        gasVespeno.gastar(recursoRequerido);
+    }
+
     public void consumirMinerales(Recurso recursoRequerido) {
         mineral.gastar(recursoRequerido);
     }
 
-    public void consumirGasVespeno(Recurso recursoRequerido) {
-        gasVespeno.gastar(recursoRequerido);
+    public void devolverGasVespeno(Recurso recursoUtilizado) {
+        gasVespeno.agregarUnidades(recursoUtilizado);
     }
 
     public void devolverMinerales(Recurso recursoUtilizado) {
         mineral.agregarUnidades(recursoUtilizado);
     }
 
-    public void devolverGasVespeno(Recurso recursoUtilizado) {
-        gasVespeno.agregarUnidades(recursoUtilizado);
-    }
 
     public int contarLarvas() {
         int larvasTotales = 0;
