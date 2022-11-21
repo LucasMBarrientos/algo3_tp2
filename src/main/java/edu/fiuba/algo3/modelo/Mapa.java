@@ -222,6 +222,8 @@ public class Mapa {
                     lineaDelMapa += "V";
                 } else if (terreno instanceof TerrenoMineral) {
                     lineaDelMapa += "M";
+                } else if (terreno instanceof TerrenoAereo) {
+                    lineaDelMapa += "A";
                 } else {
                     estadoTerreno = ((TerrenoBase)terreno).DEBUG_DEVOLVERESTADO();
                     if (estadoTerreno instanceof TerrenoMoho) {
