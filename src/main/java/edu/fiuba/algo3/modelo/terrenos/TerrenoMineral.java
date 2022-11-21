@@ -27,7 +27,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class TerrenoMineral extends Terreno {
-    private Edificio edificio;
     private Recurso mineral = new Mineral(2000);
 
     public TerrenoMineral(Coordenada coordenada) {

@@ -30,7 +30,6 @@ import java.util.List;
 
 public class TerrenoVolcan extends Terreno {
 
-    private Edificio edificio;
     private Recurso gasVespeno = new GasVespeno(5000);
 
     public TerrenoVolcan(Coordenada coordenada) {
