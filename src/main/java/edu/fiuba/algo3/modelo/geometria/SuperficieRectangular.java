@@ -109,14 +109,11 @@ public class SuperficieRectangular {
     }
 
     public Coordenada transformarCoordenadaRelativamenteAlCentro(Coordenada coordenadaOriginal, int distanciaX, int distanciaY) {
-        Coordenada coordenadaCentral = hallarCoordenadaCentral();
-        if (coordenadaOriginal.calcularDiferenciaEnX(coordenadaCentral) < 0) { // coordenadaOriginal esta a la izquierda de coordenadaCentral
-            distanciaX = -distanciaX;
-        }
-        if (coordenadaOriginal.calcularDiferenciaEnY(coordenadaCentral) < 0) { // coordenadaOriginal esta arriba de coordenadaCentral
-            distanciaY = -distanciaY;
-        }
-        return coordenadaOriginal.devolverCoordenadaRelativa(distanciaX, distanciaY);
+        int distanciaXACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnX(this.hallarCoordenadaCentral());
+        int direccionX = distanciaXACoordenadaCentral / Math.abs(distanciaXACoordenadaCentral);
+        int distanciaYACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnY(this.hallarCoordenadaCentral());
+        int direccionY = distanciaYACoordenadaCentral / Math.abs(distanciaYACoordenadaCentral);
+        return coordenadaOriginal.devolverCoordenadaRelativa(distanciaX * direccionX, distanciaY * direccionY);
     }
 
 }
