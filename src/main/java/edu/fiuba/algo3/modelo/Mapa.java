@@ -113,10 +113,6 @@ public class Mapa {
         buscarTerreno(coordenada).establecerUnidad(null);
     }
 
-    public void establecerUnidadDelMapa(Coordenada coordenada, Unidad unidad){ //esto es para meter un zangano
-        buscarTerreno(coordenada).establecerUnidad(unidad);
-    }
-
     public Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {
         Coordenada coordenadaBuscada = coordenada.devolverCoordenadaRelativa(distanciaX, distanciaY);
         return this.buscarTerreno(coordenadaBuscada);

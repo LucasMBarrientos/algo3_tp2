@@ -23,11 +23,16 @@ public class CasoDeUso24 {
         jugadorZerg.establecerMapa(mapa);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("agusssss", "#e1d3b4");
         jugadorProtoss.establecerMapa(mapa);
+
         for (int i = 0; i < 5; i++) { // Se finaliza la construccion del criadero
             jugadorZerg.actualizar();
             jugadorProtoss.actualizar();
 
         }
+
+
+
+
         //jugadorProtoss.actualizar();
 
         //Assertions.assertNotNull( jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano()));
