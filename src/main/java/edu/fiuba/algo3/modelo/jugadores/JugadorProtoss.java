@@ -18,7 +18,7 @@ public class JugadorProtoss extends Jugador {
     }
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
-        Edificio edificioNuevo = edificio.construir(inventario);
+        Edificio edificioNuevo = edificio.construir(coordenada, inventario);
         try {
             mapa.establecerEdificio(coordenada, edificioNuevo);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {

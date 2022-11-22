@@ -31,22 +31,22 @@ public class CasoDeUso13 {
         }
 
         // Se generan 2 zanganos
-        jugadorZerg.generarUnidad(new Coordenada(2,2), new Zangano());
+        jugadorZerg.generarUnidad(new Coordenada(1,1), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        //jugadorZerg.moverUnidad(new Coordenada(2,1), new Derecha());
-        //jugadorZerg.generarUnidad(new Coordenada(2,2), new Zangano());
+        jugadorZerg.moverUnidad(new Coordenada(2,1), new Derecha());
+        jugadorZerg.generarUnidad(new Coordenada(1,1), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
 
         algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPATERRENO();
 
         // Se destruye el criadero
-        jugadorZerg.destruirUnidad(new Coordenada(2,2));
+        jugadorZerg.destruirEdificio(new Coordenada(1,1));
 
         // Se construye una reserva de reproduccion sobre el moho generado previamente
         jugadorZerg.construirEdificio(new Coordenada(3,1), new ReservaDeReproduccion());
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 16; i++) {
             algoStar.pasarTurno();
         }
 

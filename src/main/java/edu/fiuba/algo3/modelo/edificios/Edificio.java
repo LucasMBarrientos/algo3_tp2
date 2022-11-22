@@ -39,13 +39,7 @@ public abstract class Edificio {
     public void deshacerConstruccion() {
         this.estadoActual.deshacerConstruccion();
     }
-
-    public Edificio construir(Inventario inventario) {
-        validarCorrelativasDeConstruccion(inventario);
-        consumirRecursosParaConstruccion(inventario);
-        return this;
-    }
-    public Edificio construir(Coordenada coordenada,Inventario inventario) {
+    public Edificio construir(Coordenada coordenada, Inventario inventario) {
         validarCorrelativasDeConstruccion(inventario);
         consumirRecursosParaConstruccion(inventario);
         this.coordenada = coordenada;

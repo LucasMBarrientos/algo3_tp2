@@ -106,4 +106,8 @@ public abstract class Jugador {
         this.id = id;
     }
 
+    public void actualizar() {
+        inventario.actualizar();
+    }
+    
 }

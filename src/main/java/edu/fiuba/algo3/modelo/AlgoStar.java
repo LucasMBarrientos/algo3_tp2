@@ -58,6 +58,9 @@ public class AlgoStar {
             rondaActual++;
         }
         mapa.actualizar(turnoActual);
+        for (Jugador jugador : jugadores) {
+            jugador.actualizar();
+        }
     }
 
 
