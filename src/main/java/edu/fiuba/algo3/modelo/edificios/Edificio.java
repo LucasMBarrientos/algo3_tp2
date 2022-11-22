@@ -23,7 +23,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 import java.util.List;
 
-public abstract class Edificio  {
+public abstract class Edificio {
     protected EstadoEdificio estadoConstruccion = new EdificioEnConstruccion();
     protected EstadoEdificio estadoDestruido = new EdificioDestruido();
     protected EstadoEdificio estadoOperativo = new EdificioOperativo();
@@ -35,16 +35,12 @@ public abstract class Edificio  {
     public Nombre nombre;
     public int tiempoDeConstruccion;
     public Coordenada coordenada;
-
-    public boolean generaTerrenoEnergizado() {
-        return estadoActual.generaTerrenoEnergizado();
-    }
     
-    public void deshacerConstruccion(){
-      this.estadoActual.deshacerConstruccion();
+    public void deshacerConstruccion() {
+        this.estadoActual.deshacerConstruccion();
     }
 
-    public Edificio construir(Inventario inventario){
+    public Edificio construir(Inventario inventario) {
         validarCorrelativasDeConstruccion(inventario);
         consumirRecursosParaConstruccion(inventario);
         return this;
@@ -60,7 +56,7 @@ public abstract class Edificio  {
         inventario.consumirGasVespeno(costoEnGas);
     }
 
-    public void devolverRecursosParaConstruccion(Inventario inventario){
+    public void devolverRecursosParaConstruccion(Inventario inventario) {
         inventario.devolverMinerales(costoEnMinerales);
         inventario.devolverGasVespeno(costoEnGas);
     }
@@ -81,7 +77,9 @@ public abstract class Edificio  {
       estadoActual.ingresarUnidad(zangano);
     }
 
-    public void ingresarUnidadTrabajadora(Zangano zangano){};
+    public void ingresarUnidadTrabajadora(Zangano zangano) {
+        return;
+    };
 
     public abstract Unidad generarUnidad(Zerling unidad,Inventario inventario);
     public abstract Unidad generarUnidad(Zangano unidad,Inventario inventario);
@@ -141,8 +139,12 @@ public abstract class Edificio  {
         return coordenada.esIgual(coordenadaAComparar);
     }
 
-    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-      estadoActual.actualizarListaDeCoordenadasConPilonesOperativos(coordenada, coordenadasConPilones);
+    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        this.estadoActual.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+    }
+
+    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        return;
     }
 
 }

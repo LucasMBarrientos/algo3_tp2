@@ -78,4 +78,8 @@ public class Pilon extends EdificioProtoss {
       // energia?
     }
 
+    @Override
+    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        coordenadasConPilones.add(coordenada);
+    }
 }

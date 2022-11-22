@@ -18,20 +18,20 @@ public class CasoDeUso13 {
 	@Test
     public void sePuedeConstruirSobreElMohoDeUnCriaderoDestruido() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 325, 0);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 325);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
         // Se construye un criadero
-        jugadorZerg.construirEdificio(new Coordenada(2,2), new Criadero());
+        jugadorZerg.construirEdificio(new Coordenada(1,1), new Criadero());
         for (int i = 0; i < 8; i++) {
             algoStar.pasarTurno();
         }
 
         // Se generan 2 zanganos
-        //jugadorZerg.generarUnidad(new Coordenada(2,2), new Zangano());
+        jugadorZerg.generarUnidad(new Coordenada(2,2), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         //jugadorZerg.moverUnidad(new Coordenada(2,1), new Derecha());

@@ -42,17 +42,9 @@ public class EdificioOperativo implements EstadoEdificio {
     edificio.establecerEstado(this.edificio.estadoConstruccion);
   }
 
-  @Override
-  public boolean generaTerrenoEnergizado() {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada,
-      List<Coordenada> coordenadasConPilones) {
-        coordenadasConPilones.add(coordenada);
-  }
+    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        edificio.actualizarListasDeCoordenadasSegunEdificio(coordenadasConCriaderos, coordenadasConPilones);
+    }
   
   public Unidad generarUnidad(Unidad unidad,Inventario inventario)  {
     unidad.consumirRecursosParaGenerarse(inventario);

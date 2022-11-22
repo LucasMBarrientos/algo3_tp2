@@ -10,50 +10,51 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public class EdificioDestruido implements EstadoEdificio {
-  private Edificio edificio;
 
-  @Override
-  public void recibirGolpe(Danio danio) throws EdificioEstaDestruido {
-    throw new EdificioEstaDestruido();
-  }
+    private Edificio edificio;
 
-  @Override
-  public void actualizar(Inventario inventario) {}
+    @Override
+    public void recibirGolpe(Danio danio) throws EdificioEstaDestruido {
+        throw new EdificioEstaDestruido();
+    }
 
-  public Unidad generarUnidad(Unidad unidad,Inventario inventario) throws EdificioEstaDestruido {
-    throw new EdificioEstaDestruido();
-  }
+    @Override
+    public void actualizar(Inventario inventario) {
+        return;
+    }
 
-  @Override
-  public void terminarConstruccion() {}
+    public Unidad generarUnidad(Unidad unidad,Inventario inventario) throws EdificioEstaDestruido {
+        throw new EdificioEstaDestruido();
+    }
 
-  @Override
-  public void setEdificio(Edificio edificio) {
-    this.edificio = edificio;
-  }
+    @Override
+    public void terminarConstruccion() {
+        return;
+    }
 
-  @Override
-  public void deshacerConstruccion() {}
+    @Override
+    public void setEdificio(Edificio edificio) {
+        this.edificio = edificio;
+    }
 
-  @Override
-  public boolean generaTerrenoEnergizado() {
-    // TODO Auto-generated method stub
-    return false;
-  }
+    @Override
+    public void deshacerConstruccion() {
+        return;
+    }
 
-  @Override
-  public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada,
-      List<Coordenada> coordenadasConPilones) {}
+    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+        //coordenadasConPilones.add(coordenada);
+    }
 
-  @Override
-  public void ingresarUnidad(Zangano zangano) {
-    // TODO Auto-generated method stub
-    
-  }
+    @Override
+    public void ingresarUnidad(Zangano zangano) {
+        // TODO Auto-generated method stub
+    }
 
-  @Override
-  public boolean validarLarva() {
-    return false;
-  }
+    @Override
+    public boolean validarLarva() {
+        return false;
+    }
   
 }

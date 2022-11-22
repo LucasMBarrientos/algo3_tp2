@@ -9,23 +9,23 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public interface EstadoEdificio {
-  void actualizar(Inventario inventario);
 
-  Unidad generarUnidad(Unidad unidad, Inventario inventario);
-  
-  void ingresarUnidad(Zangano zangano);
+    void actualizar(Inventario inventario);
 
-  void recibirGolpe(Danio danio);
+    Unidad generarUnidad(Unidad unidad, Inventario inventario);
+    
+    void ingresarUnidad(Zangano zangano);
 
-  void terminarConstruccion();
+    void recibirGolpe(Danio danio);
 
-  void deshacerConstruccion();
+    void terminarConstruccion();
 
-  void setEdificio(Edificio edificio);
+    void deshacerConstruccion();
 
-  boolean generaTerrenoEnergizado();
-  
-  void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada, List<Coordenada> coordenadasConPilones);
+    void setEdificio(Edificio edificio);
 
-  boolean validarLarva();  
+    void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones);
+
+    boolean validarLarva();  
+
 }

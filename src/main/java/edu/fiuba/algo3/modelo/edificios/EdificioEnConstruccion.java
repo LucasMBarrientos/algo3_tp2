@@ -41,15 +41,11 @@ public class EdificioEnConstruccion implements EstadoEdificio {
   @Override
   public void deshacerConstruccion() {}
 
-  @Override
-  public boolean generaTerrenoEnergizado() {
-    // TODO Auto-generated method stub
-    return false;
-  }
 
-  @Override
-  public void actualizarListaDeCoordenadasConPilonesOperativos(Coordenada coordenada,
-      List<Coordenada> coordenadasConPilones) {}
+
+  public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+      return;
+  }
 
   @Override
   public void ingresarUnidad(Zangano zangano) {

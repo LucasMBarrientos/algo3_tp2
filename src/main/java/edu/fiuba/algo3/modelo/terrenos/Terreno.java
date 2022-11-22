@@ -115,7 +115,7 @@ public abstract class Terreno {
 
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         if (edificio != null) {
-            edificio.actualizarListaDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+            edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
         }
     }
 

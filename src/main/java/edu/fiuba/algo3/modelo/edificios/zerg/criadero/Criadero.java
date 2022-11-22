@@ -63,11 +63,6 @@ public class Criadero extends EdificioZerg {
     */
 
     /*@Override
-    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        estado.actualizarListaDeCoordenadasConCriaderosOperativos(coordenada, coordenadasConCriaderos);
-    }*/
-
-    /*@Override
     public void consumirRecursosParaConstruccion(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);
     }*/
@@ -110,12 +105,15 @@ public class Criadero extends EdificioZerg {
 
     @Override
     public void actualizarEdificio(Inventario inventario) {
-      regenerar();
-      
-      // regenerar larvas?
-      if (larvas < 3) {
-        this.larvas++;
+        regenerar();
+        if (larvas < 3) {
+            this.larvas++;
+        }
     }
+
+    @Override
+    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        coordenadasConCriaderos.add(coordenada);
     }
 
 }
