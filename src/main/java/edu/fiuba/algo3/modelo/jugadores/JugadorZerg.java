@@ -33,7 +33,7 @@ public class JugadorZerg extends Jugador {
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
         edificio.construir(inventario);
-        mapa.eliminarUnidadDelMapa(coordenada); //primero elimino al zangano porque no puedo construir sobre terrenoOcupado
+        mapa.eliminarUnidad(coordenada); //primero elimino al zangano porque no puedo construir sobre terrenoOcupado
 
         try {
             mapa.establecerEdificio(coordenada, edificio);

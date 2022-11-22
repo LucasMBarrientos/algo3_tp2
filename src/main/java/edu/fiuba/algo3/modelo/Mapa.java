@@ -104,7 +104,12 @@ public class Mapa {
         unidad.ocupar(buscarTerreno(coordenada));
     }
 
-    public void eliminarUnidadDelMapa(Coordenada coordenada){
+    
+    public void eliminarEdificio(Coordenada coordenada){
+        buscarTerreno(coordenada).eliminarEdificio();
+    }
+
+    public void eliminarUnidad(Coordenada coordenada){
         buscarTerreno(coordenada).establecerUnidad(null);
     }
 

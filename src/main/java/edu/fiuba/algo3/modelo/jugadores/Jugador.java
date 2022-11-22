@@ -92,8 +92,12 @@ public abstract class Jugador {
         unidad.moverse(direccionDelMovimiento, mapa);
     }
 
-    public void destruirOcupanteDeCoordenada(Coordenada coordenada) {
-        // TODO
+    public void destruirUnidad(Coordenada coordenada) {
+        mapa.eliminarUnidad(coordenada);
+    }
+
+    public void destruirEdificio(Coordenada coordenada) {
+        mapa.eliminarEdificio(coordenada);
     }
     
     protected abstract void iniciarseEnMapa();

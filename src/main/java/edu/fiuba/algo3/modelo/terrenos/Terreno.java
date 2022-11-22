@@ -93,6 +93,10 @@ public abstract class Terreno {
         }
     }
 
+    public void eliminarEdificio() {
+        this.edificio = null;
+    }
+    
     public void establecerUnidad(Unidad unidad){
         this.unidad = unidad;
     }
