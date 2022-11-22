@@ -27,9 +27,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class PuertoEstelar extends EdificioProtoss {
-
-    private EstadoPuertoEstelar estado = new PuertoEstelarEnConstruccion();
-
     public PuertoEstelar(){
         this.costoEnMinerales = new Mineral(150);
         this.costoEnGas = new GasVespeno(150);
@@ -37,53 +34,37 @@ public class PuertoEstelar extends EdificioProtoss {
         this.vida = new Vida(600);
         this.escudo = new Escudo(600);
         this.nombre = new Nombre("PuertoEstelar");
-        establecerEstado(new PuertoEstelarEnConstruccion());
+        establecerEstado(this.estadoConstruccion);
     }
 
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
     }
 
-    public void actualizar() {
-      this.estado.actualizar();
-    }
-
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
         return null;
     }
 
-    public void establecerEstado(EstadoPuertoEstelar estado){
-      this.estado = estado;
-      this.estado.setPuertoEstelar(this);
+    public Unidad generarUnidad(Scout unidad,Inventario inventario)  {
+        return estadoActual.generarUnidad(unidad,inventario);
     }
 
-    public PuertoEstelar terminarConstruccion(){
-      return this.estado.terminarConstruccion();
-    }
-
-    public PuertoEstelar deshacerConstruccion(){
-      return this.estado.deshacerConstruccion();
-    }
-
-    public Unidad generarUnidad(Scout unidad)  {
-        return estado.generarUnidad(unidad);
-    }
-    public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Dragon unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Zerling unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Hidralisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Mutalisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
 
@@ -94,8 +75,7 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     @Override
-    public void recibirGolpe(Danio danio) {
-      // TODO Auto-generated method stub
-      
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
     }
 }

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso4 {
 
-   
+   /*
     @Test
     public void extractorCon0ZanganoGenera0UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
@@ -140,5 +140,5 @@ public class CasoDeUso4 {
       Assertions.assertThrows(RecursosInsuficientes.class, ()->{
           inv.consumirGasVespeno(new GasVespeno(1));
       });
-    }
+    }*/
 }

@@ -24,8 +24,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class Guarida extends EdificioZerg {
-
-    private EstadoGuarida estado;
     private Terreno terreno;
     
     public Guarida() {
@@ -33,11 +31,7 @@ public class Guarida extends EdificioZerg {
         this.costoEnGas = new GasVespeno(100);
         this.vida = new Vida(1250);
         this.tiempoDeConstruccion = 12;
-        establecerEstado(new GuaridaEnConstruccion());
-    }
-
-    public void actualizar() {
-        this.estado.actualizar();
+        establecerEstado(this.estadoConstruccion);
     }
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
@@ -48,51 +42,44 @@ public class Guarida extends EdificioZerg {
         terreno.ocuparPorEdificio(this);
     }
 
-    public void establecerEstado(EstadoGuarida estado){
-        this.estado = estado;
-        this.estado.establecerGuarida(this);
-    }
-  
-    public Guarida terminarConstruccion(){
-        return this.estado.terminarConstruccion();
-    }
-  
-    public Guarida deshacerConstruccion(){
-        return this.estado.deshacerConstruccion();
-    }
-
     public void validarCorrelativasDeConstruccion(Inventario inventario) throws ConstruccionRequiereDeOtroEdificio {
         if(!inventario.tieneEdificio(new Nombre("ReservaDeReproduccion"))){
             throw new ConstruccionRequiereDeOtroEdificio();
         }
     }
 
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    /*public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
 
+    }*/
+
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario){
+        return estadoActual.generarUnidad(unidad,inventario);
+    }
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
     }
 
-    public Unidad generarUnidad(Hidralisco unidad){
-        return estado.generarUnidad(unidad);
-    }
-    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Zerling unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Mutalisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
 
-    public Unidad generarUnidad(Scout unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
+    @Override
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
     }
-    public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Dragon unidad)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
+
     /*
     public Unidad generarUnidad(Criadero criadero) throws NoHayLarvasDisponibles {
       return estado.generarUnidad(criadero);

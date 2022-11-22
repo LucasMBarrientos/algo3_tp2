@@ -52,10 +52,6 @@ public class JugadorZerg extends Jugador {
         return unidad;
     }
 
-    public int contarLarvas() {
-        return inventario.contarLarvas();
-    }
-
     public void actualizar() {
         inventario.actualizar();
     }

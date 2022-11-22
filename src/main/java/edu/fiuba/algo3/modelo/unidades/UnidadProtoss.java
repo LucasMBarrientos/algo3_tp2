@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 public abstract class UnidadProtoss extends Unidad {
 
     protected Escudo escudo;
-    public abstract Unidad generarse(Edificio edificio);
+    
     public Escudo devolverEscudo() {
         return escudo;
     }

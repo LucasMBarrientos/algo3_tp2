@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -24,8 +25,9 @@ public class Dragon extends UnidadProtoss {
         this.escudo = new Escudo(80);
         this.nombre = new Nombre("Dragon");
     }
-    public Unidad generarse(Edificio edificio){
-        return edificio.generarUnidad(this);
+    
+    public Unidad generarse(Edificio edificio, Inventario inventario){
+        return edificio.generarUnidad(this,inventario);
     }
 
     public boolean ocupar(Terreno terreno){

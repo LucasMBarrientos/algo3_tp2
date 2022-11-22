@@ -49,7 +49,7 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
-    public abstract Unidad generarse(Edificio edificio);
+    public abstract Unidad generarse(Edificio edificio, Inventario inventario);
 
     public abstract boolean ocupar(Terreno terreno);
 

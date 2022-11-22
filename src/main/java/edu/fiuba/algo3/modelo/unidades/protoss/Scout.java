@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.unidades.protoss;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -25,8 +26,8 @@ public class Scout extends UnidadProtoss {
         this.nombre = new Nombre("Scout");
         this.aerea = true;
     }
-    public Unidad generarse(Edificio edificio){
-        return edificio.generarUnidad(this);
+    public Unidad generarse(Edificio edificio, Inventario inventario){
+        return edificio.generarUnidad(this,inventario);
     }
 
     public boolean ocupar(Terreno terreno){

@@ -95,23 +95,23 @@ public class Inventario {
     }
 
 
-    public int contarLarvas() {
+    /*public int contarLarvas() {
         int larvasTotales = 0;
         for (Edificio edificio : edificios) {
             larvasTotales += edificio.contarLarvas();
         }
         return larvasTotales;
-    }
+    }*/
 
-    public void consumirLarva() {
+    /*public void consumirLarva() {
         for (Edificio edificio : edificios) {
             if (edificio.contarLarvas() > 0) {
                 edificio.consumirLarva();
             }
         }
-    }
+    }*/
 
-    public Edificio devolverEdificioConLarvas() {
+    /*public Edificio devolverEdificioConLarvas() {
         Edificio edificioConLarvas = null;
         for (Edificio edificio : edificios) {
             if (edificio.contarLarvas() > 0) {
@@ -119,7 +119,7 @@ public class Inventario {
             }
         }
         return edificioConLarvas;
-    }
+    }*/
 
   /*  public boolean faltanEdificios(List<Edificio> edificiosAComprobar){
         boolean faltanEdificios = false;
@@ -143,7 +143,7 @@ public class Inventario {
 
     public void actualizar() {
         for(int i = 0;i<this.edificios.size();i++){
-            edificios.get(i).actualizar();
+            edificios.get(i).actualizar(this);
             //TODO: ACTUALIZAR LOS EDIFICIOS INDIVIDUALMENTE
             //edificio.actualizar(this);
         }

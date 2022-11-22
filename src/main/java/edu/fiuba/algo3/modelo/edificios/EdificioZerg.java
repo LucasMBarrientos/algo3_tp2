@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -27,29 +27,31 @@ public abstract class EdificioZerg extends Edificio {
 
     public abstract void ocupar(Terreno terreno);
 
-    public abstract Unidad generarUnidad(Zerling unidad);
-    public abstract Unidad generarUnidad(Zangano unidad);
-    public abstract Unidad generarUnidad(Hidralisco unidad);
-    public abstract Unidad generarUnidad(Mutalisco unidad);
-    public abstract Unidad generarUnidad(Scout unidad);
-    public abstract Unidad generarUnidad(Zealot unidad);
-    public abstract Unidad generarUnidad(Dragon unidad);
-
     public void establecerTerreno(Terreno terreno) {
         this.terreno = terreno;
     }
 
-    public boolean reducirTiempoConstruccion(int tiempoAReducir) {
+    /*public boolean reducirTiempoConstruccion(int tiempoAReducir) {
         if (this.tiempoDeConstruccion-tiempoAReducir > 0) {
             this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
             return false;
         } else {
             return true;
         }
+    }*/
+
+    /*public void recibirGolpe(Danio danio) throws EdificioEstaDestruido {
+        vida.recibirDanio(danio);
+    }*/
+
+    public void ejecutarDanio(Danio danio){
+      if(this.vida.recibirDanio(danio)){
+        this.establecerEstado(this.estadoDestruido);
+      }
     }
 
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
-        vida.recibirDanio(danio);
+    public void regenerar(){
+      vida.regenerar();
     }
 
 }

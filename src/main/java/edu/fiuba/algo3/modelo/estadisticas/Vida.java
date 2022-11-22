@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
-import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 
 public class Vida extends Estadistica {
 

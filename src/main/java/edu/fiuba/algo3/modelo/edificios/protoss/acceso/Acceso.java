@@ -26,7 +26,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class Acceso extends EdificioProtoss {
-    private EstadoAcceso estado;
     public Acceso(){
         this.costoEnMinerales = new Mineral(150);
         this.costoEnGas = new GasVespeno(0);
@@ -34,55 +33,40 @@ public class Acceso extends EdificioProtoss {
         this.vida = new Vida(500);
         this.escudo = new Escudo(500);
         this.nombre = new Nombre("Acceso");
-        establecerEstado(new AccesoEnConstruccion());
+        establecerEstado(this.estadoConstruccion);
     }
 
     public void ocupar(Terreno terreno){
-
         terreno.ocuparPorEdificio(this);
     }
 
-    public void establecerEstado(EstadoAcceso estado){
-      this.estado = estado;
-      this.estado.setAcceso(this);
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario)  {
+        return estadoActual.generarUnidad(unidad, inventario);
+    }
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario){
+        return estadoActual.generarUnidad(unidad, inventario);
     }
 
-    public Unidad generarUnidad(Zealot unidad)  {
-        return estado.generarUnidad(unidad);
-    }
-    public Unidad generarUnidad(Dragon unidad){
-        return estado.generarUnidad(unidad);
-    }
-
-    public Unidad generarUnidad(Zerling unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Hidralisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Mutalisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Scout unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Scout unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
-    }
-
-    public void actualizar() {
-      this.estado.actualizar();
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario){ }
 
     @Override
-    public void recibirGolpe(Danio danio) {
-        int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danio);
-        if(escudoRestante < 0){
-            vida.recibirDanio(new Danio(escudoRestante * (-1)));
-        }
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
     }
-
 }

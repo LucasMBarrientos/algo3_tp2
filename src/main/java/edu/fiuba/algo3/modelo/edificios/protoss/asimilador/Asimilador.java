@@ -25,9 +25,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class Asimilador extends EdificioProtoss {
-
-    private EstadoAsimilador estado;
-
     public Asimilador() {
         this.costoEnMinerales = new Mineral(100);
         this.costoEnGas = new GasVespeno(0);
@@ -35,7 +32,7 @@ public class Asimilador extends EdificioProtoss {
         this.vida = new Vida(450);
         this.escudo = new Escudo(450);
         this.nombre = new Nombre("Asimilador");
-        establecerEstado(new AsimiladorEnConstruccion());
+        establecerEstado(this.estadoConstruccion);
     }
 
     public void ocupar(Terreno terreno) {
@@ -43,63 +40,43 @@ public class Asimilador extends EdificioProtoss {
         this.terreno = terreno;
     }
 
-    //TODO: REVISAR
-    public void recolectarRecursos(Inventario inventario) {
-        estado.recolectarRecursos(terreno, inventario);
-    }
-
-    public void actualizar() {
-        this.estado.actualizar();
+    public void extraerRecursos(Inventario inventario) {
+      terreno.extraerGasVespeno(new GasVespeno(20));
+      inventario.agregarGasVespeno(new GasVespeno(20));
     }
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
         return null;
     }
-    public Unidad generarUnidad(Scout unidad) throws EdificioNoConoceEstaUnidad  {
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad  {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Dragon unidad)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-
-    public Unidad generarUnidad(Zerling unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Hidralisco unidad)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Mutalisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
 
-    public void establecerEstado(EstadoAsimilador estado) {
-        this.estado = estado;
-        this.estado.setAsimilador(this);
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
     }
-
-    public Asimilador terminarConstruccion() {
-        return this.estado.terminarConstruccion();
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
     }
-
-    public Asimilador deshacerConstruccion() {
-        return this.estado.deshacerConstruccion();
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
     }
 
     @Override
-    public void recibirGolpe(Danio danio) {
-        int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danio);
-        if (escudoRestante < 0) {
-            vida.recibirDanio(new Danio(escudoRestante * (-1)));
-        }
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
+      extraerRecursos(inventario);
     }
 }

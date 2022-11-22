@@ -30,7 +30,7 @@ public abstract class Jugador {
 
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
-        unidad.generarse(edificio);
+        unidad.generarse(edificio,inventario);
         unidad.consumirRecursosParaGenerarse(inventario);
 
         try {

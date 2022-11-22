@@ -20,7 +20,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-    private EstadoReservaDeReproduccion estado;
     Terreno terreno;
 
     public ReservaDeReproduccion() {
@@ -29,61 +28,40 @@ public class ReservaDeReproduccion extends EdificioZerg {
         this.vida = new Vida(1000);
         this.tiempoDeConstruccion = 12;
         this.nombre = new Nombre("ReservaDeReproduccion");
-        establecerEstado(new ReservaDeReproduccionEnConstruccion());
-    }
-
-    public void actualizar() {
-      this.estado.actualizar();
+        establecerEstado(this.estadoConstruccion);
     }
 
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
     }
 
-    public void establecerEstado(EstadoReservaDeReproduccion estado){
-        this.estado = estado;
-        this.estado.establecerReservaDeReproduccion(this);
-    }
-  
-    public ReservaDeReproduccion terminarConstruccion(){
-      return this.estado.terminarConstruccion();
-    }
-  
-    public ReservaDeReproduccion deshacerConstruccion(){
-      return this.estado.deshacerConstruccion();
-    }
-
     public void validarCorrelativasDeConstruccion(Inventario inventario) { }
 
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) { }
-
-
-    public Unidad generarUnidad(Zerling unidad){
-        return estado.generarUnidad(unidad);
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario){
+        return estadoActual.generarUnidad(unidad,inventario);
     }
-    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Hidralisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Mutalisco unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Scout unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    public Unidad generarUnidad(Dragon unidad)  throws EdificioNoConoceEstaUnidad{
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
 
-    /*
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
-        vida.recibirDanio(danio);
+    @Override
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
     }
-    */
 
 }

@@ -25,7 +25,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class NexoMineral extends EdificioProtoss {
-    private EstadoNexoMineral estado;
 
     public NexoMineral(){
         this.costoEnMinerales = new Mineral(50);
@@ -34,7 +33,7 @@ public class NexoMineral extends EdificioProtoss {
         this.vida = new Vida(300);
         this.escudo = new Escudo(300);
         this.nombre = new Nombre("NexoMineral");
-        establecerEstado(new NexoMineralEnConstruccion());
+        establecerEstado(this.estadoConstruccion);
     }
 
     public void ocupar(Terreno terreno){
@@ -42,63 +41,44 @@ public class NexoMineral extends EdificioProtoss {
         this.terreno= terreno;
     }
 
-    @Override
-    public void recibirGolpe(Danio danio) {
-        int escudoRestante;
-        escudoRestante = escudo.recibirDanio(danio);
-        if(escudoRestante < 0){
-            vida.recibirDanio(new Danio(escudoRestante * (-1)));
-        }
-    }
-
-    public void actualizar() {
-      this.estado.actualizar();
-    }
-
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
+    /*public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
         return null;
+    }*/
+
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
     }
 
-    public void establecerEstado(EstadoNexoMineral estado){
-      this.estado = estado;
-      this.estado.setNexoMineral(this);
+    public void extraerRecursos(Inventario inventario) {
+      terreno.extraerMinerales(new Mineral(10));
+      inventario.agregarMinerales(new Mineral(10));
     }
-
-    public Unidad generarUnidad(Scout unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zealot unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Dragon unidad)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zerling unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zangano unidad) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Hidralisco unidad)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Mutalisco unidad)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public NexoMineral terminarConstruccion(){
-      return this.estado.terminarConstruccion();
-    }
-
-    public NexoMineral deshacerConstruccion(){
-      return this.estado.deshacerConstruccion();
-    }
-
-    //TODO: REVISAR
-    public void recolectarRecursos(Inventario inventario) {
-      estado.recolectarRecursos(terreno, inventario);
-  }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario){
 
+    }
+
+    @Override
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
+      extraerRecursos(inventario);
     }
 }
