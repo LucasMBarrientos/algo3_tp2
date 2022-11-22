@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class CasoDeUso15 {
-/*
+
     @Test
     public void extractorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
 
@@ -32,18 +32,18 @@ public class CasoDeUso15 {
         extractor.ocupar(terrenoVolcan);
 
         for (int i = 0; i < 10; i++) {
-            extractor.actualizar();
+            extractor.actualizar(inv);
         }
         extractor.ingresarUnidad(zangano1);
         extractor.ingresarUnidad(zangano2);
         extractor.ingresarUnidad(zangano3);
 
         for(int i = 0; i < 166; i++) { //166 turnos * 30 gas por turno = 4.980
-            extractor.recolectarRecursos(inv);
+            extractor.extraerRecursos(inv);
         }
 
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            extractor.recolectarRecursos(inv);
+            extractor.extraerRecursos(inv);
         });
     }
 
@@ -54,16 +54,16 @@ public class CasoDeUso15 {
         Asimilador asimilador = new Asimilador();
         asimilador.ocupar(terrenoVolcan);
 
-        for (int i = 0; i < 10; i++) {
-            asimilador.actualizar();
+        for (int i = 0; i < 6; i++) {
+            asimilador.actualizar(inv);
         }
 
-        for(int i = 0; i < 250; i++) { //166 turnos * 30 gas por turno = 4.980
-            asimilador.recolectarRecursos(inv);
+        for(int i = 0; i < 250; i++) { //250 turnos * 20 gas por turno = 4.980
+            asimilador.extraerRecursos(inv);
         }
 
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            asimilador.recolectarRecursos(inv);
+            asimilador.extraerRecursos(inv);
         });
     }
 
@@ -94,17 +94,16 @@ public class CasoDeUso15 {
 
         nexoMineral.ocupar(terrenoMineral);
 
-        for (int i = 0; i < 10; i++) {
-            nexoMineral.actualizar();
+        for (int i = 0; i < 4; i++) {
+            nexoMineral.actualizar(inv);
         }
 
         for(int i = 0; i < 200; i++) { //200 turnos * ¿10 mineral por turno? = 2000
-            nexoMineral.recolectarRecursos(inv);
+            nexoMineral.extraerRecursos(inv);
         }
 
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            nexoMineral.recolectarRecursos(inv);
+            nexoMineral.extraerRecursos(inv);
         });
     }
-*/
 }
