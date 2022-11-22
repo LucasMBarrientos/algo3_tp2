@@ -17,6 +17,7 @@ public class Escudo extends Estadistica {
     }
 
     public void regenerar() {
+        poderActual = Math.max(poderActual, 0);
         poderActual += Math.min(poderMaximo - poderActual, poderMaximo * tasaDeRegeneracion);
     }
 
