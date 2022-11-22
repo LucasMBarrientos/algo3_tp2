@@ -57,10 +57,7 @@ public abstract class Unidad {
         return nombre;
     }
 
-    public void consumirRecursosParaGenerarse(Inventario inventario){
-        inventario.consumirMinerales(costoEnMinerales);
-        inventario.consumirGasVespeno(costoEnGas);
-    }
+    public abstract void consumirRecursosParaGenerarse(Inventario inventario);
 
     public void restaurarRecursosParaConstruccion(Inventario inventario){
         inventario.devolverMinerales(costoEnMinerales);

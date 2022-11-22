@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
+import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -51,6 +52,15 @@ public class Inventario {
             }
         }
         return edificioHallado;
+    }
+
+    public void consumirLarva(){
+        for(Edificio edificio : edificios){
+            if(edificio.consumirLarva()){
+                return;
+            }
+        }
+        throw new NoHayLarvasSuficientes();
     }
 
 

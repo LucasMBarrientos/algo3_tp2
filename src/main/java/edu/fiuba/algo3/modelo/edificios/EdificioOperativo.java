@@ -55,7 +55,7 @@ public class EdificioOperativo implements EstadoEdificio {
   }
   
   public Unidad generarUnidad(Unidad unidad,Inventario inventario)  {
-    //TODO: HACE ESTO LETIIIIIII
+    unidad.consumirRecursosParaGenerarse(inventario);
     return unidad;
   }
 
