@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
+import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
+
 public class Danio {
 
     private int poder;
@@ -9,6 +11,9 @@ public class Danio {
     }
 
     public int aplicarDanio(int estadistica) {
+        if (this.poder == 0) {
+            throw new AtaqueImposibleDeRealizarse();
+        }
         return estadistica - this.poder;
     }
 
