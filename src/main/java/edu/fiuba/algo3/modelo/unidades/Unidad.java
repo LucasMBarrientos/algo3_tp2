@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
@@ -65,6 +66,9 @@ public abstract class Unidad {
             }
         }
     }
+
+
+    public void recolectarRecursos(Terreno terreno, Inventario inventario){    }
 
     public abstract Unidad generarse(Edificio edificio, Inventario inventario);
 

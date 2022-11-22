@@ -69,6 +69,11 @@ public class JugadorZerg extends Jugador {
         */
     }
 
+    public void ingresarUnidad(Coordenada coordenada){
+        Unidad unidad = inventario.buscarUnidad(coordenada);
+        unidad.recolectarRecursos(mapa.buscarTerreno(coordenada), inventario);
+    }
+
     protected void iniciarseEnMapa() {
         Zangano zanganoInicial = mapa.establecerZanganoInicial(id);
         inventario.agregarUnidad(zanganoInicial);
