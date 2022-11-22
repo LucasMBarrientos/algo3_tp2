@@ -9,8 +9,11 @@ import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeRepr
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -54,20 +57,23 @@ public class CasoDeUso16 {
         });
     }
 
-    @Test //necesito algoStar para probar esto o bien pasar por parametro un inventario con un zangano ya posicionado
+    @Test
     public void noSePuedeConstruirSobreUnVolcanConUnExtractorYaConstruido() {
-       /* JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500));
+        Coordenada coordenadaDelVolcan = new Coordenada(4,4);
+        Unidad zanganoConstructor = new Zangano();
+        zanganoConstructor.establecerCoordenada(coordenadaDelVolcan);
+
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(500));
+        inventario.agregarUnidad(zanganoConstructor);
+
+        JugadorZerg jugadorZerg = new JugadorZerg(inventario);
         JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500));
+
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugadorZerg.establecerMapa(mapa);
         jugadorProtoss.establecerMapa(mapa);
 
-        Coordenada coordenadaDelVolcan = new Coordenada(6,6);
-        Unidad zanganoConstructor = new Zangano();
-        zanganoConstructor.establecerCoordenada(coordenadaDelVolcan);
-
         mapa.establecerUnidadDelMapa(coordenadaDelVolcan, new Zangano());
-
 
         Asimilador asimilador = new Asimilador();
         Extractor extractor = new Extractor();
@@ -78,7 +84,6 @@ public class CasoDeUso16 {
             jugadorProtoss.construirEdificio(coordenadaDelVolcan, asimilador);
         });
 
-        */
     }
 
 }

@@ -25,6 +25,10 @@ public class JugadorZerg extends Jugador {
         establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
     }
 
+    public JugadorZerg(Inventario inventario){
+        this.inventario = inventario;
+    }
+
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
         edificio.construir(inventario);

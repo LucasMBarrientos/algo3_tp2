@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class CasoDeUso15 {
-
+/*
     @Test
     public void extractorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
 
@@ -105,6 +105,6 @@ public class CasoDeUso15 {
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
             nexoMineral.recolectarRecursos(inv);
         });
-    }
+    }*/
 
 }

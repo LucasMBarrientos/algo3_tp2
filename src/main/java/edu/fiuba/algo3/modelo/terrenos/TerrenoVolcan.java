@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -93,7 +94,9 @@ public class TerrenoVolcan extends Terreno {
     }
 
     public void ocuparPorUnidad(Zangano unidad){
-        throw new TerrenoNoAptoParaTalUnidad();
+        verificarTerrenoSinEdificio();
+        verificarTerrenoSinUnidad();
+        this.unidad = unidad;
     }
 
     public void ocuparPorUnidad(Zerling unidad){
