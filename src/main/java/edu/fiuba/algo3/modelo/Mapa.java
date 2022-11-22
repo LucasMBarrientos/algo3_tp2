@@ -289,6 +289,8 @@ public class Mapa {
                     lineaDelMapa += "9";
                 } else if (edificio instanceof PuertoEstelar) {
                     lineaDelMapa += "0";
+                } else {
+                    lineaDelMapa += " ";
                 }
             }
             System.out.println("█" + lineaDelMapa + "█");

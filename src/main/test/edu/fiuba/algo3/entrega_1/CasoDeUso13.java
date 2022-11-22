@@ -40,6 +40,8 @@ public class CasoDeUso13 {
         algoStar.pasarTurno();
 
         algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPATERRENO();
+        algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPAEDIFICIOS();
+        algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPAUNIDADES();
 
         // Se destruye el criadero
         jugadorZerg.destruirEdificio(new Coordenada(1,1));
