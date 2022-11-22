@@ -100,6 +100,10 @@ public class Mapa {
         throw new NoHayTerrenoDisponibleParaGenerarUnidad();
     }
 
+    public void establecerUnidad(Coordenada coordenada, Unidad unidad){
+        unidad.ocupar(buscarTerreno(coordenada));
+    }
+
     public void eliminarUnidadDelMapa(Coordenada coordenada){
         buscarTerreno(coordenada).establecerUnidad(null);
     }
