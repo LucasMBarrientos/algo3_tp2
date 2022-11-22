@@ -32,7 +32,7 @@ public abstract class Unidad {
     public void actualizar() {
         tiempoConstruccion--;
         if(tiempoConstruccion == 0){
-            estado = new UnidadOperativa(danioAereo, danioTerrestre, rango);
+            estado = new UnidadOperativa(danioAereo, danioTerrestre, rango, coordenada);
         }
         vida.regenerar();
     }
