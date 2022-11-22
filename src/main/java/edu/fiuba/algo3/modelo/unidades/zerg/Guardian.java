@@ -42,7 +42,14 @@ public class Guardian extends UnidadZerg {
     }
 
     public boolean ocupar(Terreno terreno){
-        //ver como tratar a esta evolucion del mutalisco
-        return  false   ;
+        boolean sePudoOcupar = true;
+
+        try {
+            terreno.ocuparPorUnidad(this);
+        } catch (RuntimeException e){
+            sePudoOcupar = false;
+        }
+
+        return sePudoOcupar;
     }
 }

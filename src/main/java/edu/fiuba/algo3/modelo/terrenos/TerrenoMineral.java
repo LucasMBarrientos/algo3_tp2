@@ -21,10 +21,7 @@ import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class TerrenoMineral extends Terreno {
     private Recurso mineral = new Mineral(2000);
@@ -103,6 +100,10 @@ public class TerrenoMineral extends Terreno {
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Guardian unidad){
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
