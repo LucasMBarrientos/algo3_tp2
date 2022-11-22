@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso4 {
 
-   /*
+   
     @Test
     public void extractorCon0ZanganoGenera0UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
@@ -31,12 +31,12 @@ public class CasoDeUso4 {
       extractor.ocupar(terrenoVolcan);
 
       for (int i = 0; i < tiempoDeConstruccion; i++) {
-          extractor.actualizar();
+          extractor.actualizar(inv);
       }
 
       //extractor.ingresarUnidad(new Zangano());
       
-      extractor.recolectarRecursos(inv);
+      extractor.extraerRecursos(inv);
 
       //inv.consumirGasVespeno(new GasVespeno(1));
 
@@ -55,12 +55,12 @@ public class CasoDeUso4 {
       extractor.ocupar(terrenoVolcan);
 
       for (int i = 0; i < tiempoDeConstruccion; i++) {
-          extractor.actualizar();
+          extractor.actualizar(inv);
       }
 
       extractor.ingresarUnidad(new Zangano());
       
-      extractor.recolectarRecursos(inv);
+      extractor.extraerRecursos(inv);
 
       inv.consumirGasVespeno(new GasVespeno(10));
 
@@ -79,13 +79,13 @@ public class CasoDeUso4 {
       extractor.ocupar(terrenoVolcan);
 
       for (int i = 0; i < tiempoDeConstruccion; i++) {
-          extractor.actualizar();
+          extractor.actualizar(inv);
       }
 
       extractor.ingresarUnidad(new Zangano());
       extractor.ingresarUnidad(new Zangano());
 
-      extractor.recolectarRecursos(inv);
+      extractor.extraerRecursos(inv);
 
       inv.consumirGasVespeno(new GasVespeno(20));
 
@@ -104,14 +104,14 @@ public class CasoDeUso4 {
       extractor.ocupar(terrenoVolcan);
 
       for (int i = 0; i < tiempoDeConstruccion; i++) {
-          extractor.actualizar();
+          extractor.actualizar(inv);
       }
 
       extractor.ingresarUnidad(new Zangano());
       extractor.ingresarUnidad(new Zangano());
       extractor.ingresarUnidad(new Zangano());
 
-      extractor.recolectarRecursos(inv);
+      extractor.extraerRecursos(inv);
 
       inv.consumirGasVespeno(new GasVespeno(30));
 
@@ -130,15 +130,15 @@ public class CasoDeUso4 {
       asimilador.ocupar(terrenoVolcan);
 
       for (int i = 0; i < tiempoDeConstruccion; i++) {
-        asimilador.actualizar();
+        asimilador.actualizar(inv);
       }
 
-      asimilador.recolectarRecursos(inv);
+      asimilador.extraerRecursos(inv);
 
       inv.consumirGasVespeno(new GasVespeno(20));
 
       Assertions.assertThrows(RecursosInsuficientes.class, ()->{
           inv.consumirGasVespeno(new GasVespeno(1));
       });
-    }*/
+    }
 }
