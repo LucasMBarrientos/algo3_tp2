@@ -88,7 +88,8 @@ public abstract class Jugador {
     }
 
     public void moverUnidad(Coordenada coordenadaDeLaUnidad, Direccion direccionDelMovimiento) {
-        // TODO
+        Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);
+        unidad.moverse(direccionDelMovimiento, mapa);
     }
 
     public void destruirOcupanteDeCoordenada(Coordenada coordenada) {
