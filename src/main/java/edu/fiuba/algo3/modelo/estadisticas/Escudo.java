@@ -12,7 +12,9 @@ public class Escudo extends Estadistica {
     }
 
     public int recibirDanio(Danio danio) {
+        poderActual = Math.max(poderActual,0);
         poderActual = danio.aplicarDanio(poderActual);
+
         return Math.min(poderActual, 0);
     }
 
