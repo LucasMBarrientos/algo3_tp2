@@ -72,13 +72,19 @@ public class Inventario {
         unidades.add(unidadNueva);
     }
 
-    public void eliminarUnidad(Coordenada coordenada){
-        for (Unidad unidad : unidades) {
-            if (unidad.compararCoordenadas(coordenada)) {
-                unidades.remove(unidad); // esto funca ???
+    public void eliminarUnidad(Coordenada coordenada) {
+        int indiceHallado = -1;
+        for (int i=0; i < unidades.size(); i++) {
+            if (unidades.get(i).compararCoordenadas(coordenada)) {
+                indiceHallado = i;
             }
         }
+        if (indiceHallado == -1) {
+            throw new UnidadNoEncontrada();
+        }
+        unidades.remove(unidades.get(indiceHallado));
     }
+
 
     public void agregarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);

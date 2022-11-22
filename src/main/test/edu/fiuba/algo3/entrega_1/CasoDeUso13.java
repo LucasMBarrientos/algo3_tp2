@@ -42,7 +42,7 @@ public class CasoDeUso13 {
         algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPATERRENO();
 
         // Se destruye el criadero
-        jugadorZerg.destruirOcupanteDeCoordenada(new Coordenada(2,2));
+        jugadorZerg.destruirUnidad(new Coordenada(2,2));
 
         // Se construye una reserva de reproduccion sobre el moho generado previamente
         jugadorZerg.construirEdificio(new Coordenada(3,1), new ReservaDeReproduccion());
