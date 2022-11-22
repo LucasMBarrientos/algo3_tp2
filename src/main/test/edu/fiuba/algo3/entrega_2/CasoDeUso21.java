@@ -46,7 +46,7 @@ public class CasoDeUso21 {
         unidad.actualizar();
         unidad.actualizar();
 
-        for(int i = 0; i < 25; i++) {
+        for(int i = 0; i < 24; i++) {
             unidad.atacar(new Coordenada(2,3), mapa);
         }
 
