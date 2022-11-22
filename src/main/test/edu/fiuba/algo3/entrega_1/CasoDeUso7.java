@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso7 {
 
-
 	@Test
     public void elJugadorZergTendria300MineralesEn10TurnosIngresandoUnZanganoAUnTerrenoMineral() {
         AlgoStar algoStar = new AlgoStar();
@@ -66,17 +65,6 @@ public class CasoDeUso7 {
 
     }
     /*
-        // Se construye un extractor, consumiendo asi 100 minerales
-        jugadorZerg.moverUnidad(new Coordenada(4,3), new Abajo());
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.construirEdificio(new Coordenada(4,4), new Extractor());
-
-        // Se intenta construir un criadero, pero el jugador no deberia tener la suficiente cantidad de minerales
-        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            jugadorZerg.construirEdificio(new Coordenada(3,2), new Criadero());
-        });
-    }
 
 	@Test 
     public void elJugadorZergTendria300MineralesEn10TurnosColocandoUnZanganoSobreUnTerrenoConMinerales() {

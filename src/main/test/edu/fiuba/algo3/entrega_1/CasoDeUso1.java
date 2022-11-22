@@ -28,17 +28,7 @@ public class CasoDeUso1 {
 
 	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-/* 
-        AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
-        algoStar.agregarJugador(jugadorProtoss);
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
-        algoStar.agregarJugador(jugadorZerg);
-        algoStar.empezarJuego();
-
-        Mapa mapa = algoStar.DEBUG_DEVOLVERMAPA();
-        mapa.DEBUG_MOSTRARMAPATERRENO();
-*/
+        
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
         
         Criadero criadero = new Criadero();
