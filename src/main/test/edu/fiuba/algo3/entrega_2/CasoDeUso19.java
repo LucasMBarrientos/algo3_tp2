@@ -30,8 +30,6 @@ public class CasoDeUso19 {
             scout.actualizar();
         }
 
-        mapa.DEBUG_MOSTRARMAPAUNIDADES();
-
         zerling.atacar(new Coordenada(3, 1), mapa);
 
         Assertions.assertThrows(AtaqueImposibleDeRealizarse.class, ()->{

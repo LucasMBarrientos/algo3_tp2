@@ -101,7 +101,7 @@ public class Mapa {
     }
 
     public void establecerUnidad(Coordenada coordenada, Unidad unidad){
-        unidad.intentarOcuparAlMoverse(buscarTerreno(coordenada));
+        unidad.ocupar(buscarTerreno(coordenada));
     }
 
     

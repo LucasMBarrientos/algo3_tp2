@@ -11,9 +11,6 @@ public class Danio {
     }
 
     public int aplicarDanio(int estadistica) {
-        if (this.poder == 0) {
-            throw new AtaqueImposibleDeRealizarse();
-        }
         return estadistica - this.poder;
     }
 
