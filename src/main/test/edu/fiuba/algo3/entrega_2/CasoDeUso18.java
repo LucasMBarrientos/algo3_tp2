@@ -23,15 +23,25 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso18 {
 
- /*
 
+/*
     @Test
     public void zerlingAtacaAPilon150VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
         Zerling zerling = new Zerling();
         Terreno terreno = new TerrenoBase(new Coordenada(2,2));
         Pilon pilon = new Pilon();
+        Mapa mapa = new Mapa(new Coordenada(20,20));
+
+        zerling.establecerCoordenada(new Coordenada(1,2));
 
         pilon.ocupar(terreno);
+
+        zerling.actualizar();
+        zerling.actualizar();
+        zerling.actualizar();
+        zerling.actualizar();
+        zerling.actualizar();
+        zerling.actualizar();
 
         for(int i = 0; i < 150; i++) {
             zerling.atacar(new Coordenada(2,2), mapa);
@@ -41,7 +51,7 @@ public class CasoDeUso18 {
             zerling.atacar(new Coordenada(2,2), mapa);
         });
     }
-
+/*
     @Test
     public void hidraliscoAtacaAPilon60VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
       Hidralisco hidralisco = new Hidralisco();
