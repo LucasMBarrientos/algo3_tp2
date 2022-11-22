@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo.geometria;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Coordenada {
 
@@ -49,23 +47,20 @@ public class Coordenada {
 
     // Devuelve una lista con las coordendas adyacentes en cierto rango
     public List<Coordenada> hallarCoordenadasAdyacentes(int rango) {
-        Set<Coordenada> set;
         List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>();
         List<Coordenada> nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
         coordenadasAdyacentesTotales.add(this);
         for (int i = 0; i < rango; i++) {
+            // Se buscan las coordenadas adyacentes del total de coordenadas adyacentes
+            nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
             for (Coordenada coordenada : coordenadasAdyacentesTotales) {
                 nuevasCoordenadasAdyacentes.addAll(coordenada.hallarCoordenadasAdyacentes());
             }
-            coordenadasAdyacentesTotales.addAll(nuevasCoordenadasAdyacentes);
-            //filtrar Repetidas
-            for (Coordenada coordenada: coordenadasAdyacentesTotales) {
-                for (Coordenada coordenadaComparada: coordenadasAdyacentesTotales) {
-                    if(coordenada.esIgual(coordenadaComparada)){
-                        coordenadasAdyacentesTotales.remove()
-                    }
+            // Se aniaden las nuevas coordenadas que no se encuentren en la lista del total de coordenadas adyacentes 
+            for (Coordenada nuevaCoordenada : nuevasCoordenadasAdyacentes) {
+                if (!nuevaCoordenada.seEncuentraEnListaDeCoordenadas(coordenadasAdyacentesTotales)) {
+                    coordenadasAdyacentesTotales.add(nuevaCoordenada);
                 }
-
             }
         }
         return coordenadasAdyacentesTotales;
@@ -88,6 +83,13 @@ public class Coordenada {
         int x = this.x + distanciaX;
         int y = this.y + distanciaY;
         return new Coordenada(x,y);
+    }
+
+    public int devolverX() {
+        return x;
+    }
+    public int devolverY() {
+        return y;
     }
     
 }
