@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -52,21 +53,24 @@ public class CasoDeUso17 {
         });
     }
 
-/*
+
     @Test
     public void noSePuedeConstruirUnaGuaridaSinUnaReservaDeReproduccion() {
-        JugadorZerg jugador = (new JugadorZerg("Goku Supersaiyan", "azul", 500));
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
+        Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500));
+        Mapa mapa = new Mapa(new Coordenada(30,30));
+
+        Zangano zangano = new Zangano();
+        zangano.establecerCoordenada(new Coordenada(2,2));
+        inventario.agregarUnidad(zangano);
+        JugadorZerg jugador = new JugadorZerg(inventario);
         jugador.establecerMapa(mapa);
 
-        Guarida guarida = new Guarida();
 
         Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
-            jugador.construirEdificio(new Coordenada(2,2), guarida);
+            jugador.construirEdificio(new Coordenada(2,2), new Guarida());
         });
     }
 
-    */
 
     
 }

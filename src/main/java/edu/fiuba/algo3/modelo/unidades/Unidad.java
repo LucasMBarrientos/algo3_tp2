@@ -19,8 +19,8 @@ public abstract class Unidad {
     protected Recurso costoEnGas;
     protected int tiempoConstruccion = 1;
     protected Coordenada coordenada;
-    protected Danio danioAereo;
-    protected Danio danioTerrestre;
+    protected Danio danioAereo = new Danio(0);
+    protected Danio danioTerrestre = new Danio(0);
     protected int rango = 0;
     protected Vida vida;
     protected EstadoUnidad estado = new UnidadEnConstruccion();

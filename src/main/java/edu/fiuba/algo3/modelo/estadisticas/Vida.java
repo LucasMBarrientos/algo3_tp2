@@ -13,7 +13,7 @@ public class Vida extends Estadistica {
         this.valorActual = valorMaximo;
     }
 
-    public boolean recibirDanio(Danio danio){
+    public boolean recibirDanio(Danio danio) {
         valorActual = danio.aplicarDanio(valorActual);
         if (valorActual <= 0) {
             return true;

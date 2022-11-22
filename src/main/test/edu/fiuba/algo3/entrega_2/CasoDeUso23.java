@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso23 {
-    /*
 
     @Test
     public void zerlingNoPuedeAtacarFueraDeSuRango() {
-
+        
     }
 
     @Test
@@ -20,10 +19,9 @@ public class CasoDeUso23 {
 
     }
 
-
     @Test
     public void mutalicoNoPuedeAtacarFueraDeSuRango() {
 
     }
-    */
+
 }

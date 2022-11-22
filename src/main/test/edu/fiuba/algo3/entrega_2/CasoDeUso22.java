@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso22 {
+
     @Test
     public void unZanganoNoSeConstruyeSinCriadero() {
         Inventario inventario = new Inventario(new GasVespeno(300), new Mineral(500));
@@ -33,8 +34,8 @@ public class CasoDeUso22 {
 
 
         Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
-            jugador.generarUnidad(new Coordenada(2, 2), new Zangano());});
-
+            jugador.generarUnidad(new Coordenada(2, 2), new Zangano());
+        });
     }
 /*
 
