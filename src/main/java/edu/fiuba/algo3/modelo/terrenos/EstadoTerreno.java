@@ -53,10 +53,13 @@ public abstract interface EstadoTerreno {
 
     void ocuparPorUnidad(Zerling unidad);
 
+    void ocuparPorUnidad(Hidralisco unidad);
+
+    void ocuparPorUnidad(Mutalisco unidad);
+
     void ocuparPorUnidad(Guardian unidad);
 
-    void ocuparPorUnidad(Hidralisco unidad);
-    void ocuparPorUnidad(Mutalisco unidad);
+    void ocuparPorUnidad(Devorador unidad);
 
     void energizarTerreno();
 

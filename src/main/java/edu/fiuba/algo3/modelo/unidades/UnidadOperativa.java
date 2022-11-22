@@ -28,9 +28,13 @@ public class UnidadOperativa implements EstadoUnidad {
     }
 
     public void atacar(Coordenada objetivo, Mapa mapa) {
-        if(this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)){
-            mapa.buscarTerreno(objetivo).recibirGolpe(danioTerrestre,danioAereo); //la logica seria pasarle ambos daños, q despues la unidad objetivo se encargue de ver cual
+        if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
+            mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo); //la logica seria pasarle ambos daños, q despues la unidad objetivo se encargue de ver cual
         }
+    }
+
+    public void recibirDanio(Danio danioTerrestre, Danio danioAereo, Unidad unidad) {
+        unidad.ejecutarDanio(danioTerrestre, danioAereo);
     }
 
 }

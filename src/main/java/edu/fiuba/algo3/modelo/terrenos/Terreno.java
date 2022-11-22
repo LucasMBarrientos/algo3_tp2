@@ -79,6 +79,9 @@ public abstract class Terreno {
 
     public abstract void ocuparPorUnidad(Guardian unidad);
 
+    public abstract void ocuparPorUnidad(Devorador devorador);
+
+
     public void verificarTerrenoSinEdificio(){
         if(this.edificio != null){
             throw new TerrenoNoAptoParaConstruirTalEdificio(); //se podria usar otra excepcion mejor
@@ -113,9 +116,11 @@ public abstract class Terreno {
 
     public abstract void cubrirTerrenoDeMoho();
 
-    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo) {
+    public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         if(edificio != null){
-            edificio.recibirGolpe(danioTerrestre, danioAereo);
+            edificio.recibirDanio(danioTerrestre, danioAereo);
+        } else if (unidad != null) {
+            unidad.recibirDanio(danioTerrestre, danioAereo);
         }
     }
 

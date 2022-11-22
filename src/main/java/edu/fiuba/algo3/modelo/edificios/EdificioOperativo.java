@@ -13,7 +13,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 public class EdificioOperativo implements EstadoEdificio {
   protected Edificio edificio;
 
-  public void recibirGolpe(Danio danio) {
+  public void recibirDanio(Danio danio) {
     edificio.ejecutarDanio(danio);
   }
 

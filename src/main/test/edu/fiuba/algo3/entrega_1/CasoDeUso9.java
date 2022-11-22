@@ -33,7 +33,7 @@ public class CasoDeUso9 {
           jugador.actualizar(); //termino de construir los edificios
       }
 
-      pilon1.recibirGolpe(new Danio(700)); //pilon1 pasa a estar destruido
+      pilon1.recibirDanio(new Danio(700)); //pilon1 pasa a estar destruido
 
       Assertions.assertNotNull(acceso.generarUnidad(new Zealot())); //acceso deberia seguir operativo
   }
@@ -50,7 +50,7 @@ public class CasoDeUso9 {
           jugador.actualizar(); //termino de construir los edificios
       }
 
-      pilon.recibirGolpe(new Danio(700)); //pilon pasa a estar destruido
+      pilon.recibirDanio(new Danio(700)); //pilon pasa a estar destruido
 
       Assertions.assertThrows(EdificioNoOperativo.class, ()->{
           acceso.generarUnidad(new Zealot());

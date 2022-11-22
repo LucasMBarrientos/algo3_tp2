@@ -112,6 +112,10 @@ public class TerrenoVolcan extends Terreno {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
+    public void ocuparPorUnidad(Devorador unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
     public void energizarTerreno() { }
 
     public void cubrirTerrenoDeMoho() { }

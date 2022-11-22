@@ -17,18 +17,18 @@ public class CasoDeUso12 {
             pilon.actualizar();
         } //paso los turnos para que se termine de construir
 
-        pilon.recibirGolpe(new Danio(500));
+        pilon.recibirDanio(new Danio(500));
 
         for (int i = 0; i < 40; i++) {
             pilon.actualizar();
         }
 
-        pilon.recibirGolpe(new Danio(300));
+        pilon.recibirDanio(new Danio(300));
         pilon.actualizar();
 
-        pilon.recibirGolpe(new Danio(400));
+        pilon.recibirDanio(new Danio(400));
 
         Assertions.assertThrows(EdificioEstaDestruido.class, () ->{
-          pilon.recibirGolpe(new Danio(1));
+          pilon.recibirDanio(new Danio(1));
         });    }*/
 }

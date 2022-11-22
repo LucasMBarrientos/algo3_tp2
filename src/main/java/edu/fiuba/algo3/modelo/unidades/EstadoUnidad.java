@@ -11,4 +11,6 @@ public interface EstadoUnidad {
 
     public void atacar(Coordenada objetivo, Mapa mapa);
 
+    public void recibirDanio(Danio danioTerrestre, Danio danioAereo, Unidad unidad);
+
 }

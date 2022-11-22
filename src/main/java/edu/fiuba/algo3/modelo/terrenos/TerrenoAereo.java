@@ -86,17 +86,23 @@ public class TerrenoAereo extends Terreno{
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Hidralisco unidad){
+    public void ocuparPorUnidad(Hidralisco unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Mutalisco unidad){
+    public void ocuparPorUnidad(Mutalisco unidad) {
         verificarTerrenoSinUnidad();
         this.unidad = unidad;
         unidad.establecerCoordenada(this.coordenada);
     }
 
-    public void ocuparPorUnidad(Guardian unidad){
+    public void ocuparPorUnidad(Guardian unidad) {
+        verificarTerrenoSinUnidad();
+        this.unidad = unidad;
+        unidad.establecerCoordenada(this.coordenada);
+    }
+
+    public void ocuparPorUnidad(Devorador unidad) {
         verificarTerrenoSinUnidad();
         this.unidad = unidad;
         unidad.establecerCoordenada(this.coordenada);

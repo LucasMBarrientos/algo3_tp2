@@ -16,7 +16,7 @@ public interface EstadoEdificio {
     
     void ingresarUnidad(Zangano zangano);
 
-    void recibirGolpe(Danio danio);
+    void recibirDanio(Danio danio);
 
     void terminarConstruccion();
 

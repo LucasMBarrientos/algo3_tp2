@@ -48,7 +48,7 @@ public class Guarida extends EdificioZerg {
         }
     }
 
-    /*public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    /*public void recibirDanio(Danio danioTerestre, Danio danioAereo) {
 
     }*/
 
@@ -85,7 +85,7 @@ public class Guarida extends EdificioZerg {
       return estado.generarUnidad(criadero);
     }
 
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+    public void recibirDanio(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);
     }
     */

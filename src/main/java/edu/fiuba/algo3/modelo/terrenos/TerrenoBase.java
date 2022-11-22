@@ -114,7 +114,12 @@ public class TerrenoBase extends Terreno {
         estado.ocuparPorUnidad(unidad);
         unidad.establecerCoordenada(coordenada);
     }
-    public void ocuparPorUnidad(Guardian unidad){
+    public void ocuparPorUnidad(Guardian unidad) {
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+    
+    public void ocuparPorUnidad(Devorador unidad) {
         estado.ocuparPorUnidad(unidad);
         unidad.establecerCoordenada(coordenada);
     }

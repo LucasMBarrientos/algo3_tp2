@@ -40,7 +40,7 @@ public abstract class EdificioZerg extends Edificio {
         }
     }*/
 
-    /*public void recibirGolpe(Danio danio) throws EdificioEstaDestruido {
+    /*public void recibirDanio(Danio danio) throws EdificioEstaDestruido {
         vida.recibirDanio(danio);
     }*/
 

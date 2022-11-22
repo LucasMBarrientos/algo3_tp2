@@ -104,18 +104,25 @@ public class TerrenoVacio implements EstadoTerreno {
         terreno.establecerUnidad(unidad);
     }
 
-    public void ocuparPorUnidad(Hidralisco unidad){
+    public void ocuparPorUnidad(Hidralisco unidad) {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
     }
 
-    public void ocuparPorUnidad(Mutalisco unidad){
+    public void ocuparPorUnidad(Mutalisco unidad) {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
     }
-    public void ocuparPorUnidad(Guardian unidad){
+    
+    public void ocuparPorUnidad(Guardian unidad) {
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
+    }
+
+    public void ocuparPorUnidad(Devorador unidad) {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);

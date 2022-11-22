@@ -25,7 +25,7 @@ public class CasoDeUso10 {
         for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
           criadero.actualizar(inventario);
       }
-        criadero.recibirGolpe(new Danio(501),new Danio(0)); //esto cambia su estado a Destruido
+        criadero.recibirDanio(new Danio(501),new Danio(0)); //esto cambia su estado a Destruido
 
         Assertions.assertThrows(EdificioEstaDestruido.class,() ->{
             criadero.generarUnidad(new Zangano(),inventario);
@@ -38,7 +38,7 @@ public class CasoDeUso10 {
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(50));
         for(int i=0; i<6; i++){ criadero.actualizar(inventario); } //paso los turnos para que se termine de construir
 
-        criadero.recibirGolpe(new Danio(499),new Danio(1));
+        criadero.recibirDanio(new Danio(499),new Danio(1));
         inventario.agregarEdificio(criadero);
 
         Assertions.assertNotNull(criadero.generarUnidad(new Zangano(),inventario));
@@ -47,7 +47,7 @@ public class CasoDeUso10 {
             criadero.actualizar(inventario);
         }
 
-        criadero.recibirGolpe(new Danio(200),new Danio(1));
+        criadero.recibirDanio(new Danio(200),new Danio(1));
         Assertions.assertNotNull(criadero.generarUnidad(new Zangano(),inventario));
 
     }

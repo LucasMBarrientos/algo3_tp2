@@ -13,7 +13,7 @@ public class EdificioEnConstruccion implements EstadoEdificio {
   private Edificio edificio;
 
   @Override
-  public void recibirGolpe(Danio danio) throws EdificioNoTerminoDeConstruirse {
+  public void recibirDanio(Danio danio) throws EdificioNoTerminoDeConstruirse {
     throw new EdificioNoTerminoDeConstruirse();
   }
 

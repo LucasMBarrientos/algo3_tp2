@@ -89,21 +89,25 @@ public class TerrenoMineral extends Terreno {
         verificarTerrenoSinEdificio();
         this.unidad = unidad;
         unidad.establecerCoordenada(this.coordenada);
-    }
+    } 
 
-    public void ocuparPorUnidad(Zerling unidad){
+    public void ocuparPorUnidad(Zerling unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Hidralisco unidad){
+    public void ocuparPorUnidad(Hidralisco unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Mutalisco unidad){
+    public void ocuparPorUnidad(Mutalisco unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Guardian unidad){
+    public void ocuparPorUnidad(Guardian unidad) {
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
+    public void ocuparPorUnidad(Devorador unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 

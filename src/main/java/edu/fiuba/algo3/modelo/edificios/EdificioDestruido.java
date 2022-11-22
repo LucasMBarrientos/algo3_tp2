@@ -14,7 +14,7 @@ public class EdificioDestruido implements EstadoEdificio {
     private Edificio edificio;
 
     @Override
-    public void recibirGolpe(Danio danio) throws EdificioEstaDestruido {
+    public void recibirDanio(Danio danio) throws EdificioEstaDestruido {
         throw new EdificioEstaDestruido();
     }
 

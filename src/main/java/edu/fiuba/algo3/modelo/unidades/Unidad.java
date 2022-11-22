@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.UnidadDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -47,6 +48,22 @@ public abstract class Unidad {
 
     public void atacar(Coordenada objetivo, Mapa mapa) {
         estado.atacar(objetivo, mapa);
+    }
+
+    public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
+        this.estado.recibirDanio(danioTerrestre, danioAereo, this);
+    }
+    
+    public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {
+        if (aerea) {
+            if (this.vida.recibirDanio(danioAereo)) {
+                throw new UnidadDestruida();
+            }
+        } else {
+            if (this.vida.recibirDanio(danioTerrestre)) {
+                throw new UnidadDestruida();
+            }
+        }
     }
 
     public abstract Unidad generarse(Edificio edificio, Inventario inventario);

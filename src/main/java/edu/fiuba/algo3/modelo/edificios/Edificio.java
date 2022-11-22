@@ -113,8 +113,8 @@ public abstract class Edificio {
    //     return null; //terminar bien
     //}
 
-    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo) {
-      this.estadoActual.recibirGolpe(danioTerrestre);
+    public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
+        this.estadoActual.recibirDanio(danioTerrestre);
     }
 
     public abstract void ejecutarDanio(Danio danio);

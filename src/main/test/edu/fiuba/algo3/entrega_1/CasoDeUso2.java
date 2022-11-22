@@ -121,7 +121,7 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-          extractor.recibirGolpe(new Danio(1),new Danio(1)); 
+          extractor.recibirDanio(new Danio(1),new Danio(1)); 
         });
     }
 
@@ -233,7 +233,7 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-          nexoMineral.recibirGolpe(new Danio(1),new Danio(1)); 
+          nexoMineral.recibirDanio(new Danio(1),new Danio(1)); 
         });
     }
    
@@ -298,7 +298,7 @@ public class CasoDeUso2 {
         }
 
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-          asimilador.recibirGolpe(new Danio(1),new Danio(1)); 
+          asimilador.recibirDanio(new Danio(1),new Danio(1)); 
         });
     }
   

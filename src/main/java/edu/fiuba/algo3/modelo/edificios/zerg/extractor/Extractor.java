@@ -88,7 +88,7 @@ public class Extractor extends EdificioZerg {
 
 
     /*
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+    public void recibirDanio(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);
     }
 
@@ -130,7 +130,7 @@ public class Extractor extends EdificioZerg {
     }
 
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    public void recibirDanio(Danio danioTerestre, Danio danioAereo) {
 
     }*/
 
