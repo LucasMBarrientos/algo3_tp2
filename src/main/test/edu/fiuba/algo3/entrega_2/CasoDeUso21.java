@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.excepciones.UnidadDestruida;
+import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
@@ -86,7 +86,7 @@ public class CasoDeUso21 {
             unidad.atacar(new Coordenada(2,7), mapa);
         }
 
-        Assertions.assertThrows(UnidadDestruida.class, ()->{
+        Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
             unidad.atacar(new Coordenada(2,7), mapa);
         });
     }
