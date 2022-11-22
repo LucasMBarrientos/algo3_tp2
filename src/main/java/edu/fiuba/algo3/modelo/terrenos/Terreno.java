@@ -108,7 +108,7 @@ public abstract class Terreno {
     public abstract void cubrirTerrenoDeMoho();
 
     public void recibirGolpe(Danio danio) {
-        edificio.recibirGolpe(danio);
+        edificio.recibirGolpe(danio); //faltan daños
     }
 
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
