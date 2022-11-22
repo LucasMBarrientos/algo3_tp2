@@ -129,7 +129,7 @@ public class Mapa {
         for (Terreno terreno : terrenos) {
             terreno.actualizarListaDeCoordenadas(coordenadasQueTendranMoho, coordenadasConCriaderos, coordenadasConPilones);
         }
-        if (turnoActual % 2 == 0) {
+        if (turnoActual % 4 == 0) {
             cubrirCoordenadasDeMoho(coordenadasQueTendranMoho);
         }
         actualizarTerrenosEnergizados(coordenadasConPilones);
