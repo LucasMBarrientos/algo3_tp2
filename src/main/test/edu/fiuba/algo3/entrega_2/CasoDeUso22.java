@@ -36,11 +36,11 @@ public class CasoDeUso22 {
             jugador.generarUnidad(new Coordenada(2, 2), new Zangano());});
 
     }
+/*
 
-    /*
 
     @Test
-    public void unZanganoNoSeConstruyeSinCriadero() {
+    public void unZanganoNoSeConstruyeSinCriadero2() {
         JugadorMock jugadorZerg = new JugadorMock(1000,1000);
         Mapa mapa = new Mapa(new Coordenada(30,30));
         jugadorZerg.establecerMapa(mapa);
@@ -49,7 +49,7 @@ public class CasoDeUso22 {
         Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());});
 
-    }
+    }/*
     @Test
     public void unZanganoNoSeConstruyeAlInstante() {
         JugadorMock jugadorZerg = new JugadorMock(1000, 1000);

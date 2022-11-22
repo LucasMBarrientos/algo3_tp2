@@ -10,7 +10,7 @@ public class Nombre {
         this.nombre = nombre;
     }
 
-    boolean esIgual(Nombre nombre) {
+    public boolean esIgual(Nombre nombre) {
         return (Objects.equals(this.nombre, nombre.devolverNombre()));
     }
 

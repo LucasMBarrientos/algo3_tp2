@@ -30,7 +30,7 @@ public class Extractor extends EdificioZerg {
     private List<Zangano> zanganosTrabajando = new ArrayList<Zangano>();
 
     public Extractor() {
-      this.costoEnMinerales = new Mineral(50);
+      this.costoEnMinerales = new Mineral(100);
       this.costoEnGas = new GasVespeno(0);
       this.vida = new Vida(750);
       this.tiempoDeConstruccion = 6;

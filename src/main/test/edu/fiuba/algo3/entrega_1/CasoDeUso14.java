@@ -28,13 +28,13 @@ public class CasoDeUso14 {
             algoStar.pasarTurno();
         }
         algoStar.pasarTurno();
-        jugadorProtoss.construirEdificio(new Coordenada(4,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(1,8), new Pilon()); // tenia 4 ,4 nose si estaban probando algo
         for (int i = 0; i < 12; i++) {
             algoStar.pasarTurno();
         }
         //Assertions.assertThrows(EdificioDestruido.class, pilon::actualizar); //TODO agregar state edificio destruido @Leti
         Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(new Coordenada(15,2), new Pilon());
+            jugadorProtoss.construirEdificio(new Coordenada(1,7), new Pilon());// tenia 15 ,2 nose si estaban probando algo
         });
     }
 
