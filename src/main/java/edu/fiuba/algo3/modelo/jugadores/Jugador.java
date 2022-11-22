@@ -86,6 +86,14 @@ public abstract class Jugador {
         this.mapa = mapa;
         iniciarseEnMapa();
     }
+
+    public void moverUnidad(Coordenada coordenadaDeLaUnidad, Direccion direccionDelMovimiento) {
+        // TODO
+    }
+
+    public void destruirOcupanteDeCoordenada(Coordenada coordenada) {
+        // TODO
+    }
     
     protected abstract void iniciarseEnMapa();
 

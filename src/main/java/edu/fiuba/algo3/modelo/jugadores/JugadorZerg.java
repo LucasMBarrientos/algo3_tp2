@@ -21,11 +21,12 @@ public class JugadorZerg extends Jugador {
         establecerAtributosBasicos(nombre, color, 0, 200);
     }
 
-    public JugadorZerg(String nombre, String color, int recursosExtra) {
-        establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
+    public JugadorZerg(String nombre, String color, int gasInicial, int mineralesIniciales) {
+        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales);
     }
 
-    public JugadorZerg(Inventario inventario){
+    // DEBUG ONLY
+    public JugadorZerg(Inventario inventario) {
         this.inventario = inventario;
     }
 

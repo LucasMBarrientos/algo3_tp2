@@ -1,8 +1,19 @@
 package edu.fiuba.algo3.entrega_1;
 
-public class CasoDeUso13 {
+import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
-    /*
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class CasoDeUso13 {
 
 	@Test
     public void sePuedeConstruirSobreElMohoDeUnCriaderoDestruido() {
@@ -20,19 +31,21 @@ public class CasoDeUso13 {
         }
 
         // Se generan 2 zanganos
-        jugadorZerg.generarUnidad(new Coordenada(2,2), new Derecha(), new Zangano());
+        //jugadorZerg.generarUnidad(new Coordenada(2,2), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(new Coordenada(3,2), new Derecha());
-        jugadorZerg.generarUnidad(new Coordenada(2,2), new Derecha(), new Zangano());
+        //jugadorZerg.moverUnidad(new Coordenada(2,1), new Derecha());
+        //jugadorZerg.generarUnidad(new Coordenada(2,2), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
+
+        algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPATERRENO();
 
         // Se destruye el criadero
-        jugadorZerg.destruirEdificio(new Coordenada(2,2)); // TODO: Todo jugador deberia tener acceso a destruir sus propias unidades/edificios
+        jugadorZerg.destruirOcupanteDeCoordenada(new Coordenada(2,2));
 
         // Se construye una reserva de reproduccion sobre el moho generado previamente
-        jugadorZerg.construirEdificio(new Coordenada(3,2), new ReservaDeReproduccion());
+        jugadorZerg.construirEdificio(new Coordenada(3,1), new ReservaDeReproduccion());
         for (int i = 0; i < 8; i++) {
             algoStar.pasarTurno();
         }
@@ -43,11 +56,9 @@ public class CasoDeUso13 {
             algoStar.pasarTurno();
             algoStar.pasarTurno();
         }
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
             jugadorZerg.construirEdificio(new Coordenada(15,2), new ReservaDeReproduccion());
         });
     }
-
-    */
     
 }

@@ -21,7 +21,7 @@ public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnPuertoEstelarSinUnAcceso() {
-        JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500));
+        JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500, 500));
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugador.establecerMapa(mapa);
 

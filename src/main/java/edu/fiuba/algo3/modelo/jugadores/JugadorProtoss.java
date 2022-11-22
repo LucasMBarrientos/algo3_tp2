@@ -13,8 +13,8 @@ public class JugadorProtoss extends Jugador {
         establecerAtributosBasicos(nombre, color, 0, 200);
     }
 
-    public JugadorProtoss(String nombre, String color, int recursosExtra) {
-        establecerAtributosBasicos(nombre, color, recursosExtra, 200 + recursosExtra);
+    public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales) {
+        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales);
     }
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
@@ -29,11 +29,9 @@ public class JugadorProtoss extends Jugador {
         inventario.agregarEdificio(edificioNuevo);
     }
 
-
     public void actualizar() {
         inventario.actualizar();
     }
-
 
     protected void iniciarseEnMapa() {
         //  TODO: Spawnear alguna unidad inicial si hace falta

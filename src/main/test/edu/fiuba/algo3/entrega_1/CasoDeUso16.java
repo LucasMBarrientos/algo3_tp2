@@ -25,7 +25,7 @@ public class CasoDeUso16 {
 
     @Test
     public void noSePuedeConstruirUnEdificioSobreOtro() {
-        JugadorProtoss jugador = (new JugadorProtoss("nombre", "rosita", 500));
+        JugadorProtoss jugador = (new JugadorProtoss("nombre", "rosita", 500, 500));
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugador.establecerMapa(mapa);
 
@@ -41,8 +41,8 @@ public class CasoDeUso16 {
 
     @Test
     public void noSePuedeConstruirSobreUnVolcanConUnAsimiladorYaConstruido() {
-        JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500));
-        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500));
+        JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500, 500));
+        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500));
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugadorZerg.establecerMapa(mapa);
         jugadorProtoss.establecerMapa(mapa);
@@ -67,7 +67,7 @@ public class CasoDeUso16 {
         inventario.agregarUnidad(zanganoConstructor);
 
         JugadorZerg jugadorZerg = new JugadorZerg(inventario);
-        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500));
+        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500));
 
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugadorZerg.establecerMapa(mapa);
