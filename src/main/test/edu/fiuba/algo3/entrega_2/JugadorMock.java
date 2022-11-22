@@ -25,7 +25,7 @@ public class JugadorMock extends Jugador {
     }
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
-        //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion
+       /* //todo: verificar que haya un zangano en la coordenada, sino lanzar excepcion
         Edificio edificioNuevo = edificio.construir(coordenada,inventario);
         try {
             mapa.establecerEdificio(coordenada, edificioNuevo);
@@ -34,7 +34,7 @@ public class JugadorMock extends Jugador {
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
         //si se llego hasta aca, eliminar al zangano (del inventario y del mapa)
-        inventario.agregarEdificio(edificioNuevo);
+        inventario.agregarEdificio(edificioNuevo);*/
     }
 
 

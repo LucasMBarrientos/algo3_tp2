@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +16,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 
 public class CasoDeUso10 {
-   /*
+/*
     @Test
     public void unEdificioZergRecibeUnDanioMayorASuVidaSeDestruye() {
         Criadero criadero = new Criadero();

@@ -12,8 +12,11 @@ import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -23,7 +26,22 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso22 {
     @Test
     public void unZanganoNoSeConstruyeSinCriadero() {
-         JugadorMock jugadorZerg = new JugadorMock(1000,1000);
+        Inventario inventario = new Inventario(new GasVespeno(300), new Mineral(500));
+        JugadorZerg jugador = new JugadorZerg(inventario);
+        Mapa mapa = new Mapa(new Coordenada(30,30));
+        jugador.establecerMapa(mapa);
+
+
+        Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
+            jugador.generarUnidad(new Coordenada(2, 2), new Zangano());});
+
+    }
+
+    /*
+
+    @Test
+    public void unZanganoNoSeConstruyeSinCriadero() {
+        JugadorMock jugadorZerg = new JugadorMock(1000,1000);
         Mapa mapa = new Mapa(new Coordenada(30,30));
         jugadorZerg.establecerMapa(mapa);
 
@@ -66,9 +84,10 @@ public class CasoDeUso22 {
         /*Assertions.assertThrows(NoHayTerrenoDisponibleParaGenerarUnidad.class, () -> {
             jugadorZerg.mover(new Abajo(), new Coordenada(2, 1));
 
-        });*/
+        });
         jugadorZerg.actualizar();
     }
+    */
 }
 
 
