@@ -4,10 +4,7 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.excepciones.NoHayUnZanganoEnEsaCoordenada;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
@@ -55,6 +52,10 @@ public class JugadorZerg extends Jugador {
             throw new UnidadNoEncontrada();
         }
         return unidad;
+    }
+
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar){
+
     }
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {

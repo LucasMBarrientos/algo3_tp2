@@ -20,10 +20,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class TerrenoBase extends Terreno {
 
@@ -114,6 +111,10 @@ public class TerrenoBase extends Terreno {
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+    public void ocuparPorUnidad(Guardian unidad){
         estado.ocuparPorUnidad(unidad);
         unidad.establecerCoordenada(coordenada);
     }

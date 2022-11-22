@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.geometria;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Coordenada {
 
@@ -47,6 +49,7 @@ public class Coordenada {
 
     // Devuelve una lista con las coordendas adyacentes en cierto rango
     public List<Coordenada> hallarCoordenadasAdyacentes(int rango) {
+        Set<Coordenada> set;
         List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>();
         List<Coordenada> nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
         coordenadasAdyacentesTotales.add(this);
@@ -55,6 +58,15 @@ public class Coordenada {
                 nuevasCoordenadasAdyacentes.addAll(coordenada.hallarCoordenadasAdyacentes());
             }
             coordenadasAdyacentesTotales.addAll(nuevasCoordenadasAdyacentes);
+            //filtrar Repetidas
+            for (Coordenada coordenada: coordenadasAdyacentesTotales) {
+                for (Coordenada coordenadaComparada: coordenadasAdyacentesTotales) {
+                    if(coordenada.esIgual(coordenadaComparada)){
+                        coordenadasAdyacentesTotales.remove()
+                    }
+                }
+
+            }
         }
         return coordenadasAdyacentesTotales;
     }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -35,7 +36,7 @@ public class Mutalisco extends UnidadZerg {
         this.rango = 3;
         this.vida = new Vida(120);
         this.nombre = new Nombre("Mutalisco");
-        this.aerea = true;
+        this.aerea = true; // -> sidenote: la palabra aerea es capicúa :)
     }
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this, inventario);
@@ -51,5 +52,11 @@ public class Mutalisco extends UnidadZerg {
         }
 
         return sePudoOcupar;
+    }
+
+    public Unidad evolucionar(Mapa mapa, Unidad unidad){
+        mapa.eliminarUnidad(coordenada);
+        mapa.establecerUnidad(coordenada,unidad);
+        return unidad;
     }
 }

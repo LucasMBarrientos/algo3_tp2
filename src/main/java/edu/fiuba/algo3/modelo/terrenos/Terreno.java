@@ -77,6 +77,8 @@ public abstract class Terreno {
 
     public abstract void ocuparPorUnidad(Mutalisco unidad);
 
+    public abstract void ocuparPorUnidad(Guardian unidad);
+
     public void verificarTerrenoSinEdificio(){
         if(this.edificio != null){
             throw new TerrenoNoAptoParaConstruirTalEdificio(); //se podria usar otra excepcion mejor

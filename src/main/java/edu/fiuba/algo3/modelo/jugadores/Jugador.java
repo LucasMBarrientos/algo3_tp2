@@ -31,7 +31,6 @@ public abstract class Jugador {
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         unidad.generarse(edificio, inventario);
-        unidad.consumirRecursosParaGenerarse(inventario);
 
         try {
             mapa.establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);

@@ -16,10 +16,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class TerrenoAereo extends Terreno{
 
@@ -94,6 +91,12 @@ public class TerrenoAereo extends Terreno{
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
+        verificarTerrenoSinUnidad();
+        this.unidad = unidad;
+        unidad.establecerCoordenada(this.coordenada);
+    }
+
+    public void ocuparPorUnidad(Guardian unidad){
         verificarTerrenoSinUnidad();
         this.unidad = unidad;
         unidad.establecerCoordenada(this.coordenada);
