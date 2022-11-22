@@ -18,7 +18,7 @@ public class CasoDeUso24 {
     @Test
     public void jugadoresInicianEnLaEsquilasDelMapa() {
         AlgoStar algoStar = new AlgoStar();
-        Mapa mapa = new Mapa(new Coordenada(10, 10));
+        Mapa mapa = new Mapa(new Coordenada(20, 20));
         JugadorZerg jugadorZerg = new JugadorZerg("LetiAab", "#d3b779");
         jugadorZerg.establecerMapa(mapa);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("agusssss", "#e1d3b4");
