@@ -52,8 +52,12 @@ public class EdificioOperativo implements EstadoEdificio {
   }
 
   @Override
-  public boolean validarLarva() {
-    return this.edificio.consumirLarva();
+  public boolean consumirLarva(int larvas) {
+    if (larvas <= 0) {
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }

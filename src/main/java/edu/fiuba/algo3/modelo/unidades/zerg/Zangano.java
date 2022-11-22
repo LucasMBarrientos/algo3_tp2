@@ -39,9 +39,9 @@ public class Zangano extends UnidadZerg {
         // TODO: Implementar esto
     }
 
-    public void consumirRecursosParaGenerarse(Inventario inventario){
+    /*public void consumirRecursosParaGenerarse(Inventario inventario){
 
-    }
+    }*/
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this, inventario);
     }

@@ -26,6 +26,6 @@ public interface EstadoEdificio {
 
     void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones);
 
-    boolean validarLarva();  
+    boolean consumirLarva(int larvas);  
 
 }

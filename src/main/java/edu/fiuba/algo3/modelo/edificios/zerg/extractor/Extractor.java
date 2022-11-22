@@ -52,8 +52,6 @@ public class Extractor extends EdificioZerg {
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) { }
 
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) { }
-
     public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }

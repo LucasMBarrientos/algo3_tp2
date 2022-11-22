@@ -38,12 +38,20 @@ public class Criadero extends EdificioZerg {
 
     @Override
     public boolean consumirLarva() {
-      if (larvas <= 0) {
+      if(estadoActual.consumirLarva(larvas)){
+        this.larvas--;
+        return true;
+      }else{
+        return false;
+      }
+
+      /*if (larvas <= 0) {
         return false;
       }else{
         this.larvas--;
         return true;
-      }
+      }*/
+
     }
 
    // @Override

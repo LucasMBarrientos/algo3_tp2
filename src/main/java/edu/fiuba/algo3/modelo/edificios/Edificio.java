@@ -121,10 +121,6 @@ public abstract class Edificio {
 
     public abstract void regenerar();
 
-    public boolean validarLarva(){
-      return estadoActual.validarLarva();
-    }
-
     public boolean consumirLarva() {
         return false;
     }

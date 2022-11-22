@@ -53,7 +53,7 @@ public class EdificioDestruido implements EstadoEdificio {
     }
 
     @Override
-    public boolean validarLarva() {
+    public boolean consumirLarva(int larvas) {
         return false;
     }
   
