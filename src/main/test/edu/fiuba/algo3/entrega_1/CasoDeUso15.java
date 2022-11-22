@@ -105,6 +105,6 @@ public class CasoDeUso15 {
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
             nexoMineral.recolectarRecursos(inv);
         });
-    }*/
-
+    }
+*/
 }

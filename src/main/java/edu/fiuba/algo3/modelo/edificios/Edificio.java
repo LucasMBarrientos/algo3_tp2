@@ -49,7 +49,12 @@ public abstract class Edificio  {
         consumirRecursosParaConstruccion(inventario);
         return this;
     }
-
+    public Edificio construir(Coordenada coordenada,Inventario inventario) {
+        validarCorrelativasDeConstruccion(inventario);
+        consumirRecursosParaConstruccion(inventario);
+        this.coordenada = coordenada;
+        return this;
+    }
     public void consumirRecursosParaConstruccion(Inventario inventario) {
         inventario.consumirMinerales(costoEnMinerales);
         inventario.consumirGasVespeno(costoEnGas);

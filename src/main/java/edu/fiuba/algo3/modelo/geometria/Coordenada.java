@@ -73,7 +73,9 @@ public class Coordenada {
     }
 
     public Coordenada devolverCoordenadaRelativa(int distanciaX, int distanciaY) {
-        return new Coordenada(this.x + distanciaX, this.y + distanciaY);
+        int x = this.x + distanciaX;
+        int y = this.y + distanciaY;
+        return new Coordenada(x,y);
     }
     
 }

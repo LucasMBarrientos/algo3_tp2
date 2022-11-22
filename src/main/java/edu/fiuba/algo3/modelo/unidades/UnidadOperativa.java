@@ -20,7 +20,10 @@ public class UnidadOperativa implements EstadoUnidad {
     }
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada, Unidad unidad) {
+
+       //Coordenada coordenadaNueva = direccion.hallarCoordenadaSiguiente(coordenada);
         mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),unidad);
+       // mapa.establecerUnidadDelMapa(coordenadaNueva,unidad);
     }
 
     public void atacar(Coordenada objetivo, Mapa mapa) {

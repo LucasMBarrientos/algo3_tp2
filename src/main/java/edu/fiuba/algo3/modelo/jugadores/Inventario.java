@@ -152,9 +152,13 @@ public class Inventario {
     }*/
 
     public void actualizar() {
-        for(int i = 0;i<this.edificios.size();i++){
+        for(int i = 0;i<this.edificios.size();i++) {
             edificios.get(i).actualizar(this);
-            //TODO: ACTUALIZAR LOS EDIFICIOS INDIVIDUALMENTE
+        }
+        for(int i = 0;i<this.unidades.size();i++){
+                unidades.get(i).actualizar();
+
+                //TODO: ACTUALIZAR LOS EDIFICIOS INDIVIDUALMENTE
             //edificio.actualizar(this);
         }
     }
