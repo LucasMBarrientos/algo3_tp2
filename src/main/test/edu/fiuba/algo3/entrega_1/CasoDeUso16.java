@@ -73,7 +73,7 @@ public class CasoDeUso16 {
         jugadorZerg.establecerMapa(mapa);
         jugadorProtoss.establecerMapa(mapa);
 
-        mapa.establecerUnidad(coordenadaDelVolcan, new Zangano());
+        mapa.establecerUnidadDelMapa(coordenadaDelVolcan, new Zangano());
 
         Asimilador asimilador = new Asimilador();
         Extractor extractor = new Extractor();

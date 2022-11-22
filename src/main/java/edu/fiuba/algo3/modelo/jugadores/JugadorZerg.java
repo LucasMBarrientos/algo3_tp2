@@ -36,7 +36,7 @@ public class JugadorZerg extends Jugador {
             mapa.establecerEdificio(coordenada, edificio);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
-            mapa.establecerUnidad(coordenada, zanganoConstructor);//si el terreno no era apto, vuelvo a meter al zangano
+            mapa.establecerUnidadDelMapa(coordenada, zanganoConstructor);//si el terreno no era apto, vuelvo a meter al zangano
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
 

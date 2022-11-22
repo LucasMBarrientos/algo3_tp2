@@ -2,8 +2,6 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoPoseeUnaUnidad;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
@@ -40,11 +38,11 @@ public class CasoDeUso20 {
 
         for(int i=0; i<3; i++ ){ jugador.actualizar(); }
 
-        jugador.moverUnidad(new Coordenada(2,1), new Arriba());
+        algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPATERRENO();
 
         //en la coordenada en (2,0) hay area espacial
-        Assertions.assertThrows(UnidadNoEncontrada.class, ()->{
-            jugador.moverUnidad(new Coordenada(2,0), new Derecha());
+        Assertions.assertThrows(TerrenoNoAptoParaTalUnidad.class, ()->{
+            jugador.moverUnidad(new Coordenada(2,1), new Arriba());
         });
     }
 }
