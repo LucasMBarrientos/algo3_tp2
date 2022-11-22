@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
@@ -78,7 +79,7 @@ public class TerrenoAereo extends Terreno{
         unidad.establecerCoordenada(this.coordenada);
     }
 
-    public void ocuparPorUnidad(Zangano unidad){
+    public void ocuparPorUnidad(Zangano unidad) throws TerrenoNoAptoParaTalUnidad {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 

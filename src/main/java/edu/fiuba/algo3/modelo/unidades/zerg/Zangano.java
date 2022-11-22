@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.*;
@@ -55,7 +56,13 @@ public class Zangano extends UnidadZerg {
             sePudoOcupar = false;
         }
 
+
         return sePudoOcupar;
+    }
+
+    @Override
+    public void intentarOcuparAlMoverse(Terreno terreno) throws TerrenoNoAptoParaTalUnidad {
+        terreno.ocuparPorUnidad(this);
     }
 
     @Override

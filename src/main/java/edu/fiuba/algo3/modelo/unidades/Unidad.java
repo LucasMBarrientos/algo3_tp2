@@ -51,6 +51,8 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
+    public void intentarOcuparAlMoverse(Terreno terreno){    }
+
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         this.estado.recibirDanio(danioTerrestre, danioAereo, this);
     }
