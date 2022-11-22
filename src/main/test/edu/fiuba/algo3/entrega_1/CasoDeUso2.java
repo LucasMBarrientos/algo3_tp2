@@ -2,9 +2,11 @@ package edu.fiuba.algo3.entrega_1;
 
 import com.tngtech.archunit.lang.ArchRule;
 
+import edu.fiuba.algo3.modelo.edificios.EdificioDestruido;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
@@ -12,6 +14,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
@@ -261,7 +264,7 @@ public class CasoDeUso2 {
     }
 /*  
 	@Test
-    public void unPilonNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
+    public void unPilonNoEstaOperativoEnMenoDe6TurnosConstruyendose() {
         AlgoStar algoStar = new AlgoStar();
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
@@ -285,6 +288,39 @@ public class CasoDeUso2 {
     	// TODO: Pensar como probar la operatividad del pilon
     }
 */
+@Test
+public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
+    Pilon pilon = new Pilon();
+    Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+    int tiempoDeConstruccion = 5;
+
+    for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
+        pilon.actualizar(inv);
+    }
+
+
+
+    Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
+        pilon.recibirDanio(new Danio(600),new Danio(600));
+    });
+}
+
+    @Test
+    public void unPilonEstaOperativoEn5Turnos() {
+        Pilon pilon = new Pilon();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        int tiempoDeConstruccion = 5;
+
+        for (int i = 0; i < tiempoDeConstruccion ; i++) {
+            pilon.actualizar(inv);
+        }
+
+        pilon.recibirDanio(new Danio(600),new Danio(600));
+
+        Assertions.assertThrows(EdificioEstaDestruido.class, ()->{
+            pilon.recibirDanio(new Danio(600),new Danio(600));
+        });
+    }
     @Test
     public void unAsimiladorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));

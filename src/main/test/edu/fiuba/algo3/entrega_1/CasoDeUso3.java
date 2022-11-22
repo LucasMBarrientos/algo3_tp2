@@ -1,5 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +52,34 @@ public class CasoDeUso3 {
         criadero.ocupar(terrenoVolcan);
       });
     }
+    @Test
+    public void ReservaDeReproduccionNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new ReservaDeReproduccion();
 
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
+    @Test
+    public void GuaridaNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new Guarida();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
+
+    @Test
+    public void EspiralNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new Espiral();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
     @Test
     public void pilonNoSePuedeConstruirSobreTerrenoVolcan() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
@@ -54,5 +89,31 @@ public class CasoDeUso3 {
         pilon.ocupar(terrenoVolcan);
       });
     }
-    
+    @Test
+    public void NexoMineralNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new NexoMineral();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
+    @Test
+    public void AccesoNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new Acceso();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
+    @Test
+    public void PuertoEstelarNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new PuertoEstelar();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
 }
