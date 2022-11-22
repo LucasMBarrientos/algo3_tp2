@@ -47,10 +47,10 @@ public class Coordenada {
 
     // Devuelve una lista con las coordendas adyacentes en cierto rango
     public List<Coordenada> hallarCoordenadasAdyacentes(int rango) {
-        List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>(); // TODO: ...En esto
-        coordenadasAdyacentesTotales.addAll(this.hallarCoordenadasAdyacentes()); // TODO: Arreglar esto...
+        List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>();
         List<Coordenada> nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
-        for (int i = 0; i < rango - 1; i++) {
+        coordenadasAdyacentesTotales.add(this);
+        for (int i = 0; i < rango; i++) {
             for (Coordenada coordenada : coordenadasAdyacentesTotales) {
                 nuevasCoordenadasAdyacentes.addAll(coordenada.hallarCoordenadasAdyacentes());
             }

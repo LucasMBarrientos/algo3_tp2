@@ -43,9 +43,7 @@ public class Mapa {
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
-        //generarAreasIniciales();
         generarTerrenoInicial();
-        //actualizarTerrenoEnergizado();
     }
 
     private boolean validarCoordenada(Coordenada coordenada) {
@@ -94,13 +92,11 @@ public class Mapa {
 
     public void establecerUnidad(Coordenada coordenadaDelEdificio, Unidad unidad) throws NoHayTerrenoDisponibleParaGenerarUnidad {
         List<Terreno> terrenosPosibles = buscarTerrenosAdyacentes(coordenadaDelEdificio, 2);
-
-        for(Terreno terreno: terrenosPosibles){
-            if(unidad.ocupar(terreno)){
+        for (Terreno terreno : terrenosPosibles) {
+            if (unidad.ocupar(terreno)) {
                 return;
             }
         }
-
         throw new NoHayTerrenoDisponibleParaGenerarUnidad();
     }
 
@@ -110,15 +106,6 @@ public class Mapa {
 
     public void establecerUnidadDelMapa(Coordenada coordenada, Unidad unidad){ //esto es para meter un zangano
         buscarTerreno(coordenada).establecerUnidad(unidad);
-    }
-
-    private void generarAreasIniciales(){
-        /*
-        for(Terreno terreno : terrenos){
-            terreno.establecerArea(new AreaTerrestre());
-        }
-        buscarCasilla(new Coordenada(10,10)).establecerArea(new AreaEspacial()); //TODO cambiar esto por una generacion aleatoria (o controlada)
-        */
     }
 
     public Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {
@@ -141,21 +128,19 @@ public class Mapa {
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {
+        int distanciaEntreLasBases = Math.max(1, superficie.calcularLongitudPromedio() / 12);
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
-        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
         List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
-        // Base inicial para el jugador Zerg
-        coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(0).devolverCoordenadaRelativa(2,2));
-        // Base inicial para el jugador Protoss
-        coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(1).devolverCoordenadaRelativa(-2,-2));
-        SuperficieRectangular superficicieConBases = this.superficie.redimensionar(-4);
-        for (int i=0; i < cantidadDeBases - cantidadDeJugadores; i++) {
-            coordenadasCentralesDeBases.add(superficicieConBases.devolverCoordenadaAlAzarEvitando(ubicacionesInicialesDeLosJugadores));
+        for (int i = 0; i < cantidadDeJugadores; i++) {
+            coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i));
+        }
+        SuperficieRectangular superficicieConBasesAlAzar = this.superficie.redimensionar(-4);
+        int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
+        for (int i = cantidadDeJugadores; i < cantidadDeBases; i++) {
+            coordenadasCentralesDeBases.add(superficicieConBasesAlAzar.devolverCoordenadaAlAzarEvitando(coordenadasCentralesDeBases, distanciaEntreLasBases));
         }
         return coordenadasCentralesDeBases;
     }
-
-
 
     public Zangano establecerZanganoInicial(int idJugador) {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
@@ -189,6 +174,7 @@ public class Mapa {
             buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
         }
     }
+
     private void generarMohoAlrededorDeCriaderos(List<Coordenada> coordenadasConCriaderos) {
         for (Coordenada coordenadaConCriadero : coordenadasConCriaderos) {
             generarMohoAlrededorDeCriadero(coordenadaConCriadero);
@@ -274,7 +260,7 @@ public class Mapa {
             lineaDelMapa = "";
             for (int x=0; x < dimensionX ; x++) {
                 Edificio edificio = this.buscarTerreno(new Coordenada(x, y)).DEBUG_DEVOLVEREDIFICIO();
-                if (edificio instanceof Criadero) {
+                if (edificio instanceof Criadero) { 
                     lineaDelMapa += "#";
                 } else if (edificio instanceof ReservaDeReproduccion) {
                     lineaDelMapa += "2";
@@ -310,7 +296,6 @@ public class Mapa {
     }
 
 
-    /*
     public void DEBUG_MOSTRARMAPAUNIDADES() {
         String lineaDelMapa = "";
         int dimensionX = this.superficie.calcularLongitudX();
@@ -322,11 +307,13 @@ public class Mapa {
         for (int y=0; y < dimensionY; y++) {
             lineaDelMapa = "";
             for (int x=0; x < dimensionX ; x++) {
-                Unidad unidad = this.buscarCasilla(new Coordenada(x, y)).devolverUnidad();
+                Unidad unidad = this.buscarTerreno(new Coordenada(x, y)).DEBUG_DEVOLERUNIDAD();
                 if (unidad instanceof Zangano) {
                     lineaDelMapa += "Z";
                 } else if (unidad == null) {
                     lineaDelMapa += " ";
+                } else {
+                    lineaDelMapa += "X";
                 }
             }
             System.out.println("█" + lineaDelMapa + "█");
@@ -337,6 +324,5 @@ public class Mapa {
         }
         System.out.println("█" + lineaDelMapa + "█");
     }
-    */
     
 }

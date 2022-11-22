@@ -83,6 +83,10 @@ public abstract class Terreno {
         }
     }
 
+    public void actualizar(){
+
+    }
+
     public void verificarTerrenoSinUnidad(){
         if(this.unidad != null){
             throw new TerrenoNoAptoParaTalUnidad(); //se podria usar otra excepcion mejor
@@ -126,6 +130,10 @@ public abstract class Terreno {
 
     public Edificio DEBUG_DEVOLVEREDIFICIO() {
         return edificio;
+    }
+
+    public Unidad DEBUG_DEVOLERUNIDAD() {
+        return unidad;
     }
 
 }

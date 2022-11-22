@@ -91,17 +91,23 @@ public class SuperficieRectangular {
         return coordenadaInicial.devolverCoordenadaRelativa(x,y);
     }
 
-    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
+
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas, int rango) {
         boolean coordenadaValida;
         Coordenada coordenada;
         do {
             coordenadaValida = true;
             coordenada = this.buscarCoordenadaAlAzar();
             for (Coordenada coordenadaEvitada : coordenasEvitadas) {
-                coordenadaValida = !((!coordenadaValida) || coordenada.esIgual(coordenadaEvitada));
+                coordenadaValida = !((!coordenadaValida) || coordenada.seEncuentraACiertoRangoDeOtraCoordenada(coordenadaEvitada, rango));
             }
         } while (!coordenadaValida);
         return coordenada;
+    }
+
+
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
+        return this.devolverCoordenadaAlAzarEvitando(coordenasEvitadas, 0);
     }
 
     public int calcularSuperficie() {
@@ -109,14 +115,11 @@ public class SuperficieRectangular {
     }
 
     public Coordenada transformarCoordenadaRelativamenteAlCentro(Coordenada coordenadaOriginal, int distanciaX, int distanciaY) {
-        Coordenada coordenadaCentral = hallarCoordenadaCentral();
-        if (coordenadaOriginal.calcularDiferenciaEnX(coordenadaCentral) < 0) { // coordenadaOriginal esta a la izquierda de coordenadaCentral
-            distanciaX = -distanciaX;
-        }
-        if (coordenadaOriginal.calcularDiferenciaEnY(coordenadaCentral) < 0) { // coordenadaOriginal esta arriba de coordenadaCentral
-            distanciaY = -distanciaY;
-        }
-        return coordenadaOriginal.devolverCoordenadaRelativa(distanciaX, distanciaY);
+        int distanciaXACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnX(this.hallarCoordenadaCentral());
+        int direccionX = distanciaXACoordenadaCentral / Math.abs(distanciaXACoordenadaCentral);
+        int distanciaYACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnY(this.hallarCoordenadaCentral());
+        int direccionY = distanciaYACoordenadaCentral / Math.abs(distanciaYACoordenadaCentral);
+        return coordenadaOriginal.devolverCoordenadaRelativa(distanciaX * direccionX, distanciaY * direccionY);
     }
 
 }

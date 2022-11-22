@@ -1,8 +1,12 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
@@ -17,19 +21,24 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso18 {
-/*
+
+ /*
+
     @Test
     public void zerlingAtacaAPilon150VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-      Zerling zerling = new Zerling();
-      Pilon pilon = new Pilon();
+        Zerling zerling = new Zerling();
+        Terreno terreno = new TerrenoBase(new Coordenada(2,2));
+        Pilon pilon = new Pilon();
 
-      for(int i = 0; i < 150; i++) {
-        zerling.atacar(pilon);
-      }
+        pilon.ocupar(terreno);
 
-      Assertions.assertThrows(EdificioDestruido.class, ()->{
-        zerling.atacar(pilon);
-      });
+        for(int i = 0; i < 150; i++) {
+            zerling.atacar(new Coordenada(2,2), mapa);
+        }
+
+        Assertions.assertThrows(EdificioDestruido.class, ()->{
+            zerling.atacar(new Coordenada(2,2), mapa);
+        });
     }
 
     @Test

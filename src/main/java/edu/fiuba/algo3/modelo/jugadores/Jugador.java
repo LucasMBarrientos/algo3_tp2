@@ -47,36 +47,40 @@ public abstract class Jugador {
         this.color = color;
         this.inventario = new Inventario(new GasVespeno(gasInicial), new Mineral(mineralesIniciales));
     }
-    public void compararRaza(Jugador jugador)throws NombreDeJugadorInvalido {
-        if(this.getClass() == jugador.getClass()){
-            throw new RazaYaElegidaPorElOtroJugador();
-        }
 
+    public void compararAtributosBasicoConOtrosJugadores(List<Jugador> otrosJugadores) {
+        for (Jugador otroJugador : otrosJugadores) {
+            compararNombre(otroJugador);
+            compararColor(otroJugador);
+            compararRaza(otroJugador);
+        }
     }
-    public void compararColor(Jugador jugador)throws NombreDeJugadorInvalido {
+
+    protected void compararNombre(Jugador jugador) throws NombreDeJugadorInvalido {
+        if (jugador.nombreEsIgual(this.nombre)) {
+            throw new NombreDeJugadorInvalido();
+        }
+    }
+
+    public boolean nombreEsIgual(String nombre) {
+        return this.nombre.equals(nombre);
+    }
+
+    protected void compararColor(Jugador jugador) throws ColorDeJugadorInvalido {
         if (jugador.colorEsIgual(this.color)) {
             throw new ColorDeJugadorInvalido();
         }
     }
 
-    private boolean colorEsIgual(String color) {
+    protected boolean colorEsIgual(String color) {
         return this.color.equals(color);
     }
 
-    public void compararNombre(Jugador jugador)throws NombreDeJugadorInvalido {
-        if(jugador.nombreEsIgual(this.nombre)){
-            throw new NombreDeJugadorInvalido();
+    protected void compararRaza(Jugador jugador) throws RazaYaElegidaPorElOtroJugador {
+        if (this.getClass() == jugador.getClass()) {
+            throw new RazaYaElegidaPorElOtroJugador();
         }
-
     }
-
-    private boolean nombreEsIgual(String nombre) {
-        if(this.nombre.equals(nombre)){
-            return true;
-        }
-        return  false;
-    }
-
 
     public void establecerMapa(Mapa mapa) {
         this.mapa = mapa;
