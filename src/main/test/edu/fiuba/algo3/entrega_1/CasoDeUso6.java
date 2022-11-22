@@ -19,8 +19,6 @@ import org.junit.jupiter.api.Test;
 
 public class CasoDeUso6 {
 
-
-
     @Test
     public void elRadioDelMohoDelCriaderoEsIgualA5cuandoSeTerminaDeConstruir() {
         AlgoStar algoStar = new AlgoStar();

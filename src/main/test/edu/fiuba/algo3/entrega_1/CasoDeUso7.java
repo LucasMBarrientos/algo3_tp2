@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
@@ -11,13 +12,14 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso7 {
 
 
 	@Test
-    public void elJugadorZergTendria290MineralesEn9TurnosColocandoUnZanganoSobreUnTerrenoConMinerales() {
+    public void elJugadorZergTendria300MineralesEn10TurnosIngresandoUnZanganoAUnTerrenoMineral() {
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
         algoStar.agregarJugador(jugadorZerg);
@@ -35,8 +37,9 @@ public class CasoDeUso7 {
         jugadorZerg.moverUnidad(new Coordenada(4,2), new Abajo());
         jugadorZerg.moverUnidad(new Coordenada(4,3), new Abajo());
 
-        for (int i = 0; i < 100; i++) {
-            jugadorZerg.ingresarUnidad(new Coordenada(4,3));
+        //el zangano recolecta recursos
+        for (int i = 0; i < 10; i++) {
+            jugadorZerg.ingresarUnidad(new Coordenada(4,3)); //cambiar esto para que sea un pasarTurno
         }
 
         jugadorZerg.moverUnidad(new Coordenada(4,3), new Arriba());
@@ -47,23 +50,20 @@ public class CasoDeUso7 {
             algoStar.pasarTurno();
         }
 
-        // Se genera 2 zanganos, consumiendo asi 50 minerales del jugador
-
+        //se puede generar 4 zanganos y los minerales se acaban
         jugadorZerg.generarUnidad(new Coordenada(4, 2), new Zangano());
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(new Coordenada(5, 2), new Derecha());
         jugadorZerg.generarUnidad(new Coordenada(4, 2), new Zangano());
         algoStar.pasarTurno();
+        jugadorZerg.generarUnidad(new Coordenada(4, 2), new Zangano());
+        algoStar.pasarTurno();
+        jugadorZerg.generarUnidad(new Coordenada(4, 2), new Zangano());
         algoStar.pasarTurno();
 
-        // Se mueve un zangano a la coordenada (4,3), en donde deberia haber minerales
-        jugadorZerg.moverUnidad(new Coordenada(5, 2), new Abajo());
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+            jugadorZerg.generarUnidad(new Coordenada(4, 2), new Zangano());
+        });
 
-        // Tras 4 turnos del jugador zerg (8 turnos en total), el jugador deberia tener 140 unidades de minerales en total
-        for (int i = 0; i < 4; i++) {
-            algoStar.pasarTurno();
-        }
     }
     /*
         // Se construye un extractor, consumiendo asi 100 minerales
