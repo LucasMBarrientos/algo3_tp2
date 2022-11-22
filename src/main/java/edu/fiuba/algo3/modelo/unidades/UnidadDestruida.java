@@ -22,6 +22,5 @@ public class UnidadDestruida implements EstadoUnidad{
   public void recibirDanio(Danio danioTerrestre, Danio danioAereo, Unidad unidad) throws UnidadEstaDestruida {
     throw new UnidadEstaDestruida();
   }
-  
-  
+
 }
