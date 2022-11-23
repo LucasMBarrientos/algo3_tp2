@@ -40,40 +40,73 @@ public class CasoDeUso6 {
             jugadorProtoss.construirEdificio(new Coordenada(6,1), new Acceso());
         });
     }
-       /*
+
     @Test
     public void elRadioDelMohoDelCriaderoInicialNoEsMayorA5EnElPrimerTurno() {
-        JugadorZerg jugadorZerg = new JugadorZerg();
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250);
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
-        jugadorZerg.construirEdificio(new Coordenada(2,2), new Criadero());
+        Criadero criadero = new Criadero();
+        Zangano zangano = new Zangano();
 
-        jugadorZerg.construirEdificio(new Coordenada(8,2), reservaDeReproduccion);
+        jugadorZerg.construirEdificio(new Coordenada(1,1), criadero);
 
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(new Coordenada(8,2), reservaDeReproduccion);
+        criadero.terminarConstruccion();
+        jugadorZerg.generarUnidad(new Coordenada(1,1), zangano);
+
+        zangano.actualizar();
+        zangano.actualizar();
+
+        jugadorZerg.moverUnidad(new Coordenada(2,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(3,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(4,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(5,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(6,1),new Abajo());
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            jugadorZerg.construirEdificio(new Coordenada(6,2), new ReservaDeReproduccion());
         });
     }
 
     @Test
     public void mohoSeExpande1CasillaCada2Turnos() {
-        AlgoStar a = new AlgoStar();  //Me di cuenta que en esta prueba en especíufico es necesario testear desde arriba,
-        a.empezarJuego();               // pq la prueba es "probar q crece bien" osea, probar q pase cada dos turnos
-        JugadorZerg jugadorZerg = new JugadorZerg();
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250);
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
-        jugadorZerg.construirEdificio(new Coordenada(2,2), new Criadero());
-        a.pasarTurno();
-        a.pasarTurno();
+        Criadero criadero = new Criadero();
+        Zangano zangano = new Zangano();
 
-        jugadorZerg.construirEdificio(new Coordenada(9,2), reservaDeReproduccion);
+        jugadorZerg.construirEdificio(new Coordenada(1,1), criadero);
 
-        for(int i=0; i<40; i++){
-            reservaDeReproduccion.actualizar();
-        }
+        criadero.terminarConstruccion();
+        jugadorZerg.generarUnidad(new Coordenada(1,1), zangano);
 
-        Assertions.assertNotNull(reservaDeReproduccion.generarUnidad(new Zerling()));
+        zangano.actualizar();
+        zangano.actualizar();
+
+        jugadorZerg.moverUnidad(new Coordenada(2,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(3,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(4,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(5,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(6,1),new Abajo());
+
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+
+        jugadorZerg.construirEdificio(new Coordenada(6,2), new ReservaDeReproduccion());
+
     }
 
-*/
+
 }

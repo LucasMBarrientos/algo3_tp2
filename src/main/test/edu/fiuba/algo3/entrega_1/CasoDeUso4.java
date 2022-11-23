@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.NoHayEspacioDisponible;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -114,7 +115,28 @@ public class CasoDeUso4 {
           inv.consumirGasVespeno(new GasVespeno(1));
       });
     }
+    @Test
+    public void extractorNopuedeTener4Zanganos() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        Extractor extractor = new Extractor();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
 
+        int tiempoDeConstruccion = 6;
+        extractor.ocupar(terrenoVolcan);
+
+        for (int i = 0; i < tiempoDeConstruccion; i++) {
+            extractor.actualizar(inv);
+        }
+
+        extractor.ingresarUnidad(new Zangano());
+        extractor.ingresarUnidad(new Zangano());
+        extractor.ingresarUnidad(new Zangano());
+
+
+        Assertions.assertThrows(NoHayEspacioDisponible.class, ()->{
+            extractor.ingresarUnidad(new Zangano());
+        });
+    }
     @Test
     public void asimiladorGenera20UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));

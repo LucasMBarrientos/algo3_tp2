@@ -156,6 +156,7 @@ public class Mapa {
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
         Zangano zanganoGenerado = new Zangano();
         zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));
+        zanganoGenerado.terminarConstruccion();
         return zanganoGenerado;
     }
 

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
@@ -44,9 +45,13 @@ public class Extractor extends EdificioZerg {
     }
     
 
-    public void ingresarUnidadTrabajadora(Zangano zangano) {
+    public void ingresarUnidadTrabajadora(Zangano zangano) throws NoHayEspacioDisponible {
       if(zanganosTrabajando.size() < 3){
         zanganosTrabajando.add(zangano);
+      }
+      else{
+
+          throw new NoHayEspacioDisponible();
       }
     }
 

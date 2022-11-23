@@ -17,15 +17,15 @@ public class AlgoStar {
     private int rondaActual;
 
     private Mapa mapa;
-/*
-    public void agregarJugador(Jugador jugador) {
-        if (jugadores.size() < 2) {
-            jugador.establecerId(jugadores.size());
-            jugadores.add(jugador);
-        } else {
-            // TODO: Lanzar excepcion "SeEstaTratandoDePonerMasDe2Jugadores"
-        }
-    }*/
+
+    public AlgoStar() {
+        this.mapa = new Mapa(new Coordenada(100,20));
+    }
+
+    public AlgoStar(Mapa mapaPersonalizado) {
+        this.mapa = mapaPersonalizado;
+    }
+
     public void agregarJugador(Jugador jugador) {
         if (jugadores.size() > 1) {
             throw new NoSePuedenAgregarMasJugadores();
@@ -36,7 +36,6 @@ public class AlgoStar {
     }
 
     public void empezarJuego() {
-        this.mapa = new Mapa(new Coordenada(100,20));
         for (Jugador jugador : jugadores) {
             jugador.establecerMapa(mapa);
         }

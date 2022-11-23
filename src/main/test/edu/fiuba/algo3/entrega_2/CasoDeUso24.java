@@ -2,10 +2,15 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
@@ -17,24 +22,35 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso24 {
     @Test
     public void jugadoresInicianEnLaEsquilasDelMapa() {
-        AlgoStar algoStar = new AlgoStar();
-        Mapa mapa = new Mapa(new Coordenada(20, 20));
-        JugadorZerg jugadorZerg = new JugadorZerg("LetiAab", "#d3b779");
-        jugadorZerg.establecerMapa(mapa);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("agusssss", "#e1d3b4");
-        jugadorProtoss.establecerMapa(mapa);
-        for (int i = 0; i < 5; i++) { // Se finaliza la construccion del criadero
-            jugadorZerg.actualizar();
-            jugadorProtoss.actualizar();
+        Mapa mapa = new Mapa(new Coordenada(50, 50));
+        Coordenada coordenadaDelVolcanInicialDelJugadorZerg = new Coordenada(4, 4);
+        Coordenada coordenadaDelVolcanInicialDelJugadorProtoss = new Coordenada(45, 45);
+        AlgoStar algoStar = new AlgoStar(mapa);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
+        for (int y = 1; y < 4; y++) {
+            jugadorZerg.moverUnidad(new Coordenada(1, y), new Abajo());
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
         }
-        //jugadorProtoss.actualizar();
+        for (int x = 1; x < 4; x++) {
+            jugadorZerg.moverUnidad(new Coordenada(x, 4), new Derecha());
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
+        }
 
-        //Assertions.assertNotNull( jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano()));
-        //mover 0,0
-        // mover afuera del mapa
-       // jugadorProtoss.construirEdificio(new Coordenada(0, 1), new Acceso());
+        jugadorZerg.construirEdificio(coordenadaDelVolcanInicialDelJugadorZerg, new Extractor());
+        algoStar.pasarTurno();
+        jugadorProtoss.construirEdificio(coordenadaDelVolcanInicialDelJugadorProtoss, new Asimilador());
+
+        // Se intenta construir un pilon en un terreno que deberia tener minerales
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            jugadorProtoss.construirEdificio(coordenadaDelVolcanInicialDelJugadorProtoss.devolverCoordenadaRelativa(1, 0), new Pilon());
+        });
     }
 
-
-    }
+}

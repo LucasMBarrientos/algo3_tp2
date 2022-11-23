@@ -25,7 +25,7 @@ public class CasoDeUso10 {
         for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
           criadero.actualizar(inventario);
       }
-        criadero.recibirDanio(new Danio(501),new Danio(0)); //esto cambia su estado a Destruido
+        criadero.recibirDanio(new Danio(500),new Danio(0)); //esto cambia su estado a Destruido
 
         Assertions.assertThrows(EdificioEstaDestruido.class,() ->{
             criadero.generarUnidad(new Zangano(),inventario);

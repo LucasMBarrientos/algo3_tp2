@@ -25,8 +25,6 @@ public class UnidadOperativa implements EstadoUnidad {
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
         mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
         mapa.eliminarUnidad(coordenada);
-        Terreno terreno = mapa.buscarTerreno(coordenada);
-        terreno = mapa.buscarTerreno(direccion.hallarCoordenadaSiguiente(coordenada));
     }
 
     public void atacar(Coordenada objetivo, Mapa mapa) {
