@@ -94,6 +94,7 @@ public class TerrenoVolcan extends Terreno {
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
         this.unidad = unidad;
+        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
