@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
@@ -11,8 +12,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeRepr
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
+import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.unidades.UnidadDestruida;
@@ -26,8 +26,6 @@ import org.junit.jupiter.api.Assertions;
 
 public class CasoDeUso27 {
 
-/*
-
     @Test
     public void unMutalizcoPuedeEvolucionarEnUnDevoradorSiHaySuficientesRecursosYLuegoPuedeAtacarAUnEnemigoA5CoordenadasDeDistancia() {
         AlgoStar algoStar = new AlgoStar();
@@ -39,7 +37,7 @@ public class CasoDeUso27 {
 
         jugadorZerg.construirEdificio(new Coordenada(1, 1), new Criadero());
         algoStar.pasarTurno();
-        jugadorProtoss.construirEdificio(new Coordenada(8,3), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(30,2), new Pilon());
         for (int i = 0; i < 7; i++) {
             algoStar.pasarTurno();
         }
@@ -48,7 +46,7 @@ public class CasoDeUso27 {
         jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        jugadorZerg.construirEdificio(new Coordenada(2, 1), new ReservaDeReproduccion()); // TODO: Suponiendo que el zangano de antes se genere en la coordenada (2,1)
+        jugadorZerg.construirEdificio(new Coordenada(2, 1), new ReservaDeReproduccion());
         for (int i = 0; i < 12; i++) {
             algoStar.pasarTurno();
         }
@@ -57,7 +55,7 @@ public class CasoDeUso27 {
         jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(new Coordenada(1,2), new Abajo()); // TODO: Suponiendo que el zangano de antes se genere en la coordenada (1,2)
+        jugadorZerg.moverUnidad(new Coordenada(1,2), new Abajo());
         algoStar.pasarTurno();
         algoStar.pasarTurno();
         jugadorZerg.construirEdificio(new Coordenada(1, 3), new Guarida());
@@ -92,29 +90,42 @@ public class CasoDeUso27 {
             algoStar.pasarTurno();
         }
 
-
         algoStar.pasarTurno();
-        jugadorProtoss.construirEdificio(new Coordenada(8,4), new Acceso());
+        jugadorProtoss.construirEdificio(new Coordenada(31,2), new Acceso());
         for (int i = 0; i <14; i++) {
             algoStar.pasarTurno();
         }
 
-        jugadorProtoss.construirEdificio(new Coordenada(8,2), new PuertoEstelar());
+        jugadorProtoss.construirEdificio(new Coordenada(31,1), new PuertoEstelar());
         for (int i = 0; i <14; i++) {
             algoStar.pasarTurno();
         }
-        jugadorProtoss.generarUnidad(new Coordenada(8,2),new Scout());
-        for (int i = 0; i <14; i++) {
+
+        // Genero un scout en el puerto estelar
+        jugadorProtoss.generarUnidad(new Coordenada(31,1),new Scout());
+        for (int i = 0; i < 18; i++) {
             algoStar.pasarTurno();
         }
-        // TODO: jugadorProtoss debe construir una unidad en la coordenada (8,1)
+
+        // Acercar el scout al devorador
+        for (int x = 31; x > 7; x--) {
+            jugadorProtoss.moverUnidad(new Coordenada(x,0), new Izquierda());
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
+        }
+        algoStar.pasarTurno();
 
 
-        jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(8,1));
+        algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPAUNIDADES();
+        for (int i=0; i < 8; i++) {
+            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(7,0));
+            algoStar.pasarTurno();
+            algoStar.pasarTurno();
+        }
 
         // Se intenta atacar una unidad que esta a 5 de rango
-        Assertions.assertThrows(EdificioEstaDestruido.class, ()->{
-            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(8,1));
+        Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
+            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(7,0));
         });
-    }*/
+    }
 }
