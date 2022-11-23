@@ -24,6 +24,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class Guarida extends EdificioZerg {
+    
     private Terreno terreno;
     
     public Guarida() {
@@ -31,6 +32,7 @@ public class Guarida extends EdificioZerg {
         this.costoEnGas = new GasVespeno(100);
         this.vida = new Vida(1250);
         this.tiempoDeConstruccion = 12;
+        this.nombre = new Nombre("Guarida");
         establecerEstado(this.estadoConstruccion);
     }
 
