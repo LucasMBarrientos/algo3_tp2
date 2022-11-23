@@ -25,11 +25,12 @@ public class TestMovimientos {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         Zangano zangano = new Zangano();
 
-        zangano.actualizar(inv);
-        zangano.actualizar(inv);
-        zangano.actualizar(inv);
-
         mapa.establecerUnidad(new Coordenada(1,1),zangano);
+
+        zangano.actualizar(inv);
+        zangano.actualizar(inv);
+        zangano.actualizar(inv);
+        
         zangano.moverse(new Derecha(),mapa);
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(2,1)));
@@ -41,11 +42,12 @@ public class TestMovimientos {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         Zangano zangano = new Zangano();
 
+        mapa.establecerUnidad(new Coordenada(2,2),zangano);
+
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         zangano.actualizar(inv);
 
-        mapa.establecerUnidad(new Coordenada(2,2),zangano);
         zangano.moverse(new Abajo(),mapa);
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(2,3)));
@@ -57,11 +59,12 @@ public class TestMovimientos {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         Zangano zangano = new Zangano();
 
+        mapa.establecerUnidad(new Coordenada(2,2),zangano);
+
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         zangano.actualizar(inv);
 
-        mapa.establecerUnidad(new Coordenada(2,2),zangano);
         zangano.moverse(new Arriba(),mapa);
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(2,1)));
@@ -73,11 +76,12 @@ public class TestMovimientos {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
         Zangano zangano = new Zangano();
 
-        zangano.actualizar(inv);
-        zangano.actualizar(inv);
-        zangano.actualizar(inv);
-
         mapa.establecerUnidad(new Coordenada(2,2),zangano);
+
+        zangano.actualizar(inv);
+        zangano.actualizar(inv);
+        zangano.actualizar(inv);
+        
         zangano.moverse(new Izquierda(),mapa);
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(1,2)));
