@@ -36,14 +36,14 @@ public class CasoDeUso21 {
         }
 
         for (int i=0; i < 7; i++) {
-            mutalisco.actualizar();
+            mutalisco.actualizar(inventario);
         }
 
 
         Unidad unidad  = mutalisco.evolucionar(mapa, new Guardian());
 
         for (int i=0; i < 4; i++) {
-            unidad.actualizar();
+            unidad.actualizar(inventario);
         }
 
 
@@ -65,20 +65,20 @@ public class CasoDeUso21 {
         Mutalisco mutalisco = new Mutalisco();
         mapa.establecerUnidad(new Coordenada(2,2), mutalisco);
         for (int i=0; i < 7; i++) {
-            mutalisco.actualizar();
+            mutalisco.actualizar(inventario);
         }
 
         // Evoluciono el mutalisco en un devorador
         Unidad unidad = mutalisco.evolucionar(mapa, new Devorador());
         for (int i=0; i < 4; i++) {
-            unidad.actualizar();
+            unidad.actualizar(inventario);
         }
 
         // Construyo un scout enemigo
         Scout scoutEnemigo = new Scout();
         mapa.establecerUnidad(new Coordenada(2,7), scoutEnemigo);
         for (int i=0; i < 9; i++) {
-            scoutEnemigo.actualizar();
+            scoutEnemigo.actualizar(inventario);
         }
 
         // Ataco el scout enemigo usando el devorador

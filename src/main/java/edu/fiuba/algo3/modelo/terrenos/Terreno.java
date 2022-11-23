@@ -19,6 +19,7 @@ import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
@@ -135,8 +136,8 @@ public abstract class Terreno {
 
     }
 
-    public void extraerMinerales(Recurso recursoRequerido) {
-
+    public Mineral extraerMinerales(Mineral mineral) {
+      return new Mineral(0);
     }
     
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa

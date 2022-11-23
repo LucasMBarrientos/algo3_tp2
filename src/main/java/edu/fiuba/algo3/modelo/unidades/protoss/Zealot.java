@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.modelo.unidades.protoss;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
@@ -10,6 +13,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadProtoss;
 
 public class Zealot extends UnidadProtoss {
@@ -23,6 +27,7 @@ public class Zealot extends UnidadProtoss {
         this.vida = new Vida(100);
         this.escudo = new Escudo(60);
         this.nombre = new Nombre("Zealot");
+        establecerEstado(new UnidadEnConstruccion());
     }
     
     public Unidad generarse(Edificio edificio, Inventario inventario){
@@ -40,5 +45,17 @@ public class Zealot extends UnidadProtoss {
 
         return sePudoOcupar;
     }
-
+    @Override
+    public void actualizarUnidad(Inventario inventario) {
+      regenerar();
+    }
+    
+    @Override
+    public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
+      if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
+        mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo); //la logica seria pasarle ambos daños, q despues la unidad objetivo se encargue de ver cual
+      } else {
+          throw new AtaqueImposibleDeRealizarse(); // TODO: posiblemente implementar una excepcion "AtaqueFueraDeRango"
+      }
+    }
 }

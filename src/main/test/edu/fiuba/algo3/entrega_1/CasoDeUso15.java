@@ -77,11 +77,11 @@ public class CasoDeUso15 {
         zangano.ocupar(terrenoMineral);
 
         for(int i = 0; i < 200; i++) { //200 turnos * ¿10 mineral por turno? = 2000
-            zangano.recolectarRecursos(terrenoMineral,inv);
+            zangano.extraerRecursos(inv);
         }
 
         Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-            zangano.recolectarRecursos(terrenoMineral,inv);
+            zangano.extraerRecursos(inv);
         });
 
     }

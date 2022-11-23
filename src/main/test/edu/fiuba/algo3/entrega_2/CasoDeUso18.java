@@ -42,12 +42,12 @@ public class CasoDeUso18 {
             pilon.actualizar(inventario);
         }
 
-        zerling.actualizar();
-        zerling.actualizar();
-        zerling.actualizar();
-        zerling.actualizar();
-        zerling.actualizar();
-        zerling.actualizar();
+        zerling.actualizar(inventario);
+        zerling.actualizar(inventario);
+        zerling.actualizar(inventario);
+        zerling.actualizar(inventario);
+        zerling.actualizar(inventario);
+        zerling.actualizar(inventario);
 
         for(int i = 0; i < 150; i++) {
             zerling.atacar(new Coordenada(2,2), mapa);
@@ -73,12 +73,12 @@ public class CasoDeUso18 {
             pilon.actualizar(inventario);
         }
 
-        hidralisco.actualizar();
-        hidralisco.actualizar();
-        hidralisco.actualizar();
-        hidralisco.actualizar();
-        hidralisco.actualizar();
-        hidralisco.actualizar();
+        hidralisco.actualizar(inventario);
+        hidralisco.actualizar(inventario);
+        hidralisco.actualizar(inventario);
+        hidralisco.actualizar(inventario);
+        hidralisco.actualizar(inventario);
+        hidralisco.actualizar(inventario);
 
         for(int i = 0; i < 60; i++) {
             hidralisco.atacar(new Coordenada(2,2), mapa);
@@ -104,13 +104,13 @@ public class CasoDeUso18 {
             pilon.actualizar(inventario);
         }
 
-        mutalisco.actualizar();
-        mutalisco.actualizar();
-        mutalisco.actualizar();
-        mutalisco.actualizar();
-        mutalisco.actualizar();
-        mutalisco.actualizar();
-        mutalisco.actualizar();
+        mutalisco.actualizar(inventario);
+        mutalisco.actualizar(inventario);
+        mutalisco.actualizar(inventario);
+        mutalisco.actualizar(inventario);
+        mutalisco.actualizar(inventario);
+        mutalisco.actualizar(inventario);
+        mutalisco.actualizar(inventario);
 
         for(int i = 0; i < 67; i++) {
             mutalisco.atacar(new Coordenada(2,2), mapa);
@@ -136,13 +136,13 @@ public class CasoDeUso18 {
             pilon.actualizar(inventario);
         }
 
-        zealot.actualizar();
-        zealot.actualizar();
-        zealot.actualizar();
-        zealot.actualizar();
-        zealot.actualizar();
-        zealot.actualizar();
-        zealot.actualizar();
+        zealot.actualizar(inventario);
+        zealot.actualizar(inventario);
+        zealot.actualizar(inventario);
+        zealot.actualizar(inventario);
+        zealot.actualizar(inventario);
+        zealot.actualizar(inventario);
+        zealot.actualizar(inventario);
 
         for(int i = 0; i < 75; i++) {
             zealot.atacar(new Coordenada(2,2), mapa);
@@ -168,12 +168,12 @@ public class CasoDeUso18 {
             pilon.actualizar(inventario);
         }
 
-        dragon.actualizar();
-        dragon.actualizar();
-        dragon.actualizar();
-        dragon.actualizar();
-        dragon.actualizar();
-        dragon.actualizar();
+        dragon.actualizar(inventario);
+        dragon.actualizar(inventario);
+        dragon.actualizar(inventario);
+        dragon.actualizar(inventario);
+        dragon.actualizar(inventario);
+        dragon.actualizar(inventario);
 
         for(int i = 0; i < 30; i++) {
             dragon.atacar(new Coordenada(2,2), mapa);
@@ -199,15 +199,15 @@ public class CasoDeUso18 {
             pilon.actualizar(inventario);
         }
 
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
-        scout.actualizar();
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
+        scout.actualizar(inventario);
 
         for(int i = 0; i < 75; i++) {
             scout.atacar(new Coordenada(2,2), mapa);

@@ -68,8 +68,7 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     public void extraerRecursos(Inventario inventario) {
-      terreno.extraerMinerales(new Mineral(10));
-      inventario.agregarMinerales(new Mineral(10));
+      inventario.agregarMinerales(terreno.extraerMinerales(new Mineral(10)));
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario){

@@ -37,7 +37,8 @@ public class CasoDeUso13 {
         // Se generan 2 zanganos
         jugadorZerg.generarUnidad(new Coordenada(1,1), new Zangano());
         algoStar.pasarTurno();
-
+        algoStar.pasarTurno();
+        
         // Se destruye el criadero
         jugadorZerg.destruirEdificio(new Coordenada(1,1));
 

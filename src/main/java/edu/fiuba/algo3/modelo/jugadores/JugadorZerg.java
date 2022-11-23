@@ -71,7 +71,7 @@ public class JugadorZerg extends Jugador {
 
     public void ingresarUnidad(Coordenada coordenada){
         Unidad unidad = inventario.buscarUnidad(coordenada);
-        unidad.recolectarRecursos(mapa.buscarTerreno(coordenada), inventario);
+        unidad.ocupar(mapa.buscarTerreno(coordenada));
     }
 
     protected void iniciarseEnMapa() {

@@ -6,6 +6,9 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
@@ -19,6 +22,7 @@ public class CasoDeUso23 {
     
     @Test
     public void zerlingNoPuedeAtacarFueraDeSuRango() {
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
         Mapa mapa = new Mapa(new Coordenada(100, 50));
         Zerling zerling = new Zerling();
         Zealot zealot1 = new Zealot();
@@ -29,9 +33,9 @@ public class CasoDeUso23 {
         mapa.establecerUnidad(new Coordenada(4, 1), zealot2);
 
         for (int i=0; i<20; i++) {
-            zerling.actualizar();
-            zealot1.actualizar();
-            zealot2.actualizar();
+            zerling.actualizar(inventario);
+            zealot1.actualizar(inventario);
+            zealot2.actualizar(inventario);
         }
 
         zerling.atacar(new Coordenada(3, 1), mapa);
@@ -43,6 +47,7 @@ public class CasoDeUso23 {
 
     @Test
     public void hidraliscoNoPuedeAtacarFueraDeSuRango() {
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
         Mapa mapa = new Mapa(new Coordenada(100, 50));
         Hidralisco hidralisco = new Hidralisco();
         Zealot zealot1 = new Zealot();
@@ -53,9 +58,9 @@ public class CasoDeUso23 {
         mapa.establecerUnidad(new Coordenada(7, 1), zealot2);
 
         for (int i=0; i<20; i++) {
-            hidralisco.actualizar();
-            zealot1.actualizar();
-            zealot2.actualizar();
+            hidralisco.actualizar(inventario);
+            zealot1.actualizar(inventario);
+            zealot2.actualizar(inventario);
         }
 
         hidralisco.atacar(new Coordenada(6, 1), mapa);
@@ -67,6 +72,7 @@ public class CasoDeUso23 {
 
     @Test
     public void mutalicoNoPuedeAtacarFueraDeSuRango() {
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
         Mapa mapa = new Mapa(new Coordenada(100, 50));
         Mutalisco mutalisco = new Mutalisco();
         Zealot zealot1 = new Zealot();
@@ -77,9 +83,9 @@ public class CasoDeUso23 {
         mapa.establecerUnidad(new Coordenada(6, 1), zealot2);
 
         for (int i=0; i<20; i++) {
-            mutalisco.actualizar();
-            zealot1.actualizar();
-            zealot2.actualizar();
+            mutalisco.actualizar(inventario);
+            zealot1.actualizar(inventario);
+            zealot2.actualizar(inventario);
         }
 
         mutalisco.atacar(new Coordenada(5, 1), mapa);

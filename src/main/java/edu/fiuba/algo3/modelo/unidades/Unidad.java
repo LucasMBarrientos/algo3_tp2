@@ -32,46 +32,52 @@ public abstract class Unidad {
         return coordenada.esIgual(coordenadaAComparar);
     }
 
-    public void actualizar() {
-        tiempoConstruccion--;
-        if(tiempoConstruccion == 0){
-            estado = new UnidadOperativa(danioAereo, danioTerrestre, rango, coordenada);
-        }
-        vida.regenerar();
+    public void actualizar(Inventario inventario) {
+      this.estado.actualizar(inventario);
     }
+
+    public abstract void actualizarUnidad(Inventario inventario);
+
+    public abstract void regenerar();
+
+    public void establecerEstado(EstadoUnidad estado){
+      this.estado = estado;
+      this.estado.setUnidad(this);
+    }
+
+    public boolean reducirTiempoConstruccion(int tiempoAReducir) {
+      if (this.tiempoConstruccion-tiempoAReducir > 0) {
+        this.tiempoConstruccion = this.tiempoConstruccion-tiempoAReducir;
+        return false;
+      } else {
+          return true;
+      }
+    }
+    
 
     public void establecerCoordenada(Coordenada coordenada){
         this.coordenada = coordenada;
     }
 
     public void moverse(Direccion direccion, Mapa mapa) {
-        estado.moverse(direccion,mapa, coordenada, this);
+        estado.moverse(direccion,mapa, coordenada);
     }
 
     public void atacar(Coordenada objetivo, Mapa mapa) {
         estado.atacar(objetivo, mapa);
     }
 
+    public abstract void ejecutarAtaque(Coordenada objetivo, Mapa mapa);
+
     public void intentarOcuparAlMoverse(Terreno terreno){    }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
-        this.estado.recibirDanio(danioTerrestre, danioAereo, this);
+        this.estado.recibirDanio(danioTerrestre, danioAereo);
     }
     
-    public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {
-        if (aerea) {
-            if (this.vida.recibirDanio(danioAereo)) {
-                throw new UnidadEstaDestruida();
-            }
-        } else {
-            if (this.vida.recibirDanio(danioTerrestre)) {
-                throw new UnidadEstaDestruida();
-            }
-        }
-    }
+    public abstract void ejecutarDanio(Danio danio, Danio danioAereo);
 
-
-    public void recolectarRecursos(Terreno terreno, Inventario inventario){    }
+    public void extraerRecursos(Inventario inventario){}
 
     public abstract Unidad generarse(Edificio edificio, Inventario inventario);
 

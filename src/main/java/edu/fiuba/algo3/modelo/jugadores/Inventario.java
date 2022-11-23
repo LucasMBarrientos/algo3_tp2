@@ -162,10 +162,7 @@ public class Inventario {
             edificios.get(i).actualizar(this);
         }
         for(int i = 0;i<this.unidades.size();i++){
-                unidades.get(i).actualizar();
-
-                //TODO: ACTUALIZAR LOS EDIFICIOS INDIVIDUALMENTE
-            //edificio.actualizar(this);
+                unidades.get(i).actualizar(this);
         }
     }
 

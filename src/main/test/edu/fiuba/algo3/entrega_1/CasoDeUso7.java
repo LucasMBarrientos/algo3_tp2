@@ -35,10 +35,10 @@ public class CasoDeUso7 {
         jugadorZerg.moverUnidad(new Coordenada(4,1), new Abajo());
         jugadorZerg.moverUnidad(new Coordenada(4,2), new Abajo());
         jugadorZerg.moverUnidad(new Coordenada(4,3), new Abajo());
-
+        jugadorZerg.ingresarUnidad(new Coordenada(4,3));
         //el zangano recolecta recursos
         for (int i = 0; i < 10; i++) {
-            jugadorZerg.ingresarUnidad(new Coordenada(4,3)); //cambiar esto para que sea un pasarTurno
+            jugadorZerg.actualizar();
         }
 
         jugadorZerg.moverUnidad(new Coordenada(4,3), new Arriba());
