@@ -14,6 +14,8 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoEnergizado;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -26,7 +28,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class Pilon extends EdificioProtoss {
-
+    private Recurso suministroAAgregar = new Suministro(5);
     public Pilon() {
         this.costoEnMinerales = new Mineral(100);
         this.costoEnGas = new GasVespeno(0);
@@ -76,6 +78,11 @@ public class Pilon extends EdificioProtoss {
     public void actualizarEdificio(Inventario inventario) {
       regenerar();
       // energia?
+    }
+    
+    @Override
+    public void agregarSuministro(Inventario inventario) {
+      inventario.agregarSuministro(suministroAAgregar);
     }
 
     @Override
