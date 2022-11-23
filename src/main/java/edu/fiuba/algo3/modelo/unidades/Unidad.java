@@ -53,6 +53,10 @@ public abstract class Unidad {
           return true;
       }
     }
+
+    public void terminarConstruccion(){
+      this.estado.terminarConstruccion();
+    }
     
 
     public void establecerCoordenada(Coordenada coordenada){
