@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.zerg.Devorador;
@@ -22,7 +23,7 @@ public class CasoDeUso21 {
 
     @Test
     public void unMutaliscoPuedeEvolucionarEnUnGuardianYDestruirUnPilonA10DeDistanciaEn25Turnos(){
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(20,20));
         Mutalisco mutalisco = new Mutalisco();
         mapa.establecerUnidad(new Coordenada(2,2), mutalisco);
@@ -58,7 +59,7 @@ public class CasoDeUso21 {
 
     @Test
     public void unMutaliscoPuedeEvolucionarEnUnDevoradorYDestruirUnScoutA5DeDistanciaEn10Turnos(){
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(20,20));
 
         // Construyo un mutalisco

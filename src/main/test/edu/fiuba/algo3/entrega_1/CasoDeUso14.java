@@ -19,7 +19,7 @@ public class CasoDeUso14 {
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 250);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
@@ -46,7 +46,7 @@ public class CasoDeUso14 {
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 250);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 

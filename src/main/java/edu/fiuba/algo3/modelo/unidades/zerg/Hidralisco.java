@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
@@ -20,6 +21,7 @@ public class Hidralisco extends UnidadZerg {
     public Hidralisco() {
         this.costoEnGas = new GasVespeno(25);
         this.costoEnMinerales = new Mineral(75);
+        this.costoSuministro = new Suministro(2);
         this.tiempoConstruccion = 4;
         this.danioAereo = new Danio(10);
         this.danioTerrestre = new Danio(10);

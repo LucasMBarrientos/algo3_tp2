@@ -21,6 +21,9 @@ import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeRepr
 import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.SuperficieRectangular;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,7 +157,7 @@ public class Mapa {
     public Zangano establecerZanganoInicial(int idJugador) {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
-        Zangano zanganoGenerado = new Zangano();
+        Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
         zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));
         zanganoGenerado.terminarConstruccion();
         return zanganoGenerado;

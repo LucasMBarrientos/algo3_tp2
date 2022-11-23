@@ -14,6 +14,7 @@ public abstract class UnidadZerg extends Unidad {
         inventario.consumirLarva();
         inventario.consumirMinerales(costoEnMinerales);
         inventario.consumirGasVespeno(costoEnGas);
+        inventario.consumirSuministro(costoSuministro);
     }
 
     public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {

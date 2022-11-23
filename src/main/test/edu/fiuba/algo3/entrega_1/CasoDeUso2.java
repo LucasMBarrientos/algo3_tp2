@@ -23,6 +23,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
@@ -43,7 +44,7 @@ public class CasoDeUso2 {
 	@Test
     public void unCriaderoNoEstaOperativoEnMenosDe4TurnosConstruyendose() {
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 4;
         
         for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -60,7 +61,7 @@ public class CasoDeUso2 {
 	@Test
     public void unCriaderoEstaOperativoTras4TurnosConstruyendose() {
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         int tiempoDeConstruccion = 4;
 
         for (int i = 0; i < tiempoDeConstruccion; i++) {
@@ -79,7 +80,7 @@ public class CasoDeUso2 {
     public void unaReservaDeReproduccionNoEstaOperativaEnMenosDe12TurnosConstruyendose() {
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         int tiempoDeConstruccion = 12;
 
         for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -95,7 +96,7 @@ public class CasoDeUso2 {
     public void unaReservaDeReproduccionEstaOperativaTras12TurnosConstruyendose() {
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         int tiempoDeConstruccion = 12;
 
         for (int i = 0; i < tiempoDeConstruccion; i++) {
@@ -114,7 +115,7 @@ public class CasoDeUso2 {
     @Test
     public void unaExtractorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         Extractor extractor = new Extractor();
         int tiempoDeConstruccion = 6;
         extractor.ocupar(terrenoVolcan);
@@ -131,7 +132,7 @@ public class CasoDeUso2 {
 	@Test
     public void unExtractorEstaOperativoTras6TurnosConstruyendose() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Extractor extractor = new Extractor();
         int tiempoDeConstruccion = 6;
         extractor.ocupar(terrenoVolcan);
@@ -154,7 +155,7 @@ public class CasoDeUso2 {
     public void unaGuaridaNoEstaOperativaEnMenosDe12TurnosConstruyendose() {
         Guarida guarida = new Guarida();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 12;
 
         for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -170,7 +171,7 @@ public class CasoDeUso2 {
     public void unaGuaridaEstaOperativaTras12TurnosConstruyendose() {
         Guarida guarida = new Guarida();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(25), new Mineral(75));
+        Inventario inv = new Inventario(new GasVespeno(25), new Mineral(75), new Suministro(200));
         int tiempoDeConstruccion = 12;
 
         for (int i = 0; i < tiempoDeConstruccion; i++) {
@@ -189,7 +190,7 @@ public class CasoDeUso2 {
 	@Test
     public void unaEspiralNoEstaOperativaEnMenosDe10TurnosConstruyendose() {
         Espiral espiral = new Espiral();
-        Inventario inv = new Inventario(new GasVespeno(25), new Mineral(75));
+        Inventario inv = new Inventario(new GasVespeno(25), new Mineral(75), new Suministro(200));
         int tiempoDeConstruccion = 10;
 
         for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -205,7 +206,7 @@ public class CasoDeUso2 {
     public void unaEspiralEstaOperativaTras10TurnosConstruyendose() {
         Espiral espiral = new Espiral();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(100), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(100), new Mineral(100), new Suministro(200));
         int tiempoDeConstruccion = 10;
 
         for(int i = 0; i < tiempoDeConstruccion; i++) {
@@ -227,7 +228,7 @@ public class CasoDeUso2 {
     public void unNexoMineralNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada( 1,1));
         NexoMineral nexoMineral = new NexoMineral();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 4;
         nexoMineral.ocupar(terrenoMineral);
         
@@ -246,7 +247,7 @@ public class CasoDeUso2 {
     public void unNexoMineralEstaOperativoTras5TurnosConstruyendose() {
         TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada( 1,1));
         NexoMineral nexoMineral = new NexoMineral();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 4;
         nexoMineral.ocupar(terrenoMineral);
 
@@ -291,7 +292,7 @@ public class CasoDeUso2 {
 @Test
 public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     Pilon pilon = new Pilon();
-    Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+    Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
     int tiempoDeConstruccion = 5;
 
     for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -308,7 +309,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     @Test
     public void unPilonEstaOperativoEn5Turnos() {
         Pilon pilon = new Pilon();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 5;
 
         for (int i = 0; i < tiempoDeConstruccion ; i++) {
@@ -325,7 +326,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     public void unAsimiladorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
         Asimilador asimilador = new Asimilador();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 6;
         asimilador.ocupar(terrenoVolcan);
 
@@ -342,7 +343,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     public void unAsimiladorEstaOperativoTras6TurnosConstruyendose() {
         TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
         Asimilador asimilador = new Asimilador();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 6;
         asimilador.ocupar(terrenoVolcan);
 
@@ -362,7 +363,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
 	@Test
     public void unAccesoNoEstaOperativoEnMenosDe8TurnosConstruyendose() {
         Acceso acceso = new Acceso();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 8;
 
         for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -378,7 +379,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     public void unAccesoEstaOperativoTras8TurnosConstruyendose() {
         Acceso acceso = new Acceso();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(50), new Mineral(125));
+        Inventario inv = new Inventario(new GasVespeno(50), new Mineral(125), new Suministro(200));
         int tiempoDeConstruccion = 8;
 
         for(int i = 0; i < tiempoDeConstruccion; i++) {
@@ -398,7 +399,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     public void unPuertoEstelarNoEstaOperativoEnMenosDe10TurnosConstruyendose() {
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(50), new Mineral(125));
+        Inventario inv = new Inventario(new GasVespeno(50), new Mineral(125), new Suministro(200));
         int tiempoDeConstruccion = 10;
 
         for(int i = 0; i < tiempoDeConstruccion - 1; i++) {
@@ -419,7 +420,7 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     public void unPuertoEstelarEstaOperativoTras8TurnosConstruyendose() {
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         Criadero criadero = new Criadero();
-        Inventario inv = new Inventario(new GasVespeno(150), new Mineral(300));
+        Inventario inv = new Inventario(new GasVespeno(150), new Mineral(300), new Suministro(200));
         int tiempoDeConstruccion = 10;
 
         for(int i = 0; i < tiempoDeConstruccion; i++) {

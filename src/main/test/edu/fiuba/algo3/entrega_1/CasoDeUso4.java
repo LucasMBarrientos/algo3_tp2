@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -25,7 +26,7 @@ public class CasoDeUso4 {
     public void extractorCon0ZanganoGenera0UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
       Extractor extractor = new Extractor();
-      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
       int tiempoDeConstruccion = 6;
       extractor.ocupar(terrenoVolcan);
@@ -45,7 +46,7 @@ public class CasoDeUso4 {
     public void extractorCon1ZanganoGenera10UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
       Extractor extractor = new Extractor();
-      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
       int tiempoDeConstruccion = 6;
       extractor.ocupar(terrenoVolcan);
@@ -69,7 +70,7 @@ public class CasoDeUso4 {
     public void extractorCon2ZanganoGenera20UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
       Extractor extractor = new Extractor();
-      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
       int tiempoDeConstruccion = 6;
       extractor.ocupar(terrenoVolcan);
@@ -94,7 +95,7 @@ public class CasoDeUso4 {
     public void extractorCon3ZanganoGenera30UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
       Extractor extractor = new Extractor();
-      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
       int tiempoDeConstruccion = 6;
       extractor.ocupar(terrenoVolcan);
@@ -119,7 +120,7 @@ public class CasoDeUso4 {
     public void extractorNopuedeTener4Zanganos() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
         Extractor extractor = new Extractor();
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
         int tiempoDeConstruccion = 6;
         extractor.ocupar(terrenoVolcan);
@@ -141,7 +142,7 @@ public class CasoDeUso4 {
     public void asimiladorGenera20UnidadesDeGas() {
       Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
       Asimilador asimilador = new Asimilador();
-      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+      Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
       int tiempoDeConstruccion = 6;
       asimilador.ocupar(terrenoVolcan);

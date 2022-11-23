@@ -17,6 +17,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -27,7 +28,7 @@ public class CasoDeUso22 {
 
     @Test
     public void unZanganoNoSeConstruyeSinCriadero() {
-        Inventario inventario = new Inventario(new GasVespeno(300), new Mineral(500));
+        Inventario inventario = new Inventario(new GasVespeno(300), new Mineral(500), new Suministro(200));
         JugadorZerg jugador = new JugadorZerg(inventario);
         Mapa mapa = new Mapa(new Coordenada(30,30));
         jugador.establecerMapa(mapa);

@@ -24,7 +24,7 @@ public class CasoDeUso7 {
 	@Test
     public void elJugadorZergTendria300MineralesEn10TurnosIngresandoUnZanganoAUnTerrenoMineral() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000",0,200,200);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);

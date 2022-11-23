@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
@@ -22,7 +23,7 @@ public class CasoDeUso23 {
     
     @Test
     public void zerlingNoPuedeAtacarFueraDeSuRango() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(100, 50));
         Zerling zerling = new Zerling();
         Zealot zealot1 = new Zealot();
@@ -47,7 +48,7 @@ public class CasoDeUso23 {
 
     @Test
     public void hidraliscoNoPuedeAtacarFueraDeSuRango() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(100, 50));
         Hidralisco hidralisco = new Hidralisco();
         Zealot zealot1 = new Zealot();
@@ -72,7 +73,7 @@ public class CasoDeUso23 {
 
     @Test
     public void mutalicoNoPuedeAtacarFueraDeSuRango() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(100, 50));
         Mutalisco mutalisco = new Mutalisco();
         Zealot zealot1 = new Zealot();

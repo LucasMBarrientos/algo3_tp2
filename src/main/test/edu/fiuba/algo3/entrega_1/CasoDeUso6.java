@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
@@ -25,9 +26,9 @@ public class CasoDeUso6 {
     @Test
     public void elRadioDelMohoDelCriaderoEsIgualA5cuandoSeTerminaDeConstruir() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
@@ -47,10 +48,10 @@ public class CasoDeUso6 {
     @Test
     public void elRadioDelMohoDelCriaderoInicialNoEsMayorA5EnElPrimerTurno() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250);
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
         
@@ -79,10 +80,10 @@ public class CasoDeUso6 {
     @Test
     public void mohoSeExpande1CasillaCada2Turnos() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250);
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 

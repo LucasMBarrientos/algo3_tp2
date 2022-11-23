@@ -21,6 +21,7 @@ public class Zangano extends UnidadZerg {
     public Zangano() {
         this.costoEnGas = new GasVespeno(0);
         this.costoEnMinerales = new Mineral(25);
+        this.costoSuministro = new Suministro(1);
         this.tiempoConstruccion = 1;
         this.danioAereo = new Danio(0);
         this.danioTerrestre = new Danio(0);
@@ -29,6 +30,19 @@ public class Zangano extends UnidadZerg {
         this.nombre = new Nombre("Zangano");
         establecerEstado(new UnidadEnConstruccion());
     }
+
+    public Zangano(GasVespeno gasInicial, Mineral mineralInicial, Suministro suministro) {
+      this.costoEnGas = gasInicial;
+      this.costoEnMinerales = mineralInicial;
+      this.costoSuministro = suministro;
+      this.tiempoConstruccion = 1;
+      this.danioAereo = new Danio(0);
+      this.danioTerrestre = new Danio(0);
+      this.rango = 0;
+      this.vida = new Vida(25);
+      this.nombre = new Nombre("Zangano");
+      establecerEstado(new UnidadEnConstruccion());
+  }
 
     public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {
         // TODO: Implementar esto

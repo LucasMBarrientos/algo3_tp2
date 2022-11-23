@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import javafx.scene.layout.CornerRadii;
@@ -22,7 +23,7 @@ public class TestMovimientos {
     @Test
     public void moverseDerechaFunciona(){
         Mapa mapa = new Mapa(new Coordenada(20,20));
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
         mapa.establecerUnidad(new Coordenada(1,1),zangano);
@@ -39,7 +40,7 @@ public class TestMovimientos {
     @Test
     public void moverseAbajoFunciona(){
         Mapa mapa = new Mapa(new Coordenada(20,20));
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
         mapa.establecerUnidad(new Coordenada(2,2),zangano);
@@ -56,7 +57,7 @@ public class TestMovimientos {
     @Test
     public void moverseArribaFunciona(){
         Mapa mapa = new Mapa(new Coordenada(20,20));
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
         mapa.establecerUnidad(new Coordenada(2,2),zangano);
@@ -73,7 +74,7 @@ public class TestMovimientos {
     @Test
     public void moverseIzquierdaFunciona(){
         Mapa mapa = new Mapa(new Coordenada(20,20));
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
         mapa.establecerUnidad(new Coordenada(2,2),zangano);

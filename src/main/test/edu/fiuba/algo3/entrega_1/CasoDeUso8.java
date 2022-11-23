@@ -14,6 +14,8 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +35,7 @@ public class CasoDeUso8 {
 
   @Test
   public void noSePuedeConstruirNexoMineralconMenosDe50Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(49));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(49), new Suministro(200));
     NexoMineral nexoMineral = new NexoMineral();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -43,7 +45,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirNexoMineralcon50Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(50));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(50), new Suministro(200));
     NexoMineral nexoMineral = new NexoMineral();
     nexoMineral.consumirRecursosParaConstruccion(inventario);
 
@@ -59,7 +61,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirPilonconMenosDe100Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(99));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(99), new Suministro(200));
     Edificio edificio = new Pilon();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -69,7 +71,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirPiloncon100Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(100));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
     Edificio edificio = new Pilon();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -85,7 +87,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirAsimiladorconMenosDe100Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(99));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(99), new Suministro(200));
     Edificio edificio = new Asimilador();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -95,7 +97,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirAsimiladorcon100Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(100));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
     Edificio edificio = new Asimilador();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -111,7 +113,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirAccesoconMenosDe150Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(149));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(149), new Suministro(200));
     Edificio edificio = new Acceso();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -121,7 +123,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirAccesocon150Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(150));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(150), new Suministro(200));
     Edificio edificio = new Acceso();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -137,7 +139,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirGuaridaconMenosDe150MineralesY150GasVespeno() {
-    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(149));
+    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(149), new Suministro(200));
     Edificio edificio = new PuertoEstelar();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -147,7 +149,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirGuaridacon150MineralesY150GasVespeno() {
-    Inventario inventario = new Inventario(new GasVespeno(150), new Mineral(150));
+    Inventario inventario = new Inventario(new GasVespeno(150), new Mineral(150), new Suministro(200));
     Edificio edificio = new PuertoEstelar();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -163,7 +165,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirCriaderoconMenosDe200Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(199));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(199), new Suministro(200));
     Edificio edificio = new Criadero();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -173,7 +175,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirCriaderocon200Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(200));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(200), new Suministro(200));
     Edificio edificio = new Criadero();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -189,7 +191,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirExtractorconMenosDe100Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(99));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(99), new Suministro(200));
     Edificio edificio = new Extractor();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -199,7 +201,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirExtractorcon100Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(100));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
     Edificio edificio = new Extractor();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -215,7 +217,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirReservaDeReproduccionconMenosDe150Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(149));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(149), new Suministro(200));
     Edificio edificio = new ReservaDeReproduccion();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -225,7 +227,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirReservaDeReproduccioncon150Minerales() {
-    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(150));
+    Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(150), new Suministro(200));
     Edificio edificio = new ReservaDeReproduccion();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -241,7 +243,7 @@ public class CasoDeUso8 {
   }
   @Test
   public void noSePuedeConstruirEspiralconMenosDe150MineralesY100GasVespeno() {
-    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(149));
+    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(149), new Suministro(200));
     Edificio edificio = new Espiral();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -251,7 +253,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirEspiralcon150MineralesY100GasVespeno() {
-    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(150));
+    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(150), new Suministro(200));
     Edificio edificio = new Espiral();
     edificio.consumirRecursosParaConstruccion(inventario);
 
@@ -268,7 +270,7 @@ public class CasoDeUso8 {
 
   @Test
   public void noSePuedeConstruirGuaridaconMenosDe150MineralesY100GasVespeno() {
-    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(199));
+    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(199), new Suministro(200));
     Edificio edificio = new Guarida();
 
     Assertions.assertThrows(RecursosInsuficientes.class, ()->{
@@ -278,7 +280,7 @@ public class CasoDeUso8 {
 
   @Test
   public void sePuedeConstruirGuaridacon150MineralesY100GasVespeno() {
-    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(200));
+    Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(200), new Suministro(200));
     Edificio edificio = new Guarida();
     edificio.consumirRecursosParaConstruccion(inventario);
 

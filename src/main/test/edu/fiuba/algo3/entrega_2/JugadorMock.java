@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadOperativa;
@@ -24,8 +25,8 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public class JugadorMock extends Jugador {
 
-    public JugadorMock(int a,int b) {
-        this.inventario = new Inventario(new GasVespeno(b), new Mineral(a));
+    public JugadorMock(int a,int b,int c) {
+        this.inventario = new Inventario(new GasVespeno(b), new Mineral(a), new Suministro(c));
 
     }
     public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada {

@@ -20,7 +20,7 @@ public class CasoDeUso20 {
     @Test
     public void unaUnidadTerrestreNoPuedeEntrarAAreaEspacial(){
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugador = new JugadorZerg("La mente suprema", "#ff0000",500,500);
+        JugadorZerg jugador = new JugadorZerg("La mente suprema", "#ff0000",500,500,200);
         algoStar.agregarJugador(jugador);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);

@@ -22,7 +22,7 @@ public class CasoDeUso13 {
 	@Test
     public void sePuedeConstruirSobreElMohoDeUnCriaderoDestruido() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);

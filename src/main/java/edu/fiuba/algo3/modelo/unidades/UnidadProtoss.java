@@ -20,6 +20,7 @@ public abstract class UnidadProtoss extends Unidad {
     public void consumirRecursosParaGenerarse(Inventario inventario){
         inventario.consumirMinerales(costoEnMinerales);
         inventario.consumirGasVespeno(costoEnGas);
+        inventario.consumirSuministro(costoSuministro);
     }
 
     public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {

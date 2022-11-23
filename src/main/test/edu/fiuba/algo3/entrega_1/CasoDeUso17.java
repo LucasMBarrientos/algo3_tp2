@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -26,7 +27,7 @@ public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnPuertoEstelarSinUnAcceso() {
-        JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500, 500));
+        JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500, 500,200));
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugador.establecerMapa(mapa);
 
@@ -39,7 +40,7 @@ public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnaEspiralSinUnaGuarida() {
-        Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500));
+        Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(30,30));
 
         Zangano zangano = new Zangano();
@@ -56,7 +57,7 @@ public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnaGuaridaSinUnaReservaDeReproduccion() {
-        Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500));
+        Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500), new Suministro(200));
         Mapa mapa = new Mapa(new Coordenada(30,30));
 
         Zangano zangano = new Zangano();

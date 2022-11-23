@@ -17,7 +17,8 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 public abstract class Unidad {
 
     protected Recurso costoEnMinerales;
-    protected Recurso costoEnGas;
+    protected Recurso costoEnGas;    
+    protected Recurso costoSuministro;
     protected int tiempoConstruccion = 1;
     protected Coordenada coordenada;
     protected Danio danioAereo = new Danio(0);
@@ -92,7 +93,9 @@ public abstract class Unidad {
     }
 
     public abstract void consumirRecursosParaGenerarse(Inventario inventario);
-
+    public void devolverSuministro(Inventario inventario){
+      inventario.agregarSuministro(costoSuministro);
+    }
     public void restaurarRecursosParaConstruccion(Inventario inventario){
         inventario.devolverMinerales(costoEnMinerales);
         inventario.devolverGasVespeno(costoEnGas);

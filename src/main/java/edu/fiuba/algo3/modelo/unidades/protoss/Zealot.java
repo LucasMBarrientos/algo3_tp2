@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
@@ -21,6 +22,7 @@ public class Zealot extends UnidadProtoss {
     public Zealot() {
         this.costoEnMinerales = new Mineral(100);
         this.costoEnGas = new GasVespeno(0);
+        this.costoSuministro = new Suministro(2);
         this.tiempoConstruccion = 4;
         this.danioTerrestre = new Danio(8);
         this.rango = 1;

@@ -41,10 +41,10 @@ public abstract class Jugador {
         inventario.agregarUnidad(unidad);
     }
 
-    protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales) {
+    protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
         this.establecerNombre(nombre);
         this.color = color;
-        this.inventario = new Inventario(new GasVespeno(gasInicial), new Mineral(mineralesIniciales));
+        this.inventario = new Inventario(new GasVespeno(gasInicial), new Mineral(mineralesIniciales), new Suministro(suministroInicial));
     }
 
     public void compararAtributosBasicoConOtrosJugadores(List<Jugador> otrosJugadores) {

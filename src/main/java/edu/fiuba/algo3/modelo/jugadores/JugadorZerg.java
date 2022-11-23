@@ -15,11 +15,11 @@ import javafx.scene.layout.CornerRadii;
 public class JugadorZerg extends Jugador {
 
     public JugadorZerg(String nombre, String color) {
-        establecerAtributosBasicos(nombre, color, 0, 200);
+        establecerAtributosBasicos(nombre, color, 0, 200,0);
     }
 
-    public JugadorZerg(String nombre, String color, int gasInicial, int mineralesIniciales) {
-        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales);
+    public JugadorZerg(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
+        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
 
     // DEBUG ONLY

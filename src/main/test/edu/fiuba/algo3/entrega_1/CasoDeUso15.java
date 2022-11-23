@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -22,7 +23,7 @@ public class CasoDeUso15 {
     @Test
     public void extractorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
 
-        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada(1,1));
         Extractor extractor = new Extractor();
         Zangano zangano1 = new Zangano();
@@ -49,7 +50,7 @@ public class CasoDeUso15 {
 
     @Test
     public void asimiladorNoPuedeSeguirExtrayendoGasVespenoUnaVezAgotado(  ) {
-        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada(1,1));
         Asimilador asimilador = new Asimilador();
         asimilador.ocupar(terrenoVolcan);
@@ -70,7 +71,7 @@ public class CasoDeUso15 {
     @Test
     public void zanganoNoPuedeSeguirExtrayendoMineralUnaVezAgotado(  ) {
 
-        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada(1,1));
         Zangano zangano = new Zangano();
 
@@ -88,7 +89,7 @@ public class CasoDeUso15 {
 
     @Test
     public void nexoMineralNoPuedeSeguirExtrayendomineralUnaVezAgotado(  ) {
-        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada(1,1));
         NexoMineral nexoMineral = new NexoMineral();
 

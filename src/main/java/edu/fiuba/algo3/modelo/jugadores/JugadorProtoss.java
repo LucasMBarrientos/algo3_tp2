@@ -10,11 +10,11 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 public class JugadorProtoss extends Jugador {
 
     public JugadorProtoss(String nombre, String color) {
-        establecerAtributosBasicos(nombre, color, 0, 200);
+        establecerAtributosBasicos(nombre, color, 0, 200,0);
     }
 
-    public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales) {
-        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales);
+    public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales,int suministroInicial) {
+        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
 
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {

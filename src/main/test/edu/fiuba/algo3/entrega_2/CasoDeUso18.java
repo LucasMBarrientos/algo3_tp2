@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
@@ -29,7 +30,7 @@ public class CasoDeUso18 {
 
     @Test
     public void zerlingAtacaAPilon150VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zerling zerling = new Zerling();
         Pilon pilon = new Pilon();
         Mapa mapa = new Mapa(new Coordenada(20,20));
@@ -60,7 +61,7 @@ public class CasoDeUso18 {
 
     @Test
     public void hidraliscoAtacaAPilon60VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Hidralisco hidralisco = new Hidralisco();
         Pilon pilon = new Pilon();
         Mapa mapa = new Mapa(new Coordenada(20,20));
@@ -91,7 +92,7 @@ public class CasoDeUso18 {
 
     @Test
     public void mutaliscoAtacaAPilon66VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mutalisco mutalisco = new Mutalisco();
         Pilon pilon = new Pilon();
         Mapa mapa = new Mapa(new Coordenada(20,20));
@@ -123,7 +124,7 @@ public class CasoDeUso18 {
 
     @Test
     public void zealotAtacaACriadero62VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zealot zealot = new Zealot();
         Pilon pilon = new Pilon();
         Mapa mapa = new Mapa(new Coordenada(20,20));
@@ -155,7 +156,7 @@ public class CasoDeUso18 {
 
     @Test
     public void dragonAtacaACriadero25VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Dragon dragon = new Dragon();
         Pilon pilon = new Pilon();
         Mapa mapa = new Mapa(new Coordenada(20,20));
@@ -186,7 +187,7 @@ public class CasoDeUso18 {
 
     @Test
     public void scoutAtacaACriadero62VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Scout scout = new Scout();
         Pilon pilon = new Pilon();
         Mapa mapa = new Mapa(new Coordenada(20,20));

@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 
 public abstract class Recurso {
 
-    private int unidadesDisponibles;
+    protected int unidadesDisponibles;
 
     public Recurso(int unidades) {
         this.unidadesDisponibles = unidades;

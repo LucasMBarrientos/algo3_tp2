@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
@@ -21,6 +22,7 @@ public class Dragon extends UnidadProtoss {
     public Dragon() {
         this.costoEnMinerales = new Mineral(125);
         this.costoEnGas = new GasVespeno(50);
+        this.costoSuministro = new Suministro(3);
         this.tiempoConstruccion = 6;
         this.danioAereo = new Danio(20);
         this.danioTerrestre = new Danio(20);

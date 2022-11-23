@@ -26,7 +26,7 @@ public class Criadero extends EdificioZerg {
 
     Terreno terreno;
     private int larvas = 3;
-
+    private Recurso suministroAAgregar = new Suministro(5);
     public Criadero() {
         this.costoEnMinerales = new Mineral(200);
         this.costoEnGas = new GasVespeno(0);
@@ -85,6 +85,10 @@ public class Criadero extends EdificioZerg {
         terreno.ocuparPorEdificio(this);
     }
 
+    @Override
+    public void agregarSuministro(Inventario inventario) {
+      inventario.agregarSuministro(suministroAAgregar);
+    }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
     }

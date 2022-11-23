@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
@@ -20,10 +21,12 @@ public class Inventario {
     private List<Unidad> unidades = new ArrayList<Unidad>();
     public GasVespeno gasVespeno;
     public Mineral mineral;
-
-    public Inventario(GasVespeno gasVespeno, Mineral mineral) {
+    public Suministro suministro;
+    
+    public Inventario(GasVespeno gasVespeno, Mineral mineral,Suministro suministro) {
         this.gasVespeno = gasVespeno;
         this.mineral = mineral;
+        this.suministro = suministro;
     }
 
     public Edificio buscarEdificio(Coordenada coordenada) {
@@ -82,9 +85,13 @@ public class Inventario {
         if (indiceHallado == -1) {
             throw new UnidadNoEncontrada();
         }
+        unidades.get(indiceHallado).devolverSuministro(this);
         unidades.remove(unidades.get(indiceHallado));
     }
 
+    public void agregarSuministro(Recurso suministro) {
+        this.suministro.agregarUnidades(suministro);
+    }
 
     public void agregarGasVespeno(Recurso gasVespeno) {
         this.gasVespeno.agregarUnidades(gasVespeno);
@@ -92,6 +99,10 @@ public class Inventario {
 
     public void agregarMinerales(Recurso minerales) {
         this.mineral.agregarUnidades(minerales);
+    }
+
+    public void consumirSuministro(Recurso recursoRequerido) {
+        suministro.gastar(recursoRequerido);
     }
 
     public void consumirGasVespeno(Recurso recursoRequerido) {

@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import org.junit.jupiter.api.Assertions;
@@ -29,7 +30,7 @@ public class CasoDeUso1 {
 	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
         
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         
         Criadero criadero = new Criadero();
         for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
@@ -47,7 +48,7 @@ public class CasoDeUso1 {
     }
 	@Test
     public void criaderoGeneraTresZanganosYTrasUnTurnoDeberiaPoderGenerarHastaUnZanganoMas() {
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         Criadero criadero = new Criadero();
         for (int i = 0; i < 4; i++) { // Se finaliza la construccion del criadero
             criadero.actualizar(inv);
@@ -64,7 +65,7 @@ public class CasoDeUso1 {
     }
 	@Test
     public void unCriaderoNuncaVaATenerMasDe3LarvasALaVez() {
-        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100));
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         Criadero criadero = new Criadero();
         for (int i = 0; i < 10; i++) { // Se finaliza la construccion del criadero y se pasan varios turnos intentando generar mas zanganos
             criadero.actualizar(inv);

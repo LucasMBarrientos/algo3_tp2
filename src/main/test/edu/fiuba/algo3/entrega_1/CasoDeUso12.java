@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class CasoDeUso12 {
 
     @Test
     public void elEscudoDeUnEdificioProtossSeRegeneraApropiadamente() {
-        Inventario inventario = new Inventario(new GasVespeno(500), new Mineral(500));
+        Inventario inventario = new Inventario(new GasVespeno(500), new Mineral(500), new Suministro(200));
 
         Pilon pilon = new Pilon();
         for (int i = 0; i < 6; i++) {

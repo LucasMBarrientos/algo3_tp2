@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
@@ -21,6 +22,7 @@ public class Zerling extends UnidadZerg {
     public Zerling() {
         this.costoEnGas = new GasVespeno(0);
         this.costoEnMinerales = new Mineral(25);
+        this.costoSuministro = new Suministro(1);
         this.tiempoConstruccion = 2;
         this.danioAereo = new Danio(0);
         this.danioTerrestre = new Danio(4);

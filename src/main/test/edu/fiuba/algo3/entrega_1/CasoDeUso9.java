@@ -27,9 +27,9 @@ public class CasoDeUso9 {
   @Test
   public void unEdificioProtossSigueOperativoCuandoPorLoMenosUnPilonLoEnergiza() {
       AlgoStar algoStar = new AlgoStar();
-      JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500);
+      JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
       algoStar.agregarJugador(jugadorZerg);
-      JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 350);
+      JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 350,200);
       algoStar.agregarJugador(jugadorProtoss);
       algoStar.empezarJuego();
       jugadorProtoss.construirEdificio(new Coordenada(2, 1), new Pilon());

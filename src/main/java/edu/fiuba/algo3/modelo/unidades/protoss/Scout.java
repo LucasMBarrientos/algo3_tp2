@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
@@ -21,6 +22,7 @@ public class Scout extends UnidadProtoss {
     public Scout() {
         this.costoEnMinerales = new Mineral(300);
         this.costoEnGas = new GasVespeno(150);
+        this.costoSuministro = new Suministro(4);
         this.tiempoConstruccion = 9;
         this.danioAereo = new Danio(14);
         this.danioTerrestre = new Danio(8);

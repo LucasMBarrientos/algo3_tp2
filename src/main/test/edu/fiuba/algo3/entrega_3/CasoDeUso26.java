@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
@@ -22,7 +23,7 @@ public class CasoDeUso26 {
     @Test
     public void verificarQueUnCriaderoPuedaSuministrarHasta5Zanganos() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 500, 500);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 500, 500,0);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
@@ -50,7 +51,7 @@ public class CasoDeUso26 {
 
         // No deberia haber ninguna unidad en la coordenada (2,1)
 
-        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         });
     }
@@ -58,7 +59,7 @@ public class CasoDeUso26 {
     @Test
     public void verificarQueUnCriaderoPuedaSuministrarAUnMutalizacoYAUnZanganoQueNoSeConvirtioEnEdificio() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 800, 1000);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 800, 1000,0);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
@@ -112,7 +113,7 @@ public class CasoDeUso26 {
         jugadorZerg.moverUnidad(new Coordenada(1,2), new Derecha());
         jugadorZerg.generarUnidad(new Coordenada(3,2), new Mutalisco());
 
-        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
+        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(1,1), new Zangano());
         });
     }

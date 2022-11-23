@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -25,7 +26,7 @@ public class CasoDeUso16 {
 
     @Test
     public void noSePuedeConstruirUnEdificioSobreOtro() {
-        JugadorProtoss jugador = (new JugadorProtoss("nombre", "rosita", 500, 500));
+        JugadorProtoss jugador = (new JugadorProtoss("nombre", "rosita", 500, 500,200));
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugador.establecerMapa(mapa);
 
@@ -41,8 +42,8 @@ public class CasoDeUso16 {
 
     @Test
     public void noSePuedeConstruirSobreUnVolcanConUnAsimiladorYaConstruido() {
-        JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500, 500));
-        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500));
+        JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500, 500,200));
+        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500,200));
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugadorZerg.establecerMapa(mapa);
         jugadorProtoss.establecerMapa(mapa);
@@ -63,11 +64,11 @@ public class CasoDeUso16 {
         Unidad zanganoConstructor = new Zangano();
         zanganoConstructor.establecerCoordenada(coordenadaDelVolcan);
 
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(500));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(500), new Suministro(200));
         inventario.agregarUnidad(zanganoConstructor);
 
         JugadorZerg jugadorZerg = new JugadorZerg(inventario);
-        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500));
+        JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500,200));
 
         Mapa mapa = new Mapa(new Coordenada(30, 30));
         jugadorZerg.establecerMapa(mapa);
