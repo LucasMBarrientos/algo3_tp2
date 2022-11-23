@@ -37,7 +37,7 @@ public class AlgoStar {
 
     public void empezarJuego() {
         for (Jugador jugador : jugadores) {
-            jugador.establecerMapa(mapa);
+          jugador.establecerMapa(mapa);
         }
         mapa.actualizar(turnoActual);
         this.idJugadorActual = 0;
@@ -72,7 +72,7 @@ public class AlgoStar {
 
 
 
-    
+
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 
     public Mapa DEBUG_DEVOLVERMAPA() {
