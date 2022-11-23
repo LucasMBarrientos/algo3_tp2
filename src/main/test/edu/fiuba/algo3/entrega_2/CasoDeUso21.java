@@ -82,7 +82,7 @@ public class CasoDeUso21 {
         }
 
         // Ataco el scout enemigo usando el devorador
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < 17; i++) {
             unidad.atacar(new Coordenada(2,7), mapa);
         }
 
