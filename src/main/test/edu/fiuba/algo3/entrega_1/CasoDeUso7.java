@@ -42,9 +42,10 @@ public class CasoDeUso7 {
 
         //el zangano recolecta recursos
         for (int i = 0; i < 10; i++) {
-            jugadorZerg.ingresarUnidad(new Coordenada(4,3)); //cambiar esto para que sea un pasarTurno
+            jugadorZerg.ingresarUnidad(new Coordenada(4,4)); //cambiar esto para que sea un pasarTurno
         }
 
+        jugadorZerg.moverUnidad(new Coordenada(4,4), new Arriba());
         jugadorZerg.moverUnidad(new Coordenada(4,3), new Arriba());
 
         // Se construye un criadero, consumiendo asi 200 minerales del jugador
