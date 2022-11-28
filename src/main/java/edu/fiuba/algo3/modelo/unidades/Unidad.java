@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
+import edu.fiuba.algo3.modelo.excepciones.InvalidaEvolucionDeUnidad;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
@@ -99,5 +100,9 @@ public abstract class Unidad {
     public void restaurarRecursosParaConstruccion(Inventario inventario){
         inventario.devolverMinerales(costoEnMinerales);
         inventario.devolverGasVespeno(costoEnGas);
+    }
+
+    public Unidad evolucionar(Mapa mapa, Unidad unidad){
+        throw new InvalidaEvolucionDeUnidad();
     }
 }

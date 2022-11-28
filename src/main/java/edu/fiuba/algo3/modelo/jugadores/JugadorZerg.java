@@ -42,6 +42,7 @@ public class JugadorZerg extends Jugador {
 
         inventario.eliminarUnidad(coordenada);
         inventario.agregarEdificio(edificio);
+        edificioInicialConstruido = true;
     }
 
     public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada{
@@ -54,19 +55,8 @@ public class JugadorZerg extends Jugador {
         return unidad;
     }
 
-    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar){
-
-    }
-
-    public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
-        /*
-        Unidad unidad = mapa.buscarTerreno(coordenadaUnidad).devolverUnidad();
-        Unidad unidadObjetivo = mapa.buscarCasilla(coordenadaObjetivo).devolverUnidad();
-        if(unidad == null || unidadObjetivo  == null){
-            throw new TerrenoNoPoseeUnaUnidad();
-        }
-        unidad.atacar(coordenadaObjetivo, mapa);
-        */
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
+        inventario.evolucionarUnidad(mapa, coordenada, unidadAEvolucionar);
     }
 
     public void ingresarUnidad(Coordenada coordenada){

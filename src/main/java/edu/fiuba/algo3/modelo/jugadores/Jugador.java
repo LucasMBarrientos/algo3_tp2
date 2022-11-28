@@ -18,6 +18,7 @@ public abstract class Jugador {
     public Inventario inventario;
     protected String nombre;
     protected String color;
+    protected boolean edificioInicialConstruido = false;
 
     public void establecerNombre(String nombre) throws NombreDeJugadorInvalido {
         if (nombre.length() < 6) {
@@ -93,12 +94,28 @@ public abstract class Jugador {
 
     public void destruirUnidad(Coordenada coordenada) {
         mapa.eliminarUnidad(coordenada);
+        mapa.eliminarUnidad(coordenada);
     }
 
     public void destruirEdificio(Coordenada coordenada) {
         mapa.eliminarEdificio(coordenada);
+        inventario.eliminarEdificio(coordenada);
     }
-    
+
+    public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
+        Unidad unidad = inventario.buscarUnidad(coordenadaUnidad);
+        unidad.atacar(coordenadaObjetivo, mapa);
+        
+        /*
+        Unidad unidad = mapa.buscarTerreno(coordenadaUnidad).devolverUnidad();
+        Unidad unidadObjetivo = mapa.buscarTerreno(coordenadaObjetivo).devolverUnidad();
+        if(unidad == null || unidadObjetivo  == null){
+            throw new TerrenoNoPoseeUnaUnidad();
+        }
+        unidad.atacar(coordenadaObjetivo, mapa);
+        */
+    }
+
     protected abstract void iniciarseEnMapa();
 
     public void establecerId(int id) {
@@ -109,4 +126,7 @@ public abstract class Jugador {
         inventario.actualizar();
     }
     
+    public void fueDerrotado() {
+        inventario.fueDerrotado(edificioInicialConstruido);
+    }
 }

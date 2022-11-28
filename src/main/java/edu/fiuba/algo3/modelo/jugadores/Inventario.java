@@ -1,8 +1,12 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
+import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -29,30 +33,62 @@ public class Inventario {
         this.suministro = suministro;
     }
 
-    public Edificio buscarEdificio(Coordenada coordenada) {
-        for(Edificio edificio : edificios){
-            if (edificio.compararCoordenadas(coordenada)) {
-                return edificio;
+    public void fueDerrotado(boolean edificioInicialConstruido) {
+        if (edificioInicialConstruido && this.edificios.size() == 0) {
+            throw new FinDelJuegoAlcanzado();
+        }
+    }
+
+    private int contarEdificiosDestruidos() {
+        int cuenta = 0;
+        for (Edificio edificio : edificios) {
+            try {
+                edificio.ejecutarDanio(new Danio(0)); // TODO: cambiar esto?
+            } catch (EdificioEstaDestruido e) {
+                cuenta++;
             }
         }
-        throw new EdificioNoEncontrado();
+        return cuenta;
+    }
+
+    public Edificio buscarEdificio(Coordenada coordenada) {
+        return edificios.get(buscarIdDeEdificio(coordenada));
     }
 
     public Unidad buscarUnidad(Coordenada coordenada) {
-        for (Unidad unidad : unidades) {
-            if (unidad.compararCoordenadas(coordenada)) {
-                return unidad;
+        return unidades.get(buscarIdDeUnidad(coordenada));
+    }
+
+    private int buscarIdDeUnidad(Coordenada coordenada) throws UnidadNoEncontrada {
+        int indiceHallado = -1;
+        for (int i = 0; i < this.unidades.size(); i++) {
+            if (this.unidades.get(i).compararCoordenadas(coordenada)) {
+                indiceHallado = i;
             }
         }
-        throw new UnidadNoEncontrada();
+        if (indiceHallado == -1) {
+            throw new UnidadNoEncontrada();
+        }
+        return indiceHallado;
+    }
+
+    private int buscarIdDeEdificio(Coordenada coordenada) throws EdificioNoEncontrado {
+        int indiceHallado = -1;
+        for (int i = 0; i < this.edificios.size(); i++) {
+            if (this.edificios.get(i).compararCoordenadas(coordenada)) {
+                indiceHallado = i;
+            }
+        }
+        if (indiceHallado == -1) {
+            throw new EdificioNoEncontrado();
+        }
+        return indiceHallado;
     }
 
     public boolean tieneEdificio(Nombre nombreDelEdifico) {
         boolean edificioHallado = false;
         for (Edificio edificio : edificios) {
-            if(nombreDelEdifico.esIgual(edificio.devolverNombre())){
-                edificioHallado = true;
-            }
+            edificioHallado = edificioHallado || nombreDelEdifico.esIgual(edificio.devolverNombre());
         }
         return edificioHallado;
     }
@@ -67,6 +103,12 @@ public class Inventario {
     }
 
 
+    public void evolucionarUnidad(Mapa mapa, Coordenada coordenada, Unidad unidadAEvolucionar) {
+        Unidad unidadGenerada = buscarUnidad(coordenada).evolucionar(mapa,unidadAEvolucionar);
+        this.unidades.set(buscarIdDeUnidad(coordenada), unidadGenerada);
+    }
+
+
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);
     }
@@ -76,17 +118,15 @@ public class Inventario {
     }
 
     public void eliminarUnidad(Coordenada coordenada) {
-        int indiceHallado = -1;
-        for (int i=0; i < unidades.size(); i++) {
-            if (unidades.get(i).compararCoordenadas(coordenada)) {
-                indiceHallado = i;
-            }
-        }
-        if (indiceHallado == -1) {
-            throw new UnidadNoEncontrada();
-        }
+        int indiceHallado = buscarIdDeUnidad(coordenada);
         unidades.get(indiceHallado).devolverSuministro(this);
         unidades.remove(unidades.get(indiceHallado));
+    }
+
+    public void eliminarEdificio(Coordenada coordenada) {
+        int indiceHallado = buscarIdDeEdificio(coordenada);
+        //edificios.get(indiceHallado).devolverSuministro(this);
+        edificios.remove(edificios.get(indiceHallado));
     }
 
     public void agregarSuministro(Recurso suministro) {
@@ -173,7 +213,7 @@ public class Inventario {
             edificios.get(i).actualizar(this);
         }
         for(int i = 0;i<this.unidades.size();i++){
-                unidades.get(i).actualizar(this);
+            unidades.get(i).actualizar(this);
         }
     }
 
