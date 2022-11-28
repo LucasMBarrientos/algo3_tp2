@@ -14,7 +14,7 @@ public class EdificioOperativo implements EstadoEdificio {
   protected Edificio edificio;
 
   public void recibirDanio(Danio danio) {
-    edificio.ejecutarDanio(danio);
+    this.edificio.ejecutarDanio(danio);
   }
 
   @Override

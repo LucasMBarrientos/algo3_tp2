@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.excepciones.NoSePuedenAgregarMasJugadores;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -57,10 +58,18 @@ public class AlgoStar {
             rondaActual++;
         }
         mapa.actualizar(turnoActual);
+        boolean finDelJuegoAlcanzado = false;
         for (Jugador jugador : jugadores) {
             jugador.actualizar();
+            try {
+                jugador.fueDerrotado();
+            } catch (FinDelJuegoAlcanzado e) {
+                
+            }
         }
     }
+
+    
 
 
     public Jugador devolverJugadorActual() {

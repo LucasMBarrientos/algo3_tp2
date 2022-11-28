@@ -98,7 +98,21 @@ public abstract class Jugador {
     public void destruirEdificio(Coordenada coordenada) {
         mapa.eliminarEdificio(coordenada);
     }
-    
+
+    public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
+        Unidad unidad = inventario.buscarUnidad(coordenadaUnidad);
+        unidad.atacar(coordenadaObjetivo, mapa);
+        
+        /*
+        Unidad unidad = mapa.buscarTerreno(coordenadaUnidad).devolverUnidad();
+        Unidad unidadObjetivo = mapa.buscarTerreno(coordenadaObjetivo).devolverUnidad();
+        if(unidad == null || unidadObjetivo  == null){
+            throw new TerrenoNoPoseeUnaUnidad();
+        }
+        unidad.atacar(coordenadaObjetivo, mapa);
+        */
+    }
+
     protected abstract void iniciarseEnMapa();
 
     public void establecerId(int id) {
@@ -109,4 +123,7 @@ public abstract class Jugador {
         inventario.actualizar();
     }
     
+    public void fueDerrotado() {
+        inventario.fueDerrotado();
+    }
 }

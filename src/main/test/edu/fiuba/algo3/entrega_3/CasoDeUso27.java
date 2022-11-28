@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.EdificioDestruido;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
@@ -9,6 +11,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -108,24 +111,22 @@ public class CasoDeUso27 {
         }
 
         // Acercar el scout al devorador
-        for (int x = 31; x > 7; x--) {
+        for (int x = 31; x > 6; x--) {
             jugadorProtoss.moverUnidad(new Coordenada(x,0), new Izquierda());
             algoStar.pasarTurno();
             algoStar.pasarTurno();
         }
         algoStar.pasarTurno();
 
-
-        algoStar.DEBUG_DEVOLVERMAPA().DEBUG_MOSTRARMAPAUNIDADES();
-        for (int i=0; i < 8; i++) {
-            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(7,0));
+        for (int i=0; i < 48; i++) {
+            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(6,0));
             algoStar.pasarTurno();
             algoStar.pasarTurno();
         }
 
         // Se intenta atacar una unidad que esta a 5 de rango
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
-            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(7,0));
+            jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(6,0));
         });
     }
 }
