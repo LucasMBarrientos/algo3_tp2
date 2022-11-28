@@ -40,6 +40,13 @@ public class CasoDeUso6 {
         for (int i = 0; i < 5; i++) {
             algoStar.pasarTurno();
         }
+
+        // DEBUG CODE START
+        jugadorZerg.destruirEdificio(new Coordenada(1,1));
+        algoStar.pasarTurno();
+        // DEBUG CODE END
+
+
         Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
             jugadorProtoss.construirEdificio(new Coordenada(6,1), new Acceso());
         });

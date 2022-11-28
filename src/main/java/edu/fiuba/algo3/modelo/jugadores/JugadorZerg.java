@@ -42,6 +42,7 @@ public class JugadorZerg extends Jugador {
 
         inventario.eliminarUnidad(coordenada);
         inventario.agregarEdificio(edificio);
+        edificioInicialConstruido = true;
     }
 
     public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada{

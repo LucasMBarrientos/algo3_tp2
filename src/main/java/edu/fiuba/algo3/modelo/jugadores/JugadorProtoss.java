@@ -27,6 +27,7 @@ public class JugadorProtoss extends Jugador {
         }
         edificioNuevo.establecerPosicion(coordenada);
         inventario.agregarEdificio(edificioNuevo);
+        edificioInicialConstruido = true;
     }
 
     public void actualizar() {

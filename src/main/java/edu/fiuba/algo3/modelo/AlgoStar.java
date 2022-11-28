@@ -64,7 +64,8 @@ public class AlgoStar {
             try {
                 jugador.fueDerrotado();
             } catch (FinDelJuegoAlcanzado e) {
-                
+                // TODO: Realizar lo que suceda con el fin del juego
+                throw e;
             }
         }
     }

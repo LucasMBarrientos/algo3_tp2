@@ -33,8 +33,8 @@ public class Inventario {
         this.suministro = suministro;
     }
 
-    public void fueDerrotado() {
-        if (contarEdificiosDestruidos() == this.edificios.size() && this.edificios.size() > 0) {
+    public void fueDerrotado(boolean edificioInicialConstruido) {
+        if (edificioInicialConstruido && this.edificios.size() == 0) {
             throw new FinDelJuegoAlcanzado();
         }
     }
@@ -52,12 +52,7 @@ public class Inventario {
     }
 
     public Edificio buscarEdificio(Coordenada coordenada) {
-        for(Edificio edificio : edificios){
-            if (edificio.compararCoordenadas(coordenada)) {
-                return edificio;
-            }
-        }
-        throw new EdificioNoEncontrado();
+        return edificios.get(buscarIdDeEdificio(coordenada));
     }
 
     public Unidad buscarUnidad(Coordenada coordenada) {
@@ -77,12 +72,23 @@ public class Inventario {
         return indiceHallado;
     }
 
+    private int buscarIdDeEdificio(Coordenada coordenada) throws EdificioNoEncontrado {
+        int indiceHallado = -1;
+        for (int i = 0; i < this.edificios.size(); i++) {
+            if (this.edificios.get(i).compararCoordenadas(coordenada)) {
+                indiceHallado = i;
+            }
+        }
+        if (indiceHallado == -1) {
+            throw new EdificioNoEncontrado();
+        }
+        return indiceHallado;
+    }
+
     public boolean tieneEdificio(Nombre nombreDelEdifico) {
         boolean edificioHallado = false;
         for (Edificio edificio : edificios) {
-            if(nombreDelEdifico.esIgual(edificio.devolverNombre())){
-                edificioHallado = true;
-            }
+            edificioHallado = edificioHallado || nombreDelEdifico.esIgual(edificio.devolverNombre());
         }
         return edificioHallado;
     }
@@ -112,17 +118,15 @@ public class Inventario {
     }
 
     public void eliminarUnidad(Coordenada coordenada) {
-        int indiceHallado = -1;
-        for (int i=0; i < unidades.size(); i++) {
-            if (unidades.get(i).compararCoordenadas(coordenada)) {
-                indiceHallado = i;
-            }
-        }
-        if (indiceHallado == -1) {
-            throw new UnidadNoEncontrada();
-        }
+        int indiceHallado = buscarIdDeUnidad(coordenada);
         unidades.get(indiceHallado).devolverSuministro(this);
         unidades.remove(unidades.get(indiceHallado));
+    }
+
+    public void eliminarEdificio(Coordenada coordenada) {
+        int indiceHallado = buscarIdDeEdificio(coordenada);
+        //edificios.get(indiceHallado).devolverSuministro(this);
+        edificios.remove(edificios.get(indiceHallado));
     }
 
     public void agregarSuministro(Recurso suministro) {

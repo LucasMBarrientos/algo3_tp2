@@ -18,6 +18,7 @@ public abstract class Jugador {
     public Inventario inventario;
     protected String nombre;
     protected String color;
+    protected boolean edificioInicialConstruido = false;
 
     public void establecerNombre(String nombre) throws NombreDeJugadorInvalido {
         if (nombre.length() < 6) {
@@ -93,10 +94,12 @@ public abstract class Jugador {
 
     public void destruirUnidad(Coordenada coordenada) {
         mapa.eliminarUnidad(coordenada);
+        mapa.eliminarUnidad(coordenada);
     }
 
     public void destruirEdificio(Coordenada coordenada) {
         mapa.eliminarEdificio(coordenada);
+        inventario.eliminarEdificio(coordenada);
     }
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
@@ -124,6 +127,6 @@ public abstract class Jugador {
     }
     
     public void fueDerrotado() {
-        inventario.fueDerrotado();
+        inventario.fueDerrotado(edificioInicialConstruido);
     }
 }
