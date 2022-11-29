@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.estadisticas;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 
-public class Vida extends Estadistica {
+public class Vida {
 
     private final double tasaDeRegeneracion = 0.05;
     private final int valorMaximo;

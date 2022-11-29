@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -21,6 +22,7 @@ import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,57 +41,86 @@ public class CasoDeUso22 {
         });
     }
 /*
-
-
     @Test
-    public void unZanganoNoSeConstruyeSinCriadero2() {
-        JugadorMock jugadorZerg = new JugadorMock(1000,1000);
+    public void unZanganoNoTerminoDeConstruirseAntesDe1Turno() {
+        Zangano zanganoInicial = new Zangano();
+        zanganoInicial.establecerCoordenada(new Coordenada(2,2));
+
         Mapa mapa = new Mapa(new Coordenada(30,30));
-        jugadorZerg.establecerMapa(mapa);
+        mapa.establecerUnidad(new Coordenada(2,2), zanganoInicial);
+
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(400));
+        inventario.agregarUnidad(zanganoInicial);
+
+        JugadorZerg jugador = new JugadorZerg(inventario);
+        jugador.establecerMapa(mapa);
+
+        jugador.construirEdificio(new Coordenada(2,2), new Criadero());
+
+        for (int i = 0; i < 8; i++) {
+            inventario.actualizar();
+        }
+
+        Zangano zangano = new Zangano();
+        jugador.generarUnidad(new Coordenada(2, 2), zangano);
+
+        Assertions.assertThrows(UnidadNoTerminoDeConstruirse.class, ()->{
+           zangano.atacar(new Coordenada(2,2), mapa);
+        });
+    }*/
+/*
+    @Test
+    public void unZerlingNoPuedeGenerarseSinUnaReservaDeReproduccion() {
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(200));
+        JugadorZerg jugador = new JugadorZerg(inventario);
+        Mapa mapa = new Mapa(new Coordenada(30,30));
+        jugador.establecerMapa(mapa);
 
 
         Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
-            jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());});
+            jugador.generarUnidad(new Coordenada(2, 2), new Zerling());
+        });
+    }*/
 
-    }/*
     @Test
-    public void unZanganoNoSeConstruyeAlInstante() {
-        JugadorMock jugadorZerg = new JugadorMock(1000, 1000);
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugadorZerg.establecerMapa(mapa);
-        jugadorZerg.construirEdificio(new Coordenada(2, 2), new Criadero());
-        for (int i = 0; i < 8; i++) {
-            jugadorZerg.actualizar();
-        }
+    public void unZerlingNoTerminoDeGenerarseAntesDe2Turnos() {
+        Zerling zerling = new Zerling();
+        Mapa mapa = new Mapa(new Coordenada(30,30));
 
-        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
-
-
-        Assertions.assertThrows(UnidadNoTerminoDeConstruirse.class, () -> {
-            jugadorZerg.mover(new Abajo(), new Coordenada(2, 1));
+        Assertions.assertThrows(UnidadNoTerminoDeConstruirse.class, ()->{
+            zerling.atacar(new Coordenada(2,3), mapa);
         });
     }
+/*
     @Test
-    public void unZanganoSeConstruyeAlPasoDeUnTurno() {
-        JugadorMock jugadorZerg = new JugadorMock(1000, 1000);
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugadorZerg.establecerMapa(mapa);
-        jugadorZerg.construirEdificio(new Coordenada(2, 2), new Criadero());
-        for (int i = 0; i < 8; i++) {
-            jugadorZerg.actualizar();
-        }
+    public void unHidralicoNoPuedeGenerarseSinUnaGuarida() {
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(200));
+        JugadorZerg jugador = new JugadorZerg(inventario);
+        Mapa mapa = new Mapa(new Coordenada(30,30));
+        jugador.establecerMapa(mapa);
 
-        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
 
-        jugadorZerg.actualizar();
-        jugadorZerg.mover(new Arriba(), new Coordenada(2, 1));
-        /*Assertions.assertThrows(NoHayTerrenoDisponibleParaGenerarUnidad.class, () -> {
-            jugadorZerg.mover(new Abajo(), new Coordenada(2, 1));
-
+        Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
+            jugador.generarUnidad(new Coordenada(2, 2), new Hidralisco());
         });
-        jugadorZerg.actualizar();
     }
-    */
+*/
+    @Test
+    public void unHidraliscoNoTerminoDeGenerarseAntesDe4Turnos() {
+        Hidralisco hidralisco = new Hidralisco();
+        Mapa mapa = new Mapa(new Coordenada(30,30));
+
+        Assertions.assertThrows(UnidadNoTerminoDeConstruirse.class, ()->{
+            hidralisco.atacar(new Coordenada(2,3), mapa);
+        });
+    }
+
+
+
+
+
+
+
 }
 
 

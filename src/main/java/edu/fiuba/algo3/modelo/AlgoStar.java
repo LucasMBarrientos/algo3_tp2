@@ -79,10 +79,6 @@ public class AlgoStar {
 
 
 
-
-
-
-
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 
     public Mapa DEBUG_DEVOLVERMAPA() {

@@ -28,6 +28,7 @@ public abstract class Unidad {
     protected Vida vida;
     protected EstadoUnidad estado = new UnidadEnConstruccion();
     protected Nombre nombre;
+    protected int kills = 0;
     protected boolean aerea = false;
 
     public boolean compararCoordenadas(Coordenada coordenadaAComparar) {
@@ -73,7 +74,7 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
-    public abstract void ejecutarAtaque(Coordenada objetivo, Mapa mapa);
+   // public abstract void ejecutarAtaque(Coordenada objetivo, Mapa mapa);
 
     public void intentarOcuparAlMoverse(Terreno terreno){    }
 
@@ -82,6 +83,14 @@ public abstract class Unidad {
     }
     
     public abstract void ejecutarDanio(Danio danio, Danio danioAereo);
+
+    public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
+        if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
+            mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
+        } else {
+            throw new AtaqueImposibleDeRealizarse();
+        }
+    }
 
     public void extraerRecursos(Inventario inventario){}
 

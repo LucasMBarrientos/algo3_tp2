@@ -50,13 +50,5 @@ public class Guardian extends UnidadZerg {
     public void actualizarUnidad(Inventario inventario) {
       regenerar();
     }
-    
-    @Override
-    public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
-      if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
-        mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo); //la logica seria pasarle ambos daños, q despues la unidad objetivo se encargue de ver cual
-      } else {
-          throw new AtaqueImposibleDeRealizarse(); // TODO: posiblemente implementar una excepcion "AtaqueFueraDeRango"
-      }
-    }
+
 }

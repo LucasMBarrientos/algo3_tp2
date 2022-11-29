@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
-public class Escudo extends Estadistica {
+public class Escudo{
 
     private final double tasaDeRegeneracion = 0.05;
     private final int poderMaximo;
