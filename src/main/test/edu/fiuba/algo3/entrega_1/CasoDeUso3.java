@@ -1,132 +1,119 @@
 package edu.fiuba.algo3.entrega_1;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoBase;
+import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 
 public class CasoDeUso3 {
+    @Test
+    public void extractorNoPuedeConstruirseSobreUnTerrenoNoVolcan() {
+      Terreno terreno = new TerrenoBase(new Coordenada( 1,1));
+      Extractor extractor = new Extractor();
 
-    /*
+      Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+        extractor.ocupar(terreno);
+      });
+    }
 
     @Test
-    public void extractorNoPuedeConstruirseSobreUnTerrenoVacio() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+    public void asimilidarNoPuedeConstruirseSobreUnTerrenoNoVolcan() {
+      Terreno terreno = new TerrenoBase(new Coordenada( 1,1));
+      Asimilador asimilador = new Asimilador();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConTerenoVacio);
+      Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+        asimilador.ocupar(terreno);
+      });
+    }
 
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillaConTerenoVacio, new Extractor());
+    @Test
+    public void criaderoNoSePuedeConstruirSobreTerrenoVolcan() {
+      Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+      Criadero criadero = new Criadero();
+
+      Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+        criadero.ocupar(terrenoVolcan);
+      });
+    }
+    @Test
+    public void ReservaDeReproduccionNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new ReservaDeReproduccion();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
+    }
+    @Test
+    public void GuaridaNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new Guarida();
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
         });
     }
 
     @Test
-    public void extractorNoPuedeConstruirseSobreUnTerrenoConMoho() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+    public void EspiralNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new Espiral();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorZerg.construirEdificio(casillaConMoho, new Extractor());
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
         });
     }
-
     @Test
-    public void extractorPuedeConstruirseSobreUnVolcan() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.empezarJuego();
+    public void pilonNoSePuedeConstruirSobreTerrenoVolcan() {
+      Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+      Pilon pilon = new Pilon();
 
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConVolcan);
-
-        boolean intentoExitoso = true;
-        try {
-            jugadorZerg.construirEdificio(casillaConVolcan.devolverCoordendas(), new Extractor());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
-            intentoExitoso = false;
-        }
-        Assertions.assertTrue(intentoExitoso);
+      Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+        pilon.ocupar(terrenoVolcan);
+      });
     }
-
     @Test
-    public void asimiladorNoPuedeConstruirseSobreUnTerrenoVacio() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        algoStar.empezarJuego();
+    public void NexoMineralNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new NexoMineral();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConVolcan = jugadorZerg.hallarCasillaConVolcanInicial();
-        Casilla casillaConTerenoVacio = mapa.hallarCasillaADistanciaRelativa(casillaConVolcan,1,1);
-
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillaConTerenoVacio, new Asimilador());
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
         });
     }
-
     @Test
-    public void asimiladorNoPuedeConstruirseSobreUnTerrenoConMoho() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        algoStar.empezarJuego();
+    public void AccesoNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new Acceso();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,1,0);
-
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillaConMoho, new Asimilador());
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
         });
     }
-
     @Test
-    public void asimiladorPuedeConstruirseSobreUnVolcan() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-        algoStar.agregarJugador(jugadorProtoss);
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-        algoStar.agregarJugador(jugadorZerg);
-        algoStar.empezarJuego();
-        
-        Casilla casillaConVolcan = jugadorProtoss.hallarCasillaConVolcanInicial();
+    public void PuertoEstelarNoSePuedeConstruirSobreTerrenoVolcan() {
+        Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,1));
+        Edificio edificio = new PuertoEstelar();
 
-        boolean intentoExitoso = true;
-        try {
-            jugadorProtoss.construirEdificio(casillaConVolcan, new Asimilador());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e) {
-            intentoExitoso = false;
-        }
-        Assertions.assertTrue(intentoExitoso);
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            edificio.ocupar(terrenoVolcan);
+        });
     }
-
-    */
-
 }

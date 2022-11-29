@@ -47,14 +47,21 @@ public class Coordenada {
 
     // Devuelve una lista con las coordendas adyacentes en cierto rango
     public List<Coordenada> hallarCoordenadasAdyacentes(int rango) {
-        List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>(); // TODO: ...En esto
-        coordenadasAdyacentesTotales.addAll(this.hallarCoordenadasAdyacentes()); // TODO: Arreglar esto...
+        List<Coordenada> coordenadasAdyacentesTotales = new ArrayList<Coordenada>();
         List<Coordenada> nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
-        for (int i = 0; i < rango - 1; i++) {
+        coordenadasAdyacentesTotales.add(this);
+        for (int i = 0; i < rango; i++) {
+            // Se buscan las coordenadas adyacentes del total de coordenadas adyacentes
+            nuevasCoordenadasAdyacentes = new ArrayList<Coordenada>();
             for (Coordenada coordenada : coordenadasAdyacentesTotales) {
                 nuevasCoordenadasAdyacentes.addAll(coordenada.hallarCoordenadasAdyacentes());
             }
-            coordenadasAdyacentesTotales.addAll(nuevasCoordenadasAdyacentes);
+            // Se aniaden las nuevas coordenadas que no se encuentren en la lista del total de coordenadas adyacentes 
+            for (Coordenada nuevaCoordenada : nuevasCoordenadasAdyacentes) {
+                if (!nuevaCoordenada.seEncuentraEnListaDeCoordenadas(coordenadasAdyacentesTotales)) {
+                    coordenadasAdyacentesTotales.add(nuevaCoordenada);
+                }
+            }
         }
         return coordenadasAdyacentesTotales;
     }
@@ -73,7 +80,16 @@ public class Coordenada {
     }
 
     public Coordenada devolverCoordenadaRelativa(int distanciaX, int distanciaY) {
-        return new Coordenada(this.x + distanciaX, this.y + distanciaY);
+        int x = this.x + distanciaX;
+        int y = this.y + distanciaY;
+        return new Coordenada(x,y);
+    }
+
+    public int devolverX() {
+        return x;
+    }
+    public int devolverY() {
+        return y;
     }
     
 }

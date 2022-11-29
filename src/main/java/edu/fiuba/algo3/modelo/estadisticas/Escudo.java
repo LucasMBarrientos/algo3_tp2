@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
-public class Escudo extends Estadistica {
+public class Escudo{
 
     private final double tasaDeRegeneracion = 0.05;
     private final int poderMaximo;
@@ -12,11 +12,14 @@ public class Escudo extends Estadistica {
     }
 
     public int recibirDanio(Danio danio) {
+        poderActual = Math.max(poderActual,0);
         poderActual = danio.aplicarDanio(poderActual);
-        return poderActual;
+
+        return Math.min(poderActual, 0);
     }
 
     public void regenerar() {
+        poderActual = Math.max(poderActual, 0);
         poderActual += Math.min(poderMaximo - poderActual, poderMaximo * tasaDeRegeneracion);
     }
 

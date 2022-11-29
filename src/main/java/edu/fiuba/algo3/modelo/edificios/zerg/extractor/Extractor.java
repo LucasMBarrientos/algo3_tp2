@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
@@ -12,22 +14,29 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Extractor extends EdificioZerg {
-    private EstadoExtractor estado;
     Terreno terreno;
+    private List<Zangano> zanganosTrabajando = new ArrayList<Zangano>();
 
     public Extractor() {
-      this.costoEnMinerales = new Mineral(50);
+      this.costoEnMinerales = new Mineral(100);
       this.costoEnGas = new GasVespeno(0);
       this.vida = new Vida(750);
       this.tiempoDeConstruccion = 6;
       this.nombre = new Nombre("Extractor");
-      establecerEstado(new ExtractorEnConstruccion());
+      establecerEstado(this.estadoConstruccion);
     }
 
     public void ocupar(Terreno terreno){
@@ -35,38 +44,56 @@ public class Extractor extends EdificioZerg {
       this.terreno = terreno;
     }
     
-    public void actualizar() {
-      this.estado.actualizar();
-    }
 
-    @Override
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
-        return null;
-    }
+    public void ingresarUnidadTrabajadora(Zangano zangano) throws NoHayEspacioDisponible {
+      if(zanganosTrabajando.size() < 3){
+        zanganosTrabajando.add(zangano);
+      }
+      else{
 
-    public void establecerEstado(EstadoExtractor estado){
-      this.estado = estado;
-      this.estado.setExtractor(this);
-    }
-  
-    public Extractor terminarConstruccion(){
-      return this.estado.terminarConstruccion();
-    }
-  
-    public Extractor deshacerConstruccion(){
-      return this.estado.deshacerConstruccion();
-    }
-
-    public void ingresarUnidad(Zangano zangano) {
-      estado.ingresarUnidad(zangano);
+          throw new NoHayEspacioDisponible();
+      }
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) { }
 
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) { }
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+
+    public void extraerRecursos(Inventario inventario) {
+      terreno.extraerGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
+      inventario.agregarGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
+    }
+
+    @Override
+    public void actualizarEdificio(Inventario inventario) {
+      regenerar();
+      extraerRecursos(inventario);
+    }
+
+
 
     /*
-    public void recibirGolpe(Danio danio) throws EdificioDestruido {
+    public void recibirDanio(Danio danio) throws EdificioDestruido {
         vida.recibirDanio(danio);
     }
 
@@ -108,7 +135,9 @@ public class Extractor extends EdificioZerg {
     }
 
     @Override
-    public void recibirGolpe(Danio danioTerestre, Danio danioAereo) {
+    public void recibirDanio(Danio danioTerestre, Danio danioAereo) {
 
     }*/
+
+
 }

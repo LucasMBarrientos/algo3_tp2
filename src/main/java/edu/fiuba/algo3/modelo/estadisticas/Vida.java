@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
-import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 
-public class Vida extends Estadistica {
+public class Vida {
 
     private final double tasaDeRegeneracion = 0.05;
     private final int valorMaximo;
@@ -13,10 +14,12 @@ public class Vida extends Estadistica {
         this.valorActual = valorMaximo;
     }
 
-    public void recibirDanio(Danio danio) throws EdificioDestruido {
+    public boolean recibirDanio(Danio danio) {
         valorActual = danio.aplicarDanio(valorActual);
         if (valorActual <= 0) {
-            throw new EdificioDestruido();
+            return true;
+        }else{
+          return false;
         }
     }
 

@@ -1,23 +1,54 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 
 public class Guardian extends UnidadZerg {
 
-    public Guardian(GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenadaDeLaUnidad) {
-        gasVespenoDelJugador.gastar(new GasVespeno(100));
-        mineralDelJugador.gastar(new Mineral(50));
+    public Guardian() {
+        this.costoEnGas = new GasVespeno(100);
+        this.costoEnMinerales = new Mineral(50);
         this.tiempoConstruccion = 4;
         this.danioTerrestre = new Danio(25);
         this.rango = 10;
         this.vida = new Vida(100);
+        this.nombre = new Nombre("Guardian");
         this.aerea = true;
-        this.coordenada = coordenadaDeLaUnidad;
+        establecerEstado(new UnidadEnConstruccion());
+    }
+
+    @Override
+    public Unidad generarse(Edificio edificio, Inventario inventario) {
+        return null;
+    }
+
+    public boolean ocupar(Terreno terreno){
+        boolean sePudoOcupar = true;
+
+        try {
+            terreno.ocuparPorUnidad(this);
+        } catch (RuntimeException e){
+            sePudoOcupar = false;
+        }
+
+        return sePudoOcupar;
+    }
+
+    @Override
+    public void actualizarUnidad(Inventario inventario) {
+      regenerar();
     }
 
 }

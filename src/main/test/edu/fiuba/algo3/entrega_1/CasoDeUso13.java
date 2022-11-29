@@ -1,42 +1,57 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.direcciones.*;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CasoDeUso13 {/*
-  @Test
-    public void alDestruirUnCriaderoElMohoSigueFuncionando() {
-      AlgoStar algoStar = new AlgoStar();
-      algoStar.empezarJuego();
+public class CasoDeUso13 {
 
-      algoStar.generarUnidad(1, 1);
-      algoStar.moverIzquierda(1, 1);
+	@Test
+    public void sePuedeConstruirSobreElMohoDeUnCriaderoDestruido() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
 
-      // ATACAR EL CON DANIO MAYOR A LA VIDA QUE TIENE
-      for (int i = 0; i < 100; i++) {
+        // Se construye un criadero
+        jugadorZerg.construirEdificio(new Coordenada(1,1), new Criadero());
+        for (int i = 0; i < 5; i++) {
+            algoStar.pasarTurno();
+        }
 
-        algoStar.atacarEdificioALaDerecha(0,1);
-      }
+        // Se generan 2 zanganos
+        jugadorZerg.generarUnidad(new Coordenada(1,1), new Zangano());
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+        
+        // Se destruye el criadero
+        jugadorZerg.destruirEdificio(new Coordenada(1,1));
 
-      Assertions.assertFalse(algoStar.seleccionarCasilla(1,1).devolverEdificio() instanceof Criadero);
 
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      // DEBERIA PODER CONSTRUIR IGUAL CON EL MOHO YA EXISTENTE
+        jugadorZerg.moverUnidad(new Coordenada(2,1), new Abajo());
 
-      algoStar.moverDerecha(0, 1);
-      algoStar.construirEdificio(1, 1, new Criadero());
+        jugadorZerg.construirEdificio(new Coordenada(2,2), new ReservaDeReproduccion());
 
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
-      algoStar.pasarTurno();
+        // Se construye una reserva de reproduccion sobre el moho generado previamente
 
-      Assertions.assertTrue(algoStar.seleccionarCasilla(1,1).devolverEdificio() instanceof Criadero);
-    }*/
+        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
+            jugadorZerg.generarUnidad(new Coordenada(2,2), new Zerling());
+        });
+    }
+
 }

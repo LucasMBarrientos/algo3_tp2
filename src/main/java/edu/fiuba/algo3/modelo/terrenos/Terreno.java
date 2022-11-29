@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -12,14 +14,28 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
+import edu.fiuba.algo3.modelo.geometria.SuperficieRectangular;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Terreno {
 
-    protected Coordenada coordenada;
+    public Coordenada coordenada;
 
     protected Edificio edificio;
+
+    protected Unidad unidad;
     /*
     public void establecerEstado(EstadoTerreno estado) {
         this.estado = estado;
@@ -50,20 +66,93 @@ public abstract class Terreno {
 
     public abstract void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion);
 
+    public abstract void ocuparPorUnidad(Dragon unidad);
+
+    public abstract void ocuparPorUnidad(Zealot unidad);
+
+    public abstract void ocuparPorUnidad(Scout unidad);
+
+    public abstract void ocuparPorUnidad(Zangano unidad);
+
+    public abstract void ocuparPorUnidad(Zerling unidad);
+
+    public abstract void ocuparPorUnidad(Hidralisco unidad);
+
+    public abstract void ocuparPorUnidad(Mutalisco unidad);
+
+    public abstract void ocuparPorUnidad(Guardian unidad);
+
+    public abstract void ocuparPorUnidad(Devorador devorador);
+
+    public abstract void ocuparPorUnidad(AmoSupremo unidad);
+
+
+    public void verificarTerrenoSinEdificio(){
+        if(this.edificio != null){
+            throw new TerrenoNoAptoParaConstruirTalEdificio(); //se podria usar otra excepcion mejor
+        }
+    }
+
+    public void actualizar(){
+
+    }
+
+    public void verificarTerrenoSinUnidad(){
+        if(this.unidad != null){
+            throw new TerrenoOcupadoPorUnaUnidad(); //se podria usar otra excepcion mejor
+        }
+    }
+
+    public void eliminarEdificio() {
+        this.edificio = null;
+    }
+    
+    public void establecerUnidad(Unidad unidad){
+        this.unidad = unidad;
+    }
 
     public abstract void vaciarTerreno();
 
     public abstract void energizarTerreno();
 
+    public void desenergizarTerreno() {
+        return;
+    }
+
     public abstract void cubrirTerrenoDeMoho();
 
-    public void recibirGolpe(Danio danioTerrestre, Danio danioAereo){
-        edificio.recibirGolpe(danioTerrestre,danioAereo);
+    public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
+        if(edificio != null){
+            edificio.recibirDanio(danioTerrestre, danioAereo);
+        } else if (unidad != null) {
+            unidad.recibirDanio(danioTerrestre, danioAereo);
+        }
     }
 
-    /*
-    public EstadoTerreno DEBUGDEVOLVERESTADO() {
-        return estado;
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        if (edificio != null) {
+            edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+        }
     }
-*/
+
+    //TODO: Hacer que sea un solo mensaje "extraer recurso"
+    public void extraerGasVespeno(Recurso recursoRequerido) {
+
+    }
+
+    public Mineral extraerMinerales(Mineral mineral) {
+      return new Mineral(0);
+    }
+    
+    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
+
+    public Edificio DEBUG_DEVOLVEREDIFICIO() {
+        return edificio;
+    }
+
+    public Unidad DEBUG_DEVOLERUNIDAD() {
+        return unidad;
+    }
+
+    public abstract String getString();
 }

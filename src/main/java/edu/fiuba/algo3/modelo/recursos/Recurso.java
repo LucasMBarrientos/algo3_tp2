@@ -4,13 +4,13 @@ import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 
 public abstract class Recurso {
 
-    private int unidadesDisponibles;
+    protected int unidadesDisponibles;
 
     public Recurso(int unidades) {
         this.unidadesDisponibles = unidades;
     }
 
-    public void gastar(Recurso recurso) throws RecursosInsuficientes{
+    public void gastar(Recurso recurso) throws RecursosInsuficientes {
         if(unidadesDisponibles < recurso.devolverCantidadUnidades()){
             throw new RecursosInsuficientes();
         }
@@ -20,6 +20,10 @@ public abstract class Recurso {
     public void agregarUnidades(Recurso recurso){
         unidadesDisponibles += recurso.devolverCantidadUnidades();
     }
+
+    public void restarUnidades(Recurso recurso){
+      unidadesDisponibles -= recurso.devolverCantidadUnidades();
+  }
 
     public void gastarUnidades(int unidadesAConsumir) throws RecursosInsuficientes{
         if(unidadesDisponibles < unidadesAConsumir){

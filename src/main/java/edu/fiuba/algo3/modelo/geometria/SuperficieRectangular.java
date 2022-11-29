@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.geometria;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,6 +14,26 @@ public class SuperficieRectangular {
         this.coordenadaFinal = coordenadaFinal;
     }
 
+    public SuperficieRectangular redimensionar(int indiceDeReescalamiento) {
+        Coordenada coordenadaInicial = this.coordenadaInicial.devolverCoordenadaRelativa(-indiceDeReescalamiento, -indiceDeReescalamiento);
+        Coordenada coordenadaFinal = this.coordenadaFinal.devolverCoordenadaRelativa(indiceDeReescalamiento, indiceDeReescalamiento);
+        return new SuperficieRectangular(coordenadaInicial, coordenadaFinal);
+    }
+
+    public List<Coordenada> devolverCoordenadasAlBorde() {
+        List<Coordenada> coordenadas = new ArrayList<Coordenada>();
+        Coordenada coordenada;
+        for (int y = 0; y < calcularLongitudY(); y++) {
+            for (int x = 0; x < calcularLongitudX(); x++) {
+                coordenada = new Coordenada(x, y);
+                if (coordenada.calcularDiferenciaEnX(coordenadaInicial) == 0 || coordenada.calcularDiferenciaEnY(coordenadaInicial) == 0 || coordenada.calcularDiferenciaEnX(coordenadaFinal) == -1 || coordenada.calcularDiferenciaEnY(coordenadaFinal) == -1) {
+                    coordenadas.add(coordenada);
+                }
+            }
+        }
+        return coordenadas;
+    }
+
     public int calcularLongitudX() {
         return coordenadaFinal.calcularDiferenciaEnX(coordenadaInicial);
     }
@@ -20,6 +41,7 @@ public class SuperficieRectangular {
     public int calcularLongitudY() {
         return coordenadaFinal.calcularDiferenciaEnY(coordenadaInicial);
     }
+
     // Devuelve el promedio entre la longitud de ambos lados
     public int calcularLongitudPromedio() {
         return (calcularLongitudX() + calcularLongitudY()) / 2;
@@ -37,33 +59,67 @@ public class SuperficieRectangular {
         return (this.contieneCoordenadaEnX(coordenada) && this.contieneCoordenadaEnY(coordenada));
     }
 
-    public Coordenada devolverCoordenadaCentral() {
+    public List<Coordenada> filtrarListaDeCoordenadas(List<Coordenada> coordenadas) {
+        List<Coordenada> coordenadasFiltradas = new ArrayList<Coordenada>();
+        for (Coordenada coordenada : coordenadas) {
+            if (this.contieneCoordenada(coordenada)) {
+                coordenadasFiltradas.add(coordenada);
+            }
+        }
+        return coordenadasFiltradas;
+    }
+
+    public List<Coordenada> devolverCoordenadasAdyacentes(Coordenada coordenadaCentral) {
+        List<Coordenada> coordenadasPosibles = coordenadaCentral.hallarCoordenadasAdyacentes();
+        return this.filtrarListaDeCoordenadas(coordenadasPosibles);
+    }
+
+    public List<Coordenada> devolverCoordenadasAdyacentes(Coordenada coordenadaCentral, int rango) {
+        List<Coordenada> coordenadasPosibles = coordenadaCentral.hallarCoordenadasAdyacentes(rango);
+        return this.filtrarListaDeCoordenadas(coordenadasPosibles);
+    }
+
+    public Coordenada hallarCoordenadaCentral() {
         int x = calcularLongitudX() / 2;
         int y = calcularLongitudY() / 2;
         return coordenadaInicial.devolverCoordenadaRelativa(x,y);
     }
 
-    public Coordenada devolverCoordenadaAlAzar() {
+    public Coordenada buscarCoordenadaAlAzar() {
         int x = ThreadLocalRandom.current().nextInt(calcularLongitudX());
         int y = ThreadLocalRandom.current().nextInt(calcularLongitudY());
         return coordenadaInicial.devolverCoordenadaRelativa(x,y);
     }
 
-    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
+
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas, int rango) {
         boolean coordenadaValida;
         Coordenada coordenada;
         do {
             coordenadaValida = true;
-            coordenada = this.devolverCoordenadaAlAzar();
+            coordenada = this.buscarCoordenadaAlAzar();
             for (Coordenada coordenadaEvitada : coordenasEvitadas) {
-                coordenadaValida = !((!coordenadaValida) || coordenada.esIgual(coordenadaEvitada));
+                coordenadaValida = !((!coordenadaValida) || coordenada.seEncuentraACiertoRangoDeOtraCoordenada(coordenadaEvitada, rango));
             }
         } while (!coordenadaValida);
         return coordenada;
     }
 
+
+    public Coordenada devolverCoordenadaAlAzarEvitando(List<Coordenada> coordenasEvitadas) {
+        return this.devolverCoordenadaAlAzarEvitando(coordenasEvitadas, 0);
+    }
+
     public int calcularSuperficie() {
         return calcularLongitudX() * calcularLongitudY();
+    }
+
+    public Coordenada transformarCoordenadaRelativamenteAlCentro(Coordenada coordenadaOriginal, int distanciaX, int distanciaY) {
+        int distanciaXACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnX(this.hallarCoordenadaCentral());
+        int direccionX = distanciaXACoordenadaCentral / Math.abs(distanciaXACoordenadaCentral);
+        int distanciaYACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnY(this.hallarCoordenadaCentral());
+        int direccionY = distanciaYACoordenadaCentral / Math.abs(distanciaYACoordenadaCentral);
+        return coordenadaOriginal.devolverCoordenadaRelativa(distanciaX * direccionX, distanciaY * direccionY);
     }
 
 }

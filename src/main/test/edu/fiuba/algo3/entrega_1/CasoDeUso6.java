@@ -1,87 +1,119 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso6 {
 
-    /*
-
     @Test
-    public void elRadioDelMohoDelCriaderoInicialEsIgualA5EnElPrimerTurno() {
+    public void elRadioDelMohoDelCriaderoEsIgualA5cuandoSeTerminaDeConstruir() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaConMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,5,0);
+        // Se construye un criadero a partir de 4 pasarTurno
+        // El moho Se expande de 1,1 a 6,1 y de crea a apartir del 5 pasarTurno()
 
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-        boolean intentoExitoso = true;
-        try {
-            jugadorZerg.construirEdificio(casillaConMoho, new ReservaDeReproduccion());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e){
-            intentoExitoso = false;
+        jugadorZerg.construirEdificio(new Coordenada(1,1), new Criadero());
+        jugadorProtoss.construirEdificio(new Coordenada(6,2), new Pilon());
+        for (int i = 0; i < 5; i++) {
+            algoStar.pasarTurno();
         }
-        Assertions.assertTrue(intentoExitoso);
-    }
 
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            jugadorProtoss.construirEdificio(new Coordenada(6,1), new Acceso());
+        });
+    }
 
     @Test
     public void elRadioDelMohoDelCriaderoInicialNoEsMayorA5EnElPrimerTurno() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
+        
+        Criadero criadero = new Criadero();
+        Zangano zangano = new Zangano();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaSinMoho = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,6,0);
+        jugadorZerg.construirEdificio(new Coordenada(1,1), criadero);
 
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(casillaSinMoho, new ReservaDeReproduccion());
+        criadero.terminarConstruccion();
+        jugadorZerg.generarUnidad(new Coordenada(1,1), zangano);
+
+        zangano.actualizar(inventario);
+        zangano.actualizar(inventario);
+
+        jugadorZerg.moverUnidad(new Coordenada(2,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(3,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(4,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(5,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(6,1),new Abajo());
+
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
+            jugadorZerg.construirEdificio(new Coordenada(6,2), new ReservaDeReproduccion());
         });
     }
 
     @Test
     public void mohoSeExpande1CasillaCada2Turnos() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
-        Mapa mapa = algoStar.devolverMapa();
-        Casilla casillaConCriadero = jugadorZerg.hallarCasillaConEdificioInicial();
-        Casilla casillaSinMohoInicialmente = mapa.hallarCasillaADistanciaRelativa(casillaConCriadero,6,0);
-        for(int i = 0; i < 4; i++) { // Despues de 2 turnos del jugador zerg (4 turnos totales), el moho se deberia expandir 1 casilla mas
-            algoStar.pasarTurno();
-        }
+        Criadero criadero = new Criadero();
+        Zangano zangano = new Zangano();
 
-        jugadorZerg.generarUnidad(casillaConCriadero);
-        jugadorZerg.moverUnidad(casillaConCriadero, casillaConMoho);
-        boolean intentoExitoso = true;
-        try {
-            jugadorZerg.construirEdificio(casillaSinMohoInicialmente, new ReservaDeReproduccion());
-        } catch (TerrenoNoAptoParaConstruirEsteEdificio e){
-            intentoExitoso = false;
-        }
-        Assertions.assertTrue(intentoExitoso);
+        jugadorZerg.construirEdificio(new Coordenada(1,1), criadero);
+
+        criadero.terminarConstruccion();
+        jugadorZerg.generarUnidad(new Coordenada(1,1), zangano);
+
+        zangano.actualizar(inventario);
+        zangano.actualizar(inventario);
+
+        jugadorZerg.moverUnidad(new Coordenada(2,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(3,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(4,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(5,1),new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(6,1),new Abajo());
+
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
+
+        jugadorZerg.construirEdificio(new Coordenada(6,2), new ReservaDeReproduccion());
+
     }
 
-    */
-    
+
 }

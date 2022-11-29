@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -12,10 +14,15 @@ import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class TerrenoBase extends Terreno {
-
 
     private EstadoTerreno estado = new TerrenoVacio(this);
 
@@ -24,6 +31,9 @@ public class TerrenoBase extends Terreno {
     }
     public void establecerEdificio(Edificio edificio){
         this.edificio = edificio;
+    }
+    public void establecerUnidad(Unidad unidad){
+        this.unidad = unidad;
     }
 
     public void establecerEstado(EstadoTerreno estado){
@@ -70,12 +80,90 @@ public class TerrenoBase extends Terreno {
         estado.ocuparPorEdificio(reservaDeReproduccion);
     }
 
-    public void energizarTerreno() { estado.energizarTerreno(); }
+    public void ocuparPorUnidad(Dragon unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
 
-    public void cubrirTerrenoDeMoho() { estado.cubrirTerrenoDeMoho();}
+    public void ocuparPorUnidad(Zealot unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
 
-    public void vaciarTerreno() { estado.vaciarTerreno(); }
+    public void ocuparPorUnidad(Scout unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
 
+    public void ocuparPorUnidad(Zangano unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
 
+    public void ocuparPorUnidad(Zerling unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+
+    public void ocuparPorUnidad(Hidralisco unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+
+    public void ocuparPorUnidad(Mutalisco unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+    public void ocuparPorUnidad(Guardian unidad) {
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+    
+    public void ocuparPorUnidad(Devorador unidad) {
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+
+    public void ocuparPorUnidad(AmoSupremo unidad){
+        estado.ocuparPorUnidad(unidad);
+        unidad.establecerCoordenada(coordenada);
+    }
+
+    public void energizarTerreno() {
+        estado.energizarTerreno();
+    }
+
+    public void desenergizarTerreno() {
+        estado.desenergizarTerreno();
+    }
+
+    public void cubrirTerrenoDeMoho() {
+        estado.cubrirTerrenoDeMoho();
+    }
+
+    public void vaciarTerreno() { 
+        establecerEstado(new TerrenoVacio(null));
+    }
+
+    @Override
+    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho,List<Coordenada> coordenadasConCriaderos,List<Coordenada> coordenadasConPilones) {
+        if (edificio != null) {
+            edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+        }
+        if (estado.tieneMoho()) {
+            coordenadasConMoho.addAll(coordenada.hallarCoordenadasAdyacentes());
+        }
+    }
+
+    @Override
+    public String getString() {
+        return estado.getString();
+    }
+
+    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
+
+    public EstadoTerreno DEBUG_DEVOLVERESTADO() {
+        return estado;
+    }
 
 }

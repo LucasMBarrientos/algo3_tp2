@@ -2,10 +2,18 @@ package edu.fiuba.algo3.entrega_1;
 
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoTerminoDeConstruirse;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Casilla;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
@@ -17,88 +25,68 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 public class CasoDeUso9 {
 
   @Test
-  public void verificarSiEdificioProtossOperaCuandoDebe() {
-    AlgoStar algoStar = new AlgoStar();
-    JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "azul");
-    algoStar.agregarJugador(jugadorProtoss);
-    JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "rojo");
-    algoStar.agregarJugador(jugadorZerg);
-    algoStar.empezarJuego();
-    algoStar.pasarTurno();
-
-    Casilla casillaConPilon = jugadorProtoss.hallarCasillaConEdificioInicial();
-    List<Coordenada> coordenadasConTerrenosEnergizados = casillaConPilon.hallarCoordenadasAdyacentes();
-    jugadorProtoss.construirEdificio(coordenadasConTerrenosEnergizados.get(0), new Pilon());
-
-    List<Casilla> casillasMinerales = jugadorProtoss.hallarCasillasConMineralesIniciales();
-    jugadorProtoss.construirEdificio(casillasMinerales.get(0).devolverCoordendas(), new NexoMineral());
-    jugadorProtoss.construirEdificio(casillasMinerales.get(1).devolverCoordendas(), new NexoMineral());
-    
-
-    for(int i=0; i<10; i++){
-      algoStar.pasarTurno();
-    }
+  public void unEdificioProtossSigueOperativoCuandoPorLoMenosUnPilonLoEnergiza() {
+      AlgoStar algoStar = new AlgoStar();
+      JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
+      algoStar.agregarJugador(jugadorZerg);
+      JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 350,200);
+      algoStar.agregarJugador(jugadorProtoss);
+      algoStar.empezarJuego();
+      jugadorProtoss.construirEdificio(new Coordenada(2, 1), new Pilon());
+      jugadorProtoss.construirEdificio(new Coordenada(2, 3), new Pilon());
+      for (int i = 0; i < 6; i++) {
+          algoStar.pasarTurno();
+      }
+      jugadorProtoss.construirEdificio(new Coordenada(2, 2), new Acceso());
+      for (int i = 0; i < 8; i++) {
+          algoStar.pasarTurno();
+      }
+      jugadorProtoss.destruirEdificio(new Coordenada(2,3));
 
 
-    /*Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-      jugadorProtoss.construirEdificio(casillasMinerales.get(2).devolverCoordendas(), new NexoMineral());
-    });*/
-
-
-
+      Assertions.assertThrows(RecursosInsuficientes.class, () -> {
+          jugadorProtoss.generarUnidad(new Coordenada(2, 2), new Zealot());
+      });
   }
-    /*
-    AlgoStar algoStar = new AlgoStar();
-    algoStar.empezarJuego();
-    algoStar.pasarTurno();
+      /*
+      JugadorProtoss jugador = new JugadorProtoss();
+      Pilon pilon1 = new Pilon();
+      Pilon pilon2 = new Pilon();
+      Acceso acceso = new Acceso();
+      jugador.construirEdificio(new Coordenada(2,2), pilon1);
+      jugador.construirEdificio(new Coordenada(2,4), pilon2);
+      jugador.construirEdificio(new Coordenada(2,3), acceso);
 
-    algoStar.construirEdificio(8,8,new Pilon());
+      for(int i=0; i<10; i++ ){
+          jugador.actualizar(); //termino de construir los edificios
+      }
 
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
+      pilon1.recibirDanio(new Danio(700)); //pilon1 pasa a estar destruido
 
-    Assertions.assertTrue(algoStar.seleccionarCasilla(8,8).devolverEdificio() instanceof Pilon);
+      Assertions.assertNotNull(acceso.generarUnidad(new Zealot())); //acceso deberia seguir operativo
+  */
 
-    algoStar.pasarTurno();
+  /*
 
-    Jugador jugador = algoStar.hallarJugadorActual(); 
+  @Test
+  public void unEdificioProtossPasaAEstarInoperativoSiNoHayPilonQueLoEnergice() {
+      JugadorProtoss jugador = new JugadorProtoss();
+      Pilon pilon = new Pilon();
+      Acceso acceso = new Acceso();
+      jugador.construirEdificio(new Coordenada(2,2), pilon);
+      jugador.construirEdificio(new Coordenada(2,3), acceso);
 
-    algoStar.seleccionarCasilla(9, 8).establecerTerreno(new TerrenoMineral());
-    algoStar.construirEdificio(9, 8,new NexoMineral());
+      for(int i=0; i<10; i++ ){
+          jugador.actualizar(); //termino de construir los edificios
+      }
 
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
-    algoStar.pasarTurno();
+      pilon.recibirDanio(new Danio(700)); //pilon pasa a estar destruido
 
-    Assertions.assertTrue(algoStar.seleccionarCasilla(9,8).devolverEdificio() instanceof NexoMineral);
-
-    // Agregar muchos recursos
-    for (int i=0;i<100; i++) {
-      algoStar.pasarTurno();
-    }
-
-    algoStar.construirEdificio(8, 9,new Acceso());
-    // Termino el edificio
-    for (int i=0;i<10; i++) {
-      algoStar.pasarTurno();
-    }
-
-    // destruimos el Pilon construido luego de empezar el juego
-    algoStar.seleccionarCasilla(7,8).establecerUnidad(new Zangano());
-    for (int i=0;i<100; i++) {
-      algoStar.atacarEdificioALaDerecha(7,8);
-      algoStar.pasarTurno();
-    }
-    Assertions.assertTrue(algoStar.seleccionarCasilla(8,8).devolverEdificio() == null);
-
-    Assertions.assertTrue(((EdificioProtoss) algoStar.seleccionarCasilla(8,9).devolverEdificio()).devolverOperatividad() == true);
-
-    Assertions.assertTrue(algoStar.seleccionarCasilla(8,9).devolverTerreno() instanceof TerrenoEnergizado);
+      Assertions.assertThrows(EdificioNoOperativo.class, ()->{
+          acceso.generarUnidad(new Zealot());
+      });
+  }
 */
-  }
+}
 
 

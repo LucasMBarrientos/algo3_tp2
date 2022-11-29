@@ -1,49 +1,42 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.excepciones.EdificioDestruido;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
 public class CasoDeUso12 {
-  @Test
-    public void alDañarEdicioProtossConUnDanioMayorAlEscudoSeRegeneraSoloSuEscudo() {
-      Pilon pilon = new Pilon();
-      for(int i=0; i<6; i++){ pilon.actualizar(); } //paso los turnos para que se termine de construir
 
+    @Test
+    public void elEscudoDeUnEdificioProtossSeRegeneraApropiadamente() {
+        Inventario inventario = new Inventario(new GasVespeno(500), new Mineral(500), new Suministro(200));
 
-      boolean comportamientoEsperado = false;
-      try{
-          pilon.recibirGolpe(new Danio(100));
-      }catch (EdificioDestruido edificioDestruido){
-          comportamientoEsperado = true;
-      }
-      Assertions.assertFalse(comportamientoEsperado);
+        Pilon pilon = new Pilon();
+        for (int i = 0; i < 6; i++) {
+            pilon.actualizar(inventario);
+        } //paso los turnos para que se termine de construir
 
-      for(int i=0; i<6; i++){
-          pilon.actualizar();
-      }
+        pilon.recibirDanio(new Danio(500), new Danio(0));
 
-      try{
-          pilon.recibirGolpe(new Danio(500));
-      }catch (EdificioDestruido edificioDestruido){
-          comportamientoEsperado = true;
-      }
-      Assertions.assertFalse(comportamientoEsperado);
+        for (int i = 0; i < 40; i++) {
+            pilon.actualizar(inventario);
+        }
 
-      for(int i=0; i<15; i++){
-          pilon.actualizar();
-      } //Se cura al completo su vida es 100 y su escudo es 300, asi q 400 de daño deberia matarlo
+        pilon.recibirDanio(new Danio(300), new Danio(0));
+        pilon.actualizar(inventario);
 
-      Assertions.assertThrows(EdificioDestruido.class,() ->{
-          pilon.recibirGolpe(new Danio(400));
-      });
+        pilon.recibirDanio(new Danio(114), new Danio(0));
 
+        Assertions.assertThrows(EdificioEstaDestruido.class, () ->{
+            pilon.recibirDanio(new Danio(1), new Danio(0));
+        });
+    }
 
-  }
 }
