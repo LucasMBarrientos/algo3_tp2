@@ -31,12 +31,12 @@ public class AlgoStarView extends BorderPane {
 
     public AlgoStarView(Stage stage, AlgoStar algostar) {
         this.algoStar = algostar;
+        mapa = algoStar.empezarJuego();
         setMenu(stage);
         pantallaJuego();
         setBotonera();
         this.stage = stage;
         limite = new Coordenada(100,20);
-        mapa = algoStar.empezarJuego();
     }
 
     private void setBotonera() {

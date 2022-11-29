@@ -153,4 +153,5 @@ public abstract class Terreno {
         return unidad;
     }
 
+    public abstract String getString();
 }

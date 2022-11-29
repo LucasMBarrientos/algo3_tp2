@@ -132,4 +132,9 @@ public class TerrenoVolcan extends Terreno {
         gasVespeno.gastar(recursoRequerido);
     }
 
+    @Override
+    public String getString() {
+        return "v";
+    }
+
 }

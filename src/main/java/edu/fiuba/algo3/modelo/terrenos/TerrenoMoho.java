@@ -141,6 +141,11 @@ public class TerrenoMoho implements EstadoTerreno {
         return;
     }
 
+    @Override
+    public String getString() {
+        return "h";
+    }
+
     public void energizarTerreno() {
         return;
     }

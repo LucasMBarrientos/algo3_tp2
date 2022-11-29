@@ -128,6 +128,11 @@ public class TerrenoMineral extends Terreno {
     }
 
     @Override
+    public String getString() {
+        return "m";
+    }
+
+    @Override
     public void actualizar(){
 
     }

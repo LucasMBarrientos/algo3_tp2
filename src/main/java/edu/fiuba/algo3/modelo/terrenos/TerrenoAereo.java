@@ -120,4 +120,9 @@ public class TerrenoAereo extends Terreno{
     public void energizarTerreno() { }
 
     public void cubrirTerrenoDeMoho() { }
+
+    @Override
+    public String getString() {
+        return "a";
+    }
 }

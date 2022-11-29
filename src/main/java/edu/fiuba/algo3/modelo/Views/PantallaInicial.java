@@ -23,7 +23,8 @@ public class PantallaInicial extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-        Image iconoZerg = new Image("file:src/main/resources/iconozerg.png");
+
+        Image iconoZerg = new Image("/iconozerg.png");
         BackgroundImage fondo = new BackgroundImage(iconoZerg, BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.setBackground(new Background(fondo));
 

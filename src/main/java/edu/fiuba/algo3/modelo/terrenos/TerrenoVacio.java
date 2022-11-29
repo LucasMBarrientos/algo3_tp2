@@ -138,6 +138,11 @@ public class TerrenoVacio implements EstadoTerreno {
         terreno.establecerEstado(new TerrenoMoho(terreno));
     }
 
+    @Override
+    public String getString() {
+        return "i";
+    }
+
     public void energizarTerreno() {
         terreno.establecerEstado(new TerrenoEnergizado(terreno));
     }

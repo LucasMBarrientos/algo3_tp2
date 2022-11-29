@@ -214,6 +214,23 @@ public class Mapa {
         }
     }
 
+    public String getString(){
+        String mapaEnString = "";
+        int longitudX = this.superficie.calcularLongitudX();
+        int contadorDeLinea = 0;
+        for(Terreno terreno : terrenos){
+            mapaEnString += terreno.getString();
+
+            if(contadorDeLinea >= longitudX){
+                mapaEnString += "0";
+                contadorDeLinea = 0;
+            }
+            contadorDeLinea ++;
+        }
+        return mapaEnString;
+    }
+
+
     public void actualizarTerrenosEnergizados(List<Coordenada> coordenadasConPilones) {
         for (Terreno terreno : terrenos) {
             terreno.desenergizarTerreno();
@@ -311,9 +328,6 @@ public class Mapa {
         return new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2);
     }
 
-    public String getString(){
-        return "s";
-    }
 
     public void DEBUG_MOSTRARMAPAUNIDADES() {
         String lineaDelMapa = "";
