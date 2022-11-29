@@ -134,4 +134,8 @@ public abstract class Unidad {
     public Unidad evolucionar(Mapa mapa, Unidad unidad){
         throw new InvalidaEvolucionDeUnidad();
     }
+
+    public void destruirse(Inventario inventario){
+        inventario.eliminarUnidad(coordenada);
+    }
 }
