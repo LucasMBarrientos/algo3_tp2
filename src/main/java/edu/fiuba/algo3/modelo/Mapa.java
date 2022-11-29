@@ -220,12 +220,13 @@ public class Mapa {
         int longitudX = this.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
-            mapaEnString += terreno.getString();
-
             if(contadorDeLinea >= longitudX){
                 mapaEnString += "0";
                 contadorDeLinea = 0;
             }
+
+            mapaEnString += terreno.getString();
+
             contadorDeLinea ++;
         }
         return mapaEnString;

@@ -34,8 +34,8 @@ public class MapaView {
         String[] listaDeTerrenos = infoMapa.split("");
         int sizeX = 10;
         int sizeY = 10;
-        int posX = 1 ;
-        int posY = 1 ;
+        int posX = 2 ;
+        int posY = 2 ;
 
         int separacion = 15;
         for (int i = 0; i < listaDeTerrenos.length; i++) {
