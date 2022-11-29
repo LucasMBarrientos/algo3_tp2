@@ -32,28 +32,29 @@ public class AmoSupremo extends UnidadZerg  {
 
   @Override
   public boolean ocupar(Terreno terreno) {
-    // TODO Auto-generated method stub
-    return false;
+    boolean sePudoOcupar = true;
+
+    try {
+      terreno.ocuparPorUnidad(this);
+      //TODO: Volver visibles a las unidades que se encuentren a radio 4
+    } catch (RuntimeException e){
+      sePudoOcupar = false;
+    }
+
+    return sePudoOcupar;
   }
 
   @Override
   public void actualizarUnidad(Inventario inventario) {
-    // TODO Auto-generated method stub
-    
+    regenerar();
   }
 
-  @Override
-  public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
-    // TODO Auto-generated method stub
-    
-  }
 
   @Override
   public Unidad generarse(Edificio edificio, Inventario inventario) {
     // TODO Auto-generated method stub
-    return null;
+    return this;
   }
-
 
 
 }

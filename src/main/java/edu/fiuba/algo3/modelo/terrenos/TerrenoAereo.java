@@ -79,6 +79,12 @@ public class TerrenoAereo extends Terreno{
         unidad.establecerCoordenada(this.coordenada);
     }
 
+    public void ocuparPorUnidad(AmoSupremo unidad){
+        verificarTerrenoSinUnidad();
+        this.unidad = unidad;
+        unidad.establecerCoordenada(this.coordenada);
+    }
+
     public void ocuparPorUnidad(Zangano unidad) throws TerrenoNoAptoParaTalUnidad {
         throw new TerrenoNoAptoParaTalUnidad();
     }

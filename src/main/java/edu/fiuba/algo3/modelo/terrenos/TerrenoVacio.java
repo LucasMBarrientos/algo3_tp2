@@ -128,6 +128,12 @@ public class TerrenoVacio implements EstadoTerreno {
         terreno.establecerUnidad(unidad);
     }
 
+    public void ocuparPorUnidad(AmoSupremo unidad) {
+        terreno.verificarTerrenoSinEdificio();
+        terreno.verificarTerrenoSinUnidad();
+        terreno.establecerUnidad(unidad);
+    }
+
     public void cubrirTerrenoDeMoho() {
         terreno.establecerEstado(new TerrenoMoho(terreno));
     }

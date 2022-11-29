@@ -61,6 +61,8 @@ public abstract interface EstadoTerreno {
 
     void ocuparPorUnidad(Devorador unidad);
 
+    void ocuparPorUnidad(AmoSupremo unidad);
+
     void energizarTerreno();
 
     void desenergizarTerreno();

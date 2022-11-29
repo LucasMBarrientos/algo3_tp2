@@ -111,6 +111,10 @@ public class TerrenoMineral extends Terreno {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
+    public void ocuparPorUnidad(AmoSupremo unidad){
+        throw new TerrenoNoAptoParaTalUnidad();
+    }
+
     public void energizarTerreno() { }
 
     public void cubrirTerrenoDeMoho() { }

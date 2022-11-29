@@ -106,11 +106,11 @@ public class CasoDeUso28 {
 
 
 
-        // Se intenta atacar una unidad que esta a 5 de rango
+
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
             jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(6,0));
         });
-    }*/
-
+    }
+*/
   
 }

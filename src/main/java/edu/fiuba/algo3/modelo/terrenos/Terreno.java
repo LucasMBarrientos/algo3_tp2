@@ -83,6 +83,8 @@ public abstract class Terreno {
 
     public abstract void ocuparPorUnidad(Devorador devorador);
 
+    public abstract void ocuparPorUnidad(AmoSupremo unidad);
+
 
     public void verificarTerrenoSinEdificio(){
         if(this.edificio != null){
