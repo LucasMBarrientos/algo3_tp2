@@ -118,13 +118,13 @@ public class CasoDeUso27 {
         }
         algoStar.pasarTurno();
 
-        for (int i=0; i < 48; i++) {
+        for (int i=0; i < 47; i++) {
             jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(6,0));
             algoStar.pasarTurno();
             algoStar.pasarTurno();
         }
 
-        // Se intenta atacar una unidad que esta a 5 de rango
+       // Se intenta atacar una unidad que esta a 5 de rango
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
             jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(6,0));
         });

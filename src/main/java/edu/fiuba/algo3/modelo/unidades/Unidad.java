@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.InvalidaEvolucionDeUnidad;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -14,6 +15,8 @@ import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.unidades.protoss.Invisible;
+import edu.fiuba.algo3.modelo.unidades.protoss.Visibilidad;
 
 public abstract class Unidad {
 
@@ -28,7 +31,7 @@ public abstract class Unidad {
     protected Vida vida;
     protected EstadoUnidad estado = new UnidadEnConstruccion();
     protected Nombre nombre;
-    protected int kills = 0;
+    protected int cantidadDeKills = 0;
     protected boolean aerea = false;
 
     public boolean compararCoordenadas(Coordenada coordenadaAComparar) {
@@ -48,6 +51,8 @@ public abstract class Unidad {
       this.estado.setUnidad(this);
     }
 
+    public void establecerVisibilidad(Visibilidad visibilidad){ }
+
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
       if (this.tiempoConstruccion-tiempoAReducir > 0) {
         this.tiempoConstruccion = this.tiempoConstruccion-tiempoAReducir;
@@ -60,7 +65,6 @@ public abstract class Unidad {
     public void terminarConstruccion(){
       this.estado.terminarConstruccion();
     }
-    
 
     public void establecerCoordenada(Coordenada coordenada){
         this.coordenada = coordenada;
@@ -74,7 +78,6 @@ public abstract class Unidad {
         estado.atacar(objetivo, mapa);
     }
 
-   // public abstract void ejecutarAtaque(Coordenada objetivo, Mapa mapa);
 
     public void intentarOcuparAlMoverse(Terreno terreno){    }
 
@@ -86,9 +89,26 @@ public abstract class Unidad {
 
     public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
         if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
-            mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
+            try {
+                mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
+            }catch (UnidadEstaDestruida e){
+                cantidadDeKills++;
+                volverInvisible();
+                throw new UnidadEstaDestruida();
+            }catch (EdificioEstaDestruido u){
+                cantidadDeKills++;
+                volverInvisible();
+                throw new EdificioEstaDestruido();
+            }
         } else {
             throw new AtaqueImposibleDeRealizarse();
+        }
+
+    }
+
+    public void volverInvisible(){
+        if(cantidadDeKills > 3){
+            establecerVisibilidad(new Invisible()); //todas las unidades lo entienden pero solo el zealot lo hace
         }
     }
 

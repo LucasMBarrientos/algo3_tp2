@@ -32,7 +32,7 @@ public class CasoDeUso12 {
         pilon.recibirDanio(new Danio(300), new Danio(0));
         pilon.actualizar(inventario);
 
-        pilon.recibirDanio(new Danio(400), new Danio(0));
+        pilon.recibirDanio(new Danio(114), new Danio(0));
 
         Assertions.assertThrows(EdificioEstaDestruido.class, () ->{
             pilon.recibirDanio(new Danio(1), new Danio(0));

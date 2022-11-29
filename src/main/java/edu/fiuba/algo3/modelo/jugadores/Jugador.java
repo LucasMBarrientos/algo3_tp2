@@ -104,16 +104,15 @@ public abstract class Jugador {
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         Unidad unidad = inventario.buscarUnidad(coordenadaUnidad);
-        unidad.atacar(coordenadaObjetivo, mapa);
-        
-        /*
-        Unidad unidad = mapa.buscarTerreno(coordenadaUnidad).devolverUnidad();
-        Unidad unidadObjetivo = mapa.buscarTerreno(coordenadaObjetivo).devolverUnidad();
-        if(unidad == null || unidadObjetivo  == null){
-            throw new TerrenoNoPoseeUnaUnidad();
+        try {
+            unidad.atacar(coordenadaObjetivo, mapa);
+        } catch (UnidadEstaDestruida e){
+            destruirUnidad(coordenadaObjetivo);
+            throw new UnidadEstaDestruida();
+        } catch (EdificioEstaDestruido e){
+            destruirEdificio(coordenadaObjetivo);
+            throw new EdificioEstaDestruido();
         }
-        unidad.atacar(coordenadaObjetivo, mapa);
-        */
     }
 
     protected abstract void iniciarseEnMapa();

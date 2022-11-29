@@ -300,7 +300,6 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
     }
 
 
-
     Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
         pilon.recibirDanio(new Danio(600),new Danio(600));
     });
@@ -316,10 +315,10 @@ public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
             pilon.actualizar(inv);
         }
 
-        pilon.recibirDanio(new Danio(600),new Danio(600));
+        pilon.recibirDanio(new Danio(599),new Danio(600));
 
         Assertions.assertThrows(EdificioEstaDestruido.class, ()->{
-            pilon.recibirDanio(new Danio(600),new Danio(600));
+            pilon.recibirDanio(new Danio(1),new Danio(600));
         });
     }
     @Test

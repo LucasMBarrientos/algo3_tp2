@@ -23,10 +23,9 @@ public class CasoDeUso11 {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         for(int i=0; i<6; i++){ pilon.actualizar(inv); } //paso los turnos para que se termine de construir
 
-        pilon.recibirDanio(new Danio(600),new Danio(0));
         
         Assertions.assertThrows(EdificioEstaDestruido.class,() ->{
-            pilon.recibirDanio(new Danio(1),new Danio(0));
+            pilon.recibirDanio(new Danio(600),new Danio(0));
         });
     }
 
@@ -45,7 +44,7 @@ public class CasoDeUso11 {
         pilon.recibirDanio(new Danio(300),new Danio(0));
         pilon.actualizar(inv);
 
-        pilon.recibirDanio(new Danio(500),new Danio(0));
+        pilon.recibirDanio(new Danio(114),new Danio(0));
 
         Assertions.assertThrows(EdificioEstaDestruido.class, () ->{
           pilon.recibirDanio(new Danio(1),new Danio(0));

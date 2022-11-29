@@ -41,18 +41,6 @@ public class Inventario {
         }
     }
 
-    private int contarEdificiosDestruidos() {
-        int cuenta = 0;
-        for (Edificio edificio : edificios) {
-            try {
-                edificio.ejecutarDanio(new Danio(0)); // TODO: cambiar esto?
-            } catch (EdificioEstaDestruido e) {
-                cuenta++;
-            }
-        }
-        return cuenta;
-    }
-
     public Edificio buscarEdificio(Coordenada coordenada) {
         return edificios.get(buscarIdDeEdificio(coordenada));
     }

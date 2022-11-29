@@ -48,7 +48,7 @@ public class CasoDeUso21 {
         }
 
 
-        for(int i = 0; i < 24; i++) {
+        for(int i = 0; i < 23; i++) {
             unidad.atacar(new Coordenada(2,12), mapa);
         }
 
@@ -83,7 +83,7 @@ public class CasoDeUso21 {
         }
 
         // Ataco el scout enemigo usando el devorador
-        for(int i = 0; i < 17; i++) {
+        for(int i = 0; i < 16; i++) {
             unidad.atacar(new Coordenada(2,7), mapa);
         }
 

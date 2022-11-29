@@ -47,6 +47,7 @@ public abstract class EdificioZerg extends Edificio {
     public void ejecutarDanio(Danio danio){
       if(this.vida.recibirDanio(danio)){
         this.establecerEstado(this.estadoDestruido);
+          throw new EdificioEstaDestruido();
       }
     }
 

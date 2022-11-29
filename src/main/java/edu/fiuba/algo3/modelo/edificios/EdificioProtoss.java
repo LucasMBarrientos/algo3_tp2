@@ -35,6 +35,7 @@ public abstract class EdificioProtoss extends Edificio {
     public void ejecutarDanio(Danio danio) {
       if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){
         this.establecerEstado(this.estadoDestruido);
+        throw new EdificioEstaDestruido();
       }
     }
 

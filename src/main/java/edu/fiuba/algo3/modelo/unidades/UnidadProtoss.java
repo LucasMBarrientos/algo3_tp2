@@ -28,10 +28,12 @@ public abstract class UnidadProtoss extends Unidad {
       if (aerea) {
         if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danioAereo) * (-1)))){
           this.establecerEstado(new UnidadDestruida());
+          throw new UnidadEstaDestruida();
         }
       } else {
         if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danioTerrestre) * (-1)))){
           this.establecerEstado(new UnidadDestruida());
+            throw new UnidadEstaDestruida();
         }
       }
     }

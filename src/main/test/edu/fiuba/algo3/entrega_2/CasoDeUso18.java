@@ -50,7 +50,7 @@ public class CasoDeUso18 {
         zerling.actualizar(inventario);
         zerling.actualizar(inventario);
 
-        for(int i = 0; i < 150; i++) {
+        for(int i = 0; i < 149; i++) {
             zerling.atacar(new Coordenada(2,2), mapa);
         }
 
@@ -81,7 +81,7 @@ public class CasoDeUso18 {
         hidralisco.actualizar(inventario);
         hidralisco.actualizar(inventario);
 
-        for(int i = 0; i < 60; i++) {
+        for(int i = 0; i < 59; i++) {
             hidralisco.atacar(new Coordenada(2,2), mapa);
         }
 
@@ -113,7 +113,7 @@ public class CasoDeUso18 {
         mutalisco.actualizar(inventario);
         mutalisco.actualizar(inventario);
 
-        for(int i = 0; i < 67; i++) {
+        for(int i = 0; i < 66; i++) {
             mutalisco.atacar(new Coordenada(2,2), mapa);
         }
 
@@ -145,7 +145,7 @@ public class CasoDeUso18 {
         zealot.actualizar(inventario);
         zealot.actualizar(inventario);
 
-        for(int i = 0; i < 75; i++) {
+        for(int i = 0; i < 74; i++) {
             zealot.atacar(new Coordenada(2,2), mapa);
         }
 
@@ -176,7 +176,7 @@ public class CasoDeUso18 {
         dragon.actualizar(inventario);
         dragon.actualizar(inventario);
 
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < 29; i++) {
             dragon.atacar(new Coordenada(2,2), mapa);
         }
 
@@ -210,7 +210,7 @@ public class CasoDeUso18 {
         scout.actualizar(inventario);
         scout.actualizar(inventario);
 
-        for(int i = 0; i < 75; i++) {
+        for(int i = 0; i < 74; i++) {
             scout.atacar(new Coordenada(2,2), mapa);
         }
 
