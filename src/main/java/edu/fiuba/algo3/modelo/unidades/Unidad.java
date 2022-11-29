@@ -107,7 +107,7 @@ public abstract class Unidad {
     }
 
     public void volverInvisible(){
-        if(cantidadDeKills > 3){
+        if(cantidadDeKills >= 3){
             establecerVisibilidad(new Invisible()); //todas las unidades lo entienden pero solo el zealot lo hace
         }
     }
