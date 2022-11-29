@@ -42,7 +42,7 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
         }catch(NombreDeJugadorInvalido e ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Nombre de Jugador Inválido");
-            alert.setHeaderText("Recuerde que los nombres de los jugadores deben tener como mínimo seis letras");
+            alert.setHeaderText("Recuerde que los nombres de los jugadores deben tener seis letras");
             String mensaje = "Nombre de jugador Inválido, vuelva a intentarlo";
             alert.setContentText(mensaje);
             alert.show();

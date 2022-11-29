@@ -20,7 +20,6 @@ public class PantallaInicial extends VBox {
         super();
 
         this.stage = stage;
-
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
