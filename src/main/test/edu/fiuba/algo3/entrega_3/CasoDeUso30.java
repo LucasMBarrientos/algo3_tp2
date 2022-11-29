@@ -19,7 +19,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 public class CasoDeUso30 {
 
     @Test        
-    public void irrelevantementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesParaConstruirMasDe200Zanganos() {
+    public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesParaConstruirMasDe200Zanganos() {
         Mapa mapa = new Mapa(new Coordenada(20, 210));
         AlgoStar algoStar = new AlgoStar(mapa);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
@@ -68,7 +68,7 @@ public class CasoDeUso30 {
     }
 
     @Test        
-    public void irrelevantementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesParaConstruirMasDe66Dragones() {
+    public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesParaConstruirMasDe66Dragones() {
         Mapa mapa = new Mapa(new Coordenada(150, 20));
         AlgoStar algoStar = new AlgoStar(mapa);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 100000, 100000);

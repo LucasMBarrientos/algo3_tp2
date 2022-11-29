@@ -27,7 +27,7 @@ public class AlgoStarView extends BorderPane {
 
     Coordenada limite;
 
-    Rectangle mapa;
+    Mapa mapa;
 
     public AlgoStarView(Stage stage, AlgoStar algostar) {
         this.algoStar = algostar;
@@ -36,7 +36,7 @@ public class AlgoStarView extends BorderPane {
         setBotonera();
         this.stage = stage;
         limite = new Coordenada(100,20);
-        algoStar.empezarJuego();
+        mapa = algoStar.empezarJuego();
     }
 
     private void setBotonera() {

@@ -36,7 +36,7 @@ public class AlgoStar {
         jugadores.add(jugador);
     }
 
-    public void empezarJuego() {
+    public Mapa empezarJuego() {
         for (Jugador jugador : jugadores) {
           jugador.establecerMapa(mapa);
         }
@@ -44,6 +44,7 @@ public class AlgoStar {
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;
+        return mapa;
     }
 
     public Jugador hallarJugadorActual() {

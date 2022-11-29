@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 public class MapaView {
     AlgoStar algoStar;
     Canvas canvas;
+
+
     public MapaView(Canvas canvas, AlgoStar algoStar) {
         this.algoStar = algoStar;
         this.canvas = canvas;

@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso29 {
 
     @Test        
-    public void irrelevantementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesaParaConstruirMasDe200Zanganos() {
+    public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesaParaConstruirMasDe200Zanganos() {
         Mapa mapa = new Mapa(new Coordenada(20, 210));
         AlgoStar algoStar = new AlgoStar(mapa);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
@@ -75,7 +75,7 @@ public class CasoDeUso29 {
     }
 
     @Test        
-    public void irrelevantementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesaParaConstruirMasDe66Dragones() {
+    public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesaParaConstruirMasDe66Dragones() {
         Mapa mapa = new Mapa(new Coordenada(150, 20));
         AlgoStar algoStar = new AlgoStar(mapa);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 100000, 100000);
@@ -129,7 +129,7 @@ public class CasoDeUso29 {
 /*
 
 @Test        
-public void irrelevantementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesaParaConstruirMasDe66Dragones() {
+public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesaParaConstruirMasDe66Dragones() {
     Mapa mapa = new Mapa(new Coordenada(50, 50));
     AlgoStar algoStar = new AlgoStar(mapa);
     JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
