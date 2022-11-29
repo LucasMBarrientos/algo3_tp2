@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Views;
 
+import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +15,7 @@ public class PantallaInicial extends VBox {
 
     Stage stage;
 
-    public PantallaInicial(Stage stage, Scene escenaJuego) {
+    public PantallaInicial(Stage stage, Scene escenaJuego, AlgoStar algoStar) {
 
         super();
 
@@ -36,7 +37,7 @@ public class PantallaInicial extends VBox {
         TextField nombreJugador2 = new TextField();
         nombreJugador2.setText("ghijkl");
 
-        BotonEntrarEventHandler botonEntrarEventHandler = new BotonEntrarEventHandler(stage,escenaJuego);
+        BotonEntrarEventHandler botonEntrarEventHandler = new BotonEntrarEventHandler(stage,escenaJuego,algoStar, nombreJugador1, nombreJugador2);
         botonIniciarJuego.setOnAction(botonEntrarEventHandler);
 
         this.getChildren().addAll(nombreJugador1,nombreJugador2,botonIniciarJuego);
