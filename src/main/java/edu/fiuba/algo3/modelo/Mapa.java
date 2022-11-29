@@ -25,6 +25,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -310,6 +311,9 @@ public class Mapa {
         return new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2);
     }
 
+    public String getString(){
+        return "s";
+    }
 
     public void DEBUG_MOSTRARMAPAUNIDADES() {
         String lineaDelMapa = "";

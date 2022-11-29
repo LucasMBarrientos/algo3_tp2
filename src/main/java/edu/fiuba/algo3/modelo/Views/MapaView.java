@@ -1,17 +1,18 @@
 package edu.fiuba.algo3.modelo.Views;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Mapa;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MapaView {
-    AlgoStar algoStar;
+    Mapa mapa;
     Canvas canvas;
 
 
-    public MapaView(Canvas canvas, AlgoStar algoStar) {
-        this.algoStar = algoStar;
+    public MapaView(Canvas canvas, Mapa mapa) {
+        this.mapa = mapa;
         this.canvas = canvas;
 
     }
@@ -21,8 +22,7 @@ public class MapaView {
     }
 
     private void dibujarTerrenos(){
-        canvas.getGraphicsContext2D().setFill(Color.ORANGE);
-        canvas.getGraphicsContext2D().fillRect(500,500,500,500);
+        mapa.getString();
         //Aca se dibujarian los terrenos
     }
 }

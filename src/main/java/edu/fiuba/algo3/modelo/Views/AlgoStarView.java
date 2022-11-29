@@ -62,7 +62,7 @@ public class AlgoStarView extends BorderPane {
     private void pantallaJuego(){
         Canvas escenaCentral = new Canvas(1620,780);
 
-        MapaView mapaView = new MapaView(escenaCentral, algoStar);
+        MapaView mapaView = new MapaView(escenaCentral, mapa);
         mapaView.dibujar();
 
         VBox contenedorCentral = new VBox(escenaCentral);
