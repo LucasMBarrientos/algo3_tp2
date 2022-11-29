@@ -1,9 +1,13 @@
 package edu.fiuba.algo3.modelo.Views;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -24,11 +28,11 @@ public class AlgoStarView extends BorderPane {
     Rectangle mapa;
 
     public AlgoStarView(Stage stage) {
-        this.setMenu(stage);
-        this.stage = stage;
         algoStar = new AlgoStar();
+        this.setMenu(stage);
+        this.pantallaJuego();
+        this.stage = stage;
         limite = new Coordenada(100,20);
-        pantallaJuego();
     }
 
     private void setMenu(Stage stage){
@@ -37,9 +41,18 @@ public class AlgoStarView extends BorderPane {
     }
 
     private void pantallaJuego(){
-        layout = new Group();
-        layout.getChildren().add(new Rectangle(10,10,10,10));
-        dibujarMapa();
+        Canvas escenaCentral = new Canvas(1620,780);
+
+        MapaView mapaView = new MapaView(escenaCentral, algoStar);
+        mapaView.dibujar();
+
+        VBox contenedorCentral = new VBox(escenaCentral);
+        contenedorCentral.setAlignment(Pos.CENTER);
+        contenedorCentral.setSpacing(20);
+        contenedorCentral.setPadding(new Insets(25));
+
+
+        this.setCenter(contenedorCentral);
     }
 
     private void dibujarMapa(){
