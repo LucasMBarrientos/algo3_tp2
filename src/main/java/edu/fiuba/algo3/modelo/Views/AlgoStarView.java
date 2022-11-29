@@ -26,13 +26,10 @@ public class AlgoStarView extends VBox {
         pantallaJuego();
     }
 
-
-
     private void pantallaJuego(){
         layout = new Group();
+        layout.getChildren().add(new Rectangle(10,10,10,10));
         dibujarMapa();
-
-
     }
 
     private void dibujarMapa(){

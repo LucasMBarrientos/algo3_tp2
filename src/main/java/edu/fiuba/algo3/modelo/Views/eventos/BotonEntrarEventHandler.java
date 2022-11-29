@@ -19,5 +19,6 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         stage.setScene(proximaEscena);
         //Aca pondriamos lo de fullscreen
+        stage.show();
     }
 }
