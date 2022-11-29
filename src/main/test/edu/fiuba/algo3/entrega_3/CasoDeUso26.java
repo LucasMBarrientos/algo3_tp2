@@ -51,7 +51,7 @@ public class CasoDeUso26 {
 
         // No deberia haber ninguna unidad en la coordenada (2,1)
 
-        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         });
     }
@@ -113,7 +113,7 @@ public class CasoDeUso26 {
         jugadorZerg.moverUnidad(new Coordenada(1,2), new Derecha());
         jugadorZerg.generarUnidad(new Coordenada(3,2), new Mutalisco());
 
-        Assertions.assertThrows(RecursosInsuficientes.class, ()->{
+        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(1,1), new Zangano());
         });
     }
