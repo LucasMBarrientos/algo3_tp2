@@ -17,6 +17,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -95,7 +96,7 @@ public abstract class Terreno {
 
     public void verificarTerrenoSinUnidad(){
         if(this.unidad != null){
-            throw new TerrenoNoAptoParaTalUnidad(); //se podria usar otra excepcion mejor
+            throw new TerrenoOcupadoPorUnaUnidad(); //se podria usar otra excepcion mejor
         }
     }
 

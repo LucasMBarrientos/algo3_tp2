@@ -10,7 +10,7 @@ public abstract class Recurso {
         this.unidadesDisponibles = unidades;
     }
 
-    public void gastar(Recurso recurso) throws RecursosInsuficientes{
+    public void gastar(Recurso recurso) throws RecursosInsuficientes {
         if(unidadesDisponibles < recurso.devolverCantidadUnidades()){
             throw new RecursosInsuficientes();
         }

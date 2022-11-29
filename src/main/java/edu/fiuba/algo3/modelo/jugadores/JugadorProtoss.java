@@ -12,8 +12,11 @@ public class JugadorProtoss extends Jugador {
     public JugadorProtoss(String nombre, String color) {
         establecerAtributosBasicos(nombre, color, 0, 200,0);
     }
+    public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales) {
+        establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,0);
+    }
 
-    public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales,int suministroInicial) {
+    public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
         establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
 

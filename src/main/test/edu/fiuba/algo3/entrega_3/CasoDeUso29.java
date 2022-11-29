@@ -1,19 +1,24 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -38,70 +43,156 @@ public class CasoDeUso29 {
     });
   }*/
 
-  /*@Test
-  public void teniendo40PilonesY50ScoutNoPuedoCrearMutaliscoSumandoOtroCriadero() {
-    AlgoStar algoStar = new AlgoStar();
-    JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
-    algoStar.agregarJugador(jugadorZerg);
-    JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 500, 4000,0);
-    algoStar.agregarJugador(jugadorProtoss);
-    algoStar.empezarJuego();
-    
-    
-  //  jugadorProtoss.construirEdificio(new Coordenada(1,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(1,2), new Pilon());
-  //  jugadorProtoss.construirEdificio(new Coordenada(1,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(1,3), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(1,4), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(1,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(1,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(2,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(2,2), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(2,3), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(2,4), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(2,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(2,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(3,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(3,2), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(3,3), new Pilon());
-//    jugadorProtoss.construirEdificio(new Coordenada(3,4), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(3,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(3,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(4,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(4,2), new Pilon());
-//    jugadorProtoss.construirEdificio(new Coordenada(4,3), new Pilon());
-//    jugadorProtoss.construirEdificio(new Coordenada(4,4), new Pilon());
-//   jugadorProtoss.construirEdificio(new Coordenada(4,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(4,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(5,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(5,2), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(5,3), new Pilon());
-//    jugadorProtoss.construirEdificio(new Coordenada(5,4), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(5,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(5,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(6,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(6,2), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(6,3), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(6,4), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(6,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(6,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(7,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(7,2), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(7,3), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(7,4), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(7,5), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(7,6), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(8,1), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(8,2), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(8,3), new Pilon());
-    jugadorProtoss.construirEdificio(new Coordenada(8,4), new Pilon());
 
-    //JugadorProtoss.generarUnidad(new Coordenada(1, 1), new Zangano());
+  //public void teniendo40PilonesY50ScoutNoPuedoCrearMutaliscoSumandoOtroCriadero() {
+    @Test        
+    public void irrelevnatementeDeCuantosSuministrosTengaElJugadorProtossNuncaPodraConstruirMasDe66Dragones() {
+        Mapa mapa = new Mapa(new Coordenada(50, 50));
+        AlgoStar algoStar = new AlgoStar(mapa);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 900000000, 900000000);
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
+        
+        // Se trata de construir la mayor cantidadDePilonesPosibles
+        for (int y=48; y > 1; y -= 3) {
+            for (int x=48; x > 1; x -= 3) {
+                try {
+                    jugadorProtoss.construirEdificio(new Coordenada(x, y), new Pilon());
+                } catch (TerrenoNoAptoParaConstruirTalEdificio e) { }
+                catch (TerrenoOcupadoPorUnaUnidad e) { }
 
+                catch (CoordenadaFueraDelMapa e) {
+                    throw e;
+                } catch (RecursosInsuficientes e) {
+                    throw e;
+                }
+            }
+        }
 
+        // Se termina de construir los pilones
+        for (int i=0; i < 6; i++) {
+            algoStar.pasarTurno();
+        }
 
-    Assertions.assertThrows(RecursosInsuficientes.class, ()->{
-      JugadorProtoss.generarUnidad(new Coordenada(1, 1), new Zangano());
-    });
-  }*/
+        // El jugador protoss deberia tener 200 suministros
+
+        // Se construyen 17 accesos en las coordenadas entre todos los pilones
+        List<Coordenada> coordenadasConAccesosConstruidos = new ArrayList<Coordenada>();
+        for (int y = 47; y > 1; y -= 3) {
+            for (int x = 47; x > 1; x -= 3) {
+                if (coordenadasConAccesosConstruidos.size() < 17) {
+                    try {
+                        jugadorProtoss.construirEdificio(new Coordenada(x,y), new Acceso());
+                        coordenadasConAccesosConstruidos.add(new Coordenada(x,y));
+                    } catch (TerrenoNoAptoParaConstruirTalEdificio e) {
+                    } catch (TerrenoOcupadoPorUnaUnidad e) {
+                    } 
+                }
+            }
+        }
+
+        // Se termina de construir los accesos
+        for (int i=0; i < 10; i++) {
+            algoStar.pasarTurno();
+        }
+
+        mapa.DEBUG_MOSTRARMAPAEDIFICIOS();
+        mapa.DEBUG_MOSTRARMAPATERRENO();
+
+        Coordenada coordenada;
+        for (int i=0; i < 16; i++) {
+            coordenada = coordenadasConAccesosConstruidos.get(i);
+            jugadorProtoss.generarUnidad(coordenada, new Dragon());
+            jugadorProtoss.generarUnidad(coordenada, new Dragon());
+            jugadorProtoss.generarUnidad(coordenada, new Dragon());
+            jugadorProtoss.generarUnidad(coordenada, new Dragon());
+        }
+        coordenada = coordenadasConAccesosConstruidos.get(16);
+        jugadorProtoss.generarUnidad(coordenada, new Dragon());
+        jugadorProtoss.generarUnidad(coordenada, new Dragon());
+
+        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
+            jugadorProtoss.generarUnidad(coordenadasConAccesosConstruidos.get(16), new Dragon());
+        });
+    }
 }
+
+
+
+
+
+
+    /* 
+        int edificiosConstruidos = 0;
+        for (int x=100; x > 0; x -= 2) {
+            for (int y=100; y > 0; y -= 2) {
+                if (edificiosConstruidos < 40) {
+                    edificiosConstruidos++;
+                    try {
+                        jugadorProtoss.construirEdificio(new Coordenada(x,y), new Pilon());
+                    } catch (TerrenoNoAptoParaConstruirTalEdificio e) {
+                        edificiosConstruidos--;
+                    }
+                }
+            }
+        }
+
+    */
+
+
+
+        /*
+
+    //  jugadorProtoss.construirEdificio(new Coordenada(1,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(1,2), new Pilon());
+    //  jugadorProtoss.construirEdificio(new Coordenada(1,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(1,3), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(1,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(1,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(1,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2,2), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2,3), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(3,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(3,2), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(3,3), new Pilon());
+    //    jugadorProtoss.construirEdificio(new Coordenada(3,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(3,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(3,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(4,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(4,2), new Pilon());
+    //    jugadorProtoss.construirEdificio(new Coordenada(4,3), new Pilon());
+    //    jugadorProtoss.construirEdificio(new Coordenada(4,4), new Pilon());
+    //   jugadorProtoss.construirEdificio(new Coordenada(4,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(4,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(5,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(5,2), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(5,3), new Pilon());
+    //    jugadorProtoss.construirEdificio(new Coordenada(5,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(5,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(5,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(6,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(6,2), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(6,3), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(6,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(6,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(6,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(7,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(7,2), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(7,3), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(7,4), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(7,5), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(7,6), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(8,1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(8,2), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(8,3), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(8,4), new Pilon());
+
+        //JugadorProtoss.generarUnidad(new Coordenada(1, 1), new Zangano());
+
+    */

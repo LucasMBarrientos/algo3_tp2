@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
 import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
+import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -142,7 +144,11 @@ public class Inventario {
     }
 
     public void consumirSuministro(Recurso recursoRequerido) {
-        suministro.gastar(recursoRequerido);
+        try {            
+            suministro.gastar(recursoRequerido);
+        } catch (RecursosInsuficientes e) {
+            throw new NoHaySuministrosSuficientes();
+        }
     }
 
     public void consumirGasVespeno(Recurso recursoRequerido) {
