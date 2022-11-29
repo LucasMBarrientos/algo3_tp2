@@ -10,9 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -68,6 +67,7 @@ public class AlgoStarView extends BorderPane {
         VBox contenedorCentral = new VBox(escenaCentral);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(20);
+        contenedorCentral.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY,new Insets(0))));
         contenedorCentral.setPadding(new Insets(25));
 
 

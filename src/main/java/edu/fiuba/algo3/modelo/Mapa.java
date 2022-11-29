@@ -41,9 +41,10 @@ public class Mapa {
 
     public Mapa(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
-        for (int x = 0; x < superficie.calcularLongitudX(); x++) {
 
-            for (int y = 0; y < superficie.calcularLongitudY(); y++) {
+        for (int y = 0; y < superficie.calcularLongitudY(); y++) {
+
+            for (int x = 0; x < superficie.calcularLongitudX(); x++) {
                 this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
