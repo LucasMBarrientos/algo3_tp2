@@ -25,7 +25,7 @@ public abstract class UnidadZerg extends Unidad {
           throw new UnidadEstaDestruida();
         }
       } else {
-        if(this.vida.recibirDanio(danioAereo)){
+        if(this.vida.recibirDanio(danioTerrestre)){
           this.establecerEstado(new UnidadDestruida());
           throw new UnidadEstaDestruida();
         }

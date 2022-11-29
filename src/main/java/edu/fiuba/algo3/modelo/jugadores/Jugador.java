@@ -94,7 +94,7 @@ public abstract class Jugador {
 
     public void destruirUnidad(Coordenada coordenada) {
         mapa.eliminarUnidad(coordenada);
-        mapa.eliminarUnidad(coordenada);
+        inventario.eliminarUnidad(coordenada);
     }
 
     public void destruirEdificio(Coordenada coordenada) {
@@ -107,10 +107,10 @@ public abstract class Jugador {
         try {
             unidad.atacar(coordenadaObjetivo, mapa);
         } catch (UnidadEstaDestruida e){
-            destruirUnidad(coordenadaObjetivo);
+            mapa.eliminarUnidad(coordenadaObjetivo);
             throw new UnidadEstaDestruida();
         } catch (EdificioEstaDestruido e){
-            destruirEdificio(coordenadaObjetivo);
+            mapa.eliminarEdificio(coordenadaObjetivo);
             throw new EdificioEstaDestruido();
         }
     }
