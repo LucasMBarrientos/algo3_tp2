@@ -23,9 +23,9 @@ public class PantallaInicial extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-        // Image iconoZerg = new Image("/src/main/resources/iconozerg.png");
-       // BackgroundImage fondo = new BackgroundImage(iconoZerg, BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        //this.setBackground(new Background(fondo));
+        Image iconoZerg = new Image("file:src/main/resources/iconozerg.png");
+        BackgroundImage fondo = new BackgroundImage(iconoZerg, BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        this.setBackground(new Background(fondo));
 
         Button botonIniciarJuego = new Button();
         botonIniciarJuego.setText("Iniciar Partida!!!");
