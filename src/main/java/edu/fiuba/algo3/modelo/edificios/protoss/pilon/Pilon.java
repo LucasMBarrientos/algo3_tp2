@@ -86,6 +86,12 @@ public class Pilon extends EdificioProtoss {
     }
 
     @Override
+    public void restarSuministros(Inventario inventario){
+      inventario.restarSuministro(suministroAAgregar);
+    }
+
+    
+    @Override
     public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         coordenadasConPilones.add(coordenada);
     }

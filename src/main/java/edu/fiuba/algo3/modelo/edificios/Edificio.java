@@ -42,7 +42,6 @@ public abstract class Edificio {
     public Edificio construir(Coordenada coordenada, Inventario inventario) {
         validarCorrelativasDeConstruccion(inventario);
         consumirRecursosParaConstruccion(inventario);
-        agregarSuministro(inventario);
         this.coordenada = coordenada;
         return this;
     }
@@ -52,6 +51,9 @@ public abstract class Edificio {
     }
 
     public void agregarSuministro(Inventario inventario) {
+    }
+
+    public void restarSuministros(Inventario inventario){
     }
 
     public void devolverRecursosParaConstruccion(Inventario inventario) {

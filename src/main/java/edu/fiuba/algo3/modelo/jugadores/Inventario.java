@@ -115,7 +115,7 @@ public class Inventario {
 
     public void eliminarEdificio(Coordenada coordenada) {
         int indiceHallado = buscarIdDeEdificio(coordenada);
-        //edificios.get(indiceHallado).devolverSuministro(this);
+        edificios.get(indiceHallado).restarSuministros(this);
         edificios.remove(edificios.get(indiceHallado));
     }
 
@@ -132,12 +132,16 @@ public class Inventario {
     }
 
     public void consumirSuministro(Recurso recursoRequerido) {
-        try {            
-            suministro.gastar(recursoRequerido);
-        } catch (RecursosInsuficientes e) {
-            throw new NoHaySuministrosSuficientes();
-        }
+      try {            
+          suministro.gastar(recursoRequerido);
+      } catch (RecursosInsuficientes e) {
+          throw new NoHaySuministrosSuficientes();
+      }
     }
+
+    public void restarSuministro(Recurso recursoRequerido) {
+      suministro.restarUnidades(recursoRequerido);
+  }
 
     public void consumirGasVespeno(Recurso recursoRequerido) {
         gasVespeno.gastar(recursoRequerido);

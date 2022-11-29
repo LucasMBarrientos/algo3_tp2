@@ -24,6 +24,7 @@ public class EdificioEnConstruccion implements EstadoEdificio {
   @Override
   public void actualizar(Inventario inventario) {
     if(this.edificio.reducirTiempoConstruccion(1)){
+      this.edificio.agregarSuministro(inventario);
       this.terminarConstruccion();
     }
   }

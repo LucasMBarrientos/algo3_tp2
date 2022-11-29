@@ -21,6 +21,10 @@ public abstract class Recurso {
         unidadesDisponibles += recurso.devolverCantidadUnidades();
     }
 
+    public void restarUnidades(Recurso recurso){
+      unidadesDisponibles -= recurso.devolverCantidadUnidades();
+  }
+
     public void gastarUnidades(int unidadesAConsumir) throws RecursosInsuficientes{
         if(unidadesDisponibles < unidadesAConsumir){
             throw new RecursosInsuficientes();

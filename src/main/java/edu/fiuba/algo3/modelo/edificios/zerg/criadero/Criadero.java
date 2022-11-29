@@ -90,6 +90,11 @@ public class Criadero extends EdificioZerg {
       inventario.agregarSuministro(suministroAAgregar);
     }
 
+    @Override
+    public void restarSuministros(Inventario inventario){
+      inventario.restarSuministro(suministroAAgregar);
+    }
+    
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
     }
 
