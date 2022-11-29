@@ -46,14 +46,6 @@ public abstract class Terreno {
         return this.coordenada.esIgual(coordenada);
     }
 
-    public int compararCoordenadasDeTerrenos(Terreno terreno, SuperficieRectangular superficie) {
-        return this.hallarIdDeCoordenada(coordenada, superficie) - terreno.hallarIdDeCoordenada(coordenada, superficie);
-    }
-
-    public int hallarIdDeCoordenada(Coordenada coordenada, SuperficieRectangular superficie) {
-        return superficie.hallarIdDeCoordenada(coordenada);
-    }
-
     public abstract void ocuparPorEdificio(Pilon pilon);
 
     public abstract void ocuparPorEdificio(Acceso acceso);

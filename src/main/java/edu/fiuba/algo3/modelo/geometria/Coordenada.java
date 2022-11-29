@@ -13,10 +13,6 @@ public class Coordenada {
         this.y = y;
     }
 
-    public int devolverId(int ancho) {
-        return x + y;
-    }
-
     public int calcularDiferenciaEnX(int x) {
         return x - this.x;
     }
