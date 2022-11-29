@@ -74,8 +74,6 @@ public class CasoDeUso29 {
         });
     }
 
-
-
     @Test        
     public void irrelevantementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesaParaConstruirMasDe66Dragones() {
         Mapa mapa = new Mapa(new Coordenada(150, 20));
