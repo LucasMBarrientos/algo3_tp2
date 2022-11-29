@@ -12,6 +12,7 @@ public class UnidadDestruida implements EstadoUnidad{
 
   @Override
   public void actualizar(Inventario inventario) {
+      unidad.destruirse(inventario);
   }
 
   @Override

@@ -100,6 +100,7 @@ public class CasoDeUso28 {
                 jugadorProtoss.atacar(new Coordenada(6,1), new Coordenada(5,1));
             } catch (UnidadEstaDestruida e){}
         }
+        algoStar.pasarTurno();
 
         //zealot mata a otro zerling
         jugadorProtoss.moverUnidad(new Coordenada(6,1), new Izquierda());
@@ -108,6 +109,7 @@ public class CasoDeUso28 {
                 jugadorProtoss.atacar(new Coordenada(5,1), new Coordenada(4,1));
             } catch (UnidadEstaDestruida e){}
         }
+        algoStar.pasarTurno();
 
         //zealot destruye la reserva de reproduccion y se vuelve el heroe de las eras
         jugadorProtoss.moverUnidad(new Coordenada(5,1), new Izquierda());
@@ -116,6 +118,7 @@ public class CasoDeUso28 {
                 jugadorProtoss.atacar(new Coordenada(4,1), new Coordenada(3,1));
             } catch (EdificioEstaDestruido e){}
         }
+        algoStar.pasarTurno();
 
         //el ultimo zerling trata vengar a sus amigos y no puede *pathetic*
         jugadorZerg.moverUnidad(new Coordenada(2,1), new Derecha());
