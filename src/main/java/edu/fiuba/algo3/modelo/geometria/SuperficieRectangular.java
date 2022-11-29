@@ -114,6 +114,10 @@ public class SuperficieRectangular {
         return calcularLongitudX() * calcularLongitudY();
     }
 
+    public int hallarIdDeCoordenada(Coordenada coordenada) {
+        return coordenada.devolverId(this.calcularLongitudX());
+    }
+
     public Coordenada transformarCoordenadaRelativamenteAlCentro(Coordenada coordenadaOriginal, int distanciaX, int distanciaY) {
         int distanciaXACoordenadaCentral = coordenadaOriginal.calcularDiferenciaEnX(this.hallarCoordenadaCentral());
         int direccionX = distanciaXACoordenadaCentral / Math.abs(distanciaXACoordenadaCentral);

@@ -27,6 +27,8 @@ import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -52,6 +54,10 @@ public class Mapa {
 
     private boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
+    }
+
+    public void ordenarTerrenos() {
+        Collections.sort(terrenos, (t1, t2) -> t1.compararCoordenadasDeTerrenos(t2 ,superficie));
     }
 
     public Terreno buscarTerreno(Coordenada coordenada) {
