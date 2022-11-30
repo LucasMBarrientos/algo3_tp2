@@ -41,45 +41,10 @@ public class Criadero extends EdificioZerg {
       if(estadoActual.consumirLarva(larvas)){
         this.larvas--;
         return true;
-      }else{
-        return false;
       }
 
-      /*if (larvas <= 0) {
-        return false;
-      }else{
-        this.larvas--;
-        return true;
-      }*/
-
+      return false;
     }
-
-   // @Override
-   // public Unidad consumirLarvasYGenerarUnidad(Unidad unidad) {
-   //     return estado.generarUnidad(unidad);
-   // }
-
-    /*public Criadero(Coordenada coordenada) {
-        this.coordenada = coordenada;
-    }*/
-    
-    /*
-    @Override
-    public Unidad generarUnidad(Unidad unidad) throws NoHayLarvasDisponibles {
-        return estado.generarUnidad(unidad);
-    }
-    */
-
-    /*@Override
-    public void consumirRecursosParaConstruccion(Inventario inventario){
-        inventario.consumirMinerales(costoEnMinerales);
-    }*/
-
-
-    /*public void ocupar(Casilla casilla, Terreno terreno){
-
-        terreno.ocuparPorEdificio(this, casilla);
-    }*/
 
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);

@@ -16,6 +16,8 @@ import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 
 public class AmoSupremo extends UnidadZerg  {
+
+  private int radioDeVisibilidad = 4;
   public AmoSupremo() {
     this.costoEnGas = new GasVespeno(0);
     this.costoEnMinerales = new Mineral(150);
@@ -36,11 +38,9 @@ public class AmoSupremo extends UnidadZerg  {
 
     try {
       terreno.ocuparPorUnidad(this);
-      //TODO: Volver visibles a las unidades que se encuentren a radio 4
     } catch (RuntimeException e){
       sePudoOcupar = false;
     }
-
     return sePudoOcupar;
   }
 
