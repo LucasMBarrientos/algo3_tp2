@@ -37,8 +37,9 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
             JugadorProtoss jugadorProtoss = new JugadorProtoss(nombre2.getText(), "#ff0000");
             algoStar.agregarJugador(jugadorProtoss);
 
+            stage.setFullScreen(true);
             stage.setScene(proximaEscena);
-
+            stage.setFullScreen(true);
         }catch(NombreDeJugadorInvalido e ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Nombre de Jugador Inválido");
