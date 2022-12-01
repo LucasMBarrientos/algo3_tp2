@@ -1,0 +1,68 @@
+@startuml
+abstract Jugador{
+-id:int
+-inventario:Inventario
+-mapa:Mapa
+-nombre:String
+-color:String
+-edificioInicialConstruido:bool
++establecerNombre(nombre)
++{abstract}ConstruirEdificio(coordenada,Edificio)
++generarUnidad(coordenadaEdificio,unidad)
+-establecerAtributosBasicos(nombre,color,gasInicial:int,mineralInicial,suministros:int)
++compararAtributosBasicosConOtrosJugadores(listaJugadores)
+-compararNombre(Jugador)
++nombreEsIgual(nombre):bool
+-compararColor(Jugador)
+-colorEsIgual(color):bool
+-compararRaza(Jugador)
++establecerMapa(Mapa)
++moverUnidad(coordenada,dirreccion)
++destruirUnidad(coordenada)
++destruirEdificio(coordenada)
++atacar(coordenadaUnidad,coordenadaObjetivo)
+{abstract}-iniciarseEnMapa()
++establecerId(id)
++actualizar()
++fueDerrotado()
+
+
+}
+class JugadorProtoss{
+-
++JugadorProtoss(nombre,color)
++ConstruirEdificio(coordenada,Edificio)
++actualizar()
+-iniciarseEnMapa()
+}
+
+
+class JugadorZerg{
++JugadorZerg(nombre,color)
++ConstruirEdificio(coordenada,Edificio)
++actualizar()
++verificacionDeUnidadConstructora(coordenada,inventario)
++evolucionar(coordenada,unidad)
++ingresarUnidad(coordenada)
+-iniciarseEnMapa()
+}
+class Nombre{
++Nombre(nombre:String)
++esIgual(nombre:Nombre):bool
+-devolverNombre():String
+
+}
+
+
+
+
+
+Jugador -left* Inventario
+mapa <-- Jugador
+
+Jugador -right* Nombre
+
+Jugador <|--- JugadorProtoss
+Jugador <|-- JugadorZerg
+
+@enduml

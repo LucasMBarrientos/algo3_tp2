@@ -1,0 +1,68 @@
+@startuml
+class UnidadZerg{}
+
+
+class Devorador{
++Guardian()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
+}
+
+class amoSupremo{
++Guardian()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
+}
+class Guardian{
++Guardian()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
+}
+class Hidralisco{
++Hidralisco()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
+}
+class Mutalisco{
++Mutalisco()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
++evolucionar(mapa,unidad):unidad
+}
+class Zangano{
++Zangano(gasVespenoDelJugador,mineralesDelJugador,coordenadaDeLaUnidad)
++construirEdificio(edificio,coordenada)
++generarse(edificio,inventario):Unidad
++internarOcuparAlMoverse(terreno)
++extraerRecurso(inventario)
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
+
+}
+class Zerling{
++Zerling()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++ejecutarAtaque(objetivo:Coordenada,mapa)
++actualizarUnidad(inventario)
+
+}
+UnidadZerg <|-- amoSupremo
+UnidadZerg <|-- Devorador
+UnidadZerg <|-- Guardian
+UnidadZerg <|--- Hidralisco
+UnidadZerg <|---- Mutalisco
+UnidadZerg <|--- Zangano
+UnidadZerg <|-- Zerling
+@enduml

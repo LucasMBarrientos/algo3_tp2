@@ -1,0 +1,101 @@
+@startuml
+interface EstadoUnidad{
++actualizar(inventario)
++moverse(direccion:Direccion,mapa,coordenada)
++atacar(direccion:Direccion,mapa)
++recibirDanio(danioTerrestre:Danio,danioAereo:Danio)
++setUnidad(unidad)
++terminarConstruccion()
++dehacerConstruccion()
+}
+
+abstract Unidad{
+-costoEnMineral:Recurso
+-costoEnGas:Recurso
+-costoSuministro:Recurso
+-tiempoConstruccion:int
+-coordenada:Coordenada
+-danioAereo:Danio
+-danioTerrestre:Danio
+-rango:int
+-vida:Vida
+-estado:EstadoUnidad
+-nombre:Nombre
+-aerea:bool
++compararCoordenadas(coordenada):bool
++actualizar(inventario)
+{abstract}+actualizarUnidad(inventario)
+{abstract}+regenerar()
++establecerEstado(estado)
++reducirTiempoConstruccion(tiempoAReducir):bool
++terminarConstruccion()
++establecerCoordenada(coorddenada)
++moverse(direccion:Direccion,mapa)
++atacar(direccion:Direccion,mapa)
++ejecutarAtaque(objetivo:Coordenada,mapa)
++intentarOcuparAlMoverse()
++recibirDanio(danioTerrestre:Danio,danioAereo:Danio)
+{abstract}+ejecutarDanio(danioTerrestre,danioAereo)
++extraerRecursos(inventario)
+{abstract}+generarse(edificio,inventario):Unidad
+{abstract}+ocupar(terreno):bool
++devolverNombre():Nombre
+{abstract}+consumirRecursosParaGenerarse(inventario)
++restaurarRecursosParaConstruccion(inventario)
++evolucionar(mapa,unidad)
+}
+class UnidadProtoss{
+-escudo:Escudo
++devolverEscudo():Escudo
++consumirRecursosParaGenerarse(inventario)
++generarse(edificio,inventario)
++ejecutarDanio(danioTerrestre,danioAereo)
+}
+class UnidadZerg{
+
++consumirRecursosParaGenerarse(inventario)
++generarse(edificio,inventario)
++ejecutarDanio(danioTerrestre,danioAereo)}
+
+class UnidadEnConstruccion{
+}
+
+class UnidadDestruida{
+}
+
+class UnidadOperativa{
+}
+
+class Danio{
+-poder:int
++Danio(poder:int)
++aplicarDanio(estadistica:int)
+}
+class Escudo{
+-valorMaximo:int
+-valorActual:int
+-tasaRegeneracion:double
++Escudo(valorMaximo:int)
++recibirDanio(Danio):bool
++regenerar()
+}
+
+class Vida{
+-valorMaximo:int
+-valorActual:int
+-tasaRegeneracion:double
++Vida(valorMaximo:int)
++recibirDanio(Danio):bool
++regenerar()
+}
+
+Unidad --* Vida
+Unidad -*  Danio
+Unidad <|-- UnidadProtoss
+UnidadProtoss --* Escudo
+Unidad <|--- UnidadZerg
+EstadoUnidad <- Unidad
+EstadoUnidad <|... UnidadOperativa
+EstadoUnidad <|.. UnidadEnConstruccion
+EstadoUnidad <|.. UnidadDestruida
+@enduml

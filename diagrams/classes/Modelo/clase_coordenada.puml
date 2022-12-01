@@ -1,0 +1,51 @@
+@startuml
+interface Direccion{
+hallarCoordenadaSiguiente(coordenada):Coordenada
+}
+
+class Coordenada{
+-x:int
+-y:int
++Coordenada(x:int,y:int)
++calcularDiferenciaEnX(x):int
++calcularDiferenciaEnX(coordenada):int
++calcularDiferenciaEnY(coordenada):int
++calcularDiferenciaEnY(Y):int
++esIgual(coordenada):bool
++hallarCoordenadasAdyacentes(rango:int):List
++seEncuentraEnListaDeCoordenadas(listaCoordenadas):bool
++seEncuentraACiertoRangoDeOtraCoordenadas(cordenadadaCentral,rango):bool
++devolverCoordenadaRelativa(x,y):Coordenada
++devolverX():int
++devolverY():int
+}
+class SuperficieRectangular{
+-cordenadaInicial:Coordenada
+-cordenadaFinal:Coordenada
++SuperficieRectangular(coordendaInicial,coordendaFinal)
++redimensionar(indiceRescala:int):SuperficieRectangular
++devolcerCoordenadasAlBorde():List
++calcularLongitudY():int
++calcularLongitudX():int
++calcularLongitudPromedio():int
++contieneCoordenadaEnX(coordenada)bool
++contieneCoordenadaEnY(coordenada)bool
++contieneCoordenada(coordenada)bool
++filtrarListaDeCoordenadas(listaCoordenadas):List
++devolverCoordenadasAdyacentes(coordenadasCental,rango):List
++devolverCoordenadasAdyacentes(coordenadasCental):List
++hallarCoordenadaCentral():Coordenada
++buscarCoordenadaCentral():Coordenada
++devolverCoordenadasAlAzarEvitando(listaCoordenada,rango):Coordenada
++devolverCoordenadasAlAzarEvitando(listaCoordenada):Coordenada
++calcularSuperficie():int
++transformarCoordenadaRelativamenteAlCento(coordenada,x,y):Coordenada
+
+}
+SuperficieRectangular --> Coordenada
+Direccion .> Coordenada
+Direccion <|.. Abajo
+Direccion <|.. Arriba
+Direccion <|.. Derecha
+Direccion <|.. Izquierda
+@enduml

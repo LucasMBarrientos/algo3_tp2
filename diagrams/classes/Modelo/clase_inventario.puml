@@ -1,0 +1,68 @@
+@startuml
+abstract Recurso{
+-unidadesDisponibles:int
++Recursos(unidades)
++gastar(recursos)
++agregarUnidades(recurso:Recurso)
++gastarUnidades(unidadesAConsumir:int)
+-devolverCantidadUnidades():int
+
+}
+
+class Inventario{
+-edificios:List
+-unidades:List
+-gasVespeno:GasVespeno
+-mineral:Mineral
+-suministro:Suministro
++Inventario(gasVespeno:GasVespeno,mineral:Mineral,suministro:Suministro)
++fueDerrotado(edificioInicialConstruido:bool)
+-contarEdificiosDestruidos():int
++buscarEdificio(coordenada):Edificio
++buscarUnidad(coordenada):Unidad
+-buscarIdDeUnidad(coordenada):int
+-buscarIdDeEdificio(coordenada):int
++tieneEdificio(nombreEdificio:nombre):bool
++consumirLarva()
++evolucionarUnidad(mapa,coordenada,unidad)
++agregarEdificio(edificio)
++agregarUnidad(unidad)
++eliminarUnidad(coordenada)
++eliminarEdificio(coordenada)
++agregarGasVespeno(gasVespeno:Recurso)
++agregarMineral(mineral:Recurso)
++agregarSuministro(suministro:Recurso)
++consumirGasVespeno(gasVespeno:Recurso)
++consumirMineral(mineral:Recurso)
++consumirSuministro(suministro:Recurso)
++devolverGasVespeno(gasVespeno:Recurso)
++devolverMineral(mineral:Recurso)
++actualizar()
+}
+
+class GasVespeno{
++GasVespeno(gasVespeno:int)
+}
+
+class Minerales{
+
++Minerales(minerales:int)
+}
+class Suministro{
+-unidadesMaximas:int
++Suministro(suministros:int)
++agregarUnidades(recurso:Recurso)
+}
+
+
+
+
+
+Recurso <|--Suministro
+Recurso <|--Minerales
+Recurso <|--GasVespeno
+
+
+
+Inventario -down->Recurso
+@enduml

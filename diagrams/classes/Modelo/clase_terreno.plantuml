@@ -1,0 +1,48 @@
+@startuml
+interface EstadoTerreno{
++ocuparPorEdificio(edificio)
++ocuparPorUnidad(unidad)
++energizarTerreno()
++desenergizarTerreno()
++tieneMoho():bool
++cubrirTerrenoDeMoho
++getString():String
+}
+abstract Terreno{
+-coordenada:Coordenada
+-edificio:Edificio
+-unidad:Unidad
++ocuparPorEdificio(edificio)
++ocuparPorUnidad(unidad)
++actualizar()
++eliminarEdificio()
++establecerUnidad(unidad)
+
++verificarTerrenoSinEdificio()
++verificarTerrenoSinUnidad()
++vaciarTerreno()
++energizarTerreno()
++desenergizarTerreno()
+{abstract}+cubrirTerrenoDeMoho
++actualizarListaDeCoordenadas(listaCordenadasConMoho
+,listaCoordenadasConCriaderos,listaDeCoordenasConPilon)
++extraerGasVespeno(recursoRequerido
+:Recurso)
++extraerGasVespeno(mineral:Mineral)
+
+}
+class TerrenoVacio
+class TerrenoMoho
+class TerrenoVolcan
+class TerrenoEnergizado
+class TerrenoMIneral
+
+Terreno <|- TerrenoBase
+Terreno <|--- TerrenoMIneral
+Terreno <|-- TerrenoVolcan
+Terreno <|-- TerrenoAereo
+TerrenoBase --> EstadoTerreno
+EstadoTerreno <|.. TerrenoEnergizado
+EstadoTerreno <|... TerrenoMoho
+EstadoTerreno <|.. TerrenoVacio
+@enduml
