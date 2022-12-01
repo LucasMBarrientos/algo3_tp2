@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Views;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -10,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -35,7 +38,6 @@ public class AlgoStarView extends BorderPane {
         pantallaJuego();
         setBotonera();
         this.stage = stage;
-        limite = new Coordenada(100,20);
     }
 
     private void setBotonera() {
@@ -59,23 +61,37 @@ public class AlgoStarView extends BorderPane {
     }
 
     private void pantallaJuego(){
-        Canvas escenaCentral = new Canvas(1620,780);
+
+        limite = new Coordenada(100,20);
+        Canvas escenaCentral = new Canvas(4000 ,4000);
 
         MapaView mapaView = new MapaView(escenaCentral, mapa);
         mapaView.dibujar();
 
-        VBox contenedorCentral = new VBox(escenaCentral);
-        contenedorCentral.setAlignment(Pos.CENTER);
-        contenedorCentral.setSpacing(20);
-        contenedorCentral.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY,new Insets(0))));
-        contenedorCentral.setPadding(new Insets(25));
+        ScrollPane contenedorCentral = new ScrollPane(escenaCentral);
+        contenedorCentral.setStyle("-fx-background: #7d7d7d; -fx-border-color: #7d7d7d;");
+        contenedorCentral.setPadding(new Insets(5));
+
+        contenedorCentral.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        contenedorCentral.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        this.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch (keyEvent.getCode()){
+                    case W: contenedorCentral.setVvalue(contenedorCentral.getVvalue() - (contenedorCentral.getHeight() * 0.00001));
+                        break;
+                    case S: contenedorCentral.setVvalue(contenedorCentral.getVvalue() + (contenedorCentral.getHeight() * 0.00001));
+                        break;
+                    case A: contenedorCentral.setHvalue(contenedorCentral.getHvalue() - (contenedorCentral.getWidth() * 0.00001));
+                        break;
+                    case D: contenedorCentral.setHvalue(contenedorCentral.getHvalue() + (contenedorCentral.getWidth() * 0.00001));
+                        break;
+                }
+            }
+        });
 
 
         this.setCenter(contenedorCentral);
-    }
-
-    private void dibujarMapa(){
-        //TODO: todo lo pertinente a mapa
-        //layout.getChildren().add(mapa);
     }
 }

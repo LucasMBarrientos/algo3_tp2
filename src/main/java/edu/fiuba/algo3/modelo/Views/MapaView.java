@@ -32,12 +32,12 @@ public class MapaView {
         String infoMapa = mapa.getString();
         //Aca se dibujarian los terrenos
         String[] listaDeTerrenos = infoMapa.split("");
-        int sizeX = 10;
-        int sizeY = 10;
+        int sizeX = 35;
+        int sizeY = 35;
         int posX = 2 ;
         int posY = 2 ;
+        int separacion = 40;
 
-        int separacion = 15;
         for (int i = 0; i < listaDeTerrenos.length; i++) {
             switch (listaDeTerrenos[i]){
                 case "a":{
