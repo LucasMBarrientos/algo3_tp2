@@ -124,6 +124,23 @@ public class CasoDeUso30 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /*@Test
   public void teniendo40CriaderosY50MutaliscoNoPuedoCrearOtraUnidad() {
       
