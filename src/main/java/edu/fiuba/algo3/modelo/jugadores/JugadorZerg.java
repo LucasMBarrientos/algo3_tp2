@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import javafx.scene.layout.CornerRadii;
 
@@ -68,6 +69,9 @@ public class JugadorZerg extends Jugador {
         Zangano zanganoInicial = mapa.establecerZanganoInicial(id);
         inventario.agregarUnidad(zanganoInicial);
         // Establecer el "amo supremo" inicial
+        AmoSupremo amoSupremoInicial = new AmoSupremo();
+        mapa.establecerUnidad(new Coordenada(0,0), amoSupremoInicial);
+        inventario.agregarUnidad(amoSupremoInicial);
 
         /*
         Criadero criaderoInicial = new Criadero();

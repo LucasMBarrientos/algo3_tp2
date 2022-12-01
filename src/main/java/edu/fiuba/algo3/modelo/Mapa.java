@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.areas.AreaEspacial;
-import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
 import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.Invisible;
+import edu.fiuba.algo3.modelo.unidades.protoss.Visible;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
@@ -127,14 +127,30 @@ public class Mapa {
         List<Coordenada> coordenadasQueTendranMoho = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConCriaderos = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConPilones = new ArrayList<Coordenada>();
+        List<Coordenada> coordenadasAVisibilizar = new ArrayList<Coordenada>();
         for (Terreno terreno : terrenos) {
             terreno.actualizarListaDeCoordenadas(coordenadasQueTendranMoho, coordenadasConCriaderos, coordenadasConPilones);
+            terreno.actualizarListaDeCoordenadasAVisibilizar(coordenadasAVisibilizar);
         }
         if (turnoActual % 4 == 0) {
             cubrirCoordenadasDeMoho(coordenadasQueTendranMoho);
         }
         actualizarTerrenosEnergizados(coordenadasConPilones);
         generarMohoAlrededorDeCriaderos(coordenadasConCriaderos);
+        actualizarTerrenosConUnidadesVisibles(coordenadasAVisibilizar);
+    }
+
+    private void actualizarTerrenosConUnidadesVisibles(List<Coordenada> coordenadasAVisibilizar){
+        for(Terreno terreno : terrenos){
+            terreno.cambiarVisibilidadAUnidad(new Invisible());
+        }
+
+        for(Coordenada coordenada: coordenadasAVisibilizar){
+            try {
+                buscarTerreno(coordenada).cambiarVisibilidadAUnidad(new Visible());
+            } catch (CoordenadaFueraDelMapa e){}
+        }
+
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {

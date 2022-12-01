@@ -24,9 +24,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
-import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
-import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.protoss.*;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Terreno {
@@ -132,6 +130,18 @@ public abstract class Terreno {
     public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         if (edificio != null) {
             edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+        }
+    }
+
+    public void actualizarListaDeCoordenadasAVisibilizar(List<Coordenada> coordenadasConUnidades) {
+        if (unidad != null) {
+            unidad.actualizarListaDeCoordenadasVisibles(coordenadasConUnidades);
+        }
+    }
+
+    public void cambiarVisibilidadAUnidad(Visibilidad visibilidad){
+        if (unidad != null) {
+            unidad.establecerVisibilidad(visibilidad);
         }
     }
 

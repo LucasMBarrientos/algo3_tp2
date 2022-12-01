@@ -15,9 +15,12 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AmoSupremo extends UnidadZerg  {
 
-  private int radioDeVisibilidad = 4;
+  protected int radioDeVisibilidad = 4;
   public AmoSupremo() {
     this.costoEnGas = new GasVespeno(0);
     this.costoEnMinerales = new Mineral(150);
@@ -56,5 +59,13 @@ public class AmoSupremo extends UnidadZerg  {
     return this;
   }
 
+  @Override
+  public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
+    List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
+
+    for(Coordenada coordenadaHallada : coordenadas) {
+      coordenadasAVisibilizar.add(coordenadaHallada);
+    }
+  }
 
 }

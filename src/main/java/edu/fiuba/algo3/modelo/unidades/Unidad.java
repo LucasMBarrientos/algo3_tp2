@@ -18,6 +18,8 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.protoss.Invisible;
 import edu.fiuba.algo3.modelo.unidades.protoss.Visibilidad;
 
+import java.util.List;
+
 public abstract class Unidad {
 
     protected Recurso costoEnMinerales;
@@ -138,4 +140,6 @@ public abstract class Unidad {
     public void destruirse(Inventario inventario){
         inventario.eliminarUnidad(coordenada);
     }
+
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){}
 }
