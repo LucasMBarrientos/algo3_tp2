@@ -40,47 +40,6 @@ public class CasoDeUso22 {
             jugador.generarUnidad(new Coordenada(2, 2), new Zangano());
         });
     }
-/*
-    @Test
-    public void unZanganoNoTerminoDeConstruirseAntesDe1Turno() {
-        Zangano zanganoInicial = new Zangano();
-        zanganoInicial.establecerCoordenada(new Coordenada(2,2));
-
-        Mapa mapa = new Mapa(new Coordenada(30,30));
-        mapa.establecerUnidad(new Coordenada(2,2), zanganoInicial);
-
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(400));
-        inventario.agregarUnidad(zanganoInicial);
-
-        JugadorZerg jugador = new JugadorZerg(inventario);
-        jugador.establecerMapa(mapa);
-
-        jugador.construirEdificio(new Coordenada(2,2), new Criadero());
-
-        for (int i = 0; i < 8; i++) {
-            inventario.actualizar();
-        }
-
-        Zangano zangano = new Zangano();
-        jugador.generarUnidad(new Coordenada(2, 2), zangano);
-
-        Assertions.assertThrows(UnidadNoTerminoDeConstruirse.class, ()->{
-           zangano.atacar(new Coordenada(2,2), mapa);
-        });
-    }*/
-/*
-    @Test
-    public void unZerlingNoPuedeGenerarseSinUnaReservaDeReproduccion() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(200));
-        JugadorZerg jugador = new JugadorZerg(inventario);
-        Mapa mapa = new Mapa(new Coordenada(30,30));
-        jugador.establecerMapa(mapa);
-
-
-        Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
-            jugador.generarUnidad(new Coordenada(2, 2), new Zerling());
-        });
-    }*/
 
     @Test
     public void unZerlingNoTerminoDeGenerarseAntesDe2Turnos() {
@@ -91,20 +50,7 @@ public class CasoDeUso22 {
             zerling.atacar(new Coordenada(2,3), mapa);
         });
     }
-/*
-    @Test
-    public void unHidralicoNoPuedeGenerarseSinUnaGuarida() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(200));
-        JugadorZerg jugador = new JugadorZerg(inventario);
-        Mapa mapa = new Mapa(new Coordenada(30,30));
-        jugador.establecerMapa(mapa);
 
-
-        Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
-            jugador.generarUnidad(new Coordenada(2, 2), new Hidralisco());
-        });
-    }
-*/
     @Test
     public void unHidraliscoNoTerminoDeGenerarseAntesDe4Turnos() {
         Hidralisco hidralisco = new Hidralisco();

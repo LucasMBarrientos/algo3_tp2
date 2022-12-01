@@ -48,6 +48,34 @@ public class CasoDeUso9 {
           jugadorProtoss.generarUnidad(new Coordenada(2, 2), new Zealot());
       });
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       /*
       JugadorProtoss jugador = new JugadorProtoss();
       Pilon pilon1 = new Pilon();
