@@ -39,7 +39,7 @@ public class Zealot extends UnidadProtoss {
 
     @Override
     public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {
-        visibilidad.ejecutarDanioAZealot(danioTerrestre, vida, escudo, this);
+        visibilidad.ejecutarDanio(danioTerrestre, vida, escudo, this);
     }
 
     @Override

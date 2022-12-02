@@ -9,6 +9,6 @@ import edu.fiuba.algo3.modelo.unidades.UnidadDestruida;
 
 public class Invisible implements Visibilidad{
 
-    public void ejecutarDanioAZealot(Danio danioTerrestre, Vida vida, Escudo escudo, Zealot zealot) { }
+    public void ejecutarDanio(Danio danioTerrestre, Vida vida, Escudo escudo, Unidad unidad) { }
 
 }

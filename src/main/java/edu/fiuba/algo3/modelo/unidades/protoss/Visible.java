@@ -9,9 +9,9 @@ import edu.fiuba.algo3.modelo.unidades.UnidadDestruida;
 
 public class Visible implements Visibilidad{
 
-    public void ejecutarDanioAZealot(Danio danioTerrestre, Vida vida, Escudo escudo, Zealot zealot) {
+    public void ejecutarDanio(Danio danioTerrestre, Vida vida, Escudo escudo, Unidad unidad) {
         if(vida.recibirDanio(new Danio(escudo.recibirDanio(danioTerrestre) * (-1)))) {
-            zealot.establecerEstado(new UnidadDestruida());
+            unidad.establecerEstado(new UnidadDestruida());
             throw new UnidadEstaDestruida();
         }
     }

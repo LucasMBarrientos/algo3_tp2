@@ -9,5 +9,5 @@ import edu.fiuba.algo3.modelo.unidades.UnidadDestruida;
 
 public interface Visibilidad {
 
-    void ejecutarDanioAZealot(Danio danioTerrestre, Vida vida, Escudo escudo, Zealot zealot) ;
+    void ejecutarDanio(Danio danioTerrestre, Vida vida, Escudo escudo, Unidad unidad) ;
 }
