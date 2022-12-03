@@ -36,8 +36,21 @@ public class AlgoStarView extends BorderPane {
         mapa = algoStar.empezarJuego();
         setMenu(stage);
         pantallaJuego();
+        setPantallDeStats();
         setBotonera();
         this.stage = stage;
+    }
+
+    private void setPantallDeStats() {
+        //Aca iría las cosas de la pantalla de stats
+
+
+        // handler del boton construir
+        VBox contenedorHorizontal = new VBox(); // <- recibe las cosas como parámetro
+        contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setPadding(new Insets(10));
+
+        this.setLeft(contenedorHorizontal);
     }
 
     private void setBotonera() {
