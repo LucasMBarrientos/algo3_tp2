@@ -8,62 +8,40 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
+public class BotonBienvenida  implements EventHandler<ActionEvent> {
 
-    private final AlgoStar algoStar;
-    private final TextField nombre1;
-
-    String color;
-
-    BotonElegirColorEventHandler botonColor;
     Stage stage;
     Scene proximaEscena;
 
-    public BotonEntrarEventHandler(Stage stage, Scene proximaEscena, AlgoStar algoStar , TextField nombreJugador1,String cb){
+    public BotonBienvenida(Stage stage, Scene proximaEscena, AlgoStar algoStar){
         this.stage = stage;
         this.proximaEscena = proximaEscena;
-        this.algoStar = algoStar;
-        this.nombre1 = nombreJugador1;
-        this.color = cb;
+
     }
 
 
 
     @Override
     public void handle(ActionEvent event) {
-        try {
-            if(algoStar.jugadores.size()==0){
+        stage.setFullScreen(true);
+        stage.setScene(proximaEscena);
+        stage.setFullScreen(true);
 
-                JugadorZerg jugadorZerg = new JugadorZerg(nombre1.getText(),color);
-                algoStar.agregarJugador(jugadorZerg);
-
-            }
-            else{
-                JugadorProtoss jugadorProtoss = new JugadorProtoss(nombre1.getText(), color);
-                algoStar.agregarJugador(jugadorProtoss);
-            }
-
-
-
+  /*      try {
             stage.setFullScreen(true);
             stage.setScene(proximaEscena);
             stage.setFullScreen(true);
-        } catch (NombreDeJugadorInvalido e ) {
+        } catch (NombreDeJugadorInvalido e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Nombre de Jugador Inválido");
             alert.setHeaderText("Recuerde que los nombres de los jugadores deben tener seis letras");
             String mensaje = "Nombre de jugador Inválido, vuelva a intentarlo";
             alert.setContentText(mensaje);
             alert.show();
-        }
+        }*/
 
     }
-
-
-
-
 }
