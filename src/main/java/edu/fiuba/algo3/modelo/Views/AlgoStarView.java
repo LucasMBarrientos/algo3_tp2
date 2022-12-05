@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.Views;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
+import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -31,6 +33,8 @@ public class AlgoStarView extends BorderPane {
 
     Mapa mapa;
 
+    MapaView mapaView;
+
     public AlgoStarView(Stage stage, AlgoStar algostar) {
         this.algoStar = algostar;
         mapa = algoStar.empezarJuego();
@@ -56,12 +60,13 @@ public class AlgoStarView extends BorderPane {
     private void setBotonera() {
         //Aca iría las cosas de la botonera
 
-        Button botonConstruir = new Button();
-        botonConstruir.setText("Construir");
-        // handler del boton construir
+        Button botonPasarTurno = new Button();
+        botonPasarTurno.setText("Pasar Turno");
+        BotonPasarTurnoHandler botonPasarTurnoHandler = new BotonPasarTurnoHandler(algoStar, this);
+        botonPasarTurno.setOnAction(botonPasarTurnoHandler);
 
 
-        HBox contenedorHorizontal = new HBox(botonConstruir); // <- recibe los botones como parametro
+        HBox contenedorHorizontal = new HBox(botonPasarTurno); // <- recibe los botones como parametro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
 
@@ -78,7 +83,7 @@ public class AlgoStarView extends BorderPane {
         limite = new Coordenada(100,20);
         Canvas escenaCentral = new Canvas(4000 ,4000);
 
-        MapaView mapaView = new MapaView(escenaCentral, mapa);
+        mapaView = new MapaView(escenaCentral, mapa);
         mapaView.dibujar();
 
         ScrollPane contenedorCentral = new ScrollPane(escenaCentral);
@@ -106,5 +111,9 @@ public class AlgoStarView extends BorderPane {
 
 
         this.setCenter(contenedorCentral);
+    }
+
+    public void actualizarMapa(){
+        mapaView.dibujar();
     }
 }
