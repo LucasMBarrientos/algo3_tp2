@@ -21,10 +21,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class Asimilador extends EdificioProtoss {
     public Asimilador() {
@@ -70,6 +67,10 @@ public class Asimilador extends EdificioProtoss {
         throw new  EdificioNoConoceEstaUnidad();
     }
     public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
     @Override

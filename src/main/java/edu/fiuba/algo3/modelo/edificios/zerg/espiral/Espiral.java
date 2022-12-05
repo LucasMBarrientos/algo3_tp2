@@ -22,10 +22,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class Espiral extends EdificioZerg {
     Terreno terreno;
@@ -78,6 +75,11 @@ public class Espiral extends EdificioZerg {
     public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
+
+    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario)  throws EdificioNoConoceEstaUnidad{
+        throw new  EdificioNoConoceEstaUnidad();
+    }
+
   
     @Override
     public void actualizarEdificio(Inventario inventario) {

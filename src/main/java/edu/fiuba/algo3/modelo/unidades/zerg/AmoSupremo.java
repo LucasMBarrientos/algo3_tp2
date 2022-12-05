@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -23,6 +24,7 @@ import java.util.List;
 public class AmoSupremo extends UnidadZerg  {
 
     protected int radioDeVisibilidad = 4;
+    private Recurso suministroAAgregar = new Suministro(5);
     public AmoSupremo() {
       this.costoEnGas = new GasVespeno(0);
       this.costoEnMinerales = new Mineral(150);
@@ -62,17 +64,21 @@ public class AmoSupremo extends UnidadZerg  {
 
     @Override
     public Unidad generarse(Edificio edificio, Inventario inventario) {
-      // TODO Auto-generated method stub
-      return this;
+        return edificio.generarUnidad(this, inventario);
     }
 
     @Override
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
-      List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
+    public void agregarSuministro(Inventario inventario) {
+        inventario.agregarSuministro(suministroAAgregar);
+    }
 
-      for(Coordenada coordenadaHallada : coordenadas) {
-        coordenadasAVisibilizar.add(coordenadaHallada);
-      }
+    @Override
+    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar){
+        List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
+
+        for(Coordenada coordenadaHallada : coordenadas) {
+            coordenadasAVisibilizar.add(coordenadaHallada);
+        }
     }
 
 }

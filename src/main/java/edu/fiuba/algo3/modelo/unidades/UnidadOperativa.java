@@ -8,19 +8,10 @@ import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
+import java.util.List;
+
 public class UnidadOperativa implements EstadoUnidad {
     protected Unidad unidad;
-    /*protected Danio danioAereo;
-    protected Danio danioTerrestre;
-    protected int rango;
-    protected Coordenada coordenada;*/
-
-    /*public UnidadOperativa(Danio danioAereo, Danio danioTerrestre, int rango, Coordenada coordenada) {
-        this.danioAereo= danioAereo;
-        this.danioTerrestre = danioTerrestre;
-        this.rango = rango;
-        this.coordenada = coordenada;
-    }*/
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
         mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
@@ -28,21 +19,16 @@ public class UnidadOperativa implements EstadoUnidad {
     }
 
     public void atacar(Coordenada objetivo, Mapa mapa) {
-        /*if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
-            mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo); //la logica seria pasarle ambos daños, q despues la unidad objetivo se encargue de ver cual
-        } else {
-            throw new AtaqueImposibleDeRealizarse(); // TODO: posiblemente implementar una excepcion "AtaqueFueraDeRango"
-        }*/
-        this.unidad.ejecutarAtaque(objetivo, mapa);
+        unidad.ejecutarAtaque(objetivo, mapa);
     }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
-        this.unidad.ejecutarDanio(danioTerrestre, danioAereo);
+        unidad.ejecutarDanio(danioTerrestre, danioAereo);
     }
 
     @Override
     public void actualizar(Inventario inventario) {
-      this.unidad.actualizarUnidad(inventario);
+      unidad.actualizarUnidad(inventario);
     }
 
     @Override
@@ -51,14 +37,14 @@ public class UnidadOperativa implements EstadoUnidad {
     }
 
     @Override
-    public void terminarConstruccion() {
-      // TODO Auto-generated method stub
-      
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
+        unidad.actualizarListaAVisibilizar(coordenadasAVisibilizar);
     }
 
     @Override
+    public void terminarConstruccion() { }
+
+    @Override
     public void deshacerConstruccion() {
-      // TODO Auto-generated method stub
-      
     }
 }

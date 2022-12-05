@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 
+import java.util.List;
+
 public class UnidadEnConstruccion implements EstadoUnidad {
     protected Unidad unidad;
     
@@ -25,8 +27,9 @@ public class UnidadEnConstruccion implements EstadoUnidad {
 
     @Override
     public void actualizar(Inventario inventario) {
-      if(this.unidad.reducirTiempoConstruccion(1)){
-        this.terminarConstruccion();
+      if(unidad.reducirTiempoConstruccion(1)){
+          unidad.agregarSuministro(inventario);
+          terminarConstruccion();
       }
     }
 
@@ -45,4 +48,6 @@ public class UnidadEnConstruccion implements EstadoUnidad {
       // TODO Auto-generated method stub
       
     }
+
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){ }
 }

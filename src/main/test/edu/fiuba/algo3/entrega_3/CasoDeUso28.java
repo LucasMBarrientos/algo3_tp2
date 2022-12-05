@@ -18,10 +18,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Devorador;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -234,10 +231,11 @@ public class CasoDeUso28 {
             jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(4,1));
         }
 
-        //muevo el amo supremo y este detecta al zealot
-        jugadorZerg.moverUnidad(new Coordenada(0,0), new Derecha());
-        algoStar.pasarTurno();
-
+        //genero un amo supremo y este detecta al zealot
+        jugadorZerg.generarUnidad(new Coordenada(1, 1), new AmoSupremo());
+        for (int i = 0; i < 6; i++) {
+            algoStar.pasarTurno();
+        }
 
         //el zerling ahora si puede atacar al zealot
         for (int i = 0; i < 39; i++) {

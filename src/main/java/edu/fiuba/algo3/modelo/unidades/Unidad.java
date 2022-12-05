@@ -134,6 +134,7 @@ public abstract class Unidad {
     public void restaurarRecursosParaConstruccion(Inventario inventario){
         inventario.devolverMinerales(costoEnMinerales);
         inventario.devolverGasVespeno(costoEnGas);
+        inventario.agregarSuministro(costoSuministro);
     }
 
     public Unidad evolucionar(Mapa mapa, Unidad unidad){
@@ -144,5 +145,11 @@ public abstract class Unidad {
         inventario.eliminarUnidad(coordenada);
     }
 
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){}
+    public void agregarSuministro(Inventario inventario) {
+    }
+
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
+        estado.actualizarListaDeCoordenadasVisibles(coordenadasAVisibilizar);
+    }
+    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar){ }
 }

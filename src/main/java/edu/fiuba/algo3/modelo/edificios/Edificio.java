@@ -17,10 +17,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 import java.util.List;
 
@@ -89,6 +86,8 @@ public abstract class Edificio {
     public abstract Unidad generarUnidad(Scout unidad,Inventario inventario);
     public abstract Unidad generarUnidad(Zealot unidad,Inventario inventario);
     public abstract Unidad generarUnidad(Dragon unidad,Inventario inventario);
+
+    public abstract Unidad generarUnidad(AmoSupremo unidad, Inventario inventario);
 
     public abstract ObjectNode toData();
 

@@ -20,8 +20,6 @@ public class EdificioOperativo implements EstadoEdificio {
   @Override
   public void actualizar(Inventario inventario) {
     edificio.actualizarEdificio(inventario);
-    /*edificio.regenerar();
-    edificio.extraerRecursos(inventario);*/
   }
 
   @Override

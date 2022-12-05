@@ -68,20 +68,6 @@ public class JugadorZerg extends Jugador {
     protected void iniciarseEnMapa() {
         Zangano zanganoInicial = mapa.establecerZanganoInicial(id);
         inventario.agregarUnidad(zanganoInicial);
-        // Establecer el "amo supremo" inicial
-        AmoSupremo amoSupremoInicial = new AmoSupremo();
-        mapa.establecerUnidad(new Coordenada(0,0), amoSupremoInicial);
-        inventario.agregarUnidad(amoSupremoInicial);
-
-        /*
-        Criadero criaderoInicial = new Criadero();
-        this.inventario.agregarEdificio(criaderoInicial);
-        mapa.establecerEdificio(new Coordenada(1,1),criaderoInicial);
-        */
-        /*
-        Criadero criaderoInicial = mapa.establecerInicioZerg(id);
-        this.inventario.agregarEdificio(criaderoInicial);
-        */
     }
 
  }

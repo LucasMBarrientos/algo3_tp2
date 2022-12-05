@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 
+import java.util.List;
+
 public class UnidadDestruida implements EstadoUnidad{
   protected Unidad unidad;
 
@@ -36,16 +38,13 @@ public class UnidadDestruida implements EstadoUnidad{
   }
 
   @Override
-  public void terminarConstruccion() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){}
 
   @Override
-  public void deshacerConstruccion() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void terminarConstruccion() {}
+
+  @Override
+  public void deshacerConstruccion() { }
 
  
 
