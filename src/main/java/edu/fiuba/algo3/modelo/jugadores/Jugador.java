@@ -124,6 +124,8 @@ public abstract class Jugador {
     public void actualizar() {
         inventario.actualizar();
     }
+
+    public abstract String devolverMensajeDeVictoria();
     
     public void fueDerrotado() {
         inventario.fueDerrotado(edificioInicialConstruido);

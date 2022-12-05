@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class PantallaBienvenida extends VBox{
+public class PantallaBienvenida extends VBox {
 
     Stage stage;
     ChoiceBox<String> cb = new ChoiceBox<String>();
@@ -39,7 +39,6 @@ public class PantallaBienvenida extends VBox{
         BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(stage.getOutputScaleX(),stage.getMaxWidth(),true,true,true,true));
         //BackgroundImage fondo2 = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, BackgroundSize.AUTO(this.getBaselineOffset()));
         this.setBackground(new Background(fondo));
-
 
         Button boton = new Button();
         boton.setText("Comenzar Partida");
