@@ -155,7 +155,8 @@ public class TerrenoMoho implements EstadoTerreno {
         }else if (terreno.unidad != null){
             node.put("Ocupante",terreno.unidad.toData());
         }else{
-            node.put("Ocupante","Desocupado");
+            ObjectNode node2 = Json.createObjectNode();
+            node.put("Ocupante",node2.put("nombre","Desocupado"));
         }
         return node;
     }

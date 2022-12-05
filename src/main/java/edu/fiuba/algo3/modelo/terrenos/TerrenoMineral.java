@@ -142,7 +142,8 @@ public class TerrenoMineral extends Terreno {
         }else if (unidad != null){
             node.put("Ocupante",unidad.toData());
         }else{
-            node.put("Ocupante","Desocupado");
+            ObjectNode node2 = Json.createObjectNode();
+            node.put("Ocupante",node2.put("nombre","Desocupado"));
         }
         return node;
     }

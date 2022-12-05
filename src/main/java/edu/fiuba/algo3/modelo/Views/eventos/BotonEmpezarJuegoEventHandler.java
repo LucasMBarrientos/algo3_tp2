@@ -13,9 +13,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
+public class BotonEmpezarJuegoEventHandler implements EventHandler<ActionEvent> {
 
     private final AlgoStar algoStar;
+    private final AlgoStarView algoView;
     private final TextField nombre1;
 
     String color;
@@ -24,10 +25,11 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
     Stage stage;
     Scene proximaEscena;
 
-    public BotonEntrarEventHandler(Stage stage, Scene proximaEscena, AlgoStar algoStar , TextField nombreJugador1,String cb){
+    public BotonEmpezarJuegoEventHandler(Stage stage, Scene proximaEscena, AlgoStar algoStar, AlgoStarView algoView , TextField nombreJugador1,String cb){
         this.stage = stage;
         this.proximaEscena = proximaEscena;
         this.algoStar = algoStar;
+        this.algoView = algoView;
         this.nombre1 = nombreJugador1;
         this.color = cb;
     }
@@ -51,6 +53,7 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
 
             if(algoStar.jugadores.size()==2){
                 algoStar.empezarJuego();
+                algoView.actualizarMapa();
             }
             stage.setFullScreen(true);
             stage.setScene(proximaEscena);

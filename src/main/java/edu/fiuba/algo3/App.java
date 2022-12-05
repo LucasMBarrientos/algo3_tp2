@@ -25,7 +25,7 @@ public class App extends Application {
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
 
-        PantallaInicial2 pantallaInicial2 = new PantallaInicial2(stage,escenaJuego, algoStar);
+        PantallaInicial2 pantallaInicial2 = new PantallaInicial2(stage,escenaJuego, algoStar, pantallaPrincipal);
         //pantallaInicial.getChildren().addAll(imgView);
         Scene escenaMenu2 = new Scene(pantallaInicial2,1620,780);
 

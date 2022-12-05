@@ -52,11 +52,11 @@ public class MapaView {
         int separacion = 40;
 
         for (JsonNode ocupante : node) {
-            JsonNode a = ocupante.get("Ocupante");
-            switch (ocupante.get("Ocupante").asText()){
-                case "Desocupado":{
-                    canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+            String a = ocupante.get("Ocupante").get("nombre").asText();
+            switch (ocupante.get("Ocupante").get("nombre").asText()){
+                case "Zangano":{
+                    canvas.getGraphicsContext2D().setFill(Color.ORANGE);
+                    canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
                     break;
                 }
                 case "Vacio":{
@@ -79,9 +79,7 @@ public class MapaView {
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
-                case "Energizado":{
-                    canvas.getGraphicsContext2D().setFill(Color.BLUE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,2);
+                case "Desocupado":{
                     break;
                 }
                 case "cambioDeLinea":{

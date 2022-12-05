@@ -132,7 +132,8 @@ public class TerrenoAereo extends Terreno{
     @Override
     public ObjectNode toDataOcupantes() {
         ObjectNode node = Json.createObjectNode();
-        node.put("Ocupante","Desocupado");
+        ObjectNode node2 = Json.createObjectNode();
+        node.put("Ocupante",node2.put("nombre","Desocupado"));
         return node;
     }
 }

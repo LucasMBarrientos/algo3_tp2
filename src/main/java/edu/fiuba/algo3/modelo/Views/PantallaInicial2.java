@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Views;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Views.eventos.BotonEmpezarJuegoEventHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -18,11 +19,14 @@ public class PantallaInicial2 extends VBox{
     Stage stage;
     ChoiceBox<String> cb = new ChoiceBox<String>();
 
+    AlgoStarView algoView;
+
     String colorOne;
 
-    public PantallaInicial2(Stage stage, Scene escenaJuego, AlgoStar algoStar) {
+    public PantallaInicial2(Stage stage, Scene escenaJuego, AlgoStar algoStar, AlgoStarView algoView) {
         super();
         this.stage = stage;
+        this.algoView = algoView;
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
@@ -60,8 +64,8 @@ public class PantallaInicial2 extends VBox{
 
 
 
-        BotonEntrarEventHandler botonEntrarEventHandler = new BotonEntrarEventHandler(stage,escenaJuego,algoStar, nombreJugador1,cb.getSelectionModel().getSelectedItem());
-        botonIniciarJuego.setOnAction(botonEntrarEventHandler);
+        BotonEmpezarJuegoEventHandler botonEmpezarJuegoEventHandler = new BotonEmpezarJuegoEventHandler(stage,escenaJuego,algoStar, algoView, nombreJugador1,cb.getSelectionModel().getSelectedItem());
+        botonIniciarJuego.setOnAction(botonEmpezarJuegoEventHandler);
         //this.getChildren().add(imgView);
         //    boolean add = this.getChildren().add(imgView);
         this.setAlignment(Pos.CENTER);
