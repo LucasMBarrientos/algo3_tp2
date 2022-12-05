@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.protoss;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
@@ -36,7 +38,12 @@ public class Zealot extends UnidadProtoss {
         establecerVisibilidad(new Visible());
         establecerEstado(new UnidadEnConstruccion());
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Zealot");
+        return node;
+    }
     @Override
     public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {
         visibilidad.ejecutarDanio(danioTerrestre, vida, escudo, this);

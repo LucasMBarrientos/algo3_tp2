@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -88,6 +89,8 @@ public abstract class Edificio {
     public abstract Unidad generarUnidad(Scout unidad,Inventario inventario);
     public abstract Unidad generarUnidad(Zealot unidad,Inventario inventario);
     public abstract Unidad generarUnidad(Dragon unidad,Inventario inventario);
+
+    public abstract ObjectNode toData();
 
     public Nombre devolverNombre(){
         return nombre;

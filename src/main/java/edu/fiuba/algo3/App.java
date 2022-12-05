@@ -5,15 +5,9 @@ import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
 
 import edu.fiuba.algo3.modelo.Views.PantallaInicial;
-import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
-import edu.fiuba.algo3.modelo.Views.eventos.PantallaInicial2;
+import edu.fiuba.algo3.modelo.Views.PantallaInicial2;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**

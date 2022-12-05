@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios.protoss.asimilador;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -70,7 +72,12 @@ public class Asimilador extends EdificioProtoss {
     public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
         throw new  EdificioNoConoceEstaUnidad();
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Asimilador");
+        return node;
+    }
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
     }
 

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
@@ -144,6 +145,19 @@ public class TerrenoMoho implements EstadoTerreno {
     @Override
     public String toData() {
         return "Moho";
+    }
+
+    @Override
+    public ObjectNode toDataOcupantes() {
+        ObjectNode node = Json.createObjectNode();
+        if(terreno.edificio != null){
+            node.put("Ocupante",terreno.edificio.toData());
+        }else if (terreno.unidad != null){
+            node.put("Ocupante",terreno.unidad.toData());
+        }else{
+            node.put("Ocupante","Desocupado");
+        }
+        return node;
     }
 
     public void energizarTerreno() {

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -36,7 +38,12 @@ public class ReservaDeReproduccion extends EdificioZerg {
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) { }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Reserva");
+        return node;
+    }
     public Unidad generarUnidad(Zerling unidad,Inventario inventario){
         return estadoActual.generarUnidad(unidad,inventario);
     }

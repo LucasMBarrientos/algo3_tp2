@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios.protoss.pilon;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -42,7 +44,12 @@ public class Pilon extends EdificioProtoss {
     /*public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
         return null;
     }*/
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Pilon");
+        return node;
+    }
     public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }

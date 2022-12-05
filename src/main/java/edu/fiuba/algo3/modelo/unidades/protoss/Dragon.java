@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.protoss;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
@@ -36,7 +38,12 @@ public class Dragon extends UnidadProtoss {
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this,inventario);
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Dragon");
+        return node;
+    }
     public boolean ocupar(Terreno terreno){
         boolean sePudoOcupar = true;
 

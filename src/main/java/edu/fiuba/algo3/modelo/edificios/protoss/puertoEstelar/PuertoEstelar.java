@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -39,6 +41,13 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
+    }
+
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Puerto");
+        return node;
     }
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {

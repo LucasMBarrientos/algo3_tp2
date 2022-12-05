@@ -1,6 +1,7 @@
-package edu.fiuba.algo3.modelo.Views.eventos;
+package edu.fiuba.algo3.modelo.Views;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

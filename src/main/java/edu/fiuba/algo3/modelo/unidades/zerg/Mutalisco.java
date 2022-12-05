@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -46,7 +48,12 @@ public class Mutalisco extends UnidadZerg {
 
         return sePudoOcupar;
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Mutalisco");
+        return node;
+    }
     @Override
     public Unidad evolucionar(Mapa mapa, Unidad unidad){
         mapa.eliminarUnidad(coordenada);

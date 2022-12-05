@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -63,6 +65,8 @@ public abstract class Unidad {
           return true;
       }
     }
+
+    public abstract ObjectNode toData();
 
     public void terminarConstruccion(){
       this.estado.terminarConstruccion();

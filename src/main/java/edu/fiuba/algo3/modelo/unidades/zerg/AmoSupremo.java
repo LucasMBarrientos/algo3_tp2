@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -20,52 +22,57 @@ import java.util.List;
 
 public class AmoSupremo extends UnidadZerg  {
 
-  protected int radioDeVisibilidad = 4;
-  public AmoSupremo() {
-    this.costoEnGas = new GasVespeno(0);
-    this.costoEnMinerales = new Mineral(150);
-    this.costoSuministro = new Suministro(0);
-    this.tiempoConstruccion = 5;
-    this.danioAereo = new Danio(0);
-    this.danioTerrestre = new Danio(0);
-    this.rango = 0;
-    this.vida = new Vida(200);
-    this.nombre = new Nombre("AmoSupremo");
-    this.aerea = true;
-    establecerEstado(new UnidadEnConstruccion());
-  }
-
-  @Override
-  public boolean ocupar(Terreno terreno) {
-    boolean sePudoOcupar = true;
-
-    try {
-      terreno.ocuparPorUnidad(this);
-    } catch (RuntimeException e){
-      sePudoOcupar = false;
+    protected int radioDeVisibilidad = 4;
+    public AmoSupremo() {
+      this.costoEnGas = new GasVespeno(0);
+      this.costoEnMinerales = new Mineral(150);
+      this.costoSuministro = new Suministro(0);
+      this.tiempoConstruccion = 5;
+      this.danioAereo = new Danio(0);
+      this.danioTerrestre = new Danio(0);
+      this.rango = 0;
+      this.vida = new Vida(200);
+      this.nombre = new Nombre("AmoSupremo");
+      this.aerea = true;
+      establecerEstado(new UnidadEnConstruccion());
     }
-    return sePudoOcupar;
-  }
 
-  @Override
-  public void actualizarUnidad(Inventario inventario) {
-    regenerar();
-  }
+    @Override
+    public boolean ocupar(Terreno terreno) {
+      boolean sePudoOcupar = true;
 
-
-  @Override
-  public Unidad generarse(Edificio edificio, Inventario inventario) {
-    // TODO Auto-generated method stub
-    return this;
-  }
-
-  @Override
-  public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
-    List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
-
-    for(Coordenada coordenadaHallada : coordenadas) {
-      coordenadasAVisibilizar.add(coordenadaHallada);
+      try {
+        terreno.ocuparPorUnidad(this);
+      } catch (RuntimeException e){
+        sePudoOcupar = false;
+      }
+      return sePudoOcupar;
     }
-  }
+    @Override
+    public ObjectNode toData() {
+      ObjectNode node = Json.createObjectNode();
+      node.put("nombre","AmoSupremo");
+      return node;
+    }
+    @Override
+    public void actualizarUnidad(Inventario inventario) {
+      regenerar();
+    }
+
+
+    @Override
+    public Unidad generarse(Edificio edificio, Inventario inventario) {
+      // TODO Auto-generated method stub
+      return this;
+    }
+
+    @Override
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
+      List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
+
+      for(Coordenada coordenadaHallada : coordenadas) {
+        coordenadasAVisibilizar.add(coordenadaHallada);
+      }
+    }
 
 }

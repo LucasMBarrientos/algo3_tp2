@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
@@ -124,5 +127,12 @@ public class TerrenoAereo extends Terreno{
     @Override
     public String toData() {
         return "Aereo";
+    }
+
+    @Override
+    public ObjectNode toDataOcupantes() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("Ocupante","Desocupado");
+        return node;
     }
 }

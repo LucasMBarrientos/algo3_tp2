@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.protoss.acceso;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 
@@ -45,6 +47,13 @@ public class Acceso extends EdificioProtoss {
     }
     public Unidad generarUnidad(Dragon unidad,Inventario inventario){
         return estadoActual.generarUnidad(unidad, inventario);
+    }
+
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Acceso");
+        return node;
     }
 
     public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {

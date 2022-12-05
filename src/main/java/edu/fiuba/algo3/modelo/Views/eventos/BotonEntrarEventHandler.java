@@ -48,7 +48,10 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
             }
 
 
+            if(algoStar.jugadores.size()==2){
+                algoStar.empezarJuego();
 
+            }
             stage.setFullScreen(true);
             stage.setScene(proximaEscena);
             stage.setFullScreen(true);

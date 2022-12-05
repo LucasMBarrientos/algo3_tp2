@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
@@ -30,7 +32,12 @@ public class Zangano extends UnidadZerg {
         this.nombre = new Nombre("Zangano");
         establecerEstado(new UnidadEnConstruccion());
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Zangano");
+        return node;
+    }
     public Zangano(GasVespeno gasInicial, Mineral mineralInicial, Suministro suministro) {
       this.costoEnGas = gasInicial;
       this.costoEnMinerales = mineralInicial;

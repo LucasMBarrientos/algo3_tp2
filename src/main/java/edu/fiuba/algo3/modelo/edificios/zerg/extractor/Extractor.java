@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg.extractor;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -39,6 +40,12 @@ public class Extractor extends EdificioZerg {
       establecerEstado(this.estadoConstruccion);
     }
 
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Extractor");
+        return node;
+    }
     public void ocupar(Terreno terreno){
       terreno.ocuparPorEdificio(this);
       this.terreno = terreno;

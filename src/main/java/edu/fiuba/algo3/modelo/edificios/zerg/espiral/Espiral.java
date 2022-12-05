@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios.zerg.espiral;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -45,6 +47,13 @@ public class Espiral extends EdificioZerg {
         if(!inventario.tieneEdificio(new Nombre("Guarida"))){
             throw new ConstruccionRequiereDeOtroEdificio();
         }
+    }
+
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Espiral");
+        return node;
     }
 
     public Unidad generarUnidad(Mutalisco unidad,Inventario inventario){

@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -45,7 +47,12 @@ public class Criadero extends EdificioZerg {
 
       return false;
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Criadero");
+        return node;
+    }
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
     }

@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios.zerg.guarida;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -35,7 +37,12 @@ public class Guarida extends EdificioZerg {
         this.nombre = new Nombre("Guarida");
         establecerEstado(this.estadoConstruccion);
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Guarida");
+        return node;
+    }
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
         return null;
     }

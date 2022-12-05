@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -165,4 +166,6 @@ public abstract class Terreno {
     }
 
     public abstract String toData();
+
+    public abstract ObjectNode toDataOcupantes();
 }

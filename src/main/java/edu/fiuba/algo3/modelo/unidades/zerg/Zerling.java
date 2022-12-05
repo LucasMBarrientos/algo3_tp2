@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
@@ -31,7 +33,12 @@ public class Zerling extends UnidadZerg {
         this.nombre = new Nombre("Zerling");
         establecerEstado(new UnidadEnConstruccion());
     }
-
+    @Override
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre","Zerling");
+        return node;
+    }
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this, inventario);
     }

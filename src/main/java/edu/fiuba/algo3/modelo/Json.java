@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 import java.io.IOException;
@@ -51,4 +52,7 @@ public class Json {
         return objectMapper.readValue(string,  new TypeReference<List<String>>() {});
     }
 
+    public static ObjectNode createObjectNode() {
+        return objectMapper.createObjectNode();
+    }
 }

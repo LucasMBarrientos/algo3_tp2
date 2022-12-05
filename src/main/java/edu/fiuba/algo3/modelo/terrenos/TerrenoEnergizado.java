@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
@@ -142,6 +144,19 @@ public class TerrenoEnergizado implements EstadoTerreno {
     @Override
     public String toData() {
         return "Energizado";
+    }
+
+    @Override
+    public ObjectNode toDataOcupantes() {
+        ObjectNode node = Json.createObjectNode();
+        if(terreno.edificio != null){
+            node.put("Ocupante",terreno.edificio.toData());
+        }else if (terreno.unidad != null){
+            node.put("Ocupante",terreno.unidad.toData());
+        }else{
+            node.put("Ocupante","Desocupado");
+        }
+        return node;
     }
 
     public void energizarTerreno() {

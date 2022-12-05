@@ -64,7 +64,7 @@ public class PantallaInicial extends VBox {
 
         ChoiceBox<String> cb = new ChoiceBox<String>();
         cb.getItems().addAll(colores);
-        cb.setValue("Elejir  un color");
+        cb.setValue("Elegir  un color");
         cb.setOnAction(this::getColorOne);
 
         TextField nombreJugador1 = new TextField();
