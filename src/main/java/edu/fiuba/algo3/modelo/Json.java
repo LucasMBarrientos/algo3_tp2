@@ -46,4 +46,9 @@ public class Json {
         return objectWriter.writeValueAsString(node);
     }
 
+    public static List<String> JsonArrayToList(JsonNode n) throws IOException {
+        String string = stringify(n);
+        return objectMapper.readValue(string,  new TypeReference<List<String>>() {});
+    }
+
 }

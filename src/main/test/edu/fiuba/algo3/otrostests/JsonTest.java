@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JsonTest {
@@ -49,16 +51,19 @@ public class JsonTest {
 
     @Test
     void probarAlgo() throws IOException {
+        List<String> list = new ArrayList<>();
+        list.add("Member");
+        list.add("Admin");
         Map<String, Object> map = new HashMap<>();
         map.put("name", "John Deo");
         map.put("email", "john.doe@example.com");
-        map.put("roles", new String[]{"Member", "Admin"});
+        map.put("roles", list);
         map.put("admin", true);
 
         JsonNode node = Json.toJson(map);
 
 
-        System.out.println(Json.prettyPrint(Json.parse(node));
+        Json.JsonArrayToList(node);
     }
 
 }

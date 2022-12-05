@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapaView {
@@ -31,56 +33,60 @@ public class MapaView {
     }
 
     private void dibujarTerrenos(){
+        List<String> infoMapa = new ArrayList<String>();
+
         Group layout = new Group();
         try {
-            String[] infoMapasda = (mapa.toJson().get("terrenos").asText());
+            JsonNode node = mapa.toJson().get("terrenos");
+            infoMapa = Json.JsonArrayToList(node);
 
         }catch (JsonProcessingException e){
-            System.out.println("Error al mostrar terrenos");
+             System.out.println("Error al mostrar terrenos");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
-/*
+
         //Aca se dibujarian los terrenos
-        String[] listaDeTerrenos = infoMapa.split("");
         int sizeX = 35;
         int sizeY = 35;
         int posX = 2 ;
         int posY = 2 ;
         int separacion = 40;
 
-        for (int i = 0; i < listaDeTerrenos.length; i++) {
-            switch (listaDeTerrenos[i]){
-                case "a":{
+        for (String terreno : infoMapa) {
+            switch (terreno){
+                case "Aereo":{
                     canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
-                case "i":{
+                case "Vacio":{
                     canvas.getGraphicsContext2D().setFill(Color.WHITE);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
-                case "m":{
+                case "Mineral":{
                     canvas.getGraphicsContext2D().setFill(Color.GOLD);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
-                case "h":{
+                case "Moho":{
                     canvas.getGraphicsContext2D().setFill(Color.GREENYELLOW);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
-                case "v":{
+                case "Volcan":{
                     canvas.getGraphicsContext2D().setFill(Color.RED);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
-                case "e":{
+                case "Energizado":{
                     canvas.getGraphicsContext2D().setFill(Color.BLUE);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,2);
                     break;
                 }
-                case "0":{
+                case "cambioDeLinea":{
                     posX = 1;
                     posY ++;
                     break;
@@ -91,7 +97,7 @@ public class MapaView {
             }
             posX ++;
         }
-        */
+
 
     }
 }

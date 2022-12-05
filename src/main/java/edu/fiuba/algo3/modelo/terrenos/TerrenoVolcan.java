@@ -134,7 +134,7 @@ public class TerrenoVolcan extends Terreno {
 
     @Override
     public String toData() {
-        return "volcan";
+        return "Volcan";
     }
 
 }
