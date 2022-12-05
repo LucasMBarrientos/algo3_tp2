@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.Views;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -29,7 +32,14 @@ public class MapaView {
 
     private void dibujarTerrenos(){
         Group layout = new Group();
-        String infoMapa = mapa.getString();
+        try {
+            String[] infoMapasda = (mapa.toJson().get("terrenos").asText());
+
+        }catch (JsonProcessingException e){
+            System.out.println("Error al mostrar terrenos");
+        }
+
+/*
         //Aca se dibujarian los terrenos
         String[] listaDeTerrenos = infoMapa.split("");
         int sizeX = 35;
@@ -81,5 +91,7 @@ public class MapaView {
             }
             posX ++;
         }
+        */
+
     }
 }

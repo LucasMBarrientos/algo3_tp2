@@ -156,8 +156,8 @@ public class TerrenoBase extends Terreno {
     }
 
     @Override
-    public String getString() {
-        return estado.getString();
+    public String toData() {
+        return estado.toData();
     }
 
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa

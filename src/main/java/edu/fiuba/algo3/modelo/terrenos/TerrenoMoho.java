@@ -142,8 +142,8 @@ public class TerrenoMoho implements EstadoTerreno {
     }
 
     @Override
-    public String getString() {
-        return "h";
+    public String toData() {
+        return "Moho";
     }
 
     public void energizarTerreno() {

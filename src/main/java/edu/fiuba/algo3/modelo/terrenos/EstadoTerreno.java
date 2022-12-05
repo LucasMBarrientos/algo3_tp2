@@ -71,6 +71,6 @@ public abstract interface EstadoTerreno {
     
     void cubrirTerrenoDeMoho();
 
-    public String getString();
+    public String toData();
 
 }

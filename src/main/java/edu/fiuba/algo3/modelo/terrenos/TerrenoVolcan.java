@@ -133,8 +133,8 @@ public class TerrenoVolcan extends Terreno {
     }
 
     @Override
-    public String getString() {
-        return "v";
+    public String toData() {
+        return "volcan";
     }
 
 }

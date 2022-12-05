@@ -122,7 +122,7 @@ public class TerrenoAereo extends Terreno{
     public void cubrirTerrenoDeMoho() { }
 
     @Override
-    public String getString() {
-        return "a";
+    public String toData() {
+        return "Aereo";
     }
 }

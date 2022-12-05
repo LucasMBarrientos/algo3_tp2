@@ -139,8 +139,8 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     @Override
-    public String getString() {
-        return "i";
+    public String toData() {
+        return "Vacio";
     }
 
     public void energizarTerreno() {

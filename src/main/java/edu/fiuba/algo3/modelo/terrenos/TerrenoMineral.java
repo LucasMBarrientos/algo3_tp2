@@ -128,8 +128,8 @@ public class TerrenoMineral extends Terreno {
     }
 
     @Override
-    public String getString() {
-        return "m";
+    public String toData() {
+        return "Mineral";
     }
 
     @Override

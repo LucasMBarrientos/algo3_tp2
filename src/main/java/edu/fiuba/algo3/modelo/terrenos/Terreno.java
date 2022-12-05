@@ -164,5 +164,5 @@ public abstract class Terreno {
         return unidad;
     }
 
-    public abstract String getString();
+    public abstract String toData();
 }

@@ -140,8 +140,8 @@ public class TerrenoEnergizado implements EstadoTerreno {
     }
 
     @Override
-    public String getString() {
-        return "e";
+    public String toData() {
+        return "Energizado";
     }
 
     public void energizarTerreno() {

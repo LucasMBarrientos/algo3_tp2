@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
@@ -26,10 +28,7 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
@@ -227,21 +226,29 @@ public class Mapa {
         }
     }
 
-    public String getString(){
-        String mapaEnString = "";
+    public List<String> parseToString(){
+        List<String> mapaEnString = new ArrayList<>();
         int longitudX = this.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
             if(contadorDeLinea >= longitudX){
-                mapaEnString += "0";
+                mapaEnString.add("cambioDeLinea") ;
                 contadorDeLinea = 0;
             }
 
-            mapaEnString += terreno.getString();
+            mapaEnString.add(terreno.toData());
 
             contadorDeLinea ++;
         }
         return mapaEnString;
+    }
+
+    public JsonNode toJson() throws JsonProcessingException {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("terrenos",parseToString());
+
+        return Json.toJson(map);
     }
 
 
