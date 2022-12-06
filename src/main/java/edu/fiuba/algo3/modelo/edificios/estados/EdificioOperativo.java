@@ -32,7 +32,7 @@ public class EdificioOperativo implements EstadoEdificio {
     public void terminarConstruccion() {}
 
     @Override
-    public void setEdificio(Edificio edificio) {
+    public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;
   }
 

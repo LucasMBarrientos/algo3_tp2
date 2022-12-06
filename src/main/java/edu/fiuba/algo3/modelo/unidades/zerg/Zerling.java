@@ -1,13 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;

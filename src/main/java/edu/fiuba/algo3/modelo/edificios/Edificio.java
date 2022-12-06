@@ -77,7 +77,7 @@ public abstract class Edificio {
 
     public void establecerEstado(EstadoEdificio estado) {
         this.estadoActual = estado;
-        this.estadoActual.setEdificio(this);
+        this.estadoActual.establecerEdificio(this);
     }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {

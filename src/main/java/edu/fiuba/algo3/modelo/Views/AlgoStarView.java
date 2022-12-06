@@ -43,7 +43,7 @@ public class AlgoStarView extends BorderPane {
         this.contenedorCentral = new ScrollPane();
         mapa = algoStar.empezarJuego();
         
-        setMenu(stage);
+        agregarBarraDelMenu(stage);
         pantallaJuego();
         setPantallDeStats();
         crearBotonera();
@@ -100,7 +100,7 @@ public class AlgoStarView extends BorderPane {
       new BotoneraGuarida(algoStar, this,coordenada);
     }
 
-    private void setMenu(Stage stage){
+    private void agregarBarraDelMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);
         this.setTop(menuBar);
     }

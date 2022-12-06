@@ -10,7 +10,6 @@ import javafx.scene.media.MediaPlayer;
 public class ReproductorDeSonidos {
 
     private Media extraerSonido(String directorioDelArchivo) {
-        //return new Media(getClass().getClassLoader().getResource(directorioDelArchivo).toExternalForm());
         try {
             return new Media(getClass().getResource(directorioDelArchivo).toURI().toString());
         } catch (URISyntaxException e) {
@@ -20,25 +19,6 @@ public class ReproductorDeSonidos {
     }
 
     public void reproducirSonido(String directorioDelArchivo) {
-        /*
-        System.out.print(new File(directorioDelArchivo));
-        System.out.print(new File(directorioDelArchivo).toURI());
-        System.out.print(new File(directorioDelArchivo).toURI().toString());
-        Media sonido = new Media(new File(directorioDelArchivo).toURI()..toString());
-        reproducirSonido(sonido);*/
-
-/*
-        
-        Media sonido;
-        try {
-            sonido = new Media(new File(directorioDelArchivo).toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            return;
-        }
-
-*/
-        //Media sonido2 = new ReproductorDeSonidos().extraerSonido(directorioDelArchivo);
-        this.extraerSonido(directorioDelArchivo);
         reproducirSonido(this.extraerSonido(directorioDelArchivo));
     }
 

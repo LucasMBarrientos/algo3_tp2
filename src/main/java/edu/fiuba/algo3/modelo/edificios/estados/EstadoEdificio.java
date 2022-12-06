@@ -24,7 +24,7 @@ public interface EstadoEdificio {
 
     void deshacerConstruccion();
 
-    void setEdificio(Edificio edificio);
+    void establecerEdificio(Edificio edificio);
 
     void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones);
 
