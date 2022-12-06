@@ -7,7 +7,9 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 public class BotoneraPuertoEstelar extends HBox {
 
     public BotoneraPuertoEstelar(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+      List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
 
       HBox contenedorHorizontal = new HBox();
       contenedorHorizontal.getChildren().clear();
@@ -25,17 +27,21 @@ public class BotoneraPuertoEstelar extends HBox {
       algoStarView.setBottom(contenedorHorizontal);
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button generarScout = new Button();
         generarScout.setText("generar Scout");
+        Label costoGasScout = new Label("COSTO GAS: 150");
+        Label costoMineralScout  = new Label("COSTO MINERAL: 300");
+        Label costoSuministroScout  = new Label("COSTO Suministro: 4");
+        VBox generarScoutbox = new VBox(costoGasScout,costoMineralScout,costoSuministroScout,generarScout);
 
         BotonGenerarScoutHandler botonGenerarScoutHandler = new BotonGenerarScoutHandler(algoStar, algoStarView, coordenada);
         generarScout.setOnAction(botonGenerarScoutHandler);
 
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(generarScout);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(generarScoutbox);
 
         return botones;
     }

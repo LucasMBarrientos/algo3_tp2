@@ -7,7 +7,9 @@ import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonConstruirPilonH
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 public class BotoneraMineralProtoss extends HBox {
 
     public BotoneraMineralProtoss(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-        List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+        List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
 
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.getChildren().clear();
@@ -25,17 +27,20 @@ public class BotoneraMineralProtoss extends HBox {
         algoStarView.setBottom(contenedorHorizontal);        
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
-        Button construirPilon = new Button();
-        construirPilon.setText("construir Nexo Mineral");
+        Button construirNexo = new Button();
+        construirNexo.setText("construir Nexo Mineral");
+        Label costoGas = new Label("COSTO GAS: 0");
+        Label costoMineral = new Label("COSTO MINERAL: 50");
+        VBox construirNexobox = new VBox(costoGas,costoMineral,construirNexo);
         
         BotonConstruirNexoMineralHandler botonConstruirNexoMineralHandler = new BotonConstruirNexoMineralHandler(algoStar, algoStarView, coordenada);
-        construirPilon.setOnAction(botonConstruirNexoMineralHandler);
+        construirNexo.setOnAction(botonConstruirNexoMineralHandler);
 
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(construirPilon);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(construirNexobox);
 
         return botones;
     }

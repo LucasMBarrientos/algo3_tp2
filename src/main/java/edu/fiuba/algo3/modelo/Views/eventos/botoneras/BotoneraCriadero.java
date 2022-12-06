@@ -8,14 +8,16 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BotoneraCriadero extends HBox {
     public BotoneraCriadero(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-        List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+        List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
 
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.getChildren().clear();
@@ -25,12 +27,22 @@ public class BotoneraCriadero extends HBox {
         algoStarView.setBottom(contenedorHorizontal);
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+        
         Button generarZangano = new Button();
         generarZangano.setText("generar Zangano");
+        Label costoGasZangano = new Label("COSTO GAS: 0");
+        Label costoMineralZangano = new Label("COSTO MINERAL: 25");
+        Label costoSuministroZangano  = new Label("COSTO Suministro: 1");
+        VBox generarZanganobox = new VBox(costoGasZangano,costoMineralZangano,costoSuministroZangano,generarZangano);
+
         Button generarAmoSupremo = new Button();
         generarAmoSupremo.setText("generar Amo Supremo");
+        Label costoGasAmoSupremo = new Label("COSTO GAS: 0");
+        Label costoMineralAmoSupremo  = new Label("COSTO MINERAL: 100");
+        Label costoSuministroAmoSupremo  = new Label("COSTO Suministro: 0");
+        VBox generarAmoSupremobox = new VBox(costoGasAmoSupremo,costoMineralAmoSupremo,costoSuministroAmoSupremo,generarAmoSupremo);
+
 
         BotonGenerarZanganoHandler botonGenerarZanganoHandler = new BotonGenerarZanganoHandler(algoStar, algoStarView, coordenada);
         generarZangano.setOnAction(botonGenerarZanganoHandler);
@@ -38,9 +50,9 @@ public class BotoneraCriadero extends HBox {
         BotonGenerarAmoSupremoHandler botonGenerarAmoSupremoHandler = new BotonGenerarAmoSupremoHandler(algoStar, algoStarView, coordenada);
         generarAmoSupremo.setOnAction(botonGenerarAmoSupremoHandler);
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(generarZangano);
-        botones.add(generarAmoSupremo);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(generarZanganobox);
+        botones.add(generarAmoSupremobox);
 
         return botones;
     }

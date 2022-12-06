@@ -11,11 +11,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class BotoneraZangano extends HBox {
     public BotoneraZangano(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
-        List<Button> buttons = crearBotones(algoStar, algoView, coordenada);
+        List<VBox> buttons = crearBotones(algoStar, algoView, coordenada);
         
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.getChildren().clear();
@@ -25,28 +27,58 @@ public class BotoneraZangano extends HBox {
         algoView.setBottom(contenedorHorizontal);
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
 
         Button construirCriadero = new Button();
         construirCriadero.setText("construir Criadero");
+        Label costoGasCriadero = new Label("COSTO GAS: 0");
+        Label costoMineralCriadero  = new Label("COSTO MINERAL: 200");
+        VBox generarCriaderobox = new VBox(costoGasCriadero,costoMineralCriadero,construirCriadero);
+        
         Button construirEspiral = new Button();
         construirEspiral.setText("construir Espiral");
+        Label costoGasEspiral = new Label("COSTO GAS: 100");
+        Label costoMineralEspiral  = new Label("COSTO MINERAL: 150");
+        VBox generarEspiralbox = new VBox(costoGasEspiral,costoMineralEspiral,construirEspiral);
+
         Button construirExtractor = new Button();
         construirExtractor.setText("construir Extractor");
+        Label costoGasExtractor = new Label("COSTO GAS: 0");
+        Label costoMineralExtractor  = new Label("COSTO MINERAL: 100");
+        VBox generarExtractorbox = new VBox(costoGasExtractor,costoMineralExtractor,construirExtractor);
+
         Button construirGuarida = new Button();
         construirGuarida.setText("construir Guarida");
+        Label costoGasGuarida = new Label("COSTO GAS: 100");
+        Label costoMineralGuarida  = new Label("COSTO MINERAL: 200");
+        VBox generarGuaridabox = new VBox(costoGasGuarida,costoMineralGuarida,construirGuarida);
+
         Button construirReservaDeReproduccion = new Button();
         construirReservaDeReproduccion.setText("construir Reserva De Reproduccion");
+        Label costoGasReservaDeReproduccion = new Label("COSTO GAS: 0");
+        Label costoMineralReservaDeReproduccion  = new Label("COSTO MINERAL: 150");
+        VBox generarReservaDeReproduccionbox = new VBox(costoGasReservaDeReproduccion,costoMineralReservaDeReproduccion,construirReservaDeReproduccion);
+
         Button moverAbajo = new Button();
         moverAbajo.setText("mover Abajo");
+        VBox generarAbajobox = new VBox(moverAbajo);
+
         Button moverArriba = new Button();
         moverArriba.setText("mover Arriba");
+        VBox generarArribabox = new VBox(moverArriba);
+
         Button moverIzquierda = new Button();
         moverIzquierda.setText("mover Izquierda");
+        VBox generarIzquierdabox = new VBox(moverIzquierda);
+
         Button moverDerecha = new Button();
         moverDerecha.setText("mover Derecha");
+        VBox generarDerechabox = new VBox(moverDerecha);
+
         Button ingresar = new Button();
         ingresar.setText("ingresar");
+        VBox generaringresarbox = new VBox(ingresar);
+
 
         BotonConstruirCriaderoHandler botonConstruirCriaderoHandler = new BotonConstruirCriaderoHandler(algoStar, algoView, coordenada);
         construirCriadero.setOnAction(botonConstruirCriaderoHandler);
@@ -78,17 +110,17 @@ public class BotoneraZangano extends HBox {
         BotonEmpezarIngresoHandler botonIngresarAExtractorHandler = new BotonEmpezarIngresoHandler(algoStar, algoView, coordenada);
         ingresar.setOnAction(botonIngresarAExtractorHandler);
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(construirCriadero);
-        botones.add(construirEspiral);
-        botones.add(construirExtractor);
-        botones.add(construirGuarida);
-        botones.add(construirReservaDeReproduccion);
-        botones.add(moverAbajo);
-        botones.add(moverArriba);
-        botones.add(moverIzquierda);
-        botones.add(moverDerecha);
-        botones.add(ingresar);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(generarCriaderobox);
+        botones.add(generarEspiralbox);
+        botones.add(generarExtractorbox);
+        botones.add(generarGuaridabox);
+        botones.add(generarReservaDeReproduccionbox);
+        botones.add(generarAbajobox);
+        botones.add(generarArribabox);
+        botones.add(generarIzquierdabox);
+        botones.add(generarDerechabox);
+        botones.add(generaringresarbox);
 
         return botones;
     }

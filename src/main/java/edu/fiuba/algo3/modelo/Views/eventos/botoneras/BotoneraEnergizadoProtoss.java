@@ -9,7 +9,9 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 public class BotoneraEnergizadoProtoss extends HBox {
 
     public BotoneraEnergizadoProtoss(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+      List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
 
       HBox contenedorHorizontal = new HBox();
       contenedorHorizontal.getChildren().clear();
@@ -27,14 +29,26 @@ public class BotoneraEnergizadoProtoss extends HBox {
       algoStarView.setBottom(contenedorHorizontal);
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button construirPilon = new Button();
         construirPilon.setText("construir Pilon");
+        Label costoGasPilon = new Label("COSTO GAS: 0");
+        Label costoMineralPilon = new Label("COSTO MINERAL: 100");
+        VBox generarPilonbox = new VBox(costoGasPilon,costoMineralPilon,construirPilon);
+
         Button construirAcceso = new Button();
         construirAcceso.setText("construir Acceso");
+        Label costoGasAcceso = new Label("COSTO GAS: 0");
+        Label costoMineralAcceso  = new Label("COSTO MINERAL: 150");
+        VBox generarAccesobox = new VBox(costoGasAcceso,costoMineralAcceso,construirAcceso);
+
         Button construirPuertoEstelar = new Button();
         construirPuertoEstelar.setText("construir Puerto Estelar");
+        Label costoGasPuertoEstelar = new Label("COSTO GAS: 150");
+        Label costoMineralPuertoEstelar  = new Label("COSTO MINERAL: 150");
+        VBox generarPuertoEstelarbox = new VBox(costoGasPuertoEstelar,costoMineralPuertoEstelar,construirPuertoEstelar);
+
 
         BotonConstruirPilonHandler botonConstruirPilonHandler = new BotonConstruirPilonHandler(algoStar, algoStarView, coordenada);
         construirPilon.setOnAction(botonConstruirPilonHandler);
@@ -46,10 +60,10 @@ public class BotoneraEnergizadoProtoss extends HBox {
         construirPuertoEstelar.setOnAction(botonConstruirPuertoEstelarHandler);
 
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(construirPilon);
-        botones.add(construirAcceso);
-        botones.add(construirPuertoEstelar);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(generarPilonbox);
+        botones.add(generarAccesobox);
+        botones.add(generarPuertoEstelarbox);
 
         return botones;
     }

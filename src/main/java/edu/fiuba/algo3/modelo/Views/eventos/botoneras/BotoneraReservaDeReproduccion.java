@@ -7,7 +7,9 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 public class BotoneraReservaDeReproduccion extends HBox {
 
     public BotoneraReservaDeReproduccion(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+      List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
 
       HBox contenedorHorizontal = new HBox();
       contenedorHorizontal.getChildren().clear();
@@ -25,17 +27,22 @@ public class BotoneraReservaDeReproduccion extends HBox {
       algoStarView.setBottom(contenedorHorizontal);
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button generarZerling = new Button();
         generarZerling.setText("generar Zerling");
+        Label costoGasZerling = new Label("COSTO GAS: 0");
+        Label costoMineralZerling  = new Label("COSTO MINERAL: 25");
+        Label costoSuministroZerling  = new Label("COSTO Suministro: 1");
+        VBox generarZerlingbox = new VBox(costoGasZerling,costoMineralZerling,costoSuministroZerling,generarZerling);
+
 
         BotonGenerarZerlingHandler botonGenerarZerlingHandler = new BotonGenerarZerlingHandler(algoStar, algoStarView, coordenada);
         generarZerling.setOnAction(botonGenerarZerlingHandler);
 
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(generarZerling);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(generarZerlingbox);;
 
         return botones;
     }

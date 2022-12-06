@@ -7,7 +7,9 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 public class BotoneraGuarida extends HBox {
 
     public BotoneraGuarida(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+      List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
 
       HBox contenedorHorizontal = new HBox();
       contenedorHorizontal.getChildren().clear();
@@ -25,17 +27,22 @@ public class BotoneraGuarida extends HBox {
       algoStarView.setBottom(contenedorHorizontal);
     }
 
-    private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+    private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button generarHidralisco = new Button();
         generarHidralisco.setText("generar Hidralisco");
+        Label costoGasHidralisco = new Label("COSTO GAS: 25");
+        Label costoMineralHidralisco  = new Label("COSTO MINERAL: 75");
+        Label costoSuministroHidralisco  = new Label("COSTO Suministro: 2");
+        VBox generarHidraliscobox = new VBox(costoGasHidralisco,costoMineralHidralisco,costoSuministroHidralisco,generarHidralisco);
 
+      
         BotonGenerarHidraliscoHandler botonGenerarHidraliscoHandler = new BotonGenerarHidraliscoHandler(algoStar, algoStarView, coordenada);
         generarHidralisco.setOnAction(botonGenerarHidraliscoHandler);
 
 
-        List<Button> botones = new ArrayList<>();
-        botones.add(generarHidralisco);
+        List<VBox> botones = new ArrayList<>();
+        botones.add(generarHidraliscobox);
 
         return botones;
     }
