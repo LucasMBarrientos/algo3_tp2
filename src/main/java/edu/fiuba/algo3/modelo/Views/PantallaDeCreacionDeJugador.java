@@ -33,10 +33,11 @@ public class PantallaDeCreacionDeJugador extends VBox {
     private Button botonParaContinuar;
 
 
-    public PantallaDeCreacionDeJugador(Stage pantalla, Scene proximaEscena, AlgoStar algoStar, Boolean esElPrimerJugador) {
+    public PantallaDeCreacionDeJugador(Stage pantalla, Scene proximaEscena, AlgoStar algoStar, AlgoStarView algoView, Boolean esElPrimerJugador) {
         super();
         this.pantalla = pantalla;
         this.algoStar = algoStar;
+        this.algoStarView = algoView;
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));

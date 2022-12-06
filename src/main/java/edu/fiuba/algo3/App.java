@@ -20,18 +20,16 @@ public class App extends Application {
     public void start(Stage stage){
         stage.setTitle("AlgoStar V 0.4.2");
         AlgoStar algoStar = new AlgoStar();
-        algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 1 con raza zerg", "Azul"));
-        algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 2 con raza protoss", "Rojo"));
         // Creacion de la pantalla principal
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
 
         // Creacion de las pantallas de creacion de jugadoress
-        PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar, false);
+        PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar,pantallaPrincipal, false);
     //pantallaInicialDelJugadorZerg.getChildren().addAll(imgView);
         Scene escenaDeCreacionDelJugadorZerg = new Scene(pantallaInicialDelJugadorZerg, 1620, 780);
     //ImageView imgView = new ImageView("/descarga.png");
-        PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar, true);
+        PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar,pantallaPrincipal, true);
     //pantallaInicialDelJugadorProtoss.getChildren().addAll(imgView);
         Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1620, 780);
 
@@ -56,7 +54,7 @@ public class App extends Application {
 
 
         // DEBUG_ code for debug purposes only
-        boolean DEBUG_MODE = true;
+        boolean DEBUG_MODE = false;
         if (DEBUG_MODE) {
 
 
