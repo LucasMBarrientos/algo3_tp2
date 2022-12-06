@@ -43,6 +43,8 @@ public class AlgoStarView extends BorderPane {
         pantallaJuego();
         setPantallDeStats();
         crearBotonera();
+      // ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
+       //reproductorDeSonidos.reproducirSonido("/bg.mp3");
     }
 
     private void setPantallDeStats() {

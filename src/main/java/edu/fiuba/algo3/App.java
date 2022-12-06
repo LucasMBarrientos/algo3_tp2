@@ -19,6 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage){
         stage.setTitle("AlgoStar V 0.4.2");
+
         AlgoStar algoStar = new AlgoStar();
 
 
@@ -30,11 +31,11 @@ public class App extends Application {
         // Creacion de las pantallas de creacion de jugadoress
         PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar, false);
     //pantallaInicialDelJugadorZerg.getChildren().addAll(imgView);
-        Scene escenaDeCreacionDelJugadorZerg = new Scene(pantallaInicialDelJugadorZerg, 1620, 780);
+        Scene escenaDeCreacionDelJugadorZerg = new Scene(pantallaInicialDelJugadorZerg, 1280, 720);
     //ImageView imgView = new ImageView("/descarga.png");
         PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar, true);
     //pantallaInicialDelJugadorProtoss.getChildren().addAll(imgView);
-        Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1620, 780);
+        Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1280, 720);
 
 
 
@@ -67,8 +68,8 @@ public class App extends Application {
             algoStar.empezarJuego();
             stage.setScene(escenaJuego);
 
-            ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
-            reproductorDeSonidos.reproducirSonido("/bg.mp3");
+           // ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
+            //reproductorDeSonidos.reproducirSonido("/bg.mp3");
             stage.show();
             return;
         }
