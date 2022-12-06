@@ -93,16 +93,15 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
     }
 
     private void pasarALaSiguienteEscena() {
-        pantalla.setFullScreen(true);
-        if (!esElPrimerJugador) {
-            ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
-            reproductorDeSonidos.reproducirSonido("/bg.mp3");
-            algoStarView.actualizarMapa();
-            algoStarView.setPantallaDeStatsJugador();
-            algoStar.empezarJuego();
-        }
-        pantalla.setScene(SiguienteEscena);
-        pantalla.setFullScreen(true);
+      pantalla.setFullScreen(true);
+      if (!esElPrimerJugador) {
+          ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
+          reproductorDeSonidos.reproducirSonido("/bg.mp3");
+          algoStarView.setPantallaDeStatsJugador();
+          algoStar.empezarJuego();
+          algoStarView.actualizarMapa();
+      }
+      pantalla.setScene(SiguienteEscena);
+      pantalla.setFullScreen(true);
     }
-    
 }
