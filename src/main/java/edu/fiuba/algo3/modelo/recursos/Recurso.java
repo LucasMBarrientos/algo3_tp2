@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.recursos;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 
 public abstract class Recurso {
@@ -36,7 +38,7 @@ public abstract class Recurso {
         return this.unidadesDisponibles;
     }
 
-
+    public abstract ObjectNode toData();
 
 
 

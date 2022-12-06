@@ -37,12 +37,7 @@ public class Extractor extends EdificioZerg {
       establecerEstado(this.estadoConstruccion);
     }
 
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Extractor");
-        return node;
-    }
+
     public void ocupar(Terreno terreno){
       terreno.ocuparPorEdificio(this);
       this.terreno = terreno;

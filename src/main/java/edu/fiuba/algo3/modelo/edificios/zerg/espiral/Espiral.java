@@ -46,13 +46,7 @@ public class Espiral extends EdificioZerg {
         }
     }
 
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Espiral");
-        node.put("coordenada", coordenada.toData());
-        return node;
-    }
+
 
     public Unidad generarUnidad(Mutalisco unidad,Inventario inventario){
         return estadoActual.generarUnidad(unidad,inventario);

@@ -40,12 +40,7 @@ public class PuertoEstelar extends EdificioProtoss {
         terreno.ocuparPorEdificio(this);
     }
 
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Puerto");
-        return node;
-    }
+
 
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
         return null;
