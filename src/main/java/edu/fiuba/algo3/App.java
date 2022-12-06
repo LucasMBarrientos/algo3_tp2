@@ -1,5 +1,8 @@
 package edu.fiuba.algo3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
@@ -24,12 +27,15 @@ public class App extends Application {
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
 
+        List<Integer> coloresRemovidos = new ArrayList<Integer>();;
+        List<Integer> razasRemovidas = new ArrayList<Integer>();
+
         // Creacion de las pantallas de creacion de jugadoress
-        PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar,pantallaPrincipal, false);
+        PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar, pantallaPrincipal, coloresRemovidos, razasRemovidas);
     //pantallaInicialDelJugadorZerg.getChildren().addAll(imgView);
         Scene escenaDeCreacionDelJugadorZerg = new Scene(pantallaInicialDelJugadorZerg, 1620, 780);
     //ImageView imgView = new ImageView("/descarga.png");
-        PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar,pantallaPrincipal, true);
+        PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar, pantallaPrincipal, coloresRemovidos, razasRemovidas);
     //pantallaInicialDelJugadorProtoss.getChildren().addAll(imgView);
         Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1620, 780);
 
