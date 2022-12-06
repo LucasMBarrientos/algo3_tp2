@@ -14,11 +14,7 @@ import java.util.Map;
 
 public class JsonTest {
 
-    @Test
-    public void chequeoQueElJsonSeCreaCorrectamente() throws IOException {
-        JsonNode node = Json.parse("{\"title\": aTitle, \"author\": anAuthor}");
-        Assertions.assertEquals(node.get("title").asText(), "aTitle");
-    }
+
 
     @Test
     void prueboSiElJsonSePuedeConvertirCorretamenteEnString() throws IOException {
@@ -49,21 +45,6 @@ public class JsonTest {
         System.out.println(Json.prettyPrint(node));
     }
 
-    @Test
-    void probarAlgo() throws IOException {
-        List<String> list = new ArrayList<>();
-        list.add("Member");
-        list.add("Admin");
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "John Deo");
-        map.put("email", "john.doe@example.com");
-        map.put("roles", list);
-        map.put("admin", true);
 
-        JsonNode node = Json.toJson(map);
-
-
-        Json.JsonArrayToList(node);
-    }
 
 }
