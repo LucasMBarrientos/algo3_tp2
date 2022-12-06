@@ -3,9 +3,7 @@ package edu.fiuba.algo3;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
-
-import edu.fiuba.algo3.modelo.Views.PantallaInicial;
-import edu.fiuba.algo3.modelo.Views.PantallaInicial2;
+import edu.fiuba.algo3.modelo.Views.PantallaDeCreacionDeJugador;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,33 +13,35 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-
     @Override
     public void start(Stage stage){
         stage.setTitle("AlgoStar V 0.4.2");
-
         AlgoStar algoStar = new AlgoStar();
 
+
+
+        // Creacion de la pantalla principal
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
 
-        PantallaInicial2 pantallaInicial2 = new PantallaInicial2(stage,escenaJuego, algoStar, pantallaPrincipal);
-        //pantallaInicial.getChildren().addAll(imgView);
-        Scene escenaMenu2 = new Scene(pantallaInicial2,1620,780);
+        // Creacion de las pantallas de creacion de jugadoress
+        PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar, false);
+    //pantallaInicialDelJugadorZerg.getChildren().addAll(imgView);
+        Scene escenaDeCreacionDelJugadorZerg = new Scene(pantallaInicialDelJugadorZerg, 1620, 780);
+    //ImageView imgView = new ImageView("/descarga.png");
+        PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar, true);
+    //pantallaInicialDelJugadorProtoss.getChildren().addAll(imgView);
+        Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1620, 780);
 
 
-      //  ImageView imgView = new ImageView("/descarga.png");
-        PantallaInicial pantallaInicial = new PantallaInicial(stage,escenaMenu2, algoStar);
-        //pantallaInicial.getChildren().addAll(imgView);
-        Scene escenaMenu = new Scene(pantallaInicial,1620,780);
 
 
 
-        PantallaBienvenida pantallaBienvenida = new PantallaBienvenida (stage,escenaMenu, algoStar);
+        // Creacion de la pantalla de bienvenida
+        PantallaBienvenida pantallaBienvenida = new PantallaBienvenida(stage, escenaDeCreacionDelJugadorProtoss, algoStar);
         Scene escenaBienvenidos = new Scene(pantallaBienvenida,1280,720);
+
       /*
-      *
-      *
 
         StackPane root = new StackPane();
         root.getChildren().add(imgView);
