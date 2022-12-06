@@ -2,14 +2,14 @@
 
 !include ../classes/herencia.plantuml!WITHOUTNOTES
 
-package JUnit {
-        class Test
-}
+
 
 package java.lang {
         class String
 }
-
+package JUnit {
+        class Test
+}
 Test --> Localize: "<<instantiate>>"
 Localize -> String: " # esContent"
 Localize -> String: " # usContent"
