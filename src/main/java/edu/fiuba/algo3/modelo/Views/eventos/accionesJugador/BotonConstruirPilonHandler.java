@@ -25,6 +25,7 @@ public class BotonConstruirPilonHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().construirEdificio(coordenada, new Pilon());
+            algoStarView.setPantallaDeStatsJugador();
 
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda

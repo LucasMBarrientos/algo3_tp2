@@ -25,7 +25,7 @@ public class BotonGenerarAmoSupremoHandler implements EventHandler<ActionEvent> 
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new AmoSupremo());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
 

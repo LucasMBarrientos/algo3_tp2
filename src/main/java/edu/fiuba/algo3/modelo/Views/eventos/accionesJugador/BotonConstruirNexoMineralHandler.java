@@ -25,7 +25,7 @@ public class BotonConstruirNexoMineralHandler implements EventHandler<ActionEven
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().construirEdificio(coordenada, new NexoMineral());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
         }
