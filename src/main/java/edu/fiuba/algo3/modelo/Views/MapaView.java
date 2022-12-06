@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -44,7 +47,7 @@ public class MapaView {
     Image imagenEspecial = new  Image("/imgEspeciales.jpg", 35, 35, false, false);
 
     Image imagenAmoSupremo = new Image("/AmoSupremo.png", 10, 10, false, false);
-    Image imagenZangano = new Image("/Zangano.png", 10, 10, false, false);
+    Image imagenZangano = new Image("/Zangano.png", 35, 35, false, false);
     Image imagenZerling = new Image("/Zerling.png", 10, 10, false, false);
     Image imagenHidralisco = new Image("/Hidralisco.png", 10, 10, false, false);
     Image imagenMutalisco = new Image("/Mutalisco.png", 10, 10, false, false);
@@ -83,15 +86,21 @@ public class MapaView {
         int posY = 2 ;
         int separacion = 40;
         ocupanteGroup.getChildren().clear();
+        
         for (JsonNode ocupante : node) {
             String a = ocupante.get("Ocupante").get("nombre").asText();
             switch (ocupante.get("Ocupante").get("nombre").asText()){
                 case "Zangano":{
+                  System.out.println("Zangano");
                     ImageView imageZanganoSprite= new ImageView(imagenZangano);
-                    imageZanganoSprite.setY(posY*separacion + 35/2);
-                    imageZanganoSprite.setX(posX*separacion + 35/2);
+                    imageZanganoSprite.setY(posY*separacion);
+                    imageZanganoSprite.setX(posX*separacion);
                     imageZanganoSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Zangano");
+                      System.out.println(ocupante);
+                      int x = ocupante.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = ocupante.get("Ocupante").get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraZangano(coor);
                     });
                     ocupanteGroup.getChildren().add(imageZanganoSprite);
                     //canvas.getGraphicsContext2D().setFill(Color.ORANGE);

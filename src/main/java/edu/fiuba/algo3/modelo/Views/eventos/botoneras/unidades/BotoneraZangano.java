@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -15,23 +16,37 @@ import javafx.scene.layout.HBox;
 public class BotoneraZangano extends HBox {
     public BotoneraZangano(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
         List<Button> buttons = crearBotones(algoStar, algoView, coordenada);
-        HBox contenedorHorizontal = new HBox((Node) buttons);
+        
+        HBox contenedorHorizontal = new HBox();
+        contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().addAll(buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
+        algoView.setBottom(contenedorHorizontal);
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
 
         Button construirCriadero = new Button();
+        construirCriadero.setText("construir Criadero");
         Button construirEspiral = new Button();
+        construirEspiral.setText("construir Espiral");
         Button construirExtractor = new Button();
+        construirExtractor.setText("construir Extractor");
         Button construirGuarida = new Button();
+        construirGuarida.setText("construir Guarida");
         Button construirReservaDeReproduccion = new Button();
+        construirReservaDeReproduccion.setText("construir Reserva De Reproduccion");
         Button moverAbajo = new Button();
+        moverAbajo.setText("mover Abajo");
         Button moverArriba = new Button();
+        moverArriba.setText("mover Arriba");
         Button moverIzquierda = new Button();
+        moverIzquierda.setText("mover Izquierda");
         Button moverDerecha = new Button();
+        moverDerecha.setText("mover Derecha");
         Button ingresar = new Button();
+        ingresar.setText("ingresar");
 
         BotonConstruirCriaderoHandler botonConstruirCriaderoHandler = new BotonConstruirCriaderoHandler(algoStar, algoView, coordenada);
         construirCriadero.setOnAction(botonConstruirCriaderoHandler);

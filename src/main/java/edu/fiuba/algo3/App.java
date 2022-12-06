@@ -61,9 +61,8 @@ public class App extends Application {
 
             
 
-
-            algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 1 con raza protoss", "Rojo"));
-            algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 2 con raza zerg", "Azul"));
+            algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 1 con raza zerg", "Azul"));
+            algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 2 con raza protoss", "Rojo"));
             algoStar.empezarJuego();
             stage.setScene(escenaJuego);
 

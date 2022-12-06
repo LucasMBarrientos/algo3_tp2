@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
@@ -47,6 +48,7 @@ public class AlgoStarView extends BorderPane {
         this.algoStar = algostar;
         this.contenedorCentral = new ScrollPane();
         mapa = algoStar.empezarJuego();
+        
         setMenu(stage);
         pantallaJuego();
         setPantallDeStats();
@@ -82,6 +84,11 @@ public class AlgoStarView extends BorderPane {
         this.setBottom(contenedorHorizontal);
     }
 
+
+    public void crearBotoneraZangano(Coordenada coordenada) {
+      BotoneraZangano botonera = new BotoneraZangano(algoStar, this,coordenada);
+      
+    }
 
     private void setMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);

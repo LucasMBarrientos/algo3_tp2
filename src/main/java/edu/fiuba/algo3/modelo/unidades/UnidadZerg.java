@@ -40,7 +40,7 @@ public abstract class UnidadZerg extends Unidad {
 
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre.toData());
+        node.put("nombre", nombre.toData().get("nombre"));
         node.put("coordenada", coordenada.toData());
         node.put("estado", estado.toData());
         node.put("vida", vida.toData());
