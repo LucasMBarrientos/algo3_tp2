@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;

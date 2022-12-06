@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.edificios.protoss.acceso;
+package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;

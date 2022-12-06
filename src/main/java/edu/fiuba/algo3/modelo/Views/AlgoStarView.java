@@ -14,7 +14,7 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEspiral;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraGuarida;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraVaciaProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;

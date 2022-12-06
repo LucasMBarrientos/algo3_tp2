@@ -2,9 +2,9 @@ package edu.fiuba.algo3.modelo.Views.eventos.accionesJugador;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.NoHayEspacioDisponible;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
+import edu.fiuba.algo3.modelo.excepciones.NoHayEspacioDisponible;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.ActionEvent;

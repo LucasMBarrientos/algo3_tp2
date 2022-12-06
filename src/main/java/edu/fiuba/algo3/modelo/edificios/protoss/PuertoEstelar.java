@@ -1,9 +1,8 @@
-package edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar;
+package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;

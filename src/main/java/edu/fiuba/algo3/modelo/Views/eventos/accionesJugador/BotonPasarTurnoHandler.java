@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.MapaView;
 import edu.fiuba.algo3.modelo.Views.PantallaFinDelJuego;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;

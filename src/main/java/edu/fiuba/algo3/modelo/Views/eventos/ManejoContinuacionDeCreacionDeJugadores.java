@@ -93,6 +93,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
     private void pasarALaSiguienteEscena() {
         pantalla.setFullScreen(true);
         if (!esElPrimerJugador) {
+            algoStarView.actualizarMapa();
             algoStar.empezarJuego();
         }
         pantalla.setScene(SiguienteEscena);
