@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.edificios.zerg.criadero;
+package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import java.util.List;
 

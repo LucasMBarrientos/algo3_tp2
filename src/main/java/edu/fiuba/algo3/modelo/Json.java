@@ -49,7 +49,7 @@ public class Json {
 
     public static List<String> JsonArrayToList(JsonNode n) throws IOException {
         String string = stringify(n);
-        return objectMapper.readValue(string,  new TypeReference<List<String>>() {});
+        return objectMapper.readValue(string, new TypeReference<List<String>>() {});
     }
 
     public static ObjectNode createObjectNode() {

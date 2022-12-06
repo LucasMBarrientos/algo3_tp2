@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.edificios.protoss.asimilador;
+package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import java.util.List;
 

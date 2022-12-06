@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;

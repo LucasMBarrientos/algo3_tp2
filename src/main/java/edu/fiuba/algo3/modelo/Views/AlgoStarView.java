@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;

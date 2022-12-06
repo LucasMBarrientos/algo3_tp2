@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.NoHayEspacioDisponible;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.excepciones.NoHayEspacioDisponible;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;

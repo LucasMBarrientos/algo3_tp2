@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
