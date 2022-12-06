@@ -39,7 +39,7 @@ public class Dragon extends UnidadProtoss {
         boolean sePudoOcupar = true;
         try {
             terreno.ocuparPorUnidad(this);
-        } catch (RuntimeException e) { // TODO: ver que esto ande, porque puede lanzar excepciones diferentes
+        } catch (RuntimeException e) {
             sePudoOcupar = false;
         }
         return sePudoOcupar;

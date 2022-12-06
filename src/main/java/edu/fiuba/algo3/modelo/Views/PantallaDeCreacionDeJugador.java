@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -20,20 +21,18 @@ import javafx.stage.Stage;
 
 public class PantallaDeCreacionDeJugador extends VBox {
 
-    Stage pantalla;
-    AlgoStar algoStar;
-    AlgoStarView algoStarView;
-    ChoiceBox<String> controlParaElegirColor = new ChoiceBox<String>();
-    ChoiceBox<String> controlParaElegirRaza = new ChoiceBox<String>();
-    String colorElegido;
-
-
-    String razaElegida;
-    TextField casillaDeTextoParaNombre = new TextField();
+    private Stage pantalla;
+    private AlgoStar algoStar;
+    private AlgoStarView algoStarView;
+    private ChoiceBox<String> controlParaElegirColor = new ChoiceBox<String>();
+    private ChoiceBox<String> controlParaElegirRaza = new ChoiceBox<String>();
+    private TextField casillaDeTextoParaNombre = new TextField();
     private Button botonParaContinuar;
 
+    private List<Integer> coloresRemovidos;
+    private List<Integer> razasRemovidas;
 
-    public PantallaDeCreacionDeJugador(Stage pantalla, Scene proximaEscena, AlgoStar algoStar, AlgoStarView algoView, Boolean esElPrimerJugador) {
+    public PantallaDeCreacionDeJugador(Stage pantalla, Scene proximaEscena, AlgoStar algoStar, AlgoStarView algoView, List<Integer> coloresRemovidos, List<Integer> razasRemovidas) {
         super();
         this.pantalla = pantalla;
         this.algoStar = algoStar;
@@ -44,9 +43,11 @@ public class PantallaDeCreacionDeJugador extends VBox {
         this.establecerFondo();
         this.agregarCasillaDeTextoParaNombre();
         this.agregarControlParaSeleccionarColor();
+        this.coloresRemovidos = coloresRemovidos;
+        this.razasRemovidas = razasRemovidas;
 
         this.agregarControlParaSeleccionarRaza();
-        this.agregarBotonParaContinuar(proximaEscena, esElPrimerJugador);
+        this.agregarBotonParaContinuar(proximaEscena, coloresRemovidos, razasRemovidas);
     }
 
 
@@ -73,7 +74,7 @@ public class PantallaDeCreacionDeJugador extends VBox {
 
         controlParaElegirColor.getItems().addAll(colores);
         controlParaElegirColor.setValue("Elegir un color");
-        controlParaElegirColor.setOnAction(this::seleccionarColor);
+        controlParaElegirColor.setOnMouseClicked(this::seleccionarColor);
         this.getChildren().add(controlParaElegirColor);
     }
 
@@ -81,15 +82,15 @@ public class PantallaDeCreacionDeJugador extends VBox {
         controlParaElegirRaza.getItems().add("Zerg");
         controlParaElegirRaza.getItems().add("Protoss");
         controlParaElegirRaza.setValue("Elegir una raza");
-        controlParaElegirRaza.setOnAction(this::seleccionarRaza);
+        controlParaElegirRaza.setOnMouseClicked(this::seleccionarRaza);
         this.getChildren().add(controlParaElegirRaza);
     }
 
 
 
-    private void agregarBotonParaContinuar(Scene proximaEscena, boolean esElPrimerJugador) {
+    private void agregarBotonParaContinuar(Scene proximaEscena, List<Integer> coloresRemovidos, List<Integer> razasRemovidas) {
         this.botonParaContinuar = new Button();
-        if (esElPrimerJugador) {
+        if (razasRemovidas.size() == 1) {
             botonParaContinuar.setText("Continuar");
         } else {
             botonParaContinuar.setText("Empezar juego!");
@@ -102,7 +103,8 @@ public class PantallaDeCreacionDeJugador extends VBox {
             casillaDeTextoParaNombre,
             controlParaElegirColor,
             controlParaElegirRaza,
-            esElPrimerJugador
+            coloresRemovidos,
+            razasRemovidas
         );
 
         botonParaContinuar.setOnAction(manejoCotinuacionDeCreacionDeJugadores);
@@ -129,13 +131,18 @@ public class PantallaDeCreacionDeJugador extends VBox {
         // contenedorCentral.setPadding(new Insets(5));
     }
 
-    public void seleccionarColor(ActionEvent e){
-        this.colorElegido = controlParaElegirColor.getSelectionModel().getSelectedItem();
-
+    public void seleccionarColor(MouseEvent e) {
+        if (coloresRemovidos.size() > 0) {
+            int indiceRemovido = coloresRemovidos.get(coloresRemovidos.size()-1);
+            this.controlParaElegirColor.getItems().remove(indiceRemovido);
+        }
     }
 
-    public void seleccionarRaza(ActionEvent e){
-        this.razaElegida = controlParaElegirColor.getSelectionModel().getSelectedItem();
+    public void seleccionarRaza(MouseEvent e) {
+        if (razasRemovidas.size() > 0) {
+            int indiceRemovido = razasRemovidas.get(razasRemovidas.size()-1);
+            this.controlParaElegirRaza.getItems().remove(indiceRemovido);
+        }
     }
     public static void addTextLimiter(final TextField tf, final int maxLength) {
         tf.textProperty().addListener(new ChangeListener<String>() {

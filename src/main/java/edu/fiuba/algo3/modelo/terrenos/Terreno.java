@@ -147,7 +147,6 @@ public abstract class Terreno {
         }
     }
 
-    //TODO: Hacer que sea un solo mensaje "extraer recurso"
     public void extraerGasVespeno(Recurso recursoRequerido) {
 
     }

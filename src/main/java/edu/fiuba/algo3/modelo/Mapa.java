@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
@@ -106,7 +107,10 @@ public class Mapa {
     }
 
     public void establecerUnidad(Coordenada coordenada, Unidad unidad){
-        unidad.ocupar(buscarTerreno(coordenada));
+        if(!unidad.ocupar(buscarTerreno(coordenada))){
+            throw new TerrenoNoAptoParaTalUnidad();
+        }
+
     }
 
     

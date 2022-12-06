@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Views.eventos;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
@@ -16,20 +18,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
 
 public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<ActionEvent> {
 
     private AlgoStar algoStar;
     private AlgoStarView algoStarView;
-    private boolean esElPrimerJugador;
     private TextField casillaDeTextoParaNombre;
     private ChoiceBox<String> controlParaElegirColor = new ChoiceBox<String>();
     private ChoiceBox<String> controlParaElegirRaza = new ChoiceBox<String>();
     private Stage pantalla;
     private Scene SiguienteEscena;
+    List<Integer> coloresRemovidos;
+    List<Integer> razasRemovidas;
 
-    public ManejoContinuacionDeCreacionDeJugadores(Stage pantalla, Scene SiguienteEscena, AlgoStar algoStar, AlgoStarView algoStarView , TextField casillaDeTextoParaNombre, ChoiceBox<String> controlParaElegirColor, ChoiceBox<String> controlParaElegirRaza, boolean esElPrimerJugador) {
+    public ManejoContinuacionDeCreacionDeJugadores(Stage pantalla, Scene SiguienteEscena, AlgoStar algoStar, AlgoStarView algoStarView , TextField casillaDeTextoParaNombre, ChoiceBox<String> controlParaElegirColor, ChoiceBox<String> controlParaElegirRaza, List<Integer> coloresRemovidos, List<Integer> razasRemovidas) {
         this.pantalla = pantalla;
         this.SiguienteEscena = SiguienteEscena;
         this.algoStar = algoStar;
@@ -37,7 +39,8 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
         this.casillaDeTextoParaNombre = casillaDeTextoParaNombre;
         this.controlParaElegirColor = controlParaElegirColor;
         this.controlParaElegirRaza = controlParaElegirRaza;
-        this.esElPrimerJugador = esElPrimerJugador;
+        this.coloresRemovidos = coloresRemovidos;
+        this.razasRemovidas = razasRemovidas;
     }
 
     @Override
@@ -56,6 +59,8 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
             }
             try {
                 algoStar.agregarJugador(nuevoJugador);
+                coloresRemovidos.add(controlParaElegirColor.getSelectionModel().getSelectedIndex());
+                razasRemovidas.add(controlParaElegirRaza.getSelectionModel().getSelectedIndex());
                 this.pasarALaSiguienteEscena();
             } catch (NombreDeJugadorInvalido e ) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -94,7 +99,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
 
     private void pasarALaSiguienteEscena() {
       pantalla.setFullScreen(true);
-      if (!esElPrimerJugador) {
+      if (razasRemovidas.size() == 2) {
           ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
           reproductorDeSonidos.reproducirSonido("/bg.mp3");
           algoStarView.setPantallaDeStatsJugador();

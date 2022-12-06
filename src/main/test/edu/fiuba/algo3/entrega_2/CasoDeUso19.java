@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,10 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class CasoDeUso19 {
 
-    /*@Test
-    public void unZerlingPuedeAtacarAlScoutperoNoLeHaceDaño() {
+    @Test
+    public void unZerlingPuedeAtacarAlScoutPeroNoLeHaceDaño() {
         Mapa mapa = new Mapa(new Coordenada(100, 50));
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(0));
         Zerling zerling = new Zerling();
         Scout scout = new Scout();
 
@@ -35,19 +36,18 @@ public class CasoDeUso19 {
         }
 
         for (int i = 0; i < 200; i++) {
-
             zerling.atacar(new Coordenada(2, 2), mapa);
         }
 
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
             scout.moverse(new Derecha(),mapa);
         });
-    }*/
+    }
     
-    /*@Test
+    @Test
     public void unGuardianPuedeAtacarAlZealotPeroNoAlScout() {
         Mapa mapa = new Mapa(new Coordenada(100, 50));
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(0));
         Guardian guardian = new Guardian();
         Zealot zealot = new Zealot();
         Scout scout = new Scout();
@@ -67,6 +67,6 @@ public class CasoDeUso19 {
         Assertions.assertThrows(AtaqueImposibleDeRealizarse.class, ()->{
             guardian.atacar(new Coordenada(2, 2), mapa);
         });
-    }    */
+    }    
 
 }
