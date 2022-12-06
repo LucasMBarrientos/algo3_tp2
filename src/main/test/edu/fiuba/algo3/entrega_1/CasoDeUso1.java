@@ -15,7 +15,6 @@ public class CasoDeUso1 {
 
 	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
-        
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         
         Criadero criadero = new Criadero();
