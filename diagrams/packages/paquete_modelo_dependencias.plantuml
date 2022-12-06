@@ -83,6 +83,71 @@ package jugadores {
     class Nombre
 }
 
+package recursos {
+    class GasVespeno
+    class Mineral
+    class Recurso
+    class Suministro
+}
+
+package terrenos {
+    class EstadoTerreno
+    class Terreno
+    class TerrenoAereo
+    class TerrenoBase
+    class TerrenoEnergizado
+    class TerrenoMineral
+    class TerrenoMoho
+    class TerrenoVacio
+    class TerrenoVolcan
+}
+
+package unidades {
+    class Unidad;
+    class UnidadProtoss;
+    class UnidadZerg;
+    package estados {
+        class EstadoUnidad
+        class UnidadDestruida
+        class UnidadEnConstruccion
+        class UnidadOperativa
+    }
+    package modificadores {
+        class Invisible
+        class Visibilidad
+        class Visible
+    }
+    package protoss {
+        class Dragon
+        class Scout
+        class Zealot
+    }
+    package zerg {
+        class AmoSupremo
+        class Devorador
+        class Guardian
+        class Hidralisco
+        class Mutalisco
+        class Zangano
+        class Zerling
+    }
+}
+
+package Views {
+    class AlgoStarView
+    class BarraDelMenu
+    class MapaView
+    class PantallaBienvenida
+    class PantallaDeCreacionDeJugador
+    class PantallaFinDelJuego
+    class ReproductorDeSonidos
+    class TerrenoView
+}
+
+package eventos {
+    
+}
+
 Test --> Localize: "<<instantiate>>"
 Localize -> String: " # esContent"
 Localize -> String: " # usContent"
