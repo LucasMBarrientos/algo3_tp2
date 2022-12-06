@@ -10,6 +10,9 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
+
+import java.util.List;
 
 public class BotonAtacarHandler implements EventHandler<ActionEvent> {
 
@@ -19,15 +22,20 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     Coordenada coordenadaUnidad;
     Coordenada coordenadaObjetivo;
 
-    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
+    TextField textFieldCoord1;
+    TextField textFieldCoord2;
+
+    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, List<TextField> textFields) {
         this.algoStar = algoStar;
         this.algoStarView = algoStarView;
         this.coordenadaUnidad = coordenadaUnidad;
-        this.coordenadaObjetivo = coordenadaObjetivo;
+        this.textFieldCoord1 = textFields.get(0);
+        this.textFieldCoord2 = textFields.get(1);
     }
 
     @Override
     public void handle(ActionEvent evento) {
+        Coordenada coordenadaObjetivo = new Coordenada(Integer.parseInt(textFieldCoord1.getText()),Integer.parseInt(textFieldCoord2.getText()));
         try {
             algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
 
