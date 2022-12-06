@@ -70,6 +70,10 @@ public class JugadorZerg extends Jugador {
         inventario.agregarUnidad(zanganoInicial);
     }
 
+    public String devolverMensajeDeVictoria() {
+        return "El jugador " + nombre + " logro repeeler a los Zerg de la zona";
+    }
+
  }
 
 

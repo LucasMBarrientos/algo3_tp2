@@ -36,13 +36,13 @@ public class AlgoStarView extends BorderPane {
     MapaView mapaView;
 
     public AlgoStarView(Stage stage, AlgoStar algostar) {
+        this.stage = stage;
         this.algoStar = algostar;
         mapa = algoStar.empezarJuego();
         setMenu(stage);
         pantallaJuego();
         setPantallDeStats();
-        setBotonera();
-        this.stage = stage;
+        crearBotonera();
     }
 
     private void setPantallDeStats() {
@@ -57,21 +57,20 @@ public class AlgoStarView extends BorderPane {
         this.setLeft(contenedorHorizontal);
     }
 
-    private void setBotonera() {
-        //Aca iría las cosas de la botonera
-
+    private void crearBotonera() {
+        // Creacion del boton para pasar al turno siguiente
         Button botonPasarTurno = new Button();
         botonPasarTurno.setText("Pasar Turno");
-        BotonPasarTurnoHandler botonPasarTurnoHandler = new BotonPasarTurnoHandler(algoStar, this);
+        BotonPasarTurnoHandler botonPasarTurnoHandler = new BotonPasarTurnoHandler(algoStar, this, this.stage);
         botonPasarTurno.setOnAction(botonPasarTurnoHandler);
-
-
-        HBox contenedorHorizontal = new HBox(botonPasarTurno); // <- recibe los botones como parametro
+        // Creacion del contenedor con los botones disponibles
+        HBox contenedorHorizontal = new HBox(botonPasarTurno); // <- Recibe los botones como parametro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
 
         this.setBottom(contenedorHorizontal);
     }
+
 
     private void setMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);

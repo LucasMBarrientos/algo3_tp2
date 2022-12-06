@@ -41,4 +41,8 @@ public class JugadorProtoss extends Jugador {
         //  TODO: Spawnear alguna unidad inicial si hace falta
     }
 
+    public String devolverMensajeDeVictoria() {
+        return "El jugador " + nombre + " a llevado a la raza Zerg a la victoria";
+    }
+
 }

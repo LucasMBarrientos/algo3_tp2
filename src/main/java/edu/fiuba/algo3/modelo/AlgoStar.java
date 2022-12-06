@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.excepciones.NoSePuedenAgregarMasJugadores;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 
 public class AlgoStar {
 
@@ -16,6 +17,8 @@ public class AlgoStar {
 
     private int turnoActual;
     private int rondaActual;
+
+    private Jugador jugadorGanador;
 
     private Mapa mapa;
 
@@ -52,6 +55,15 @@ public class AlgoStar {
     }
 
     public void pasarTurno(){
+        for (Jugador jugador : jugadores) {
+            jugador.actualizar();
+            try {
+                jugador.fueDerrotado();
+            } catch (FinDelJuegoAlcanzado e) {
+                jugadorGanador = jugador;
+                throw e;
+            }
+        }
         idJugadorActual++;
         turnoActual++;
         if (turnoActual % jugadores.size() == 0) {
@@ -59,26 +71,15 @@ public class AlgoStar {
             rondaActual++;
         }
         mapa.actualizar(turnoActual);
-        boolean finDelJuegoAlcanzado = false;
-        for (Jugador jugador : jugadores) {
-            jugador.actualizar();
-            try {
-                jugador.fueDerrotado();
-            } catch (FinDelJuegoAlcanzado e) {
-                // TODO: Realizar lo que suceda con el fin del juego
-                throw e;
-            }
-        }
     }
 
+    public Jugador devolverJugadorGanador() {
+        return jugadorGanador;
+    }
     
-
-
     public Jugador devolverJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
-
-
 
     // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
 
