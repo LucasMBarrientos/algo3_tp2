@@ -46,6 +46,9 @@ public class ReproductorDeSonidos {
         MediaPlayer control = new MediaPlayer(sonido);
         control.setCycleCount(MediaPlayer.INDEFINITE);
         control.setAutoPlay(true);
+        control.setOnReady(() -> {
+            control.play();
+        });
     }
 
 }
