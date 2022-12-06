@@ -39,6 +39,9 @@ public class MapaView {
     Group info = new Group();
     private Group terrenoGroup = new Group();
     private Group ocupanteGroup = new Group();
+
+
+    //#region Imagenes
     Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);
     Image imagenVolcan = new  Image("/imgVolcan.jpg", 35, 35, false, false);
     Image imagenMoho = new  Image("/imgMoho.jpg", 35, 35, false, false);
@@ -56,7 +59,7 @@ public class MapaView {
     Image imagenZealot = new Image("/Zealot.png", 10, 10, false, false);
     Image imagenDragon = new Image("/Dragon.png", 10, 10, false, false);
     Image imagenScout = new Image("/Scout.png", 10, 10, false, false);
-    
+
     Image imagenCriadero = new Image("/Criadero.png", 10, 10, false, false);
     Image imagenReservaDeReproduccion = new Image("/ReservaDeReproduccion.png", 35, 35, false, false);
     Image imagenExtractor = new Image("/Extractor.png", 10, 10, false, false);
@@ -67,6 +70,8 @@ public class MapaView {
     Image imagenAsimilador = new Image("/Asimilador.png", 10, 10, false, false);
     Image imagenAcceso = new Image("/Acceso.png", 10, 10, false, false);
     Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 10, 10, false, false);
+//#endregion
+
 
     double opacityConstruido = 1;
     double opacityEnConstruccion = 0.5;
