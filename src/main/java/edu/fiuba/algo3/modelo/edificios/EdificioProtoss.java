@@ -49,6 +49,7 @@ public abstract class EdificioProtoss extends Edificio {
         ObjectNode node = Json.createObjectNode();
         node.put("nombre", nombre.toData());
         node.put("coordenada", coordenada.toData());
+        node.put("estado", estadoActual.toData());
         node.put("costoEnGasVespeno", costoEnGas.toData());
         node.put("costoEnMinerales", costoEnMinerales.toData());
         node.put("tiempoDeConstruccion", tiempoDeConstruccion);

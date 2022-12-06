@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -54,6 +56,12 @@ public class EdificioDestruido implements EstadoEdificio {
     @Override
     public boolean consumirLarva(int larvas) {
         return false;
+    }
+
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("estado", "edificioDestruido");
+        return node;
     }
   
 }
