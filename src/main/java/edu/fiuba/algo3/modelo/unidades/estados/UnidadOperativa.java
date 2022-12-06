@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.unidades;
+package edu.fiuba.algo3.modelo.unidades.estados;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
@@ -9,11 +9,13 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.List;
 
 public class UnidadOperativa implements EstadoUnidad {
-    protected Unidad unidad;
+
+    private Unidad unidad;
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
         mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
@@ -44,10 +46,13 @@ public class UnidadOperativa implements EstadoUnidad {
     }
 
     @Override
-    public void terminarConstruccion() { }
+    public void terminarConstruccion() {
+        return;
+    }
 
     @Override
     public void deshacerConstruccion() {
+        return;
     }
 
     public ObjectNode toData() {

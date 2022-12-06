@@ -7,8 +7,8 @@ import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnida
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.protoss.Invisible;
-import edu.fiuba.algo3.modelo.unidades.protoss.Visible;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visible;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
@@ -171,7 +171,8 @@ public class Mapa {
     public Zangano establecerZanganoInicial(int idJugador) {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
-        Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
+        //Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
+        Zangano zanganoGenerado = new Zangano();
         zanganoGenerado.terminarConstruccion();
         zanganoGenerado.establecerCoordenada(ubicacionDelZangano);
         zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));

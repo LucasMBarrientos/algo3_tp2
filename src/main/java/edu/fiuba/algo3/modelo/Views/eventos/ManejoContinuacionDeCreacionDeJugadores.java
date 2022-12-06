@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Views.eventos;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
+import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
 import edu.fiuba.algo3.modelo.excepciones.ColorDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.excepciones.RazaInvalida;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
 
 public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<ActionEvent> {
 
@@ -93,6 +95,8 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
     private void pasarALaSiguienteEscena() {
         pantalla.setFullScreen(true);
         if (!esElPrimerJugador) {
+            ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
+            reproductorDeSonidos.reproducirSonido("/bg.mp3");
             algoStarView.actualizarMapa();
             algoStar.empezarJuego();
         }

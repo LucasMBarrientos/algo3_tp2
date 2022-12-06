@@ -15,8 +15,8 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 
 public class Zerling extends UnidadZerg {

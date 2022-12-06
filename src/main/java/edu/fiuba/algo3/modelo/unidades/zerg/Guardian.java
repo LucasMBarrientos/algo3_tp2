@@ -1,12 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
@@ -14,8 +9,8 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 
 public class Guardian extends UnidadZerg {
 
@@ -32,25 +27,23 @@ public class Guardian extends UnidadZerg {
     }
 
     @Override
-    public Unidad generarse(Edificio edificio, Inventario inventario) {
-        return null;
+    public void actualizarUnidad(Inventario inventario) {
+        regenerar();
     }
 
-    public boolean ocupar(Terreno terreno){
+    public boolean ocupar(Terreno terreno) {
         boolean sePudoOcupar = true;
-
         try {
             terreno.ocuparPorUnidad(this);
         } catch (RuntimeException e){
             sePudoOcupar = false;
         }
-
         return sePudoOcupar;
     }
 
     @Override
-    public void actualizarUnidad(Inventario inventario) {
-      regenerar();
+    public Unidad generarse(Edificio edificio, Inventario inventario) {
+        return null;
     }
 
 }

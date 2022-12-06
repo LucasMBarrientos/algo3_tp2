@@ -1,13 +1,8 @@
 package edu.fiuba.algo3.modelo.unidades.protoss;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
@@ -15,8 +10,8 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadProtoss;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 
 public class Scout extends UnidadProtoss {
@@ -35,13 +30,14 @@ public class Scout extends UnidadProtoss {
         this.aerea = true;
         establecerEstado(new UnidadEnConstruccion());
     }
-    public Unidad generarse(Edificio edificio, Inventario inventario){
-        return edificio.generarUnidad(this,inventario);
+
+    @Override
+    public void actualizarUnidad(Inventario inventario) {
+        regenerar();
     }
 
     public boolean ocupar(Terreno terreno){
         boolean sePudoOcupar = true;
-
         try {
             terreno.ocuparPorUnidad(this);
         } catch (RuntimeException e){
@@ -51,10 +47,8 @@ public class Scout extends UnidadProtoss {
         return sePudoOcupar;
     }
 
-    @Override
-    public void actualizarUnidad(Inventario inventario) {
-      regenerar();
+    public Unidad generarse(Edificio edificio, Inventario inventario){
+        return edificio.generarUnidad(this,inventario);
     }
-
 
 }

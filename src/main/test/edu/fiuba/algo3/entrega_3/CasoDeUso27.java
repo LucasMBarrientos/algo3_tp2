@@ -18,7 +18,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.unidades.UnidadDestruida;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadDestruida;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.zerg.Devorador;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;

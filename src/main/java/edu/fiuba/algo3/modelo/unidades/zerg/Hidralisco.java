@@ -15,8 +15,8 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 
 public class Hidralisco extends UnidadZerg {
 
@@ -32,25 +32,24 @@ public class Hidralisco extends UnidadZerg {
         this.nombre = new Nombre("Hidralisco");
         establecerEstado(new UnidadEnConstruccion());
     }
-    public Unidad generarse(Edificio edificio, Inventario inventario){
+
+    public Unidad generarse(Edificio edificio, Inventario inventario) {
         return edificio.generarUnidad(this,inventario);
     }
 
-    public boolean ocupar(Terreno terreno){
+    public boolean ocupar(Terreno terreno) {
         boolean sePudoOcupar = true;
-
         try {
             terreno.ocuparPorUnidad(this);
         } catch (RuntimeException e){
             sePudoOcupar = false;
         }
-
         return sePudoOcupar;
     }
 
     @Override
     public void actualizarUnidad(Inventario inventario) {
-      regenerar();
+        regenerar();
     }
 
 }

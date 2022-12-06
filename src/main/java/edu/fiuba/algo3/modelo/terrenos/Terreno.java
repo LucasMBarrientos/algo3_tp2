@@ -25,6 +25,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.*;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 

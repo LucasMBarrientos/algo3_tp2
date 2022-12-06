@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class BarraDelMenu extends MenuBar {
 
-    public BarraDelMenu(Stage stage){
+    public BarraDelMenu(Stage stage) {
         Menu menuArchivo = new Menu("Archivo");
         Menu menuTutoriales = new Menu("Tutoriales");
         Menu menuCreditos = new Menu("Créditos");

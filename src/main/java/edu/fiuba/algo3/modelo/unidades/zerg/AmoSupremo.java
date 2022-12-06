@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -15,47 +14,43 @@ import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class AmoSupremo extends UnidadZerg  {
+public class AmoSupremo extends UnidadZerg {
 
     protected int radioDeVisibilidad = 4;
     private Recurso suministroAAgregar = new Suministro(5);
+    
     public AmoSupremo() {
-      this.costoEnGas = new GasVespeno(0);
-      this.costoEnMinerales = new Mineral(150);
-      this.costoSuministro = new Suministro(0);
-      this.tiempoConstruccion = 5;
-      this.danioAereo = new Danio(0);
-      this.danioTerrestre = new Danio(0);
-      this.rango = 0;
-      this.vida = new Vida(200);
-      this.nombre = new Nombre("AmoSupremo");
-      this.aerea = true;
-      establecerEstado(new UnidadEnConstruccion());
-    }
-
-    @Override
-    public boolean ocupar(Terreno terreno) {
-      boolean sePudoOcupar = true;
-
-      try {
-        terreno.ocuparPorUnidad(this);
-      } catch (RuntimeException e){
-        sePudoOcupar = false;
-      }
-      return sePudoOcupar;
+        this.costoEnGas = new GasVespeno(0);
+        this.costoEnMinerales = new Mineral(150);
+        this.costoSuministro = new Suministro(0);
+        this.tiempoConstruccion = 5;
+        this.danioAereo = new Danio(0);
+        this.danioTerrestre = new Danio(0);
+        this.rango = 0;
+        this.vida = new Vida(200);
+        this.nombre = new Nombre("AmoSupremo");
+        this.aerea = true;
+        establecerEstado(new UnidadEnConstruccion());
     }
 
     @Override
     public void actualizarUnidad(Inventario inventario) {
-      regenerar();
+        regenerar();
     }
 
+    @Override
+    public boolean ocupar(Terreno terreno) {
+        boolean sePudoOcupar = true;
+        try {
+            terreno.ocuparPorUnidad(this);
+        } catch (RuntimeException e){
+            sePudoOcupar = false;
+        }
+        return sePudoOcupar;
+    }
 
     @Override
     public Unidad generarse(Edificio edificio, Inventario inventario) {
@@ -70,7 +65,6 @@ public class AmoSupremo extends UnidadZerg  {
     @Override
     public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar){
         List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
-
         for(Coordenada coordenadaHallada : coordenadas) {
             coordenadasAVisibilizar.add(coordenadaHallada);
         }

@@ -12,12 +12,13 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public class Zangano extends UnidadZerg {
+
     private Terreno terreno;
 
     public Zangano() {
@@ -32,20 +33,19 @@ public class Zangano extends UnidadZerg {
         this.nombre = new Nombre("Zangano");
         establecerEstado(new UnidadEnConstruccion());
     }
-
+/*
     public Zangano(GasVespeno gasInicial, Mineral mineralInicial, Suministro suministro) {
-      this.costoEnGas = gasInicial;
-      this.costoEnMinerales = mineralInicial;
-      this.costoSuministro = suministro;
-      this.tiempoConstruccion = 1;
-      this.danioAereo = new Danio(0);
-      this.danioTerrestre = new Danio(0);
-      this.rango = 0;
-      this.vida = new Vida(25);
-      this.nombre = new Nombre("Zangano");
-      establecerEstado(new UnidadEnConstruccion());
-  }
-
+        this.costoEnGas = gasInicial;
+        this.costoEnMinerales = mineralInicial;
+        this.costoSuministro = suministro;
+        this.tiempoConstruccion = 1;
+        this.danioAereo = new Danio(0);
+        this.danioTerrestre = new Danio(0);
+        this.rango = 0;
+        this.vida = new Vida(25);
+        this.nombre = new Nombre("Zangano");
+        establecerEstado(new UnidadEnConstruccion());
+    }*/
 
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this, inventario);

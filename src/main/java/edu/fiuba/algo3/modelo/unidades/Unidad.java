@@ -17,8 +17,10 @@ import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
-import edu.fiuba.algo3.modelo.unidades.protoss.Invisible;
-import edu.fiuba.algo3.modelo.unidades.protoss.Visibilidad;
+import edu.fiuba.algo3.modelo.unidades.estados.EstadoUnidad;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
 
 import java.util.List;
 
@@ -117,12 +119,6 @@ public abstract class Unidad {
         }
     }
 
-    public void extraerRecursos(Inventario inventario){}
-
-    public abstract Unidad generarse(Edificio edificio, Inventario inventario);
-
-    public abstract boolean ocupar(Terreno terreno);
-
     public Nombre devolverNombre(){
         return nombre;
     }
@@ -131,25 +127,36 @@ public abstract class Unidad {
     public void devolverSuministro(Inventario inventario){
       inventario.agregarSuministro(costoSuministro);
     }
-    public void restaurarRecursosParaConstruccion(Inventario inventario){
+    public void restaurarRecursosParaConstruccion(Inventario inventario) {
         inventario.devolverMinerales(costoEnMinerales);
         inventario.devolverGasVespeno(costoEnGas);
         inventario.agregarSuministro(costoSuministro);
     }
 
-    public Unidad evolucionar(Mapa mapa, Unidad unidad){
+    public Unidad evolucionar(Mapa mapa, Unidad unidad) {
         throw new InvalidaEvolucionDeUnidad();
     }
 
-    public void destruirse(Inventario inventario){
+    public void destruirse(Inventario inventario) {
         inventario.eliminarUnidad(coordenada);
     }
 
     public void agregarSuministro(Inventario inventario) {
     }
 
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar) {
         estado.actualizarListaDeCoordenadasVisibles(coordenadasAVisibilizar);
     }
-    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar){ }
+    
+    public void extraerRecursos(Inventario inventario){
+        return;
+    }
+
+    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar) {
+        return;
+    }
+
+    public abstract Unidad generarse(Edificio edificio, Inventario inventario);
+
+    public abstract boolean ocupar(Terreno terreno);
 }
