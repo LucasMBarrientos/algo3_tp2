@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
 import edu.fiuba.algo3.modelo.Views.PantallaDeCreacionDeJugador;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -53,6 +55,20 @@ public class App extends Application {
         //Image img = new Image(getClass().getResourceAsStream("/iconozerg.png"));
 
         // Añadir el ImageView al panel principal de la pantalla
+
+
+
+        // DEBUG_ code for debug purposes only
+        boolean DEBUG_MODE = false;
+        if (DEBUG_MODE) {
+            algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 1 con raza protoss", "Rojo"));
+            algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 2 con raza zerg", "Azul"));
+            algoStar.empezarJuego();
+            stage.setScene(escenaJuego);
+            stage.show();
+            return;
+        }
+        // End of DEBUG_ code for debug purposes only
 
         stage.setScene(escenaBienvenidos);
         stage.show();

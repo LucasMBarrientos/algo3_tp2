@@ -76,9 +76,9 @@ public abstract class Jugador {
         return this.color.equals(color);
     }
 
-    protected void compararRaza(Jugador jugador) throws RazaYaElegidaPorElOtroJugador {
+    protected void compararRaza(Jugador jugador) throws RazaInvalida {
         if (this.getClass() == jugador.getClass()) {
-            throw new RazaYaElegidaPorElOtroJugador();
+            throw new RazaInvalida();
         }
     }
 

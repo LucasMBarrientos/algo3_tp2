@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.excepciones.ColorDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
+import edu.fiuba.algo3.modelo.excepciones.RazaInvalida;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
@@ -19,13 +20,14 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
 
     private AlgoStar algoStar;
     private AlgoStarView algoStarView;
+    private boolean esElPrimerJugador;
     private TextField casillaDeTextoParaNombre;
     private ChoiceBox<String> controlParaElegirColor = new ChoiceBox<String>();
     private ChoiceBox<String> controlParaElegirRaza = new ChoiceBox<String>();
     private Stage pantalla;
     private Scene SiguienteEscena;
 
-    public ManejoContinuacionDeCreacionDeJugadores(Stage pantalla, Scene SiguienteEscena, AlgoStar algoStar, AlgoStarView algoStarView , TextField casillaDeTextoParaNombre, ChoiceBox<String> controlParaElegirColor, ChoiceBox<String> controlParaElegirRaza){
+    public ManejoContinuacionDeCreacionDeJugadores(Stage pantalla, Scene SiguienteEscena, AlgoStar algoStar, AlgoStarView algoStarView , TextField casillaDeTextoParaNombre, ChoiceBox<String> controlParaElegirColor, ChoiceBox<String> controlParaElegirRaza, boolean esElPrimerJugador){
         this.pantalla = pantalla;
         this.SiguienteEscena = SiguienteEscena;
         this.algoStar = algoStar;
@@ -33,6 +35,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
         this.casillaDeTextoParaNombre = casillaDeTextoParaNombre;
         this.controlParaElegirColor = controlParaElegirColor;
         this.controlParaElegirRaza = controlParaElegirRaza;
+        this.esElPrimerJugador = esElPrimerJugador;
     }
 
     @Override
@@ -44,27 +47,53 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
         try {
             if (razaElegida == "Zerg") {
                 nuevoJugador = new JugadorZerg(nombreElegido, colorElegido);
-            } else {
+            } else if (razaElegida == "Protoss") {
                 nuevoJugador = new JugadorProtoss(nombreElegido, colorElegido);
+            } else {
+                throw new RazaInvalida();
             }
             try {
                 algoStar.agregarJugador(nuevoJugador);
                 this.pasarALaSiguienteEscena();
+            } catch (NombreDeJugadorInvalido e ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Nombre invalido");
+                alert.setHeaderText("El nombre \"" + colorElegido + "\" es invalido.\nSeleccione un nombre que el otro jugador no haya elegido.");
+                alert.setContentText("Nombre de jugador Inválido, vuelva a intentarlo");
+                alert.show();
             } catch (ColorDeJugadorInvalido e ) {
-                // TODO: Color repetido
-            }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Color invalido");
+                alert.setHeaderText("El color \"" + colorElegido + "\" es invalido.\nSeleccione un color que el otro jugador no haya elegido.");
+                alert.setContentText("Color de jugador Inválido, vuelva a intentarlo");
+                alert.show();
+            } catch(RazaInvalida e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Raza invalida");
+            alert.setHeaderText("El color \"" + razaElegida + "\" ya fue seleccionada por el otro jugador.\nSeleccione una raza que no haya sido elegida.");
+            alert.setContentText("Raza invalida, vuelva a intentarlo");
+            alert.show();
+        }
         } catch(NombreDeJugadorInvalido e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Nombre de jugador invalido");
-            alert.setHeaderText("El nombre \"" + nombreElegido + "\" es invalido.\nRecuerde que los nombres de los jugadores deben tener seis letras");
-            String mensaje = "Nombre de jugador Inválido, vuelva a intentarlo";
-            alert.setContentText(mensaje);
+            alert.setTitle("Nombre invalido");
+            alert.setHeaderText("El nombre \"" + nombreElegido + "\" es invalido.\nRecuerde que los nombres de los jugadores deben tener seis letras.");
+            alert.setContentText("Nombre de jugador Inválido, vuelva a intentarlo");
+            alert.show();
+        } catch(RazaInvalida e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Seleccionar una raza");
+            alert.setHeaderText("Falta seleccionar Raza");
+            alert.setContentText("Seleccionar una raza de las disponibles");
             alert.show();
         }
     }
 
     private void pasarALaSiguienteEscena() {
         pantalla.setFullScreen(true);
+        if (!esElPrimerJugador) {
+            algoStar.empezarJuego();
+        }
         pantalla.setScene(SiguienteEscena);
         pantalla.setFullScreen(true);
     }

@@ -86,7 +86,8 @@ public class PantallaDeCreacionDeJugador extends VBox {
             algoStarView,
             casillaDeTextoParaNombre,
             controlParaElegirColor,
-            controlParaElegirRaza
+            controlParaElegirRaza,
+            esElPrimerJugador
         );
         botonParaContinuar.setOnAction(manejoCotinuacionDeCreacionDeJugadores);
         this.getChildren().add(botonParaContinuar);
