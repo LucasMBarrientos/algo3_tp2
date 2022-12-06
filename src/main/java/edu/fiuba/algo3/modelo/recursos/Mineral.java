@@ -10,9 +10,9 @@ public class Mineral extends Recurso {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("mineral", unidadesDisponibles);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("mineral", unidadesDisponibles);
+        return nodo;
     }
 
 }

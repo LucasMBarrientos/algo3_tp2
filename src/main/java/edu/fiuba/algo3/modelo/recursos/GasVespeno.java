@@ -10,9 +10,9 @@ public class GasVespeno extends Recurso {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("gasVespeno", unidadesDisponibles);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("gasVespeno", unidadesDisponibles);
+        return nodo;
     }
     
 }
