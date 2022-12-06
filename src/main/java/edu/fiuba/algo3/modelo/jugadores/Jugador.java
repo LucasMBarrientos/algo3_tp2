@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
@@ -26,6 +28,8 @@ public abstract class Jugador {
         }
         this.nombre = nombre;
     }
+
+    public abstract ObjectNode toData();
 
     public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
 

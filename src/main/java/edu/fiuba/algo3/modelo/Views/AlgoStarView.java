@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -40,7 +41,7 @@ public class AlgoStarView extends BorderPane {
 
     MapaView mapaView;
 
-    Image texturaStats = new Image("/texturaStats.png", 10, 10, false, false);
+    Image pasarTurnoImagen = new Image("/Sprite-0001-export.png", 100, 100, false, false);
 
     public AlgoStarView(Stage stage, AlgoStar algostar) {
         this.stage = stage;
@@ -56,11 +57,21 @@ public class AlgoStarView extends BorderPane {
     }
 
     private void setPantallaDeStatsJugador() {
-        Button pasarTurno = new Button("Pasar Turno");
+        ImageView view = new ImageView(pasarTurnoImagen);
+
+        Button pasarTurno = new Button();
         BotonPasarTurnoHandler pasarTurnoHandler = new BotonPasarTurnoHandler(algoStar,this,stage);
         pasarTurno.setOnAction(pasarTurnoHandler);
+        pasarTurno.setGraphic(view);
 
-        VBox contenedorHorizontal = new VBox(pasarTurno); // <- recibe las cosas como parámetro
+        JsonNode jugadorNode = algoStar.devolverJugadorActual().toData();
+
+        Label jugadorActualLabel = new Label("Jugador Actual: " + jugadorNode.get("nombre").asText());
+
+        Label gasDisponible = new Label("Gas Vespeno: " + jugadorNode.get("inventario").get("cantidadGasVespeno").get("gasVespeno").asText());
+        Label mineralDisponible = new Label("Mineral: " + jugadorNode.get("inventario").get("cantidadMineral").get("mineral").asText());
+
+        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible); // <- recibe las cosas como parámetro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
@@ -112,8 +123,6 @@ public class AlgoStarView extends BorderPane {
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
-
-        this.setBottom(contenedorHorizontal);
     }
 
     public void crearBotoneraZangano(Coordenada coordenada) {
