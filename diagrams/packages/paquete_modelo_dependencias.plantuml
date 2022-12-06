@@ -2,14 +2,87 @@
 
 !include ../classes/herencia.plantuml!WITHOUTNOTES
 
-
-
-package java.lang {
-        class String
+package edificios {
+    class Edificio
+    class EdificioProtoss
+    class EdificioZerg
+    package estados {
+        class EstadoEdificio
+        class EdificioDestruido
+        class EdificioEnConstruccion
+        class EdificioOperativo
+    }
+    package protoss {
+        class Acceso
+        class Asimilador
+        class NexoMineral
+        class Pilon
+        class PuertoEstelar
+    }
+    package zerg {
+        class Criadero
+        class Espiral
+        class Extractor
+        class Guarida
+        class ReservaDeReproduccion
+    }
 }
-package JUnit {
-        class Test
+
+package estadisticas {
+    class Danio
+    class Escudo
+    class Vida
 }
+
+package excepciones {
+    class AtaqueImposibleDeRealizarse
+    class ColorDeJugadorInvalido
+    class ConstruccionRequiereDeOtroEdificio
+    class CoordenadaFueraDelMapa
+    class EdificioEstaDestruido
+    class EdificioNoConoceEstaUnidad
+    class EdificioNoEncontrado
+    class EdificioNoTerminoDeConstruirse
+    class FinDelJuegoAlcanzado
+    class InvalidaEvolucionDeUnidad
+    class NoHayEspacioDisponible
+    class NoHayLarvasSuficientes
+    class NoHaySuministrosSuficientes
+    class NoHayTerrenoDisponibleParaGenerarUnidad
+    class NoHayUnZanganoEnEsaCoordenada
+    class NombreDeJugadorInvalido
+    class NoSePuedenAgregarMasJugadores
+    class RazaInvalida
+    class RecursosInsuficientes
+    class TerrenoNoAptoParaConstruirTalEdificio
+    class TerrenoNoAptoParaTalUnidad
+    class TerrenoOcupadoPorUnaUnidad
+    class TerrenoOcupadoPorUnEdificio
+    class UnidadEstaDestruida
+    class UnidadNoEncontrada
+    class UnidadNoTerminoDeConstruirse
+}
+
+package excepciones {
+    class Coordenada
+    class Direccion
+    class SuperficieRectangular
+    package direcciones {
+        class Abajo
+        class Arriba
+        class Derecha
+        class Izquierda
+    }
+}
+
+package jugadores {
+    class Inventario
+    class Jugador
+    class JugadorProtoss
+    class JugadorZerg
+    class Nombre
+}
+
 Test --> Localize: "<<instantiate>>"
 Localize -> String: " # esContent"
 Localize -> String: " # usContent"
