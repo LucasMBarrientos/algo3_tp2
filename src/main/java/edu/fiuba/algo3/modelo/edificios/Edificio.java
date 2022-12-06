@@ -59,7 +59,9 @@ public abstract class Edificio {
         inventario.devolverGasVespeno(costoEnGas);
     }
 
-    public abstract void validarCorrelativasDeConstruccion(Inventario inventario);
+    public void validarCorrelativasDeConstruccion(Inventario inventario) {
+        return;
+    }
 
     public abstract void ocupar(Terreno terreno);
 
@@ -79,15 +81,41 @@ public abstract class Edificio {
         return;
     }
 
-    public abstract Unidad generarUnidad(Zerling unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Zangano unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Hidralisco unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Mutalisco unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Scout unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Zealot unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Dragon unidad,Inventario inventario);
+    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
+        return null;
+    }
 
-    public abstract Unidad generarUnidad(AmoSupremo unidad, Inventario inventario);
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad  {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
 
     public abstract ObjectNode toData();
 
@@ -144,5 +172,7 @@ public abstract class Edificio {
     public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         return;
     }
+
+    
 
 }

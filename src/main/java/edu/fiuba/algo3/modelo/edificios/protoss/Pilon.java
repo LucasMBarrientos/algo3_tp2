@@ -38,64 +38,29 @@ public class Pilon extends EdificioProtoss {
         establecerEstado(this.estadoConstruccion);
     }
 
-    /*public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
-        return null;
-    }*/
-
-    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
+    @Override
+    public void actualizarEdificio(Inventario inventario) {
+        regenerar();
     }
 
-    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
+    @Override
+    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        coordenadasConPilones.add(coordenada);
     }
 
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
         this.terreno = terreno;
     }
-
-    public void validarCorrelativasDeConstruccion(Inventario inventario){
-
-    }
-
-    @Override
-    public void actualizarEdificio(Inventario inventario) {
-      regenerar();
-      // energia?
-    }
     
     @Override
     public void agregarSuministro(Inventario inventario) {
-      inventario.agregarSuministro(suministroAAgregar);
+        inventario.agregarSuministro(suministroAAgregar);
     }
 
     @Override
     public void restarSuministros(Inventario inventario){
-      inventario.restarSuministro(suministroAAgregar);
+        inventario.restarSuministro(suministroAAgregar);
     }
 
-    
-    @Override
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        coordenadasConPilones.add(coordenada);
-    }
 }

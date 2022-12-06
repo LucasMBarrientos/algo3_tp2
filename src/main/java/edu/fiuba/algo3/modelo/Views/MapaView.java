@@ -126,11 +126,13 @@ public class MapaView {
                     imageCriaderoSprite.setY(posY*separacion);
                     imageCriaderoSprite.setX(posX*separacion);
                     imageCriaderoSprite.setOnMouseClicked(event ->  {
+                        /*
                       System.out.println(ocupante);
                       int x = ocupante.get("Ocupante").get("coordenada").get("x").asInt();
                       int y = ocupante.get("Ocupante").get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraCriadero(coor);
+                      */
                     });
                     ocupanteGroup.getChildren().add(imageCriaderoSprite);
                     break;

@@ -25,8 +25,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public abstract class EdificioZerg extends Edificio {
 
-    public abstract void validarCorrelativasDeConstruccion(Inventario inventario);
-
     public abstract void ocupar(Terreno terreno);
 
     public void establecerTerreno(Terreno terreno) {

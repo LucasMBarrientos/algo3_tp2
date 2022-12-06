@@ -26,8 +26,6 @@ public abstract class EdificioProtoss extends Edificio {
 
     public Escudo escudo;
 
-    public abstract void validarCorrelativasDeConstruccion(Inventario inventario);
-
     public abstract void ocupar(Terreno terreno);
     
     public void establecerTerreno(Terreno terreno){
@@ -35,10 +33,10 @@ public abstract class EdificioProtoss extends Edificio {
     }
 
     public void ejecutarDanio(Danio danio) {
-      if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){
-        this.establecerEstado(this.estadoDestruido);
-        throw new EdificioEstaDestruido();
-      }
+        if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){
+            this.establecerEstado(this.estadoDestruido);
+            throw new EdificioEstaDestruido();
+        }
     }
 
     public void regenerar(){
@@ -57,4 +55,5 @@ public abstract class EdificioProtoss extends Edificio {
         node.put("escudo", escudo.toData().get("escudo"));
         return node;
     }
+
 }

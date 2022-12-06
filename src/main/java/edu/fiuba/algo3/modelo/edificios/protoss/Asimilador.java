@@ -24,6 +24,7 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class Asimilador extends EdificioProtoss {
+
     public Asimilador() {
         this.costoEnMinerales = new Mineral(100);
         this.costoEnGas = new GasVespeno(0);
@@ -34,53 +35,24 @@ public class Asimilador extends EdificioProtoss {
         establecerEstado(this.estadoConstruccion);
     }
 
+    @Override
+    public void actualizarEdificio(Inventario inventario) {
+        regenerar();
+        extraerRecursos(inventario);
+    }
+
     public void ocupar(Terreno terreno) {
         terreno.ocuparPorEdificio(this);
         this.terreno = terreno;
     }
 
     public void extraerRecursos(Inventario inventario) {
-      terreno.extraerGasVespeno(new GasVespeno(20));
-      inventario.agregarGasVespeno(new GasVespeno(20));
+        terreno.extraerGasVespeno(new GasVespeno(20));
+        inventario.agregarGasVespeno(new GasVespeno(20));
     }
-
-    public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespeno, Mineral mineral, Coordenada coordenada) {
-        return null;
-    }
-    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad  {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-
-    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-
-    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
+        return;
     }
 
-    @Override
-    public void actualizarEdificio(Inventario inventario) {
-      regenerar();
-      extraerRecursos(inventario);
-    }
 }
