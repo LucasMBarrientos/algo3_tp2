@@ -23,8 +23,8 @@ public class EdificioOperativo implements EstadoEdificio {
   }
 
   @Override
-  public void ingresarUnidad(Zangano zangano) {
-    this.edificio.ingresarUnidadTrabajadora(zangano);
+  public void ingresarUnidad(Unidad unidad) {
+    this.edificio.ingresarUnidadTrabajadora(unidad);
   }
   
   @Override

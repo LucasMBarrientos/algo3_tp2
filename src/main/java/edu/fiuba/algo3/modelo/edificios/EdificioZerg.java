@@ -31,19 +31,6 @@ public abstract class EdificioZerg extends Edificio {
         this.terreno = terreno;
     }
 
-    /*public boolean reducirTiempoConstruccion(int tiempoAReducir) {
-        if (this.tiempoDeConstruccion-tiempoAReducir > 0) {
-            this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
-            return false;
-        } else {
-            return true;
-        }
-    }*/
-
-    /*public void recibirDanio(Danio danio) throws EdificioEstaDestruido {
-        vida.recibirDanio(danio);
-    }*/
-
     public void ejecutarDanio(Danio danio){
       if(this.vida.recibirDanio(danio)){
         this.establecerEstado(this.estadoDestruido);

@@ -26,7 +26,7 @@ import java.util.List;
 
 public class Extractor extends EdificioZerg {
     Terreno terreno;
-    private List<Zangano> zanganosTrabajando = new ArrayList<Zangano>();
+    private List<Unidad> zanganosTrabajando = new ArrayList<Unidad>();
 
     public Extractor() {
       this.costoEnMinerales = new Mineral(100);
@@ -49,14 +49,17 @@ public class Extractor extends EdificioZerg {
     }
     
 
-    public void ingresarUnidadTrabajadora(Zangano zangano) throws NoHayEspacioDisponible {
-      if(zanganosTrabajando.size() < 3){
-        zanganosTrabajando.add(zangano);
-      }
-      else{
+    public void ingresarUnidadTrabajadora(Unidad unidad) throws NoHayEspacioDisponible, EdificioNoConoceEstaUnidad {
+        if(!(unidad.devolverNombre().esIgual(new Nombre("Zangano")))){
+            throw new EdificioNoConoceEstaUnidad();
+        }
 
-          throw new NoHayEspacioDisponible();
-      }
+        if(zanganosTrabajando.size() < 3){
+            zanganosTrabajando.add(unidad);
+        }
+        else{
+            throw new NoHayEspacioDisponible();
+        }
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) { }

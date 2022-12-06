@@ -115,6 +115,8 @@ public abstract class Jugador {
         }
     }
 
+    public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){}
+
     protected abstract void iniciarseEnMapa();
 
     public void establecerId(int id) {
