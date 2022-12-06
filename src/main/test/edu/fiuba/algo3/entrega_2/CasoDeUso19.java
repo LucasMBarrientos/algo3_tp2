@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadDestruida;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +40,12 @@ public class CasoDeUso19 {
             zerling.atacar(new Coordenada(2, 2), mapa);
         }
 
+        for (int i = 0; i < 4; i++) {
+            scout.atacar(new Coordenada(2, 1), mapa);
+        }
+
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
-            scout.moverse(new Derecha(),mapa);
+            scout.atacar(new Coordenada(2, 1), mapa);
         });
     }
     
@@ -62,10 +67,17 @@ public class CasoDeUso19 {
             scout.actualizar(inventario);
         }
 
-        guardian.atacar(new Coordenada(3, 1), mapa);
-
-        Assertions.assertThrows(AtaqueImposibleDeRealizarse.class, ()->{
+        for (int i = 0; i < 200; i++) {
             guardian.atacar(new Coordenada(2, 2), mapa);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            guardian.atacar(new Coordenada(3, 1), mapa);
+        }
+
+        // Puede destruir al zealot
+        Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
+            guardian.atacar(new Coordenada(3, 1), mapa);
         });
     }    
 

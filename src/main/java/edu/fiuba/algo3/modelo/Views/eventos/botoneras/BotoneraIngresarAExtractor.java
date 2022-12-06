@@ -20,12 +20,13 @@ public class BotoneraIngresarAExtractor extends HBox{
         TextField textField1 = crearTextField1();
         TextField textField2 = crearTextField2();
         Button buttons = crearBoton(algoStar, algoView, coordenada, textField1, textField2);
-        HBox contenedorHorizontal = new HBox (textField1,textField2,buttons );
-        contenedorHorizontal.getChildren().clear();
-        contenedorHorizontal.getChildren().addAll(textField1,textField2);
-        contenedorHorizontal.getChildren().addAll(buttons);
-        contenedorHorizontal.setSpacing(10);
-        contenedorHorizontal.setPadding(new Insets(25));
+
+        this.getChildren().clear();
+        this.getChildren().addAll(textField1,textField2);
+        this.getChildren().addAll(buttons);
+        this.setSpacing(10);
+        this.setPadding(new Insets(25));
+
     }
 
     private TextField crearTextField1(){
