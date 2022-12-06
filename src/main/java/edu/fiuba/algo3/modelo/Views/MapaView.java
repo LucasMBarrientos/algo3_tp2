@@ -68,7 +68,8 @@ public class MapaView {
     Image imagenAcceso = new Image("/Acceso.png", 10, 10, false, false);
     Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 10, 10, false, false);
 
-
+    double opacityConstruido = 1;
+    double opacityEnConstruccion = 0.5;
 
     public MapaView(Mapa mapa, AlgoStarView algoStarView) {
         this.mapa = mapa;
@@ -83,11 +84,9 @@ public class MapaView {
     }
 
     private void dibujarOcupantes()  {
-        List<String> infoMapa = new ArrayList<>();
         List<ObjectNode> nodos = null;
         try {
             nodos = mapa.toJsonOcupantes();
-            //infoMapa = Json.JsonArrayToList(node);
 
         }catch (JsonProcessingException e){
             System.out.println("Error al mostrar Ocupantes");
@@ -104,12 +103,10 @@ public class MapaView {
             String a = nodo.get("Ocupante").get("nombre").asText();
             switch (nodo.get("Ocupante").get("nombre").asText()){
                 case "Zangano":{
-                  System.out.println("Zangano");
                     ImageView imageZanganoSprite= new ImageView(imagenZangano);
                     imageZanganoSprite.setY(posY*separacion);
                     imageZanganoSprite.setX(posX*separacion);
                     imageZanganoSprite.setOnMouseClicked(event ->  {
-                        System.out.println(nodo);
                         int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
                         int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                         setStatsUnidad(nodo);
@@ -117,8 +114,6 @@ public class MapaView {
                         algoStarView.crearBotoneraZangano(coor);
                     });
                     ocupanteGroup.getChildren().add(imageZanganoSprite);
-                    //canvas.getGraphicsContext2D().setFill(Color.ORANGE);
-                    //canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
                     break;
                 }
                 case "Criadero":{
@@ -127,42 +122,13 @@ public class MapaView {
                     imageCriaderoSprite.setY(posY*separacion);
                     imageCriaderoSprite.setX(posX*separacion);
                     imageCriaderoSprite.setOnMouseClicked(event ->  {
-
-                      System.out.println(nodo);
                       int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
                       int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                       setStatsEdificio(nodo);
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraCriadero(coor);
-
                     });
                     ocupanteGroup.getChildren().add(imageCriaderoSprite);
-                    break;
-                }
-                case "Vacio":{
-                    ImageView imageZanganoSprite= new ImageView(imagenZangano);
-                    imageZanganoSprite.setY(posY*separacion + 35/2);
-                    imageZanganoSprite.setX(posX*separacion + 35/2);
-                    imageZanganoSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Zangano");
-                    });
-                    ocupanteGroup.getChildren().add(imageZanganoSprite);
-                    //canvas.getGraphicsContext2D().setFill(Color.WHITE);
-                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
-                }
-                case "Mineral":{
-                    //canvas.getGraphicsContext2D().setFill(Color.GOLD);
-                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
-                    break;
-                }
-                case "Moho":{
-                    //canvas.getGraphicsContext2D().setFill(Color.GREENYELLOW);
-                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
-                    break;
-                }
-                case "Volcan":{
-                    //canvas.getGraphicsContext2D().setFill(Color.RED);
-                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
                 case "Desocupado":{
@@ -191,12 +157,9 @@ public class MapaView {
     }
 
     private void dibujarTerrenos(){
-        List<String> infoMapa = new ArrayList<String>();
-        
+        List<ObjectNode> nodos = null;
         try {
-            JsonNode node = mapa.toJsonTerrenos().get("terrenos");
-            infoMapa = Json.JsonArrayToList(node);
-
+            nodos = mapa.toJsonTerrenos();
         }catch (JsonProcessingException e){
              System.out.println("Error al mostrar terrenos");
         } catch (IOException e) {
@@ -211,14 +174,14 @@ public class MapaView {
         int posY = 2 ;
         int separacion = 40;
         terrenoGroup.getChildren().clear();
-        for (String terreno : infoMapa) {
-            switch (terreno){
+        for (JsonNode nodo : nodos) {
+            switch (nodo.get("nombre").asText()){
                 case "Aereo":{
                     ImageView imageEspecialesSprite= new ImageView(imagenEspecial);
                     imageEspecialesSprite.setY(posY*separacion);
                     imageEspecialesSprite.setX(posX*separacion);
                     imageEspecialesSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Vacio");
+                      algoStarView.crearBotoneraVacia();
                     });
                     terrenoGroup.getChildren().add(imageEspecialesSprite);
                     break;
@@ -228,7 +191,10 @@ public class MapaView {
                     imageVacioSprite.setY(posY*separacion);
                     imageVacioSprite.setX(posX*separacion);
                     imageVacioSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Vacio");
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraVacia(coor);
                     });
                     terrenoGroup.getChildren().add(imageVacioSprite);
                     break;
@@ -238,7 +204,8 @@ public class MapaView {
                     imageMineralSprite.setY(posY*separacion);
                     imageMineralSprite.setX(posX*separacion);
                     imageMineralSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Mineral");
+                      algoStarView.crearBotoneraVacia();
+                      //MINERAL
                     });
                     terrenoGroup.getChildren().add(imageMineralSprite);
                     break;
@@ -248,7 +215,7 @@ public class MapaView {
                     imageMohoSprite.setY(posY*separacion);
                     imageMohoSprite.setX(posX*separacion);
                     imageMohoSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Moho");
+                      algoStarView.crearBotoneraVacia();
                     });
                     terrenoGroup.getChildren().add(imageMohoSprite);
                     break;

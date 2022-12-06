@@ -156,7 +156,7 @@ public abstract class Terreno {
       return new Mineral(0);
     }
     
-    public abstract String toData();
+    public abstract ObjectNode toData();
 
     public abstract ObjectNode toDataOcupantes();
 }

@@ -141,8 +141,11 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     @Override
-    public String toData() {
-        return "Vacio";
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre","Vacio");
+        nodo.put("coordenada",terreno.coordenada.toData());
+        return nodo;
     }
 
     @Override

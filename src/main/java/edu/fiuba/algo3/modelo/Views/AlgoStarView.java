@@ -52,7 +52,7 @@ public class AlgoStarView extends BorderPane {
         pantallaJuego();
         setPantallaDeStatsJugador();
         setPantallDeStats();
-        crearBotonera();
+        crearBotoneraVacia();
     }
 
     private void setPantallaDeStatsJugador() {
@@ -108,14 +108,8 @@ public class AlgoStarView extends BorderPane {
         this.setLeft(contenedorHorizontal);
     }
 
-    private void crearBotonera() {
-        // Creacion del boton para pasar al turno siguiente
-        Button botonPasarTurno = new Button();
-        botonPasarTurno.setText("Pasar Turno");
-        BotonPasarTurnoHandler botonPasarTurnoHandler = new BotonPasarTurnoHandler(algoStar, this, this.stage);
-        botonPasarTurno.setOnAction(botonPasarTurnoHandler);
-        // Creacion del contenedor con los botones disponibles
-        HBox contenedorHorizontal = new HBox(botonPasarTurno); // <- Recibe los botones como parametro
+    public void crearBotoneraVacia() {
+        HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
 
@@ -131,7 +125,7 @@ public class AlgoStarView extends BorderPane {
     public void crearBotoneraAcceso(Coordenada coordenada) {
       new BotoneraAcceso(algoStar, this,coordenada);
     }
-    public void crearBotoneraVaciaProtoss(Coordenada coordenada) {
+    public void crearBotoneraVacia(Coordenada coordenada) {
       new BotoneraVaciaProtoss(algoStar, this,coordenada);
     }
     public void crearBotoneraAtaque(Coordenada coordenada) {

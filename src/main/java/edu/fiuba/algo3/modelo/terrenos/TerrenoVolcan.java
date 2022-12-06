@@ -134,10 +134,13 @@ public class TerrenoVolcan extends Terreno {
     }
 
     @Override
-    public String toData() {
-        return "Volcan";
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre","Volcan");
+        nodo.put("coordenada",coordenada.toData());
+        return nodo;
     }
-
+    
     @Override
     public ObjectNode toDataOcupantes() {
         ObjectNode nodo = Json.createObjectNode();
