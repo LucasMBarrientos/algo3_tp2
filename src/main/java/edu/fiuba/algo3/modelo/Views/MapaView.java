@@ -437,8 +437,6 @@ public class MapaView {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
-                      System.out.println(x);
-                      System.out.println(y);
                       algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                     });
                     terrenoGroup.getChildren().add(imageEspecialesSprite);
