@@ -28,6 +28,7 @@ public class BotonMoverDerechaHandler implements EventHandler<ActionEvent> {
         try {
             algoStar.devolverJugadorActual().moverUnidad(coordenadaActual, new Derecha());
         } catch (CoordenadaFueraDelMapa | UnidadNoEncontrada | TerrenoNoAptoParaTalUnidad exeption) {
+
         }
         algoStarView.setBottom(algoStarView.crearBotoneraVacia());
         algoStarView.actualizarMapa();

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -16,8 +17,13 @@ public class UnidadOperativa implements EstadoUnidad {
     private Unidad unidad;
 
     public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
-        mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
-        mapa.eliminarUnidad(coordenada);
+        try {
+            mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
+            mapa.eliminarUnidad(coordenada);
+        } catch (TerrenoNoAptoParaTalUnidad e){
+            mapa.establecerUnidad(coordenada, this.unidad);
+        }
+
     }
 
     public void atacar(Coordenada objetivo, Mapa mapa) {
