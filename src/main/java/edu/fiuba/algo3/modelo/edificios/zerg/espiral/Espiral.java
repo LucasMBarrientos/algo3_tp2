@@ -50,6 +50,7 @@ public class Espiral extends EdificioZerg {
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
         node.put("nombre","Espiral");
+        node.put("coordenada", coordenada.toData());
         return node;
     }
 
