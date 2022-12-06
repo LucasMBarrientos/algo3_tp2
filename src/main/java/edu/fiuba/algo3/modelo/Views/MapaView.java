@@ -7,7 +7,11 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -18,21 +22,28 @@ import java.util.List;
 
 public class MapaView {
     Mapa mapa;
-    Canvas canvas;
     AlgoStarView algoStarView;
+    Group info = new Group();
+    private Group terrenoGroup = new Group();
+    private Group ocupanteGroup = new Group();
+    Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);
+    Image imagenVolcan = new  Image("/imgVolcan.jpg", 35, 35, false, false);
+    Image imagenMoho = new  Image("/imgMoho.jpg", 35, 35, false, false);
+    Image imagenMineral = new  Image("/imgMineral.jpg", 35, 35, false, false);
+    Image imagenEnergizado = new  Image("/imgEnergizado.jpg", 35, 35, false, false);
+    Image imagenZangano = new  Image("/imgEnergizado.jpg", 10, 10, false, false);
+    
 
-    public MapaView(Canvas canvas, Mapa mapa, AlgoStarView algoStarView) {
+    public MapaView(Mapa mapa, AlgoStarView algoStarView) {
         this.mapa = mapa;
-        this.canvas = canvas;
         this.algoStarView = algoStarView;
-       // this.canvas.getGraphicsContext2D().setFill(Color.BLACK);
-      //  this.canvas.getGraphicsContext2D().fillRect(-100,-100 , 100000,100000);
-
     }
 
-    public void dibujar() {
-        dibujarTerrenos();
-        dibujarOcupantes();
+    public Group dibujar() {
+      info.getChildren().clear();
+      dibujarTerrenos();
+      dibujarOcupantes();
+      return info;
     }
 
     private void dibujarOcupantes()  {
@@ -51,24 +62,26 @@ public class MapaView {
         int posX = 2 ;
         int posY = 2 ;
         int separacion = 40;
-
+        ocupanteGroup.getChildren().clear();
         for (JsonNode ocupante : node) {
             String a = ocupante.get("Ocupante").get("nombre").asText();
             switch (ocupante.get("Ocupante").get("nombre").asText()){
                 case "Zangano":{
-                    //zangano = rectangulo
-                    canvas.getGraphicsContext2D().setFill(Color.ORANGE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
-                    /*zangano.setOnMouseClicked(e-> {
-                      algoStarView.setBottom(contenedorHorizontal);
+                    System.out.println("Zangano");
+                    ImageView imageZanganoSprite= new ImageView(imagenZangano);
+                    imageZanganoSprite.setY(posY*separacion + 35/2);
+                    imageZanganoSprite.setX(posX*separacion + 35/2);
+                    imageZanganoSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Zangano");
                     });
-                    zangano muestro;*/
+                    ocupanteGroup.getChildren().add(imageZanganoSprite);
+                    //canvas.getGraphicsContext2D().setFill(Color.ORANGE);
+                    //canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
                     break;
                 }
-                case "Vacio":{
+                /*case "Vacio":{
                     canvas.getGraphicsContext2D().setFill(Color.WHITE);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
-                    break;
                 }
                 case "Mineral":{
                     canvas.getGraphicsContext2D().setFill(Color.GOLD);
@@ -84,7 +97,7 @@ public class MapaView {
                     canvas.getGraphicsContext2D().setFill(Color.RED);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
-                }
+                }*/
                 case "Desocupado":{
                     break;
                 }
@@ -99,13 +112,12 @@ public class MapaView {
             }
             posX ++;
         }
-
+        info.getChildren().add(ocupanteGroup);
     }
 
     private void dibujarTerrenos(){
         List<String> infoMapa = new ArrayList<String>();
-
-        Group layout = new Group();
+        
         try {
             JsonNode node = mapa.toJsonTerrenos().get("terrenos");
             infoMapa = Json.JsonArrayToList(node);
@@ -123,37 +135,63 @@ public class MapaView {
         int posX = 2 ;
         int posY = 2 ;
         int separacion = 40;
-
+        terrenoGroup.getChildren().clear();
         for (String terreno : infoMapa) {
             switch (terreno){
                 case "Aereo":{
-                    canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    //canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
+                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
                 case "Vacio":{
-                    canvas.getGraphicsContext2D().setFill(Color.WHITE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    ImageView imageVacioSprite= new ImageView(imagenVacio);
+                    imageVacioSprite.setY(posY*separacion);
+                    imageVacioSprite.setX(posX*separacion);
+                    imageVacioSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Vacio");
+                    });
+                    terrenoGroup.getChildren().add(imageVacioSprite);
                     break;
                 }
                 case "Mineral":{
-                    canvas.getGraphicsContext2D().setFill(Color.GOLD);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    ImageView imageMineralSprite= new ImageView(imagenMineral);
+                    imageMineralSprite.setY(posY*separacion);
+                    imageMineralSprite.setX(posX*separacion);
+                    imageMineralSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Mineral");
+                    });
+                    terrenoGroup.getChildren().add(imageMineralSprite);
                     break;
                 }
                 case "Moho":{
-                    canvas.getGraphicsContext2D().setFill(Color.GREENYELLOW);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    ImageView imageMohoSprite= new ImageView(imagenMoho);
+                    imageMohoSprite.setY(posY*separacion);
+                    imageMohoSprite.setX(posX*separacion);
+                    imageMohoSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Moho");
+                    });
+                    terrenoGroup.getChildren().add(imageMohoSprite);
                     break;
                 }
                 case "Volcan":{
-                    canvas.getGraphicsContext2D().setFill(Color.RED);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    ImageView imageVolcanSprite= new ImageView(imagenVolcan);
+                    imageVolcanSprite.setY(posY*separacion);
+                    imageVolcanSprite.setX(posX*separacion);
+                    imageVolcanSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Volcan");
+                    });
+                    terrenoGroup.getChildren().add(imageVolcanSprite);
+                    
                     break;
                 }
                 case "Energizado":{
-                    canvas.getGraphicsContext2D().setFill(Color.BLUE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,2);
+                    ImageView imageEnergizadoSprite= new ImageView(imagenEnergizado);
+                    imageEnergizadoSprite.setY(posY*separacion);
+                    imageEnergizadoSprite.setX(posX*separacion);
+                    imageEnergizadoSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Energizado");
+                    });
+                    terrenoGroup.getChildren().add(imageEnergizadoSprite);
                     break;
                 }
                 case "cambioDeLinea":{
@@ -167,7 +205,6 @@ public class MapaView {
             }
             posX ++;
         }
-
-
+        info.getChildren().add(terrenoGroup);
     }
 }

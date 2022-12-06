@@ -14,6 +14,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -26,7 +27,7 @@ public class AlgoStarView extends BorderPane {
 
     Stage stage;
     AlgoStar algoStar;
-
+    ScrollPane contenedorCentral;
     Group layout;
 
     Coordenada limite;
@@ -38,6 +39,7 @@ public class AlgoStarView extends BorderPane {
     public AlgoStarView(Stage stage, AlgoStar algostar) {
         this.stage = stage;
         this.algoStar = algostar;
+        this.contenedorCentral = new ScrollPane();
         mapa = algoStar.empezarJuego();
         setMenu(stage);
         pantallaJuego();
@@ -78,14 +80,11 @@ public class AlgoStarView extends BorderPane {
     }
 
     private void pantallaJuego(){
-
         limite = new Coordenada(100,20);
-        Canvas escenaCentral = new Canvas(4000 ,4000);
 
-        mapaView = new MapaView(escenaCentral, mapa, this);
-        mapaView.dibujar();
-
-        ScrollPane contenedorCentral = new ScrollPane(escenaCentral);
+        this.mapaView = new MapaView(mapa, this);
+        contenedorCentral.setContent(mapaView.dibujar());        
+      
         contenedorCentral.setStyle("-fx-background: #7d7d7d; -fx-border-color: #7d7d7d;");
         contenedorCentral.setPadding(new Insets(5));
 
@@ -108,11 +107,11 @@ public class AlgoStarView extends BorderPane {
             }
         });
 
-
+        
         this.setCenter(contenedorCentral);
     }
 
     public void actualizarMapa(){
-        mapaView.dibujar();
+      this.contenedorCentral.setContent(mapaView.dibujar());
     }
-}
+  }
