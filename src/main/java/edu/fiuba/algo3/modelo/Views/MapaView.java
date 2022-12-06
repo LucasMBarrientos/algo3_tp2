@@ -288,8 +288,11 @@ public class MapaView {
                   imagenGuaridaSprite.setY(posY*separacion);
                   imagenGuaridaSprite.setX(posX*separacion);
                   imagenGuaridaSprite.setOnMouseClicked(event ->  {
-                    setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraGuarida(coor);
                   });
                   ocupanteGroup.getChildren().add(imagenGuaridaSprite);
                   break;
@@ -299,8 +302,11 @@ public class MapaView {
                   imagenEspiralSprite.setY(posY*separacion);
                   imagenEspiralSprite.setX(posX*separacion);
                   imagenEspiralSprite.setOnMouseClicked(event ->  {
-                    setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraEspiral(coor);
                   });
                   ocupanteGroup.getChildren().add(imagenEspiralSprite);
                   break;
@@ -343,8 +349,11 @@ public class MapaView {
                   imagenAccesoSprite.setY(posY*separacion);
                   imagenAccesoSprite.setX(posX*separacion);
                   imagenAccesoSprite.setOnMouseClicked(event ->  {
-                    setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraAcceso(coor);
                   });
                   ocupanteGroup.getChildren().add(imagenAccesoSprite);
                   break;
@@ -354,8 +363,11 @@ public class MapaView {
                   imagenPuertoEstelarSprite.setY(posY*separacion);
                   imagenPuertoEstelarSprite.setX(posX*separacion);
                   imagenPuertoEstelarSprite.setOnMouseClicked(event ->  {
+                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                     setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                    Coordenada coor = new Coordenada(x,y);
+                    algoStarView.crearBotoneraPuertoEstelar(coor);
                   });
                   ocupanteGroup.getChildren().add(imagenPuertoEstelarSprite);
                   break;
