@@ -66,9 +66,6 @@ public class App extends Application {
             algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 2 con raza zerg", "Azul"));
             algoStar.empezarJuego();
             stage.setScene(escenaJuego);
-
-            ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
-            reproductorDeSonidos.reproducirSonido("/bg.mp3");
             stage.show();
             return;
         }
