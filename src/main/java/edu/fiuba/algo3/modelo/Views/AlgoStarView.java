@@ -51,11 +51,10 @@ public class AlgoStarView extends BorderPane {
         
         agregarBarraDelMenu(stage);
         pantallaJuego();
-        setPantallaDeStatsJugador();
         setPantallDeStats();
     }
 
-    private void setPantallaDeStatsJugador() {
+    public void setPantallaDeStatsJugador() {
         ImageView view = new ImageView(pasarTurnoImagen);
 
         Button pasarTurno = new Button();

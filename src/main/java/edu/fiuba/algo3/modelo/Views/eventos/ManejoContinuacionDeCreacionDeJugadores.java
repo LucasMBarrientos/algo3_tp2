@@ -98,6 +98,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
             ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
             reproductorDeSonidos.reproducirSonido("/bg.mp3");
             algoStarView.actualizarMapa();
+            algoStarView.setPantallaDeStatsJugador();
             algoStar.empezarJuego();
         }
         pantalla.setScene(SiguienteEscena);
