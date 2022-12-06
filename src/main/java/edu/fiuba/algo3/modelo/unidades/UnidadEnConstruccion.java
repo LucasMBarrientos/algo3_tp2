@@ -29,25 +29,24 @@ public class UnidadEnConstruccion implements EstadoUnidad {
 
     @Override
     public void actualizar(Inventario inventario) {
-      if(unidad.reducirTiempoConstruccion(1)){
-          unidad.agregarSuministro(inventario);
-          terminarConstruccion();
-      }
+        if (unidad.reducirTiempoConstruccion(1)) {
+            unidad.agregarSuministro(inventario);
+            terminarConstruccion();
+        }
     }
 
     @Override
     public void setUnidad(Unidad unidad) {
-      this.unidad = unidad;      
+        this.unidad = unidad;      
     }
 
     @Override
     public void terminarConstruccion() {
-      unidad.establecerEstado(new UnidadOperativa());      
+        unidad.establecerEstado(new UnidadOperativa());      
     }
 
     @Override
     public void deshacerConstruccion() {
-      // TODO Auto-generated method stub
       
     }
 

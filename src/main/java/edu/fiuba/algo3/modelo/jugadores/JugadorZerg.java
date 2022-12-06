@@ -46,12 +46,12 @@ public class JugadorZerg extends Jugador {
         edificioInicialConstruido = true;
     }
 
-    public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada{
+    public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada {
         Unidad unidad = inventario.buscarUnidad(coordenada);
         Nombre nombreUnidadConstructora = new Nombre("Zangano");
 
         if(!nombreUnidadConstructora.esIgual(unidad.devolverNombre())){
-            throw new UnidadNoEncontrada();
+            throw new NoHayUnZanganoEnEsaCoordenada();
         }
         return unidad;
     }

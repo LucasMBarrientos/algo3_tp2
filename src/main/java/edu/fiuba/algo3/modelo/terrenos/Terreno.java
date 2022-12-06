@@ -155,16 +155,6 @@ public abstract class Terreno {
       return new Mineral(0);
     }
     
-    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
-
-    public Edificio DEBUG_DEVOLVEREDIFICIO() {
-        return edificio;
-    }
-
-    public Unidad DEBUG_DEVOLERUNIDAD() {
-        return unidad;
-    }
-
     public abstract String toData();
 
     public abstract ObjectNode toDataOcupantes();

@@ -166,10 +166,4 @@ public class TerrenoBase extends Terreno {
         return estado.toDataOcupantes();
     }
 
-    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
-
-    public EstadoTerreno DEBUG_DEVOLVERESTADO() {
-        return estado;
-    }
-
 }

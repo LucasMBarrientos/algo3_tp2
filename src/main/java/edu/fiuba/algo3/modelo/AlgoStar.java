@@ -81,10 +81,4 @@ public class AlgoStar {
         return jugadores.get(idJugadorActual);
     }
 
-    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
-
-    public Mapa DEBUG_DEVOLVERMAPA() {
-        return mapa;
-    }
-
 }

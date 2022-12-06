@@ -263,47 +263,22 @@ public class CasoDeUso2 {
             inv.consumirMinerales(new Mineral(100));
         });
     }
-/*  
-	@Test
-    public void unPilonNoEstaOperativoEnMenoDe6TurnosConstruyendose() {
-        AlgoStar algoStar = new AlgoStar();
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
-        algoStar.agregarJugador(jugadorProtoss);
-        algoStar.agregarJugador(new JugadorZerg("La mente suprema", "#ff0000"););
-        algoStar.empezarJuego();
+ 
+    @Test
+    public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
+        Pilon pilon = new Pilon();
+        Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 5;
 
-        jugadorProtoss.construirEdificio(new Coordenada(2,2), new Pilon());
         for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-            algoStar.pasarTurno();
-            algoStar.pasarTurno();
+            pilon.actualizar(inv);
         }
 
-        Assertions.assertThrows(TerrenoNoAptoParaConstruirEsteEdificio.class, ()->{
-            jugadorProtoss.construirEdificio(new Coordenada(3,2), new Acceso());
-        }        
+
+        Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
+            pilon.recibirDanio(new Danio(600),new Danio(600));
+        });
     }
-
-	@Test
-    public void unPilonEstaOperativoTras5TurnosConstruyendose() {
-    	// TODO: Pensar como probar la operatividad del pilon
-    }
-*/
-@Test
-public void unPilonNoEstaOperativoEnMenosDe5TurnosConstruyendose() {
-    Pilon pilon = new Pilon();
-    Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
-    int tiempoDeConstruccion = 5;
-
-    for (int i = 0; i < tiempoDeConstruccion - 1; i++) {
-        pilon.actualizar(inv);
-    }
-
-
-    Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
-        pilon.recibirDanio(new Danio(600),new Danio(600));
-    });
-}
 
     @Test
     public void unPilonEstaOperativoEn5Turnos() {

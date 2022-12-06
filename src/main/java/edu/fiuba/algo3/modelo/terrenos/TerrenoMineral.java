@@ -32,61 +32,61 @@ public class TerrenoMineral extends Terreno {
         this.coordenada = coordenada;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){
+    public void ocuparPorEdificio(Pilon pilon) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Acceso acceso){
+    public void ocuparPorEdificio(Acceso acceso) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Asimilador asimilador){
+    public void ocuparPorEdificio(Asimilador asimilador) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(NexoMineral nexoMineral){
+    public void ocuparPorEdificio(NexoMineral nexoMineral) {
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
         this.edificio = nexoMineral;
     }
 
-    public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Criadero criadero){
+    public void ocuparPorEdificio(Criadero criadero) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Espiral espiral){
+    public void ocuparPorEdificio(Espiral espiral) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Extractor extractor){
+    public void ocuparPorEdificio(Extractor extractor) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Guarida guarida){
+    public void ocuparPorEdificio(Guarida guarida) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
+    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorUnidad(Dragon unidad){
+    public void ocuparPorUnidad(Dragon unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Zealot unidad){
+    public void ocuparPorUnidad(Zealot unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Scout unidad){
+    public void ocuparPorUnidad(Scout unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Zangano unidad){ //todo ver como hacer que el zangano trabaje sobe un mineral
+    public void ocuparPorUnidad(Zangano unidad) {
         verificarTerrenoSinUnidad();
         verificarTerrenoSinEdificio();
         this.unidad = unidad;
@@ -136,20 +136,20 @@ public class TerrenoMineral extends Terreno {
 
     @Override
     public ObjectNode toDataOcupantes() {
-        ObjectNode node = Json.createObjectNode();
+        ObjectNode nodo = Json.createObjectNode();
         if(edificio != null){
-            node.put("Ocupante",edificio.toData());
+            nodo.put("Ocupante",edificio.toData());
         }else if (unidad != null){
-            node.put("Ocupante",unidad.toData());
+            nodo.put("Ocupante",unidad.toData());
         }else{
             ObjectNode node2 = Json.createObjectNode();
-            node.put("Ocupante",node2.put("nombre","Desocupado"));
+            nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
-        return node;
+        return nodo;
     }
 
     @Override
-    public void actualizar(){
+    public void actualizar() {
 
     }
 
