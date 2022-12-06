@@ -41,13 +41,13 @@ public class BotonPasarTurnoHandler implements EventHandler<ActionEvent> {
         algoStarView.actualizarMapa();
 
         // DEBUG_ method for debuggingpurposes only
-        try {
+        /*try {
             DEBUG_PROBARCASODEUSO();
         } catch (FinDelJuegoAlcanzado excepcion) {
             PantallaFinDelJuego pantallaFinDelJuego = new PantallaFinDelJuego(algoStar.devolverJugadorGanador());
             Scene escenarioFinDelJuego = new Scene(pantallaFinDelJuego,1620,780);
             pantalla.setScene(escenarioFinDelJuego);
-        }
+        }*/
     }
 
 
