@@ -1,23 +1,27 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.areas.AreaEspacial;
-import edu.fiuba.algo3.modelo.areas.AreaTerrestre;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visible;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.SuperficieRectangular;
@@ -26,10 +30,7 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
@@ -106,7 +107,10 @@ public class Mapa {
     }
 
     public void establecerUnidad(Coordenada coordenada, Unidad unidad){
-        unidad.ocupar(buscarTerreno(coordenada));
+        if(!unidad.ocupar(buscarTerreno(coordenada))){
+            throw new TerrenoNoAptoParaTalUnidad();
+        }
+
     }
 
     
@@ -118,10 +122,6 @@ public class Mapa {
         buscarTerreno(coordenada).establecerUnidad(null);
     }
 
-    public void establecerUnidadDelMapa(Coordenada coordenada, Unidad unidad){ //esto es para meter un zangano
-        buscarTerreno(coordenada).establecerUnidad(unidad);
-    }
-
     public Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {
         Coordenada coordenadaBuscada = coordenada.devolverCoordenadaRelativa(distanciaX, distanciaY);
         return this.buscarTerreno(coordenadaBuscada);
@@ -131,14 +131,30 @@ public class Mapa {
         List<Coordenada> coordenadasQueTendranMoho = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConCriaderos = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConPilones = new ArrayList<Coordenada>();
+        List<Coordenada> coordenadasAVisibilizar = new ArrayList<Coordenada>();
         for (Terreno terreno : terrenos) {
             terreno.actualizarListaDeCoordenadas(coordenadasQueTendranMoho, coordenadasConCriaderos, coordenadasConPilones);
+            terreno.actualizarListaDeCoordenadasAVisibilizar(coordenadasAVisibilizar);
         }
         if (turnoActual % 4 == 0) {
             cubrirCoordenadasDeMoho(coordenadasQueTendranMoho);
         }
         actualizarTerrenosEnergizados(coordenadasConPilones);
         generarMohoAlrededorDeCriaderos(coordenadasConCriaderos);
+        actualizarTerrenosConUnidadesVisibles(coordenadasAVisibilizar);
+    }
+
+    private void actualizarTerrenosConUnidadesVisibles(List<Coordenada> coordenadasAVisibilizar){
+        for(Terreno terreno : terrenos){
+            terreno.cambiarVisibilidadAUnidad(new Invisible());
+        }
+
+        for(Coordenada coordenada: coordenadasAVisibilizar){
+            try {
+                buscarTerreno(coordenada).cambiarVisibilidadAUnidad(new Visible());
+            } catch (CoordenadaFueraDelMapa e){}
+        }
+
     }
 
     private List<Coordenada> hallarCoordenadasParaBases() {
@@ -160,8 +176,9 @@ public class Mapa {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
         Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
-        zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));
         zanganoGenerado.terminarConstruccion();
+        zanganoGenerado.establecerCoordenada(ubicacionDelZangano);
+        zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));
         return zanganoGenerado;
     }
 
@@ -215,149 +232,61 @@ public class Mapa {
         }
     }
 
-    public String getString(){
-        String mapaEnString = "";
+    public List<ObjectNode>  parseTerrenos(){
+      List<ObjectNode>  mapaEnString = new ArrayList<>();
         int longitudX = this.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
             if(contadorDeLinea >= longitudX){
-                mapaEnString += "0";
+                ObjectNode nodo = Json.createObjectNode();
+                nodo.put("nombre", "cambioDeLinea");
+                
+                mapaEnString.add(nodo);
+
                 contadorDeLinea = 0;
             }
 
-            mapaEnString += terreno.getString();
+            mapaEnString.add(terreno.toData());
 
             contadorDeLinea ++;
         }
         return mapaEnString;
     }
 
+    public List<ObjectNode> parseOcupantes(){
+        List<ObjectNode> mapaEnString = new ArrayList<>();
+        int longitudX = this.superficie.calcularLongitudX();
+        int contadorDeLinea = 0;
+        for(Terreno terreno : terrenos){
+             if(contadorDeLinea >= longitudX){
+                ObjectNode nodo2 = Json.createObjectNode();
+                ObjectNode nodo = Json.createObjectNode();
+                nodo2.put("nombre","cambioDeLinea");
+                nodo.put("Ocupante", nodo2);
+                mapaEnString.add(nodo);
+                contadorDeLinea = 0;
+            }
+
+            mapaEnString.add(terreno.toDataOcupantes());
+
+            contadorDeLinea ++;
+        }
+        return mapaEnString;
+    }
+
+    public List<ObjectNode> toJsonTerrenos() throws JsonProcessingException {
+        return parseTerrenos();
+    }
+
+    public List<ObjectNode> toJsonOcupantes() throws JsonProcessingException {
+        return parseOcupantes();
+    }
 
     public void actualizarTerrenosEnergizados(List<Coordenada> coordenadasConPilones) {
         for (Terreno terreno : terrenos) {
             terreno.desenergizarTerreno();
         }
         generarTerrenoEnergizadoAlrededorDePilones(coordenadasConPilones);
-    }
-    
-    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
-
-    public void DEBUG_MOSTRARMAPATERRENO() {
-        String lineaDelMapa = "";
-        int dimensionX = this.superficie.calcularLongitudX();
-        int dimensionY = this.superficie.calcularLongitudY();
-        for (int x=0; x < dimensionX ; x++) {
-            lineaDelMapa += "█";
-        }
-        System.out.println("█" + lineaDelMapa + "█");
-        EstadoTerreno estadoTerreno;
-        for (int y=0; y < dimensionY; y++) {
-            lineaDelMapa = "";
-            for (int x=0; x < dimensionX ; x++) {
-                Terreno terreno = this.buscarTerreno(new Coordenada(x, y));
-                if (terreno instanceof TerrenoVolcan) {
-                    lineaDelMapa += "V";
-                } else if (terreno instanceof TerrenoMineral) {
-                    lineaDelMapa += "M";
-                } else if (terreno instanceof TerrenoAereo) {
-                    lineaDelMapa += "A";
-                } else {
-                    estadoTerreno = ((TerrenoBase)terreno).DEBUG_DEVOLVERESTADO();
-                    if (estadoTerreno instanceof TerrenoMoho) {
-                        lineaDelMapa += "#";
-                    } else if (estadoTerreno instanceof TerrenoVacio) {
-                        lineaDelMapa += " ";
-                    } else if (estadoTerreno instanceof TerrenoEnergizado) {
-                        lineaDelMapa += "+";
-                    }
-                }
-            }
-            System.out.println("█" + lineaDelMapa + "█");
-        }
-        lineaDelMapa = "";
-        for (int x=0; x < dimensionX ; x++) {
-            lineaDelMapa += "█";
-        }
-        System.out.println("█" + lineaDelMapa + "█");
-    }
-
-    public void DEBUG_MOSTRARMAPAEDIFICIOS() {
-        String lineaDelMapa = "";
-        int dimensionX = this.superficie.calcularLongitudX();
-        int dimensionY = this.superficie.calcularLongitudY();
-        for (int x=0; x < dimensionX ; x++) {
-            lineaDelMapa += "█";
-        }
-        System.out.println("█" + lineaDelMapa + "█");
-        for (int y=0; y < dimensionY; y++) {
-            lineaDelMapa = "";
-            for (int x=0; x < dimensionX ; x++) {
-                Edificio edificio = this.buscarTerreno(new Coordenada(x, y)).DEBUG_DEVOLVEREDIFICIO();
-                if (edificio instanceof Criadero) { 
-                    lineaDelMapa += "#";
-                } else if (edificio instanceof ReservaDeReproduccion) {
-                    lineaDelMapa += "2";
-                } else if (edificio instanceof Extractor) {
-                    lineaDelMapa += "3";
-                } else if (edificio instanceof Guarida) {
-                    lineaDelMapa += "4";
-                } else if (edificio instanceof Espiral) {
-                    lineaDelMapa += "5";
-                } else if (edificio instanceof NexoMineral) {
-                    lineaDelMapa += "6";
-                } else if (edificio instanceof Pilon) {
-                    lineaDelMapa += "I";
-                } else if (edificio instanceof Asimilador) {
-                    lineaDelMapa += "8";
-                } else if (edificio instanceof Acceso) {
-                    lineaDelMapa += "9";
-                } else if (edificio instanceof PuertoEstelar) {
-                    lineaDelMapa += "0";
-                } else {
-                    lineaDelMapa += " ";
-                }
-            }
-            System.out.println("█" + lineaDelMapa + "█");
-        }
-        lineaDelMapa = "";
-        for (int x=0; x < dimensionX ; x++) {
-            lineaDelMapa += "█";
-        }
-        System.out.println("█" + lineaDelMapa + "█");
-    }
-
-    public Coordenada iniciarEsquinaSuperior() {
-        return new Coordenada(superficie.calcularLongitudX() - 2, superficie.calcularLongitudY() - 2);
-    }
-
-
-    public void DEBUG_MOSTRARMAPAUNIDADES() {
-        String lineaDelMapa = "";
-        int dimensionX = this.superficie.calcularLongitudX();
-        int dimensionY = this.superficie.calcularLongitudY();
-        for (int x=0; x < dimensionX ; x++) {
-            lineaDelMapa += "█";
-        }
-        System.out.println("█" + lineaDelMapa + "█");
-        for (int y=0; y < dimensionY; y++) {
-            lineaDelMapa = "";
-            for (int x=0; x < dimensionX ; x++) {
-                Unidad unidad = this.buscarTerreno(new Coordenada(x, y)).DEBUG_DEVOLERUNIDAD();
-                if (unidad instanceof Zangano) {
-                    lineaDelMapa += "Z";
-                } else if (unidad == null) {
-                    lineaDelMapa += " ";
-                } else {
-                    lineaDelMapa += "X";
-                }
-            }
-            System.out.println("█" + lineaDelMapa + "█");
-        }
-        lineaDelMapa = "";
-        for (int x=0; x < dimensionX ; x++) {
-            lineaDelMapa += "█";
-        }
-        System.out.println("█" + lineaDelMapa + "█");
     }
     
 }

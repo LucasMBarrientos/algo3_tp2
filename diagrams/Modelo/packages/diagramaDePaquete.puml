@@ -1,0 +1,45 @@
+@startuml
+
+
+
+package "modelo" {
+file AlgoStar.java
+package "jugadores" {
+file Inventario
+Inventario -> recursos
+Inventario --> unidades
+Inventario -left-> edificios
+package "recursos" {
+
+}
+
+package "edificios" {
+
+}
+package "unidades" {
+
+}
+edificios -->estadisticas
+unidades ->estadisticas
+
+package "estadisticas" {
+
+}
+
+
+
+}
+AlgoStar.java -down-> jugadores
+jugadores --> mapa
+package "mapa" {
+package "terrenos" {
+
+}
+}
+
+}
+package "JUnit" {
+        file Test
+}
+Test --> modelo
+@enduml

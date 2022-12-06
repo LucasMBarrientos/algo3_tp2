@@ -1,0 +1,60 @@
+@startuml
+abstract Edificio{
+-tiempoConstruccion:int
+-requerimientosGas:int
+-requerimientosMineral:int
+-vidaMax:int
+-vida:int
++{abstract}validarRequerimientoDelCasillero(casilla):bool
++devolverTiempoConstruccion():int
++validarRequirimientos(Inventario):bool
++consumirRecursosDelJugador(Inventario)
++devolverRequirimientosDeMinerales():int
+
++devolverRequirimientosDeGas():int
++actualizar()
++recibirDanio(int)Bool
++devolverVida()
+}
+
+
+interface EstadoEdificio{
+ +actualizar()
++generarUnidad(unidad,inventario):Unidad
++ingresarUnidad(zangano)
++recibirDanio(danio)
++terminarConstruccion()
++deshacerConstruccion()
++establecerEdificio(edificio)
++actualizarListasDeCoordenadas(listaCoordenadasConCriaderos,listaCoordenadasConPilones)
++consumirLarva(larvas:int):boolean
+}
+
+
+abstract EdificioProtoss{
+-escudo:int
+-escudoMax:int
+-operativo:bool
+-regenerarEscudo()
+-redicirEscudo(int)
++recibirDanio(int)Bool
++establecerOperatividad(bool)agusssssss
++devolverOperatividad():bool
++devolverEscudo():int
+}
+
+
+abstract EdificioZerg{
++regenerar()
++ejecutarDanio(danio)
++establecerTerreno(terreno)
+{abstract}+ocupar
+{abstract}+validarCoorelativasDeCostruccion(inventario)
+}
+Edificio-> EstadoEdificio
+EstadoEdificio <|..EdificioOperativo
+EstadoEdificio <|..EdificioEnConstruccion
+EstadoEdificio <|..EdificioDestruido
+Edificio <|--- EdificioProtoss
+Edificio <|-- EdificioZerg
+@enduml

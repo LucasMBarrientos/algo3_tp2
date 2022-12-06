@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -29,37 +29,40 @@ public class CasoDeUso26 {
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
-        jugadorZerg.construirEdificio(new Coordenada(1, 1), new Criadero());
+        jugadorZerg.moverUnidad(new Coordenada(1, 1), new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Abajo());
+
+        jugadorZerg.construirEdificio(new Coordenada(2, 2), new Criadero());
         for (int i = 0; i < 8; i++) {
             algoStar.pasarTurno();
         }
 
-        jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
-        jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
-        jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
+        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
         algoStar.pasarTurno();
+        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
         algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Arriba()); 
-        jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
+        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
         algoStar.pasarTurno();
+        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
         algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Abajo()); 
-        jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
-        algoStar.pasarTurno();
-        algoStar.pasarTurno();
-        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Derecha()); 
 
-        // No deberia haber ninguna unidad en la coordenada (2,1)
+        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Izquierda());
+        jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+        algoStar.pasarTurno();
+
+        jugadorZerg.moverUnidad(new Coordenada(3, 2), new Derecha());
+
+        // No deberia haber ninguna unidad en la coordenada (3,2)
 
         Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
-            jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
+            jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
         });
     }
 
     @Test
     public void verificarQueUnCriaderoPuedaSuministrarAUnMutalizacoYAUnZanganoQueNoSeConvirtioEnEdificio() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 800, 1000,0);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 800, 1000, 0);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);

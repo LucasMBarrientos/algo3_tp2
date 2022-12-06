@@ -1,0 +1,75 @@
+@startuml
+class AlgoStar{
+-jugadores:List
+-turnoActual:int
+-idjugadorActual:int
+- judagorGanador:Jugador
+-mapa:Mapa
++AlgoStar()
++AlgoStar(mapa)
++agregarJugador(judador)
++empezarJuego()
++pasarTurno()
++devolverJugadorActual():Jugador
++devolverJugadorGanador():Jugador
+}
+
+
+class Mapa {
+-terrenos:list
+-ubicacionesInicialesDeLosJugadores:List
+-superficie:SuperficieRectangular
++Mapa(coordenada)
++buscarTerreno(coordenadaDelTerreno):Terreno
+-buscarIdDelTerreno(coordenada):int
++buscarTerrenosAdyacente(coordenada,rango:int):List<Terrenos>
++establecerEdificio(coordenada,edificio)
++establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio,unidad)
++establecerUnidad(coordenada,unidad)
++establecerUnidadDelMapa(coordenada,unidad)
++eliminarEdificio(coordenada)
++eliminarUnidad(coordenada)
+'+hallarTerrenoADistanciaRelativa(coordenada,direccionX:int,coordenada,direccionY:int):Terreno
++actualizar(turnoActual:int)
+-actualizarTerrenosConUnidadesVisibles(listaCoordenadasAVisibilizar){
+-hallarCoordenadaParaBases():List<Coordenada>
++establecerZanganoInicial(idJugador:int):Zangano
+-generarTerrenoInicial()
+-generarMohoAlrededorDeCriadero(coordenadaDelCriadero)
+-generarMohoAlrededorDeCriaderos(listaCriaderos)
+-generizarTerrenoEnergizadoAlrededorDePilon(coordenadaPilon)
+-generizarTerrenoEnergizadoAlrededorDePilones(listaPilon)
++cubrirCoordenadasConMoho(listaCoordenadas)
++parseTerrenos():List<ObjectNode>
++parseOcupante():List<ObjectNode>
++toJsonTerrenos():List<ObjectNode>
++toJsonOcupantes():List<ObjectNode>
++actualizarTerrenosEnergizados(listaPilon)
+
+}
+
+
+abstract Jugador
+abstract Recurso
+abstract Terreno
+
+
+AlgoStar --up> Mapa
+AlgoStar "1" *--left-"2" Jugador
+Jugador *-left- Inventario
+Jugador -up->  Mapa
+Mapa "1" *-left--"*" Terreno
+Mapa .right.> Coordenada
+
+
+Recurso <|--Suministro
+Recurso <|---Minerales
+Recurso <|--GasVespeno
+
+
+Jugador <|-- JugadorProtoss
+Jugador <|-- JugadorZerg
+
+
+Inventario -down->Recurso
+@enduml

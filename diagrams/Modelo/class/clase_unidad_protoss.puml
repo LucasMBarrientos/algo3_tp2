@@ -1,0 +1,29 @@
+@startuml
+abstract UnidadProtoss{
++devolverEscudo():Escudo
+}
+
+class Zealot{
++Zealot()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++actualizarUnidad(inventario)
+}
+
+class Scout{
++Scout()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++actualizarUnidad(inventario)
+}
+
+class Dragon{
++Dragon()
++generarse(edificio,inventario):Unidad
++ocupar(terreno):bool
++actualizarUnidad(inventario)
+}
+UnidadProtoss <|-- Zealot
+UnidadProtoss <|--- Scout
+UnidadProtoss <|-- Dragon
+@enduml

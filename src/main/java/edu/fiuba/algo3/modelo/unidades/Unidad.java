@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -11,12 +13,14 @@ import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.Nombre;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
-import edu.fiuba.algo3.modelo.unidades.protoss.Invisible;
-import edu.fiuba.algo3.modelo.unidades.protoss.Visibilidad;
+import edu.fiuba.algo3.modelo.unidades.estados.EstadoUnidad;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
+
+import java.util.List;
 
 public abstract class Unidad {
 
@@ -62,6 +66,8 @@ public abstract class Unidad {
       }
     }
 
+    public abstract ObjectNode toData();
+
     public void terminarConstruccion(){
       this.estado.terminarConstruccion();
     }
@@ -77,7 +83,6 @@ public abstract class Unidad {
     public void atacar(Coordenada objetivo, Mapa mapa) {
         estado.atacar(objetivo, mapa);
     }
-
 
     public void intentarOcuparAlMoverse(Terreno terreno){    }
 
@@ -112,12 +117,6 @@ public abstract class Unidad {
         }
     }
 
-    public void extraerRecursos(Inventario inventario){}
-
-    public abstract Unidad generarse(Edificio edificio, Inventario inventario);
-
-    public abstract boolean ocupar(Terreno terreno);
-
     public Nombre devolverNombre(){
         return nombre;
     }
@@ -126,16 +125,36 @@ public abstract class Unidad {
     public void devolverSuministro(Inventario inventario){
       inventario.agregarSuministro(costoSuministro);
     }
-    public void restaurarRecursosParaConstruccion(Inventario inventario){
+    public void restaurarRecursosParaConstruccion(Inventario inventario) {
         inventario.devolverMinerales(costoEnMinerales);
         inventario.devolverGasVespeno(costoEnGas);
+        inventario.agregarSuministro(costoSuministro);
     }
 
-    public Unidad evolucionar(Mapa mapa, Unidad unidad){
+    public Unidad evolucionar(Mapa mapa, Unidad unidad) {
         throw new InvalidaEvolucionDeUnidad();
     }
 
-    public void destruirse(Inventario inventario){
+    public void destruirse(Inventario inventario) {
         inventario.eliminarUnidad(coordenada);
     }
+
+    public void agregarSuministro(Inventario inventario) {
+    }
+
+    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar) {
+        estado.actualizarListaDeCoordenadasVisibles(coordenadasAVisibilizar);
+    }
+    
+    public void extraerRecursos(Inventario inventario){
+        return;
+    }
+
+    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar) {
+        return;
+    }
+
+    public abstract Unidad generarse(Edificio edificio, Inventario inventario);
+
+    public abstract boolean ocupar(Terreno terreno);
 }

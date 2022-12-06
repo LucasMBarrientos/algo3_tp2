@@ -11,34 +11,61 @@ import javafx.stage.Stage;
 
 public class BarraDelMenu extends MenuBar {
 
-    public BarraDelMenu(Stage stage){
-        Menu menuArchivo = new Menu("Archivo");
-        Menu menuTutoriales = new Menu("Tutoriales");
-        Menu menuCreditos = new Menu("Créditos");
+    public BarraDelMenu(Stage stage) {
+        this.getMenus().addAll(
+            crearMenuDeArchivos(),
+            crearMenuDeTutoriales(),
+            crearMenuDeCreditos()
+        );
+    }
 
-        MenuItem opcionSalir = new MenuItem("Salir");
+    private Menu crearMenuDeCreditos() {
+        Menu menuDeCreditos = new Menu("Créditos");
+        menuDeCreditos.getItems().add(crearOpcionSobreNosotros());
+        return menuDeCreditos;
+    }
+
+    private MenuItem crearOpcionSobreNosotros() {
+        MenuItem opcionSobreNosotros = new MenuItem("Sobre nosotros...");
+        OpcionSobreNosotros opcionSobreNosotrosHandler = new OpcionSobreNosotros();
+        opcionSobreNosotros.setOnAction(opcionSobreNosotrosHandler);
+        return opcionSobreNosotros;
+    }
+
+    private Menu crearMenuDeTutoriales() {
+        Menu menuDeTutoriales = new Menu("Tutoriales");
+        menuDeTutoriales.getItems().addAll(
+            crearOpcionTutorialZerg(),
+            crearOpcionDeTutorialProtoss()
+        );
+        return menuDeTutoriales;
+    }
+
+    private MenuItem crearOpcionTutorialZerg() {
         MenuItem zergTuto = new MenuItem("Los Zerg");
-        MenuItem protossTuto = new MenuItem("Los Protoss");
-        MenuItem sobreNosotros = new MenuItem("Sobre nosotros...");
-
-        OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
-        opcionSalir.setOnAction(opcionSalirEventHandler);
-
         OpcionZergTutoEventHandler opcionZergTutoEventHandler = new OpcionZergTutoEventHandler();
         zergTuto.setOnAction(opcionZergTutoEventHandler);
+        return zergTuto;
+    }
 
+    private MenuItem crearOpcionDeTutorialProtoss() {
+        MenuItem protossTuto = new MenuItem("Los Protoss");
         OpcionProtossTutoEventHandler opcionProtossTutoEventHandler = new OpcionProtossTutoEventHandler();
         protossTuto.setOnAction(opcionProtossTutoEventHandler);
+        return protossTuto;
+    }
 
-        OpcionSobreNosotros opcionSobreNosotros = new OpcionSobreNosotros();
-        protossTuto.setOnAction(opcionSobreNosotros);
+    private Menu crearMenuDeArchivos() {
+        Menu menuDeArchivos = new Menu("Archivo");
+        menuDeArchivos.getItems().add(crearOpcionParaSalir());
+        return menuDeArchivos;
+    }
 
-        menuArchivo.getItems().addAll(opcionSalir);
-        menuTutoriales.getItems().addAll(zergTuto,protossTuto);
-        menuCreditos.getItems().addAll(sobreNosotros);
-
-        this.getMenus().addAll(menuArchivo,menuTutoriales,menuCreditos);
-
+    private MenuItem crearOpcionParaSalir() {
+        MenuItem opcionParaSalir = new MenuItem("Salir");
+        OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
+        opcionParaSalir.setOnAction(opcionSalirEventHandler);
+        return opcionParaSalir;
     }
 
 }

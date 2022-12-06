@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
@@ -26,10 +26,9 @@ public class CasoDeUso20 {
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
-        jugador.moverUnidad(new Coordenada(1,1), new Arriba());
 
-        Assertions.assertThrows(UnidadNoEncontrada.class, ()->{
-            jugador.moverUnidad(new Coordenada(2,1), new Arriba());
+        Assertions.assertThrows(TerrenoNoAptoParaTalUnidad.class, ()->{
+            jugador.moverUnidad(new Coordenada(1,1), new Arriba());
         });
 
     }

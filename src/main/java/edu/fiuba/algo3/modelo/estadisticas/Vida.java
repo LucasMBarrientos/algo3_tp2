@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 
@@ -25,6 +27,12 @@ public class Vida {
 
     public void regenerar() {
         valorActual += Math.min(valorMaximo - valorActual, valorMaximo * tasaDeRegeneracion);
+    }
+
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("vida", valorActual);
+        return nodo;
     }
 
 }

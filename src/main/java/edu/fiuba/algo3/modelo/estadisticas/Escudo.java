@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.estadisticas;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
+
 public class Escudo{
 
     private final double tasaDeRegeneracion = 0.05;
@@ -21,6 +24,12 @@ public class Escudo{
     public void regenerar() {
         poderActual = Math.max(poderActual, 0);
         poderActual += Math.min(poderMaximo - poderActual, poderMaximo * tasaDeRegeneracion);
+    }
+
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("escudo", poderActual);
+        return nodo;
     }
 
 }

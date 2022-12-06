@@ -1,59 +1,50 @@
 package edu.fiuba.algo3.modelo.edificios;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
+import edu.fiuba.algo3.modelo.edificios.estados.EstadoEdificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.Nombre;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
-import edu.fiuba.algo3.modelo.terrenos.EstadoTerreno;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
+import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 import java.util.List;
 
 public abstract class Edificio {
-    protected EstadoEdificio estadoConstruccion = new EdificioEnConstruccion();
-    protected EstadoEdificio estadoDestruido = new EdificioDestruido();
-    protected EstadoEdificio estadoOperativo = new EdificioOperativo();
-    protected EstadoEdificio estadoActual = estadoConstruccion;
-    public Terreno terreno;
-    public Recurso costoEnMinerales;
-    public Recurso costoEnGas;
-    public Vida vida;
-    public Nombre nombre;
-    public int tiempoDeConstruccion;
-    public Coordenada coordenada;
+
+    protected EstadoEdificio estadoActual = new EdificioEnConstruccion();
+    protected Terreno terreno;
+    protected Recurso costoEnMinerales;
+    protected Recurso costoEnGas;
+    protected Vida vida;
+    protected Nombre nombre;
+    protected int tiempoDeConstruccion;
+    protected Coordenada coordenada;
     
     public void deshacerConstruccion() {
         this.estadoActual.deshacerConstruccion();
     }
-    public Edificio construir(Coordenada coordenada, Inventario inventario) {
-        validarCorrelativasDeConstruccion(inventario);
-        consumirRecursosParaConstruccion(inventario);
+    
+    public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
+        validarCorrelativasDeConstruccion(inventarioDelJugador);
+        consumirRecursosParaConstruccion(inventarioDelJugador);
         this.coordenada = coordenada;
         return this;
     }
+
     public void consumirRecursosParaConstruccion(Inventario inventario) {
         inventario.consumirMinerales(costoEnMinerales);
         inventario.consumirGasVespeno(costoEnGas);
-    }
-
-    public void agregarSuministro(Inventario inventario) {
-    }
-
-    public void restarSuministros(Inventario inventario){
     }
 
     public void devolverRecursosParaConstruccion(Inventario inventario) {
@@ -61,86 +52,114 @@ public abstract class Edificio {
         inventario.devolverGasVespeno(costoEnGas);
     }
 
-    public abstract void validarCorrelativasDeConstruccion(Inventario inventario);
-
-    public abstract void ocupar(Terreno terreno);
-
-    public abstract void establecerTerreno(Terreno terreno);
-
     public void actualizar(Inventario inventario) {
-      this.estadoActual.actualizar(inventario);
+        this.estadoActual.actualizar(inventario);
     }
 
     public abstract void actualizarEdificio(Inventario inventario);
 
-    public void ingresarUnidad(Zangano zangano) {
-      estadoActual.ingresarUnidad(zangano);
+    public void ingresarUnidad(Unidad unidad) {
+        estadoActual.ingresarUnidad(unidad);
     }
 
-    public void ingresarUnidadTrabajadora(Zangano zangano) {
-        return;
-    };
-
-    public abstract Unidad generarUnidad(Zerling unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Zangano unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Hidralisco unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Mutalisco unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Scout unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Zealot unidad,Inventario inventario);
-    public abstract Unidad generarUnidad(Dragon unidad,Inventario inventario);
-
-    public Nombre devolverNombre(){
-        return nombre;
-    }
-
-    public void establecerPosicion(Coordenada ubicacion){
+    public void establecerPosicion(Coordenada ubicacion) {
         coordenada = ubicacion;
     }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
-      if (this.tiempoDeConstruccion-tiempoAReducir > 0) {
-          this.tiempoDeConstruccion = this.tiempoDeConstruccion-tiempoAReducir;
-          return false;
-      } else {
-          return true;
-      }
+        this.tiempoDeConstruccion = Math.max(0, this.tiempoDeConstruccion - tiempoAReducir);
+        return this.tiempoDeConstruccion == 0;
     }
 
-    public void terminarConstruccion(){
-      this.estadoActual.terminarConstruccion();
+    public void terminarConstruccion() {
+        this.estadoActual.terminarConstruccion();
     }
 
-    public void establecerEstado(EstadoEdificio estado){
-      this.estadoActual = estado;
-      this.estadoActual.setEdificio(this);
+    public void establecerEstado(EstadoEdificio estado) {
+        this.estadoActual = estado;
+        this.estadoActual.establecerEdificio(this);
     }
-
-  //  public Unidad generarUnidad(Unidad unidad){
-   //     return null; //terminar bien
-    //}
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         this.estadoActual.recibirDanio(danioTerrestre);
+    }
+
+    public boolean compararCoordenadas(Coordenada coordenadaComparada) {
+        return this.coordenada.esIgual(coordenadaComparada);
+    }
+
+    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        this.estadoActual.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+    }
+    
+    public Nombre devolverNombre() {
+        return nombre;
+    }
+
+    public boolean consumirLarva() {
+        return false;
+    }
+
+    public void agregarSuministro(Inventario inventario) {
+        return;
+    }
+
+    public void restarSuministros(Inventario inventario) {
+        return;
+    }
+
+    public void validarCorrelativasDeConstruccion(Inventario inventario) {
+        return;
+    }
+
+    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
+        return;
+    }
+
+    public void ingresarUnidadTrabajadora(Unidad unidad) {
+        return;
+    }
+
+    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
+    }
+
+    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario) throws EdificioNoConoceEstaUnidad {
+        throw new EdificioNoConoceEstaUnidad();
     }
 
     public abstract void ejecutarDanio(Danio danio);
 
     public abstract void regenerar();
 
-    public boolean consumirLarva() {
-        return false;
-    }
+    public abstract ObjectNode toData();
 
-    public boolean compararCoordenadas(Coordenada coordenadaAComparar) {
-        return coordenada.esIgual(coordenadaAComparar);
-    }
+    public abstract void ocupar(Terreno terreno);
 
-    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        this.estadoActual.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
-    }
-
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        return;
-    }
+    public abstract void establecerTerreno(Terreno terreno);
 
 }

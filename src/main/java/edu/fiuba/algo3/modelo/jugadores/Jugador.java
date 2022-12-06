@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
@@ -26,6 +26,8 @@ public abstract class Jugador {
         }
         this.nombre = nombre;
     }
+
+    public abstract ObjectNode toData();
 
     public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
 
@@ -76,9 +78,9 @@ public abstract class Jugador {
         return this.color.equals(color);
     }
 
-    protected void compararRaza(Jugador jugador) throws RazaYaElegidaPorElOtroJugador {
+    protected void compararRaza(Jugador jugador) throws RazaInvalida {
         if (this.getClass() == jugador.getClass()) {
-            throw new RazaYaElegidaPorElOtroJugador();
+            throw new RazaInvalida();
         }
     }
 
@@ -115,17 +117,24 @@ public abstract class Jugador {
         }
     }
 
-    protected abstract void iniciarseEnMapa();
-
     public void establecerId(int id) {
         this.id = id;
     }
 
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) { }
+
     public void actualizar() {
         inventario.actualizar();
     }
-    
+
     public void fueDerrotado() {
         inventario.fueDerrotado(edificioInicialConstruido);
     }
+
+    public abstract String devolverMensajeDeVictoria();
+
+    public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){}
+
+    protected abstract void iniciarseEnMapa();
+
 }

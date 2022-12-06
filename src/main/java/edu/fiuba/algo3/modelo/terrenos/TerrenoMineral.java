@@ -2,17 +2,19 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -30,61 +32,61 @@ public class TerrenoMineral extends Terreno {
         this.coordenada = coordenada;
     }
 
-    public void ocuparPorEdificio(Pilon pilon){
+    public void ocuparPorEdificio(Pilon pilon) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Acceso acceso){
+    public void ocuparPorEdificio(Acceso acceso) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Asimilador asimilador){
+    public void ocuparPorEdificio(Asimilador asimilador) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(NexoMineral nexoMineral){
+    public void ocuparPorEdificio(NexoMineral nexoMineral) {
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
         this.edificio = nexoMineral;
     }
 
-    public void ocuparPorEdificio(PuertoEstelar puertoEstelar){
+    public void ocuparPorEdificio(PuertoEstelar puertoEstelar) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Criadero criadero){
+    public void ocuparPorEdificio(Criadero criadero) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Espiral espiral){
+    public void ocuparPorEdificio(Espiral espiral) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Extractor extractor){
+    public void ocuparPorEdificio(Extractor extractor) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(Guarida guarida){
+    public void ocuparPorEdificio(Guarida guarida) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
+    public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion) {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-    public void ocuparPorUnidad(Dragon unidad){
+    public void ocuparPorUnidad(Dragon unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Zealot unidad){
+    public void ocuparPorUnidad(Zealot unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Scout unidad){
+    public void ocuparPorUnidad(Scout unidad) {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void ocuparPorUnidad(Zangano unidad){ //todo ver como hacer que el zangano trabaje sobe un mineral
+    public void ocuparPorUnidad(Zangano unidad) {
         verificarTerrenoSinUnidad();
         verificarTerrenoSinEdificio();
         this.unidad = unidad;
@@ -128,12 +130,30 @@ public class TerrenoMineral extends Terreno {
     }
 
     @Override
-    public String getString() {
-        return "m";
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre","Mineral");
+        nodo.put("coordenada",coordenada.toData());
+        return nodo;
     }
 
     @Override
-    public void actualizar(){
+    public ObjectNode toDataOcupantes() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("coordenada", coordenada.toData());
+        if(edificio != null){
+            nodo.put("Ocupante",edificio.toData());
+        }else if (unidad != null){
+            nodo.put("Ocupante",unidad.toData());
+        }else{
+            ObjectNode node2 = Json.createObjectNode();
+            nodo.put("Ocupante",node2.put("nombre","Desocupado"));
+        }
+        return nodo;
+    }
+
+    @Override
+    public void actualizar() {
 
     }
 

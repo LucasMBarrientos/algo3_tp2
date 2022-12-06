@@ -2,17 +2,18 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.asimilador.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.nexoMineral.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.extractor.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
@@ -24,9 +25,8 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
-import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
-import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
+import edu.fiuba.algo3.modelo.unidades.protoss.*;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Terreno {
@@ -135,7 +135,18 @@ public abstract class Terreno {
         }
     }
 
-    //TODO: Hacer que sea un solo mensaje "extraer recurso"
+    public void actualizarListaDeCoordenadasAVisibilizar(List<Coordenada> coordenadasConUnidades) {
+        if (unidad != null) {
+            unidad.actualizarListaDeCoordenadasVisibles(coordenadasConUnidades);
+        }
+    }
+
+    public void cambiarVisibilidadAUnidad(Visibilidad visibilidad){
+        if (unidad != null) {
+            unidad.establecerVisibilidad(visibilidad);
+        }
+    }
+
     public void extraerGasVespeno(Recurso recursoRequerido) {
 
     }
@@ -144,15 +155,7 @@ public abstract class Terreno {
       return new Mineral(0);
     }
     
-    // Metodos DEBUG_ unicamente para probar el funcionamiento el programa
+    public abstract ObjectNode toData();
 
-    public Edificio DEBUG_DEVOLVEREDIFICIO() {
-        return edificio;
-    }
-
-    public Unidad DEBUG_DEVOLERUNIDAD() {
-        return unidad;
-    }
-
-    public abstract String getString();
+    public abstract ObjectNode toDataOcupantes();
 }

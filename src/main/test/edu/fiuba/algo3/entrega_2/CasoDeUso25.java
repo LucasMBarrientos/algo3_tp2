@@ -4,7 +4,7 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.excepciones.ColorDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
-import edu.fiuba.algo3.modelo.excepciones.RazaYaElegidaPorElOtroJugador;
+import edu.fiuba.algo3.modelo.excepciones.RazaInvalida;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
@@ -44,7 +44,7 @@ public class CasoDeUso25 {
     public void noSePuedeAgregarUnSegundoJugadorConLaMismaRazaQueElPrimerJugador() {
         AlgoStar algoStar = new AlgoStar();
         algoStar.agregarJugador(new JugadorProtoss("diegosanchez", "#B99318"));
-        Assertions.assertThrows(RazaYaElegidaPorElOtroJugador.class, () -> {
+        Assertions.assertThrows(RazaInvalida.class, () -> {
             algoStar.agregarJugador(new JugadorProtoss("pablomassuh", "#647b99"));
         });
     }

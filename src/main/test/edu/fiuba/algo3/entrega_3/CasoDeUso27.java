@@ -3,14 +3,14 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioDestruido;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.pilon.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.puertoEstelar.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.espiral.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.guarida.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioDestruido;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
@@ -18,7 +18,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.unidades.UnidadDestruida;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadDestruida;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.zerg.Devorador;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
@@ -32,7 +32,7 @@ public class CasoDeUso27 {
     @Test
     public void unMutalizcoPuedeEvolucionarEnUnDevoradorSiHaySuficientesRecursosYLuegoPuedeAtacarAUnEnemigoA5CoordenadasDeDistancia() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 1200, 1200,200); // TODO: Marcar los recursos estrictamente necesarios para lograr pasar esta prueba
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 1200, 1200,200);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",1200, 1200,200);
         algoStar.agregarJugador(jugadorProtoss);

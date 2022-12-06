@@ -9,8 +9,8 @@ import edu.fiuba.algo3.modelo.terrenos.TerrenoVacio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.edificios.zerg.reservadeReproduccion.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.edificios.protoss.acceso.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 
 public class CasoDeUso5 {
 

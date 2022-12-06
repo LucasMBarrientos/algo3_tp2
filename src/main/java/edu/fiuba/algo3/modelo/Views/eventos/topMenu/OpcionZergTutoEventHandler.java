@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 
 public class OpcionZergTutoEventHandler implements EventHandler<ActionEvent> {
+
     @Override
     public void handle(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

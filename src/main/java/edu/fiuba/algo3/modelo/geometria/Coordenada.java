@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.geometria;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +86,13 @@ public class Coordenada {
         int x = this.x + distanciaX;
         int y = this.y + distanciaY;
         return new Coordenada(x,y);
+    }
+
+    public ObjectNode toData(){
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("x",x);
+        nodo.put("y",y);
+        return nodo;
     }
 
     public int devolverX() {
