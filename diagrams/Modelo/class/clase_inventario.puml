@@ -6,6 +6,7 @@ abstract Recurso{
 +agregarUnidades(recurso:Recurso)
 +gastarUnidades(unidadesAConsumir:int)
 -devolverCantidadUnidades():int
++{abstract}toData():ObjectNode
 
 }
 
@@ -15,9 +16,9 @@ class Inventario{
 -gasVespeno:GasVespeno
 -mineral:Mineral
 -suministro:Suministro
+
 +Inventario(gasVespeno:GasVespeno,mineral:Mineral,suministro:Suministro)
-+fueDerrotado(edificioInicialConstruido:bool)
--contarEdificiosDestruidos():int
+
 +buscarEdificio(coordenada):Edificio
 +buscarUnidad(coordenada):Unidad
 -buscarIdDeUnidad(coordenada):int
@@ -33,25 +34,30 @@ class Inventario{
 +agregarMineral(mineral:Recurso)
 +agregarSuministro(suministro:Recurso)
 +consumirGasVespeno(gasVespeno:Recurso)
++restarSuministro(recursoRequerido)
 +consumirMineral(mineral:Recurso)
 +consumirSuministro(suministro:Recurso)
 +devolverGasVespeno(gasVespeno:Recurso)
 +devolverMineral(mineral:Recurso)
++toData():ObjectNode
 +actualizar()
 }
 
 class GasVespeno{
 +GasVespeno(gasVespeno:int)
++toData():ObjectNode
 }
 
 class Minerales{
 
 +Minerales(minerales:int)
++toData():ObjectNode
 }
 class Suministro{
 -unidadesMaximas:int
 +Suministro(suministros:int)
 +agregarUnidades(recurso:Recurso)
++toData():ObjectNode
 }
 
 

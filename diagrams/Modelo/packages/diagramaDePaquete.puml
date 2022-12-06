@@ -5,10 +5,10 @@
 package "modelo" {
 file AlgoStar.java
 package "jugadores" {
-file Inventario
-Inventario -> recursos
-Inventario --> unidades
-Inventario -left-> edificios
+file Inventario.java
+Inventario.java -> recursos
+Inventario.java --> unidades
+Inventario.java -left-> edificios
 package "recursos" {
 
 }
