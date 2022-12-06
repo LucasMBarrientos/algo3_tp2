@@ -49,29 +49,27 @@ public class MapaView {
     Image imagenEnergizado = new  Image("/imgEnergizado.jpg", 35, 35, false, false);
     Image imagenEspecial = new  Image("/imgEspeciales.jpg", 35, 35, false, false);
 
-    Image imagenAmoSupremo = new Image("/AmoSupremo.png", 10, 10, false, false);
+    Image imagenAmoSupremo = new Image("/AmoSupremo.png", 35, 35, false, false);
     Image imagenZangano = new Image("/Zangano.png", 35, 35, false, false);
-    Image imagenZerling = new Image("/Zerling.png", 10, 10, false, false);
-    Image imagenHidralisco = new Image("/Hidralisco.png", 10, 10, false, false);
-    Image imagenMutalisco = new Image("/Mutalisco.png", 10, 10, false, false);
-    Image imagenGuardian = new Image("/Guardian.png", 10, 10, false, false);
-    Image imagenDevorador = new Image("/Devorador.png", 10, 10, false, false);
-    Image imagenZealot = new Image("/Zealot.png", 10, 10, false, false);
-    Image imagenDragon = new Image("/Dragon.png", 10, 10, false, false);
-    Image imagenScout = new Image("/Scout.png", 10, 10, false, false);
-
-    Image imagenCriadero = new Image("/Criadero.png", 10, 10, false, false);
+    Image imagenZerling = new Image("/Zerling.png", 35, 35, false, false);
+    Image imagenHidralisco = new Image("/Hidralisco.png", 35, 35, false, false);
+    Image imagenMutalisco = new Image("/Mutalisco.png", 35, 35, false, false);
+    Image imagenGuardian = new Image("/Guardian.png", 35, 35, false, false);
+    Image imagenDevorador = new Image("/Devorador.png", 35, 35, false, false);
+    Image imagenZealot = new Image("/Zealot.png", 35, 35, false, false);
+    Image imagenDragon = new Image("/Dragon.png", 35, 35, false, false);
+    Image imagenScout = new Image("/Scout.png", 35, 35, false, false);
+    
+    Image imagenCriadero = new Image("/Criadero.png", 35, 35, false, false);
     Image imagenReservaDeReproduccion = new Image("/ReservaDeReproduccion.png", 35, 35, false, false);
-    Image imagenExtractor = new Image("/Extractor.png", 10, 10, false, false);
-    Image imagenGuarida = new Image("/Guarida.png", 10, 10, false, false);
-    Image imagenEspiral = new Image("/Espiral.png", 10, 10, false, false);
-    Image imagenNexoMineral = new Image("/NexoMineral.png", 10, 10, false, false);
-    Image imagenPilon = new Image("/Pilon.png", 10, 10, false, false);
-    Image imagenAsimilador = new Image("/Asimilador.png", 10, 10, false, false);
-    Image imagenAcceso = new Image("/Acceso.png", 10, 10, false, false);
-    Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 10, 10, false, false);
-//#endregion
-
+    Image imagenExtractor = new Image("/Extractor.png", 35, 35, false, false);
+    Image imagenGuarida = new Image("/Guarida.png", 35, 35, false, false);
+    Image imagenEspiral = new Image("/Espiral.png", 35, 35, false, false);
+    Image imagenNexoMineral = new Image("/NexoMineral.png", 35, 35, false, false);
+    Image imagenPilon = new Image("/Pilon.png", 35, 35, false, false);
+    Image imagenAsimilador = new Image("/Asimilador.png", 35, 35, false, false);
+    Image imagenAcceso = new Image("/Acceso.png", 35, 35, false, false);
+    Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 35, 35, false, false);
 
     double opacityConstruido = 1;
     double opacityEnConstruccion = 0.5;
@@ -105,25 +103,149 @@ public class MapaView {
         ocupanteGroup.getChildren().clear();
         
         for (JsonNode nodo : nodos) {
-            String a = nodo.get("Ocupante").get("nombre").asText();
             switch (nodo.get("Ocupante").get("nombre").asText()){
+                case "AmoSupremo":{
+                  ImageView imageAmoSupremoSprite= new ImageView(imagenAmoSupremo);
+                  imageAmoSupremoSprite.setY(posY*separacion);
+                  imageAmoSupremoSprite.setX(posX*separacion);
+                  imageAmoSupremoSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraAmoSupremo(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageAmoSupremoSprite);
+                  break;
+                }
                 case "Zangano":{
-                    ImageView imageZanganoSprite= new ImageView(imagenZangano);
-                    imageZanganoSprite.setY(posY*separacion);
-                    imageZanganoSprite.setX(posX*separacion);
-                    imageZanganoSprite.setOnMouseClicked(event ->  {
+                  ImageView imageZanganoSprite= new ImageView(imagenZangano);
+                  imageZanganoSprite.setY(posY*separacion);
+                  imageZanganoSprite.setX(posX*separacion);
+                  imageZanganoSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraZangano(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageZanganoSprite);
+                  break;
+                }
+                case "Zerling":{
+                  ImageView imageZerlingSprite= new ImageView(imagenZerling);
+                  imageZerlingSprite.setY(posY*separacion);
+                  imageZerlingSprite.setX(posX*separacion);
+                  imageZerlingSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageZerlingSprite);
+                  break;
+                }
+                case "Hidralisco":{
+                    ImageView imageHidraliscoSprite= new ImageView(imagenHidralisco);
+                    imageHidraliscoSprite.setY(posY*separacion);
+                    imageHidraliscoSprite.setX(posX*separacion);
+                    imageHidraliscoSprite.setOnMouseClicked(event ->  {
                         int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
                         int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                         setStatsUnidad(nodo);
                         Coordenada coor = new Coordenada(x,y);
-                        algoStarView.crearBotoneraZangano(coor);
+                        algoStarView.crearBotoneraUnidadNormal(coor);
                     });
-                    ocupanteGroup.getChildren().add(imageZanganoSprite);
+                    ocupanteGroup.getChildren().add(imageHidraliscoSprite);
                     break;
                 }
+                case "Mutalisco":{
+                  ImageView imageMutaliscoSprite= new ImageView(imagenMutalisco);
+                  imageMutaliscoSprite.setY(posY*separacion);
+                  imageMutaliscoSprite.setX(posX*separacion);
+                  imageMutaliscoSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraMutalisco(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageMutaliscoSprite);
+                  break;
+                }
+                case "Guardian":{
+                  ImageView imageGuardianSprite= new ImageView(imagenGuardian);
+                  imageGuardianSprite.setY(posY*separacion);
+                  imageGuardianSprite.setX(posX*separacion);
+                  imageGuardianSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageGuardianSprite);
+                  break;
+                }
+                case "Devorador":{
+                  ImageView imageDevoradorSprite= new ImageView(imagenDevorador);
+                  imageDevoradorSprite.setY(posY*separacion);
+                  imageDevoradorSprite.setX(posX*separacion);
+                  imageDevoradorSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageDevoradorSprite);
+                  break;
+                }
+                case "Zealot":{
+                  ImageView imageZealotSprite= new ImageView(imagenZealot);
+                  imageZealotSprite.setY(posY*separacion);
+                  imageZealotSprite.setX(posX*separacion);
+                  imageZealotSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageZealotSprite);
+                  break;
+                }
+                case "Dragon":{
+                  ImageView imageDragonSprite= new ImageView(imagenDragon);
+                  imageDragonSprite.setY(posY*separacion);
+                  imageDragonSprite.setX(posX*separacion);
+                  imageDragonSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageDragonSprite);
+                  break;
+                }
+                case "Scout":{
+                  ImageView imageScoutSprite= new ImageView(imagenScout);
+                  imageScoutSprite.setY(posY*separacion);
+                  imageScoutSprite.setX(posX*separacion);
+                  imageScoutSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsUnidad(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imageScoutSprite);
+                  break;
+                }
                 case "Criadero":{
-                  System.out.println("Criadero");
-                    ImageView imageCriaderoSprite= new ImageView(imagenVolcan);
+                    ImageView imageCriaderoSprite= new ImageView(imagenCriadero);
                     imageCriaderoSprite.setY(posY*separacion);
                     imageCriaderoSprite.setX(posX*separacion);
                     imageCriaderoSprite.setOnMouseClicked(event ->  {
@@ -135,6 +257,120 @@ public class MapaView {
                     });
                     ocupanteGroup.getChildren().add(imageCriaderoSprite);
                     break;
+                }
+                case "ReservaDeReproduccion":{
+                    ImageView imagenReservaDeReproduccionSprite= new ImageView(imagenReservaDeReproduccion);
+                    imagenReservaDeReproduccionSprite.setY(posY*separacion);
+                    imagenReservaDeReproduccionSprite.setX(posX*separacion);
+                    imagenReservaDeReproduccionSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraReservaDeReproduccion(coor);
+                    });
+                    ocupanteGroup.getChildren().add(imagenReservaDeReproduccionSprite);
+                    break;
+                }
+                case "Extractor":{
+                  ImageView imagenExtractorSprite= new ImageView(imagenExtractor);
+                  imagenExtractorSprite.setY(posY*separacion);
+                  imagenExtractorSprite.setX(posX*separacion);
+                  imagenExtractorSprite.setOnMouseClicked(event ->  {
+                    setStatsEdificio(nodo);
+                    algoStarView.crearBotoneraVacia();
+                  });
+                  ocupanteGroup.getChildren().add(imagenExtractorSprite);
+                  break;
+                }
+                case "Guarida":{
+                  ImageView imagenGuaridaSprite= new ImageView(imagenGuarida);
+                  imagenGuaridaSprite.setY(posY*separacion);
+                  imagenGuaridaSprite.setX(posX*separacion);
+                  imagenGuaridaSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraGuarida(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imagenGuaridaSprite);
+                  break;
+                }
+                case "Espiral":{
+                  ImageView imagenEspiralSprite= new ImageView(imagenEspiral);
+                  imagenEspiralSprite.setY(posY*separacion);
+                  imagenEspiralSprite.setX(posX*separacion);
+                  imagenEspiralSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraEspiral(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imagenEspiralSprite);
+                  break;
+                }
+                case "NexoMineral":{
+                  ImageView imagenNexoMineralSprite= new ImageView(imagenNexoMineral);
+                  imagenNexoMineralSprite.setY(posY*separacion);
+                  imagenNexoMineralSprite.setX(posX*separacion);
+                  imagenNexoMineralSprite.setOnMouseClicked(event ->  {
+                    setStatsEdificio(nodo);
+                    algoStarView.crearBotoneraVacia();
+                  });
+                  ocupanteGroup.getChildren().add(imagenNexoMineralSprite);
+                  break;
+                }
+                case "Pilon":{
+                  ImageView imagenPilonSprite= new ImageView(imagenPilon);
+                  imagenPilonSprite.setY(posY*separacion);
+                  imagenPilonSprite.setX(posX*separacion);
+                  imagenPilonSprite.setOnMouseClicked(event ->  {
+                    setStatsEdificio(nodo);
+                    algoStarView.crearBotoneraVacia();
+                  });
+                  ocupanteGroup.getChildren().add(imagenPilonSprite);
+                  break;
+                }
+                case "Asimilador":{
+                  ImageView imagenAsimiladorSprite= new ImageView(imagenAsimilador);
+                  imagenAsimiladorSprite.setY(posY*separacion);
+                  imagenAsimiladorSprite.setX(posX*separacion);
+                  imagenAsimiladorSprite.setOnMouseClicked(event ->  {
+                    setStatsEdificio(nodo);
+                    algoStarView.crearBotoneraVacia();
+                  });
+                  ocupanteGroup.getChildren().add(imagenAsimiladorSprite);
+                  break;
+                }
+                case "Acceso":{
+                  ImageView imagenAccesoSprite= new ImageView(imagenAcceso);
+                  imagenAccesoSprite.setY(posY*separacion);
+                  imagenAccesoSprite.setX(posX*separacion);
+                  imagenAccesoSprite.setOnMouseClicked(event ->  {
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraAcceso(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imagenAccesoSprite);
+                  break;
+                }
+                case "PuertoEstelar":{
+                  ImageView imagenPuertoEstelarSprite= new ImageView(imagenPuertoEstelar);
+                  imagenPuertoEstelarSprite.setY(posY*separacion);
+                  imagenPuertoEstelarSprite.setX(posX*separacion);
+                  imagenPuertoEstelarSprite.setOnMouseClicked(event ->  {
+                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                    setStatsEdificio(nodo);
+                    Coordenada coor = new Coordenada(x,y);
+                    algoStarView.crearBotoneraPuertoEstelar(coor);
+                  });
+                  ocupanteGroup.getChildren().add(imagenPuertoEstelarSprite);
+                  break;
                 }
                 case "Desocupado":{
                     break;
@@ -209,8 +445,10 @@ public class MapaView {
                     imageMineralSprite.setY(posY*separacion);
                     imageMineralSprite.setX(posX*separacion);
                     imageMineralSprite.setOnMouseClicked(event ->  {
-                      algoStarView.crearBotoneraVacia();
-                      //MINERAL
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraMineral(coor);
                     });
                     terrenoGroup.getChildren().add(imageMineralSprite);
                     break;
@@ -230,7 +468,10 @@ public class MapaView {
                     imageVolcanSprite.setY(posY*separacion);
                     imageVolcanSprite.setX(posX*separacion);
                     imageVolcanSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Volcan");
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraVolcan(coor);
                     });
                     terrenoGroup.getChildren().add(imageVolcanSprite);
                     
@@ -241,7 +482,10 @@ public class MapaView {
                     imageEnergizadoSprite.setY(posY*separacion);
                     imageEnergizadoSprite.setX(posX*separacion);
                     imageEnergizadoSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Energizado");
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraEnergizado(coor);
                     });
                     terrenoGroup.getChildren().add(imageEnergizadoSprite);
                     break;

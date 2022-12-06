@@ -29,7 +29,7 @@ public class BotonEmpezarAtaqueHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent evento) {
-        BotoneraAtaque contenedorHorizontal = new BotoneraAtaque(algoStar,algoStarView,coordenadaUnidad); // <- Recibe los botones como parametro
+        BotoneraAtaque contenedorHorizontal = new BotoneraAtaque(algoStar,algoStarView,coordenadaUnidad, new TextField(), new TextField()); // <- Recibe los botones como parametro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
         algoStarView.setBottom(contenedorHorizontal);

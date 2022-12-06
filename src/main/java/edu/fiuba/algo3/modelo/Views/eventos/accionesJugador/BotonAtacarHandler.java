@@ -25,12 +25,12 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     TextField textFieldCoord1;
     TextField textFieldCoord2;
 
-    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, List<TextField> textFields) {
+    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, TextField textField1, TextField textField2) {
         this.algoStar = algoStar;
         this.algoStarView = algoStarView;
         this.coordenadaUnidad = coordenadaUnidad;
-        this.textFieldCoord1 = textFields.get(0);
-        this.textFieldCoord2 = textFields.get(1);
+        this.textFieldCoord1 = textField1;
+        this.textFieldCoord2 = textField2;
     }
 
     @Override

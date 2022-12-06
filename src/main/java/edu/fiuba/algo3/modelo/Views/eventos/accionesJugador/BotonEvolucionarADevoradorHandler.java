@@ -25,7 +25,7 @@ public class BotonEvolucionarADevoradorHandler implements EventHandler<ActionEve
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().evolucionar(coordenadaDeLaUnidad, new Devorador());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
 

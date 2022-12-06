@@ -11,7 +11,14 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraCriadero;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEnergizadoProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEspiral;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraGuarida;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraMineralProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraPuertoEstelar;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraVaciaProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneralVolcanProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraMutalisco;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNormal;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.EventHandler;
@@ -20,6 +27,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -69,8 +77,9 @@ public class AlgoStarView extends BorderPane {
 
         Label gasDisponible = new Label("Gas Vespeno: " + jugadorNode.get("inventario").get("cantidadGasVespeno").get("gasVespeno").asText());
         Label mineralDisponible = new Label("Mineral: " + jugadorNode.get("inventario").get("cantidadMineral").get("mineral").asText());
+        Label suministrosDisponibles = new Label("Suministros: " + jugadorNode.get("inventario").get("suministroActual").get("suministro").asText());
 
-        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible); // <- recibe las cosas como parámetro
+        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible,suministrosDisponibles); // <- recibe las cosas como parámetro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
@@ -118,29 +127,40 @@ public class AlgoStarView extends BorderPane {
         this.setLeft(contenedorHorizontal);
     }
 
-    public void crearBotoneraVacia() {
+    public HBox crearBotoneraVacia() {
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
-    }
 
+        return contenedorHorizontal;
+    }
+    public void crearBotoneraAmoSupremo(Coordenada coordenada) {
+      new BotoneraAmoSupremo(algoStar, this, coordenada);
+    }
+    public void crearBotoneraMutalisco(Coordenada coordenada) {
+      new BotoneraMutalisco(algoStar, this, coordenada);
+    }
+    public void crearBotoneraUnidadNormal(Coordenada coordenada) {
+      new BotoneraUnidadNormal(algoStar, this, coordenada);
+    }
     public void crearBotoneraZangano(Coordenada coordenada) {
       new BotoneraZangano(algoStar, this,coordenada);
-    }
-    public void crearBotoneraCriadero(Coordenada coordenada) {
-      new BotoneraCriadero(algoStar, this,coordenada);
     }
     public void crearBotoneraAcceso(Coordenada coordenada) {
       new BotoneraAcceso(algoStar, this,coordenada);
     }
-    public void crearBotoneraVacia(Coordenada coordenada) {
-      new BotoneraVaciaProtoss(algoStar, this,coordenada);
-    }
     public void crearBotoneraAtaque(Coordenada coordenada) {
-      new BotoneraAtaque(algoStar, this,coordenada);
+      new BotoneraAtaque(algoStar, this,coordenada, new TextField(), new TextField());
     }
-    public void crearBotoneraEnergizadoProtoss(Coordenada coordenada) {
-      new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
+    public void crearBotoneraCriadero(Coordenada coordenada) {
+      new BotoneraCriadero(algoStar, this,coordenada);
+    }
+    public void crearBotoneraEnergizado(Coordenada coordenada) {
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
     }
     public void crearBotoneraEspiral(Coordenada coordenada) {
       new BotoneraEspiral(algoStar, this,coordenada);
@@ -148,6 +168,35 @@ public class AlgoStarView extends BorderPane {
     public void crearBotoneraGuarida(Coordenada coordenada) {
       new BotoneraGuarida(algoStar, this,coordenada);
     }
+    public void crearBotoneraVolcan(Coordenada coordenada) {
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneralVolcanProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
+    }
+    public void crearBotoneraMineral(Coordenada coordenada) {
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraMineralProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
+    }
+    public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
+      new BotoneraPuertoEstelar(algoStar, this,coordenada);
+    }
+    public void crearBotoneraReservaDeReproduccion(Coordenada coordenada) {
+      new BotoneraReservaDeReproduccion(algoStar, this,coordenada);
+    }
+    public void crearBotoneraVacia(Coordenada coordenada) {
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraVaciaProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
+    }
+    
+    
 
     private void agregarBarraDelMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);

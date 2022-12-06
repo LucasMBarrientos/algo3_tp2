@@ -75,8 +75,8 @@ public class BotoneraZangano extends HBox {
         BotonMoverDerechaHandler botonMoverDerechaHandler = new BotonMoverDerechaHandler(algoStar, algoView, coordenada);
         moverDerecha.setOnAction(botonMoverDerechaHandler);
 
-        //BotonIngresarUnidadHandler botonIngresarHandler = new BotonIngresarUnidadHandler(algoStar, algoView, coordenada);
-        //ingresar.setOnAction(botonIngresarHandler);
+        BotonEmpezarIngresoHandler botonIngresarAExtractorHandler = new BotonEmpezarIngresoHandler(algoStar, algoView, coordenada);
+        ingresar.setOnAction(botonIngresarAExtractorHandler);
 
         List<Button> botones = new ArrayList<>();
         botones.add(construirCriadero);
