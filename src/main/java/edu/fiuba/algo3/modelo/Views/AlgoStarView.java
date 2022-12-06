@@ -11,7 +11,12 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraCriadero;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEnergizadoProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEspiral;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraGuarida;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraPuertoEstelar;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraVaciaProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraMutalisco;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNormal;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.EventHandler;
@@ -123,23 +128,28 @@ public class AlgoStarView extends BorderPane {
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
     }
-
+    public void crearBotoneraAmoSupremo(Coordenada coordenada) {
+      new BotoneraAmoSupremo(algoStar, this, coordenada);
+    }
+    public void crearBotoneraMutalisco(Coordenada coordenada) {
+      new BotoneraMutalisco(algoStar, this, coordenada);
+    }
+    public void crearBotoneraUnidadNormal(Coordenada coordenada) {
+      new BotoneraUnidadNormal(algoStar, this, coordenada);
+    }
     public void crearBotoneraZangano(Coordenada coordenada) {
       new BotoneraZangano(algoStar, this,coordenada);
-    }
-    public void crearBotoneraCriadero(Coordenada coordenada) {
-      new BotoneraCriadero(algoStar, this,coordenada);
     }
     public void crearBotoneraAcceso(Coordenada coordenada) {
       new BotoneraAcceso(algoStar, this,coordenada);
     }
-    public void crearBotoneraVacia(Coordenada coordenada) {
-      new BotoneraVaciaProtoss(algoStar, this,coordenada);
-    }
     public void crearBotoneraAtaque(Coordenada coordenada) {
       new BotoneraAtaque(algoStar, this,coordenada);
     }
-    public void crearBotoneraEnergizadoProtoss(Coordenada coordenada) {
+    public void crearBotoneraCriadero(Coordenada coordenada) {
+      new BotoneraCriadero(algoStar, this,coordenada);
+    }
+    public void crearBotoneraEnergizado(Coordenada coordenada) {
       new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
     }
     public void crearBotoneraEspiral(Coordenada coordenada) {
@@ -148,6 +158,17 @@ public class AlgoStarView extends BorderPane {
     public void crearBotoneraGuarida(Coordenada coordenada) {
       new BotoneraGuarida(algoStar, this,coordenada);
     }
+    public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
+      new BotoneraPuertoEstelar(algoStar, this,coordenada);
+    }
+    public void crearBotoneraReservaDeReproduccion(Coordenada coordenada) {
+      new BotoneraReservaDeReproduccion(algoStar, this,coordenada);
+    }
+    public void crearBotoneraVacia(Coordenada coordenada) {
+      new BotoneraVaciaProtoss(algoStar, this,coordenada);
+    }
+    
+    
 
     private void agregarBarraDelMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);
