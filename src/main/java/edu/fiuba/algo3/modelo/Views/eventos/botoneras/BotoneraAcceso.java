@@ -41,7 +41,7 @@ public class BotoneraAcceso extends HBox {
         Label costoGasZealot = new Label("COSTO GAS: 0");
         Label costoMineralZealot  = new Label("COSTO MINERAL: 100");
         Label costoSuministroZealot  = new Label("COSTO Suministro: 2");
-        VBox generarZealotbox = new VBox(costoGasZealot,costoMineralZealot,costoSuministroZealot,generarDragon);
+        VBox generarZealotbox = new VBox(costoGasZealot,costoMineralZealot,costoSuministroZealot,generarZealot);
 
 
         BotonGenerarZealotHandler botonGenerarZealotHandler = new BotonGenerarZealotHandler(algoStar, algoStarView, coordenada);
