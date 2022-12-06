@@ -77,8 +77,9 @@ public class AlgoStarView extends BorderPane {
 
         Label gasDisponible = new Label("Gas Vespeno: " + jugadorNode.get("inventario").get("cantidadGasVespeno").get("gasVespeno").asText());
         Label mineralDisponible = new Label("Mineral: " + jugadorNode.get("inventario").get("cantidadMineral").get("mineral").asText());
+        Label suministrosDisponibles = new Label("Suministros: " + jugadorNode.get("inventario").get("suministroActual").get("suministro").asText());
 
-        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible); // <- recibe las cosas como parámetro
+        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible,suministrosDisponibles); // <- recibe las cosas como parámetro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
