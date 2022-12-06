@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
@@ -40,12 +41,12 @@ public abstract class UnidadZerg extends Unidad {
 
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre.toData());
+        node.put("nombre", nombre.toData().get("nombre"));
         node.put("coordenada", coordenada.toData());
-        node.put("estado", estado.toData());
-        node.put("vida", vida.toData());
-        node.put("danioTerrestre", danioTerrestre.toData());
-        node.put("danioAereo", danioAereo.toData());
+        node.put("estado", estado.toData().get("estado"));
+        node.put("vida", vida.toData().get("vida"));
+        node.put("danioTerrestre", danioTerrestre.toData().get("danio"));
+        node.put("danioAereo", danioAereo.toData().get("danio"));
         node.put("tiempoDeConstruccion", tiempoConstruccion);
         node.put("unidadAerea", aerea);
         return node;

@@ -47,14 +47,14 @@ public abstract class EdificioProtoss extends Edificio {
 
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre.toData());
+        node.put("nombre", nombre.toData().get("nombre"));
         node.put("coordenada", coordenada.toData());
-        node.put("estado", estadoActual.toData());
-        node.put("costoEnGasVespeno", costoEnGas.toData());
-        node.put("costoEnMinerales", costoEnMinerales.toData());
+        node.put("estado", estadoActual.toData().get("estado"));
+        node.put("costoEnGasVespeno", costoEnGas.toData().get("gasVespeno"));
+        node.put("costoEnMinerales", costoEnMinerales.toData().get("mineral"));
         node.put("tiempoDeConstruccion", tiempoDeConstruccion);
-        node.put("vida", vida.toData());
-        node.put("escudo", escudo.toData());
+        node.put("vida", vida.toData().get("vida"));
+        node.put("escudo", escudo.toData().get("escudo"));
         return node;
     }
 }
