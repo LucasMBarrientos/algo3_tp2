@@ -155,7 +155,11 @@ public class AlgoStarView extends BorderPane {
       new BotoneraCriadero(algoStar, this,coordenada);
     }
     public void crearBotoneraEnergizado(Coordenada coordenada) {
-      new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
     }
     public void crearBotoneraEspiral(Coordenada coordenada) {
       new BotoneraEspiral(algoStar, this,coordenada);
@@ -164,10 +168,18 @@ public class AlgoStarView extends BorderPane {
       new BotoneraGuarida(algoStar, this,coordenada);
     }
     public void crearBotoneraVolcan(Coordenada coordenada) {
-      new BotoneralVolcanProtoss(algoStar, this,coordenada);
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneralVolcanProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
     }
     public void crearBotoneraMineral(Coordenada coordenada) {
-      new BotoneraMineralProtoss(algoStar, this,coordenada);
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraMineralProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
     }
     public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
       new BotoneraPuertoEstelar(algoStar, this,coordenada);
@@ -176,7 +188,11 @@ public class AlgoStarView extends BorderPane {
       new BotoneraReservaDeReproduccion(algoStar, this,coordenada);
     }
     public void crearBotoneraVacia(Coordenada coordenada) {
-      new BotoneraVaciaProtoss(algoStar, this,coordenada);
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraVaciaProtoss(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia());
+      }
     }
     
     
