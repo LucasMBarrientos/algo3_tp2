@@ -277,8 +277,11 @@ public class MapaView {
                   imagenExtractorSprite.setY(posY*separacion);
                   imagenExtractorSprite.setX(posX*separacion);
                   imagenExtractorSprite.setOnMouseClicked(event ->  {
+                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                     setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                    Coordenada coor = new Coordenada(x,y);
+                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                   });
                   ocupanteGroup.getChildren().add(imagenExtractorSprite);
                   break;
@@ -316,8 +319,11 @@ public class MapaView {
                   imagenNexoMineralSprite.setY(posY*separacion);
                   imagenNexoMineralSprite.setX(posX*separacion);
                   imagenNexoMineralSprite.setOnMouseClicked(event ->  {
+                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                     setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                    Coordenada coor = new Coordenada(x,y);
+                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                   });
                   ocupanteGroup.getChildren().add(imagenNexoMineralSprite);
                   break;
@@ -327,8 +333,11 @@ public class MapaView {
                   imagenPilonSprite.setY(posY*separacion);
                   imagenPilonSprite.setX(posX*separacion);
                   imagenPilonSprite.setOnMouseClicked(event ->  {
+                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                     setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                    Coordenada coor = new Coordenada(x,y);
+                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                   });
                   ocupanteGroup.getChildren().add(imagenPilonSprite);
                   break;
@@ -338,8 +347,11 @@ public class MapaView {
                   imagenAsimiladorSprite.setY(posY*separacion);
                   imagenAsimiladorSprite.setX(posX*separacion);
                   imagenAsimiladorSprite.setOnMouseClicked(event ->  {
+                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                     setStatsEdificio(nodo);
-                    algoStarView.crearBotoneraVacia();
+                    Coordenada coor = new Coordenada(x,y);
+                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                   });
                   ocupanteGroup.getChildren().add(imagenAsimiladorSprite);
                   break;
@@ -422,7 +434,12 @@ public class MapaView {
                     imageEspecialesSprite.setY(posY*separacion);
                     imageEspecialesSprite.setX(posX*separacion);
                     imageEspecialesSprite.setOnMouseClicked(event ->  {
-                      algoStarView.crearBotoneraVacia();
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      System.out.println(x);
+                      System.out.println(y);
+                      algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                     });
                     terrenoGroup.getChildren().add(imageEspecialesSprite);
                     break;
@@ -435,7 +452,7 @@ public class MapaView {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraVacia(coor);
+                      algoStarView.crearBotoneraTerrenoVacio(coor);
                     });
                     terrenoGroup.getChildren().add(imageVacioSprite);
                     break;
@@ -458,7 +475,10 @@ public class MapaView {
                     imageMohoSprite.setY(posY*separacion);
                     imageMohoSprite.setX(posX*separacion);
                     imageMohoSprite.setOnMouseClicked(event ->  {
-                      algoStarView.crearBotoneraVacia();
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
                     });
                     terrenoGroup.getChildren().add(imageMohoSprite);
                     break;

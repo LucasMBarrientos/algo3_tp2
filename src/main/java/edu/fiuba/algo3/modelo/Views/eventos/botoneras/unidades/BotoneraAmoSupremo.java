@@ -10,17 +10,24 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BotoneraAmoSupremo extends HBox {
     public BotoneraAmoSupremo(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
+        HBox contenedorHorizontal = new HBox();  
         List<Button> buttons = crearBotones(algoStar, algoView, coordenada);
-
-        HBox contenedorHorizontal = new HBox();
+      
+        Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
+        Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+        VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
+        
         contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().add(coordenadaBox);
         contenedorHorizontal.getChildren().addAll(buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));

@@ -62,7 +62,6 @@ public class AlgoStarView extends BorderPane {
         agregarBarraDelMenu(stage);
         pantallaJuego();
         setPantallDeStats();
-        crearBotoneraVacia();
     }
 
     public void setPantallaDeStatsJugador() {
@@ -139,38 +138,73 @@ public class AlgoStarView extends BorderPane {
     }
 
     public HBox crearBotoneraVacia() {
+      HBox contenedorHorizontal = new HBox();
+      contenedorHorizontal.setSpacing(10);
+      contenedorHorizontal.setPadding(new Insets(25));
+
+      return contenedorHorizontal;
+    }
+
+    public HBox crearBotoneraVacia(Coordenada coordenada) {
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
+        Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
+        Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+        VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
+        contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().add(coordenadaBox);
 
         return contenedorHorizontal;
     }
+
+    
     public void crearBotoneraAmoSupremo(Coordenada coordenada) {
-      new BotoneraAmoSupremo(algoStar, this, coordenada);
+      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraAmoSupremo(algoStar, this, coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      }
     }
     public void crearBotoneraMutalisco(Coordenada coordenada) {
-      new BotoneraMutalisco(algoStar, this, coordenada);
+      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraMutalisco(algoStar, this, coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      } 
     }
     public void crearBotoneraUnidadNormal(Coordenada coordenada) {
       new BotoneraUnidadNormal(algoStar, this, coordenada);
     }
     public void crearBotoneraZangano(Coordenada coordenada) {
-      new BotoneraZangano(algoStar, this,coordenada);
+      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraZangano(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      } 
     }
     public void crearBotoneraAcceso(Coordenada coordenada) {
-      new BotoneraAcceso(algoStar, this,coordenada);
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraAcceso(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      }
     }
     public void crearBotoneraAtaque(Coordenada coordenada) {
       new BotoneraAtaque(algoStar, this,coordenada, new TextField(), new TextField());
     }
     public void crearBotoneraCriadero(Coordenada coordenada) {
-      new BotoneraCriadero(algoStar, this,coordenada);
+      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraCriadero(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      }       
     }
     public void crearBotoneraEnergizado(Coordenada coordenada) {
       if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
         new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
       }else{
-        this.setBottom(crearBotoneraVacia());
+        this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraEspiral(Coordenada coordenada) {
@@ -183,27 +217,35 @@ public class AlgoStarView extends BorderPane {
       if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
         new BotoneralVolcanProtoss(algoStar, this,coordenada);
       }else{
-        this.setBottom(crearBotoneraVacia());
+        this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraMineral(Coordenada coordenada) {
       if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
         new BotoneraMineralProtoss(algoStar, this,coordenada);
       }else{
-        this.setBottom(crearBotoneraVacia());
+        this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
-      new BotoneraPuertoEstelar(algoStar, this,coordenada);
+      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraPuertoEstelar(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      }
     }
     public void crearBotoneraReservaDeReproduccion(Coordenada coordenada) {
-      new BotoneraReservaDeReproduccion(algoStar, this,coordenada);
+      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+        new BotoneraReservaDeReproduccion(algoStar, this,coordenada);
+      }else{
+        this.setBottom(crearBotoneraVacia(coordenada));
+      }
     }
-    public void crearBotoneraVacia(Coordenada coordenada) {
+    public void crearBotoneraTerrenoVacio(Coordenada coordenada) {
       if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
         new BotoneraVaciaProtoss(algoStar, this,coordenada);
       }else{
-        this.setBottom(crearBotoneraVacia());
+        this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     

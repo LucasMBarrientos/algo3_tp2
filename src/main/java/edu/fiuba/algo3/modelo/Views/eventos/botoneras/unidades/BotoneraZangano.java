@@ -17,10 +17,15 @@ import javafx.scene.layout.VBox;
 
 public class BotoneraZangano extends HBox {
     public BotoneraZangano(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
+        HBox contenedorHorizontal = new HBox();  
         List<VBox> buttons = crearBotones(algoStar, algoView, coordenada);
         
-        HBox contenedorHorizontal = new HBox();
+        Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
+        Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+        VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
+        
         contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().add(coordenadaBox);
         contenedorHorizontal.getChildren().addAll(buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
