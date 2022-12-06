@@ -15,9 +15,9 @@ import java.util.List;
 
 public class BotoneraAtaque extends HBox{
 
-    public BotoneraAtaque(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
+    public BotoneraAtaque(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada, TextField textFields1, TextField textField2){
         List<TextField> textFields = crearTextField();
-        Button buttons = crearBoton(algoStar, algoView, coordenada, textFields);
+        Button buttons = crearBoton(algoStar, algoView, coordenada,  textFields1, textField2);
         HBox contenedorHorizontal = new HBox((Node) textFields,buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
@@ -33,11 +33,11 @@ public class BotoneraAtaque extends HBox{
         return  textFields;
     }
 
-    private Button crearBoton(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada, List<TextField> textFields){
+    private Button crearBoton(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada,  TextField textFields1, TextField textField2){
         Button atacar = new Button();
         atacar.setText("ATACAR!!!");
 
-        BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(algoStar, algoView, coordenada, textFields);
+        BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(algoStar, algoView, coordenada,  textFields1,  textField2);
         atacar.setOnAction(botonAtacarHandler);
         return atacar;
     }

@@ -20,6 +20,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -139,7 +140,7 @@ public class AlgoStarView extends BorderPane {
       new BotoneraVaciaProtoss(algoStar, this,coordenada);
     }
     public void crearBotoneraAtaque(Coordenada coordenada) {
-      new BotoneraAtaque(algoStar, this,coordenada);
+      new BotoneraAtaque(algoStar, this,coordenada, new TextField(), new TextField());
     }
     public void crearBotoneraEnergizadoProtoss(Coordenada coordenada) {
       new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
