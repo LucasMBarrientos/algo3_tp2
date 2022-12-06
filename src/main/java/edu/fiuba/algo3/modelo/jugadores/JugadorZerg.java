@@ -2,18 +2,11 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.Direccion;
-import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import javafx.scene.layout.CornerRadii;
 
 public class JugadorZerg extends Jugador {
 
@@ -25,10 +18,10 @@ public class JugadorZerg extends Jugador {
         establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
 
-    // DEBUG ONLY
     public JugadorZerg(Inventario inventario) {
         this.inventario = inventario;
     }
+
     public ObjectNode toData(){
         ObjectNode node = Json.createObjectNode();
         node.put("nombre", nombre);

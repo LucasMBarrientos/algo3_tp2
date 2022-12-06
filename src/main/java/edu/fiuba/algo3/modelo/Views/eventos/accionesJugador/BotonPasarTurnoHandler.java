@@ -40,29 +40,6 @@ public class BotonPasarTurnoHandler implements EventHandler<ActionEvent> {
             pantalla.setScene(escenarioFinDelJuego);
         }
         algoStarView.actualizarMapa();
-
-        // DEBUG_ method for debuggingpurposes only
-        /*try {
-            DEBUG_PROBARCASODEUSO();
-        } catch (FinDelJuegoAlcanzado excepcion) {
-            PantallaFinDelJuego pantallaFinDelJuego = new PantallaFinDelJuego(algoStar.devolverJugadorGanador());
-            Scene escenarioFinDelJuego = new Scene(pantallaFinDelJuego,1620,780);
-            pantalla.setScene(escenarioFinDelJuego);
-        }*/
     }
-
-
-
-    public void DEBUG_PROBARCASODEUSO() {
-        List<Jugador> jugadores = algoStar.jugadores;
-        // Construyo un edificio inicial
-        jugadores.get(0).construirEdificio(new Coordenada(1,1), new Criadero());
-        for (int i = 0; i < 10; i++) {
-            algoStar.pasarTurno();
-        }
-
-        // Destruyo el edificio inicial
-        jugadores.get(0).destruirEdificio(new Coordenada(1,1));
-        algoStar.pasarTurno();
-    }
+    
 }

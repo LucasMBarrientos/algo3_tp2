@@ -133,17 +133,15 @@ public class PantallaDeCreacionDeJugador extends VBox {
 
     public void seleccionarColor(MouseEvent e) {
         if (coloresRemovidos.size() > 0) {
-            int indiceRemovido = coloresRemovidos.get(0);
+            int indiceRemovido = coloresRemovidos.get(coloresRemovidos.size()-1);
             this.controlParaElegirColor.getItems().remove(indiceRemovido);
-            coloresRemovidos.remove(0);
         }
     }
 
     public void seleccionarRaza(MouseEvent e) {
         if (razasRemovidas.size() > 0) {
-            int indiceRemovido = razasRemovidas.get(0);
+            int indiceRemovido = razasRemovidas.get(razasRemovidas.size()-1);
             this.controlParaElegirRaza.getItems().remove(indiceRemovido);
-            razasRemovidas.remove(0);
         }
     }
     public static void addTextLimiter(final TextField tf, final int maxLength) {

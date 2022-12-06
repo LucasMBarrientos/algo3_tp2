@@ -21,7 +21,7 @@ public class JugadorProtoss extends Jugador {
     public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
         establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
-    public ObjectNode toData(){
+    public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
         node.put("nombre", nombre);
         node.put("inventario", inventario.toData());
