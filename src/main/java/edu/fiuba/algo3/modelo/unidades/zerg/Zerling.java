@@ -33,12 +33,7 @@ public class Zerling extends UnidadZerg {
         this.nombre = new Nombre("Zerling");
         establecerEstado(new UnidadEnConstruccion());
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Zerling");
-        return node;
-    }
+
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this, inventario);
     }

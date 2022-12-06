@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
@@ -46,5 +48,11 @@ public class UnidadOperativa implements EstadoUnidad {
 
     @Override
     public void deshacerConstruccion() {
+    }
+
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("estado", "unidadOperativa");
+        return node;
     }
 }

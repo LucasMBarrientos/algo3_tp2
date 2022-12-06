@@ -38,12 +38,7 @@ public class Zealot extends UnidadProtoss {
         establecerVisibilidad(new Visible());
         establecerEstado(new UnidadEnConstruccion());
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Zealot");
-        return node;
-    }
+
     @Override
     public void ejecutarDanio(Danio danioTerrestre, Danio danioAereo) {
         visibilidad.ejecutarDanio(danioTerrestre, vida, escudo, this);

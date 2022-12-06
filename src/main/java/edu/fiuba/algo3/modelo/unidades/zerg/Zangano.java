@@ -32,12 +32,7 @@ public class Zangano extends UnidadZerg {
         this.nombre = new Nombre("Zangano");
         establecerEstado(new UnidadEnConstruccion());
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Zangano");
-        return node;
-    }
+
     public Zangano(GasVespeno gasInicial, Mineral mineralInicial, Suministro suministro) {
       this.costoEnGas = gasInicial;
       this.costoEnMinerales = mineralInicial;

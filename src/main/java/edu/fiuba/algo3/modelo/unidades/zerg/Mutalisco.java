@@ -48,12 +48,7 @@ public class Mutalisco extends UnidadZerg {
 
         return sePudoOcupar;
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Mutalisco");
-        return node;
-    }
+
     @Override
     public Unidad evolucionar(Mapa mapa, Unidad unidad){
         mapa.eliminarUnidad(coordenada);

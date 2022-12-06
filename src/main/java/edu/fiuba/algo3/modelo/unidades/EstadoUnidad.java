@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -25,4 +26,6 @@ public interface EstadoUnidad {
     void deshacerConstruccion();
 
     void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar);
+
+    ObjectNode toData();
 }

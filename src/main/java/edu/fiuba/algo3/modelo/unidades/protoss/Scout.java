@@ -38,12 +38,7 @@ public class Scout extends UnidadProtoss {
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this,inventario);
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Scout");
-        return node;
-    }
+
     public boolean ocupar(Terreno terreno){
         boolean sePudoOcupar = true;
 

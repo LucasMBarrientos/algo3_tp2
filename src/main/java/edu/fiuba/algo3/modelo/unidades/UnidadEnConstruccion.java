@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.UnidadNoTerminoDeConstruirse;
@@ -50,4 +52,10 @@ public class UnidadEnConstruccion implements EstadoUnidad {
     }
 
     public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){ }
+
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("estado", "unidadEnConstruccion");
+        return node;
+    }
 }

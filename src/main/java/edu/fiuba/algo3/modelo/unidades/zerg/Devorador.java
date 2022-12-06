@@ -35,12 +35,7 @@ public class Devorador extends UnidadZerg {
     public Unidad generarse(Edificio edificio, Inventario inventario) {
         return null;
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Devorador");
-        return node;
-    }
+
     public boolean ocupar(Terreno terreno){
         boolean sePudoOcupar = true;
 

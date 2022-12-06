@@ -50,12 +50,7 @@ public class AmoSupremo extends UnidadZerg  {
       }
       return sePudoOcupar;
     }
-    @Override
-    public ObjectNode toData() {
-      ObjectNode node = Json.createObjectNode();
-      node.put("nombre","AmoSupremo");
-      return node;
-    }
+
     @Override
     public void actualizarUnidad(Inventario inventario) {
       regenerar();

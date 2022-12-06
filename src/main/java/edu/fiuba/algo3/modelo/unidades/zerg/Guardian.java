@@ -47,12 +47,7 @@ public class Guardian extends UnidadZerg {
 
         return sePudoOcupar;
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Guardian");
-        return node;
-    }
+
     @Override
     public void actualizarUnidad(Inventario inventario) {
       regenerar();
