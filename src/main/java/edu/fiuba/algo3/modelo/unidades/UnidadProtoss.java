@@ -51,7 +51,7 @@ public abstract class UnidadProtoss extends Unidad {
         nodo.put("coordenada", coordenada.toData());
         nodo.put("estado", estado.toData().get("estado"));
         nodo.put("vida", vida.toData().get("vida"));
-        nodo.put("escudo", vida.toData().get("escudo"));
+        nodo.put("escudo", escudo.toData().get("escudo"));
         nodo.put("danioTerrestre", danioTerrestre.toData().get("danio"));
         nodo.put("danioAereo", danioAereo.toData().get("danio"));
         nodo.put("tiempoDeConstruccion", tiempoConstruccion);
