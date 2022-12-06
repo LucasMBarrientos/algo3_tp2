@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
 import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
@@ -21,24 +22,24 @@ public class PuertoEstelar extends EdificioProtoss {
         this.vida = new Vida(600);
         this.escudo = new Escudo(600);
         this.nombre = new Nombre("PuertoEstelar");
-        establecerEstado(this.estadoConstruccion);
+        establecerEstado(new EdificioEnConstruccion());
     }
 
     @Override
     public void actualizarEdificio(Inventario inventario) {
-      regenerar();
+        regenerar();
     }
 
     public void ocupar(Terreno terreno) {
         terreno.ocuparPorEdificio(this);
     }
 
-    public Unidad generarUnidad(Scout unidad,Inventario inventario)  {
+    public Unidad generarUnidad(Scout unidad, Inventario inventario)  {
         return estadoActual.generarUnidad(unidad,inventario);
     }
 
-    public void validarCorrelativasDeConstruccion(Inventario inventario) throws ConstruccionRequiereDeOtroEdificio{
-        if(!inventario.tieneEdificio(new Nombre("Acceso"))){
+    public void validarCorrelativasDeConstruccion(Inventario inventario) throws ConstruccionRequiereDeOtroEdificio {
+        if (!(inventario.tieneEdificio(new Nombre("Acceso")))) {
             throw new ConstruccionRequiereDeOtroEdificio();
         }
     }

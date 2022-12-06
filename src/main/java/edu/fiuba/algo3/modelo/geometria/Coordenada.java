@@ -89,10 +89,10 @@ public class Coordenada {
     }
 
     public ObjectNode toData(){
-        ObjectNode node = Json.createObjectNode();
-        node.put("x",x);
-        node.put("y",y);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("x",x);
+        nodo.put("y",y);
+        return nodo;
     }
 
     public int devolverX() {

@@ -51,8 +51,8 @@ public class UnidadOperativa implements EstadoUnidad {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("estado", "unidadOperativa");
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("estado", "unidadOperativa");
+        return nodo;
     }
 }

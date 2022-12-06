@@ -3,7 +3,7 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioDestruido;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioDestruido;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;

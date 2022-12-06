@@ -147,17 +147,17 @@ public class TerrenoVacio implements EstadoTerreno {
 
     @Override
     public ObjectNode toDataOcupantes() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("coordenada",terreno.coordenada.toData());
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("coordenada",terreno.coordenada.toData());
         if(terreno.edificio != null){
-            node.put("Ocupante",terreno.edificio.toData());
+            nodo.put("Ocupante",terreno.edificio.toData());
         }else if (terreno.unidad != null){
-            node.put("Ocupante",terreno.unidad.toData());
+            nodo.put("Ocupante",terreno.unidad.toData());
         }else{
             ObjectNode node2 = Json.createObjectNode();
-            node.put("Ocupante",node2.put("nombre","Desocupado"));
+            nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
-        return node;
+        return nodo;
     }
 
     public void energizarTerreno() {

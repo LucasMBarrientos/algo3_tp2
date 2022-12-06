@@ -59,7 +59,7 @@ public class CasoDeUso26 {
     @Test
     public void verificarQueUnCriaderoPuedaSuministrarAUnMutalizacoYAUnZanganoQueNoSeConvirtioEnEdificio() {
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 800, 1000,0);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 800, 1000, 0);
         algoStar.agregarJugador(jugadorZerg);
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);

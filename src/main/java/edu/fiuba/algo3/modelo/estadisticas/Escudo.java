@@ -27,9 +27,9 @@ public class Escudo{
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("escudo", poderActual);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("escudo", poderActual);
+        return nodo;
     }
 
 }

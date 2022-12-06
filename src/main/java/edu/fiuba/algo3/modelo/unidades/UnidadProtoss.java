@@ -45,16 +45,16 @@ public abstract class UnidadProtoss extends Unidad {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre.toData().get("nombre"));
-        node.put("coordenada", coordenada.toData());
-        node.put("estado", estado.toData().get("estado"));
-        node.put("vida", vida.toData().get("vida"));
-        node.put("escudo", vida.toData().get("escudo"));
-        node.put("danioTerrestre", danioTerrestre.toData().get("danio"));
-        node.put("danioAereo", danioAereo.toData().get("danio"));
-        node.put("tiempoDeConstruccion", tiempoConstruccion);
-        node.put("unidadAerea", aerea);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre", nombre.toData().get("nombre"));
+        nodo.put("coordenada", coordenada.toData());
+        nodo.put("estado", estado.toData().get("estado"));
+        nodo.put("vida", vida.toData().get("vida"));
+        nodo.put("escudo", vida.toData().get("escudo"));
+        nodo.put("danioTerrestre", danioTerrestre.toData().get("danio"));
+        nodo.put("danioAereo", danioAereo.toData().get("danio"));
+        nodo.put("tiempoDeConstruccion", tiempoConstruccion);
+        nodo.put("unidadAerea", aerea);
+        return nodo;
     }
 }

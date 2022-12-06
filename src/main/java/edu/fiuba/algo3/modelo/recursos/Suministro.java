@@ -18,9 +18,9 @@ public class Suministro extends Recurso {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("suministro", unidadesDisponibles);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("suministro", unidadesDisponibles);
+        return nodo;
     }
 
 }

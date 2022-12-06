@@ -252,11 +252,11 @@ public class Mapa {
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
              if(contadorDeLinea >= longitudX){
-                ObjectNode node2 = Json.createObjectNode();
-                ObjectNode node = Json.createObjectNode();
-                node2.put("nombre","cambioDeLinea");
-                node.put("Ocupante", node2);
-                mapaEnString.add(node);
+                ObjectNode nodo2 = Json.createObjectNode();
+                ObjectNode nodo = Json.createObjectNode();
+                nodo2.put("nombre","cambioDeLinea");
+                nodo.put("Ocupante", nodo2);
+                mapaEnString.add(nodo);
                 contadorDeLinea = 0;
             }
 

@@ -30,9 +30,9 @@ public class Vida {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("vida", valorActual);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("vida", valorActual);
+        return nodo;
     }
 
 }

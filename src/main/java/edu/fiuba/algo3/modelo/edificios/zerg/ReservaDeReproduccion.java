@@ -1,25 +1,16 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.*;
-import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.Nombre;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
-import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
-import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-    Terreno terreno;
 
     public ReservaDeReproduccion() {
         this.costoEnMinerales = new Mineral(150);
@@ -27,44 +18,21 @@ public class ReservaDeReproduccion extends EdificioZerg {
         this.vida = new Vida(1000);
         this.tiempoDeConstruccion = 12;
         this.nombre = new Nombre("ReservaDeReproduccion");
-        establecerEstado(this.estadoConstruccion);
-    }
-
-    public void ocupar(Terreno terreno){
-        terreno.ocuparPorEdificio(this);
-    }
-
-    public void validarCorrelativasDeConstruccion(Inventario inventario) { }
-
-    public Unidad generarUnidad(Zerling unidad,Inventario inventario){
-        return estadoActual.generarUnidad(unidad,inventario);
-    }
-    public Unidad generarUnidad(Zangano unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Hidralisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Mutalisco unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Scout unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Zealot unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-    public Unidad generarUnidad(Dragon unidad,Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
-    }
-
-    public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario)  throws EdificioNoConoceEstaUnidad{
-        throw new  EdificioNoConoceEstaUnidad();
+        establecerEstado(new EdificioEnConstruccion());
     }
 
     @Override
     public void actualizarEdificio(Inventario inventario) {
-      regenerar();
+        regenerar();
+    }
+
+    @Override
+    public Unidad generarUnidad(Zerling unidad, Inventario inventario) {
+        return estadoActual.generarUnidad(unidad,inventario);
+    }
+
+    public void ocupar(Terreno terreno) {
+        terreno.ocuparPorEdificio(this);
     }
 
 }

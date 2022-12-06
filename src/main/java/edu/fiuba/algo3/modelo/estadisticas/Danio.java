@@ -17,9 +17,9 @@ public class Danio {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("danio", poder);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("danio", poder);
+        return nodo;
     }
 
 }

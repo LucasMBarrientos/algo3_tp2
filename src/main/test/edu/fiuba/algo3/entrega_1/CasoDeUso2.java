@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import com.tngtech.archunit.lang.ArchRule;
 
-import edu.fiuba.algo3.modelo.edificios.EdificioDestruido;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioDestruido;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;

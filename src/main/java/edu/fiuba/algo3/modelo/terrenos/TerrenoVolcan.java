@@ -140,17 +140,17 @@ public class TerrenoVolcan extends Terreno {
 
     @Override
     public ObjectNode toDataOcupantes() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("coordenada", coordenada.toData());
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("coordenada", coordenada.toData());
         if(edificio != null){
-            node.put("Ocupante",edificio.toData());
+            nodo.put("Ocupante",edificio.toData());
         }else if (unidad != null){
-            node.put("Ocupante",unidad.toData());
+            nodo.put("Ocupante",unidad.toData());
         }else{
             ObjectNode node2 = Json.createObjectNode();
-            node.put("Ocupante",node2.put("nombre","Desocupado"));
+            nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
-        return node;
+        return nodo;
     }
 
 }

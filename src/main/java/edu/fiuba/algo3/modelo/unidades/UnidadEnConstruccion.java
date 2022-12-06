@@ -53,8 +53,8 @@ public class UnidadEnConstruccion implements EstadoUnidad {
     public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){ }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("estado", "unidadEnConstruccion");
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("estado", "unidadEnConstruccion");
+        return nodo;
     }
 }

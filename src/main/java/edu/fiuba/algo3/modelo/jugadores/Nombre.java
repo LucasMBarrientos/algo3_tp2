@@ -22,9 +22,9 @@ public class Nombre {
     }
 
     public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre",nombre);
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre",nombre);
+        return nodo;
     }
 
 }

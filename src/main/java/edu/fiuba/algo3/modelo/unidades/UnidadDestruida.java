@@ -49,9 +49,9 @@ public class UnidadDestruida implements EstadoUnidad{
   public void deshacerConstruccion() { }
 
   public ObjectNode toData() {
-    ObjectNode node = Json.createObjectNode();
-    node.put("estado", "unidadDestruida");
-    return node;
+    ObjectNode nodo = Json.createObjectNode();
+    nodo.put("estado", "unidadDestruida");
+    return nodo;
   }
 
  

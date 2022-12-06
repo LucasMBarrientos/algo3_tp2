@@ -16,6 +16,7 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 
+import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +47,9 @@ public class CasoDeUso8 {
   @Test
   public void sePuedeConstruirNexoMineralcon50Minerales() {
     Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(50), new Suministro(200));
+    TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada(2, 2));
     NexoMineral nexoMineral = new NexoMineral();
+    nexoMineral.ocupar(terrenoMineral);
     nexoMineral.consumirRecursosParaConstruccion(inventario);
 
     for(int i=0; i< 4; i++ ){
