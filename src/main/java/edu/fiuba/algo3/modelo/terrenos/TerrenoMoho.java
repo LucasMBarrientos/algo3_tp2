@@ -144,8 +144,11 @@ public class TerrenoMoho implements EstadoTerreno {
     }
 
     @Override
-    public String toData() {
-        return "Moho";
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre","Moho");
+        nodo.put("coordenada",terreno.coordenada.toData());
+        return nodo;
     }
 
     @Override

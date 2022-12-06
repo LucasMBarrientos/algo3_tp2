@@ -125,8 +125,11 @@ public class TerrenoAereo extends Terreno{
     public void cubrirTerrenoDeMoho() { }
 
     @Override
-    public String toData() {
-        return "Aereo";
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre","Aereo");
+        nodo.put("coordenada",coordenada.toData());
+        return nodo;
     }
 
     @Override

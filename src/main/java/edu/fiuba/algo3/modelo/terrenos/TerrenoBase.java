@@ -157,7 +157,7 @@ public class TerrenoBase extends Terreno {
     }
 
     @Override
-    public String toData() {
+    public ObjectNode toData() {
         return estado.toData();
     }
 

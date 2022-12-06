@@ -17,17 +17,24 @@ import java.util.List;
 public class BotoneraEnergizadoProtoss extends HBox {
 
     public BotoneraEnergizadoProtoss(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-        List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
-        HBox contenedorHorizontal = new HBox((Node) buttons);
-        contenedorHorizontal.setSpacing(10);
-        contenedorHorizontal.setPadding(new Insets(25));
+      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+
+      HBox contenedorHorizontal = new HBox();
+      contenedorHorizontal.getChildren().clear();
+      contenedorHorizontal.getChildren().addAll(buttons);
+      contenedorHorizontal.setSpacing(10);
+      contenedorHorizontal.setPadding(new Insets(25));
+      algoStarView.setBottom(contenedorHorizontal);
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button construirPilon = new Button();
+        construirPilon.setText("construir Pilon");
         Button construirAcceso = new Button();
+        construirAcceso.setText("construir Acceso");
         Button construirPuertoEstelar = new Button();
+        construirPuertoEstelar.setText("construir Puerto Estelar");
 
         BotonConstruirPilonHandler botonConstruirPilonHandler = new BotonConstruirPilonHandler(algoStar, algoStarView, coordenada);
         construirPilon.setOnAction(botonConstruirPilonHandler);

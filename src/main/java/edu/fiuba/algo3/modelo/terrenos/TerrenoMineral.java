@@ -130,8 +130,11 @@ public class TerrenoMineral extends Terreno {
     }
 
     @Override
-    public String toData() {
-        return "Mineral";
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre","Mineral");
+        nodo.put("coordenada",coordenada.toData());
+        return nodo;
     }
 
     @Override

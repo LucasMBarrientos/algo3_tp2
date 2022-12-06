@@ -228,13 +228,17 @@ public class Mapa {
         }
     }
 
-    public List<String> parseTerrenos(){
-        List<String> mapaEnString = new ArrayList<>();
+    public List<ObjectNode>  parseTerrenos(){
+      List<ObjectNode>  mapaEnString = new ArrayList<>();
         int longitudX = this.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
             if(contadorDeLinea >= longitudX){
-                mapaEnString.add("cambioDeLinea") ;
+                ObjectNode nodo = Json.createObjectNode();
+                nodo.put("nombre", "cambioDeLinea");
+                
+                mapaEnString.add(nodo);
+
                 contadorDeLinea = 0;
             }
 
@@ -266,13 +270,10 @@ public class Mapa {
         return mapaEnString;
     }
 
-    public JsonNode toJsonTerrenos() throws JsonProcessingException {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("terrenos",parseTerrenos());
-
-        return Json.toJson(map);
+    public List<ObjectNode> toJsonTerrenos() throws JsonProcessingException {
+        return parseTerrenos();
     }
+
     public List<ObjectNode> toJsonOcupantes() throws JsonProcessingException {
         return parseOcupantes();
     }

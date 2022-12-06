@@ -72,7 +72,7 @@ public abstract interface EstadoTerreno {
     
     void cubrirTerrenoDeMoho();
 
-    public String toData();
+    public ObjectNode toData();
 
     ObjectNode toDataOcupantes();
 

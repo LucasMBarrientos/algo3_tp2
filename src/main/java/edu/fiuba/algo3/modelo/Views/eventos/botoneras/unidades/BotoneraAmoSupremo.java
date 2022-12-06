@@ -18,18 +18,25 @@ import java.util.List;
 public class BotoneraAmoSupremo extends HBox {
     public BotoneraAmoSupremo(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
         List<Button> buttons = crearBotones(algoStar, algoView, coordenada);
-        HBox contenedorHorizontal = new HBox((Node) buttons);
+
+        HBox contenedorHorizontal = new HBox();
+        contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().addAll(buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
+        algoView.setBottom(contenedorHorizontal);
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
 
         Button moverAbajo = new Button();
+        moverAbajo.setText("mover Abajo");
         Button moverArriba = new Button();
+        moverArriba.setText("mover Arriba");
         Button moverIzquierda = new Button();
+        moverIzquierda.setText("mover Izquierda");
         Button moverDerecha = new Button();
-
+        moverDerecha.setText("mover Derecha");
 
         BotonMoverAbajoHandler botonMoverAbajoHandler = new BotonMoverAbajoHandler(algoStar, algoView, coordenada);
         moverAbajo.setOnAction(botonMoverAbajoHandler);

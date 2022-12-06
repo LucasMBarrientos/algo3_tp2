@@ -15,15 +15,20 @@ import java.util.List;
 public class BotoneraGuarida extends HBox {
 
     public BotoneraGuarida(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-        List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
-        HBox contenedorHorizontal = new HBox((Node) buttons);
-        contenedorHorizontal.setSpacing(10);
-        contenedorHorizontal.setPadding(new Insets(25));
+      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+
+      HBox contenedorHorizontal = new HBox();
+      contenedorHorizontal.getChildren().clear();
+      contenedorHorizontal.getChildren().addAll(buttons);
+      contenedorHorizontal.setSpacing(10);
+      contenedorHorizontal.setPadding(new Insets(25));
+      algoStarView.setBottom(contenedorHorizontal);
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button generarHidralisco = new Button();
+        generarHidralisco.setText("generar Hidralisco");
 
         BotonGenerarHidraliscoHandler botonGenerarHidraliscoHandler = new BotonGenerarHidraliscoHandler(algoStar, algoStarView, coordenada);
         generarHidralisco.setOnAction(botonGenerarHidraliscoHandler);

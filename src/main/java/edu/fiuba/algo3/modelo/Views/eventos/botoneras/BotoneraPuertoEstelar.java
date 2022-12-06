@@ -15,15 +15,20 @@ import java.util.List;
 public class BotoneraPuertoEstelar extends HBox {
 
     public BotoneraPuertoEstelar(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
-        List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
-        HBox contenedorHorizontal = new HBox((Node) buttons);
-        contenedorHorizontal.setSpacing(10);
-        contenedorHorizontal.setPadding(new Insets(25));
+      List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
+
+      HBox contenedorHorizontal = new HBox();
+      contenedorHorizontal.getChildren().clear();
+      contenedorHorizontal.getChildren().addAll(buttons);
+      contenedorHorizontal.setSpacing(10);
+      contenedorHorizontal.setPadding(new Insets(25));
+      algoStarView.setBottom(contenedorHorizontal);
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button generarScout = new Button();
+        generarScout.setText("generar Scout");
 
         BotonGenerarScoutHandler botonGenerarScoutHandler = new BotonGenerarScoutHandler(algoStar, algoStarView, coordenada);
         generarScout.setOnAction(botonGenerarScoutHandler);
