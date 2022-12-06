@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Views;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
@@ -17,7 +18,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -37,6 +40,8 @@ public class AlgoStarView extends BorderPane {
 
     MapaView mapaView;
 
+    Image texturaStats = new Image("/texturaStats.png", 10, 10, false, false);
+
     public AlgoStarView(Stage stage, AlgoStar algostar) {
         this.stage = stage;
         this.algoStar = algostar;
@@ -55,6 +60,35 @@ public class AlgoStarView extends BorderPane {
 
         // handler del boton construir
         VBox contenedorHorizontal = new VBox(); // <- recibe las cosas como parámetro
+        contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setPadding(new Insets(10));
+
+        this.setLeft(contenedorHorizontal);
+    }
+
+    public void setPantallDeStatsUnidad(JsonNode node) {
+        //Aca iría las cosas de la pantalla de stats
+        Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
+        Label danioAereoYTerrestre = new Label("Daño Terrestre: " + node.get("Ocupante").get("danioTerrestre").asText() + "\nDaño Aereo: " + node.get("Ocupante").get("danioAereo").asText());
+
+
+        // handler del boton construir
+        VBox contenedorHorizontal = new VBox(vida, danioAereoYTerrestre); // <- recibe las cosas como parámetro
+        contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setPadding(new Insets(10));
+
+        this.setLeft(contenedorHorizontal);
+    }
+    public void setPantallDeStatsEdificio(JsonNode node) {
+        //Aca iría las cosas de la pantalla de stats
+        Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
+        Label estadoConstruccion = new Label("Estado de Construcción: " + node.get("Ocupante").get("estado").asText());
+
+
+        // handler del boton construir
+        VBox contenedorHorizontal = new VBox(vida, estadoConstruccion); // <- recibe las cosas como parámetro
+        //contenedorHorizontal.setStyle("-fx-background-image: url('/texturaStats.png');" +
+         //       "-fx-background-repeat: repeat;");
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
@@ -121,13 +155,13 @@ public class AlgoStarView extends BorderPane {
             @Override
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()){
-                    case W: contenedorCentral.setVvalue(contenedorCentral.getVvalue() - (contenedorCentral.getHeight() * 0.00001));
+                    case W: contenedorCentral.setVvalue(contenedorCentral.getVvalue() - (contenedorCentral.getHeight() * 0.00002));
                         break;
-                    case S: contenedorCentral.setVvalue(contenedorCentral.getVvalue() + (contenedorCentral.getHeight() * 0.00001));
+                    case S: contenedorCentral.setVvalue(contenedorCentral.getVvalue() + (contenedorCentral.getHeight() * 0.00002));
                         break;
-                    case A: contenedorCentral.setHvalue(contenedorCentral.getHvalue() - (contenedorCentral.getWidth() * 0.00001));
+                    case A: contenedorCentral.setHvalue(contenedorCentral.getHvalue() - (contenedorCentral.getWidth() * 0.00002));
                         break;
-                    case D: contenedorCentral.setHvalue(contenedorCentral.getHvalue() + (contenedorCentral.getWidth() * 0.00001));
+                    case D: contenedorCentral.setHvalue(contenedorCentral.getHvalue() + (contenedorCentral.getWidth() * 0.00002));
                         break;
                 }
             }

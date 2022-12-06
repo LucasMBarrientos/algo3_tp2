@@ -67,7 +67,7 @@ public class MapaView {
     Image imagenAsimilador = new Image("/Asimilador.png", 10, 10, false, false);
     Image imagenAcceso = new Image("/Acceso.png", 10, 10, false, false);
     Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 10, 10, false, false);
-    
+
 
 
     public MapaView(Mapa mapa, AlgoStarView algoStarView) {
@@ -112,6 +112,7 @@ public class MapaView {
                         System.out.println(nodo);
                         int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
                         int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                        setStatsUnidad(nodo);
                         Coordenada coor = new Coordenada(x,y);
                         algoStarView.crearBotoneraZangano(coor);
                     });
@@ -126,13 +127,14 @@ public class MapaView {
                     imageCriaderoSprite.setY(posY*separacion);
                     imageCriaderoSprite.setX(posX*separacion);
                     imageCriaderoSprite.setOnMouseClicked(event ->  {
-                        /*
+
                       System.out.println(nodo);
                       int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
                       int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      setStatsEdificio(nodo);
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraCriadero(coor);
-                      */
+
                     });
                     ocupanteGroup.getChildren().add(imageCriaderoSprite);
                     break;
@@ -178,6 +180,14 @@ public class MapaView {
             posX ++;
         }
         info.getChildren().add(ocupanteGroup);
+    }
+
+    private void setStatsUnidad(JsonNode node){
+        algoStarView.setPantallDeStatsUnidad(node);
+    }
+
+    private void setStatsEdificio(JsonNode node){
+        algoStarView.setPantallDeStatsEdificio(node);
     }
 
     private void dibujarTerrenos(){
