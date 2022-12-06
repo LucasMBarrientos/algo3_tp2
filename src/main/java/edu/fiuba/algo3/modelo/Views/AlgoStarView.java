@@ -34,6 +34,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class AlgoStarView extends BorderPane {
 
     BarraDelMenu menuBar;
@@ -73,13 +75,16 @@ public class AlgoStarView extends BorderPane {
 
         JsonNode jugadorNode = algoStar.devolverJugadorActual().toData();
 
-        Label jugadorActualLabel = new Label("Jugador Actual: " + jugadorNode.get("nombre").asText());
+        Label jugadorActualLabel = new Label("Turno de " + jugadorNode.get("nombre").asText());
 
         Label gasDisponible = new Label("Gas Vespeno: " + jugadorNode.get("inventario").get("cantidadGasVespeno").get("gasVespeno").asText());
         Label mineralDisponible = new Label("Mineral: " + jugadorNode.get("inventario").get("cantidadMineral").get("mineral").asText());
         Label suministrosDisponibles = new Label("Suministros: " + jugadorNode.get("inventario").get("suministroActual").get("suministro").asText());
 
-        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible,suministrosDisponibles); // <- recibe las cosas como parámetro
+        Label edificiosDisponibles = new Label("Edificios restantes: " + jugadorNode.get("inventario").get("edificios").asText());
+        Label unidadesDisponibles = new Label("Unidades restantes: " + jugadorNode.get("inventario").get("unidades").asText());
+
+        VBox contenedorHorizontal = new VBox(pasarTurno, jugadorActualLabel,gasDisponible,mineralDisponible,suministrosDisponibles,edificiosDisponibles,unidadesDisponibles); // <- recibe las cosas como parámetro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
@@ -102,10 +107,13 @@ public class AlgoStarView extends BorderPane {
         //Aca iría las cosas de la pantalla de stats
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         Label danioAereoYTerrestre = new Label("Daño Terrestre: " + node.get("Ocupante").get("danioTerrestre").asText() + "\nDaño Aereo: " + node.get("Ocupante").get("danioAereo").asText());
-
+        Label escudo = new Label();
+        if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
+            escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
+        }
 
         // handler del boton construir
-        VBox contenedorHorizontal = new VBox(vida, danioAereoYTerrestre); // <- recibe las cosas como parámetro
+        VBox contenedorHorizontal = new VBox(danioAereoYTerrestre,vida,escudo); // <- recibe las cosas como parámetro
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
@@ -115,10 +123,13 @@ public class AlgoStarView extends BorderPane {
         //Aca iría las cosas de la pantalla de stats
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         Label estadoConstruccion = new Label("Estado de Construcción: " + node.get("Ocupante").get("estado").asText());
-
+        Label escudo = new Label();
+        if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
+             escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
+        }
 
         // handler del boton construir
-        VBox contenedorHorizontal = new VBox(vida, estadoConstruccion); // <- recibe las cosas como parámetro
+        VBox contenedorHorizontal = new VBox(estadoConstruccion,vida,escudo); // <- recibe las cosas como parámetro
         //contenedorHorizontal.setStyle("-fx-background-image: url('/texturaStats.png');" +
          //       "-fx-background-repeat: repeat;");
         contenedorHorizontal.setSpacing(10);

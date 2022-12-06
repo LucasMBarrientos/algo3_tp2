@@ -47,6 +47,7 @@ public abstract class UnidadProtoss extends Unidad {
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
         nodo.put("nombre", nombre.toData().get("nombre"));
+        nodo.put("raza", "protoss");
         nodo.put("coordenada", coordenada.toData());
         nodo.put("estado", estado.toData().get("estado"));
         nodo.put("vida", vida.toData().get("vida"));
