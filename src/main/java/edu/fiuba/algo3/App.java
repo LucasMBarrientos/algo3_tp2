@@ -56,7 +56,7 @@ public class App extends Application {
 
 
         // DEBUG_ code for debug purposes only
-        boolean DEBUG_MODE = false;
+        boolean DEBUG_MODE = true;
         if (DEBUG_MODE) {
 
             
@@ -64,6 +64,7 @@ public class App extends Application {
             algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 1 con raza zerg", "Azul"));
             algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 2 con raza protoss", "Rojo"));
             algoStar.empezarJuego();
+            pantallaPrincipal.actualizarMapa();
             stage.setScene(escenaJuego);
 
             ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();

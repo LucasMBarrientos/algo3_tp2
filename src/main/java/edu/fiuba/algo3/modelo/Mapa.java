@@ -254,7 +254,8 @@ public class Mapa {
             if(contadorDeLinea >= longitudX){
                 ObjectNode node2 = Json.createObjectNode();
                 ObjectNode node = Json.createObjectNode();
-                node.put("Ocupante",node2.put("nombre","cambioDeLinea"));
+                node2.put("nombre","cambioDeLinea");
+                node.put("Ocupante", node2);
                 mapaEnString.add(node);
                 contadorDeLinea = 0;
             }
@@ -274,7 +275,6 @@ public class Mapa {
         return Json.toJson(map);
     }
     public List<ObjectNode> toJsonOcupantes() throws JsonProcessingException {
-
         return parseOcupantes();
     }
 

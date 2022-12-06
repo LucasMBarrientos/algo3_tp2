@@ -71,9 +71,9 @@ public class MapaView {
 
     private void dibujarOcupantes()  {
         List<String> infoMapa = new ArrayList<>();
-        List<ObjectNode> node = null;
+        List<ObjectNode> nodos = null;
         try {
-            node = mapa.toJsonOcupantes();
+            nodos = mapa.toJsonOcupantes();
             //infoMapa = Json.JsonArrayToList(node);
 
         }catch (JsonProcessingException e){
@@ -87,20 +87,20 @@ public class MapaView {
         int separacion = 40;
         ocupanteGroup.getChildren().clear();
         
-        for (JsonNode ocupante : node) {
-            String a = ocupante.get("Ocupante").get("nombre").asText();
-            switch (ocupante.get("Ocupante").get("nombre").asText()){
+        for (JsonNode nodo : nodos) {
+            String a = nodo.get("Ocupante").get("nombre").asText();
+            switch (nodo.get("Ocupante").get("nombre").asText()){
                 case "Zangano":{
                   System.out.println("Zangano");
                     ImageView imageZanganoSprite= new ImageView(imagenZangano);
                     imageZanganoSprite.setY(posY*separacion);
                     imageZanganoSprite.setX(posX*separacion);
                     imageZanganoSprite.setOnMouseClicked(event ->  {
-                      System.out.println(ocupante);
-                      int x = ocupante.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = ocupante.get("Ocupante").get("coordenada").get("y").asInt();
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraZangano(coor);
+                        System.out.println(nodo);
+                        int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                        int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                        Coordenada coor = new Coordenada(x,y);
+                        algoStarView.crearBotoneraZangano(coor);
                     });
                     ocupanteGroup.getChildren().add(imageZanganoSprite);
                     //canvas.getGraphicsContext2D().setFill(Color.ORANGE);
