@@ -149,6 +149,7 @@ public class TerrenoEnergizado implements EstadoTerreno {
     @Override
     public ObjectNode toDataOcupantes() {
         ObjectNode node = Json.createObjectNode();
+        node.put("coordenada",terreno.coordenada.toData());
         if(terreno.edificio != null){
             node.put("Ocupante",terreno.edificio.toData());
         }else if (terreno.unidad != null){

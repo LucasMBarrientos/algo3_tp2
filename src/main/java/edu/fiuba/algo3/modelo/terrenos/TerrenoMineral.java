@@ -137,6 +137,7 @@ public class TerrenoMineral extends Terreno {
     @Override
     public ObjectNode toDataOcupantes() {
         ObjectNode nodo = Json.createObjectNode();
+        nodo.put("coordenada", coordenada.toData());
         if(edificio != null){
             nodo.put("Ocupante",edificio.toData());
         }else if (unidad != null){

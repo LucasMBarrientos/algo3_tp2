@@ -131,9 +131,16 @@ public class TerrenoAereo extends Terreno{
 
     @Override
     public ObjectNode toDataOcupantes() {
-        ObjectNode node = Json.createObjectNode();
-        ObjectNode node2 = Json.createObjectNode();
-        node.put("Ocupante",node2.put("nombre","Desocupado"));
-        return node;
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("coordenada", coordenada.toData());
+        if(edificio != null){
+            nodo.put("Ocupante",edificio.toData());
+        }else if (unidad != null){
+            nodo.put("Ocupante",unidad.toData());
+        }else{
+            ObjectNode node2 = Json.createObjectNode();
+            nodo.put("Ocupante",node2.put("nombre","Desocupado"));
+        }
+        return nodo;
     }
 }

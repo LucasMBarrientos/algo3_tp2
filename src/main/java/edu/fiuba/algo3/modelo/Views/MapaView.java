@@ -127,9 +127,9 @@ public class MapaView {
                     imageCriaderoSprite.setX(posX*separacion);
                     imageCriaderoSprite.setOnMouseClicked(event ->  {
                         /*
-                      System.out.println(ocupante);
-                      int x = ocupante.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = ocupante.get("Ocupante").get("coordenada").get("y").asInt();
+                      System.out.println(nodo);
+                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraCriadero(coor);
                       */
