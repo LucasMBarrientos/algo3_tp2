@@ -29,7 +29,7 @@ public class BotonMoverArribaHandler implements EventHandler<ActionEvent> {
             algoStar.devolverJugadorActual().moverUnidad(coordenadaActual, new Arriba());
         } catch (CoordenadaFueraDelMapa | UnidadNoEncontrada | TerrenoNoAptoParaTalUnidad exeption ) {
         }
-        algoStarView.crearBotoneraVacia();
+        algoStarView.setBottom(algoStarView.crearBotoneraVacia());
         algoStarView.actualizarMapa();
     }
 

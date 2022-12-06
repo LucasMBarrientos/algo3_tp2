@@ -31,7 +31,7 @@ public class BotonMoverAbajoHandler implements EventHandler<ActionEvent> {
         } catch (CoordenadaFueraDelMapa | UnidadNoEncontrada | TerrenoNoAptoParaTalUnidad exeption) {
         }
 
-        algoStarView.crearBotoneraVacia();
+        algoStarView.setBottom(algoStarView.crearBotoneraVacia());
         algoStarView.actualizarMapa();
     }
 }
