@@ -11,9 +11,11 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraCriadero;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEnergizadoProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEspiral;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraGuarida;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraMineralProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraPuertoEstelar;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraVaciaProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneralVolcanProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraMutalisco;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNormal;
@@ -160,6 +162,12 @@ public class AlgoStarView extends BorderPane {
     }
     public void crearBotoneraGuarida(Coordenada coordenada) {
       new BotoneraGuarida(algoStar, this,coordenada);
+    }
+    public void crearBotoneraVolcan(Coordenada coordenada) {
+      new BotoneralVolcanProtoss(algoStar, this,coordenada);
+    }
+    public void crearBotoneraMineral(Coordenada coordenada) {
+      new BotoneraMineralProtoss(algoStar, this,coordenada);
     }
     public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
       new BotoneraPuertoEstelar(algoStar, this,coordenada);

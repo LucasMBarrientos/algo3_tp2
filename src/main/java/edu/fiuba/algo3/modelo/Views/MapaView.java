@@ -433,8 +433,10 @@ public class MapaView {
                     imageMineralSprite.setY(posY*separacion);
                     imageMineralSprite.setX(posX*separacion);
                     imageMineralSprite.setOnMouseClicked(event ->  {
-                      algoStarView.crearBotoneraVacia();
-                      //MINERAL
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraMineral(coor);
                     });
                     terrenoGroup.getChildren().add(imageMineralSprite);
                     break;
@@ -454,7 +456,10 @@ public class MapaView {
                     imageVolcanSprite.setY(posY*separacion);
                     imageVolcanSprite.setX(posX*separacion);
                     imageVolcanSprite.setOnMouseClicked(event ->  {
-                      System.out.println("Volcan");
+                      int x = nodo.get("coordenada").get("x").asInt();
+                      int y = nodo.get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraVolcan(coor);
                     });
                     terrenoGroup.getChildren().add(imageVolcanSprite);
                     
