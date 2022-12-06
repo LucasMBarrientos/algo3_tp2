@@ -33,6 +33,7 @@ public class BotonPasarTurnoHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent evento) {
         try {
             algoStar.pasarTurno();
+            algoStarView.setPantallaDeStatsJugador();
         } catch (FinDelJuegoAlcanzado excepcion) {
             PantallaFinDelJuego pantallaFinDelJuego = new PantallaFinDelJuego(algoStar.devolverJugadorGanador());
             Scene escenarioFinDelJuego = new Scene(pantallaFinDelJuego,1620,780);
