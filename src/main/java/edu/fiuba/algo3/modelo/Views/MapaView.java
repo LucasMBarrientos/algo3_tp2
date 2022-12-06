@@ -41,6 +41,7 @@ public class MapaView {
     Image imagenMoho = new  Image("/imgMoho.jpg", 35, 35, false, false);
     Image imagenMineral = new  Image("/imgMineral.jpg", 35, 35, false, false);
     Image imagenEnergizado = new  Image("/imgEnergizado.jpg", 35, 35, false, false);
+    Image imagenEspecial = new  Image("/imgEspeciales.jpg", 35, 35, false, false);
     Image imagenZangano = new  Image("/imgEnergizado.jpg", 10, 10, false, false);
     
 
@@ -149,8 +150,13 @@ public class MapaView {
         for (String terreno : infoMapa) {
             switch (terreno){
                 case "Aereo":{
-                    //canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
-                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    ImageView imageEspecialesSprite= new ImageView(imagenEspecial);
+                    imageEspecialesSprite.setY(posY*separacion);
+                    imageEspecialesSprite.setX(posX*separacion);
+                    imageEspecialesSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Vacio");
+                    });
+                    terrenoGroup.getChildren().add(imageEspecialesSprite);
                     break;
                 }
                 case "Vacio":{
