@@ -25,7 +25,7 @@ public class BotonConstruirAsimiladorHandler implements EventHandler<ActionEvent
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().construirEdificio(coordenada, new Asimilador());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
         }

@@ -25,7 +25,7 @@ public class BotonConstruirGuaridaHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().construirEdificio(coordenada, new Guarida());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
         }

@@ -24,7 +24,7 @@ public class BotonGenerarHidraliscoHandler implements EventHandler<ActionEvent> 
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Hidralisco());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
 

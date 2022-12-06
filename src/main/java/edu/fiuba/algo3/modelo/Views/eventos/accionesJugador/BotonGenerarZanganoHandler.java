@@ -24,7 +24,7 @@ public class BotonGenerarZanganoHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Zangano());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
           System.out.println(e);
             //avisar al jugador con una ventanita linda

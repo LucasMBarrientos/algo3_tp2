@@ -25,7 +25,7 @@ public class BotonConstruirAccesoHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().construirEdificio(coordenada, new Acceso());
-
+            algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             //avisar al jugador con una ventanita linda
         }

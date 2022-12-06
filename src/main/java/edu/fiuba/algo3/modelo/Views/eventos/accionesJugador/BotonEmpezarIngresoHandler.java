@@ -24,8 +24,6 @@ public class BotonEmpezarIngresoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         BotoneraIngresarAExtractor contenedorHorizontal = new BotoneraIngresarAExtractor(algoStar,algoStarView,coordenadaUnidad); // <- Recibe los botones como parametro
-        contenedorHorizontal.setSpacing(10);
-        contenedorHorizontal.setPadding(new Insets(25));
         algoStarView.setBottom(contenedorHorizontal);
     }
 }

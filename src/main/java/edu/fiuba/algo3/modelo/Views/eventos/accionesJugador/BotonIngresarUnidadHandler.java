@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 
 public class BotonIngresarUnidadHandler implements EventHandler<ActionEvent> {
 
@@ -16,19 +17,23 @@ public class BotonIngresarUnidadHandler implements EventHandler<ActionEvent> {
     AlgoStarView algoStarView;
 
     Coordenada coordenadaDeLaUnidad;
-    Coordenada coordenadaDelEdificio;
+    TextField textFieldCoord1;
+    TextField textFieldCoord2;
 
-    public BotonIngresarUnidadHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, Coordenada coordenadaEdificio) {
+    public BotonIngresarUnidadHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, TextField textField1, TextField textField2) {
         this.algoStar = algoStar;
         this.algoStarView = algoStarView;
         this.coordenadaDeLaUnidad = coordenadaUnidad;
-        this.coordenadaDelEdificio = coordenadaEdificio;
+        this.textFieldCoord1 = textField1;
+        this.textFieldCoord2 = textField2;
     }
 
     @Override
     public void handle(ActionEvent evento) {
+
+        Coordenada coordenadaObjetivo = new Coordenada(Integer.parseInt(textFieldCoord1.getText()),Integer.parseInt(textFieldCoord2.getText()));
         try {
-            algoStar.devolverJugadorActual().ingresarUnidadAUnEdificio(coordenadaDelEdificio, coordenadaDeLaUnidad);
+            algoStar.devolverJugadorActual().ingresarUnidadAUnEdificio(coordenadaObjetivo, coordenadaDeLaUnidad);
 
         } catch (NoHayEspacioDisponible e) {
             //avisar al jugador que el extractor ya tiene 3 zanganos
