@@ -162,9 +162,9 @@ public class Inventario {
         ObjectNode nodo = Json.createObjectNode();
         nodo.put("edificios", edificios.size());
         nodo.put("unidades", unidades.size());
-        nodo.put("cantidadGasVespeno", gasVespeno.toData().get("gasVespeno"));
-        nodo.put("cantidadMineral", mineral.toData().get("mineral"));
-        nodo.put("suministroActual", suministro.toData().get("suministro"));
+        nodo.put("cantidadGasVespeno", gasVespeno.toData());
+        nodo.put("cantidadMineral", mineral.toData());
+        nodo.put("suministroActual", suministro.toData());
         return nodo;
     }
 

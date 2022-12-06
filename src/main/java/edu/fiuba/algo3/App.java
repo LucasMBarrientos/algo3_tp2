@@ -20,7 +20,8 @@ public class App extends Application {
     public void start(Stage stage){
         stage.setTitle("AlgoStar V 0.4.2");
         AlgoStar algoStar = new AlgoStar();
-
+        algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 1 con raza zerg", "Azul"));
+        algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 2 con raza protoss", "Rojo"));
         // Creacion de la pantalla principal
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
@@ -54,15 +55,13 @@ public class App extends Application {
         // Añadir el ImageView al panel principal de la pantalla
 
 
-
         // DEBUG_ code for debug purposes only
         boolean DEBUG_MODE = true;
         if (DEBUG_MODE) {
 
-            
 
-            algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 1 con raza zerg", "Azul"));
-            algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 2 con raza protoss", "Rojo"));
+
+
             algoStar.empezarJuego();
             pantallaPrincipal.actualizarMapa();
             stage.setScene(escenaJuego);
@@ -73,6 +72,7 @@ public class App extends Application {
             return;
         }
         // End of DEBUG_ code for debug purposes only
+
 
         stage.setScene(escenaBienvenidos);
         stage.show();

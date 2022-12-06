@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
@@ -19,7 +21,14 @@ public class JugadorProtoss extends Jugador {
     public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
         establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
-
+    public ObjectNode toData(){
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre", nombre);
+        node.put("inventario", inventario.toData());
+        node.put("raza","protoss");
+        node.put("color",color);
+        return node;
+    }
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Edificio edificioNuevo = edificio.construir(coordenada, inventario);
         try {

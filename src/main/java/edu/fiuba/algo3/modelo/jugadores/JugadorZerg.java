@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
@@ -27,7 +29,15 @@ public class JugadorZerg extends Jugador {
     public JugadorZerg(Inventario inventario) {
         this.inventario = inventario;
     }
+    public ObjectNode toData(){
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre", nombre);
+        node.put("inventario", inventario.toData());
+        node.put("raza","zerg");
+        node.put("color",color);
 
+        return node;
+    }
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
         edificio.construir(coordenada, inventario);
