@@ -50,8 +50,21 @@ public class AlgoStarView extends BorderPane {
         
         agregarBarraDelMenu(stage);
         pantallaJuego();
+        setPantallaDeStatsJugador();
         setPantallDeStats();
         crearBotonera();
+    }
+
+    private void setPantallaDeStatsJugador() {
+        Button pasarTurno = new Button("Pasar Turno");
+        BotonPasarTurnoHandler pasarTurnoHandler = new BotonPasarTurnoHandler(algoStar,this,stage);
+        pasarTurno.setOnAction(pasarTurnoHandler);
+
+        VBox contenedorHorizontal = new VBox(pasarTurno); // <- recibe las cosas como parámetro
+        contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setPadding(new Insets(10));
+
+        this.setRight(contenedorHorizontal);
     }
 
     private void setPantallDeStats() {
