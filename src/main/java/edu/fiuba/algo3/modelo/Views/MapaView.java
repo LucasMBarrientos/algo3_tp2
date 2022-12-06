@@ -42,9 +42,18 @@ public class MapaView {
     Image imagenMineral = new  Image("/imgMineral.jpg", 35, 35, false, false);
     Image imagenEnergizado = new  Image("/imgEnergizado.jpg", 35, 35, false, false);
     Image imagenEspecial = new  Image("/imgEspeciales.jpg", 35, 35, false, false);
-    Image imagenZangano = new  Image("/imgEnergizado.jpg", 10, 10, false, false);
-    
 
+    Image imagenAmoSupremo = new Image("/AmoSupremo.png", 10, 10, false, false);
+    Image imagenZangano = new Image("/Zangano.png", 10, 10, false, false);
+    Image imagenZerling = new Image("/Zerling.png", 10, 10, false, false);
+    Image imagenHidralisco = new Image("/Hidralisco.png", 10, 10, false, false);
+    Image imagenMutalisco = new Image("/Mutalisco.png", 10, 10, false, false);
+    Image imagenGuardian = new Image("/Guardian.png", 10, 10, false, false);
+    Image imagenDevorador = new Image("/Devorador.png", 10, 10, false, false);
+    Image imagenZealot = new Image("/Zealot.png", 10, 10, false, false);
+    Image imagenDragon = new Image("/Dragon.png", 10, 10, false, false);
+    Image imagenScout = new Image("/Scout.png", 10, 10, false, false);
+    
     public MapaView(Mapa mapa, AlgoStarView algoStarView) {
         this.mapa = mapa;
         this.algoStarView = algoStarView;
@@ -78,7 +87,6 @@ public class MapaView {
             String a = ocupante.get("Ocupante").get("nombre").asText();
             switch (ocupante.get("Ocupante").get("nombre").asText()){
                 case "Zangano":{
-                    System.out.println("Zangano");
                     ImageView imageZanganoSprite= new ImageView(imagenZangano);
                     imageZanganoSprite.setY(posY*separacion + 35/2);
                     imageZanganoSprite.setX(posX*separacion + 35/2);
@@ -90,25 +98,32 @@ public class MapaView {
                     //canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
                     break;
                 }
-                /*case "Vacio":{
-                    canvas.getGraphicsContext2D().setFill(Color.WHITE);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                case "Vacio":{
+                    ImageView imageZanganoSprite= new ImageView(imagenZangano);
+                    imageZanganoSprite.setY(posY*separacion + 35/2);
+                    imageZanganoSprite.setX(posX*separacion + 35/2);
+                    imageZanganoSprite.setOnMouseClicked(event ->  {
+                      System.out.println("Zangano");
+                    });
+                    ocupanteGroup.getChildren().add(imageZanganoSprite);
+                    //canvas.getGraphicsContext2D().setFill(Color.WHITE);
+                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                 }
                 case "Mineral":{
-                    canvas.getGraphicsContext2D().setFill(Color.GOLD);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    //canvas.getGraphicsContext2D().setFill(Color.GOLD);
+                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
                 case "Moho":{
-                    canvas.getGraphicsContext2D().setFill(Color.GREENYELLOW);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    //canvas.getGraphicsContext2D().setFill(Color.GREENYELLOW);
+                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
                 }
                 case "Volcan":{
-                    canvas.getGraphicsContext2D().setFill(Color.RED);
-                    canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
+                    //canvas.getGraphicsContext2D().setFill(Color.RED);
+                    //canvas.getGraphicsContext2D().fillRect(posX*separacion,posY*separacion,sizeX,sizeY);
                     break;
-                }*/
+                }
                 case "Desocupado":{
                     break;
                 }
