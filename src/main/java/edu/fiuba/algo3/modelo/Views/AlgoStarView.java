@@ -83,7 +83,7 @@ public class AlgoStarView extends BorderPane {
         limite = new Coordenada(100,20);
         Canvas escenaCentral = new Canvas(4000 ,4000);
 
-        mapaView = new MapaView(escenaCentral, mapa);
+        mapaView = new MapaView(escenaCentral, mapa, this);
         mapaView.dibujar();
 
         ScrollPane contenedorCentral = new ScrollPane(escenaCentral);

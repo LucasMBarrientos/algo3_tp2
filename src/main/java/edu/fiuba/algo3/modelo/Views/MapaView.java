@@ -19,11 +19,12 @@ import java.util.List;
 public class MapaView {
     Mapa mapa;
     Canvas canvas;
+    AlgoStarView algoStarView;
 
-
-    public MapaView(Canvas canvas, Mapa mapa) {
+    public MapaView(Canvas canvas, Mapa mapa, AlgoStarView algoStarView) {
         this.mapa = mapa;
         this.canvas = canvas;
+        this.algoStarView = algoStarView;
        // this.canvas.getGraphicsContext2D().setFill(Color.BLACK);
       //  this.canvas.getGraphicsContext2D().fillRect(-100,-100 , 100000,100000);
 
@@ -55,8 +56,13 @@ public class MapaView {
             String a = ocupante.get("Ocupante").get("nombre").asText();
             switch (ocupante.get("Ocupante").get("nombre").asText()){
                 case "Zangano":{
+                    //zangano = rectangulo
                     canvas.getGraphicsContext2D().setFill(Color.ORANGE);
                     canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
+                    /*zangano.setOnMouseClicked(e-> {
+                      algoStarView.setBottom(contenedorHorizontal);
+                    });
+                    zangano muestro;*/
                     break;
                 }
                 case "Vacio":{
