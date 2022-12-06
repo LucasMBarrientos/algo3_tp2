@@ -51,13 +51,7 @@ public class Zangano extends UnidadZerg {
       establecerEstado(new UnidadEnConstruccion());
   }
 
-    public void construirEdificio(EdificioZerg edificio, Coordenada coordenada) {
-        // TODO: Implementar esto
-    }
 
-    /*public void consumirRecursosParaGenerarse(Inventario inventario){
-
-    }*/
     public Unidad generarse(Edificio edificio, Inventario inventario){
         return edificio.generarUnidad(this, inventario);
     }

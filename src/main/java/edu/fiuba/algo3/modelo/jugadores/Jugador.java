@@ -121,6 +121,8 @@ public abstract class Jugador {
         this.id = id;
     }
 
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) { }
+
     public void actualizar() {
         inventario.actualizar();
     }
