@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.recursos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 
 public abstract class Recurso {
@@ -40,42 +39,4 @@ public abstract class Recurso {
 
     public abstract ObjectNode toData();
 
-
-
-
-/*
-    private int unidades;
-
-    public Recursos(int unidades) {
-        this.unidades = unidades;
-    }
-
-    public int devolverUnidades() {
-        return this.unidades;
-    }
-
-    public int restar(int unidadesAExtraer) {
-        int unidadesQueSeExtraeran = unidadesAExtraer;
-        if (unidadesAExtraer >= this.unidades) {
-            unidadesQueSeExtraeran = this.unidades;
-        }
-        int unidadesExtraidas = unidadesQueSeExtraeran;
-        this.unidades -= unidadesExtraidas;
-        return unidadesExtraidas;
-    }
-
-    public int restarTodo() {
-        int unidadesExtraidas = this.unidades;
-        this.unidades = 0;
-        return unidadesExtraidas;
-    }
-
-    public boolean agotado() {
-        return unidades == 0;
-    }
-
-    public void agregarUnidades(int nuevasUnidades) {
-        unidades += nuevasUnidades;
-    }
-*/
 }

@@ -3,11 +3,8 @@ package edu.fiuba.algo3.modelo.jugadores;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class JugadorProtoss extends Jugador {
 
@@ -33,7 +30,7 @@ public class JugadorProtoss extends Jugador {
         Edificio edificioNuevo = edificio.construir(coordenada, inventario);
         try {
             mapa.establecerEdificio(coordenada, edificioNuevo);
-        }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
+        } catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
@@ -47,6 +44,7 @@ public class JugadorProtoss extends Jugador {
     }
 
     protected void iniciarseEnMapa() {
+        return;
     }
 
     public String devolverMensajeDeVictoria() {
