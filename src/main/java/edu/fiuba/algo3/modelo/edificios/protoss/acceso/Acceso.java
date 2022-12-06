@@ -46,12 +46,6 @@ public class Acceso extends EdificioProtoss {
         return estadoActual.generarUnidad(unidad, inventario);
     }
 
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Acceso");
-        return node;
-    }
 
     public Unidad generarUnidad(Zerling unidad,Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();

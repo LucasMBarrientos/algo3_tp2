@@ -35,12 +35,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) { }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Reserva");
-        return node;
-    }
+
     public Unidad generarUnidad(Zerling unidad,Inventario inventario){
         return estadoActual.generarUnidad(unidad,inventario);
     }

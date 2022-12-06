@@ -26,14 +26,14 @@ public class PantallaBienvenida extends VBox {
     String colorTwo;
 
     public PantallaBienvenida(Stage stage, Scene escenaJuego, AlgoStar algoStar) {
-/*
+
         super();
 
         this.stage = stage;
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-*/
+
         Image imgFondo = new Image("/fondo1.jpg");
 
         BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(stage.getOutputScaleX(),stage.getMaxWidth(),true,true,true,true));

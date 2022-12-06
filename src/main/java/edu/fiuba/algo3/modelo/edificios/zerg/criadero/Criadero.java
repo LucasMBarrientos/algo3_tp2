@@ -44,12 +44,7 @@ public class Criadero extends EdificioZerg {
 
       return false;
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Criadero");
-        return node;
-    }
+
     public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
     }

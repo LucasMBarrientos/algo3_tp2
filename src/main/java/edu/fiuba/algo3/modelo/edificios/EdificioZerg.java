@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.edificios;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
@@ -40,6 +42,17 @@ public abstract class EdificioZerg extends Edificio {
 
     public void regenerar(){
       vida.regenerar();
+    }
+
+    public ObjectNode toData() {
+        ObjectNode node = Json.createObjectNode();
+        node.put("nombre", nombre.toData());
+        node.put("coordenada", coordenada.toData());
+        node.put("costoEnGasVespeno", costoEnGas.toData());
+        node.put("costoEnMinerales", costoEnMinerales.toData());
+        node.put("tiempoDeConstruccion", tiempoDeConstruccion);
+        node.put("vida", vida.toData());
+        return node;
     }
 
 }

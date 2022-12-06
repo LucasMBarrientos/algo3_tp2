@@ -34,12 +34,7 @@ public class Guarida extends EdificioZerg {
         this.nombre = new Nombre("Guarida");
         establecerEstado(this.estadoConstruccion);
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Guarida");
-        return node;
-    }
+
     public Unidad generarUnidad(Edificio edificioConLarvas, GasVespeno gasVespenoDelJugador, Mineral mineralDelJugador, Coordenada coordenada) {
         return null;
     }

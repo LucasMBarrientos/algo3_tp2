@@ -5,20 +5,17 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.ManejoContinuacionDeCreacionDeJugadores;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class PantallaDeCreacionDeJugador extends VBox {
@@ -29,9 +26,12 @@ public class PantallaDeCreacionDeJugador extends VBox {
     ChoiceBox<String> controlParaElegirColor = new ChoiceBox<String>();
     ChoiceBox<String> controlParaElegirRaza = new ChoiceBox<String>();
     String colorElegido;
+
+
     String razaElegida;
     TextField casillaDeTextoParaNombre = new TextField();
     private Button botonParaContinuar;
+
 
     public PantallaDeCreacionDeJugador(Stage pantalla, Scene proximaEscena, AlgoStar algoStar, Boolean esElPrimerJugador) {
         super();
@@ -43,13 +43,24 @@ public class PantallaDeCreacionDeJugador extends VBox {
         this.establecerFondo();
         this.agregarCasillaDeTextoParaNombre();
         this.agregarControlParaSeleccionarColor();
+
         this.agregarControlParaSeleccionarRaza();
         this.agregarBotonParaContinuar(proximaEscena, esElPrimerJugador);
     }
 
 
     private void agregarCasillaDeTextoParaNombre() {
+        Label etiqueta = new Label();
+        etiqueta.setFont (Font.font("Tahoma", FontWeight.BOLD, 22));
+        etiqueta.setText ("  Insertar un nombre\nMINIMO 6 Caracteres\nMAXIMO 15 Caracteres ");
+        // etiqueta.setTextFill(Color.web("#6A7C5"));
+        casillaDeTextoParaNombre.setMaxWidth(140);
+        addTextLimiter(casillaDeTextoParaNombre,15);
+        casillaDeTextoParaNombre.setPromptText("Ejemplo:Chaqueño");
+
+        this.getChildren().add(etiqueta);
         this.getChildren().add(casillaDeTextoParaNombre);
+
     }
 
     private void agregarControlParaSeleccionarColor() {
@@ -58,6 +69,7 @@ public class PantallaDeCreacionDeJugador extends VBox {
         colores.add("Violeta");
         colores.add("Rojo");
         colores.add("Azul");
+
         controlParaElegirColor.getItems().addAll(colores);
         controlParaElegirColor.setValue("Elegir un color");
         controlParaElegirColor.setOnAction(this::seleccionarColor);
@@ -71,6 +83,8 @@ public class PantallaDeCreacionDeJugador extends VBox {
         controlParaElegirRaza.setOnAction(this::seleccionarRaza);
         this.getChildren().add(controlParaElegirRaza);
     }
+
+
 
     private void agregarBotonParaContinuar(Scene proximaEscena, boolean esElPrimerJugador) {
         this.botonParaContinuar = new Button();
@@ -89,8 +103,10 @@ public class PantallaDeCreacionDeJugador extends VBox {
             controlParaElegirRaza,
             esElPrimerJugador
         );
+
         botonParaContinuar.setOnAction(manejoCotinuacionDeCreacionDeJugadores);
         this.getChildren().add(botonParaContinuar);
+
     }
 
     private void establecerFondo() {
@@ -100,12 +116,11 @@ public class PantallaDeCreacionDeJugador extends VBox {
                 imageView.setImage(bgImage);
                 imageView.setFitHeight(780);
                 imageView.setFitWidth(1620);
-                this.getChildren().add(imageView);
+
         */
 
         Image imgFondo = new Image("/fondo1.jpg");
-        //BackgroundImage fondo = new BackgroundImage(iconoZerg, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
+         BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
 
         this.setBackground(new Background(fondo));
         // this.setStyle("-fx-background: #7d7d7d; -fx-border-color: #7d7d7d;");
@@ -115,10 +130,24 @@ public class PantallaDeCreacionDeJugador extends VBox {
 
     public void seleccionarColor(ActionEvent e){
         this.colorElegido = controlParaElegirColor.getSelectionModel().getSelectedItem();
+
     }
 
     public void seleccionarRaza(ActionEvent e){
         this.razaElegida = controlParaElegirColor.getSelectionModel().getSelectedItem();
     }
-    
+    public static void addTextLimiter(final TextField tf, final int maxLength) {
+        tf.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (tf.getText().length() > maxLength) {
+                    String s = tf.getText().substring(0, maxLength);
+                    tf.setText(s);
+                }
+            }
+        });
+    }
+
 }
+
+

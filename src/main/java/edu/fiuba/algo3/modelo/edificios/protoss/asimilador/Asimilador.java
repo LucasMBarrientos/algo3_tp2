@@ -73,12 +73,8 @@ public class Asimilador extends EdificioProtoss {
     public Unidad generarUnidad(AmoSupremo unidad, Inventario inventario) throws EdificioNoConoceEstaUnidad {
         throw new  EdificioNoConoceEstaUnidad();
     }
-    @Override
-    public ObjectNode toData() {
-        ObjectNode node = Json.createObjectNode();
-        node.put("nombre","Asimilador");
-        return node;
-    }
+
+
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
     }
 

@@ -56,9 +56,6 @@ public class AlgoStarView extends BorderPane {
         reproductorDeSonidos.reproducirSonido("/bg.mp3");
     }
 
-
-
-
     private void setPantallDeStats() {
         //Aca iría las cosas de la pantalla de stats
 
