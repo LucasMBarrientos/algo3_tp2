@@ -38,7 +38,6 @@ public class JugadorProtoss extends Jugador {
     }
 
     protected void iniciarseEnMapa() {
-        //  TODO: Spawnear alguna unidad inicial si hace falta
     }
 
     public String devolverMensajeDeVictoria() {

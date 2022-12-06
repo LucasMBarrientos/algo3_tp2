@@ -79,4 +79,8 @@ public class JugadorMock extends Jugador {
         Unidad unidad = terrenoUnidad.DEBUG_DEVOLERUNIDAD();
         unidad.moverse(direccion,mapa);
     }
+
+    public String devolverMensajeDeVictoria() {
+        return "";
+    }
 }

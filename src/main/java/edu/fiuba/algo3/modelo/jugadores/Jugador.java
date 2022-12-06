@@ -76,9 +76,9 @@ public abstract class Jugador {
         return this.color.equals(color);
     }
 
-    protected void compararRaza(Jugador jugador) throws RazaYaElegidaPorElOtroJugador {
+    protected void compararRaza(Jugador jugador) throws RazaInvalida {
         if (this.getClass() == jugador.getClass()) {
-            throw new RazaYaElegidaPorElOtroJugador();
+            throw new RazaInvalida();
         }
     }
 
@@ -115,11 +115,15 @@ public abstract class Jugador {
         }
     }
 
+    public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){}
+
     protected abstract void iniciarseEnMapa();
 
     public void establecerId(int id) {
         this.id = id;
     }
+
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) { }
 
     public void actualizar() {
         inventario.actualizar();

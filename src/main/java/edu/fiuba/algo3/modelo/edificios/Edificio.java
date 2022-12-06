@@ -71,13 +71,13 @@ public abstract class Edificio {
 
     public abstract void actualizarEdificio(Inventario inventario);
 
-    public void ingresarUnidad(Zangano zangano) {
-      estadoActual.ingresarUnidad(zangano);
+    public void ingresarUnidad(Unidad unidad) {
+      estadoActual.ingresarUnidad(unidad);
     }
 
-    public void ingresarUnidadTrabajadora(Zangano zangano) {
+    public void ingresarUnidadTrabajadora(Unidad unidad) {
         return;
-    };
+    }
 
     public abstract Unidad generarUnidad(Zerling unidad,Inventario inventario);
     public abstract Unidad generarUnidad(Zangano unidad,Inventario inventario);

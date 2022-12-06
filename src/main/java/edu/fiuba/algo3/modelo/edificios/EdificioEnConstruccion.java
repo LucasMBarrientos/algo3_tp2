@@ -49,9 +49,7 @@ public class EdificioEnConstruccion implements EstadoEdificio {
   }
 
   @Override
-  public void ingresarUnidad(Zangano zangano) {
-    // TODO Auto-generated method stub
-    
+  public void ingresarUnidad(Unidad unidad) {
   }
 
   @Override

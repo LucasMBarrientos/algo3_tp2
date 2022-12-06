@@ -1,10 +1,16 @@
 package edu.fiuba.algo3.modelo.Views;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
+import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Jugador;
+import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
+import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,7 +51,13 @@ public class AlgoStarView extends BorderPane {
         pantallaJuego();
         setPantallDeStats();
         crearBotonera();
+
+        ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
+        reproductorDeSonidos.reproducirSonido("/bg.mp3");
     }
+
+
+
 
     private void setPantallDeStats() {
         //Aca iría las cosas de la pantalla de stats

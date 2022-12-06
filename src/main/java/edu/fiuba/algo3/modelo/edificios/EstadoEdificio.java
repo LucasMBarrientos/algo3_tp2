@@ -14,7 +14,7 @@ public interface EstadoEdificio {
 
     Unidad generarUnidad(Unidad unidad, Inventario inventario);
     
-    void ingresarUnidad(Zangano zangano);
+    void ingresarUnidad(Unidad unidad);
 
     void recibirDanio(Danio danio);
 

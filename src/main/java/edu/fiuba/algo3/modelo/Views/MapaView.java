@@ -12,15 +12,25 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MapaView {
+/*
+    var player = javafx.scene.media.MediaPlayer {
+        repeatCount: javafx.scene.media.MediaPlayer.REPEAT_FOREVER
+        media: Media { source: "{\_\_DIR\_\_}clip.wav"
+        };
+    };
+    */
     Mapa mapa;
     AlgoStarView algoStarView;
     Group info = new Group();
