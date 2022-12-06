@@ -1,15 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
@@ -17,8 +12,6 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
-import edu.fiuba.algo3.modelo.terrenos.*;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

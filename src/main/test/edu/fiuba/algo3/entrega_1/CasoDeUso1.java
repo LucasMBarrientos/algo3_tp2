@@ -1,30 +1,17 @@
 package edu.fiuba.algo3.entrega_1;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.Jugador;
-import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
-import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
-import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class CasoDeUso1 {
-
 
 	@Test
     public void criaderoGeneraTresZanganosYNoPuedeGenerarMasEnEseTurno() {
@@ -41,10 +28,12 @@ public class CasoDeUso1 {
         criadero.generarUnidad(new Zangano(),inv);
         criadero.generarUnidad(new Zangano(),inv);
         criadero.generarUnidad(new Zangano(),inv);
+
         Assertions.assertThrows(NoHayLarvasSuficientes.class, ()->{
             criadero.generarUnidad(new Zangano(),inv);
         });
     }
+
 	@Test
     public void criaderoGeneraTresZanganosYTrasUnTurnoDeberiaPoderGenerarHastaUnZanganoMas() {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
@@ -62,6 +51,7 @@ public class CasoDeUso1 {
             criadero.generarUnidad(new Zangano(),inv);
         });
     }
+
 	@Test
     public void unCriaderoNuncaVaATenerMasDe3LarvasALaVez() {
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
@@ -77,4 +67,5 @@ public class CasoDeUso1 {
             criadero.generarUnidad(new Zangano(),inv);
         });
     }
+    
 }
