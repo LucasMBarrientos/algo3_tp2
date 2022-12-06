@@ -39,6 +39,7 @@ public class BotonPasarTurnoHandler implements EventHandler<ActionEvent> {
             Scene escenarioFinDelJuego = new Scene(pantallaFinDelJuego,1620,780);
             pantalla.setScene(escenarioFinDelJuego);
         }
+        algoStarView.setBottom(algoStarView.crearBotoneraVacia());
         algoStarView.actualizarMapa();
     }
     
