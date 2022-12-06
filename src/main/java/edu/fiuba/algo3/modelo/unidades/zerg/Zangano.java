@@ -71,7 +71,9 @@ public class Zangano extends UnidadZerg {
     @Override
     public void actualizarUnidad(Inventario inventario) {
       regenerar();
-      extraerRecursos(inventario);
+      if(terreno != null){
+          extraerRecursos(inventario);
+      }
     }
 
 }

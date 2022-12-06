@@ -39,6 +39,9 @@ public class MapaView {
     Group info = new Group();
     private Group terrenoGroup = new Group();
     private Group ocupanteGroup = new Group();
+
+
+    //#region Imagenes
     Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);
     Image imagenVolcan = new  Image("/imgVolcan.jpg", 35, 35, false, false);
     Image imagenMoho = new  Image("/imgMoho.jpg", 35, 35, false, false);

@@ -123,10 +123,12 @@ public class AlgoStarView extends BorderPane {
         this.setLeft(contenedorHorizontal);
     }
 
-    public void crearBotoneraVacia() {
+    public HBox crearBotoneraVacia() {
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
+
+        return contenedorHorizontal;
     }
     public void crearBotoneraAmoSupremo(Coordenada coordenada) {
       new BotoneraAmoSupremo(algoStar, this, coordenada);

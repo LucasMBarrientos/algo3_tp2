@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
@@ -26,9 +27,9 @@ public class BotonMoverDerechaHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent evento) {
         try {
             algoStar.devolverJugadorActual().moverUnidad(coordenadaActual, new Derecha());
-        } catch (CoordenadaFueraDelMapa | TerrenoNoAptoParaTalUnidad exeption) {
+        } catch (CoordenadaFueraDelMapa | UnidadNoEncontrada | TerrenoNoAptoParaTalUnidad exeption) {
         }
-
+        algoStarView.setBottom(algoStarView.crearBotoneraVacia());
         algoStarView.actualizarMapa();
     }
 }
