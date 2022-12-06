@@ -116,6 +116,10 @@ public abstract class Edificio {
         return;
     }
 
+    public void destruirse(Inventario inv){
+        inv.eliminarEdificio(coordenada);
+    }
+
     public void ingresarUnidadTrabajadora(Unidad unidad) {
         return;
     }
