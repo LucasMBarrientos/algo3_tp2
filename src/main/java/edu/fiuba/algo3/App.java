@@ -60,7 +60,7 @@ public class App extends Application {
 
 
         // DEBUG_ code for debug purposes only
-        boolean DEBUG_MODE = true;
+        boolean DEBUG_MODE = false;
         if (DEBUG_MODE) {
             algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 1 con raza protoss", "Rojo"));
             algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 2 con raza zerg", "Azul"));

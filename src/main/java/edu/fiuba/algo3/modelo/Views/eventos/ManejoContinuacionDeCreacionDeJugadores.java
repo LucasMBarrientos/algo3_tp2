@@ -27,7 +27,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
     private Stage pantalla;
     private Scene SiguienteEscena;
 
-    public ManejoContinuacionDeCreacionDeJugadores(Stage pantalla, Scene SiguienteEscena, AlgoStar algoStar, AlgoStarView algoStarView , TextField casillaDeTextoParaNombre, ChoiceBox<String> controlParaElegirColor, ChoiceBox<String> controlParaElegirRaza, boolean esElPrimerJugador){
+    public ManejoContinuacionDeCreacionDeJugadores(Stage pantalla, Scene SiguienteEscena, AlgoStar algoStar, AlgoStarView algoStarView , TextField casillaDeTextoParaNombre, ChoiceBox<String> controlParaElegirColor, ChoiceBox<String> controlParaElegirRaza, boolean esElPrimerJugador) {
         this.pantalla = pantalla;
         this.SiguienteEscena = SiguienteEscena;
         this.algoStar = algoStar;
@@ -79,6 +79,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
             alert.setTitle("Nombre invalido");
             alert.setHeaderText("El nombre \"" + nombreElegido + "\" es invalido.\nRecuerde que los nombres de los jugadores deben tener seis letras.");
             alert.setContentText("Nombre de jugador Inválido, vuelva a intentarlo");
+            alert.initOwner(pantalla);
             alert.show();
         } catch(RazaInvalida e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
