@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
 import edu.fiuba.algo3.modelo.Views.PantallaDeCreacionDeJugador;
+import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import javafx.application.Application;
@@ -65,6 +66,9 @@ public class App extends Application {
             algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 2 con raza zerg", "Azul"));
             algoStar.empezarJuego();
             stage.setScene(escenaJuego);
+
+            ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
+            reproductorDeSonidos.reproducirSonido("/bg.mp3");
             stage.show();
             return;
         }
