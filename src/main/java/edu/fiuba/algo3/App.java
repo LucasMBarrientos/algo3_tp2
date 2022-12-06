@@ -21,8 +21,6 @@ public class App extends Application {
         stage.setTitle("AlgoStar V 0.4.2");
         AlgoStar algoStar = new AlgoStar();
 
-
-
         // Creacion de la pantalla principal
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
@@ -37,12 +35,10 @@ public class App extends Application {
         Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1620, 780);
 
 
-
-
-
         // Creacion de la pantalla de bienvenida
         PantallaBienvenida pantallaBienvenida = new PantallaBienvenida(stage, escenaDeCreacionDelJugadorProtoss, algoStar);
         Scene escenaBienvenidos = new Scene(pantallaBienvenida,1280,720);
+
 
       /*
 
@@ -60,8 +56,12 @@ public class App extends Application {
 
 
         // DEBUG_ code for debug purposes only
-        boolean DEBUG_MODE = true;
+        boolean DEBUG_MODE = false;
         if (DEBUG_MODE) {
+
+            
+
+
             algoStar.agregarJugador(new JugadorProtoss("Nombre del jugador 1 con raza protoss", "Rojo"));
             algoStar.agregarJugador(new JugadorZerg("Nombre del jugador 2 con raza zerg", "Azul"));
             algoStar.empezarJuego();
