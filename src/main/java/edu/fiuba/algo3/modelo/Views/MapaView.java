@@ -57,6 +57,19 @@ public class MapaView {
     Image imagenDragon = new Image("/Dragon.png", 10, 10, false, false);
     Image imagenScout = new Image("/Scout.png", 10, 10, false, false);
     
+    Image imagenCriadero = new Image("/Criadero.png", 10, 10, false, false);
+    Image imagenReservaDeReproduccion = new Image("/ReservaDeReproduccion.png", 35, 35, false, false);
+    Image imagenExtractor = new Image("/Extractor.png", 10, 10, false, false);
+    Image imagenGuarida = new Image("/Guarida.png", 10, 10, false, false);
+    Image imagenEspiral = new Image("/Espiral.png", 10, 10, false, false);
+    Image imagenNexoMineral = new Image("/NexoMineral.png", 10, 10, false, false);
+    Image imagenPilon = new Image("/Pilon.png", 10, 10, false, false);
+    Image imagenAsimilador = new Image("/Asimilador.png", 10, 10, false, false);
+    Image imagenAcceso = new Image("/Acceso.png", 10, 10, false, false);
+    Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 10, 10, false, false);
+    
+
+
     public MapaView(Mapa mapa, AlgoStarView algoStarView) {
         this.mapa = mapa;
         this.algoStarView = algoStarView;
