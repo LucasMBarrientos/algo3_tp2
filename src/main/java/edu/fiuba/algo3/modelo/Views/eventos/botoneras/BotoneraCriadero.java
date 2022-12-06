@@ -17,10 +17,15 @@ import java.util.List;
 
 public class BotoneraCriadero extends HBox {
     public BotoneraCriadero(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
+        HBox contenedorHorizontal = new HBox();  
         List<VBox> buttons = crearBotones(algoStar, algoStarView, coordenada);
-
-        HBox contenedorHorizontal = new HBox();
+        
+        Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
+        Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+        VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
+        
         contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().add(coordenadaBox);
         contenedorHorizontal.getChildren().addAll(buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
