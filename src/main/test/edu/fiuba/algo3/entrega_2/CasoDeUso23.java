@@ -1,23 +1,19 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
-import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class CasoDeUso23 {
     

@@ -2,17 +2,10 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.*;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

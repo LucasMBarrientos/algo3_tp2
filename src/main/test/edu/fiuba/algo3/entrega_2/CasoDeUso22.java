@@ -1,25 +1,13 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;

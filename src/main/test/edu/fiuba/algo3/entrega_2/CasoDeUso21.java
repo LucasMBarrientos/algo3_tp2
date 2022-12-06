@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
