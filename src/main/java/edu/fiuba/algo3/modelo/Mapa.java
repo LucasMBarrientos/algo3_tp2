@@ -251,10 +251,11 @@ public class Mapa {
         int longitudX = this.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
-            if(contadorDeLinea >= longitudX){
+             if(contadorDeLinea >= longitudX){
                 ObjectNode node2 = Json.createObjectNode();
                 ObjectNode node = Json.createObjectNode();
-                node.put("Ocupante",node2.put("nombre","cambioDeLinea"));
+                node2.put("nombre","cambioDeLinea");
+                node.put("Ocupante",node2);
                 mapaEnString.add(node);
                 contadorDeLinea = 0;
             }

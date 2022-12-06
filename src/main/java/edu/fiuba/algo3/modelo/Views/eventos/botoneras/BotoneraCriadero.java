@@ -16,15 +16,21 @@ import java.util.List;
 public class BotoneraCriadero extends HBox {
     public BotoneraCriadero(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
         List<Button> buttons = crearBotones(algoStar, algoStarView, coordenada);
-        HBox contenedorHorizontal = new HBox((Node) buttons);
+
+        HBox contenedorHorizontal = new HBox();
+        contenedorHorizontal.getChildren().clear();
+        contenedorHorizontal.getChildren().addAll(buttons);
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(25));
+        algoStarView.setBottom(contenedorHorizontal);
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenada){
 
         Button generarZangano = new Button();
+        generarZangano.setText("generar Zangano");
         Button generarAmoSupremo = new Button();
+        generarAmoSupremo.setText("generar Amo Supremo");
 
         BotonGenerarZanganoHandler botonGenerarZanganoHandler = new BotonGenerarZanganoHandler(algoStar, algoStarView, coordenada);
         generarZangano.setOnAction(botonGenerarZanganoHandler);

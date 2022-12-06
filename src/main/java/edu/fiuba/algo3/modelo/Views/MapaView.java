@@ -107,6 +107,21 @@ public class MapaView {
                     //canvas.getGraphicsContext2D().fillRect(posX*separacion + 35/2,posY*separacion + 35/2 ,sizeX,sizeY);
                     break;
                 }
+                case "Criadero":{
+                  System.out.println("Criadero");
+                    ImageView imageCriaderoSprite= new ImageView(imagenVolcan);
+                    imageCriaderoSprite.setY(posY*separacion);
+                    imageCriaderoSprite.setX(posX*separacion);
+                    imageCriaderoSprite.setOnMouseClicked(event ->  {
+                      System.out.println(ocupante);
+                      int x = ocupante.get("Ocupante").get("coordenada").get("x").asInt();
+                      int y = ocupante.get("Ocupante").get("coordenada").get("y").asInt();
+                      Coordenada coor = new Coordenada(x,y);
+                      algoStarView.crearBotoneraCriadero(coor);
+                    });
+                    ocupanteGroup.getChildren().add(imageCriaderoSprite);
+                    break;
+                }
                 case "Vacio":{
                     ImageView imageZanganoSprite= new ImageView(imagenZangano);
                     imageZanganoSprite.setY(posY*separacion + 35/2);

@@ -6,6 +6,13 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraAcceso;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraAtaque;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraCriadero;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEnergizadoProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEspiral;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraGuarida;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraVaciaProtoss;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.edificios.zerg.criadero.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -84,10 +91,29 @@ public class AlgoStarView extends BorderPane {
         this.setBottom(contenedorHorizontal);
     }
 
-
     public void crearBotoneraZangano(Coordenada coordenada) {
-      BotoneraZangano botonera = new BotoneraZangano(algoStar, this,coordenada);
-      
+      new BotoneraZangano(algoStar, this,coordenada);
+    }
+    public void crearBotoneraCriadero(Coordenada coordenada) {
+      new BotoneraCriadero(algoStar, this,coordenada);
+    }
+    public void crearBotoneraAcceso(Coordenada coordenada) {
+      new BotoneraAcceso(algoStar, this,coordenada);
+    }
+    public void crearBotoneraVaciaProtoss(Coordenada coordenada) {
+      new BotoneraVaciaProtoss(algoStar, this,coordenada);
+    }
+    public void crearBotoneraAtaque(Coordenada coordenada) {
+      new BotoneraAtaque(algoStar, this,coordenada);
+    }
+    public void crearBotoneraEnergizadoProtoss(Coordenada coordenada) {
+      new BotoneraEnergizadoProtoss(algoStar, this,coordenada);
+    }
+    public void crearBotoneraEspiral(Coordenada coordenada) {
+      new BotoneraEspiral(algoStar, this,coordenada);
+    }
+    public void crearBotoneraGuarida(Coordenada coordenada) {
+      new BotoneraGuarida(algoStar, this,coordenada);
     }
 
     private void setMenu(Stage stage){
