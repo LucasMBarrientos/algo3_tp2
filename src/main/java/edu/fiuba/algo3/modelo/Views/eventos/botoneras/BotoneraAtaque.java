@@ -18,9 +18,11 @@ public class BotoneraAtaque extends HBox{
     public BotoneraAtaque(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada, TextField textFields1, TextField textField2){
         List<TextField> textFields = crearTextField();
         Button buttons = crearBoton(algoStar, algoView, coordenada,  textFields1, textField2);
-        HBox contenedorHorizontal = new HBox((Node) textFields,buttons);
-        contenedorHorizontal.setSpacing(10);
-        contenedorHorizontal.setPadding(new Insets(25));
+        this.getChildren().clear();
+        this.getChildren().addAll(textFields1,textField2);
+        this.getChildren().addAll(buttons);
+        this.setSpacing(10);
+        this.setPadding(new Insets(25));
     }
 
     private List<TextField> crearTextField(){
