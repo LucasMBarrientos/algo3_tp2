@@ -57,8 +57,11 @@ public class BotoneraUnidadNormal extends HBox {
         BotonMoverDerechaHandler botonMoverDerechaHandler = new BotonMoverDerechaHandler(algoStar, algoView, coordenada);
         moverDerecha.setOnAction(botonMoverDerechaHandler);
 
-        BotonEmpezarAtaqueHandler botonAtacarHandler = new BotonEmpezarAtaqueHandler( algoStar,  algoView,  coordenada);
-        atacar.setOnAction(botonAtacarHandler);
+        //BotonEmpezarAtaqueHandler botonAtacarHandler = new BotonEmpezarAtaqueHandler( algoStar,  algoView,  coordenada);
+        //BotonEmpezarAtaqueHandler botonAtacarHandler = 
+        atacar.setOnAction(event ->  {
+          algoView.ataque(coordenada);
+        });
 
 
 

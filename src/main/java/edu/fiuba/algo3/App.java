@@ -23,17 +23,22 @@ public class App extends Application {
         // Creacion de la pantalla principal
         AlgoStarView pantallaPrincipal = new AlgoStarView(stage, algoStar);
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
+        String css = this.getClass().getResource("/prueba.css").toExternalForm();
+        escenaJuego.getStylesheets().add(css);
+        System.out.println(css);
         // Creacion de las pantallas de creacion de jugadoress
         List<Integer> coloresRemovidos = new ArrayList<Integer>();
         List<Integer> razasRemovidas = new ArrayList<Integer>();
         PantallaDeCreacionDeJugador pantallaInicialDelJugadorZerg = new PantallaDeCreacionDeJugador(stage, escenaJuego, algoStar, pantallaPrincipal, coloresRemovidos, razasRemovidas);
         Scene escenaDeCreacionDelJugadorZerg = new Scene(pantallaInicialDelJugadorZerg, 1620, 780);
+        escenaDeCreacionDelJugadorZerg.getStylesheets().add(css);
         PantallaDeCreacionDeJugador pantallaInicialDelJugadorProtoss = new PantallaDeCreacionDeJugador(stage, escenaDeCreacionDelJugadorZerg, algoStar, pantallaPrincipal, coloresRemovidos, razasRemovidas);
         Scene escenaDeCreacionDelJugadorProtoss = new Scene(pantallaInicialDelJugadorProtoss, 1620, 780);
+        escenaDeCreacionDelJugadorProtoss.getStylesheets().add(css);
         // Creacion de la pantalla de bienvenida
         PantallaBienvenida pantallaBienvenida = new PantallaBienvenida(stage, escenaDeCreacionDelJugadorProtoss, algoStar);
         Scene escenaBienvenidos = new Scene(pantallaBienvenida,1280,720);
-
+        escenaBienvenidos.getStylesheets().add(css);
         stage.setScene(escenaBienvenidos);
         stage.show();
     }

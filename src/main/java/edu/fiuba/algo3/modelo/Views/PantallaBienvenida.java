@@ -38,10 +38,11 @@ public class PantallaBienvenida extends VBox {
 
         Button boton = new Button();
         boton.setText("Comenzar Partida");
+        boton.getStyleClass().add("btn-comenzar");
         BotonBienvenida botonBienvenida = new BotonBienvenida(stage,escenaJuego,algoStar);
         boton.setOnAction(botonBienvenida);
         Button botonParaSalir = new Button("Salir del juego");
-
+        botonParaSalir.getStyleClass().add("btn-salir");
         OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
         botonParaSalir.setOnAction(opcionSalirEventHandler);
 

@@ -248,8 +248,21 @@ public class AlgoStarView extends BorderPane {
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
-    
-    
+    public void ataque(Coordenada coordenadaUnidad){
+      this.contenedorCentral.setContent(mapaView.dibujar(true, coordenadaUnidad));
+    }
+
+    public void realizarAtaque(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo){
+      System.out.println("Jugador en: ");
+      System.out.println("x: " + coordenadaUnidad.devolverX());
+      System.out.println("y: " + coordenadaUnidad.devolverY());
+      System.out.println("ataca a: ");
+      System.out.println("x: " + coordenadaObjetivo.devolverX());
+      System.out.println("y: " + coordenadaObjetivo.devolverY());
+      algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
+      this.contenedorCentral.setContent(mapaView.dibujar());
+      //algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
+    }
 
     private void agregarBarraDelMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);

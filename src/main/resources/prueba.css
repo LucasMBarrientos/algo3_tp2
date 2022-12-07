@@ -1,0 +1,57 @@
+.terreno-vacio {
+  -fx-border-width: 5px;
+  -fx-border-color: red;;
+}
+
+.btn-comenzar { 
+	-fx-background-radius: 8;
+	-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #c49c4b 0%, #e0be8b 50%, #c49c4b 100%);
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.5, 2, 2);
+	-fx-font-weight: bold;
+	-fx-font-size: 20px;
+	-fx-text-fill: white;
+	-fx-margin: 20px 10px;
+  -fx-pref-width: 400px;
+	-fx-cursor: pointer;
+}
+
+.btn-comenzar:hover { 
+	-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #c49c4b9f 0%, #e0be9f 50%, #c49c9f 100%);
+}
+
+.btn-salir{
+  -fx-background-radius: 8;
+	-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #c44f4b 0%, #e04f8b 50%, #c44f4b 100%);
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.5, 2, 2);
+	-fx-font-weight: bold;
+	-fx-font-size: 20px;
+	-fx-text-fill: white;
+	-fx-margin: 20px 10px;
+  -fx-pref-width: 400px;
+	-fx-cursor: pointer;
+}
+
+.btn-salir:hover{
+	-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #c44f9f 0%, #e04f9f 50%, #c44f9f 100%);
+}
+
+.choice-box {
+  -fx-background-color: rgb(255, 255, 255);
+  -fx-mark-color: orange;
+} 
+
+.tooltip{
+  -fx-pref-width: 200px;
+  -fx-font-size: 20;
+}
+
+.form-label {
+  -fx-font-weight: bold;
+  -fx-font-size: 50;
+	-fx-text-fill: rgb(0, 0, 0);
+	-fx-margin: 20px 10px;
+}
+
+.nombre-input {
+  -fx-background-color: rgb(255, 255, 255);
+}
