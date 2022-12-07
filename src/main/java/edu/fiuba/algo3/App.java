@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
 import edu.fiuba.algo3.modelo.Views.PantallaDeCreacionDeJugador;
-import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -1,45 +1,26 @@
 package edu.fiuba.algo3.modelo.Views;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Json;
+
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MapaView {
-/*
-    var player = javafx.scene.media.MediaPlayer {
-        repeatCount: javafx.scene.media.MediaPlayer.REPEAT_FOREVER
-        media: Media { source: "{\_\_DIR\_\_}clip.wav"
-        };
-    };
-    */
+
     Mapa mapa;
     AlgoStarView algoStarView;
     Group info = new Group();
     private Group terrenoGroup = new Group();
     private Group ocupanteGroup = new Group();
-
 
     //#region Imagenes
     Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);

@@ -1,37 +1,25 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import edu.fiuba.algo3.modelo.excepciones.NoHayTerrenoDisponibleParaGenerarUnidad;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visible;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.SuperficieRectangular;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
-
-
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
 
@@ -107,13 +95,11 @@ public class Mapa {
     }
 
     public void establecerUnidad(Coordenada coordenada, Unidad unidad){
-        if(!unidad.ocupar(buscarTerreno(coordenada))){
+        if (!unidad.ocupar(buscarTerreno(coordenada))) {
             throw new TerrenoNoAptoParaTalUnidad();
         }
-
     }
 
-    
     public void eliminarEdificio(Coordenada coordenada){
         buscarTerreno(coordenada).eliminarEdificio();
     }

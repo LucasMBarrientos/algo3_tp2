@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonConstruirPilonHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

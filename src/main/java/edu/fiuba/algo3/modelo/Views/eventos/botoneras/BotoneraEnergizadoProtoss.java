@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonConstruirPilonH
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonConstruirPuertoEstelarHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -54,7 +53,6 @@ public class BotoneraEnergizadoProtoss extends HBox {
         Label costoMineralPuertoEstelar  = new Label("COSTO MINERAL: 150");
         VBox generarPuertoEstelarbox = new VBox(costoGasPuertoEstelar,costoMineralPuertoEstelar,construirPuertoEstelar);
 
-
         BotonConstruirPilonHandler botonConstruirPilonHandler = new BotonConstruirPilonHandler(algoStar, algoStarView, coordenada);
         construirPilon.setOnAction(botonConstruirPilonHandler);
 
@@ -64,7 +62,6 @@ public class BotoneraEnergizadoProtoss extends HBox {
         BotonConstruirPuertoEstelarHandler botonConstruirPuertoEstelarHandler = new BotonConstruirPuertoEstelarHandler(algoStar, algoStarView, coordenada);
         construirPuertoEstelar.setOnAction(botonConstruirPuertoEstelarHandler);
 
-
         List<VBox> botones = new ArrayList<>();
         botones.add(generarPilonbox);
         botones.add(generarAccesobox);
@@ -72,4 +69,5 @@ public class BotoneraEnergizadoProtoss extends HBox {
 
         return botones;
     }
+    
 }

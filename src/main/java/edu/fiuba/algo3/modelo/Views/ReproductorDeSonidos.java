@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Views;
 
-import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
 import javafx.scene.media.Media;

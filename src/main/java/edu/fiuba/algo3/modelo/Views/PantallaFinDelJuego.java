@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 public class PantallaFinDelJuego extends VBox {

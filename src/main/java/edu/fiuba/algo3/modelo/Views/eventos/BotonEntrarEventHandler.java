@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Views.eventos;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
@@ -9,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -65,8 +63,5 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
         }
 
     }
-
-
-
 
 }

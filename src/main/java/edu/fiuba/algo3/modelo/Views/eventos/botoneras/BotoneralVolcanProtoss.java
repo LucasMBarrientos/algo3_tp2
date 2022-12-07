@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Views.eventos.botoneras;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonConstruirAsimiladorHandler;
-import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonConstruirNexoMineralHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

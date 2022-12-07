@@ -5,10 +5,8 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.excepciones.NoSePuedenAgregarMasJugadores;
-import edu.fiuba.algo3.modelo.excepciones.NombreDeJugadorInvalido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
-import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 
 public class AlgoStar {
 

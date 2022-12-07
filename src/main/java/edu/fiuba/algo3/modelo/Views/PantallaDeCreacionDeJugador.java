@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.ManejoContinuacionDeCreacionDeJugadores;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

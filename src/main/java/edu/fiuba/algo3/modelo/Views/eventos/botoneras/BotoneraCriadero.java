@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonGenerarAmoSupre
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonGenerarZanganoHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

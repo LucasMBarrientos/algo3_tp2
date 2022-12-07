@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -28,11 +27,10 @@ public class BotoneraAtaque extends HBox{
     private List<TextField> crearTextField(){
         TextField coord1 = new TextField();
         TextField coord2 = new TextField();
-
         List<TextField> textFields = new ArrayList<>();
         textFields.add(coord1);
         textFields.add(coord2);
-        return  textFields;
+        return textFields;
     }
 
     private Button crearBoton(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada,  TextField textFields1, TextField textField2){
