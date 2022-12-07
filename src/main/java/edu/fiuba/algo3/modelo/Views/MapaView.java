@@ -71,8 +71,8 @@ public class MapaView {
     Image imagenAcceso = new Image("/Acceso.png", 35, 35, false, false);
     Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 35, 35, false, false);
 
-    double opacityConstruido = 1;
-    double opacityEnConstruccion = 0.5;
+    double opacityVisible = 1;
+    double opacityInvisible = 0.5;
 
     public MapaView(Mapa mapa, AlgoStarView algoStarView) {
         this.mapa = mapa;
@@ -204,6 +204,11 @@ public class MapaView {
                 }
                 case "Zealot":{
                   ImageView imageZealotSprite= new ImageView(imagenZealot);
+                  if("visible" == nodo.get("Ocupante").get("visibilidad").asText()){
+                    imageZealotSprite.setOpacity(opacityVisible);
+                  }else{
+                    imageZealotSprite.setOpacity(opacityInvisible);
+                  }
                   imageZealotSprite.setY(posY*separacion);
                   imageZealotSprite.setX(posX*separacion);
                   imageZealotSprite.setOnMouseClicked(event ->  {

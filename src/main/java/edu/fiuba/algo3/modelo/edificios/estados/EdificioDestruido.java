@@ -22,7 +22,7 @@ public class EdificioDestruido implements EstadoEdificio {
 
     @Override
     public void actualizar(Inventario inventario) {
-        return;
+        edificio.destruirse(inventario);
     }
 
     public Unidad generarUnidad(Unidad unidad,Inventario inventario) throws EdificioEstaDestruido {

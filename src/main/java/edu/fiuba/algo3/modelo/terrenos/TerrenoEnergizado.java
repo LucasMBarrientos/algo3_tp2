@@ -138,7 +138,9 @@ public class TerrenoEnergizado implements EstadoTerreno {
     }
 
     public void cubrirTerrenoDeMoho() {
-        terreno.establecerEstado(new TerrenoMoho(terreno));
+        if(terreno.edificio == null){
+            terreno.establecerEstado(new TerrenoMoho(terreno));
+        }
     }
 
     @Override

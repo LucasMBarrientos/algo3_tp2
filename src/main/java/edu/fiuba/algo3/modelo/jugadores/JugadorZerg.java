@@ -32,6 +32,8 @@ public class JugadorZerg extends Jugador {
 
         return node;
     }
+
+
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
         edificio.construir(coordenada, inventario);

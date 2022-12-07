@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.protoss;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
@@ -61,6 +63,22 @@ public class Zealot extends UnidadProtoss {
 
     public Unidad generarse(Edificio edificio, Inventario inventario) {
         return edificio.generarUnidad(this,inventario);
+    }
+
+    @Override
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("nombre", nombre.toData().get("nombre"));
+        nodo.put("raza", "zerg");
+        nodo.put("coordenada", coordenada.toData());
+        nodo.put("estado", estado.toData().get("estado"));
+        nodo.put("vida", vida.toData().get("vida"));
+        nodo.put("danioTerrestre", danioTerrestre.toData().get("danio"));
+        nodo.put("danioAereo", danioAereo.toData().get("danio"));
+        nodo.put("tiempoDeConstruccion", tiempoConstruccion);
+        nodo.put("unidadAerea", aerea);
+        nodo.put("visibilidad", visibilidad.toData().get("visibilidad"));
+        return nodo;
     }
 
 }

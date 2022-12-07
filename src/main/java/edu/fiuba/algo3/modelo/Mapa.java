@@ -146,7 +146,7 @@ public class Mapa {
 
     private void actualizarTerrenosConUnidadesVisibles(List<Coordenada> coordenadasAVisibilizar){
         for(Terreno terreno : terrenos){
-            terreno.cambiarVisibilidadAUnidad(new Invisible());
+            terreno.volverInvisibleAUnidad();
         }
 
         for(Coordenada coordenada: coordenadasAVisibilizar){

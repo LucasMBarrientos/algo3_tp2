@@ -147,6 +147,13 @@ public abstract class Terreno {
         }
     }
 
+    public void volverInvisibleAUnidad(){
+      if (unidad != null) {
+          unidad.volverInvisible();
+      }
+  }
+
+
     public void extraerGasVespeno(Recurso recursoRequerido) {
 
     }

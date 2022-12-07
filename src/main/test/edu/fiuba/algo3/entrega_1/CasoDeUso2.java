@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import com.tngtech.archunit.lang.ArchRule;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.edificios.estados.EdificioDestruido;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
@@ -22,7 +22,6 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoMineral;
@@ -34,8 +33,6 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class CasoDeUso2 {
 
@@ -154,7 +151,6 @@ public class CasoDeUso2 {
 	@Test
     public void unaGuaridaNoEstaOperativaEnMenosDe12TurnosConstruyendose() {
         Guarida guarida = new Guarida();
-        Criadero criadero = new Criadero();
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 12;
 

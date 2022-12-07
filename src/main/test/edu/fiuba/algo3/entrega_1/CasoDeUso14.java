@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.terrenos.TerrenoMoho;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

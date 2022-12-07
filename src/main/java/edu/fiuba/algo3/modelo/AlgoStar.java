@@ -55,6 +55,14 @@ public class AlgoStar {
     }
 
     public void pasarTurno(){
+
+        idJugadorActual++;
+        turnoActual++;
+        if (turnoActual % jugadores.size() == 0) {
+            idJugadorActual = 0;
+            rondaActual++;
+        }
+        mapa.actualizar(turnoActual);
         for (Jugador jugador : jugadores) {
             jugador.actualizar();
             try {
@@ -64,13 +72,6 @@ public class AlgoStar {
                 throw e;
             }
         }
-        idJugadorActual++;
-        turnoActual++;
-        if (turnoActual % jugadores.size() == 0) {
-            idJugadorActual = 0;
-            rondaActual++;
-        }
-        mapa.actualizar(turnoActual);
     }
 
     public Jugador devolverJugadorGanador() {

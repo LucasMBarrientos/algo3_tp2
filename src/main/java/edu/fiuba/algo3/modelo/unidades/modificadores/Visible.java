@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.modificadores;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -14,6 +16,12 @@ public class Visible implements Visibilidad {
             unidad.establecerEstado(new UnidadDestruida());
             throw new UnidadEstaDestruida();
         }
+    }
+
+    public ObjectNode toData() {
+        ObjectNode nodo = Json.createObjectNode();
+        nodo.put("visibilidad", "visible" );
+        return nodo;
     }
 
 }
