@@ -101,7 +101,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
       pantalla.setFullScreen(true);
       if (razasRemovidas.size() == 2) {
           ReproductorDeSonidos reproductorDeSonidos = new ReproductorDeSonidos();
-          reproductorDeSonidos.reproducirSonido("/bg.mp3");
+          reproductorDeSonidos.reproducirSonido("/bg.mp3", true);
           algoStarView.setPantallaDeStatsJugador();
           algoStar.empezarJuego();
           algoStarView.actualizarMapa();

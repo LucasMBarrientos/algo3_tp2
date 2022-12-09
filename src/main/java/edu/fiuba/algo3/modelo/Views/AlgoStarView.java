@@ -291,6 +291,12 @@ public class AlgoStarView extends BorderPane {
                         break;
                     case D: contenedorCentral.setHvalue(contenedorCentral.getHvalue() + (contenedorCentral.getWidth() * 0.00002));
                         break;
+                    // Start DEBUG_ code for debug purposes only
+                    case G:
+                        ReproductorDeSonidos r = new ReproductorDeSonidos();
+                        r.reproducirSonido("/boom.mp3", false);
+                        break;
+                    // End DEBUG_ code for debug purposes only
                 }
             }
         });
