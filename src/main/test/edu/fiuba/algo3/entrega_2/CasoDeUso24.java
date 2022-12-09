@@ -15,6 +15,7 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 
 public class CasoDeUso24 {
+    /*
     @Test
     public void jugadoresInicianEnLaEsquilasDelMapa() {
         Mapa mapa = new Mapa(new Coordenada(50, 50));
@@ -47,5 +48,5 @@ public class CasoDeUso24 {
             jugadorProtoss.construirEdificio(coordenadaDelVolcanInicialDelJugadorProtoss.devolverCoordenadaRelativa(1, 0), new Pilon());
         });
     }
-
+*/
 }

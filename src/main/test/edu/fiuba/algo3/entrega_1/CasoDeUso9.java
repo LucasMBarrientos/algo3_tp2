@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,7 @@ public class CasoDeUso9 {
 
   @Test
   public void unEdificioProtossSigueOperativoCuandoPorLoMenosUnPilonLoEnergiza() {
+      Mapa.establecerDimension(new Coordenada(150,100));
       AlgoStar algoStar = new AlgoStar();
       JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
       algoStar.agregarJugador(jugadorZerg);

@@ -23,12 +23,11 @@ public class CasoDeUso16 {
     @Test
     public void noSePuedeConstruirUnEdificioSobreOtro() {
         JugadorProtoss jugador = (new JugadorProtoss("nombre", "rosita", 500, 500,200));
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugador.establecerMapa(mapa);
+        Mapa.establecerDimension(new Coordenada(30, 30));
+        jugador.iniciarseEnMapa();
 
         Pilon p1 = new Pilon();
         Pilon p2 = new Pilon();
-
         jugador.construirEdificio(new Coordenada(1,1), p1);
 
         Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
@@ -40,13 +39,12 @@ public class CasoDeUso16 {
     public void noSePuedeConstruirSobreUnVolcanConUnAsimiladorYaConstruido() {
         JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500, 500,200));
         JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500,200));
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugadorZerg.establecerMapa(mapa);
-        jugadorProtoss.establecerMapa(mapa);
+        Mapa.establecerDimension(new Coordenada(30, 30));
+        jugadorZerg.iniciarseEnMapa();
+        jugadorProtoss.iniciarseEnMapa();
 
         Asimilador asimilador = new Asimilador();
         Extractor extractor = new Extractor();
-
         jugadorProtoss.construirEdificio(new Coordenada(4,4), asimilador);
 
         Assertions.assertThrows(UnidadNoEncontrada.class, ()->{
@@ -59,18 +57,15 @@ public class CasoDeUso16 {
         Coordenada coordenadaDelVolcan = new Coordenada(4,4);
         Unidad zanganoConstructor = new Zangano();
         zanganoConstructor.establecerCoordenada(coordenadaDelVolcan);
-
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(500), new Suministro(200));
         inventario.agregarUnidad(zanganoConstructor);
-
         JugadorZerg jugadorZerg = new JugadorZerg(inventario);
         JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500,200));
+        Mapa.establecerDimension(new Coordenada(30, 30));
+        jugadorZerg.iniciarseEnMapa();
+        jugadorProtoss.iniciarseEnMapa();
 
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugadorZerg.establecerMapa(mapa);
-        jugadorProtoss.establecerMapa(mapa);
-
-        mapa.establecerUnidad(coordenadaDelVolcan, new Zangano());
+        Mapa.establecerUnidad(coordenadaDelVolcan, new Zangano());
 
         Asimilador asimilador = new Asimilador();
         Extractor extractor = new Extractor();

@@ -16,7 +16,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class CasoDeUso19 {
-
+/*
     @Test
     public void unZerlingPuedeAtacarAlScoutPeroNoLeHaceDaño() {
         Mapa mapa = new Mapa(new Coordenada(100, 50));
@@ -76,5 +76,5 @@ public class CasoDeUso19 {
             guardian.atacar(new Coordenada(3, 1), mapa);
         });
     }    
-
+*/
 }

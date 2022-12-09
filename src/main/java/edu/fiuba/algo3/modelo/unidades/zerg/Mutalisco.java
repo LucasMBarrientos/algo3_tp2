@@ -46,9 +46,9 @@ public class Mutalisco extends UnidadZerg {
     }
 
     @Override
-    public Unidad evolucionar(Mapa mapa, Unidad unidad) {
-        mapa.eliminarUnidad(coordenada);
-        mapa.establecerUnidad(coordenada,unidad);
+    public Unidad evolucionar(Unidad unidad) {
+        Mapa.eliminarUnidad(coordenada);
+        Mapa.establecerUnidad(coordenada,unidad);
         return unidad;
     }
 

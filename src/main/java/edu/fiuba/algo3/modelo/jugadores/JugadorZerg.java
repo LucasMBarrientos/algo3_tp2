@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.*;
@@ -37,13 +38,12 @@ public class JugadorZerg extends Jugador {
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
         edificio.construir(coordenada, inventario);
-        mapa.eliminarUnidad(coordenada); // Primero elimino al zangano porque no puedo construir sobre terrenoOcupado
-
+        Mapa.eliminarUnidad(coordenada); // Primero elimino al zangano porque no puedo construir sobre terrenoOcupado
         try {
-            mapa.establecerEdificio(coordenada, edificio);
+            Mapa.establecerEdificio(coordenada, edificio);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
-            mapa.establecerUnidad(coordenada, zanganoConstructor); // Si el terreno no era apto, vuelvo a meter al zangano
+            Mapa.establecerUnidad(coordenada, zanganoConstructor); // Si el terreno no era apto, vuelvo a meter al zangano
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
 
@@ -64,12 +64,12 @@ public class JugadorZerg extends Jugador {
 
     @Override
     public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
-        inventario.evolucionarUnidad(mapa, coordenada, unidadAEvolucionar);
+        inventario.evolucionarUnidad(coordenada, unidadAEvolucionar);
     }
 
     public void ingresarUnidad(Coordenada coordenada){
         Unidad unidad = inventario.buscarUnidad(coordenada);
-        unidad.ocupar(mapa.buscarTerreno(coordenada));
+        unidad.ocupar(Mapa.buscarTerreno(coordenada));
     }
 
     @Override
@@ -77,12 +77,12 @@ public class JugadorZerg extends Jugador {
         Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         edificio.ingresarUnidad(unidad);
-        mapa.eliminarUnidad(coordenadaDeLaUnidad);
+        Mapa.eliminarUnidad(coordenadaDeLaUnidad);
         inventario.eliminarUnidad(coordenadaDeLaUnidad);
     }
 
-    protected void iniciarseEnMapa() {
-        Zangano zanganoInicial = mapa.establecerZanganoInicial(id);
+    public void iniciarseEnMapa() {
+        Zangano zanganoInicial = Mapa.establecerZanganoInicial(id);
         inventario.agregarUnidad(zanganoInicial);
     }
 

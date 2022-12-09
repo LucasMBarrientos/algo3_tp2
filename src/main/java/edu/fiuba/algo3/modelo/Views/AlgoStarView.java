@@ -45,8 +45,6 @@ public class AlgoStarView extends BorderPane {
 
     Coordenada limite;
 
-    Mapa mapa;
-
     MapaView mapaView;
 
     Image pasarTurnoImagen = new Image("/Sprite-0001-export.png", 100, 100, false, false);
@@ -55,7 +53,7 @@ public class AlgoStarView extends BorderPane {
         this.stage = stage;
         this.algoStar = algostar;
         this.contenedorCentral = new ScrollPane();
-        mapa = algoStar.empezarJuego();
+        algoStar.empezarJuego();
         
         agregarBarraDelMenu(stage);
         pantallaJuego();
@@ -270,7 +268,7 @@ public class AlgoStarView extends BorderPane {
     private void pantallaJuego(){
         limite = new Coordenada(100,20);
 
-        this.mapaView = new MapaView(mapa, this);
+        this.mapaView = new MapaView(this);
         contenedorCentral.setContent(mapaView.dibujar());        
       
         contenedorCentral.setStyle("-fx-background: #7d7d7d; -fx-border-color: #7d7d7d;");

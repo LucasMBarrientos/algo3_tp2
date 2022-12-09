@@ -76,12 +76,12 @@ public abstract class Unidad {
         this.coordenada = coordenada;
     }
 
-    public void moverse(Direccion direccion, Mapa mapa) {
-        estado.moverse(direccion,mapa, coordenada);
+    public void moverse(Direccion direccion) {
+        estado.moverse(direccion, coordenada);
     }
 
-    public void atacar(Coordenada objetivo, Mapa mapa) {
-        estado.atacar(objetivo, mapa);
+    public void atacar(Coordenada objetivo) {
+        estado.atacar(objetivo);
     }
 
     public void intentarOcuparAlMoverse(Terreno terreno){    }
@@ -92,10 +92,10 @@ public abstract class Unidad {
     
     public abstract void ejecutarDanio(Danio danio, Danio danioAereo);
 
-    public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
+    public void ejecutarAtaque(Coordenada objetivo) {
         if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
             try {
-                mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
+                Mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
             }catch (UnidadEstaDestruida e){
                 cantidadDeKills++;
                 volverInvisible();
@@ -131,7 +131,7 @@ public abstract class Unidad {
         inventario.agregarSuministro(costoSuministro);
     }
 
-    public Unidad evolucionar(Mapa mapa, Unidad unidad) {
+    public Unidad evolucionar(Unidad unidad) {
         throw new InvalidaEvolucionDeUnidad();
     }
 

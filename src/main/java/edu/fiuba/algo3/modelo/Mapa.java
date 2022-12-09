@@ -23,35 +23,48 @@ import edu.fiuba.algo3.modelo.recursos.Suministro;
 
 public class Mapa {
 
-    private List<Terreno> terrenos = new ArrayList<Terreno>();
+    private static List<Terreno> terrenos = new ArrayList<Terreno>();
+    private static List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
+    private static SuperficieRectangular superficie;
 
-    List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
-    SuperficieRectangular superficie;
-
-    public Mapa(Coordenada dimension) {
-        this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
+/*    public Mapa(Coordenada dimension) {
+        Mapa.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
         for (int y = 0; y < superficie.calcularLongitudY(); y++) {
             for (int x = 0; x < superficie.calcularLongitudX(); x++) {
-                this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
+                Mapa.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
         ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
         generarTerrenoInicial();
     }
+    */
 
-    private boolean validarCoordenada(Coordenada coordenada) {
+    public static void establecerDimension(Coordenada dimension) {
+        Mapa.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
+        for (int y = 0; y < superficie.calcularLongitudY(); y++) {
+            for (int x = 0; x < superficie.calcularLongitudX(); x++) {
+                Mapa.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
+            }
+        }
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
+        generarTerrenoInicial();
+
+    }
+
+    private static boolean validarCoordenada(Coordenada coordenada) {
         return superficie.contieneCoordenada(coordenada);
     }
 
-    public Terreno buscarTerreno(Coordenada coordenada) {
+    public static Terreno buscarTerreno(Coordenada coordenada) {
         return terrenos.get(buscarIdDelTerreno(coordenada));
     }
 
-    private int buscarIdDelTerreno(Coordenada coordenada) throws CoordenadaFueraDelMapa {
+    private static int buscarIdDelTerreno(Coordenada coordenada) throws CoordenadaFueraDelMapa {
         int indiceHallado = -1;
-        for (int i = 0; i < this.terrenos.size(); i++) {
-            if (this.terrenos.get(i).compararCoordenadas(coordenada)) {
+        for (int i = 0; i < Mapa.terrenos.size(); i++) {
+            if (Mapa.terrenos.get(i).compararCoordenadas(coordenada)) {
                 indiceHallado = i;
             }
         }
@@ -61,8 +74,8 @@ public class Mapa {
         return indiceHallado;
     }
 
-    public List<Terreno> buscarTerrenosAdyacentes(Coordenada coordenada) {
-        List<Coordenada> coordenadasAdyacentes = this.superficie.devolverCoordenadasAdyacentes(coordenada);
+    public static List<Terreno> buscarTerrenosAdyacentes(Coordenada coordenada) {
+        List<Coordenada> coordenadasAdyacentes = Mapa.superficie.devolverCoordenadasAdyacentes(coordenada);
         List<Terreno> terrenosAdyacentes = new ArrayList<Terreno>();
         for (Coordenada coordenadaAdyacente : coordenadasAdyacentes) {
             terrenosAdyacentes.add(buscarTerreno(coordenadaAdyacente));
@@ -70,8 +83,8 @@ public class Mapa {
         return terrenosAdyacentes;
     }
 
-    public List<Terreno> buscarTerrenosAdyacentes(Coordenada coordenada, int rango) {
-        List<Coordenada> coordenadasAdyacentes = this.superficie.devolverCoordenadasAdyacentes(coordenada, rango);
+    public static List<Terreno> buscarTerrenosAdyacentes(Coordenada coordenada, int rango) {
+        List<Coordenada> coordenadasAdyacentes = Mapa.superficie.devolverCoordenadasAdyacentes(coordenada, rango);
         List<Terreno> terrenosAdyacentes = new ArrayList<Terreno>();
         for (Coordenada coordenadaAdyacente : coordenadasAdyacentes) {
             terrenosAdyacentes.add(buscarTerreno(coordenadaAdyacente));
@@ -79,12 +92,12 @@ public class Mapa {
         return terrenosAdyacentes;
     }
 
-    public void establecerEdificio(Coordenada coordenada, Edificio edificio) throws TerrenoNoAptoParaConstruirTalEdificio {
-        Terreno terreno = this.buscarTerreno(coordenada);
+    public static void establecerEdificio(Coordenada coordenada, Edificio edificio) throws TerrenoNoAptoParaConstruirTalEdificio {
+        Terreno terreno = Mapa.buscarTerreno(coordenada);
         edificio.ocupar(terreno);
     }
 
-    public void establecerUnidadEnCoordenadaAdyacente(Coordenada coordenadaDelEdificio, Unidad unidad) throws NoHayTerrenoDisponibleParaGenerarUnidad {
+    public static void establecerUnidadEnCoordenadaAdyacente(Coordenada coordenadaDelEdificio, Unidad unidad) throws NoHayTerrenoDisponibleParaGenerarUnidad {
         List<Terreno> terrenosPosibles = buscarTerrenosAdyacentes(coordenadaDelEdificio, 2);
         for (Terreno terreno : terrenosPosibles) {
             if (unidad.ocupar(terreno)) {
@@ -94,26 +107,26 @@ public class Mapa {
         throw new NoHayTerrenoDisponibleParaGenerarUnidad();
     }
 
-    public void establecerUnidad(Coordenada coordenada, Unidad unidad){
+    public static void establecerUnidad(Coordenada coordenada, Unidad unidad){
         if (!unidad.ocupar(buscarTerreno(coordenada))) {
             throw new TerrenoNoAptoParaTalUnidad();
         }
     }
 
-    public void eliminarEdificio(Coordenada coordenada){
+    public static void eliminarEdificio(Coordenada coordenada){
         buscarTerreno(coordenada).eliminarEdificio();
     }
 
-    public void eliminarUnidad(Coordenada coordenada){
+    public static void eliminarUnidad(Coordenada coordenada){
         buscarTerreno(coordenada).establecerUnidad(null);
     }
 
-    public Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {
+    public static Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {
         Coordenada coordenadaBuscada = coordenada.devolverCoordenadaRelativa(distanciaX, distanciaY);
-        return this.buscarTerreno(coordenadaBuscada);
+        return Mapa.buscarTerreno(coordenadaBuscada);
     }
 
-    public void actualizar(int turnoActual) {
+    public static void actualizar(int turnoActual) {
         List<Coordenada> coordenadasQueTendranMoho = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConCriaderos = new ArrayList<Coordenada>();
         List<Coordenada> coordenadasConPilones = new ArrayList<Coordenada>();
@@ -130,27 +143,25 @@ public class Mapa {
         actualizarTerrenosConUnidadesVisibles(coordenadasAVisibilizar);
     }
 
-    private void actualizarTerrenosConUnidadesVisibles(List<Coordenada> coordenadasAVisibilizar){
+    private static void actualizarTerrenosConUnidadesVisibles(List<Coordenada> coordenadasAVisibilizar){
         for(Terreno terreno : terrenos){
             terreno.volverInvisibleAUnidad();
         }
-
         for(Coordenada coordenada: coordenadasAVisibilizar){
             try {
                 buscarTerreno(coordenada).cambiarVisibilidadAUnidad(new Visible());
             } catch (CoordenadaFueraDelMapa e){}
         }
-
     }
 
-    private List<Coordenada> hallarCoordenadasParaBases() {
+    private static List<Coordenada> hallarCoordenadasParaBases() {
         int distanciaEntreLasBases = Math.max(1, superficie.calcularLongitudPromedio() / 12);
         int cantidadDeJugadores = ubicacionesInicialesDeLosJugadores.size();
         List<Coordenada> coordenadasCentralesDeBases = new ArrayList<Coordenada>();
         for (int i = 0; i < cantidadDeJugadores; i++) {
             coordenadasCentralesDeBases.add(ubicacionesInicialesDeLosJugadores.get(i));
         }
-        SuperficieRectangular superficicieConBasesAlAzar = this.superficie.redimensionar(-4);
+        SuperficieRectangular superficicieConBasesAlAzar = Mapa.superficie.redimensionar(-4);
         int cantidadDeBases = ThreadLocalRandom.current().nextInt(cantidadDeJugadores + 10, cantidadDeJugadores + 15);
         for (int i = cantidadDeJugadores; i < cantidadDeBases; i++) {
             coordenadasCentralesDeBases.add(superficicieConBasesAlAzar.devolverCoordenadaAlAzarEvitando(coordenadasCentralesDeBases, distanciaEntreLasBases));
@@ -158,7 +169,7 @@ public class Mapa {
         return coordenadasCentralesDeBases;
     }
 
-    public Zangano establecerZanganoInicial(int idJugador) {
+    public static Zangano establecerZanganoInicial(int idJugador) {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
         Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
@@ -168,7 +179,7 @@ public class Mapa {
         return zanganoGenerado;
     }
 
-    private void generarTerrenoInicial() {
+    private static void generarTerrenoInicial() {
         // Generamiento de terreno espacial en los bordes del mapa
         List<Coordenada> coordenadasBorde = superficie.devolverCoordenadasAlBorde();
         for (Coordenada coordenadaBorde : coordenadasBorde) {
@@ -186,41 +197,41 @@ public class Mapa {
         }
     }
 
-    private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDelCriadero) {
-        List<Coordenada> coordenadasConMoho = this.superficie.devolverCoordenadasAdyacentes(coordenadaDelCriadero,5);
+    private static void generarMohoAlrededorDeCriadero(Coordenada coordenadaDelCriadero) {
+        List<Coordenada> coordenadasConMoho = Mapa.superficie.devolverCoordenadasAdyacentes(coordenadaDelCriadero,5);
         for (Coordenada coordenadaConMoho : coordenadasConMoho) {
             buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
         }
     }
 
-    private void generarMohoAlrededorDeCriaderos(List<Coordenada> coordenadasConCriaderos) {
+    private static void generarMohoAlrededorDeCriaderos(List<Coordenada> coordenadasConCriaderos) {
         for (Coordenada coordenadaConCriadero : coordenadasConCriaderos) {
             generarMohoAlrededorDeCriadero(coordenadaConCriadero);
         }
     }
 
-    private void generarTerrenoEnergizadoAlrededorDePilon(Coordenada coordenadaDelPilon) {
-        List<Coordenada> coordenadasConTerrenoEnergizado = this.superficie.devolverCoordenadasAdyacentes(coordenadaDelPilon,3);
+    private static void generarTerrenoEnergizadoAlrededorDePilon(Coordenada coordenadaDelPilon) {
+        List<Coordenada> coordenadasConTerrenoEnergizado = Mapa.superficie.devolverCoordenadasAdyacentes(coordenadaDelPilon,3);
         for (Coordenada coordenadaConTerrenoEnergizado : coordenadasConTerrenoEnergizado) {
             buscarTerreno(coordenadaConTerrenoEnergizado).energizarTerreno();
         }
     }
 
-    private void generarTerrenoEnergizadoAlrededorDePilones(List<Coordenada> coordenadasConPilones) {
+    private static void generarTerrenoEnergizadoAlrededorDePilones(List<Coordenada> coordenadasConPilones) {
         for (Coordenada coordenadaConPilon : coordenadasConPilones) {
             generarTerrenoEnergizadoAlrededorDePilon(coordenadaConPilon);
         }
     }
 
-    public void cubrirCoordenadasDeMoho(List<Coordenada> coordenadasQueTendranMoho) {
+    public static void cubrirCoordenadasDeMoho(List<Coordenada> coordenadasQueTendranMoho) {
         for (Coordenada coordenadaConMoho : coordenadasQueTendranMoho) {
             buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
         }
     }
 
-    public List<ObjectNode>  parseTerrenos(){
+    public static List<ObjectNode>  parseTerrenos(){
       List<ObjectNode>  mapaEnString = new ArrayList<>();
-        int longitudX = this.superficie.calcularLongitudX();
+        int longitudX = Mapa.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
             if(contadorDeLinea >= longitudX){
@@ -231,17 +242,15 @@ public class Mapa {
 
                 contadorDeLinea = 0;
             }
-
             mapaEnString.add(terreno.toData());
-
             contadorDeLinea ++;
         }
         return mapaEnString;
     }
 
-    public List<ObjectNode> parseOcupantes(){
+    public static List<ObjectNode> parseOcupantes(){
         List<ObjectNode> mapaEnString = new ArrayList<>();
-        int longitudX = this.superficie.calcularLongitudX();
+        int longitudX = Mapa.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
         for(Terreno terreno : terrenos){
              if(contadorDeLinea >= longitudX){
@@ -260,15 +269,15 @@ public class Mapa {
         return mapaEnString;
     }
 
-    public List<ObjectNode> toJsonTerrenos() throws JsonProcessingException {
+    public static List<ObjectNode> toJsonTerrenos() throws JsonProcessingException {
         return parseTerrenos();
     }
 
-    public List<ObjectNode> toJsonOcupantes() throws JsonProcessingException {
+    public static List<ObjectNode> toJsonOcupantes() throws JsonProcessingException {
         return parseOcupantes();
     }
 
-    public void actualizarTerrenosEnergizados(List<Coordenada> coordenadasConPilones) {
+    public static void actualizarTerrenosEnergizados(List<Coordenada> coordenadasConPilones) {
         for (Terreno terreno : terrenos) {
             terreno.desenergizarTerreno();
         }

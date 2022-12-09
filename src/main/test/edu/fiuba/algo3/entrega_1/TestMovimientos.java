@@ -16,69 +16,69 @@ import org.junit.jupiter.api.Test;
 
 public class TestMovimientos {
     @Test
-    public void moverseDerechaFunciona(){
-        Mapa mapa = new Mapa(new Coordenada(20,20));
+    public void moverseDerechaFunciona() {
+        Mapa.establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        mapa.establecerUnidad(new Coordenada(1,1),zangano);
+        Mapa.establecerUnidad(new Coordenada(1,1),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         
-        zangano.moverse(new Derecha(),mapa);
+        zangano.moverse(new Derecha());
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(2,1)));
 
     }
     @Test
-    public void moverseAbajoFunciona(){
-        Mapa mapa = new Mapa(new Coordenada(20,20));
+    public void moverseAbajoFunciona() {
+        Mapa.establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        mapa.establecerUnidad(new Coordenada(2,2),zangano);
+        Mapa.establecerUnidad(new Coordenada(2,2),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         zangano.actualizar(inv);
 
-        zangano.moverse(new Abajo(),mapa);
+        zangano.moverse(new Abajo());
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(2,3)));
 
     }
     @Test
-    public void moverseArribaFunciona(){
-        Mapa mapa = new Mapa(new Coordenada(20,20));
+    public void moverseArribaFunciona() {
+        Mapa.establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        mapa.establecerUnidad(new Coordenada(2,2),zangano);
+        Mapa.establecerUnidad(new Coordenada(2,2),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         zangano.actualizar(inv);
 
-        zangano.moverse(new Arriba(),mapa);
+        zangano.moverse(new Arriba());
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(2,1)));
-
     }
+
     @Test
     public void moverseIzquierdaFunciona(){
-        Mapa mapa = new Mapa(new Coordenada(20,20));
+        Mapa.establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        mapa.establecerUnidad(new Coordenada(2,2),zangano);
+        Mapa.establecerUnidad(new Coordenada(2,2),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         zangano.actualizar(inv);
         
-        zangano.moverse(new Izquierda(),mapa);
+        zangano.moverse(new Izquierda());
 
         Assertions.assertTrue(zangano.compararCoordenadas(new Coordenada(1,2)));
 

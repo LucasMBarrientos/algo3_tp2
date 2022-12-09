@@ -16,18 +16,17 @@ public class UnidadOperativa implements EstadoUnidad {
 
     private Unidad unidad;
 
-    public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
+    public void moverse(Direccion direccion, Coordenada coordenada) {
         try {
-            mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
-            mapa.eliminarUnidad(coordenada);
+            Mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
+            Mapa.eliminarUnidad(coordenada);
         } catch (TerrenoNoAptoParaTalUnidad e){
-            mapa.establecerUnidad(coordenada, this.unidad);
+            Mapa.establecerUnidad(coordenada, this.unidad);
         }
-
     }
 
-    public void atacar(Coordenada objetivo, Mapa mapa) {
-        unidad.ejecutarAtaque(objetivo, mapa);
+    public void atacar(Coordenada objetivo) {
+        unidad.ejecutarAtaque(objetivo);
     }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {

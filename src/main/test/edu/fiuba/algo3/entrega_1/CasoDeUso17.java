@@ -21,8 +21,8 @@ public class CasoDeUso17 {
     @Test
     public void noSePuedeConstruirUnPuertoEstelarSinUnAcceso() {
         JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500, 500,200));
-        Mapa mapa = new Mapa(new Coordenada(30, 30));
-        jugador.establecerMapa(mapa);
+        Mapa.establecerDimension(new Coordenada(30, 30));
+        jugador.iniciarseEnMapa();
 
         PuertoEstelar puertoEstelar = new PuertoEstelar();
 
@@ -33,14 +33,13 @@ public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnaEspiralSinUnaGuarida() {
+        Mapa.establecerDimension(new Coordenada(30, 30));
         Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500), new Suministro(200));
-        Mapa mapa = new Mapa(new Coordenada(30,30));
-
         Zangano zangano = new Zangano();
         zangano.establecerCoordenada(new Coordenada(2,2));
         inventario.agregarUnidad(zangano);
         JugadorZerg jugador = new JugadorZerg(inventario);
-        jugador.establecerMapa(mapa);
+        jugador.iniciarseEnMapa();
 
         Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
             jugador.construirEdificio(new Coordenada(2,2), new Espiral());
@@ -51,14 +50,13 @@ public class CasoDeUso17 {
     @Test
     public void noSePuedeConstruirUnaGuaridaSinUnaReservaDeReproduccion() {
         Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500), new Suministro(200));
-        Mapa mapa = new Mapa(new Coordenada(30,30));
+        Mapa.establecerDimension(new Coordenada(30, 30));
 
         Zangano zangano = new Zangano();
         zangano.establecerCoordenada(new Coordenada(2,2));
         inventario.agregarUnidad(zangano);
         JugadorZerg jugador = new JugadorZerg(inventario);
-        jugador.establecerMapa(mapa);
-
+        jugador.iniciarseEnMapa();
 
         Assertions.assertThrows(ConstruccionRequiereDeOtroEdificio.class, ()->{
             jugador.construirEdificio(new Coordenada(2,2), new Guarida());

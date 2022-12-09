@@ -29,7 +29,7 @@ public class Inventario {
     public Mineral mineral;
     public Suministro suministro;
     
-    public Inventario(GasVespeno gasVespeno, Mineral mineral,Suministro suministro) {
+    public Inventario(GasVespeno gasVespeno, Mineral mineral, Suministro suministro) {
         this.gasVespeno = gasVespeno;
         this.mineral = mineral;
         this.suministro = suministro;
@@ -93,8 +93,8 @@ public class Inventario {
     }
 
 
-    public void evolucionarUnidad(Mapa mapa, Coordenada coordenada, Unidad unidadAEvolucionar) {
-        Unidad unidadGenerada = buscarUnidad(coordenada).evolucionar(mapa,unidadAEvolucionar);
+    public void evolucionarUnidad(Coordenada coordenada, Unidad unidadAEvolucionar) {
+        Unidad unidadGenerada = buscarUnidad(coordenada).evolucionar(unidadAEvolucionar);
         this.unidades.set(buscarIdDeUnidad(coordenada), unidadGenerada);
     }
 
