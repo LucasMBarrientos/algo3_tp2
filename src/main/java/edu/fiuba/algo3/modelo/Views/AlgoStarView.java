@@ -5,25 +5,18 @@ import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraAcceso;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraAtaque;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraCriadero;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEnergizadoProtoss;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraEspiral;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraGuarida;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraMineralProtoss;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraPuertoEstelar;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraVaciaProtoss;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneralVolcanProtoss;
+import edu.fiuba.algo3.modelo.Views.eventos.botoneras.*;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraMutalisco;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNormal;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -31,8 +24,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Objects;
 
@@ -303,5 +301,25 @@ public class AlgoStarView extends BorderPane {
 
     public void actualizarMapa(){
       this.contenedorCentral.setContent(mapaView.dibujar());
+    }
+
+    public void mostrarMensajeDeAccionProhibida(Text mensaje){
+        HBox contenedor = new HBox(mensaje);
+        contenedor.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(contenedor, 450,100);
+        scene.setFill(Color.DARKGRAY);
+
+        Stage notificacion = new Stage();
+        notificacion.setTitle("Accion no permitida");
+        notificacion.setScene(scene);
+        notificacion.setOpacity(0.90);
+        notificacion.initOwner(stage);
+
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished(e -> notificacion.hide());
+
+        notificacion.show();
+        delay.play();
     }
   }
