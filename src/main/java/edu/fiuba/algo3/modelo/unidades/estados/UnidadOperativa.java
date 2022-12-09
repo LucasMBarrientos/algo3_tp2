@@ -18,10 +18,10 @@ public class UnidadOperativa implements EstadoUnidad {
 
     public void moverse(Direccion direccion, Coordenada coordenada) {
         try {
-            Mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
-            Mapa.eliminarUnidad(coordenada);
+            Mapa.devolverInstancia().establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
+            Mapa.devolverInstancia().eliminarUnidad(coordenada);
         } catch (TerrenoNoAptoParaTalUnidad e){
-            Mapa.establecerUnidad(coordenada, this.unidad);
+            Mapa.devolverInstancia().establecerUnidad(coordenada, this.unidad);
         }
     }
 

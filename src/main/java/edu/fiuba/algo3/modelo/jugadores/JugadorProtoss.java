@@ -20,7 +20,7 @@ public class JugadorProtoss extends Jugador {
     public JugadorProtoss(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
         establecerAtributosBasicos(nombre, color, gasInicial, mineralesIniciales,suministroInicial);
     }
-    
+
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
         node.put("nombre", nombre);
@@ -32,7 +32,7 @@ public class JugadorProtoss extends Jugador {
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Edificio edificioNuevo = edificio.construir(coordenada, inventario);
         try {
-            Mapa.establecerEdificio(coordenada, edificioNuevo);
+            Mapa.devolverInstancia().establecerEdificio(coordenada, edificioNuevo);
         } catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();

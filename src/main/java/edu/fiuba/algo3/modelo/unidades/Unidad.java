@@ -95,7 +95,7 @@ public abstract class Unidad {
     public void ejecutarAtaque(Coordenada objetivo) {
         if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
             try {
-                Mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
+                Mapa.devolverInstancia().buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
             }catch (UnidadEstaDestruida e){
                 cantidadDeKills++;
                 volverInvisible();

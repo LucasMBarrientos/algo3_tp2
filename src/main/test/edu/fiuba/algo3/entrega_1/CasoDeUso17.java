@@ -21,7 +21,7 @@ public class CasoDeUso17 {
     @Test
     public void noSePuedeConstruirUnPuertoEstelarSinUnAcceso() {
         JugadorProtoss jugador = (new JugadorProtoss("Martina", "violeta", 500, 500,200));
-        Mapa.establecerDimension(new Coordenada(30, 30));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(30, 30));
         jugador.iniciarseEnMapa();
 
         PuertoEstelar puertoEstelar = new PuertoEstelar();
@@ -33,7 +33,7 @@ public class CasoDeUso17 {
 
     @Test
     public void noSePuedeConstruirUnaEspiralSinUnaGuarida() {
-        Mapa.establecerDimension(new Coordenada(30, 30));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(30, 30));
         Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500), new Suministro(200));
         Zangano zangano = new Zangano();
         zangano.establecerCoordenada(new Coordenada(2,2));
@@ -50,7 +50,7 @@ public class CasoDeUso17 {
     @Test
     public void noSePuedeConstruirUnaGuaridaSinUnaReservaDeReproduccion() {
         Inventario inventario = new Inventario(new GasVespeno(100), new Mineral(500), new Suministro(200));
-        Mapa.establecerDimension(new Coordenada(30, 30));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(30, 30));
 
         Zangano zangano = new Zangano();
         zangano.establecerCoordenada(new Coordenada(2,2));

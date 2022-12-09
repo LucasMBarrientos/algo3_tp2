@@ -17,11 +17,11 @@ import org.junit.jupiter.api.Test;
 public class TestMovimientos {
     @Test
     public void moverseDerechaFunciona() {
-        Mapa.establecerDimension(new Coordenada(20, 20));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        Mapa.establecerUnidad(new Coordenada(1,1),zangano);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(1,1),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
@@ -34,11 +34,11 @@ public class TestMovimientos {
     }
     @Test
     public void moverseAbajoFunciona() {
-        Mapa.establecerDimension(new Coordenada(20, 20));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        Mapa.establecerUnidad(new Coordenada(2,2),zangano);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,2),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
@@ -51,11 +51,11 @@ public class TestMovimientos {
     }
     @Test
     public void moverseArribaFunciona() {
-        Mapa.establecerDimension(new Coordenada(20, 20));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        Mapa.establecerUnidad(new Coordenada(2,2),zangano);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,2),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);
@@ -68,11 +68,11 @@ public class TestMovimientos {
 
     @Test
     public void moverseIzquierdaFunciona(){
-        Mapa.establecerDimension(new Coordenada(20, 20));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zangano zangano = new Zangano();
 
-        Mapa.establecerUnidad(new Coordenada(2,2),zangano);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,2),zangano);
 
         zangano.actualizar(inv);
         zangano.actualizar(inv);

@@ -34,7 +34,7 @@ public abstract class Jugador {
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         unidad.generarse(edificio, inventario);
         try {
-            Mapa.establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);
+            Mapa.devolverInstancia().establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);
         } catch(TerrenoNoAptoParaTalUnidad e){
             unidad.restaurarRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
@@ -88,12 +88,12 @@ public abstract class Jugador {
     }
 
     public void destruirUnidad(Coordenada coordenada) {
-        Mapa.eliminarUnidad(coordenada);
+        Mapa.devolverInstancia().eliminarUnidad(coordenada);
         inventario.eliminarUnidad(coordenada);
     }
 
     public void destruirEdificio(Coordenada coordenada) {
-        Mapa.eliminarEdificio(coordenada);
+        Mapa.devolverInstancia().eliminarEdificio(coordenada);
         inventario.eliminarEdificio(coordenada);
     }
 
@@ -102,10 +102,10 @@ public abstract class Jugador {
         try {
             unidad.atacar(coordenadaObjetivo);
         } catch (UnidadEstaDestruida e){
-            Mapa.eliminarUnidad(coordenadaObjetivo);
+            Mapa.devolverInstancia().eliminarUnidad(coordenadaObjetivo);
             throw new UnidadEstaDestruida();
         } catch (EdificioEstaDestruido e){
-            Mapa.eliminarEdificio(coordenadaObjetivo);
+            Mapa.devolverInstancia().eliminarEdificio(coordenadaObjetivo);
             throw new EdificioEstaDestruido();
         }
     }

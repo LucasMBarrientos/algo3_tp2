@@ -19,7 +19,7 @@ public class AlgoStar {
     private Jugador jugadorGanador;
 
     public AlgoStar() {
-        Mapa.establecerDimension(new Coordenada(100,50));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(100,50));
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -35,7 +35,7 @@ public class AlgoStar {
         for (Jugador jugador : jugadores) {
             jugador.iniciarseEnMapa();
         }
-        Mapa.actualizar(turnoActual);
+        Mapa.devolverInstancia().actualizar(turnoActual);
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;
@@ -52,7 +52,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        Mapa.actualizar(turnoActual);
+        Mapa.devolverInstancia().actualizar(turnoActual);
         for (Jugador jugador : jugadores) {
             jugador.actualizar();
             try {

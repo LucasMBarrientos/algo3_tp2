@@ -92,7 +92,7 @@ public class MapaView {
     private void dibujarOcupantes()  {
         List<ObjectNode> nodos = null;
         try {
-            nodos = Mapa.toJsonOcupantes();
+            nodos = Mapa.devolverInstancia().toJsonOcupantes();
 
         }catch (JsonProcessingException e){
             System.out.println("Error al mostrar Ocupantes");
@@ -689,7 +689,7 @@ public class MapaView {
     private void dibujarTerrenos(){
         List<ObjectNode> nodos = null;
         try {
-            nodos = Mapa.toJsonTerrenos();
+            nodos = Mapa.devolverInstancia().toJsonTerrenos();
         }catch (JsonProcessingException e){
              System.out.println("Error al mostrar terrenos");
         } catch (IOException e) {

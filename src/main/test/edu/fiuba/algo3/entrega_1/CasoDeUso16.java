@@ -23,7 +23,7 @@ public class CasoDeUso16 {
     @Test
     public void noSePuedeConstruirUnEdificioSobreOtro() {
         JugadorProtoss jugador = (new JugadorProtoss("nombre", "rosita", 500, 500,200));
-        Mapa.establecerDimension(new Coordenada(30, 30));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(30, 30));
         jugador.iniciarseEnMapa();
 
         Pilon p1 = new Pilon();
@@ -39,7 +39,7 @@ public class CasoDeUso16 {
     public void noSePuedeConstruirSobreUnVolcanConUnAsimiladorYaConstruido() {
         JugadorZerg jugadorZerg = (new JugadorZerg("nombre", "rosita", 500, 500,200));
         JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500,200));
-        Mapa.establecerDimension(new Coordenada(30, 30));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(30, 30));
         jugadorZerg.iniciarseEnMapa();
         jugadorProtoss.iniciarseEnMapa();
 
@@ -61,11 +61,11 @@ public class CasoDeUso16 {
         inventario.agregarUnidad(zanganoConstructor);
         JugadorZerg jugadorZerg = new JugadorZerg(inventario);
         JugadorProtoss jugadorProtoss = (new JugadorProtoss("Alan Brito", "verde", 500, 500,200));
-        Mapa.establecerDimension(new Coordenada(30, 30));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(30, 30));
         jugadorZerg.iniciarseEnMapa();
         jugadorProtoss.iniciarseEnMapa();
 
-        Mapa.establecerUnidad(coordenadaDelVolcan, new Zangano());
+        Mapa.devolverInstancia().establecerUnidad(coordenadaDelVolcan, new Zangano());
 
         Asimilador asimilador = new Asimilador();
         Extractor extractor = new Extractor();

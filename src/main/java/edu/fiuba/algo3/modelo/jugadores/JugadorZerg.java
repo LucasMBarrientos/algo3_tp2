@@ -38,12 +38,12 @@ public class JugadorZerg extends Jugador {
     public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
         edificio.construir(coordenada, inventario);
-        Mapa.eliminarUnidad(coordenada); // Primero elimino al zangano porque no puedo construir sobre terrenoOcupado
+        Mapa.devolverInstancia().eliminarUnidad(coordenada); // Primero elimino al zangano porque no puedo construir sobre terrenoOcupado
         try {
-            Mapa.establecerEdificio(coordenada, edificio);
+            Mapa.devolverInstancia().establecerEdificio(coordenada, edificio);
         }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
             edificio.devolverRecursosParaConstruccion(inventario);
-            Mapa.establecerUnidad(coordenada, zanganoConstructor); // Si el terreno no era apto, vuelvo a meter al zangano
+            Mapa.devolverInstancia().establecerUnidad(coordenada, zanganoConstructor); // Si el terreno no era apto, vuelvo a meter al zangano
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
 
@@ -69,7 +69,7 @@ public class JugadorZerg extends Jugador {
 
     public void ingresarUnidad(Coordenada coordenada){
         Unidad unidad = inventario.buscarUnidad(coordenada);
-        unidad.ocupar(Mapa.buscarTerreno(coordenada));
+        unidad.ocupar(Mapa.devolverInstancia().buscarTerreno(coordenada));
     }
 
     @Override
@@ -77,12 +77,12 @@ public class JugadorZerg extends Jugador {
         Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         edificio.ingresarUnidad(unidad);
-        Mapa.eliminarUnidad(coordenadaDeLaUnidad);
+        Mapa.devolverInstancia().eliminarUnidad(coordenadaDeLaUnidad);
         inventario.eliminarUnidad(coordenadaDeLaUnidad);
     }
 
     public void iniciarseEnMapa() {
-        Zangano zanganoInicial = Mapa.establecerZanganoInicial(id);
+        Zangano zanganoInicial = Mapa.devolverInstancia().establecerZanganoInicial(id);
         inventario.agregarUnidad(zanganoInicial);
     }
 
