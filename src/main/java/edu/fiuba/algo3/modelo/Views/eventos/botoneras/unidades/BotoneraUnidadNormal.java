@@ -2,12 +2,16 @@ package edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
-import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.*;
+import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonMoverAbajoHandler;
+import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonMoverArribaHandler;
+import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonMoverDerechaHandler;
+import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonMoverIzquierdaHandler;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -32,16 +36,20 @@ public class BotoneraUnidadNormal extends HBox {
     }
 
     private List<Button> crearBotones(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
-
+        Image arriba = new Image("flecha-arriba.png" ,35, 35, false, false);
+        Image abajo = new Image("flecha-abajo.png",35, 35, false, false);
+        Image derecha = new Image("flecha-derecha.png",35, 35, false, false);
+        Image izquierda = new Image("flecha-izquierda.png",35, 35, false, false);
 
         Button moverAbajo = new Button();
-        moverAbajo.setText("mover Abajo");
+        moverAbajo.setGraphic(new ImageView(abajo));
         Button moverArriba = new Button();
-        moverArriba.setText("mover Arriba");
+        moverArriba.setGraphic(new ImageView(arriba));
         Button moverIzquierda = new Button();
-        moverIzquierda.setText("mover Izquierda");
+        moverIzquierda.setGraphic(new ImageView(izquierda));
         Button moverDerecha = new Button();
-        moverDerecha.setText("mover Derecha");
+        moverDerecha.setGraphic(new ImageView(derecha));
+
         Button atacar = new Button();
         atacar.setText("atacar");
 

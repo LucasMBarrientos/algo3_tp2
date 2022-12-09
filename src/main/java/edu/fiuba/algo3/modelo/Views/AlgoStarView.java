@@ -307,8 +307,8 @@ public class AlgoStarView extends BorderPane {
         HBox contenedor = new HBox(mensaje);
         contenedor.setAlignment(Pos.CENTER);
 
-        Scene scene = new Scene(contenedor, 450,100);
-        scene.setFill(Color.DARKGRAY);
+        Scene scene = new Scene(contenedor, 500,90);
+        scene.setFill(Color.DARKGRAY); //no funca :(
 
         Stage notificacion = new Stage();
         notificacion.setTitle("Accion no permitida");

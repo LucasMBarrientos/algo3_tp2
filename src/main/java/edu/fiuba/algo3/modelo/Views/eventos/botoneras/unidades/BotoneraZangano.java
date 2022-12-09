@@ -1,19 +1,19 @@
 package edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BotoneraZangano extends HBox {
     public BotoneraZangano(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
@@ -64,20 +64,24 @@ public class BotoneraZangano extends HBox {
         Label costoMineralReservaDeReproduccion  = new Label("COSTO MINERAL: 150");
         VBox generarReservaDeReproduccionbox = new VBox(costoGasReservaDeReproduccion,costoMineralReservaDeReproduccion,construirReservaDeReproduccion);
 
+        Image arriba = new Image("flecha-arriba.png" ,35, 35, false, false);
+        Image abajo = new Image("flecha-abajo.png",35, 35, false, false);
+        Image derecha = new Image("flecha-derecha.png",35, 35, false, false);
+        Image izquierda = new Image("flecha-izquierda.png",35, 35, false, false);
+
         Button moverAbajo = new Button();
-        moverAbajo.setText("mover Abajo");
-        VBox generarAbajobox = new VBox(moverAbajo);
-
+        moverAbajo.setGraphic(new ImageView(abajo));
         Button moverArriba = new Button();
-        moverArriba.setText("mover Arriba");
-        VBox generarArribabox = new VBox(moverArriba);
-
+        moverArriba.setGraphic(new ImageView(arriba));
         Button moverIzquierda = new Button();
-        moverIzquierda.setText("mover Izquierda");
-        VBox generarIzquierdabox = new VBox(moverIzquierda);
-
+        moverIzquierda.setGraphic(new ImageView(izquierda));
         Button moverDerecha = new Button();
-        moverDerecha.setText("mover Derecha");
+        moverDerecha.setGraphic(new ImageView(derecha));
+
+
+        VBox generarAbajobox = new VBox(moverAbajo);
+        VBox generarArribabox = new VBox(moverArriba);
+        VBox generarIzquierdabox = new VBox(moverIzquierda);
         VBox generarDerechabox = new VBox(moverDerecha);
 
         Button ingresar = new Button();
