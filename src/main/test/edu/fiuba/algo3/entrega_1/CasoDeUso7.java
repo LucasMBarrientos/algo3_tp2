@@ -35,8 +35,8 @@ public class CasoDeUso7 {
         jugadorZerg.moverUnidad(new Coordenada(3,1), new Derecha());
         jugadorZerg.moverUnidad(new Coordenada(4,1), new Abajo());
         jugadorZerg.moverUnidad(new Coordenada(4,2), new Abajo());
-        jugadorZerg.ingresarUnidad(new Coordenada(4,3));
-        //el zangano recolecta recursos
+
+        //el zangano recolecta recursos al estar parado sobre un terreno mineral
         for (int i = 0; i < 10; i++) {
             jugadorZerg.actualizar();
         }

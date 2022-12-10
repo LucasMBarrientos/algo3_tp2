@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EstadoEdificio;
@@ -18,8 +17,6 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
-import java.util.List;
-
 public abstract class Edificio {
 
     protected EstadoEdificio estadoActual = new EdificioEnConstruccion();
@@ -35,12 +32,7 @@ public abstract class Edificio {
         this.estadoActual.deshacerConstruccion();
     }
     
-    public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
-        validarCorrelativasDeConstruccion(inventarioDelJugador);
-        consumirRecursosParaConstruccion(inventarioDelJugador);
-        this.coordenada = coordenada;
-        return this;
-    }
+    public abstract Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador);
 
     public void consumirRecursosParaConstruccion(Inventario inventario) {
         inventario.consumirMinerales(costoEnMinerales);
@@ -88,10 +80,6 @@ public abstract class Edificio {
         return this.coordenada.esIgual(coordenadaComparada);
     }
 
-    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        this.estadoActual.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
-    }
-    
     public Nombre devolverNombre() {
         return nombre;
     }
@@ -112,9 +100,6 @@ public abstract class Edificio {
         return;
     }
 
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        return;
-    }
 
     public void destruirse(Inventario inv){
         inv.eliminarEdificio(coordenada);
@@ -164,6 +149,5 @@ public abstract class Edificio {
 
     public abstract void ocupar(Terreno terreno);
 
-    public abstract void establecerTerreno(Terreno terreno);
 
 }

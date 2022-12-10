@@ -22,12 +22,12 @@ public class UnidadDestruida implements EstadoUnidad {
     }
 
     @Override
-    public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) throws UnidadEstaDestruida {
+    public void moverse(Direccion direccion, Coordenada coordenada) throws UnidadEstaDestruida {
         throw new UnidadEstaDestruida();
     }
 
     @Override
-    public void atacar(Coordenada objetivo, Mapa mapa) throws UnidadEstaDestruida {
+    public void atacar(Coordenada objetivo) throws UnidadEstaDestruida {
         throw new UnidadEstaDestruida();
     }
 
@@ -41,10 +41,6 @@ public class UnidadDestruida implements EstadoUnidad {
         this.unidad = unidad;
     }
 
-    @Override
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar) {
-        return;
-    }
 
     @Override
     public void terminarConstruccion() {

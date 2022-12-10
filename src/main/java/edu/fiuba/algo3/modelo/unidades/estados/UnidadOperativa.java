@@ -16,18 +16,17 @@ public class UnidadOperativa implements EstadoUnidad {
 
     private Unidad unidad;
 
-    public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
+    public void moverse(Direccion direccion, Coordenada coordenada) {
         try {
-            mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
-            mapa.eliminarUnidad(coordenada);
+            Mapa.devolverInstancia().establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
+            Mapa.devolverInstancia().eliminarUnidad(coordenada);
         } catch (TerrenoNoAptoParaTalUnidad e){
-            mapa.establecerUnidad(coordenada, this.unidad);
+            Mapa.devolverInstancia().establecerUnidad(coordenada, this.unidad);
         }
-
     }
 
-    public void atacar(Coordenada objetivo, Mapa mapa) {
-        unidad.ejecutarAtaque(objetivo, mapa);
+    public void atacar(Coordenada objetivo) {
+        unidad.ejecutarAtaque(objetivo);
     }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
@@ -44,10 +43,6 @@ public class UnidadOperativa implements EstadoUnidad {
       this.unidad = unidad;
     }
 
-    @Override
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
-        unidad.actualizarListaAVisibilizar(coordenadasAVisibilizar);
-    }
 
     @Override
     public void terminarConstruccion() {

@@ -14,7 +14,6 @@ import java.util.List;
 public abstract class Jugador {
 
     protected int id;
-    protected Mapa mapa;
     public Inventario inventario;
     protected String nombre;
     protected String color;
@@ -29,14 +28,17 @@ public abstract class Jugador {
 
     public abstract ObjectNode toData();
 
-    public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
+    public void construirEdificio(Coordenada coordenada, Edificio edificio){
+        edificio.construir(coordenada, inventario);
+        inventario.agregarEdificio(edificio);
+        edificioInicialConstruido = true;
+    }
 
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         unidad.generarse(edificio, inventario);
-
         try {
-            mapa.establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);
+            Mapa.devolverInstancia().establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);
         } catch(TerrenoNoAptoParaTalUnidad e){
             unidad.restaurarRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
@@ -84,37 +86,24 @@ public abstract class Jugador {
         }
     }
 
-    public void establecerMapa(Mapa mapa) {
-        this.mapa = mapa;
-        iniciarseEnMapa();
-    }
-
     public void moverUnidad(Coordenada coordenadaDeLaUnidad, Direccion direccionDelMovimiento) {
         Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);
-        unidad.moverse(direccionDelMovimiento, mapa);
+        unidad.moverse(direccionDelMovimiento);
     }
 
     public void destruirUnidad(Coordenada coordenada) {
-        mapa.eliminarUnidad(coordenada);
+        Mapa.devolverInstancia().eliminarUnidad(coordenada);
         inventario.eliminarUnidad(coordenada);
     }
 
     public void destruirEdificio(Coordenada coordenada) {
-        mapa.eliminarEdificio(coordenada);
+        Mapa.devolverInstancia().eliminarEdificio(coordenada);
         inventario.eliminarEdificio(coordenada);
     }
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         Unidad unidad = inventario.buscarUnidad(coordenadaUnidad);
-        try {
-            unidad.atacar(coordenadaObjetivo, mapa);
-        } catch (UnidadEstaDestruida e){
-            mapa.eliminarUnidad(coordenadaObjetivo);
-            throw new UnidadEstaDestruida();
-        } catch (EdificioEstaDestruido e){
-            mapa.eliminarEdificio(coordenadaObjetivo);
-            throw new EdificioEstaDestruido();
-        }
+        unidad.atacar(coordenadaObjetivo);
     }
 
     public void establecerId(int id) {
@@ -135,6 +124,6 @@ public abstract class Jugador {
 
     public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){}
 
-    protected abstract void iniciarseEnMapa();
+    public abstract void iniciarseEnMapa();
 
 }

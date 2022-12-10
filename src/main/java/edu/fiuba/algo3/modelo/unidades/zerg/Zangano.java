@@ -1,16 +1,17 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.Nombre;
-import edu.fiuba.algo3.modelo.edificios.*;
+import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
-import edu.fiuba.algo3.modelo.estadisticas.Vida;
 
 public class Zangano extends UnidadZerg {
 
@@ -59,10 +60,6 @@ public class Zangano extends UnidadZerg {
         return sePudoOcupar;
     }
 
-    @Override
-    public void intentarOcuparAlMoverse(Terreno terreno) throws TerrenoNoAptoParaTalUnidad {
-        terreno.ocuparPorUnidad(this);
-    }
 
     public void extraerRecursos(Inventario inventario){
         inventario.agregarMinerales(this.terreno.extraerMinerales(new Mineral(10)));

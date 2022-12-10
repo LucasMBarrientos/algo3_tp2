@@ -12,7 +12,6 @@ import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.terrenos.TerrenoVolcan;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +20,7 @@ public class CasoDeUso4 {
     @Test
     public void extractorCon0ZanganoGenera0UnidadesDeGas() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Extractor extractor = new Extractor();
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
@@ -40,7 +40,9 @@ public class CasoDeUso4 {
 
     @Test
     public void extractorCon1ZanganoGenera10UnidadesDeGas() {
+
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Extractor extractor = new Extractor();
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
@@ -65,6 +67,7 @@ public class CasoDeUso4 {
     @Test
     public void extractorCon2ZanganoGenera20UnidadesDeGas() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Extractor extractor = new Extractor();
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
@@ -90,6 +93,7 @@ public class CasoDeUso4 {
     @Test
     public void extractorCon3ZanganoGenera30UnidadesDeGas() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Extractor extractor = new Extractor();
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 
@@ -116,6 +120,7 @@ public class CasoDeUso4 {
     @Test
     public void extractorNopuedeTener4Zanganos() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Extractor extractor = new Extractor();
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
 

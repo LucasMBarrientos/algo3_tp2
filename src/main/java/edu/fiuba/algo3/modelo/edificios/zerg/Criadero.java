@@ -1,21 +1,33 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import java.util.List;
-
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.recursos.*;
+import edu.fiuba.algo3.modelo.recursos.GasVespeno;
+import edu.fiuba.algo3.modelo.recursos.Mineral;
+import edu.fiuba.algo3.modelo.recursos.Recurso;
+import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.zerg.*;
+import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Criadero extends EdificioZerg {
 
     private int larvas = 3;
+    private int turno = 0;
+
+    private int contadorDeTurnos = 0;
+    private int radioInicial = 5;
+    List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
     private Recurso suministroAAgregar = new Suministro(5);
     
     public Criadero() {
@@ -30,8 +42,34 @@ public class Criadero extends EdificioZerg {
     @Override
     public void actualizarEdificio(Inventario inventario) {
         regenerar();
+        actualizarLarvas();
+        actualizarMapa();
+    }
+
+    private void actualizarLarvas(){
         if (larvas < 3) {
             this.larvas++;
+        }
+    }
+
+    private void actualizarMapa(){
+        if(turno % 4 == 0){
+            actualizarCoordenadasConMoho(radioInicial + contadorDeTurnos);
+            for(Coordenada coord : coordenadasConMoho){
+                try{
+                    Mapa.devolverInstancia().buscarTerreno(coord).cubrirTerrenoDeMoho();
+                } catch (CoordenadaFueraDelMapa exception){}
+            }
+            contadorDeTurnos++;
+        }
+        turno++;
+    }
+
+    private void actualizarCoordenadasConMoho(int radio){
+        coordenadasConMoho = new ArrayList<Coordenada>();
+        List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radio);
+        for(Coordenada coordenadaHallada : coordenadas) {
+            coordenadasConMoho.add(coordenadaHallada);
         }
     }
 
@@ -50,10 +88,6 @@ public class Criadero extends EdificioZerg {
         inventario.agregarSuministro(suministroAAgregar);
     }
 
-    @Override
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        coordenadasConCriaderos.add(coordenada);
-    }
 
     @Override
     public void restarSuministros(Inventario inventario) {

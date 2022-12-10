@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso21 {
-
+/*
     @Test
     public void unMutaliscoPuedeEvolucionarEnUnGuardianYDestruirUnPilonA10DeDistanciaEn25Turnos(){
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
@@ -89,4 +89,5 @@ public class CasoDeUso21 {
             unidad.atacar(new Coordenada(2,7), mapa);
         });
     }
+    */
 }
