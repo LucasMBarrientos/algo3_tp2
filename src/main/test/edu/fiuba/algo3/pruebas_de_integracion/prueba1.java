@@ -23,6 +23,8 @@ public class prueba1 {
 
         AlgoStar a = new AlgoStar();
 
+        Logger.setEnableLog(true);
+
         a.agregarJugador(new JugadorZerg("Zerggg","#ff0000"));
 
         a.agregarJugador(new JugadorProtoss("Protoss","#0000ff"));

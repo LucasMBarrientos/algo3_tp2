@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.unidades.estados;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
@@ -20,6 +21,7 @@ public class UnidadOperativa implements EstadoUnidad {
         try {
             Mapa.devolverInstancia().establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
             Mapa.devolverInstancia().eliminarUnidad(coordenada);
+            Logger.log(unidad.devolverNombre().devolverValor() +" se mueve hacia la " + direccion.hallarCoordenadaSiguiente(coordenada).loggearse());
         } catch (TerrenoNoAptoParaTalUnidad e){
             Mapa.devolverInstancia().establecerUnidad(coordenada, this.unidad);
         }

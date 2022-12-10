@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
@@ -47,6 +48,7 @@ public class Mutalisco extends UnidadZerg {
 
     @Override
     public Unidad evolucionar(Unidad unidad) {
+        Logger.log("Mutalisco evolucionó a " + unidad.devolverNombre().devolverValor());
         Mapa.devolverInstancia().eliminarUnidad(coordenada);
         Mapa.devolverInstancia().establecerUnidad(coordenada,unidad);
         return unidad;

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
@@ -77,6 +78,7 @@ public abstract class Unidad {
     }
 
     public void atacar(Coordenada objetivo) {
+        Logger.log( nombre.devolverValor() + " ataca a la coordenada " + objetivo.loggearse());
         estado.atacar(objetivo);
     }
 

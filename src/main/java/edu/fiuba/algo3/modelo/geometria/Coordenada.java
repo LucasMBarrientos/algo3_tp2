@@ -101,5 +101,9 @@ public class Coordenada {
     public int devolverY() {
         return y;
     }
+
+    public String loggearse(){
+        return "(" + devolverX() + "," + devolverY() + ")";
+    }
     
 }
