@@ -17,8 +17,6 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
-import java.util.List;
-
 public abstract class Terreno {
 
     public Coordenada coordenada;
@@ -114,18 +112,6 @@ public abstract class Terreno {
         }
     }
 
-    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        if (edificio != null) {
-            edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
-        }
-    }
-
-    public void actualizarListaDeCoordenadasAVisibilizar(List<Coordenada> coordenadasConUnidades) {
-        if (unidad != null) {
-            unidad.actualizarListaDeCoordenadasVisibles(coordenadasConUnidades);
-        }
-    }
-
     public void cambiarVisibilidadAUnidad(Visibilidad visibilidad){
         if (unidad != null) {
             unidad.establecerVisibilidad(visibilidad);
@@ -137,7 +123,6 @@ public abstract class Terreno {
           unidad.volverInvisible();
       }
   }
-
 
     public void extraerGasVespeno(Recurso recursoRequerido) {
 

@@ -6,7 +6,10 @@ import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.*;
+import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.excepciones.InvalidaEvolucionDeUnidad;
+import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -16,8 +19,6 @@ import edu.fiuba.algo3.modelo.unidades.estados.EstadoUnidad;
 import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
-
-import java.util.List;
 
 public abstract class Unidad {
 
@@ -81,7 +82,6 @@ public abstract class Unidad {
         estado.atacar(objetivo);
     }
 
-    public void intentarOcuparAlMoverse(Terreno terreno){    }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         this.estado.recibirDanio(danioTerrestre, danioAereo);
@@ -141,15 +141,7 @@ public abstract class Unidad {
     public void agregarSuministro(Inventario inventario) {
     }
 
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar) {
-        estado.actualizarListaDeCoordenadasVisibles(coordenadasAVisibilizar);
-    }
-    
     public void extraerRecursos(Inventario inventario){
-        return;
-    }
-
-    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar) {
         return;
     }
 

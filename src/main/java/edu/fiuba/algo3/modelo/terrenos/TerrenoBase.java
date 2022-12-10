@@ -1,21 +1,9 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import java.util.List;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
@@ -146,15 +134,6 @@ public class TerrenoBase extends Terreno {
         establecerEstado(new TerrenoVacio(null));
     }
 
-    @Override
-    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho,List<Coordenada> coordenadasConCriaderos,List<Coordenada> coordenadasConPilones) {
-        if (edificio != null) {
-            edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
-        }
-        if (estado.tieneMoho()) {
-            coordenadasConMoho.addAll(coordenada.hallarCoordenadasAdyacentes());
-        }
-    }
 
     @Override
     public ObjectNode toData() {

@@ -98,12 +98,5 @@ public class AmoSupremo extends UnidadZerg {
         }
     }
 
-    @Override
-    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar){
-        List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
-        for(Coordenada coordenadaHallada : coordenadas) {
-            coordenadasAVisibilizar.add(coordenadaHallada);
-        }
-    }
 
 }

@@ -7,8 +7,6 @@ import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-import java.util.List;
-
 public interface EstadoUnidad {
 
     void actualizar(Inventario inventario);
@@ -24,8 +22,6 @@ public interface EstadoUnidad {
     void terminarConstruccion();
 
     void deshacerConstruccion();
-
-    void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar);
 
     ObjectNode toData();
 }

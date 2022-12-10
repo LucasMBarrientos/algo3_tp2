@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EstadoEdificio;
@@ -17,8 +16,6 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
-
-import java.util.List;
 
 public abstract class Edificio {
 
@@ -88,10 +85,6 @@ public abstract class Edificio {
         return this.coordenada.esIgual(coordenadaComparada);
     }
 
-    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        this.estadoActual.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
-    }
-    
     public Nombre devolverNombre() {
         return nombre;
     }
@@ -112,9 +105,6 @@ public abstract class Edificio {
         return;
     }
 
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        return;
-    }
 
     public void destruirse(Inventario inv){
         inv.eliminarEdificio(coordenada);

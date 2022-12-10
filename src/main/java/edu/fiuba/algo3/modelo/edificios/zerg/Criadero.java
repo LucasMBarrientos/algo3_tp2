@@ -88,10 +88,6 @@ public class Criadero extends EdificioZerg {
         inventario.agregarSuministro(suministroAAgregar);
     }
 
-    @Override
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        coordenadasConCriaderos.add(coordenada);
-    }
 
     @Override
     public void restarSuministros(Inventario inventario) {

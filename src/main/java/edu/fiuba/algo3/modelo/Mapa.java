@@ -14,7 +14,6 @@ import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.modificadores.Visible;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 import java.util.ArrayList;
@@ -22,12 +21,10 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
-
     private static Mapa instancia = null;
     private List<Terreno> terrenos = new ArrayList<Terreno>();
     private List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
     private SuperficieRectangular superficie;
-
 
 
 /*    public Mapa(Coordenada dimension) {
@@ -144,33 +141,6 @@ public class Mapa {
         return this.buscarTerreno(coordenadaBuscada);
     }
 
-    public void actualizar(int turnoActual) {
-        List<Coordenada> coordenadasQueTendranMoho = new ArrayList<Coordenada>();
-        List<Coordenada> coordenadasConCriaderos = new ArrayList<Coordenada>();
-        List<Coordenada> coordenadasConPilones = new ArrayList<Coordenada>();
-        List<Coordenada> coordenadasAVisibilizar = new ArrayList<Coordenada>();
-        for (Terreno terreno : terrenos) {
-            terreno.actualizarListaDeCoordenadas(coordenadasQueTendranMoho, coordenadasConCriaderos, coordenadasConPilones);
-            terreno.actualizarListaDeCoordenadasAVisibilizar(coordenadasAVisibilizar);
-        }
-        if (turnoActual % 4 == 0) {
-            cubrirCoordenadasDeMoho(coordenadasQueTendranMoho);
-        }
-        actualizarTerrenosEnergizados(coordenadasConPilones);
-        generarMohoAlrededorDeCriaderos(coordenadasConCriaderos);
-        actualizarTerrenosConUnidadesVisibles(coordenadasAVisibilizar);
-    }
-
-    private void actualizarTerrenosConUnidadesVisibles(List<Coordenada> coordenadasAVisibilizar){
-        for(Terreno terreno : terrenos){
-            terreno.volverInvisibleAUnidad();
-        }
-        for(Coordenada coordenada: coordenadasAVisibilizar){
-            try {
-                buscarTerreno(coordenada).cambiarVisibilidadAUnidad(new Visible());
-            } catch (CoordenadaFueraDelMapa e){}
-        }
-    }
 
     private List<Coordenada> hallarCoordenadasParaBases() {
         int distanciaEntreLasBases = Math.max(1, superficie.calcularLongitudPromedio() / 12);
@@ -215,37 +185,6 @@ public class Mapa {
         }
     }
 
-    private void generarMohoAlrededorDeCriadero(Coordenada coordenadaDelCriadero) {
-        List<Coordenada> coordenadasConMoho = this.superficie.devolverCoordenadasAdyacentes(coordenadaDelCriadero,5);
-        for (Coordenada coordenadaConMoho : coordenadasConMoho) {
-            buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
-        }
-    }
-
-    private void generarMohoAlrededorDeCriaderos(List<Coordenada> coordenadasConCriaderos) {
-        for (Coordenada coordenadaConCriadero : coordenadasConCriaderos) {
-            generarMohoAlrededorDeCriadero(coordenadaConCriadero);
-        }
-    }
-
-    private void generarTerrenoEnergizadoAlrededorDePilon(Coordenada coordenadaDelPilon) {
-        List<Coordenada> coordenadasConTerrenoEnergizado = this.superficie.devolverCoordenadasAdyacentes(coordenadaDelPilon,3);
-        for (Coordenada coordenadaConTerrenoEnergizado : coordenadasConTerrenoEnergizado) {
-            buscarTerreno(coordenadaConTerrenoEnergizado).energizarTerreno();
-        }
-    }
-
-    private void generarTerrenoEnergizadoAlrededorDePilones(List<Coordenada> coordenadasConPilones) {
-        for (Coordenada coordenadaConPilon : coordenadasConPilones) {
-            generarTerrenoEnergizadoAlrededorDePilon(coordenadaConPilon);
-        }
-    }
-
-    public void cubrirCoordenadasDeMoho(List<Coordenada> coordenadasQueTendranMoho) {
-        for (Coordenada coordenadaConMoho : coordenadasQueTendranMoho) {
-            buscarTerreno(coordenadaConMoho).cubrirTerrenoDeMoho();
-        }
-    }
 
     public List<ObjectNode>  parseTerrenos(){
       List<ObjectNode>  mapaEnString = new ArrayList<>();
@@ -295,11 +234,5 @@ public class Mapa {
         return parseOcupantes();
     }
 
-    public void actualizarTerrenosEnergizados(List<Coordenada> coordenadasConPilones) {
-        for (Terreno terreno : terrenos) {
-            terreno.desenergizarTerreno();
-        }
-        generarTerrenoEnergizadoAlrededorDePilones(coordenadasConPilones);
-    }
     
 }

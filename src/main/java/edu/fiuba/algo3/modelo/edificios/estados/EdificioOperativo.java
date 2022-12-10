@@ -41,9 +41,6 @@ public class EdificioOperativo implements EstadoEdificio {
         edificio.establecerEstado(new EdificioEnConstruccion());
     }
 
-    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        edificio.actualizarListasDeCoordenadasSegunEdificio(coordenadasConCriaderos, coordenadasConPilones);
-    }
   
     public Unidad generarUnidad(Unidad unidad,Inventario inventario)  {
         unidad.consumirRecursosParaGenerarse(inventario);

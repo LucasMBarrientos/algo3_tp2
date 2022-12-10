@@ -41,10 +41,6 @@ public class UnidadDestruida implements EstadoUnidad {
         this.unidad = unidad;
     }
 
-    @Override
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar) {
-        return;
-    }
 
     @Override
     public void terminarConstruccion() {

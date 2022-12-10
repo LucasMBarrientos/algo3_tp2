@@ -5,11 +5,8 @@ import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-
-import java.util.List;
 
 public class EdificioDestruido implements EstadoEdificio {
 
@@ -42,10 +39,6 @@ public class EdificioDestruido implements EstadoEdificio {
 
     @Override
     public void deshacerConstruccion() {
-        return;
-    }
-
-    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         return;
     }
 

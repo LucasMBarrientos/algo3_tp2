@@ -43,10 +43,6 @@ public class UnidadOperativa implements EstadoUnidad {
       this.unidad = unidad;
     }
 
-    @Override
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
-        unidad.actualizarListaAVisibilizar(coordenadasAVisibilizar);
-    }
 
     @Override
     public void terminarConstruccion() {

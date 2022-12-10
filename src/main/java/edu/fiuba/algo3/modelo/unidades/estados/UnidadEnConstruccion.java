@@ -52,7 +52,6 @@ public class UnidadEnConstruccion implements EstadoUnidad {
       
     }
 
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){ }
 
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
