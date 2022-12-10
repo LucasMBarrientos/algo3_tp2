@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,11 +23,9 @@ public class CasoDeUso18 {
         Zerling zerling = new Zerling();
         Pilon pilon = new Pilon();
         pilon.establecerPosicion(new Coordenada(2,2));
-       // zerling.establecerCoordenada(new Coordenada(1,2));
 
         Mapa.devolverInstancia().establecerEdificio(new Coordenada(2,2), pilon);
         Mapa.devolverInstancia().establecerUnidad(new Coordenada(1,2), zerling);
-
 
         for (int i = 0; i < 10; i++) {
             pilon.actualizar(inventario);
@@ -46,17 +46,17 @@ public class CasoDeUso18 {
             zerling.atacar(new Coordenada(2,2));
         });
     }
-/*
+
     @Test
     public void hidraliscoAtacaAPilon60VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Hidralisco hidralisco = new Hidralisco();
         Pilon pilon = new Pilon();
-        Mapa.establecerDimension(new Coordenada(20, 20));
 
         hidralisco.establecerCoordenada(new Coordenada(1,2));
 
-        pilon.ocupar(Mapa.buscarTerreno(new Coordenada(2,2)));
+        pilon.ocupar(Mapa.devolverInstancia().buscarTerreno(new Coordenada(2, 2)));
 
         for (int i = 0; i < 10; i++) {
             pilon.actualizar(inventario);
@@ -80,14 +80,14 @@ public class CasoDeUso18 {
 
     @Test
     public void mutaliscoAtacaAPilon66VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Mutalisco mutalisco = new Mutalisco();
         Pilon pilon = new Pilon();
-        Mapa mapa = new Mapa(new Coordenada(20,20));
 
         mutalisco.establecerCoordenada(new Coordenada(1,2));
 
-        pilon.ocupar(mapa.buscarTerreno(new Coordenada(2,2)));
+        pilon.ocupar(Mapa.devolverInstancia().buscarTerreno(new Coordenada(2, 2)));
 
         for (int i = 0; i < 10; i++) {
             pilon.actualizar(inventario);
@@ -102,16 +102,17 @@ public class CasoDeUso18 {
         mutalisco.actualizar(inventario);
 
         for(int i = 0; i < 66; i++) {
-            mutalisco.atacar(new Coordenada(2,2), mapa);
+            mutalisco.atacar(new Coordenada(2,2));
         }
 
         Assertions.assertThrows(EdificioEstaDestruido.class, ()->{
-            mutalisco.atacar(new Coordenada(2,2), mapa);
+            mutalisco.atacar(new Coordenada(2,2));
         });
     }
-
+/*
     @Test
     public void zealotAtacaACriadero62VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Zealot zealot = new Zealot();
         Pilon pilon = new Pilon();

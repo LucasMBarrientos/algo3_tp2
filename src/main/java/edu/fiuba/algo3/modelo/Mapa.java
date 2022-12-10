@@ -54,6 +54,7 @@ public class Mapa {
                 this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
             }
         }
+        establecerUbicacionesInicialesDeLosJugadores();
         generarTerrenoInicial();
     }
 
