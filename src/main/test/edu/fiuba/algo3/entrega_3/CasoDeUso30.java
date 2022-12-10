@@ -1,20 +1,16 @@
 package edu.fiuba.algo3.entrega_3;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.direcciones.*;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CasoDeUso30 {
 /*
@@ -66,11 +62,11 @@ public class CasoDeUso30 {
             jugadorZerg.generarUnidad(new Coordenada(18,4), new Zangano());
         });
     }
-
+*/
     @Test        
     public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesParaConstruirMasDe66Dragones() {
-        Mapa mapa = new Mapa(new Coordenada(150, 20));
-        AlgoStar algoStar = new AlgoStar(mapa);
+        AlgoStar algoStar = new AlgoStar();
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(150,20));
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 100000, 100000);
         algoStar.agregarJugador(jugadorProtoss);
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");

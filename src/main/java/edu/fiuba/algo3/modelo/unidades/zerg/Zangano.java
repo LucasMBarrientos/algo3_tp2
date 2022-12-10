@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -63,7 +62,7 @@ public class Zangano extends UnidadZerg {
 
 
     public void extraerRecursos(Inventario inventario){
-        Logger.log("Un Zangano en " + coordenada.devolverValorComoString() + " extrajo 10 de Mineral");
+        //Logger.log("Un Zangano en " + coordenada.devolverValorComoString() + " extrajo 10 de Mineral");
         inventario.agregarMinerales(this.terreno.extraerMinerales(new Mineral(10)));
     }
 

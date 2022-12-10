@@ -42,7 +42,6 @@ public class CasoDeUso27 {
         // Construir una reserva de reproduccion
         jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
         jugadorZerg.construirEdificio(new Coordenada(2, 1), new ReservaDeReproduccion());
         for (int i = 0; i < 12; i++) {
             algoStar.pasarTurno();
@@ -51,9 +50,7 @@ public class CasoDeUso27 {
         // construir una guarida
         jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
         jugadorZerg.moverUnidad(new Coordenada(1,2), new Abajo());
-        algoStar.pasarTurno();
         algoStar.pasarTurno();
         jugadorZerg.construirEdificio(new Coordenada(1, 3), new Guarida());
         for (int i = 0; i < 12; i++) {
@@ -63,12 +60,9 @@ public class CasoDeUso27 {
         // construir una espiral
         jugadorZerg.generarUnidad(new Coordenada(1, 1), new Zangano());
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
         jugadorZerg.moverUnidad(new Coordenada(1,2), new Derecha());
         algoStar.pasarTurno();
-        algoStar.pasarTurno();
         jugadorZerg.moverUnidad(new Coordenada(2,2), new Derecha());
-        algoStar.pasarTurno();
         algoStar.pasarTurno();
         jugadorZerg.construirEdificio(new Coordenada(3, 2), new Espiral());
         for (int i = 0; i < 10; i++) {
@@ -107,8 +101,6 @@ public class CasoDeUso27 {
         // Acercar el scout al devorador
         for (int x = 31; x > 6; x--) {
             jugadorProtoss.moverUnidad(new Coordenada(x,0), new Izquierda());
-            algoStar.pasarTurno();
-            algoStar.pasarTurno();
         }
         algoStar.pasarTurno();
 

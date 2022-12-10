@@ -67,10 +67,11 @@ public class Criadero extends EdificioZerg {
 
     private void actualizarCoordenadasConMoho(int radio){
         coordenadasConMoho = new ArrayList<Coordenada>();
-        List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radio);
+        coordenadasConMoho.addAll(coordenada.hallarCoordenadasAdyacentes(radio));
+        /*List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radio);
         for(Coordenada coordenadaHallada : coordenadas) {
             coordenadasConMoho.add(coordenadaHallada);
-        }
+        }*/
     }
 
     @Override
