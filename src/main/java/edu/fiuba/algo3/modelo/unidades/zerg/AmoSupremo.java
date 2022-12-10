@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import java.util.List;
-
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -16,10 +16,16 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Visible;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AmoSupremo extends UnidadZerg {
 
     protected int radioDeVisibilidad = 4;
+
+    List<Coordenada> coordenadasVisibles = new ArrayList<Coordenada>();
     private Recurso suministroAAgregar = new Suministro(5);
     
     public AmoSupremo() {
@@ -39,6 +45,7 @@ public class AmoSupremo extends UnidadZerg {
     @Override
     public void actualizarUnidad(Inventario inventario) {
         regenerar();
+        actualizarMapa();
     }
 
     @Override
@@ -54,12 +61,41 @@ public class AmoSupremo extends UnidadZerg {
 
     @Override
     public Unidad generarse(Edificio edificio, Inventario inventario) {
-        return edificio.generarUnidad(this, inventario);
+        return null;
     }
 
     @Override
     public void agregarSuministro(Inventario inventario) {
         inventario.agregarSuministro(suministroAAgregar);
+    }
+
+    private void actualizarMapa(){
+        invisibilizarTerrenosAnteriores();
+        buscarCoordenadasAVisivilizar();
+        visibilizarTerrenosActuales();
+    }
+
+    private void invisibilizarTerrenosAnteriores(){
+        for(Coordenada coord : coordenadasVisibles) {
+            try{
+                Mapa.devolverInstancia().buscarTerreno(coord).volverInvisibleAUnidad();
+            } catch (CoordenadaFueraDelMapa exception){}
+        }
+    }
+
+    private void visibilizarTerrenosActuales(){
+        for(Coordenada coord : coordenadasVisibles) {
+            try{
+                Mapa.devolverInstancia().buscarTerreno(coord).cambiarVisibilidadAUnidad(new Visible());
+            } catch (CoordenadaFueraDelMapa exception){}
+        }
+    }
+
+    private void buscarCoordenadasAVisivilizar(){
+        List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
+        for(Coordenada coordenadaHallada : coordenadas) {
+            coordenadasVisibles.add(coordenadaHallada);
+        }
     }
 
     @Override

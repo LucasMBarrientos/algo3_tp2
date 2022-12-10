@@ -14,17 +14,17 @@ public abstract class EdificioProtoss extends Edificio {
     public Escudo escudo;
 
     public abstract void ocupar(Terreno terreno);
-    
-    public void establecerTerreno(Terreno terreno){
-        this.terreno = terreno;
-    }
+
 
     public void ejecutarDanio(Danio danio) {
         if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){
-            this.establecerEstado(new EdificioDestruido());
+            desenergizarTerrenos();
+            establecerEstado(new EdificioDestruido());
             throw new EdificioEstaDestruido();
         }
     }
+
+    public void desenergizarTerrenos(){}
 
     public void regenerar(){
       escudo.regenerar();

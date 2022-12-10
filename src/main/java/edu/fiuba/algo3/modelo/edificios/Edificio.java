@@ -164,6 +164,5 @@ public abstract class Edificio {
 
     public abstract void ocupar(Terreno terreno);
 
-    public abstract void establecerTerreno(Terreno terreno);
 
 }

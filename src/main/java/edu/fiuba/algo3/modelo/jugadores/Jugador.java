@@ -99,15 +99,7 @@ public abstract class Jugador {
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         Unidad unidad = inventario.buscarUnidad(coordenadaUnidad);
-        try {
-            unidad.atacar(coordenadaObjetivo);
-        } catch (UnidadEstaDestruida e){
-            Mapa.devolverInstancia().eliminarUnidad(coordenadaObjetivo);
-            throw new UnidadEstaDestruida();
-        } catch (EdificioEstaDestruido e){
-            Mapa.devolverInstancia().eliminarEdificio(coordenadaObjetivo);
-            throw new EdificioEstaDestruido();
-        }
+        unidad.atacar(coordenadaObjetivo);
     }
 
     public void establecerId(int id) {

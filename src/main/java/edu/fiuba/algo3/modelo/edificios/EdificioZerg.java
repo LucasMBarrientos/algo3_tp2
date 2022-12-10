@@ -12,10 +12,6 @@ public abstract class EdificioZerg extends Edificio {
 
     public abstract void ocupar(Terreno terreno);
 
-    public void establecerTerreno(Terreno terreno) {
-        this.terreno = terreno;
-    }
-
     public void ejecutarDanio(Danio danio) {
         if (this.vida.recibirDanio(danio)) {
             this.establecerEstado(new EdificioDestruido());

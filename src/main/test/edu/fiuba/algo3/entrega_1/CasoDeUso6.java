@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
@@ -16,7 +15,6 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -35,8 +33,7 @@ public class CasoDeUso6 {
         // El moho Se expande de 1,1 a 6,1 y de crea a apartir del 5 pasarTurno()
 
         jugadorZerg.construirEdificio(new Coordenada(1,1), new Criadero());
-        jugadorProtoss.construirEdificio(new Coordenada(6,2), new Pilon());
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             algoStar.pasarTurno();
         }
 
@@ -50,7 +47,6 @@ public class CasoDeUso6 {
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",0,250,200);
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
@@ -59,12 +55,14 @@ public class CasoDeUso6 {
         Zangano zangano = new Zangano();
 
         jugadorZerg.construirEdificio(new Coordenada(1,1), criadero);
+        for (int i = 0; i < 4; i++) {
+            algoStar.pasarTurno();
+        }
 
-        criadero.terminarConstruccion();
         jugadorZerg.generarUnidad(new Coordenada(1,1), zangano);
 
-        zangano.actualizar(inventario);
-        zangano.actualizar(inventario);
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
 
         jugadorZerg.moverUnidad(new Coordenada(2,1),new Derecha());
         jugadorZerg.moverUnidad(new Coordenada(3,1),new Derecha());
@@ -91,12 +89,14 @@ public class CasoDeUso6 {
         Zangano zangano = new Zangano();
 
         jugadorZerg.construirEdificio(new Coordenada(1,1), criadero);
+        for (int i = 0; i < 4; i++) {
+            algoStar.pasarTurno();
+        }
 
-        criadero.terminarConstruccion();
         jugadorZerg.generarUnidad(new Coordenada(1,1), zangano);
 
-        zangano.actualizar(inventario);
-        zangano.actualizar(inventario);
+        algoStar.pasarTurno();
+        algoStar.pasarTurno();
 
         jugadorZerg.moverUnidad(new Coordenada(2,1),new Derecha());
         jugadorZerg.moverUnidad(new Coordenada(3,1),new Derecha());

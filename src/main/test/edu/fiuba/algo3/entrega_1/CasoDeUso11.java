@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -17,6 +18,7 @@ public class CasoDeUso11 {
     @Test
     public void elEscudoFuncionaComoDebe() {
         Pilon pilon = new Pilon();
+        pilon.establecerPosicion(new Coordenada(5,5));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         for(int i=0; i<6; i++){ pilon.actualizar(inv); } //paso los turnos para que se termine de construir
 
@@ -29,6 +31,7 @@ public class CasoDeUso11 {
     @Test
     public void elEscudoSeRegeneraComoDebe() {
         Pilon pilon = new Pilon();
+        pilon.establecerPosicion(new Coordenada(5,5));
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         for(int i=0; i<6; i++){ pilon.actualizar(inv); } //paso los turnos para que se termine de construir
 

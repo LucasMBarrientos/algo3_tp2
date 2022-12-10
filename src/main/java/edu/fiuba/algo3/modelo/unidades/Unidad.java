@@ -6,10 +6,7 @@ import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
-import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.excepciones.InvalidaEvolucionDeUnidad;
-import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -93,14 +90,16 @@ public abstract class Unidad {
     public abstract void ejecutarDanio(Danio danio, Danio danioAereo);
 
     public void ejecutarAtaque(Coordenada objetivo) {
-        if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
+        if (coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
             try {
                 Mapa.devolverInstancia().buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
             }catch (UnidadEstaDestruida e){
                 cantidadDeKills++;
                 volverInvisible();
+                Mapa.devolverInstancia().eliminarUnidad(objetivo);
                 throw new UnidadEstaDestruida();
             }catch (EdificioEstaDestruido u){
+                Mapa.devolverInstancia().eliminarEdificio(objetivo);
                 cantidadDeKills++;
                 volverInvisible();
                 throw new EdificioEstaDestruido();
@@ -157,4 +156,5 @@ public abstract class Unidad {
     public abstract Unidad generarse(Edificio edificio, Inventario inventario);
 
     public abstract boolean ocupar(Terreno terreno);
+
 }
