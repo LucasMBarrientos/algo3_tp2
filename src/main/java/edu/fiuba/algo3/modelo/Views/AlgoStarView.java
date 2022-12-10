@@ -10,7 +10,23 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSuprem
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraMutalisco;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNormal;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
+import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
+import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
+import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
+import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
+import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
+import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
+import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
+import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
+import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
+import edu.fiuba.algo3.modelo.jugadores.Jugador;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -184,19 +200,21 @@ public class AlgoStarView extends BorderPane {
     public void crearBotoneraAcceso(Coordenada coordenada) {
       if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
         new BotoneraAcceso(algoStar, this,coordenada);
-      }else{
+      } else {
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
+
     public void crearBotoneraAtaque(Coordenada coordenada) {
-      new BotoneraAtaque(algoStar, this,coordenada, new TextField(), new TextField());
+        new BotoneraAtaque(algoStar, this, coordenada);
     }
+
     public void crearBotoneraCriadero(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraCriadero(algoStar, this,coordenada);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }       
+        if ("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()) {
+            new BotoneraCriadero(algoStar, this,coordenada);
+        } else {
+           this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
     public void crearBotoneraEnergizado(Coordenada coordenada) {
       if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
@@ -246,8 +264,9 @@ public class AlgoStarView extends BorderPane {
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
+
     public void ataque(Coordenada coordenadaUnidad){
-      this.contenedorCentral.setContent(mapaView.dibujar(true, coordenadaUnidad));
+        this.contenedorCentral.setContent(mapaView.dibujar(true, coordenadaUnidad));
     }
 
     public void realizarAtaque(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo){
@@ -295,6 +314,85 @@ public class AlgoStarView extends BorderPane {
                     case G:
                         ReproductorDeSonidos r = new ReproductorDeSonidos();
                         r.reproducirSonido("/boom.mp3", false);
+                        break;
+                    case P:
+                        Jugador j1 = algoStar.jugadores.get(0);
+                        Jugador j2 = algoStar.jugadores.get(1);
+
+
+                        j2.construirEdificio(new Coordenada(96, 45), new NexoMineral());
+                        j2.construirEdificio(new Coordenada(95, 46), new NexoMineral());
+                        for (int i = 0; i < 50; i++) { // Termino de construir los nexos minerales
+                            algoStar.pasarTurno();
+                        }
+                        j2.construirEdificio(new Coordenada(95, 45), new Asimilador());
+                        j2.construirEdificio(new Coordenada(8, 1), new Pilon());
+                        for (int i = 0; i < 6; i++) { // Termino de construir el pilon y el asimilador
+                            algoStar.pasarTurno();
+                        }
+                        for (int i = 0; i < 100; i++) { // Recolecto suficientes minerales
+                            algoStar.pasarTurno();
+                        }
+                        j2.construirEdificio(new Coordenada(6, 1), new Acceso());
+                        j2.construirEdificio(new Coordenada(10, 1), new PuertoEstelar());
+
+                        j1.moverUnidad(new Coordenada(1, 1), new Derecha());
+                        j1.moverUnidad(new Coordenada(2, 1), new Derecha());
+                        j1.moverUnidad(new Coordenada(3, 1), new Derecha());
+                        j1.moverUnidad(new Coordenada(4, 1), new Abajo());
+                        j1.moverUnidad(new Coordenada(4, 2), new Abajo());
+                        for (int i = 0; i < 100; i++) { // Recolecto suficientes minerales
+                            algoStar.pasarTurno();
+                        }
+                        j1.moverUnidad(new Coordenada(4,3), new Izquierda());
+                        j1.moverUnidad(new Coordenada(3,3), new Arriba());
+                        j1.construirEdificio(new Coordenada(3, 2), new Criadero());
+                        for (int i = 0; i < 4; i++) { // Termino de construir el criadero
+                            algoStar.pasarTurno();
+                        }
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        algoStar.pasarTurno();
+                        algoStar.pasarTurno();
+
+                        j1.moverUnidad(new Coordenada(3, 1), new Izquierda());
+                        j1.moverUnidad(new Coordenada(2, 1), new Izquierda());
+
+                        j1.moverUnidad(new Coordenada(2, 2), new Izquierda());
+                        j1.moverUnidad(new Coordenada(1, 2), new Abajo());
+
+                        j1.moverUnidad(new Coordenada(4, 2), new Abajo());
+                        j1.moverUnidad(new Coordenada(4, 3), new Abajo());
+
+                        j1.construirEdificio(new Coordenada(4, 4), new Extractor());
+                        for (int i = 0; i < 6; i++) { // Termino de construir el extractor
+                            algoStar.pasarTurno();
+                        }
+
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        algoStar.pasarTurno();
+                        algoStar.pasarTurno();
+                        j1.ingresarUnidadAUnEdificio(new Coordenada(4, 4), new Coordenada(3,1));
+                        j1.ingresarUnidadAUnEdificio(new Coordenada(4, 4), new Coordenada(2,2));
+                        j1.ingresarUnidadAUnEdificio(new Coordenada(4, 4), new Coordenada(4,2));
+                        for (int i = 0; i < 100; i++) { // Recolecto suficientes recursos
+                            algoStar.pasarTurno();
+                        }
+                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
+                        algoStar.pasarTurno();
+                        algoStar.pasarTurno();
+                        j1.moverUnidad(new Coordenada(3, 1), new Derecha());
+                        j1.construirEdificio(new Coordenada(1, 1), new ReservaDeReproduccion());
+                        j1.construirEdificio(new Coordenada(1, 3), new Guarida());
+                        j1.construirEdificio(new Coordenada(4, 1), new Espiral());
+
+                        for (int i = 0; i < 20; i++) { // Construyo los edificios
+                            algoStar.pasarTurno();
+                        }
+
                         break;
                     // End DEBUG_ code for debug purposes only
                 }

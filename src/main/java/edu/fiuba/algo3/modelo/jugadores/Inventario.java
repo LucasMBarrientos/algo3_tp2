@@ -172,7 +172,11 @@ public class Inventario {
 
     public void actualizar() {
         for(int i = 0;i<this.edificios.size();i++) {
-            edificios.get(i).actualizar(this);
+            try {
+                edificios.get(i).actualizar(this);
+            } catch (RecursosInsuficientes e) {
+                // TODO: Esto se activa cuando se agotaron los recursos del volcan/mineral
+            }
         }
         for(int i = 0;i<this.unidades.size();i++){
             unidades.get(i).actualizar(this);

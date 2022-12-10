@@ -21,7 +21,7 @@ public class AlgoStar {
     private Mapa mapa;
 
     public AlgoStar() {
-        this.mapa = new Mapa(new Coordenada(50,50));
+        this.mapa = new Mapa(new Coordenada(100,50));
     }
 
     public AlgoStar(Mapa mapaPersonalizado) {

@@ -39,10 +39,6 @@ public class JugadorProtoss extends Jugador {
         edificioInicialConstruido = true;
     }
 
-    public void actualizar() {
-        inventario.actualizar();
-    }
-
     protected void iniciarseEnMapa() {
         return;
     }

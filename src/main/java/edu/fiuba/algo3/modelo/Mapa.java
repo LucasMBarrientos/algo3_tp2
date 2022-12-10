@@ -85,7 +85,7 @@ public class Mapa {
     }
 
     public void establecerUnidadEnCoordenadaAdyacente(Coordenada coordenadaDelEdificio, Unidad unidad) throws NoHayTerrenoDisponibleParaGenerarUnidad {
-        List<Terreno> terrenosPosibles = buscarTerrenosAdyacentes(coordenadaDelEdificio, 2);
+        List<Terreno> terrenosPosibles = buscarTerrenosAdyacentes(coordenadaDelEdificio, 1);
         for (Terreno terreno : terrenosPosibles) {
             if (unidad.ocupar(terreno)) {
                 return;

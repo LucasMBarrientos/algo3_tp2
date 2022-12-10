@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BotoneraMutalisco extends HBox {
+    
     public BotoneraMutalisco(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
         HBox contenedorHorizontal = new HBox();  
         List<Button> buttons = crearBotones(algoStar, algoView, coordenada);
