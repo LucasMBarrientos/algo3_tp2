@@ -112,6 +112,7 @@ public class CasoDeUso6 {
 
         jugadorZerg.construirEdificio(new Coordenada(6,2), new ReservaDeReproduccion());
 
+
     }
 
 

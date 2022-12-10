@@ -21,12 +21,9 @@ public abstract class EdificioZerg extends Edificio {
 
         try {
             Mapa.devolverInstancia().establecerEdificio(coordenada, this);
-        }catch(TerrenoNoAptoParaConstruirTalEdificio exception) {
+        }catch(TerrenoNoAptoParaConstruirTalEdificio | NoHayUnZanganoEnEsaCoordenada exception) {
             devolverRecursosParaConstruccion(inventarioDelJugador);
             throw exception;
-        } catch (NoHayUnZanganoEnEsaCoordenada e){
-            devolverRecursosParaConstruccion(inventarioDelJugador);
-            throw e;
         }
 
         inventarioDelJugador.eliminarUnidad(coordenada); //elimino al zangano que construyo el edificio
