@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 
 public class JugadorProtoss extends Jugador {
 
@@ -19,11 +20,15 @@ public class JugadorProtoss extends Jugador {
 
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre);
+        node.put("nombre", nombre.devolverValor());
         node.put("inventario", inventario.toData());
         node.put("raza","protoss");
         node.put("color",color);
         return node;
+    }
+
+    public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad) {
+        return;
     }
 
     public void iniciarseEnMapa() {

@@ -1,7 +1,12 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import java.util.List;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -9,13 +14,12 @@ import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-import java.util.List;
 
 public abstract class Jugador {
 
     protected int id;
     public Inventario inventario;
-    protected String nombre;
+    protected Nombre nombre;
     protected String color;
     protected boolean edificioInicialConstruido = false;
 
@@ -23,18 +27,19 @@ public abstract class Jugador {
         if (nombre.length() < 6) {
             throw new NombreDeJugadorInvalido();
         }
-        this.nombre = nombre;
+        this.nombre = new Nombre(nombre);
     }
 
     public abstract ObjectNode toData();
 
-    public void construirEdificio(Coordenada coordenada, Edificio edificio){
+    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
         edificio.construir(coordenada, inventario);
         inventario.agregarEdificio(edificio);
         edificioInicialConstruido = true;
+        Logger.log("Se inicio la costruccion del edificio: \"" + edificio.devolverNombre() + "\"");
     }
 
-    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
+    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad) {
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         unidad.generarse(edificio, inventario);
         try {
@@ -44,6 +49,7 @@ public abstract class Jugador {
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
         inventario.agregarUnidad(unidad);
+        Logger.log("Se inicio la creacion de la unidad: \"" + unidad.devolverNombre().devolverValor() + "\"");
     }
 
     protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
@@ -66,8 +72,8 @@ public abstract class Jugador {
         }
     }
 
-    public boolean nombreEsIgual(String nombre) {
-        return this.nombre.equals(nombre);
+    public boolean nombreEsIgual(Nombre nombre) {
+        return this.nombre.esIgual(nombre);
     }
 
     protected void compararColor(Jugador jugador) throws ColorDeJugadorInvalido {
@@ -122,13 +128,12 @@ public abstract class Jugador {
 
     public abstract String devolverMensajeDeVictoria();
 
-    public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){}
+    public abstract void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad);
 
     public abstract void iniciarseEnMapa();
 
-
     public String devolverNombre() {
-        return this.nombre;
+        return this.nombre.devolverValor();
     }
 
 }

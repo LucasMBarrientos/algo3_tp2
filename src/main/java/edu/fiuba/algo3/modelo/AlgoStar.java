@@ -23,6 +23,7 @@ public class AlgoStar {
     }
 
     public void agregarJugador(Jugador jugador) {
+        Logger.log("Se agrego al jugador " + jugador.devolverNombre());
         if (jugadores.size() > 1) {
             throw new NoSePuedenAgregarMasJugadores();
         }
@@ -52,7 +53,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        Logger.log("Se paso el turno a el jugador" + devolverJugadorActual().devolverNombre());
+        Logger.log("Se paso el turno a el jugador " + devolverJugadorActual().devolverNombre());
         //Mapa.devolverInstancia().actualizar(turnoActual);
         for (Jugador jugador : jugadores) {
             jugador.actualizar();

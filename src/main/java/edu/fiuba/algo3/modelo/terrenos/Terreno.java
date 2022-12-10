@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
@@ -101,10 +103,12 @@ public abstract class Terreno {
 
     public void eliminarEdificio() {
         this.edificio = null;
+        Logger.log("El edificio \"" + unidad.devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminado del mapa");
     }
 
     public void eliminarUnidad() {
         this.unidad = null;
+        Logger.log("La unidad \"" + unidad.devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminada del mapa");
         eliminarZanganoOcupante();
     }
 

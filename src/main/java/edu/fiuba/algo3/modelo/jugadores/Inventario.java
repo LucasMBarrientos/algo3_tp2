@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
@@ -109,12 +109,14 @@ public class Inventario {
 
     public void eliminarUnidad(Coordenada coordenada) {
         int indiceHallado = buscarIdDeUnidad(coordenada);
+        Logger.log("La unidad \"" + edificios.get(indiceHallado).devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminado del inventario del jugador");
         unidades.get(indiceHallado).devolverSuministro(this);
         unidades.remove(unidades.get(indiceHallado));
     }
 
     public void eliminarEdificio(Coordenada coordenada) {
         int indiceHallado = buscarIdDeEdificio(coordenada);
+        Logger.log("El edficio \"" + edificios.get(indiceHallado).devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminado del inventario del jugador");
         edificios.get(indiceHallado).restarSuministros(this);
         edificios.remove(edificios.get(indiceHallado));
     }

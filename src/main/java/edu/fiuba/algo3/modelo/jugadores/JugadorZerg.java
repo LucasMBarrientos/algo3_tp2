@@ -24,7 +24,7 @@ public class JugadorZerg extends Jugador {
 
     public ObjectNode toData(){
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre);
+        node.put("nombre", nombre.devolverValor());
         node.put("inventario", inventario.toData());
         node.put("raza","zerg");
         node.put("color",color);
