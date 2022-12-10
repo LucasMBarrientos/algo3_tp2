@@ -2,12 +2,11 @@ package edu.fiuba.algo3.modelo.Views.eventos.accionesJugador;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
+import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -22,34 +21,37 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     Coordenada coordenadaUnidad;
     Coordenada coordenadaObjetivo;
 
-    TextField textFieldCoord1;
-    TextField textFieldCoord2;
+    List<TextField> casillasDeTextoConCoordenadas;
 
-    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, TextField textField1, TextField textField2) {
+    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, List<TextField> casillasDeTexto) {
         this.algoStar = algoStar;
         this.algoStarView = algoStarView;
         this.coordenadaUnidad = coordenadaUnidad;
-        this.textFieldCoord1 = textField1;
-        this.textFieldCoord2 = textField2;
+        this.casillasDeTextoConCoordenadas = casillasDeTexto;
+    }
+
+    private Coordenada hallarCoordenadaObjetivo() {
+        int x = Integer.parseInt(casillasDeTextoConCoordenadas.get(0).getText());
+        int y = Integer.parseInt(casillasDeTextoConCoordenadas.get(1).getText());
+        return new Coordenada(x, y);
     }
 
     @Override
     public void handle(ActionEvent evento) {
-        Coordenada coordenadaObjetivo = new Coordenada(Integer.parseInt(textFieldCoord1.getText()),Integer.parseInt(textFieldCoord2.getText()));
+        Coordenada coordenadaObjetivo = hallarCoordenadaObjetivo();
         try {
             algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
-
-        }catch (UnidadEstaDestruida e) {
+            ReproductorDeSonidos.devolverInstancia().reproducirSonido("/boom.mp3", false);
+        } catch (UnidadEstaDestruida e) {
             //avisar al jugador que destruyo una unidad
 
-        }catch (EdificioEstaDestruido e) {
+        } catch (EdificioEstaDestruido e) {
             //avisar al jugador que destruyo un edificio
 
-        }catch (AtaqueImposibleDeRealizarse e) {
+        } catch (AtaqueImposibleDeRealizarse e) {
             //avisar al jugador que el objetivo se encuentra fuera del rango
-
         }
-
         algoStarView.actualizarMapa();
+
     }
 }

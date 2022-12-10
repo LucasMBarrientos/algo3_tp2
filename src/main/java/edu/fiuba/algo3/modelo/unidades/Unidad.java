@@ -53,15 +53,13 @@ public abstract class Unidad {
       this.estado.setUnidad(this);
     }
 
-    public void establecerVisibilidad(Visibilidad visibilidad){ }
+    public void establecerVisibilidad(Visibilidad visibilidad) {
+        return;
+    }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
-      if (this.tiempoConstruccion-tiempoAReducir > 0) {
-        this.tiempoConstruccion = this.tiempoConstruccion-tiempoAReducir;
-        return false;
-      } else {
-          return true;
-      }
+        this.tiempoConstruccion = Math.max(0, this.tiempoConstruccion - tiempoAReducir);
+        return this.tiempoConstruccion == 0;
     }
 
     public abstract ObjectNode toData();

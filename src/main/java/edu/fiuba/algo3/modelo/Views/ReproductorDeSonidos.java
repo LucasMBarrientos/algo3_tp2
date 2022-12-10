@@ -7,7 +7,12 @@ import javafx.scene.media.MediaPlayer;
 
 public class ReproductorDeSonidos {
 
-    MediaPlayer control;
+    private static ReproductorDeSonidos instancia = new ReproductorDeSonidos();
+    private MediaPlayer control;
+
+    public static ReproductorDeSonidos devolverInstancia() {
+        return instancia;
+    }
 
     private Media extraerSonido(String directorioDelArchivo) {
         try {
