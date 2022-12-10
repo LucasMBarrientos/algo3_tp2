@@ -21,7 +21,7 @@ public class UnidadOperativa implements EstadoUnidad {
         try {
             Mapa.devolverInstancia().establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
             Mapa.devolverInstancia().eliminarUnidad(coordenada);
-            Logger.log(unidad.devolverNombre().devolverValor() +" se mueve hacia la " + direccion.hallarCoordenadaSiguiente(coordenada).loggearse());
+            Logger.log(unidad.devolverNombre().devolverValor() +" se mueve hacia la " + direccion.hallarCoordenadaSiguiente(coordenada).devolverValorComoString());
         } catch (TerrenoNoAptoParaTalUnidad e){
             Mapa.devolverInstancia().establecerUnidad(coordenada, this.unidad);
         }

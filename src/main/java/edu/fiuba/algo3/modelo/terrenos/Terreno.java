@@ -103,12 +103,10 @@ public abstract class Terreno {
 
     public void eliminarEdificio() {
         this.edificio = null;
-        Logger.log("El edificio \"" + unidad.devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminado del mapa");
     }
 
     public void eliminarUnidad() {
         this.unidad = null;
-        Logger.log("La unidad \"" + unidad.devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminada del mapa");
         eliminarZanganoOcupante();
     }
 

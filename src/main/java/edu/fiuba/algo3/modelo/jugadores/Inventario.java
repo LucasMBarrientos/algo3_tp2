@@ -109,14 +109,12 @@ public class Inventario {
 
     public void eliminarUnidad(Coordenada coordenada) {
         int indiceHallado = buscarIdDeUnidad(coordenada);
-        Logger.log("La unidad \"" + edificios.get(indiceHallado).devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminado del inventario del jugador");
         unidades.get(indiceHallado).devolverSuministro(this);
         unidades.remove(unidades.get(indiceHallado));
     }
 
     public void eliminarEdificio(Coordenada coordenada) {
         int indiceHallado = buscarIdDeEdificio(coordenada);
-        Logger.log("El edficio \"" + edificios.get(indiceHallado).devolverNombre().devolverValor() + "\" (En la coordenada " + coordenada.devolverX() + ":" + coordenada.devolverY() + ") fue eliminado del inventario del jugador");
         edificios.get(indiceHallado).restarSuministros(this);
         edificios.remove(edificios.get(indiceHallado));
     }

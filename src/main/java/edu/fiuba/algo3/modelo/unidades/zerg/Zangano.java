@@ -63,7 +63,7 @@ public class Zangano extends UnidadZerg {
 
 
     public void extraerRecursos(Inventario inventario){
-        Logger.log("Un Zangano en " + coordenada.loggearse() + " extrajo 10 de Mineral");
+        Logger.log("Un Zangano en " + coordenada.devolverValorComoString() + " extrajo 10 de Mineral");
         inventario.agregarMinerales(this.terreno.extraerMinerales(new Mineral(10)));
     }
 

@@ -102,7 +102,7 @@ public class Coordenada {
         return y;
     }
 
-    public String loggearse(){
+    public String devolverValorComoString(){
         return "(" + devolverX() + "," + devolverY() + ")";
     }
     

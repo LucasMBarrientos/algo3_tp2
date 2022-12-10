@@ -78,7 +78,7 @@ public abstract class Unidad {
     }
 
     public void atacar(Coordenada objetivo) {
-        Logger.log( nombre.devolverValor() + " ataca a la coordenada " + objetivo.loggearse());
+        Logger.log( nombre.devolverValor() + " ataca a la coordenada " + objetivo.devolverValorComoString());
         estado.atacar(objetivo);
     }
 

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.pruebas_de_integracion;
 
+import org.junit.jupiter.api.Test;
+
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
@@ -10,11 +12,9 @@ import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import org.junit.jupiter.api.Test;
 
 public class prueba1 {
 
