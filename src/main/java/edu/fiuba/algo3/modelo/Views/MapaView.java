@@ -19,7 +19,6 @@ import javafx.scene.layout.Pane;
 
 public class MapaView {
 
-    Mapa mapa;
     AlgoStarView algoStarView;
     Group info = new Group();
     GridPane pruebaGrid = new GridPane();
@@ -61,8 +60,7 @@ public class MapaView {
     double opacityVisible = 1;
     double opacityInvisible = 0.5;
 
-    public MapaView(Mapa mapa, AlgoStarView algoStarView) {
-        this.mapa = mapa;
+    public MapaView(AlgoStarView algoStarView) {
         this.algoStarView = algoStarView;
     }
 
@@ -94,7 +92,7 @@ public class MapaView {
     private void dibujarOcupantes()  {
         List<ObjectNode> nodos = null;
         try {
-            nodos = mapa.toJsonOcupantes();
+            nodos = Mapa.devolverInstancia().toJsonOcupantes();
 
         }catch (JsonProcessingException e){
             System.out.println("Error al mostrar Ocupantes");
@@ -691,7 +689,7 @@ public class MapaView {
     private void dibujarTerrenos(){
         List<ObjectNode> nodos = null;
         try {
-            nodos = mapa.toJsonTerrenos();
+            nodos = Mapa.devolverInstancia().toJsonTerrenos();
         }catch (JsonProcessingException e){
              System.out.println("Error al mostrar terrenos");
         } catch (IOException e) {

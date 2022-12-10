@@ -20,8 +20,6 @@ import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
 
-import java.util.List;
-
 public abstract class Unidad {
 
     protected Recurso costoEnMinerales;
@@ -74,15 +72,14 @@ public abstract class Unidad {
         this.coordenada = coordenada;
     }
 
-    public void moverse(Direccion direccion, Mapa mapa) {
-        estado.moverse(direccion,mapa, coordenada);
+    public void moverse(Direccion direccion) {
+        estado.moverse(direccion, coordenada);
     }
 
-    public void atacar(Coordenada objetivo, Mapa mapa) {
-        estado.atacar(objetivo, mapa);
+    public void atacar(Coordenada objetivo) {
+        estado.atacar(objetivo);
     }
 
-    public void intentarOcuparAlMoverse(Terreno terreno){    }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         this.estado.recibirDanio(danioTerrestre, danioAereo);
@@ -90,15 +87,17 @@ public abstract class Unidad {
     
     public abstract void ejecutarDanio(Danio danio, Danio danioAereo);
 
-    public void ejecutarAtaque(Coordenada objetivo, Mapa mapa) {
-        if (this.coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
+    public void ejecutarAtaque(Coordenada objetivo) {
+        if (coordenada.seEncuentraACiertoRangoDeOtraCoordenada(objetivo, rango)) {
             try {
-                mapa.buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
+                Mapa.devolverInstancia().buscarTerreno(objetivo).recibirDanio(danioTerrestre,danioAereo);
             }catch (UnidadEstaDestruida e){
                 cantidadDeKills++;
                 volverInvisible();
+                Mapa.devolverInstancia().eliminarUnidad(objetivo);
                 throw new UnidadEstaDestruida();
             }catch (EdificioEstaDestruido u){
+                Mapa.devolverInstancia().eliminarEdificio(objetivo);
                 cantidadDeKills++;
                 volverInvisible();
                 throw new EdificioEstaDestruido();
@@ -129,7 +128,7 @@ public abstract class Unidad {
         inventario.agregarSuministro(costoSuministro);
     }
 
-    public Unidad evolucionar(Mapa mapa, Unidad unidad) {
+    public Unidad evolucionar(Unidad unidad) {
         throw new InvalidaEvolucionDeUnidad();
     }
 
@@ -140,19 +139,12 @@ public abstract class Unidad {
     public void agregarSuministro(Inventario inventario) {
     }
 
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar) {
-        estado.actualizarListaDeCoordenadasVisibles(coordenadasAVisibilizar);
-    }
-    
     public void extraerRecursos(Inventario inventario){
-        return;
-    }
-
-    public void actualizarListaAVisibilizar(List<Coordenada> coordenadasAVisibilizar) {
         return;
     }
 
     public abstract Unidad generarse(Edificio edificio, Inventario inventario);
 
     public abstract boolean ocupar(Terreno terreno);
+
 }

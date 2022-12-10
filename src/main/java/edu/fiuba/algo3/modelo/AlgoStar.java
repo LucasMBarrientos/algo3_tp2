@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.excepciones.NoSePuedenAgregarMasJugadores;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlgoStar {
 
@@ -18,14 +18,9 @@ public class AlgoStar {
 
     private Jugador jugadorGanador;
 
-    private Mapa mapa;
-
     public AlgoStar() {
+       Mapa.devolverInstancia().establecerDimension(new Coordenada(100,
         this.mapa = new Mapa(new Coordenada(100,50));
-    }
-
-    public AlgoStar(Mapa mapaPersonalizado) {
-        this.mapa = mapaPersonalizado;
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -37,15 +32,14 @@ public class AlgoStar {
         jugadores.add(jugador);
     }
 
-    public Mapa empezarJuego() {
+    public void empezarJuego() {
         for (Jugador jugador : jugadores) {
-          jugador.establecerMapa(mapa);
+            jugador.iniciarseEnMapa();
         }
-        mapa.actualizar(turnoActual);
+        //Mapa.devolverInstancia().actualizar(turnoActual);
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;
-        return mapa;
     }
 
     public Jugador hallarJugadorActual() {
@@ -53,14 +47,13 @@ public class AlgoStar {
     }
 
     public void pasarTurno(){
-
         idJugadorActual++;
         turnoActual++;
         if (turnoActual % jugadores.size() == 0) {
             idJugadorActual = 0;
             rondaActual++;
         }
-        mapa.actualizar(turnoActual);
+        //Mapa.devolverInstancia().actualizar(turnoActual);
         for (Jugador jugador : jugadores) {
             jugador.actualizar();
             try {

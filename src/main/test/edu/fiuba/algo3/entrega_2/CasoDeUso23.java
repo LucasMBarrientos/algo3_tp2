@@ -16,7 +16,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class CasoDeUso23 {
-    
+    /*
     @Test
     public void zerlingNoPuedeAtacarFueraDeSuRango() {
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
@@ -92,5 +92,5 @@ public class CasoDeUso23 {
         });
 
     }
-
+*/
 }

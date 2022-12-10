@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,30 +15,30 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 
 public class CasoDeUso9 {
 
-  @Test
-  public void unEdificioProtossSigueOperativoCuandoPorLoMenosUnPilonLoEnergiza() {
-      AlgoStar algoStar = new AlgoStar();
-      JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
-      algoStar.agregarJugador(jugadorZerg);
-      JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 350,200);
-      algoStar.agregarJugador(jugadorProtoss);
-      algoStar.empezarJuego();
-      jugadorProtoss.construirEdificio(new Coordenada(2, 1), new Pilon());
-      jugadorProtoss.construirEdificio(new Coordenada(2, 3), new Pilon());
-      for (int i = 0; i < 6; i++) {
-          algoStar.pasarTurno();
-      }
-      jugadorProtoss.construirEdificio(new Coordenada(2, 2), new Acceso());
-      for (int i = 0; i < 8; i++) {
-          algoStar.pasarTurno();
-      }
-      jugadorProtoss.destruirEdificio(new Coordenada(2,3));
+    @Test
+    public void unEdificioProtossSigueOperativoCuandoPorLoMenosUnPilonLoEnergiza() {
+        AlgoStar algoStar = new AlgoStar();
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
+        algoStar.agregarJugador(jugadorZerg);
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 0, 350,200);
+        algoStar.agregarJugador(jugadorProtoss);
+        algoStar.empezarJuego();
+        jugadorProtoss.construirEdificio(new Coordenada(2, 1), new Pilon());
+        jugadorProtoss.construirEdificio(new Coordenada(2, 3), new Pilon());
+        for (int i = 0; i < 6; i++) {
+            algoStar.pasarTurno();
+        }
+        jugadorProtoss.construirEdificio(new Coordenada(2, 2), new Acceso());
+        for (int i = 0; i < 8; i++) {
+            algoStar.pasarTurno();
+        }
+        jugadorProtoss.destruirEdificio(new Coordenada(2,3));
 
 
-      Assertions.assertThrows(RecursosInsuficientes.class, () -> {
-          jugadorProtoss.generarUnidad(new Coordenada(2, 2), new Zealot());
-      });
-  }
+        Assertions.assertThrows(RecursosInsuficientes.class, () -> {
+            jugadorProtoss.generarUnidad(new Coordenada(2, 2), new Zealot());
+        });
+    }
 
 
 

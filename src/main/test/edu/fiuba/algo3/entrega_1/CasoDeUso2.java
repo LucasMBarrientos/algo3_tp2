@@ -112,6 +112,7 @@ public class CasoDeUso2 {
     @Test
     public void unaExtractorNoEstaOperativoEnMenosDe6TurnosConstruyendose() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(100), new Suministro(200));
         Extractor extractor = new Extractor();
         int tiempoDeConstruccion = 6;
@@ -129,6 +130,7 @@ public class CasoDeUso2 {
 	@Test
     public void unExtractorEstaOperativoTras6TurnosConstruyendose() {
         Terreno terrenoVolcan = new TerrenoVolcan(new Coordenada( 1,2));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         Extractor extractor = new Extractor();
         int tiempoDeConstruccion = 6;

@@ -24,6 +24,7 @@ public class CasoDeUso15 {
 
         Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         TerrenoVolcan terrenoVolcan = new TerrenoVolcan(new Coordenada(1,1));
+        terrenoVolcan.ocuparPorUnidad(new Zangano());
         Extractor extractor = new Extractor();
         Zangano zangano1 = new Zangano();
         Zangano zangano2 = new Zangano();

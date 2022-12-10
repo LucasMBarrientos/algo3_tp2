@@ -17,7 +17,7 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
 public class CasoDeUso29 {
-
+/*
     @Test        
     public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesaParaConstruirMasDe200Zanganos() {
         Mapa mapa = new Mapa(new Coordenada(20, 210));
@@ -117,7 +117,7 @@ public class CasoDeUso29 {
             jugadorProtoss.generarUnidad(new Coordenada(146,2), new Dragon());
         });
     }
-
+*/
 }
 
 
