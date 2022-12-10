@@ -36,7 +36,7 @@ public abstract class Jugador {
         edificio.construir(coordenada, inventario);
         inventario.agregarEdificio(edificio);
         edificioInicialConstruido = true;
-        Logger.log("Se inicio la costruccion del edificio: \"" + edificio.devolverNombre() + "\"");
+        Logger.log("Se inicio la costruccion del edificio: \"" + edificio.devolverNombre().devolverValor() + "\"");
     }
 
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad) {

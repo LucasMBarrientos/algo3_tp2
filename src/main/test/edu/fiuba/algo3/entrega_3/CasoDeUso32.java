@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,7 @@ public class CasoDeUso32 {
   
     @Test
     public void finDelJuegoAlcanzadoCuandoTodosLosEdificiosSonDestruidos() {
+        Logger.setEnableLog(true);
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 0, 500,200);
         algoStar.agregarJugador(jugadorZerg);

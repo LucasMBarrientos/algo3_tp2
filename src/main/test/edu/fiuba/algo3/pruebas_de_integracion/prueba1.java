@@ -57,18 +57,18 @@ public class prueba1 {
         a.pasarTurno();
         a.pasarTurno();
 
-        a.hallarJugadorActual().construirEdificio(new Coordenada(6,2),new Pilon());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(20,2),new Pilon());
 
         a.pasarTurno();
 
         a.hallarJugadorActual().moverUnidad(new Coordenada(4,3), new Derecha());
         a.hallarJugadorActual().construirEdificio(new Coordenada(5,3),new Criadero());
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 9; i++) {
             a.pasarTurno();
         }
 
-        a.hallarJugadorActual().construirEdificio(new Coordenada(5,2), new Acceso());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(17,2), new Acceso());
 
         a.pasarTurno();
 

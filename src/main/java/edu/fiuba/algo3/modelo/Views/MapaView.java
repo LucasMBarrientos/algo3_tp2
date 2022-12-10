@@ -56,6 +56,7 @@ public class MapaView {
     Image imagenAsimilador = new Image("/Asimilador.png", 35, 35, false, false);
     Image imagenAcceso = new Image("/Acceso.png", 35, 35, false, false);
     Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 35, 35, false, false);
+//#endregion
 
     double opacityVisible = 1;
     double opacityInvisible = 0.5;
