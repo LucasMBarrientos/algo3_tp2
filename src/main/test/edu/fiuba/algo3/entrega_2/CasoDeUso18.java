@@ -8,28 +8,24 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
-import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
-import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
-import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso18 {
-/*
+
     @Test
     public void zerlingAtacaAPilon150VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
-        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20, 20));
+        Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(400), new Suministro(200));
         Zerling zerling = new Zerling();
         Pilon pilon = new Pilon();
-        Mapa.establecerDimension(new Coordenada(20, 20));
+        pilon.establecerPosicion(new Coordenada(2,2));
+       // zerling.establecerCoordenada(new Coordenada(1,2));
 
-        zerling.establecerCoordenada(new Coordenada(1,2));
+        Mapa.devolverInstancia().establecerEdificio(new Coordenada(2,2), pilon);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(1,2), zerling);
 
-        pilon.ocupar(Mapa.buscarTerreno(new Coordenada(2,2)));
 
         for (int i = 0; i < 10; i++) {
             pilon.actualizar(inventario);
@@ -50,7 +46,7 @@ public class CasoDeUso18 {
             zerling.atacar(new Coordenada(2,2));
         });
     }
-
+/*
     @Test
     public void hidraliscoAtacaAPilon60VecesYALaProximaDevuelveErrorPorEdificioDestruido() {
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));

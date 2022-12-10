@@ -40,12 +40,12 @@ public class TerrenoMoho implements EstadoTerreno {
 
     public void ocuparPorEdificio(Criadero criadero) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(criadero);
     }
     public void ocuparPorEdificio(Espiral espiral) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(espiral);
     }
 
@@ -55,13 +55,13 @@ public class TerrenoMoho implements EstadoTerreno {
 
     public void ocuparPorEdificio(Guarida guarida) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(guarida);
     }
 
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(reservaDeReproduccion);
     }
 
@@ -87,6 +87,7 @@ public class TerrenoMoho implements EstadoTerreno {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
+        terreno.establecerZanganoOcupante(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){

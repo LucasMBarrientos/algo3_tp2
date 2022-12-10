@@ -61,7 +61,7 @@ public class AmoSupremo extends UnidadZerg {
 
     @Override
     public Unidad generarse(Edificio edificio, Inventario inventario) {
-        return null;
+        return edificio.generarUnidad(this, inventario);
     }
 
     @Override

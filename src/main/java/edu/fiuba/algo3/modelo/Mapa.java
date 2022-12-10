@@ -133,7 +133,7 @@ public class Mapa {
     }
 
     public void eliminarUnidad(Coordenada coordenada){
-        buscarTerreno(coordenada).establecerUnidad(null);
+        buscarTerreno(coordenada).eliminarUnidad();
     }
 
     public Terreno hallarTerrenoADistanciaRelativa(Coordenada coordenada, int distanciaX, int distanciaY) {

@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
@@ -17,12 +15,6 @@ public class TerrenoBase extends Terreno {
 
     public TerrenoBase(Coordenada coordenada) {
         this.coordenada = coordenada;
-    }
-    public void establecerEdificio(Edificio edificio){
-        this.edificio = edificio;
-    }
-    public void establecerUnidad(Unidad unidad){
-        this.unidad = unidad;
     }
 
     public void establecerEstado(EstadoTerreno estado){
@@ -71,51 +63,41 @@ public class TerrenoBase extends Terreno {
 
     public void ocuparPorUnidad(Dragon unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zealot unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Scout unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zangano unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Hidralisco unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(Mutalisco unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
     public void ocuparPorUnidad(Guardian unidad) {
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
     
     public void ocuparPorUnidad(Devorador unidad) {
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void ocuparPorUnidad(AmoSupremo unidad){
         estado.ocuparPorUnidad(unidad);
-        unidad.establecerCoordenada(coordenada);
     }
 
     public void energizarTerreno() {
@@ -133,7 +115,6 @@ public class TerrenoBase extends Terreno {
     public void vaciarTerreno() { 
         establecerEstado(new TerrenoVacio(null));
     }
-
 
     @Override
     public ObjectNode toData() {

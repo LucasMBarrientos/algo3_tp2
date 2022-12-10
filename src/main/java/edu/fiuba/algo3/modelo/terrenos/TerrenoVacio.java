@@ -42,7 +42,7 @@ public class TerrenoVacio implements EstadoTerreno {
 
     public void ocuparPorEdificio(Criadero criadero){
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(criadero);
     }
 
@@ -85,6 +85,7 @@ public class TerrenoVacio implements EstadoTerreno {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
+        terreno.establecerZanganoOcupante(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
