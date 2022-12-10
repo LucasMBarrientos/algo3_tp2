@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
@@ -47,7 +46,7 @@ public class CasoDeUso16 {
         Extractor extractor = new Extractor();
         jugadorProtoss.construirEdificio(new Coordenada(4,4), asimilador);
 
-        Assertions.assertThrows(UnidadNoEncontrada.class, ()->{
+        Assertions.assertThrows(TerrenoNoAptoParaConstruirTalEdificio.class, ()->{
             jugadorZerg.construirEdificio(new Coordenada(4,4), extractor);
         });
     }

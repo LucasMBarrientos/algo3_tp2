@@ -32,12 +32,7 @@ public abstract class Edificio {
         this.estadoActual.deshacerConstruccion();
     }
     
-    public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
-        validarCorrelativasDeConstruccion(inventarioDelJugador);
-        consumirRecursosParaConstruccion(inventarioDelJugador);
-        this.coordenada = coordenada;
-        return this;
-    }
+    public abstract Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador);
 
     public void consumirRecursosParaConstruccion(Inventario inventario) {
         inventario.consumirMinerales(costoEnMinerales);

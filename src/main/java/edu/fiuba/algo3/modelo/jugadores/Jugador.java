@@ -28,7 +28,11 @@ public abstract class Jugador {
 
     public abstract ObjectNode toData();
 
-    public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
+    public void construirEdificio(Coordenada coordenada, Edificio edificio){
+        edificio.construir(coordenada, inventario);
+        inventario.agregarEdificio(edificio);
+        edificioInicialConstruido = true;
+    }
 
     public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
