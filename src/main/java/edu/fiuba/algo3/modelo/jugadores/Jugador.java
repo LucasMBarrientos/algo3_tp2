@@ -126,4 +126,9 @@ public abstract class Jugador {
 
     public abstract void iniciarseEnMapa();
 
+
+    public String devolverNombre() {
+        return this.nombre;
+    }
+
 }

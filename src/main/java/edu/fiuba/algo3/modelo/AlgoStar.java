@@ -52,6 +52,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
+        Logger.log("Se paso el turno a el jugador" + devolverJugadorActual().devolverNombre());
         //Mapa.devolverInstancia().actualizar(turnoActual);
         for (Jugador jugador : jugadores) {
             jugador.actualizar();
@@ -71,5 +72,6 @@ public class AlgoStar {
     public Jugador devolverJugadorActual() {
         return jugadores.get(idJugadorActual);
     }
+
 
 }

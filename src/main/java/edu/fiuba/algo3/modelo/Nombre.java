@@ -13,10 +13,10 @@ public class Nombre {
     }
 
     public boolean esIgual(Nombre nombre) {
-        return (Objects.equals(this.nombre, nombre.devolverNombre()));
+        return (Objects.equals(this.nombre, nombre.devolverValor()));
     }
 
-    private String devolverNombre() {
+    public String devolverValor() {
         return nombre;
     }
 
