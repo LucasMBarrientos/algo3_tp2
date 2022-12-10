@@ -19,8 +19,7 @@ public class AlgoStar {
     private Jugador jugadorGanador;
 
     public AlgoStar() {
-       Mapa.devolverInstancia().establecerDimension(new Coordenada(100,
-        this.mapa = new Mapa(new Coordenada(100,50));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(100,50));
     }
 
     public void agregarJugador(Jugador jugador) {

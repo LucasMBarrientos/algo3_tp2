@@ -26,8 +26,6 @@ public class JugadorProtoss extends Jugador {
         return node;
     }
 
-
-
     public void iniciarseEnMapa() {
         return;
     }
