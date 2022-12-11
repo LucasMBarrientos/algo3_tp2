@@ -141,6 +141,8 @@ public abstract class Edificio {
         throw new EdificioNoConoceEstaUnidad();
     }
 
+    public void volverNuevamenteOperativo(){ }
+
     public abstract void ejecutarDanio(Danio danio);
 
     public abstract void regenerar();
@@ -148,6 +150,5 @@ public abstract class Edificio {
     public abstract ObjectNode toData();
 
     public abstract void ocupar(Terreno terreno);
-
 
 }

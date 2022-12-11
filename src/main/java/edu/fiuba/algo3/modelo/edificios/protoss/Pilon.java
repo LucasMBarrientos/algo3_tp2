@@ -67,13 +67,13 @@ public class Pilon extends EdificioProtoss {
     @Override
     public void ejecutarDanio(Danio danio) {
         if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){
+            desenergizarTerrenos();
             this.establecerEstado(new EdificioDestruido());
             throw new EdificioEstaDestruido();
         }
     }
     @Override
     public void desenergizarTerrenos(){
-        buscarCoordenadasConTerrenoEnergizado(radioAEnergizar);
         for(Coordenada coord : coordenadasEnergizadas) {
             try{
                 Mapa.devolverInstancia().buscarTerreno(coord).desenergizarTerreno();

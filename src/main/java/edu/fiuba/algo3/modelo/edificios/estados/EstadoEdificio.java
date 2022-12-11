@@ -22,6 +22,8 @@ public interface EstadoEdificio {
 
     void establecerEdificio(Edificio edificio);
 
+    void volverOperativo();
+
 
     boolean consumirLarva(int larvas);
 

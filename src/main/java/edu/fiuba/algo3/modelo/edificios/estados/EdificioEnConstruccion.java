@@ -54,6 +54,8 @@ public class EdificioEnConstruccion implements EstadoEdificio {
         return false;
     }
 
+    public void volverOperativo() { }
+
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
         nodo.put("estado", "edificioEnConstruccion");
