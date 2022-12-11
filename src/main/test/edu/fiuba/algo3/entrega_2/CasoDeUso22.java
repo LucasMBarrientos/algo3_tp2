@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
@@ -299,10 +300,11 @@ public class CasoDeUso22 {
 
     @Test
     public void unMutaliscoNoTerminoDeGenerarseAntesDe7Turnos() {
+        Logger.setEnableLog(true);
         AlgoStar algoStar = new AlgoStar();
-        JugadorZerg jugadorZerg = new JugadorZerg("Goku el mejor", "#ff0000");
+        JugadorZerg jugadorZerg = new JugadorZerg("JugadorZerg", "#ff0000");
         algoStar.agregarJugador(jugadorZerg);
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("JugadorProtoss", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 

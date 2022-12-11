@@ -33,6 +33,7 @@ public class AlgoStar {
     }
 
     public void empezarJuego() {
+        Logger.log("Comienza el juego");
         for (Jugador jugador : jugadores) {
             jugador.iniciarseEnMapa();
         }
