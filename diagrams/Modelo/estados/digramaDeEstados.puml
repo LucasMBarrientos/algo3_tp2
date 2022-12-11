@@ -18,6 +18,9 @@ TurnoJugador1 <- TurnoJugador2 :pasar turno
 state TurnoJugador1{
 TurnoJugador1 :actualizar
 }
+state TurnoJugador2{
+TurnoJugador2 :actualizar
+}
 
 
 }
