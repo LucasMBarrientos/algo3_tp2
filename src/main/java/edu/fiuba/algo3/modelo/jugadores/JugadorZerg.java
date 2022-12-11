@@ -37,11 +37,6 @@ public class JugadorZerg extends Jugador {
         inventario.evolucionarUnidad(coordenada, unidadAEvolucionar);
     }
 
-    public void ingresarUnidad(Coordenada coordenada){
-        Unidad unidad = inventario.buscarUnidad(coordenada);
-        unidad.ocupar(Mapa.devolverInstancia().buscarTerreno(coordenada));
-    }
-
     @Override
     public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){
         Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);

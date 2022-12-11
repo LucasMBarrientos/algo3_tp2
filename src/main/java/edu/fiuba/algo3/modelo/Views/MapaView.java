@@ -20,10 +20,11 @@ public class MapaView {
     AlgoStarView algoStarView;
     Group info = new Group();
     GridPane pruebaGrid = new GridPane();
-    Coordenada unidadAtacante;
+    Coordenada coordenadaUnidad;
     private Group terrenoGroup = new Group();
     private Group ocupanteGroup = new Group();
     boolean atacando = false;
+    boolean ingresadoAEdificio = false;
 
     //#region Imagenes
     Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);
@@ -78,9 +79,9 @@ public class MapaView {
       return pruebaGrid;
     }
 
-    public GridPane dibujar(boolean atacando, Coordenada unidadAtacante) {
+    public GridPane dibujar(boolean atacando, Coordenada unidad, boolean ingresandoAEdificio) {
       this.atacando = true;
-      this.unidadAtacante = unidadAtacante;
+      this.coordenadaUnidad = unidad;
       pruebaGrid.getChildren().clear();
       dibujarTerrenos();
       dibujarOcupantes();
@@ -113,7 +114,7 @@ public class MapaView {
                   imageAmoSupremoWrapper.setLayoutY(posY);
                   imageAmoSupremoSprite.setOnMouseClicked(event ->  {
                     if(atacando){
-                      algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                      algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       setStatsUnidad(nodo);
                     }else{
                       algoStarView.crearBotoneraAmoSupremo(crearCoordenada(nodo));
@@ -140,8 +141,8 @@ public class MapaView {
                   imageZanganoWrapper.setLayoutY(posY);
                   imageZanganoWrapper.setOnMouseClicked(event ->  {
                     if(atacando){
-                        algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
-                    }else{
+                        algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                    } else {
                         algoStarView.crearBotoneraZangano(crearCoordenada(nodo));
                     }
                       setStatsUnidad(nodo);
@@ -165,7 +166,7 @@ public class MapaView {
                   imageZerlingWrapper.setLayoutY(posY);
                   imageZerlingWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                       }
@@ -190,7 +191,7 @@ public class MapaView {
                     imageHidraliscoWrapper.setLayoutY(posY);
                     imageHidraliscoWrapper.setOnMouseClicked(event ->  {
                         if(atacando){
-                            algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                            algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                         }else{
                             algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                         }
@@ -216,7 +217,7 @@ public class MapaView {
                   imageMutaliscoWrapper.setLayoutY(posY);
                   imageMutaliscoWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraMutalisco(crearCoordenada(nodo));
                       }
@@ -242,7 +243,7 @@ public class MapaView {
                   imageGuardianWrapper.setLayoutY(posY);
                   imageGuardianWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                       }
@@ -268,7 +269,7 @@ public class MapaView {
                   imageDevoradorWrapper.setLayoutY(posY);
                   imageDevoradorWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                       }
@@ -301,7 +302,7 @@ public class MapaView {
 
                   imageZealotWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                       }
@@ -328,7 +329,7 @@ public class MapaView {
                    imageDragonWrapper.setLayoutY(posY);
                    imageDragonWrapper.setOnMouseClicked(event ->  {
                        if(atacando){
-                           algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                        }else{
                            algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                        }
@@ -355,7 +356,7 @@ public class MapaView {
                   imageScoutWrapper.setLayoutY(posY);
                   imageScoutWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
                       }
@@ -389,7 +390,7 @@ public class MapaView {
                     imageCriaderoWrapper.setLayoutY(posY);
                     imageCriaderoWrapper.setOnMouseClicked(event ->  {
                         if(atacando){
-                            algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                            algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                         }else{
                             algoStarView.crearBotoneraCriadero(crearCoordenada(nodo));
                         }
@@ -426,7 +427,7 @@ public class MapaView {
                     imageReservaDeReproduccionWrapper.setLayoutY(posY);
                     imageReservaDeReproduccionWrapper.setOnMouseClicked(event ->  {
                         if(atacando){
-                            algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                            algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                         }else{
                             algoStarView.crearBotoneraReservaDeReproduccion(crearCoordenada(nodo));
                         }
@@ -457,9 +458,11 @@ public class MapaView {
                   imageExtractorWrapper.setLayoutY(posY);
                   imageExtractorWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else if (ingresadoAEdificio){
+                          algoStarView.ingresarUnidad(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo)); //TODO REVISAR SINO FALTA BOTONERA PARA ESTO
+                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
                       }
                       setStatsEdificio(nodo);
                   });
@@ -484,7 +487,7 @@ public class MapaView {
                   imageGuaridaWrapper.setLayoutY(posY);
                   imageGuaridaWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraGuarida(crearCoordenada(nodo));
                       }
@@ -511,7 +514,7 @@ public class MapaView {
                   imageEspiralWrapper.setLayoutY(posY);
                   imagenEspiralSprite.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraEspiral(crearCoordenada(nodo));
                       }
@@ -538,9 +541,9 @@ public class MapaView {
                   imageNexoMineralWrapper.setLayoutY(posY);
                   imageNexoMineralWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo)); //TODO REVISAR
+                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
                       }
                       setStatsEdificio(nodo);
                   });
@@ -565,7 +568,7 @@ public class MapaView {
                   imagePilonWrapper.setLayoutY(posY);
                   imagePilonWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
                       }
@@ -592,7 +595,7 @@ public class MapaView {
                   imageAsimiladorWrapper.setLayoutY(posY);
                   imageAsimiladorWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
                       }
@@ -619,7 +622,7 @@ public class MapaView {
                   imageAccesoWrapper.setLayoutY(posY);
                   imageAccesoWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraAcceso(crearCoordenada(nodo));
                       }
@@ -646,7 +649,7 @@ public class MapaView {
                   imagePuertoEstelarWrapper.setLayoutY(posY);
                   imagenPuertoEstelarSprite.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(unidadAtacante, crearCoordenada(nodo));
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraPuertoEstelar(crearCoordenada(nodo));
                       }
@@ -749,7 +752,7 @@ public class MapaView {
                         int x = nodo.get("coordenada").get("x").asInt();
                         int y = nodo.get("coordenada").get("y").asInt();
                         Coordenada coor = new Coordenada(x,y);
-                        algoStarView.realizarAtaque(unidadAtacante,coor);
+                        algoStarView.realizarAtaque(coordenadaUnidad,coor);
                       }else{
                         int x = nodo.get("coordenada").get("x").asInt();
                         int y = nodo.get("coordenada").get("y").asInt();

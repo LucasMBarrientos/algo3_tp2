@@ -88,6 +88,10 @@ public class BotoneraZangano extends HBox {
         ingresar.setText("ingresar");
         VBox generaringresarbox = new VBox(ingresar);
 
+        ingresar.setOnAction(event ->  {
+            algoView.ingreso(coordenada);
+        });
+
 
         BotonConstruirCriaderoHandler botonConstruirCriaderoHandler = new BotonConstruirCriaderoHandler(algoStar, algoView, coordenada);
         construirCriadero.setOnAction(botonConstruirCriaderoHandler);
@@ -118,6 +122,10 @@ public class BotoneraZangano extends HBox {
 
         BotonEmpezarIngresoHandler botonIngresarAExtractorHandler = new BotonEmpezarIngresoHandler(algoStar, algoView, coordenada);
         ingresar.setOnAction(botonIngresarAExtractorHandler);
+
+        ingresar.setOnAction(event ->  {
+            algoView.ingreso(coordenada);
+        });
 
         List<VBox> botones = new ArrayList<>();
         botones.add(generarCriaderobox);

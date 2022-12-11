@@ -72,7 +72,6 @@ public class BotoneraUnidadNormal extends HBox {
         });
 
 
-
         List<Button> botones = new ArrayList<>();
         botones.add(moverAbajo);
         botones.add(moverArriba);
