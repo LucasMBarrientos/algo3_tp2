@@ -2,44 +2,44 @@
 
 
 
-package "modelo" {
-file AlgoStar.java
-package "jugadores" {
-file Inventario.java
-Inventario.java -> recursos
-Inventario.java --> unidades
-Inventario.java -left-> edificios
+package modelo {
+class AlgoStar
+package jugadores {
+class Inventario
+Inventario -> recursos
+Inventario --> unidades
+Inventario -left-> edificios
 package "recursos" {
 
 }
 
-package "edificios" {
+package edificios {
 
 }
-package "unidades" {
+package unidades {
 
 }
 edificios -->estadisticas
 unidades ->estadisticas
 
-package "estadisticas" {
+package estadisticas {
 
 }
 
 
 
 }
-AlgoStar.java -down-> jugadores
+AlgoStar -down-> jugadores
 jugadores --> mapa
-package "mapa" {
-package "terrenos" {
+package mapa {
+package terrenos {
 
 }
 }
 
 }
-package "JUnit" {
-        file Test
+package JUnit {
+        class Test
 }
 Test --> modelo
 @enduml
