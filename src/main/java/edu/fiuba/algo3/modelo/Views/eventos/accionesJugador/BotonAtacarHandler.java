@@ -28,12 +28,6 @@ public class BotonAtacarHandler {
         this.coordenadaObjetivo = coordenadaObjetivo;
     }
 
-    private Coordenada hallarCoordenadaObjetivo() {
-        int x = Integer.parseInt(casillasDeTextoConCoordenadas.get(0).getText());
-        int y = Integer.parseInt(casillasDeTextoConCoordenadas.get(1).getText());
-        return new Coordenada(x, y);
-    }
-
     public void handle() {
         try {
             algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
