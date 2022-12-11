@@ -1,12 +1,8 @@
 package edu.fiuba.algo3.modelo.Views;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.scene.Group;
@@ -14,7 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class MapaView {
@@ -80,7 +78,7 @@ public class MapaView {
       return pruebaGrid;
     }
 
-    public GridPane dibujar(boolean atacando,Coordenada unidadAtacante) {
+    public GridPane dibujar(boolean atacando, Coordenada unidadAtacante) {
       this.atacando = true;
       this.unidadAtacante = unidadAtacante;
       pruebaGrid.getChildren().clear();
@@ -678,6 +676,7 @@ public class MapaView {
         }
         //info.getChildren().add(ocupanteGroup);
     }
+
 
     private void setStatsUnidad(JsonNode node){
         algoStarView.setPantallDeStatsUnidad(node);

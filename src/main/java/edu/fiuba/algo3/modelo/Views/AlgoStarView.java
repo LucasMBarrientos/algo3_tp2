@@ -3,23 +3,15 @@ package edu.fiuba.algo3.modelo.Views;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.*;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraMutalisco;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNormal;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
@@ -36,7 +28,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -202,10 +193,10 @@ public class AlgoStarView extends BorderPane {
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
-
+    /*
     public void crearBotoneraAtaque(Coordenada coordenada) {
         new BotoneraAtaque(algoStar, this, coordenada);
-    }
+    }*/
 
     public void crearBotoneraCriadero(Coordenada coordenada) {
         if ("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()) {
@@ -274,9 +265,9 @@ public class AlgoStarView extends BorderPane {
       System.out.println("ataca a: ");
       System.out.println("x: " + coordenadaObjetivo.devolverX());
       System.out.println("y: " + coordenadaObjetivo.devolverY());
-      algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
+      BotonAtacarHandler ataque = new BotonAtacarHandler(algoStar, this, coordenadaUnidad, coordenadaObjetivo);
+      ataque.handle();
       this.contenedorCentral.setContent(mapaView.dibujar());
-      //algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
     }
 
     private void agregarBarraDelMenu(Stage stage){

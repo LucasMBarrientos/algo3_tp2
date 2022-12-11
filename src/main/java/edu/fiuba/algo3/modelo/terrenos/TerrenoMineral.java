@@ -36,7 +36,7 @@ public class TerrenoMineral extends Terreno {
     public void ocuparPorEdificio(NexoMineral nexoMineral) {
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
-        this.edificio = nexoMineral;
+        establecerEdificio(nexoMineral);
     }
 
     public void ocuparPorEdificio(PuertoEstelar puertoEstelar) {

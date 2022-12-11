@@ -30,6 +30,7 @@ public abstract class BotonConstruirEdificioHandler implements EventHandler<Acti
         algoStarView.mostrarMensajeDeAccionProhibida(texto);
     }
 
+
     @Override
     public void handle(ActionEvent evento) {
         try {

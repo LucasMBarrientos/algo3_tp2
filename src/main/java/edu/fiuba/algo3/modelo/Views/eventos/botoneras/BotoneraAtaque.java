@@ -1,17 +1,15 @@
 package edu.fiuba.algo3.modelo.Views.eventos.botoneras;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Views.AlgoStarView;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Views.AlgoStarView;
-import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BotoneraAtaque extends HBox {
 
@@ -35,8 +33,8 @@ public class BotoneraAtaque extends HBox {
     private Button crearBoton(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada,  List<TextField> casillasDeTexto) {
         Button atacar = new Button();
         atacar.setText("ATACAR!!!");
-        BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(algoStar, algoView, coordenada,  casillasDeTexto);
-        atacar.setOnAction(botonAtacarHandler);
+        //BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(algoStar, algoView, coordenada,  casillasDeTexto);
+        //atacar.setOnAction(botonAtacarHandler);
         return atacar;
     }
 
