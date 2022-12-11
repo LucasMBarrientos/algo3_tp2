@@ -1,27 +1,11 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.excepciones.*;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
-import edu.fiuba.algo3.modelo.recursos.Suministro;
-import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 public class CasoDeUso22 {
 /*
     @Test
     public void unZanganoNoSeConstruyeSinCriadero() {
         Inventario inventario = new Inventario(new GasVespeno(300), new Mineral(500), new Suministro(200));
         JugadorZerg jugador = new JugadorZerg(inventario);
-        Mapa mapa = new Mapa(new Coordenada(30,30));
-        jugador.establecerMapa(mapa);
 
 
         Assertions.assertThrows(EdificioNoEncontrado.class, ()->{
@@ -48,12 +32,7 @@ public class CasoDeUso22 {
             hidralisco.atacar(new Coordenada(2,3), mapa);
         });
     }
-
-
 */
-
-
-
 
 }
 
