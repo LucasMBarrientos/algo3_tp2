@@ -20,7 +20,7 @@ public class JugadorProtoss extends Jugador {
 
     public ObjectNode toData() {
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre.devolverValor());
+        node.put("nombre", this.nombre.devolverValor());
         node.put("inventario", inventario.toData());
         node.put("raza","protoss");
         node.put("color",color);
@@ -36,7 +36,7 @@ public class JugadorProtoss extends Jugador {
     }
 
     public String devolverMensajeDeVictoria() {
-        return "El jugador " + nombre + " a llevado a la raza Zerg a la victoria";
+        return ( this.nombre.devolverValor() + " a llevado a la raza Zerg a la victoria");
     }
 
 }

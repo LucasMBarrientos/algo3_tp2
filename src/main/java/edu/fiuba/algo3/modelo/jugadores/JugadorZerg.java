@@ -52,7 +52,7 @@ public class JugadorZerg extends Jugador {
     }
 
     public String devolverMensajeDeVictoria() {
-        return "El jugador " + nombre + " logro repeeler a los Zerg de la zona";
+        return ( this.nombre.devolverValor() + " logro repeeler a los Zerg de la zona");
     }
 
  }

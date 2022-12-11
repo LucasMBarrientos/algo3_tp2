@@ -50,8 +50,8 @@ public class PantallaDeCreacionDeJugador extends VBox {
         this.setSpacing(40);
         this.setPadding(new Insets(25));
         this.establecerFondo();
-        this.agregarCasillaDeTextoParaNombre();
         this.agregarControlParaSeleccionarColor();
+        this.agregarCasillaDeTextoParaNombre();
         this.coloresRemovidos = coloresRemovidos;
         this.razasRemovidas = razasRemovidas;
         this.formUsuario.getStyleClass().add("form-grid");
