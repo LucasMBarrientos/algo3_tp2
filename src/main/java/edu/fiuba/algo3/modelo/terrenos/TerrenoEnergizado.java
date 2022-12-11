@@ -154,6 +154,7 @@ public class TerrenoEnergizado implements EstadoTerreno {
 
     public void energizarTerreno() {
         terreno.habilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoEnergizado(terreno));
     }
 
     public void desenergizarTerreno() {

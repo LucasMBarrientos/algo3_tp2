@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
@@ -30,11 +31,16 @@ public class PuertoEstelar extends EdificioProtoss {
         regenerar();
     }
 
+    @Override
+    public void volverEdificioInoperativo(){
+        establecerEstado(new EdificioInoperativo());
+    }
+
     public void ocupar(Terreno terreno) {
         terreno.ocuparPorEdificio(this);
     }
 
-    public Unidad generarUnidad(Scout unidad, Inventario inventario)  {
+    public Unidad generarUnidad(Scout unidad, Inventario inventario) {
         return estadoActual.generarUnidad(unidad,inventario);
     }
 

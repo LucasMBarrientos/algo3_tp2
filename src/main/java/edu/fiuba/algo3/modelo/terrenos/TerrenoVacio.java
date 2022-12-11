@@ -125,7 +125,9 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     public void cubrirTerrenoDeMoho() {
-        terreno.establecerEstado(new TerrenoMoho(terreno));
+        if(terreno.edificio == null){
+            terreno.establecerEstado(new TerrenoMoho(terreno));
+        }
     }
 
     @Override
@@ -152,6 +154,7 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     public void energizarTerreno() {
+        terreno.habilitarEdificioOcupante();
         terreno.establecerEstado(new TerrenoEnergizado(terreno));
     }
 

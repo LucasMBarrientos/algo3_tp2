@@ -43,10 +43,7 @@ public class Pilon extends EdificioProtoss {
     @Override
     public void actualizarEdificio(Inventario inventario) {
         regenerar();
-        if(turno == 0){ //para optimizar solo energizo en el primer turno que esta construido el pilon
-            energizarTerrenos();
-        }
-        turno++;
+        energizarTerrenos();
     }
 
     private void energizarTerrenos(){
@@ -59,10 +56,17 @@ public class Pilon extends EdificioProtoss {
     }
 
     private void buscarCoordenadasConTerrenoEnergizado(int radio){
+        coordenadasEnergizadas = new ArrayList<Coordenada>();
         List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radio);
         for(Coordenada coordenadaHallada : coordenadas) {
             coordenadasEnergizadas.add(coordenadaHallada);
         }
+    }
+
+    @Override
+    public void destruirse(Inventario inv){
+        //desenergizarTerrenos();
+        inv.eliminarEdificio(coordenada);
     }
     @Override
     public void ejecutarDanio(Danio danio) {
@@ -74,6 +78,7 @@ public class Pilon extends EdificioProtoss {
     }
     @Override
     public void desenergizarTerrenos(){
+        buscarCoordenadasConTerrenoEnergizado(radioAEnergizar);
         for(Coordenada coord : coordenadasEnergizadas) {
             try{
                 Mapa.devolverInstancia().buscarTerreno(coord).desenergizarTerreno();
