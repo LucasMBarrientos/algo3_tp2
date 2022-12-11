@@ -4,7 +4,9 @@ import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
 import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
 import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
+import edu.fiuba.algo3.modelo.excepciones.ConstruccionRequiereDeOtroEdificio;
 import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,6 +40,24 @@ public class BotonConstruirGuaridaHandler implements EventHandler<ActionEvent> {
         algoStarView.mostrarMensajeDeAccionProhibida(texto);
     }
 
+    private void lanzarMensajeDeTerrenoNoApto() {
+        Text texto = new Text("Guarida solo puede construirse sobre un terreno con Moho");
+        texto.setY(15);
+        texto.setX(15);
+        texto.setFill(Color.INDIANRED);
+        texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+        algoStarView.mostrarMensajeDeAccionProhibida(texto);
+    }
+
+    private void lanzarMensajeDeCorrelativasDeConstruccion() {
+        Text texto = new Text("Para construir una Guarida primero debes construir una Reserva de Reproduccion");
+        texto.setY(15);
+        texto.setX(15);
+        texto.setFill(Color.INDIANRED);
+        texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+        algoStarView.mostrarMensajeDeAccionProhibida(texto);
+    }
+
     @Override
     public void handle(ActionEvent evento) {
         try {
@@ -46,7 +66,12 @@ public class BotonConstruirGuaridaHandler implements EventHandler<ActionEvent> {
             ReproductorDeSonidos.devolverInstancia().reproducirSonido("/construccionCompletada.mp3", false);
         } catch (RecursosInsuficientes e) {
             lanzarMensajeDeFaltaDeRecursos();
+        } catch (TerrenoNoAptoParaConstruirTalEdificio exception){
+            lanzarMensajeDeTerrenoNoApto();
+        } catch (ConstruccionRequiereDeOtroEdificio exeption2){
+            lanzarMensajeDeCorrelativasDeConstruccion();
         }
+
         algoStarView.actualizarMapa();
     }
 

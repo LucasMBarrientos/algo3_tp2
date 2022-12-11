@@ -7,9 +7,6 @@ import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import javafx.scene.control.TextField;
-
-import java.util.List;
 
 public class BotonAtacarHandler {
 
@@ -19,7 +16,6 @@ public class BotonAtacarHandler {
     Coordenada coordenadaUnidad;
     Coordenada coordenadaObjetivo;
 
-    List<TextField> casillasDeTextoConCoordenadas;
 
     public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         this.algoStar = algoStar;
