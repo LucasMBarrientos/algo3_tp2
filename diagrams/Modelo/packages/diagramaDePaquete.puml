@@ -4,28 +4,73 @@
 
 package modelo {
 class AlgoStar
-package jugadores {
-package edificios {
-package estados {}
-package zerg {}
-package protoss{}
+class Mapa
+class Nombre
 
-abstract edificio
-abstract edificioZerg
-abstract edificioProtoss
+package edificios {
+
+}
+
+package geometria {
+package direcciones{
+class Abajo
+class Arriba
+class Derecha
+class Izquierda
+}
+interface Direccion
+class Coordenada
+class SuperficieRectangular
+Coordenada .> Direccion
+Direccion <|.. direcciones
+SuperficieRectangular -up-> Coordenada
+}
+package jugadores {
+'class Inventario
+'abstract Jugador
+'class JugadorZerg
+'class JugadorProtoss
+
+'Jugador -> Inventario
+'Jugador <|--JugadorProtoss
+'Jugador <|-left JugadorZerg
+'Inventario .up> recursos
+
+}
+package recursos {
+
+}
+package terrenos {
+interface EstadoTerreno
+abstract Terreno
+Terreno <|- TerrenoAereo
+Terreno <|-left- TerrenoMineral
+Terreno <|-- TerrenoVolcan
+Terreno <|--- TerrenoBase
+EstadoTerreno <- TerrenoBase
+EstadoTerreno <|-. TerrenoVacio
+EstadoTerreno <|-.. TerrenoEnergizado
+EstadoTerreno <|-. TerrenoMoho
+
 }
 
 package unidades {
-package estadoUnidad{}
-package modificadores{}
-package UnidadProtoss{}
-package UnidadZerg{}
-abstract Unidad
-abstract UnidadZerg
-abstract UnidadProtoss
 }
-edificios -->estadisticas
-unidades -down-> estadisticas
+
+
+}
+AlgoStar --> jugadores
+jugadores -> edificios
+jugadores --> unidades
+jugadores ...> Mapa
+Mapa    -down-> terrenos
+Mapa    -down-> geometria
+terrenos  --> geometria
+jugadores -left--> Nombre
+jugadores --> recursos
+
+'edificios -->estadisticas
+'unidades -down-> estadisticas
 
 'Inventario -> recursos
 'edificios <-right- Inventario
@@ -33,37 +78,9 @@ unidades -down-> estadisticas
 
 'class Inventario
 
-
-
-package "recursos" {
-class GasVespeno
-class Mineral
-abstract recurso
-class Suministro
-
-}
-
-package estadisticas {
-class Danio
-class Escudo
-class Vida
-
-}
-
-
-
-}
-AlgoStar -down-> jugadores
-jugadores --> mapa
-package mapa {
-package terrenos {
-
-}
-}
-
-}
 package JUnit {
         class Test
+
 }
 Test --> modelo
 @enduml
