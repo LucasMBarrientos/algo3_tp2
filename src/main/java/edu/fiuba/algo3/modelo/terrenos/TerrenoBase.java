@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -125,7 +124,7 @@ public class TerrenoBase extends Terreno {
 
     public void deshabilitarEdificioOcupante() {
         if(edificio != null){
-            edificio.establecerEstado(new EdificioInoperativo());
+            edificio.volverEdificioInoperativo();
         }
     }
 

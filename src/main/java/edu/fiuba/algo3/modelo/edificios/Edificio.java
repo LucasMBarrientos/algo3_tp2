@@ -143,6 +143,8 @@ public abstract class Edificio {
 
     public void volverNuevamenteOperativo(){ }
 
+    public void volverEdificioInoperativo(){ }
+
     public abstract void ejecutarDanio(Danio danio);
 
     public abstract void regenerar();

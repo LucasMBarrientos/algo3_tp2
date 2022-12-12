@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.edificios.protoss;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -36,6 +37,12 @@ public class Asimilador extends EdificioProtoss {
     public void extraerRecursos(Inventario inventario) {
         terreno.extraerGasVespeno(new GasVespeno(20));
         inventario.agregarGasVespeno(new GasVespeno(20));
+    }
+
+    @Override
+    public void volverEdificioInoperativo(){
+        establecerEstado(new EdificioInoperativo());
+        this.terreno = terreno;
     }
 
 }
