@@ -61,7 +61,7 @@ public class JugadorZerg extends Jugador {
     public List<String> devolverMediaDeVictoria() {
         List<String> objetos = new ArrayList<String>();
         objetos.add("/victoriaProtoss.jpg");
-        objetos.add("El jugador " + nombre + " logro repeeler a los Zerg de la zona");
+        objetos.add( nombre.devolverValor() + " logro repeeler a los Zerg de la zona");
         return objetos;
     }
 

@@ -31,10 +31,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -73,6 +73,8 @@ public class AlgoStarView extends BorderPane {
         Button pasarTurno = new Button();
         BotonPasarTurnoHandler pasarTurnoHandler = new BotonPasarTurnoHandler(algoStar,this,stage);
         pasarTurno.setOnAction(pasarTurnoHandler);
+        //pasarTurno.setBackground(new Background("-fx-background-color: transparent"));
+        pasarTurno.setStyle(" -fx-background-color: transparent; -fx-border-color: #7d7d7d;");
         pasarTurno.setGraphic(view);
 
         JsonNode jugadorNode = algoStar.devolverJugadorActual().toData();
@@ -90,6 +92,12 @@ public class AlgoStarView extends BorderPane {
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setPadding(new Insets(10));
 
+        contenedorHorizontal.setMinWidth(140);
+
+        contenedorHorizontal.setMaxWidth(140);
+        Image imgFondo = new Image("/derecha.jpg");
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(stage.getOutputScaleX(),stage.getMaxWidth(),true,true,true,true));
+        contenedorHorizontal.setBackground(new Background(fondo));
         this.setRight(contenedorHorizontal);
     }
 
@@ -151,7 +159,14 @@ public class AlgoStarView extends BorderPane {
     public HBox crearBotoneraVacia() {
       HBox contenedorHorizontal = new HBox();
       contenedorHorizontal.setSpacing(10);
+
       contenedorHorizontal.setPadding(new Insets(25));
+      contenedorHorizontal.setMinHeight(110);
+      contenedorHorizontal.setMinWidth(1920);
+
+      Image imgFondo = new Image("/abajo.jpg");
+      BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(stage.getOutputScaleX(),stage.getMaxWidth(),true,true,true,true));
+      contenedorHorizontal.setBackground(new Background(fondo));
 
       return contenedorHorizontal;
     }
@@ -159,17 +174,35 @@ public class AlgoStarView extends BorderPane {
     public HBox crearBotoneraVacia(Coordenada coordenada) {
         HBox contenedorHorizontal = new HBox();
         contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setMinHeight(110);
+        contenedorHorizontal.setMinWidth(1920);
+        contenedorHorizontal.setMaxHeight(110);
+        contenedorHorizontal.setMaxWidth(1920);
+        Image imgFondo = new Image("/abajo.jpg");
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(stage.getOutputScaleX(),stage.getMaxWidth(),true,true,true,true));
+        contenedorHorizontal.setBackground(new Background(fondo));
         contenedorHorizontal.setPadding(new Insets(25));
-        Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
-        Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+
+        Label coordenadaX = crearMensaje("CORDENADA X: " + coordenada.toData().get("x"));
+   Label coordenadaY = crearMensaje("CORDENADA Y: "  + coordenada.toData().get("y"));
+
         VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
         contenedorHorizontal.getChildren().clear();
         contenedorHorizontal.getChildren().add(coordenadaBox);
 
+
         return contenedorHorizontal;
     }
 
-    
+    private static Label crearMensaje(String string) {
+        Label mensaje  = new Label(string);
+
+        mensaje.setFont (Font.font("Tahoma", FontWeight.BOLD, 15));
+        mensaje.setTextFill(Color.web("#000000"));
+        return mensaje;
+    }
+
+
     public void crearBotoneraAmoSupremo(Coordenada coordenada) {
       if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
         new BotoneraAmoSupremo(algoStar, this, coordenada);

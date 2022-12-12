@@ -5,24 +5,48 @@
 package modelo {
 class AlgoStar
 package jugadores {
-class Inventario
-Inventario -> recursos
-Inventario --> unidades
-Inventario -left-> edificios
-package "recursos" {
-
-}
-
 package edificios {
+package estados {}
+package zerg {}
+package protoss{}
 
+abstract edificio
+abstract edificioZerg
+abstract edificioProtoss
 }
-package unidades {
 
+package unidades {
+package estadoUnidad{}
+package modificadores{}
+package UnidadProtoss{}
+package UnidadZerg{}
+abstract Unidad
+abstract UnidadZerg
+abstract UnidadProtoss
 }
 edificios -->estadisticas
-unidades ->estadisticas
+unidades -down-> estadisticas
+
+'Inventario -> recursos
+'edificios <-right- Inventario
+'Inventario -down-> unidades
+
+'class Inventario
+
+
+
+package "recursos" {
+class GasVespeno
+class Mineral
+abstract recurso
+class Suministro
+
+}
 
 package estadisticas {
+class Danio
+class Escudo
+class Vida
 
 }
 
