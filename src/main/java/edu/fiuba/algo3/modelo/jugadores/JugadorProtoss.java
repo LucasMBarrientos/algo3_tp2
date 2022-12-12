@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -35,8 +38,11 @@ public class JugadorProtoss extends Jugador {
         return;
     }
 
-    public String devolverMensajeDeVictoria() {
-        return "El jugador " + nombre + " a llevado a la raza Zerg a la victoria";
+    public List<String> devolverMediaDeVictoria() {
+        List<String> objetos = new ArrayList<String>();
+        objetos.add("/victoriaZerg.jpg");
+        objetos.add("El jugador " + nombre + " a llevado a la raza Zerg a la victoria");
+        return objetos;
     }
 
 }

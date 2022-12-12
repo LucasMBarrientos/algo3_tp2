@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Views;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,12 +15,12 @@ public class PantallaFinDelJuego extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-        Image imgFondo = new Image("/fondo1.jpg");
 
-        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         //BackgroundImage fondo2 = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, BackgroundSize.AUTO(this.getBaselineOffset()));
+        List<String> objetos = jugadorGanador.devolverMediaDeVictoria();
+        BackgroundImage fondo = new BackgroundImage(new Image(objetos.get(0)), BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         this.setBackground(new Background(fondo));
-        Label mensajeDeVictoria = new Label(jugadorGanador.devolverMensajeDeVictoria());
+        Label mensajeDeVictoria = new Label(objetos.get(1));
         this.getChildren().add(mensajeDeVictoria);
     }
     
