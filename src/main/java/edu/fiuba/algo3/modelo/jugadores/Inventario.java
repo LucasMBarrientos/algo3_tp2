@@ -2,15 +2,9 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
-import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
-import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -174,9 +168,7 @@ public class Inventario {
         for(int i = 0;i<this.edificios.size();i++) {
             try {
                 edificios.get(i).actualizar(this);
-            } catch (RecursosInsuficientes e) {
-                // TODO: Esto se activa cuando se agotaron los recursos del volcan/mineral
-            }
+            } catch (RecursosInsuficientes e) { }
         }
         for(int i = 0;i<this.unidades.size();i++){
             unidades.get(i).actualizar(this);

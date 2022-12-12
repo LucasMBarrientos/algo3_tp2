@@ -58,14 +58,10 @@ public class Extractor extends EdificioZerg {
             terreno.extraerGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
             inventario.agregarGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
         } catch (RecursosInsuficientes terrenoSinGasVespeno) {
-            volverEdificioInoperativo();
+            establecerEstado(new EdificioInoperativo());
             throw terrenoSinGasVespeno;
         }
     }
 
-    @Override
-    public void volverEdificioInoperativo(){
-        establecerEstado(new EdificioInoperativo());
-    }
 
 }

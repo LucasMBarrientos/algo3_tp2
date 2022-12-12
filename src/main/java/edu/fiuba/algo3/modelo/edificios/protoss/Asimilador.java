@@ -40,14 +40,10 @@ public class Asimilador extends EdificioProtoss {
             terreno.extraerGasVespeno(new GasVespeno(20));
             inventario.agregarGasVespeno(new GasVespeno(20));
         } catch (RecursosInsuficientes terrenoSinGasVespeno) {
-            volverEdificioInoperativo();
+            establecerEstado(new EdificioInoperativo());
             throw terrenoSinGasVespeno;
         }
     }
 
-    @Override
-    public void volverEdificioInoperativo(){
-        establecerEstado(new EdificioInoperativo());
-    }
 
 }
