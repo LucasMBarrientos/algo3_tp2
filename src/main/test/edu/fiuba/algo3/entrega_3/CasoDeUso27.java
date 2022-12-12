@@ -24,7 +24,7 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 public class CasoDeUso27 {
 
     @Test
-    public void unMutalizcoPuedeEvolucionarEnUnDevoradorSiHaySuficientesRecursosYLuegoPuedeAtacarAUnEnemigoA5CoordenadasDeDistancia() {
+    public void unMutaliscoPuedeEvolucionarEnUnDevoradorSiHaySuficientesRecursosYLuegoPuedeAtacarAUnEnemigoA5CoordenadasDeDistancia() {
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 1200, 1200,200);
         algoStar.agregarJugador(jugadorZerg);
@@ -71,7 +71,7 @@ public class CasoDeUso27 {
 
         // generar un mutalisco
         jugadorZerg.generarUnidad(new Coordenada(3,2), new Mutalisco());
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 7; i++) {
             algoStar.pasarTurno();
         }
 
@@ -83,18 +83,18 @@ public class CasoDeUso27 {
 
         algoStar.pasarTurno();
         jugadorProtoss.construirEdificio(new Coordenada(31,2), new Acceso());
-        for (int i = 0; i <14; i++) {
+        for (int i = 0; i <8; i++) {
             algoStar.pasarTurno();
         }
 
         jugadorProtoss.construirEdificio(new Coordenada(31,1), new PuertoEstelar());
-        for (int i = 0; i <14; i++) {
+        for (int i = 0; i <10; i++) {
             algoStar.pasarTurno();
         }
 
         // Genero un scout en el puerto estelar
         jugadorProtoss.generarUnidad(new Coordenada(31,1),new Scout());
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 10; i++) {
             algoStar.pasarTurno();
         }
 
@@ -102,12 +102,9 @@ public class CasoDeUso27 {
         for (int x = 31; x > 6; x--) {
             jugadorProtoss.moverUnidad(new Coordenada(x,0), new Izquierda());
         }
-        algoStar.pasarTurno();
 
-        for (int i=0; i < 47; i++) {
+        for (int i=0; i < 16; i++) {
             jugadorZerg.atacar(new Coordenada(3,1), new Coordenada(6,0));
-            algoStar.pasarTurno();
-            algoStar.pasarTurno();
         }
 
        // Se intenta atacar una unidad que esta a 5 de rango
