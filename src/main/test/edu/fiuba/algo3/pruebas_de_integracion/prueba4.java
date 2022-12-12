@@ -24,7 +24,11 @@ import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
+import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
+import edu.fiuba.algo3.modelo.unidades.zerg.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class prueba4 {
 
@@ -109,7 +113,7 @@ public class prueba4 {
         for (int i = 0; i < 4; i++) { // Termino de construir el criadero
             a.pasarTurno();
         }
-        for (int y = 40; y > 30; y--) {
+        for (int y = 40; y > 38; y--) {
             a.hallarJugadorActual().generarUnidad(new Coordenada(98, y), new Zangano());
             a.pasarTurno();
             a.pasarTurno();
@@ -148,7 +152,7 @@ public class prueba4 {
         a.hallarJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(95, 45), new Coordenada(97, 48));
 
         // Paso varios turnos recolectando recursos para el jugador zerg
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 100; i++) {
             a.pasarTurno();
         }
 
@@ -189,16 +193,25 @@ public class prueba4 {
             a.pasarTurno();
         }
 
+        // Le paso el turno al jugador protoss
         a.pasarTurno();
 
-        // Empiezo a generar las unidades
+        // Empiezo a generar todas las unidades posibles para el jugador protoss
 
         a.hallarJugadorActual().generarUnidad(new Coordenada(3, 1), new Zealot()); // Coordenada que posee un acceso
         a.hallarJugadorActual().generarUnidad(new Coordenada(3, 1), new Dragon()); // Coordenada que posee un acceso
-        a.hallarJugadorActual().generarUnidad(new Coordenada(3, 1), new Scout()); // Coordenada que posee un puerto estelar
+        a.hallarJugadorActual().generarUnidad(new Coordenada(1, 3), new Scout()); // Coordenada que posee un puerto estelar
 
-        // Protoss: Zealot, dragon, scout (puertoEste)
-        // Zerg: Amo supremo, zangano, zerling, hidralisco, mutalisco, guardian, devorador
+        // Le paso el turno al jugador zerg
+        a.pasarTurno();
+
+        // Empiezo a generar todas las unidades posibles para el jugador zerg
+
+        a.hallarJugadorActual().generarUnidad(new Coordenada(98, 48), new AmoSupremo()); // Coordenada que posee un criadero
+        a.hallarJugadorActual().generarUnidad(new Coordenada(98, 48), new Zangano()); // Coordenada que posee un criadero
+        a.hallarJugadorActual().generarUnidad(new Coordenada(98, 46), new Zerling()); // Coordenada que posee una reserva de reproduccion
+        a.hallarJugadorActual().generarUnidad(new Coordenada(96, 48), new Hidralisco()); // Coordenada que posee un guarida
+        a.hallarJugadorActual().generarUnidad(new Coordenada(96, 46), new Mutalisco()); // Coordenada que posee una espiral
 
     }
 
