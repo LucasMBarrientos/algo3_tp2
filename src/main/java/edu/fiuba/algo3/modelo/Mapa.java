@@ -123,7 +123,7 @@ public class Mapa {
         throw new NoHayTerrenoDisponibleParaGenerarUnidad();
     }
 
-    public void establecerUnidad(Coordenada coordenada, Unidad unidad){
+    public void establecerUnidad(Coordenada coordenada, Unidad unidad) {
         if (!unidad.ocupar(buscarTerreno(coordenada))) {
             throw new TerrenoNoAptoParaTalUnidad();
         }
