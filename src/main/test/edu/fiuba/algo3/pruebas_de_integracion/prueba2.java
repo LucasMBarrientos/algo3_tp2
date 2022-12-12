@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 public class prueba2 {
 
     @Test
-    public void prueboPartidaConZergGanador() { //TODO CAMBIAR PARA QUE GANE ZERG
+    public void prueboPartidaConZergGanador() { //TODO: Cambiar todo esto para que gane el jugador zerg
 
         AlgoStar a = new AlgoStar();
 

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso29 {
-/*
+/* TODO: Arreglar este caso de uso
     @Test
     public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesaParaConstruirMasDe200Zanganos() {
         //Mapa mapa = new Mapa(new Coordenada(20, 210));
