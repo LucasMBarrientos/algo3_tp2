@@ -111,11 +111,13 @@ public class AlgoStarView extends BorderPane {
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         Label danioAereoYTerrestre = new Label("Daño Terrestre: " + node.get("Ocupante").get("danioTerrestre").asText() + "\nDaño Aereo: " + node.get("Ocupante").get("danioAereo").asText());
         Label escudo = new Label();
-        
+
 
         if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
             escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
         }
+
+
 
         // handler del boton construir
         VBox contenedorHorizontal = new VBox(danioAereoYTerrestre,vida,escudo); // <- recibe las cosas como parámetro
