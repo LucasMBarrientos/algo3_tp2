@@ -18,8 +18,6 @@ public interface EstadoEdificio {
 
     void terminarConstruccion();
 
-    void deshacerConstruccion();
-
     void establecerEdificio(Edificio edificio);
 
     void volverOperativo();

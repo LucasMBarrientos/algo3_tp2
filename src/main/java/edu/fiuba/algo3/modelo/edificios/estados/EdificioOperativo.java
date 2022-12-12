@@ -33,11 +33,6 @@ public class EdificioOperativo implements EstadoEdificio {
         this.edificio = edificio;
   }
 
-    @Override
-    public void deshacerConstruccion() {
-        edificio.establecerEstado(new EdificioEnConstruccion());
-    }
-
   
     public Unidad generarUnidad(Unidad unidad,Inventario inventario)  {
         unidad.consumirRecursosParaGenerarse(inventario);

@@ -43,7 +43,6 @@ public class Acceso extends EdificioProtoss {
 
     public void ocupar(Terreno terreno) {
         terreno.ocuparPorEdificio(this);
-        this.terreno = terreno;
     }
 
     @Override

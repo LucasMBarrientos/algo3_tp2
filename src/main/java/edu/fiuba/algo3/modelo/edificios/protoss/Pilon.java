@@ -65,7 +65,6 @@ public class Pilon extends EdificioProtoss {
 
     @Override
     public void destruirse(Inventario inv){
-        //desenergizarTerrenos();
         inv.eliminarEdificio(coordenada);
     }
     @Override

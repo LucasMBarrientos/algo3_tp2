@@ -33,9 +33,6 @@ public class EdificioInoperativo implements EstadoEdificio{
         this.edificio = edificio;
     }
 
-    @Override
-    public void deshacerConstruccion() {
-    }
 
     public Unidad generarUnidad(Unidad unidad,Inventario inventario)  {
         throw new EdificioEstaInoperativo();

@@ -18,7 +18,6 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Edificio {
-
     protected EstadoEdificio estadoActual = new EdificioEnConstruccion();
     protected Terreno terreno;
     protected Recurso costoEnMinerales;
@@ -28,10 +27,7 @@ public abstract class Edificio {
     protected int tiempoDeConstruccion;
     protected Coordenada coordenada;
     
-    public void deshacerConstruccion() {
-        this.estadoActual.deshacerConstruccion();
-    }
-    
+
     public abstract Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador);
 
     public void consumirRecursosParaConstruccion(Inventario inventario) {
@@ -47,8 +43,6 @@ public abstract class Edificio {
     public void actualizar(Inventario inventario) {
         this.estadoActual.actualizar(inventario);
     }
-
-    public abstract void actualizarEdificio(Inventario inventario);
 
     public void ingresarUnidad(Unidad unidad) {
         estadoActual.ingresarUnidad(unidad);
@@ -80,6 +74,13 @@ public abstract class Edificio {
         return this.coordenada.esIgual(coordenadaComparada);
     }
 
+    public abstract void actualizarEdificio(Inventario inventario);
+    public abstract void ocupar(Terreno terreno);
+
+    public abstract void ejecutarDanio(Danio danio);
+
+    public abstract void regenerar();
+
     public Nombre devolverNombre() {
         return nombre;
     }
@@ -99,7 +100,6 @@ public abstract class Edificio {
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
         return;
     }
-
 
     public void destruirse(Inventario inv){
         inv.eliminarEdificio(coordenada);
@@ -145,12 +145,7 @@ public abstract class Edificio {
 
     public void volverEdificioInoperativo(){ }
 
-    public abstract void ejecutarDanio(Danio danio);
-
-    public abstract void regenerar();
 
     public abstract ObjectNode toData();
-
-    public abstract void ocupar(Terreno terreno);
 
 }

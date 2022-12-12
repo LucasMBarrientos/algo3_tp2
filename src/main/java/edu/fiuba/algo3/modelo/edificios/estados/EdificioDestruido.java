@@ -38,11 +38,6 @@ public class EdificioDestruido implements EstadoEdificio {
     }
 
     @Override
-    public void deshacerConstruccion() {
-        return;
-    }
-
-    @Override
     public void ingresarUnidad(Unidad unidad) {
     }
 

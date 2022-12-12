@@ -30,7 +30,6 @@ public class PuertoEstelar extends EdificioProtoss {
     public void actualizarEdificio(Inventario inventario) {
         regenerar();
     }
-
     @Override
     public void volverEdificioInoperativo(){
         establecerEstado(new EdificioInoperativo());

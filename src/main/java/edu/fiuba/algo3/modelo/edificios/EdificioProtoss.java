@@ -10,13 +10,10 @@ import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
-import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
 public abstract class EdificioProtoss extends Edificio {
 
     public Escudo escudo;
-
-    public abstract void ocupar(Terreno terreno);
 
     public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
         validarCorrelativasDeConstruccion(inventarioDelJugador);
@@ -49,6 +46,7 @@ public abstract class EdificioProtoss extends Edificio {
     public void regenerar(){
       escudo.regenerar();
     }
+
 
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
