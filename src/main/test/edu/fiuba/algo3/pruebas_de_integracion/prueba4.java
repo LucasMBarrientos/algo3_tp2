@@ -21,12 +21,15 @@ import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
-public class prueba3 {
+public class prueba4 {
 
     @Test
-    public void prueboAConstruirTodosLosEdificiosDisponiblesEnElJuego() {
+    public void prueboAConstruirTodosLasUnidadesDisponiblesEnElJuego() {
 
         Logger.setEnableLog(true);
         AlgoStar a = new AlgoStar();
@@ -47,9 +50,15 @@ public class prueba3 {
             a.pasarTurno();
         }
 
-        // El jugador protoss construye un pilon
+        // El jugador protoss construye varios pilones (Para tener suministros suficientes para todas las unidades)
         a.hallarJugadorActual().construirEdificio(new Coordenada(1, 1), new Pilon());
-        for (int i = 0; i < 6; i++) { // Termino de construir el pilon
+        a.hallarJugadorActual().construirEdificio(new Coordenada(10, 1), new Pilon());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(11, 1), new Pilon());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(12, 1), new Pilon());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(1, 10), new Pilon());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(1, 11), new Pilon());
+        a.hallarJugadorActual().construirEdificio(new Coordenada(1, 12), new Pilon());
+        for (int i = 0; i < 6; i++) { // Termino de construir los pilones
             a.pasarTurno();
         }
 
@@ -80,7 +89,7 @@ public class prueba3 {
             a.pasarTurno();
         }
 
-        // El jugador zerg mueve el zangano a un terreno diferente y construye un criadero
+        // El jugador zerg mueve el zangano a un terreno diferente y construye varios criaderos (Para tener suministros suficientes para todas las unidades)
         a.hallarJugadorActual().moverUnidad(new Coordenada(95,46), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(96,46), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(97,46), new Derecha());
@@ -89,6 +98,25 @@ public class prueba3 {
         a.hallarJugadorActual().construirEdificio(new Coordenada(98, 48), new Criadero());
         for (int i = 0; i < 4; i++) { // Termino de construir el criadero
             a.pasarTurno();
+        }
+        a.hallarJugadorActual().generarUnidad(new Coordenada(98, 48), new Zangano());
+        a.pasarTurno();
+        a.pasarTurno();
+        for (int y = 47; y > 40; y--) {
+            a.hallarJugadorActual().moverUnidad(new Coordenada(98, y), new Arriba());
+        }
+        a.hallarJugadorActual().construirEdificio(new Coordenada(98, 40), new Criadero());
+        for (int i = 0; i < 4; i++) { // Termino de construir el criadero
+            a.pasarTurno();
+        }
+        for (int y = 40; y > 30; y--) {
+            a.hallarJugadorActual().generarUnidad(new Coordenada(98, y), new Zangano());
+            a.pasarTurno();
+            a.pasarTurno();
+            a.hallarJugadorActual().construirEdificio(new Coordenada(98, y-1), new Criadero());
+            for (int i = 0; i < 4; i++) { // Termino de construir el criadero
+                a.pasarTurno();
+            }
         }
 
         // El jugador zerg genera varios zanganos en su criadero
@@ -120,7 +148,7 @@ public class prueba3 {
         a.hallarJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(95, 45), new Coordenada(97, 48));
 
         // Paso varios turnos recolectando recursos para el jugador zerg
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 200; i++) {
             a.pasarTurno();
         }
 
@@ -161,5 +189,18 @@ public class prueba3 {
             a.pasarTurno();
         }
 
+        a.pasarTurno();
+
+        // Empiezo a generar las unidades
+
+        a.hallarJugadorActual().generarUnidad(new Coordenada(3, 1), new Zealot()); // Coordenada que posee un acceso
+        a.hallarJugadorActual().generarUnidad(new Coordenada(3, 1), new Dragon()); // Coordenada que posee un acceso
+        a.hallarJugadorActual().generarUnidad(new Coordenada(3, 1), new Scout()); // Coordenada que posee un puerto estelar
+
+        // Protoss: Zealot, dragon, scout (puertoEste)
+        // Zerg: Amo supremo, zangano, zerling, hidralisco, mutalisco, guardian, devorador
+
     }
+
+
 }

@@ -28,16 +28,12 @@ public class prueba2 {
     @Test
     public void prueboPartidaConZergGanador() { //TODO: Cambiar todo esto para que gane el jugador zerg
 
-        AlgoStar a = new AlgoStar();
-
         Logger.setEnableLog(true);
-
+        AlgoStar a = new AlgoStar();
         a.agregarJugador(new JugadorZerg("Zerggg","#ff0000"));
-
         a.agregarJugador(new JugadorProtoss("Protoss","#0000ff"));
-
         a.empezarJuego();
-
+        
         //jugador zerg mueve el zangano inicial hasta el mineral
         a.hallarJugadorActual().moverUnidad(new Coordenada(1,1), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(2,1), new Derecha());

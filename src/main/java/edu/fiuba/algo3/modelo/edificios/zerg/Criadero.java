@@ -25,9 +25,7 @@ public class Criadero extends EdificioZerg {
     private int larvas = 3;
     private int turno = 0;
 
-    private int contadorDeTurnos = 0;
     private int radioInicial = 5;
-    List<Coordenada> coordenadasConMoho = new ArrayList<Coordenada>();
     private Recurso suministroAAgregar = new Suministro(5);
     
     public Criadero() {
@@ -52,26 +50,15 @@ public class Criadero extends EdificioZerg {
         }
     }
 
-    private void actualizarMapa(){
-        if(turno % 4 == 0){
-            actualizarCoordenadasConMoho(radioInicial + contadorDeTurnos);
-            for(Coordenada coord : coordenadasConMoho){
-                try{
-                    Mapa.devolverInstancia().buscarTerreno(coord).cubrirTerrenoDeMoho();
-                } catch (CoordenadaFueraDelMapa exception){}
+    private void actualizarMapa() {
+        if(turno % 4 == 0) {
+            int radioActual = radioInicial + (turno / 4);
+            List<Terreno> terrenosQueDeberianTenerMoho = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioActual);
+            for (Terreno terrenoQueDeberiaTenerMoho : terrenosQueDeberianTenerMoho) {
+                terrenoQueDeberiaTenerMoho.cubrirTerrenoDeMoho();
             }
-            contadorDeTurnos++;
         }
         turno++;
-    }
-
-    private void actualizarCoordenadasConMoho(int radio){
-        coordenadasConMoho = new ArrayList<Coordenada>();
-        coordenadasConMoho.addAll(coordenada.hallarCoordenadasAdyacentes(radio));
-        /*List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radio);
-        for(Coordenada coordenadaHallada : coordenadas) {
-            coordenadasConMoho.add(coordenadaHallada);
-        }*/
     }
 
     @Override

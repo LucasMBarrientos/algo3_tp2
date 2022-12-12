@@ -21,49 +21,21 @@ import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.unidades.zerg.Devorador;
+import edu.fiuba.algo3.modelo.unidades.zerg.Guardian;
+import edu.fiuba.algo3.modelo.unidades.zerg.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 
-public class prueba3 {
+public class prueba5 {
 
     @Test
-    public void prueboAConstruirTodosLosEdificiosDisponiblesEnElJuego() {
+    public void prueboAGenerarUnMutaliscoYEvolucionarlo() {
 
         Logger.setEnableLog(true);
         AlgoStar a = new AlgoStar();
         a.agregarJugador(new JugadorProtoss("Protoss", "#0000ff"));
         a.agregarJugador(new JugadorZerg("Zerggg", "#ff0000"));
         a.empezarJuego();
-
-        // El jugador protoss construye 2 nexos minerales y un asimilador
-        a.hallarJugadorActual().construirEdificio(new Coordenada(4, 4), new Asimilador());
-        a.hallarJugadorActual().construirEdificio(new Coordenada(3, 4), new NexoMineral());
-        a.hallarJugadorActual().construirEdificio(new Coordenada(4, 3), new NexoMineral());
-        for (int i = 0; i < 6; i++) { // Termino de construir los edificios
-            a.pasarTurno();
-        }
-
-        // Paso varios turnos recolectando recursos para el jugador protoss
-        for (int i = 0; i < 100; i++) {
-            a.pasarTurno();
-        }
-
-        // El jugador protoss construye un pilon
-        a.hallarJugadorActual().construirEdificio(new Coordenada(1, 1), new Pilon());
-        for (int i = 0; i < 6; i++) { // Termino de construir el pilon
-            a.pasarTurno();
-        }
-
-        // El jugador protoss construye un acceso en el rango del pilon previamente construido
-        a.hallarJugadorActual().construirEdificio(new Coordenada(3, 1), new Acceso());
-        for (int i = 0; i < 8; i++) { // Termino de construir el acceso
-            a.pasarTurno();
-        }
-
-        // El jugador protoss construye un puerto estelar en el rango del pilon previamente construido
-        a.hallarJugadorActual().construirEdificio(new Coordenada(1, 3), new PuertoEstelar());
-        for (int i = 0; i < 10; i++) { // Termino de construir el puerto estelar
-            a.pasarTurno();
-        }
 
         // Se pasa el turno al jugador zerg
         a.pasarTurno();
@@ -76,17 +48,34 @@ public class prueba3 {
         a.hallarJugadorActual().moverUnidad(new Coordenada(95, 47), new Arriba());
         
         // Paso varios turnos recolectando minerales para el jugador zerg
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 180; i++) {
             a.pasarTurno();
         }
 
-        // El jugador zerg mueve el zangano a un terreno diferente y construye un criadero
+        // El jugador zerg mueve el zangano a un terreno diferente y construye varios criaderos (Para tener suministros suficientes para los 2 mutaliscos)
         a.hallarJugadorActual().moverUnidad(new Coordenada(95,46), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(96,46), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(97,46), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(98,46), new Abajo());
         a.hallarJugadorActual().moverUnidad(new Coordenada(98,47), new Abajo());
         a.hallarJugadorActual().construirEdificio(new Coordenada(98, 48), new Criadero());
+        for (int i = 0; i < 4; i++) { // Termino de construir el criadero
+            a.pasarTurno();
+        }
+        a.hallarJugadorActual().generarUnidad(new Coordenada(98, 48), new Zangano());
+        a.pasarTurno();
+        a.pasarTurno();
+        for (int y = 47; y > 40; y--) {
+            a.hallarJugadorActual().moverUnidad(new Coordenada(98, y), new Arriba());
+        }
+        a.hallarJugadorActual().construirEdificio(new Coordenada(98, 40), new Criadero());
+        for (int i = 0; i < 4; i++) { // Termino de construir el criadero
+            a.pasarTurno();
+        }
+        a.hallarJugadorActual().generarUnidad(new Coordenada(98, 40), new Zangano());
+        a.pasarTurno();
+        a.pasarTurno();
+        a.hallarJugadorActual().construirEdificio(new Coordenada(98, 39), new Criadero());
         for (int i = 0; i < 4; i++) { // Termino de construir el criadero
             a.pasarTurno();
         }
@@ -160,6 +149,17 @@ public class prueba3 {
         for (int i = 0; i < 10; i++) { // Termino de construir el edificio
             a.pasarTurno();
         }
+
+        // Genero 2 mutaliscos
+        a.hallarJugadorActual().generarUnidad(new Coordenada(96, 46), new Mutalisco());
+        a.hallarJugadorActual().generarUnidad(new Coordenada(96, 46), new Mutalisco());
+        for (int i = 0; i < 8; i++) { // Termino de construir la unidad
+            a.pasarTurno();
+        }
+
+        // Evoluciono los mutaliscos
+        a.hallarJugadorActual().evolucionar(new Coordenada(97, 46), new Devorador());
+        a.hallarJugadorActual().evolucionar(new Coordenada(96, 47), new Guardian());
 
     }
 }
