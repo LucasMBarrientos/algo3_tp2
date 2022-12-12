@@ -23,10 +23,10 @@ import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class prueba1 {
+public class prueba2 {
 
     @Test
-    public void prueboPartidaConProtossGanador() {
+    public void prueboPartidaConZergGanador() { //TODO CAMBIAR PARA QUE GANE ZERG
 
         AlgoStar a = new AlgoStar();
 
@@ -172,3 +172,4 @@ public class prueba1 {
     }
 
 }
+
