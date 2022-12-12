@@ -15,8 +15,59 @@ import org.junit.jupiter.api.Test;
 public class CasoDeUso30 {
 
     @Test        
-    public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesParaConstruirMasDe200Zanganos() {
-       /* AlgoStar algoStar = new AlgoStar();
+    public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesParaConstruirMasDe66Dragones() {
+        AlgoStar algoStar = new AlgoStar();
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(150,20));
+        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 100000, 100000);
+        algoStar.agregarJugador(jugadorProtoss);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
+        algoStar.agregarJugador(jugadorZerg);
+        algoStar.empezarJuego();
+        
+        // Se trata de construir la mayor cantidadDePilonesPosibles
+        for (int x=1; x < 149; x += 3) {
+            jugadorProtoss.construirEdificio(new Coordenada(x, 1), new Pilon());
+        }
+
+        // Se termina de construir los pilones
+        for (int i=0; i < 6; i++) {
+            algoStar.pasarTurno();
+        }
+
+        // El jugador protoss deberia tener 200 suministros
+
+        // Se construyen 17 accesos en las coordenadas entre todos los pilones
+        for (int x=2; x < 149; x += 3) {
+            jugadorProtoss.construirEdificio(new Coordenada(x,2), new Acceso());
+        }
+
+        // Se termina de construir los accesos
+        for (int i=0; i < 10; i++) {
+            algoStar.pasarTurno();
+        }
+
+        Coordenada coordenada;
+        int unidadesGeneradas = 0;
+        int x = 2;
+        do {
+            coordenada = new Coordenada(x,2);
+            for (int i=0; i<4; i++) {
+                if (unidadesGeneradas < 66) {
+                    unidadesGeneradas++;
+                    jugadorProtoss.generarUnidad(coordenada, new Dragon());
+                }
+            }
+            x += 3;
+        } while (unidadesGeneradas < 66);
+
+        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
+            jugadorProtoss.generarUnidad(new Coordenada(146,2), new Dragon());
+        });
+
+        /*
+        @Test
+        public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesParaConstruirMasDe200Zanganos() {
+        AlgoStar algoStar = new AlgoStar();
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
@@ -97,58 +148,9 @@ public class CasoDeUso30 {
 
         Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(18,4), new Zangano());
-        });*/
-    }
-
-    @Test        
-    public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesParaConstruirMasDe66Dragones() {
-        AlgoStar algoStar = new AlgoStar();
-        Mapa.devolverInstancia().establecerDimension(new Coordenada(150,20));
-        JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff", 100000, 100000);
-        algoStar.agregarJugador(jugadorProtoss);
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
-        algoStar.agregarJugador(jugadorZerg);
-        algoStar.empezarJuego();
-        
-        // Se trata de construir la mayor cantidadDePilonesPosibles
-        for (int x=1; x < 149; x += 3) {
-            jugadorProtoss.construirEdificio(new Coordenada(x, 1), new Pilon());
-        }
-
-        // Se termina de construir los pilones
-        for (int i=0; i < 6; i++) {
-            algoStar.pasarTurno();
-        }
-
-        // El jugador protoss deberia tener 200 suministros
-
-        // Se construyen 17 accesos en las coordenadas entre todos los pilones
-        for (int x=2; x < 149; x += 3) {
-            jugadorProtoss.construirEdificio(new Coordenada(x,2), new Acceso());
-        }
-
-        // Se termina de construir los accesos
-        for (int i=0; i < 10; i++) {
-            algoStar.pasarTurno();
-        }
-
-        Coordenada coordenada;
-        int unidadesGeneradas = 0;
-        int x = 2;
-        do {
-            coordenada = new Coordenada(x,2);
-            for (int i=0; i<4; i++) {
-                if (unidadesGeneradas < 66) {
-                    unidadesGeneradas++;
-                    jugadorProtoss.generarUnidad(coordenada, new Dragon());
-                }
-            }
-            x += 3;
-        } while (unidadesGeneradas < 66);
-
-        Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
-            jugadorProtoss.generarUnidad(new Coordenada(146,2), new Dragon());
         });
+        }*/
+
     }
 
 

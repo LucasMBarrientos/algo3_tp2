@@ -70,7 +70,6 @@ public class CasoDeUso15 {
 
     @Test
     public void zanganoNoPuedeSeguirExtrayendoMineralUnaVezAgotado(  ) {
-
         Inventario inv =  new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         TerrenoMineral terrenoMineral = new TerrenoMineral(new Coordenada(1,1));
         Zangano zangano = new Zangano();

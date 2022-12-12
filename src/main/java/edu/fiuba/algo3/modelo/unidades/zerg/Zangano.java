@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -64,9 +63,7 @@ public class Zangano extends UnidadZerg {
 
     public void extraerRecursos(Inventario inventario){
         //Logger.log("Un Zangano en " + coordenada.devolverValorComoString() + " extrajo 10 de Mineral");
-        try{
-            inventario.agregarMinerales(this.terreno.extraerMinerales(new Mineral(10)));
-        } catch (RecursosInsuficientes e){}
+        inventario.agregarMinerales(this.terreno.extraerMinerales(new Mineral(10)));
     }
 
     @Override

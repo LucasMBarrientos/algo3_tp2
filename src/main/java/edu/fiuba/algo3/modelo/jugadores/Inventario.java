@@ -166,7 +166,9 @@ public class Inventario {
             } catch (RecursosInsuficientes e) { }
         }
         for(int i = 0;i<this.unidades.size();i++){
-            unidades.get(i).actualizar(this);
+            try {
+                unidades.get(i).actualizar(this);
+            } catch (RecursosInsuficientes e) { }
         }
     }
 
