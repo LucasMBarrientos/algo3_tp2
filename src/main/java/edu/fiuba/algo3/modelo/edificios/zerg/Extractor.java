@@ -63,5 +63,4 @@ public class Extractor extends EdificioZerg {
         }
     }
 
-
 }

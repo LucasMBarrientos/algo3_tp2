@@ -34,7 +34,6 @@ public class prueba4 {
 
     @Test
     public void prueboAConstruirTodosLasUnidadesDisponiblesEnElJuego() {
-
         Logger.setEnableLog(true);
         AlgoStar a = new AlgoStar();
         a.agregarJugador(new JugadorProtoss("Protoss", "#0000ff"));

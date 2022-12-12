@@ -492,7 +492,7 @@ public class CasoDeUso22 {
         jugadorZerg.moverUnidad(new Coordenada(4, 2), new Abajo());
 
         //Paso los turnos para recolectar minerales
-        for (int i = 0; i < 45; i++) {
+        for (int i = 0; i < 50; i++) {
             algoStar.pasarTurno();
         }
 
@@ -519,6 +519,7 @@ public class CasoDeUso22 {
         jugadorZerg.moverUnidad(new Coordenada(3,4), new Derecha());
         jugadorZerg.construirEdificio(new Coordenada(4,4), new Extractor());
 
+
         //Construyo una reserva de reproduccion
         jugadorZerg.construirEdificio(new Coordenada(4,1), new ReservaDeReproduccion());
         for (int i = 0; i < 6; i++) {
@@ -527,7 +528,7 @@ public class CasoDeUso22 {
 
         //ingreso un zangano al extractor para recolectar gas
         jugadorZerg.ingresarUnidadAUnEdificio(new Coordenada(4,4), new Coordenada(5,2));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             algoStar.pasarTurno();
         }
 
