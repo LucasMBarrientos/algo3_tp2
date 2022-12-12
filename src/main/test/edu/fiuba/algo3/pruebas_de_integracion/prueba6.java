@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.pruebas_de_integracion;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
@@ -14,6 +15,7 @@ import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
@@ -21,6 +23,7 @@ import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
+import edu.fiuba.algo3.modelo.unidades.estados.UnidadDestruida;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
@@ -180,10 +183,19 @@ public class prueba6 {
             a.pasarTurno();
             a.pasarTurno();
             a.hallarJugadorActual().moverUnidad(new Coordenada(98, 47), new Izquierda());
-            for (int y = 47; y > 3 + i; y--) {
+            for (int y = 47; y > 3; y--) {
                 a.hallarJugadorActual().moverUnidad(new Coordenada(97, y), new Arriba());
             }
-            a.hallarJugadorActual().moverUnidad(new Coordenada(97, 3 + i), new Derecha());
+            a.hallarJugadorActual().moverUnidad(new Coordenada(97, 3), new Derecha());
+            a.pasarTurno();
+            for (int j = 0; j < 4; j++) {
+                try {
+                    a.hallarJugadorActual().atacar(new Coordenada(98, 2), new Coordenada(98, 3));
+                } catch (UnidadEstaDestruida e) {
+                    System.out.println("El zealot destruyo uno de los 3 zanganos");                    
+                }
+            }
+            a.pasarTurno();
         }
 
         // Genero un zerling
@@ -196,15 +208,22 @@ public class prueba6 {
             a.hallarJugadorActual().moverUnidad(new Coordenada(97, y), new Arriba());
         }
 
-        // Le paso el turno al jugador protoss
+        // El zealot ahora es invisible y no puede ser daniado por el zerling
+        for (int i = 0; i < 100; i++) {
+            a.hallarJugadorActual().atacar(new Coordenada(97, 2), new Coordenada(98, 2));
+        }
+
+        // Le paso el turno al jugador zerg
         a.pasarTurno();
 
-        // El zealot destruye los 3 zanganos y adquiere invisibilidad
-        a.hallarJugadorActual().atacar(new Coordenada(98, 2), new Coordenada(97, 3));
-        a.hallarJugadorActual().atacar(new Coordenada(98, 2), new Coordenada(97, 4));
-        a.hallarJugadorActual().atacar(new Coordenada(98, 2), new Coordenada(97, 5));
+        // El zealot si puede atacar al zerling
+        for (int i = 0; i < 4; i++) {
+            a.hallarJugadorActual().atacar(new Coordenada(98, 2), new Coordenada(97, 2));
+        }
 
-        a.hallarJugadorActual().atacar(new Coordenada(97, 47), new Coordenada(98, 1));
+        Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
+            a.hallarJugadorActual().atacar(new Coordenada(98, 2), new Coordenada(97, 2));
+        });
 
     }
 
