@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
-import edu.fiuba.algo3.modelo.excepciones.CoordenadaFueraDelMapa;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
@@ -47,19 +46,16 @@ public class Pilon extends EdificioProtoss {
     }
 
     private void energizarTerrenos(){
-        buscarCoordenadasConTerrenoEnergizado(radioAEnergizar);
-        for(Coordenada coordenadaAEnergizar : coordenadasEnergizadas) {
-            try{
-                Mapa.devolverInstancia().buscarTerreno(coordenadaAEnergizar).energizarTerreno();
-            } catch (CoordenadaFueraDelMapa exception){}
+        List<Terreno> terrenosAEnergizar = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioAEnergizar);
+        for (Terreno terreno : terrenosAEnergizar) {
+            terreno.energizarTerreno();
         }
     }
 
-    private void buscarCoordenadasConTerrenoEnergizado(int radio){
-        coordenadasEnergizadas = new ArrayList<Coordenada>();
-        List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radio);
-        for(Coordenada coordenadaHallada : coordenadas) {
-            coordenadasEnergizadas.add(coordenadaHallada);
+    public void desenergizarTerrenos(){
+        List<Terreno> terrenosAEnergizar = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioAEnergizar);
+        for (Terreno terreno : terrenosAEnergizar) {
+            terreno.desenergizarTerreno();
         }
     }
 
@@ -73,15 +69,6 @@ public class Pilon extends EdificioProtoss {
             desenergizarTerrenos();
             this.establecerEstado(new EdificioDestruido());
             throw new EdificioEstaDestruido();
-        }
-    }
-    @Override
-    public void desenergizarTerrenos(){
-        buscarCoordenadasConTerrenoEnergizado(radioAEnergizar);
-        for(Coordenada coord : coordenadasEnergizadas) {
-            try{
-                Mapa.devolverInstancia().buscarTerreno(coord).desenergizarTerreno();
-            } catch (CoordenadaFueraDelMapa exception){}
         }
     }
 

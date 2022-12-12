@@ -50,8 +50,8 @@ public class Criadero extends EdificioZerg {
         if(turno % 4 == 0) {
             int radioActual = radioInicial + (turno / 4);
             List<Terreno> terrenosQueDeberianTenerMoho = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioActual);
-            for (Terreno terrenoQueDeberiaTenerMoho : terrenosQueDeberianTenerMoho) {
-                terrenoQueDeberiaTenerMoho.cubrirTerrenoDeMoho();
+            for (Terreno terreno : terrenosQueDeberianTenerMoho) {
+                terreno.cubrirTerrenoDeMoho();
             }
         }
         turno++;
