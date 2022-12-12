@@ -16,12 +16,9 @@ public interface EstadoEdificio {
 
     void recibirDanio(Danio danio);
 
-    void terminarConstruccion();
-
     void establecerEdificio(Edificio edificio);
 
     void volverOperativo();
-
 
     boolean consumirLarva(int larvas);
 

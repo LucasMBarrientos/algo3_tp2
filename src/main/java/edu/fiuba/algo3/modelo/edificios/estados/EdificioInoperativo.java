@@ -26,9 +26,6 @@ public class EdificioInoperativo implements EstadoEdificio{
     }
 
     @Override
-    public void terminarConstruccion() {}
-
-    @Override
     public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;
     }

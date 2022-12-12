@@ -28,11 +28,6 @@ public class EdificioDestruido implements EstadoEdificio {
     }
 
     @Override
-    public void terminarConstruccion() {
-        return;
-    }
-
-    @Override
     public void establecerEdificio(Edificio edificio) {
         this.edificio = edificio;
     }

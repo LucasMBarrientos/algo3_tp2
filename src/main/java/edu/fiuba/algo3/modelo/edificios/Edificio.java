@@ -57,9 +57,6 @@ public abstract class Edificio {
         return this.tiempoDeConstruccion == 0;
     }
 
-    public void terminarConstruccion() {
-        this.estadoActual.terminarConstruccion();
-    }
 
     public void establecerEstado(EstadoEdificio estado) {
         this.estadoActual = estado;

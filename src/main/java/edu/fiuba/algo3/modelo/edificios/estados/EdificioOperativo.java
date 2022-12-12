@@ -24,9 +24,6 @@ public class EdificioOperativo implements EstadoEdificio {
     public void ingresarUnidad(Unidad unidad) {
         this.edificio.ingresarUnidadTrabajadora(unidad);
     }
-    
-    @Override
-    public void terminarConstruccion() {}
 
     @Override
     public void establecerEdificio(Edificio edificio) {
