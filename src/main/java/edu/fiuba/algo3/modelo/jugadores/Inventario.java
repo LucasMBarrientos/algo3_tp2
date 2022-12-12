@@ -87,11 +87,6 @@ public class Inventario {
     }
 
 
-    public void evolucionarUnidad(Coordenada coordenada, Unidad unidadAEvolucionar) {
-        Unidad unidadGenerada = buscarUnidad(coordenada).evolucionar(unidadAEvolucionar);
-        this.unidades.set(buscarIdDeUnidad(coordenada), unidadGenerada);
-    }
-
 
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);

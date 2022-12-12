@@ -40,7 +40,7 @@ public class CasoDeUso21 {
         }
 
 
-        Unidad unidad  = mutalisco.evolucionar(new Guardian());
+        Unidad unidad  = mutalisco.evolucionar(new Guardian(), inventario);
 
         for (int i=0; i < 4; i++) {
             unidad.actualizar(inventario);
@@ -70,7 +70,7 @@ public class CasoDeUso21 {
         }
 
         // Evoluciono el mutalisco en un devorador
-        Unidad unidad = mutalisco.evolucionar(new Devorador());
+        Unidad unidad = mutalisco.evolucionar(new Devorador(), inventario);
         for (int i=0; i < 4; i++) {
             unidad.actualizar(inventario);
         }

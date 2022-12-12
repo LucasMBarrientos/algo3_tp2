@@ -130,7 +130,9 @@ public abstract class Unidad {
         inventario.agregarSuministro(costoSuministro);
     }
 
-    public Unidad evolucionar(Unidad unidad) {
+    public void consumirRecursosParaEvolucion(Inventario inventario){ }
+
+    public Unidad evolucionar(Unidad unidad, Inventario inventario) {
         throw new InvalidaEvolucionDeUnidad();
     }
 

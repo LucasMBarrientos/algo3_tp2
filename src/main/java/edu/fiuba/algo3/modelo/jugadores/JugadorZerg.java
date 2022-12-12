@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
@@ -10,6 +7,9 @@ import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JugadorZerg extends Jugador {
 
@@ -37,7 +37,8 @@ public class JugadorZerg extends Jugador {
 
     @Override
     public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
-        inventario.evolucionarUnidad(coordenada, unidadAEvolucionar);
+        Unidad unidad = inventario.buscarUnidad(coordenada);
+        unidad.evolucionar(unidadAEvolucionar, inventario);
     }
 
     @Override

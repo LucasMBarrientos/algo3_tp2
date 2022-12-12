@@ -13,17 +13,54 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CasoDeUso30 {
-/* TODO: Arreglar este caso de uso
+
     @Test        
     public void independientementeDeCuantosCriaderosTengaElJugadorZergNuncaTendraSuministrosSuficientesParaConstruirMasDe200Zanganos() {
-        Mapa mapa = new Mapa(new Coordenada(20, 210));
-        AlgoStar algoStar = new AlgoStar(mapa);
+       /* AlgoStar algoStar = new AlgoStar();
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
         algoStar.agregarJugador(jugadorProtoss);
-        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000",100000,100000,0);
+        JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000");
         algoStar.agregarJugador(jugadorZerg);
         algoStar.empezarJuego();
-        
+
+        //muevo el zangano inicial hasta el Mineral en (4, 3)
+        jugadorZerg.moverUnidad(new Coordenada(1, 1), new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(3, 1), new Derecha());
+        jugadorZerg.moverUnidad(new Coordenada(4, 1), new Abajo());
+        jugadorZerg.moverUnidad(new Coordenada(4, 2), new Abajo());
+
+        //Paso los turnos para recolectar 1000 minerales
+        for (int i = 0; i < 1000; i++) {
+            algoStar.pasarTurno();
+        }
+
+        //muevo el zangano hasta el (1,1)
+        jugadorZerg.moverUnidad(new Coordenada(4, 3), new Arriba());
+        jugadorZerg.moverUnidad(new Coordenada(4, 2), new Arriba());
+        jugadorZerg.moverUnidad(new Coordenada(4, 1), new Izquierda());
+        jugadorZerg.moverUnidad(new Coordenada(3, 1), new Izquierda());
+        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Izquierda());
+
+        //construyo primer criadero
+        jugadorZerg.construirEdificio(new Coordenada(1,1), new Criadero());
+        for (int i = 0; i < 5; i++) {
+            algoStar.pasarTurno();
+        }
+
+        //genero 39 Amos supremos
+        for (int i = 0; i < 5; i++) {
+            algoStar.pasarTurno();
+        }
+
+        jugadorZerg.generarUnidad(new Coordenada(1,1), );
+
+        for (int x = 1; x > 3; y -= 3) {
+
+        }*/
+
+
+        /*
         // Se trata de construir la mayor cantidadDePilonesPosibles
         for (int y=208; y > 3; y -= 3) {
             jugadorZerg.construirEdificio(new Coordenada(18,y), new Criadero());
@@ -60,9 +97,9 @@ public class CasoDeUso30 {
 
         Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
             jugadorZerg.generarUnidad(new Coordenada(18,4), new Zangano());
-        });
+        });*/
     }
-*/
+
     @Test        
     public void independientementeDeCuantosPilonesTengaElJugadorProtossNuncaTendraSuministrosSuficientesParaConstruirMasDe66Dragones() {
         AlgoStar algoStar = new AlgoStar();
