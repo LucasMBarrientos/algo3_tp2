@@ -4,11 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Logger;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
 import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
