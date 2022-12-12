@@ -126,7 +126,7 @@ public abstract class Jugador {
         inventario.fueDerrotado(edificioInicialConstruido);
     }
 
-    public abstract String devolverMensajeDeVictoria();
+    public abstract List<String> devolverMediaDeVictoria();
 
     public abstract void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad);
 

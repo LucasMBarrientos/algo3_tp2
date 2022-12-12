@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
@@ -55,7 +58,14 @@ public class JugadorZerg extends Jugador {
         return ( this.nombre.devolverValor() + " logro repeeler a los Zerg de la zona");
     }
 
- }
+    public List<String> devolverMediaDeVictoria() {
+        List<String> objetos = new ArrayList<String>();
+        objetos.add("/victoriaProtoss.jpg");
+        objetos.add("El jugador " + nombre + " logro repeeler a los Zerg de la zona");
+        return objetos;
+    }
+
+}
 
 
 

@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.modelo.Views;
 
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 public class PantallaFinDelJuego extends VBox {
     
@@ -17,9 +15,13 @@ public class PantallaFinDelJuego extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-        Image imgFondo = new Image("/opcion2.jpg");
-        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(1080,1920,true,true,true,true));
+
+        //BackgroundImage fondo2 = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, BackgroundSize.AUTO(this.getBaselineOffset()));
+        List<String> objetos = jugadorGanador.devolverMediaDeVictoria();
+        BackgroundImage fondo = new BackgroundImage(new Image(objetos.get(0)), BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         this.setBackground(new Background(fondo));
+        Label mensajeDeVictoria = new Label(objetos.get(1));
+        this.getChildren().add(mensajeDeVictoria);
 
         Button botonParaSalir = new Button("Salir del juego");
         botonParaSalir.getStyleClass().add("btn-salir");
