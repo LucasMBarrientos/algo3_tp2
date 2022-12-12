@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -35,14 +36,18 @@ public class Asimilador extends EdificioProtoss {
     }
 
     public void extraerRecursos(Inventario inventario) {
-        terreno.extraerGasVespeno(new GasVespeno(20));
-        inventario.agregarGasVespeno(new GasVespeno(20));
+        try {
+            terreno.extraerGasVespeno(new GasVespeno(20));
+            inventario.agregarGasVespeno(new GasVespeno(20));
+        } catch (RecursosInsuficientes terrenoSinGasVespeno) {
+            volverEdificioInoperativo();
+            throw terrenoSinGasVespeno;
+        }
     }
 
     @Override
     public void volverEdificioInoperativo(){
         establecerEstado(new EdificioInoperativo());
-        this.terreno = terreno;
     }
 
 }
