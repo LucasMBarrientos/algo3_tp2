@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.pruebas_de_integracion;
 
+import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
@@ -31,6 +32,7 @@ public class prueba1 {
 
         a.empezarJuego();
 
+        //jugador zerg mueve el zangano inicial hasta el mineral
         a.hallarJugadorActual().moverUnidad(new Coordenada(1,1), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(2,1), new Derecha());
         a.hallarJugadorActual().moverUnidad(new Coordenada(3,1), new Derecha());
@@ -39,29 +41,22 @@ public class prueba1 {
 
         a.pasarTurno();
 
+        //jugador protoss construye nexo mineral y un asimilador
         a.hallarJugadorActual().construirEdificio(new Coordenada(95 ,46), new NexoMineral());
         a.hallarJugadorActual().construirEdificio(new Coordenada(95,45), new Asimilador());
 
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
-        a.pasarTurno();
+        //ambos jugadores pasan varios turnos para recolectar recursos
+        for (int i = 0; i < 20; i++) {
+            a.pasarTurno();
+        }
 
-        a.hallarJugadorActual().construirEdificio(new Coordenada(20,2),new Pilon());
+        //jugador protoss construye un pilon
+        a.hallarJugadorActual().construirEdificio(new Coordenada(12,4),new Pilon());
 
         a.pasarTurno();
 
-        a.hallarJugadorActual().moverUnidad(new Coordenada(4,3), new Derecha());
+        //
+        a.hallarJugadorActual().moverUnidad(new Coordenada(4,3), new Izquierda());
         a.hallarJugadorActual().construirEdificio(new Coordenada(5,3),new Criadero());
 
         for (int i = 0; i < 9; i++) {
@@ -75,6 +70,10 @@ public class prueba1 {
         a.hallarJugadorActual().generarUnidad(new Coordenada(5,3), new Zangano());
         a.hallarJugadorActual().generarUnidad(new Coordenada(5,3), new Zangano());
         a.hallarJugadorActual().generarUnidad(new Coordenada(5,3), new Zangano());
+
+        a.pasarTurno();
+
+
 
     }
 

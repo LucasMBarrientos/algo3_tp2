@@ -459,8 +459,6 @@ public class MapaView {
                   imageExtractorWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
-                      }else if (ingresadoAEdificio){
-                          algoStarView.ingresarUnidad(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
                           algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
                       }

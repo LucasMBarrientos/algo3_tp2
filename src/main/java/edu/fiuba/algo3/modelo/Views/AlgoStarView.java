@@ -4,7 +4,6 @@ package edu.fiuba.algo3.modelo.Views;
 import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
-import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonIngresarUnidadHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.*;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
@@ -278,7 +277,7 @@ public class AlgoStarView extends BorderPane {
       ataque.handle();
       this.contenedorCentral.setContent(mapaView.dibujar());
     }
-
+    /*
     public void ingreso(Coordenada coordenadaUnidad){
         this.contenedorCentral.setContent(mapaView.dibujar(false, coordenadaUnidad, true));
     }
@@ -287,7 +286,7 @@ public class AlgoStarView extends BorderPane {
         BotonIngresarUnidadHandler ingreso = new BotonIngresarUnidadHandler(algoStar, this, coordenadaUnidad, coordenadaEdificio);
         ingreso.handle();
         this.contenedorCentral.setContent(mapaView.dibujar());
-    }
+    }*/
 
 
     private void agregarBarraDelMenu(Stage stage){
