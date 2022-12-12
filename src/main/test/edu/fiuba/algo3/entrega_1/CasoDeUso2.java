@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Mapa;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -272,7 +273,6 @@ public class CasoDeUso2 {
             pilon.actualizar(inv);
         }
 
-
         Assertions.assertThrows(EdificioNoTerminoDeConstruirse.class, ()->{
             pilon.recibirDanio(new Danio(600),new Danio(600));
         });
@@ -280,7 +280,9 @@ public class CasoDeUso2 {
 
     @Test
     public void unPilonEstaOperativoEn5Turnos() {
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(20,20));
         Pilon pilon = new Pilon();
+        Mapa.devolverInstancia().establecerEdificio(new Coordenada(2,2), pilon);
         Inventario inv = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(200));
         int tiempoDeConstruccion = 5;
 

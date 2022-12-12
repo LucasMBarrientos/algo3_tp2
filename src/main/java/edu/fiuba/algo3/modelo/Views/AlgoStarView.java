@@ -4,7 +4,6 @@ package edu.fiuba.algo3.modelo.Views;
 import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
-import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonIngresarUnidadHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonPasarTurnoHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.*;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraAmoSupremo;
@@ -111,13 +110,18 @@ public class AlgoStarView extends BorderPane {
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         Label danioAereoYTerrestre = new Label("Daño Terrestre: " + node.get("Ocupante").get("danioTerrestre").asText() + "\nDaño Aereo: " + node.get("Ocupante").get("danioAereo").asText());
         Label escudo = new Label();
+
+
         if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
             escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
         }
 
+
+
         // handler del boton construir
         VBox contenedorHorizontal = new VBox(danioAereoYTerrestre,vida,escudo); // <- recibe las cosas como parámetro
         contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setMinWidth(260);
         contenedorHorizontal.setPadding(new Insets(10));
 
         this.setLeft(contenedorHorizontal);
@@ -127,6 +131,8 @@ public class AlgoStarView extends BorderPane {
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         Label estadoConstruccion = new Label("Estado de Construcción: " + node.get("Ocupante").get("estado").asText());
         Label escudo = new Label();
+
+
         if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
              escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
         }
@@ -136,6 +142,7 @@ public class AlgoStarView extends BorderPane {
         //contenedorHorizontal.setStyle("-fx-background-image: url('/texturaStats.png');" +
          //       "-fx-background-repeat: repeat;");
         contenedorHorizontal.setSpacing(10);
+        contenedorHorizontal.setMinWidth(260);
         contenedorHorizontal.setPadding(new Insets(10));
 
         this.setLeft(contenedorHorizontal);
@@ -270,7 +277,7 @@ public class AlgoStarView extends BorderPane {
       ataque.handle();
       this.contenedorCentral.setContent(mapaView.dibujar());
     }
-
+    /*
     public void ingreso(Coordenada coordenadaUnidad){
         this.contenedorCentral.setContent(mapaView.dibujar(false, coordenadaUnidad, true));
     }
@@ -279,7 +286,7 @@ public class AlgoStarView extends BorderPane {
         BotonIngresarUnidadHandler ingreso = new BotonIngresarUnidadHandler(algoStar, this, coordenadaUnidad, coordenadaEdificio);
         ingreso.handle();
         this.contenedorCentral.setContent(mapaView.dibujar());
-    }
+    }*/
 
 
     private void agregarBarraDelMenu(Stage stage){

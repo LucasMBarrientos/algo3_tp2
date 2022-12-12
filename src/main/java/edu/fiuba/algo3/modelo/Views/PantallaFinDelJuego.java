@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Views;
 
-import edu.fiuba.algo3.modelo.Views.eventos.topMenu.OpcionSalirEventHandler;
 import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,7 +14,6 @@ import javafx.scene.text.FontWeight;
 public class PantallaFinDelJuego extends VBox {
     
     public PantallaFinDelJuego(Jugador jugadorGanador) {
-        super();
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
