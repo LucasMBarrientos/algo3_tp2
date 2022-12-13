@@ -31,44 +31,43 @@ abstract Edificio{
 +destruirse(inventario)
 +ingresarUnidadTrabajadora(unidad)
 +generarUnidad(unidad,inventario)
-+volverNevamenteOperativo()
-+volverEdificioInoperativo()
-toData():ObjecNode
++volverNuevamenteOperativo()
++volverEdificioInoperativo()toData():ObjecNode
 }
 
 
 interface EstadoEdificio{
- +actualizar()
+ +actualizar(inventario)
 +generarUnidad(unidad,inventario):Unidad
-+ingresarUnidad(zangano)
++ingresarUnidad(unidad)
 +recibirDanio(danio)
-+terminarConstruccion()
-+deshacerConstruccion()
 +establecerEdificio(edificio)
-+actualizarListasDeCoordenadas(listaCoordenadasConCriaderos,listaCoordenadasConPilones)
++volverOperativo()
 +consumirLarva(larvas:int):boolean
++toData():ObjecNode
+
 }
 
 
 abstract EdificioProtoss{
--escudo:int
--escudoMax:int
--operativo:bool
--regenerarEscudo()
--redicirEscudo(int)
-+recibirDanio(int)Bool
-+establecerOperatividad(bool)agusssssss
-+devolverOperatividad():bool
-+devolverEscudo():int
+-escudo:Escudo
++construir(coordenada,inventario)
++ejecutarDanio(danio)
++regenerar()
++desenergizarTerrenos()
++volverNuevamenteOperativo()
++toData():ObjecNode
 }
 
 
 abstract EdificioZerg{
-+regenerar()
++construir(coordenada,inventario)
 +ejecutarDanio(danio)
-+establecerTerreno(terreno)
-{abstract}+ocupar
-{abstract}+validarCoorelativasDeCostruccion(inventario)
++regenerar()
++toData():ObjecNode
+'+establecerTerreno(terreno)
+'{abstract}+ocupar
+'{abstract}+validarCoorelativasDeCostruccion(inventario)
 }
 Edificio-> EstadoEdificio
 EstadoEdificio <|..EdificioOperativo
