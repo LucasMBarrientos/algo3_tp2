@@ -9,11 +9,8 @@ import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
 import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
 import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
 import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
 import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -23,17 +20,14 @@ import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.unidades.estados.UnidadDestruida;
-import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
-import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
 public class prueba6 {
 
     @Test
-    public void prueboLaInvisibilidadDelZealot() { // TODO: Prueba de invisibilidad DE unidades
+    public void prueboLaInvisibilidadDelZealot() {
 
         Logger.setEnableLog(true);
         AlgoStar a = new AlgoStar();
