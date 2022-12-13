@@ -106,12 +106,6 @@ public class TerrenoMineral extends Terreno {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void energizarTerreno() { }
-
-    public void cubrirTerrenoDeMoho() { }
-
-    public void vaciarTerreno() { }
-    
     @Override
     public Mineral extraerMinerales(Mineral mineral) {
         this.mineral.gastar(mineral);
@@ -139,11 +133,6 @@ public class TerrenoMineral extends Terreno {
             nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
         return nodo;
-    }
-
-    @Override
-    public void actualizar() {
-
     }
 
 }

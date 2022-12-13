@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.NoHayUnZanganoEnEsaCoordenada;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -27,7 +25,6 @@ public abstract class Terreno {
     protected Edificio edificio;
 
     protected Unidad unidad;
-
     private Zangano zanganoOcupante;
 
     protected void establecerEdificio(Edificio edificio){
@@ -87,17 +84,13 @@ public abstract class Terreno {
 
     public void verificarTerrenoSinEdificio(){
         if(this.edificio != null){
-            throw new TerrenoNoAptoParaConstruirTalEdificio(); //se podria usar otra excepcion mejor
+            throw new TerrenoOcupadoPorUnEdificio();
         }
-    }
-
-    public void actualizar(){
-
     }
 
     public void verificarTerrenoSinUnidad(){
         if(this.unidad != null){
-            throw new TerrenoOcupadoPorUnaUnidad(); //se podria usar otra excepcion mejor
+            throw new TerrenoOcupadoPorUnaUnidad();
         }
     }
 
@@ -110,15 +103,11 @@ public abstract class Terreno {
         eliminarZanganoOcupante();
     }
 
-    public abstract void vaciarTerreno();
+    public void energizarTerreno(){return;}
 
-    public abstract void energizarTerreno();
+    public void desenergizarTerreno() {return;}
 
-    public void desenergizarTerreno() {
-        return;
-    }
-
-    public abstract void cubrirTerrenoDeMoho();
+    public void cubrirTerrenoDeMoho(){return;}
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         if(edificio != null){
@@ -154,9 +143,7 @@ public abstract class Terreno {
         }
     }
 
-    public void extraerGasVespeno(Recurso recursoRequerido) {
-
-    }
+    public void extraerGasVespeno(Recurso recursoRequerido) {}
 
     public Mineral extraerMinerales(Mineral mineral) {
       return new Mineral(0);

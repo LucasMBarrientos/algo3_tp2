@@ -54,7 +54,6 @@ public abstract interface EstadoTerreno {
 
     void desenergizarTerreno();
 
-    
     void cubrirTerrenoDeMoho();
 
     public ObjectNode toData();

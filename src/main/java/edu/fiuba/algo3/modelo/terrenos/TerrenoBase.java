@@ -100,20 +100,17 @@ public class TerrenoBase extends Terreno {
         estado.ocuparPorUnidad(unidad);
     }
 
+    @Override
     public void energizarTerreno() {
         estado.energizarTerreno();
     }
-
+    @Override
     public void desenergizarTerreno() {
         estado.desenergizarTerreno();
     }
-
+    @Override
     public void cubrirTerrenoDeMoho() {
         estado.cubrirTerrenoDeMoho();
-    }
-
-    public void vaciarTerreno() { 
-        establecerEstado(new TerrenoVacio(null));
     }
 
     public void habilitarEdificioOcupante() {
