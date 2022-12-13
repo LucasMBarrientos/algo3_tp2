@@ -55,14 +55,10 @@ public class JugadorZerg extends Jugador {
         inventario.agregarUnidad(zanganoInicial);
     }
 
-    public String devolverMensajeDeVictoria() {
-        return ( this.nombre.devolverValor() + " logro repeeler a los Zerg de la zona");
-    }
-
     public List<String> devolverMediaDeVictoria() {
         List<String> objetos = new ArrayList<String>();
-        objetos.add("/victoriaProtoss.jpg");
-        objetos.add( nombre.devolverValor() + " logro repeeler a los Zerg de la zona");
+        objetos.add("/victoriaZerg.jpg");
+        objetos.add( nombre.devolverValor() + " a llevado a la raza Zerg a la victoria");
         return objetos;
     }
 

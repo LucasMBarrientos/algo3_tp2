@@ -65,7 +65,7 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
             } catch (NombreDeJugadorInvalido e ) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Nombre invalido");
-                alert.setHeaderText("El nombre \"" + colorElegido + "\" es invalido.\nSeleccione un nombre que el otro jugador no haya elegido.");
+                alert.setHeaderText("El nombre \"" + nombreElegido + "\" es invalido.\nSeleccione un nombre que el otro jugador no haya elegido.");
                 alert.setContentText("Nombre de jugador Inválido, vuelva a intentarlo");
                 alert.show();
             } catch (ColorDeJugadorInvalido e ) {
@@ -75,12 +75,12 @@ public class ManejoContinuacionDeCreacionDeJugadores implements EventHandler<Act
                 alert.setContentText("Color de jugador Inválido, vuelva a intentarlo");
                 alert.show();
             } catch(RazaInvalida e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Raza invalida");
-            alert.setHeaderText("El color \"" + razaElegida + "\" ya fue seleccionada por el otro jugador.\nSeleccione una raza que no haya sido elegida.");
-            alert.setContentText("Raza invalida, vuelva a intentarlo");
-            alert.show();
-        }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Raza invalida");
+                alert.setHeaderText("El color \"" + razaElegida + "\" ya fue seleccionada por el otro jugador.\nSeleccione una raza que no haya sido elegida.");
+                alert.setContentText("Raza invalida, vuelva a intentarlo");
+                alert.show();
+            }
         } catch(NombreDeJugadorInvalido e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Nombre invalido");
