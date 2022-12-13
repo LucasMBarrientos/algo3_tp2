@@ -27,7 +27,7 @@ public class BotonConstruirAccesoHandler implements EventHandler<ActionEvent> {
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new Acceso());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new Acceso());
     }
 
     private void lanzarMensajeDeFaltaDeRecursos() {

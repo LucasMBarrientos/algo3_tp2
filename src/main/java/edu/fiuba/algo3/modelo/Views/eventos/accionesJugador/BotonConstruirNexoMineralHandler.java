@@ -26,7 +26,7 @@ public class BotonConstruirNexoMineralHandler implements EventHandler<ActionEven
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new NexoMineral());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new NexoMineral());
     }
 
     public void lanzarMensajeDeFaltaDeRecursos() {

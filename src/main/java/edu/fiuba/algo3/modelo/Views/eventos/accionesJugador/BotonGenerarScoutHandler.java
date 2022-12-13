@@ -39,7 +39,7 @@ public class BotonGenerarScoutHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Scout());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Scout());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Scout");

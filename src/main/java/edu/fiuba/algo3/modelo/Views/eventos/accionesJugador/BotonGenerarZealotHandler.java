@@ -40,7 +40,7 @@ public class BotonGenerarZealotHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Zealot());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Zealot());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Zealot");

@@ -29,7 +29,7 @@ public class BotonEvolucionarAGuardianHandler implements EventHandler<ActionEven
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().evolucionar(coordenadaDeLaUnidad, new Guardian());
+            algoStar.hallarJugadorActual().evolucionar(coordenadaDeLaUnidad, new Guardian());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para Evolucionar a esta unidad");

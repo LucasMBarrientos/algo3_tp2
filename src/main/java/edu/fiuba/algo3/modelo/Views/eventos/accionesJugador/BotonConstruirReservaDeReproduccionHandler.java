@@ -27,7 +27,7 @@ public class BotonConstruirReservaDeReproduccionHandler implements EventHandler<
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new ReservaDeReproduccion());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new ReservaDeReproduccion());
     }
 
     public void lanzarMensajeDeFaltaDeRecursos() {

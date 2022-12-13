@@ -29,7 +29,7 @@ public class BotonConstruirEspiralHandler implements EventHandler<ActionEvent> {
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new Espiral());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new Espiral());
     }
 
     public void lanzarMensajeDeFaltaDeRecursos() {

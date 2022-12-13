@@ -34,7 +34,7 @@ public class BotonIngresarUnidadHandler implements EventHandler<ActionEvent> {
         Coordenada coordenadaDelEdificio = new Coordenada(Integer.parseInt(x.getText()), Integer.parseInt(y.getText()));
 
         try {
-            algoStar.devolverJugadorActual().ingresarUnidadAUnEdificio(coordenadaDelEdificio, coordenadaDeLaUnidad);
+            algoStar.hallarJugadorActual().ingresarUnidadAUnEdificio(coordenadaDelEdificio, coordenadaDeLaUnidad);
 
         } catch (NoHayEspacioDisponible e) {
             //avisar al jugador que el extractor ya tiene 3 zanganos

@@ -44,9 +44,8 @@ public abstract class EdificioProtoss extends Edificio {
     }
 
     public void regenerar(){
-      escudo.regenerar();
+        escudo.regenerar();
     }
-
 
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();

@@ -60,7 +60,7 @@ public class BotonGenerarAmoSupremoHandler implements EventHandler<ActionEvent> 
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new AmoSupremo());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new AmoSupremo());
             algoStarView.setPantallaDeStatsJugador();
 
         } catch (RecursosInsuficientes e) {

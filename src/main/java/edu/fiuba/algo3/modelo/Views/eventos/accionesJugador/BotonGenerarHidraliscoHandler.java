@@ -40,7 +40,7 @@ public class BotonGenerarHidraliscoHandler implements EventHandler<ActionEvent> 
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Hidralisco());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Hidralisco());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Hidralisco");

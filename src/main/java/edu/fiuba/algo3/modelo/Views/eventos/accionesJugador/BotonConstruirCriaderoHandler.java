@@ -27,7 +27,7 @@ public class BotonConstruirCriaderoHandler implements EventHandler<ActionEvent> 
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new Criadero());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new Criadero());
     }
 
     public void lanzarMensajeDeFaltaDeRecursos() {
