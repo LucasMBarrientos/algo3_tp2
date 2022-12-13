@@ -4,38 +4,86 @@ interface EstadoTerreno{
 +ocuparPorUnidad(unidad)
 +energizarTerreno()
 +desenergizarTerreno()
-+tieneMoho():bool
-+cubrirTerrenoDeMoho
-+getString():String
++cubrirTerrenoDeMoho()
+toData():ObjectNode
+toDataOcupante():ObjectNode
 }
 abstract Terreno{
 -coordenada:Coordenada
 -edificio:Edificio
 -unidad:Unidad
-+ocuparPorEdificio(edificio)
-+ocuparPorUnidad(unidad)
-+actualizar()
-+eliminarEdificio()
+-visivilidad:Visivilidad
+-zanganoOcupante:Zangano
++establecerEdificio(edificio)
 +establecerUnidad(unidad)
-
++compararCoordenadas(coordenada):bool
+{abstract}+ocuparPorEdificio(edificio)
+{abstract}+ocuparPorUnidad(unidad)
 +verificarTerrenoSinEdificio()
 +verificarTerrenoSinUnidad()
-+vaciarTerreno()
++eliminarEdificio()
++eliminarUnidad()
 +energizarTerreno()
 +desenergizarTerreno()
-{abstract}+cubrirTerrenoDeMoho
-+actualizarListaDeCoordenadas(listaCordenadasConMoho
-,listaCoordenadasConCriaderos,listaDeCoordenasConPilon)
-+extraerGasVespeno(recursoRequerido
-:Recurso)
-+extraerGasVespeno(mineral:Mineral)
-
++cubrirTerrenoDeMoho
++recibirDanio(danioTerrestre,danioAereo)
++cambiarVisibilidadActual(visibilidad)
++establecerVisibilidadAUnidad(unidad)
+-establecerZanganoOcupante(Zangano)
+-eliminarZanganoOcupante()
+-verificarZanganoOcupante()
++extraerGasVespeno(recursoRequerido:Recurso)
++extraerMinerales(mineral:Mineral)
+{abstract}toData():ObjectNode
+{abstract}toDataOcupante():ObjectNode
 }
-class TerrenoVacio
-class TerrenoMoho
-class TerrenoVolcan
-class TerrenoEnergizado
-class TerrenoMIneral
+class TerrenoVacio{
+-terreno:TerrenoBase
++TerrenoVacio(terreno)
+}
+
+class TerrenoMoho{
+-terreno:TerrenoBase
++TerrenoMoho(terreno)
+}
+class TerrenoVolcan{
+-gasVespeno:Recurso
++TerrenoVolcan(coordenada)
++ocuparPorEdificio(edificio)
++ocuparPorUnidad(unidad)
++extraerGasVespeno(recursoRequerido:Recurso)
+toData():ObjectNode
+toDataOcupante():ObjectNode
+}
+
+
+
+class TerrenoEnergizado{
+-terreno:TerrenoBase
++TerrenoEnergizado(terreno)
+}
+
+class TerrenoMIneral{
+-mineral:Recurso
++TerrenoMIneral(coordenada)
++ocuparPorEdificio(edificio)
++ocuparPorUnidad(unidad)
++extraerMinerales(mineral:Mineral)
+toData():ObjectNode
+toDataOcupante():ObjectNode
+}
+class TerrenoAereo{
++TerrenoAereo(coordenada)
++ocuparPorEdificio(edificio)
++ocuparPorUnidad(unidad)
+toData():ObjectNode
+toDataOcupante():ObjectNode
+}
+Terreno -up-> Coordenada
+Terreno -left-> Visivilidad
+Terreno -up-> Zangano
+Terreno -up-> Edificio
+Terreno -up-> Unidad
 
 Terreno <|- TerrenoBase
 Terreno <|--- TerrenoMIneral
