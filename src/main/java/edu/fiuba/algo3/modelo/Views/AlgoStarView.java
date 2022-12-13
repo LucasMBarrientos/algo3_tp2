@@ -177,13 +177,12 @@ public class AlgoStarView extends BorderPane {
         Label danioAereoYTerrestre = new Label("Daño Terrestre: " + node.get("Ocupante").get("danioTerrestre").asText() + "\nDaño Aereo: " + node.get("Ocupante").get("danioAereo").asText());
         danioAereoYTerrestre.getStyleClass().add("label-lateral-izquierdo");
         Label escudo = new Label();
-        escudo.getStyleClass().add("label-lateral-izquierdo");
-
+            
 
         if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
             escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
         }
-
+        escudo.getStyleClass().add("label-lateral-izquierdo");
 
 
         // handler del boton construir
@@ -204,19 +203,21 @@ public class AlgoStarView extends BorderPane {
     }
     public void setPantallDeStatsEdificio(JsonNode node) {
         //Aca iría las cosas de la pantalla de stats
+        Label nombre = new Label("Edicifio: " + node.get("Ocupante").get("nombre").asText());
+        nombre.getStyleClass().add("label-lateral-izquierdo");
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         vida.getStyleClass().add("label-lateral-izquierdo");
         Label estadoConstruccion = new Label("Estado de Construcción: " + node.get("Ocupante").get("estado").asText());
         estadoConstruccion.getStyleClass().add("label-lateral-izquierdo");
         Label escudo = new Label();
-        escudo.getStyleClass().add("label-lateral-izquierdo");
+        
 
         if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
              escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
         }
-
+        escudo.getStyleClass().add("label-lateral-izquierdo");
         // handler del boton construir
-        VBox contenedorHorizontal = new VBox(estadoConstruccion,vida,escudo); // <- recibe las cosas como parámetro
+        VBox contenedorHorizontal = new VBox(nombre,estadoConstruccion,vida,escudo); // <- recibe las cosas como parámetro
         //contenedorHorizontal.setStyle("-fx-background-image: url('/texturaStats.png');" +
          //       "-fx-background-repeat: repeat;");
         contenedorHorizontal.setSpacing(10);
