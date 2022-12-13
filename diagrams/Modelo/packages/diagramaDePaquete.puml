@@ -5,7 +5,6 @@
 package modelo {
 class AlgoStar
 class Mapa
-class Nombre
 
 package edificios {
 
@@ -49,25 +48,32 @@ Terreno <|-- TerrenoVolcan
 Terreno <|--- TerrenoBase
 EstadoTerreno <- TerrenoBase
 EstadoTerreno <|-. TerrenoVacio
-EstadoTerreno <|-.. TerrenoEnergizado
+EstadoTerreno <|.. TerrenoEnergizado
 EstadoTerreno <|-. TerrenoMoho
 
 }
 
 package unidades {
 }
+package estadisticas {
+class Nombre
+class Danio
+class Escudo
+class Vida
+
+}
 
 
 }
 AlgoStar --> jugadores
-jugadores -> edificios
-jugadores --> unidades
+jugadores -------right--> edificios
+jugadores ---> unidades
 jugadores ...> Mapa
 Mapa    -down-> terrenos
 Mapa    -down-> geometria
 terrenos  --> geometria
-jugadores -left--> Nombre
-jugadores --> recursos
+jugadores -right--> Nombre
+jugadores -----> recursos
 
 'edificios -->estadisticas
 'unidades -down-> estadisticas
@@ -78,9 +84,5 @@ jugadores --> recursos
 
 'class Inventario
 
-package JUnit {
-        class Test
 
-}
-Test --> modelo
 @enduml

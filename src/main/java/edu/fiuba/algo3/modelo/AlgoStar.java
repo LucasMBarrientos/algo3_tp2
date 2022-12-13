@@ -14,6 +14,7 @@ public class AlgoStar {
     private int idJugadorActual;
     private int turnoActual;
     private int rondaActual;
+
     private Jugador jugadorGanador;
 
     public AlgoStar() {
@@ -35,10 +36,9 @@ public class AlgoStar {
         for (Jugador jugador : jugadores) {
             jugador.iniciarseEnMapa();
         }
+
         this.idJugadorActual = 0;
         this.turnoActual = 0;
-        this.rondaActual = 0;
-    }
 
     public Jugador hallarJugadorActual() {
         return jugadores.get(this.idJugadorActual);

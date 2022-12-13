@@ -50,6 +50,7 @@ package estadisticas {
 class Danio
 class Escudo
 class Vida
+class Nombre
 
 }
 

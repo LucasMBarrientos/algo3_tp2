@@ -1,20 +1,39 @@
 @startuml
 abstract Edificio{
--tiempoConstruccion:int
--requerimientosGas:int
--requerimientosMineral:int
--vidaMax:int
+-estadoActual:EstadoEdificio
+-terreno:Terreno;
+-costoEnGas:Recurso
+-costoEnMineral:Recurso
 -vida:int
-+{abstract}validarRequerimientoDelCasillero(casilla):bool
-+devolverTiempoConstruccion():int
-+validarRequirimientos(Inventario):bool
-+consumirRecursosDelJugador(Inventario)
-+devolverRequirimientosDeMinerales():int
+-nombre:nombre;
+-tiempoConstruccion:int
+-coordenada:Coordenada
 
-+devolverRequirimientosDeGas():int
-+actualizar()
-+recibirDanio(int)Bool
-+devolverVida()
++{abstract}construir(coordenada,inventario):Edificio
++consumirRecursosParaConstruccion(inventario)
++devolverRecursosDelJugador(Inventario)
++actualizar(inventario)
++ingresarUnidad(unidad)
++establecerPosicion(coordenada)
++reducirTiempoConstruccion(Tiempo:int):bool
++establecerEstado(estado:EstadoEdificio)
++recibirDanio(danioTerrestre,danioAereo)
++compararCoordenadas(coordenada):bool
++{abstract}actualizarEdificio(inventario)
++{abstract}Ocupar(terreno)
++{abstract}ejecutarDanio(danio)
++{abstract}regenerar()
++devolverNobre():Nombre
++consumirLarva()
++agregarSuministro(inventario)
++restarSuministro(inventario)
++validarCoorelativasDeCostruccion(inventario)
++destruirse(inventario)
++ingresarUnidadTrabajadora(unidad)
++generarUnidad(unidad,inventario)
++volverNevamenteOperativo()
++volverEdificioInoperativo()
+toData():ObjecNode
 }
 
 
