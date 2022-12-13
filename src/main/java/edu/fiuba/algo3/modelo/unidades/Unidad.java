@@ -18,7 +18,6 @@ import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.estados.EstadoUnidad;
 import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
-import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
 
 public abstract class Unidad {
@@ -52,10 +51,6 @@ public abstract class Unidad {
     public void establecerEstado(EstadoUnidad estado){
       this.estado = estado;
       this.estado.setUnidad(this);
-    }
-
-    public void establecerVisibilidad(Visibilidad visibilidad) {
-        return;
     }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
@@ -110,11 +105,14 @@ public abstract class Unidad {
 
     }
 
-    public void volverInvisible(){
-        if(cantidadDeKills >= 3){
-            establecerVisibilidad(new Invisible()); //todas las unidades lo entienden pero solo el zealot lo hace
-        }
+    public void establecerVisibilidad(Visibilidad visibilidad) {
+        return;
     }
+
+    public void volverInvisible(){return;}
+
+    public void volverVisible(){return;}
+
 
     public Nombre devolverNombre(){
         return nombre;

@@ -9,6 +9,12 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class Invisible implements Visibilidad {
 
+    public void visibilizarUnidad(Unidad unidad, int cantidadKills){
+        if(cantidadKills >= 3){
+            unidad.volverInvisible();
+        }
+    }
+
     public void ejecutarDanio(Danio danioTerrestre, Vida vida, Escudo escudo, Unidad unidad) {
         return;
     }

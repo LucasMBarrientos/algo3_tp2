@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
@@ -25,6 +26,8 @@ public abstract class Terreno {
     protected Edificio edificio;
 
     protected Unidad unidad;
+
+    protected Visibilidad visibilidad = new Invisible();
     private Zangano zanganoOcupante;
 
     protected void establecerEdificio(Edificio edificio){
@@ -117,17 +120,14 @@ public abstract class Terreno {
         }
     }
 
-    public void cambiarVisibilidadAUnidad(Visibilidad visibilidad){
-        if (unidad != null) {
-            unidad.establecerVisibilidad(visibilidad);
-        }
+    public void cambiarVisibilidadActual(Visibilidad visibilidad){
+        this.visibilidad = visibilidad;
     }
 
-    public void volverInvisibleAUnidad(){
-        if (unidad != null) {
-          unidad.volverInvisible();
-        }
+    public void establecerVisibilidadAUnidad(Unidad unidad){
+        unidad.establecerVisibilidad(visibilidad);
     }
+
 
     protected void establecerZanganoOcupante(Zangano zangano){
         zanganoOcupante = zangano;

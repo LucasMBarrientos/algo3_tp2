@@ -49,9 +49,7 @@ public class AlgoStarView extends BorderPane {
     AlgoStar algoStar;
     ScrollPane contenedorCentral;
     Group layout;
-
     Coordenada limite;
-
     MapaView mapaView;
 
     Image pasarTurnoImagen = new Image("/Sprite-0001-export.png", 100, 100, false, false);
