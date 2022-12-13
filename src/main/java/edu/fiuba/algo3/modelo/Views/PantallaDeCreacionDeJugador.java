@@ -167,22 +167,9 @@ public class PantallaDeCreacionDeJugador extends VBox {
   }
 
     private void establecerFondo() {
-                // imgView.setX(50);
-                //imgView.setY(50);
-        /*      ImageView imageView = new ImageView();
-                imageView.setImage(bgImage);
-                imageView.setFitHeight(780);
-                imageView.setFitWidth(1620);
-
-        */
-
         Image imgFondo = new Image("/fondo1.jpg");
-         BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
-
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
         this.setBackground(new Background(fondo));
-        // this.setStyle("-fx-background: #7d7d7d; -fx-border-color: #7d7d7d;");
-        // this.getStylesheets().addAll(this.getClass().getResource("descarga.png").toExternalForm());
-        // contenedorCentral.setPadding(new Insets(5));
     }
 
     public void seleccionarColor(MouseEvent e) {
