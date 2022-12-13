@@ -40,8 +40,8 @@ public class JugadorProtoss extends Jugador {
 
     public List<String> devolverMediaDeVictoria() {
         List<String> objetos = new ArrayList<String>();
-        objetos.add("/victoriaZerg.jpg");
-        objetos.add( nombre.devolverValor() + " a llevado a la raza Zerg a la victoria");
+        objetos.add("/victoriaProtoss.jpg");
+        objetos.add( nombre.devolverValor() + " logro repeeler a los Zerg de la zona");
         return objetos;
     }
 

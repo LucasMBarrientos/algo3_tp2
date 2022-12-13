@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +26,7 @@ public class MapaView {
     private Group ocupanteGroup = new Group();
     boolean atacando = false;
     boolean ingresadoAEdificio = false;
+    String colorJugadorActual = "";
 
     //#region Imagenes
     Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);
@@ -72,6 +74,7 @@ public class MapaView {
     }*/
 
     public GridPane dibujar() {
+      colorJugadorActual = this.algoStarView.colorJugadorActual();
       atacando = false;
       pruebaGrid.getChildren().clear();
       dibujarTerrenos();
@@ -112,7 +115,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -130,12 +133,12 @@ public class MapaView {
                   });
                   
                   imageAmoSupremoWrapper.setOnMouseEntered(event ->  {
-                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageAmoSupremoWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " " +75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -151,7 +154,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -166,12 +169,12 @@ public class MapaView {
                       setStatsUnidad(nodo);
                   });
                   imageZanganoWrapper.setOnMouseEntered(event ->  {
-                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageZanganoWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -186,7 +189,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -201,12 +204,12 @@ public class MapaView {
                       setStatsUnidad(nodo);
                   });
                   imageZerlingWrapper.setOnMouseEntered(event ->  {
-                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageZerlingWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -221,7 +224,7 @@ public class MapaView {
                     int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                     if(tiempoConstruccion > 0){
-                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -237,12 +240,12 @@ public class MapaView {
                     });
                     
                     imageHidraliscoWrapper.setOnMouseEntered(event ->  {
-                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageHidraliscoWrapper.setOnMouseExited(e -> {
                       if(tiempoConstruccion > 0){
-                        imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                        imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                       }else{
                         imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                       }
@@ -257,7 +260,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -273,12 +276,12 @@ public class MapaView {
                   });
                   
                   imageMutaliscoWrapper.setOnMouseEntered(event ->  {
-                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageMutaliscoWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -293,7 +296,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -309,12 +312,12 @@ public class MapaView {
                   });
                   
                   imageGuardianSprite.setOnMouseEntered(event ->  {
-                    imageGuardianSprite.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageGuardianSprite.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageGuardianSprite.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -329,7 +332,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -345,12 +348,12 @@ public class MapaView {
                   });
                   
                   imageDevoradorWrapper.setOnMouseEntered(event ->  {
-                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageDevoradorWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -371,7 +374,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -388,12 +391,12 @@ public class MapaView {
                   });
                   
                   imageZealotWrapper.setOnMouseEntered(event ->  {
-                    imageZealotWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageZealotWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -409,7 +412,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -425,12 +428,12 @@ public class MapaView {
                   });
                   
                   imageDragonWrapper.setOnMouseEntered(event ->  {
-                    imageDragonWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageDragonWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -446,7 +449,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -462,12 +465,12 @@ public class MapaView {
                   });
                   
                   imageScoutWrapper.setOnMouseEntered(event ->  {
-                    imageScoutWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageScoutWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -483,7 +486,7 @@ public class MapaView {
                     int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                     if(tiempoConstruccion > 0){
-                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -500,12 +503,12 @@ public class MapaView {
                     });
                   
                     imageCriaderoWrapper.setOnMouseEntered(event ->  {
-                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageCriaderoWrapper.setOnMouseExited(e -> {
                       if(tiempoConstruccion > 0){
-                        imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                        imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                       }else{
                         imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                       }
@@ -520,7 +523,7 @@ public class MapaView {
                     BorderPane imageReservaDeReproduccionWrapper = new BorderPane(imagenReservaDeReproduccionSprite);int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                     if(tiempoConstruccion > 0){
-                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -537,12 +540,12 @@ public class MapaView {
                     });
                   
                     imageReservaDeReproduccionWrapper.setOnMouseEntered(event ->  {
-                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageReservaDeReproduccionWrapper.setOnMouseExited(e -> {
                       if(tiempoConstruccion > 0){
-                        imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                        imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                       }else{
                       imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                       }
@@ -558,7 +561,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -568,18 +571,18 @@ public class MapaView {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
                   
                   imageExtractorWrapper.setOnMouseEntered(event ->  {
-                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageExtractorWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -595,7 +598,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -611,12 +614,12 @@ public class MapaView {
                   });
                   
                   imageGuaridaWrapper.setOnMouseEntered(event ->  {
-                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageGuaridaWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -632,7 +635,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -648,12 +651,12 @@ public class MapaView {
                   });
                   
                   imageEspiralWrapper.setOnMouseEntered(event ->  {
-                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageEspiralWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -669,7 +672,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -679,18 +682,18 @@ public class MapaView {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                          algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
                   
                   imageNexoMineralWrapper.setOnMouseEntered(event ->  {
-                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageNexoMineralWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -706,7 +709,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -714,20 +717,20 @@ public class MapaView {
                   imagePilonWrapper.setLayoutY(posY);
                   imagePilonWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                        algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
                   
                   imagePilonWrapper.setOnMouseEntered(event ->  {
-                    imagePilonWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imagePilonWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -743,7 +746,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -753,18 +756,18 @@ public class MapaView {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
                   
                   imageAsimiladorWrapper.setOnMouseEntered(event ->  {
-                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageAsimiladorWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -780,7 +783,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -796,12 +799,12 @@ public class MapaView {
                   });
                   
                   imageAccesoWrapper.setOnMouseEntered(event ->  {
-                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imageAccesoWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -817,7 +820,7 @@ public class MapaView {
                   int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
 
                   if(tiempoConstruccion > 0){
-                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                   }else{
                     imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                   }
@@ -833,12 +836,12 @@ public class MapaView {
                   });
                   
                   imagePuertoEstelarWrapper.setOnMouseEntered(event ->  {
-                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                   });
                   
                   imagePuertoEstelarWrapper.setOnMouseExited(e -> {
                     if(tiempoConstruccion > 0){
-                      imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
                     }else{
                       imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     }
@@ -915,7 +918,7 @@ public class MapaView {
 
                     imageEspecialWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     imageEspecialWrapper.setOnMouseEntered(event ->  {
-                      imageEspecialWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageEspecialWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageEspecialWrapper.setOnMouseExited(e -> {
@@ -949,7 +952,7 @@ public class MapaView {
                     });
                     imageVacioWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
                     imageVacioWrapper.setOnMouseEntered(event ->  {
-                      imageVacioWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageVacioWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageVacioWrapper.setOnMouseExited(e -> {
@@ -977,7 +980,7 @@ public class MapaView {
                     });
                     
                     imageMineralWrapper.setOnMouseEntered(event ->  {
-                      imageMineralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageMineralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageMineralWrapper.setOnMouseExited(e -> {
@@ -1002,7 +1005,7 @@ public class MapaView {
                     });
 
                     imageMohoWrapper.setOnMouseEntered(event ->  {
-                      imageMohoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageMohoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageMohoWrapper.setOnMouseExited(e -> {
@@ -1027,7 +1030,7 @@ public class MapaView {
                       setStatsTerreno(nodo);
                     });
                     imageVolcanWrapper.setOnMouseEntered(event ->  {
-                      imageVolcanWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageVolcanWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageVolcanWrapper.setOnMouseExited(e -> {
@@ -1051,7 +1054,7 @@ public class MapaView {
                       setStatsTerreno(nodo);
                     });
                     imageEnergizadoWrapper.setOnMouseEntered(event ->  {
-                      imageEnergizadoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
+                      imageEnergizadoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
                     });
                     
                     imageEnergizadoWrapper.setOnMouseExited(e -> {
