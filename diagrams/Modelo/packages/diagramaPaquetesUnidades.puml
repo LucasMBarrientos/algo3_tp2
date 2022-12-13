@@ -1,0 +1,11 @@
+@startuml
+package unidades {
+package estadoUnidad{}
+package modificadores{}
+package UnidadProtoss{}
+package UnidadZerg{}
+abstract Unidad
+abstract UnidadZerg
+abstract UnidadProtoss
+}
+@enduml

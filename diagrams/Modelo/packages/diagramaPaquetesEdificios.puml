@@ -1,0 +1,18 @@
+@startuml
+package edificios {
+package estados {}
+package zerg {}
+package protoss{}
+
+
+abstract edificio
+abstract edificioZerg
+abstract edificioProtoss
+}
+package estadisticas {
+class Danio
+class Escudo
+class Vida
+
+}
+@enduml
