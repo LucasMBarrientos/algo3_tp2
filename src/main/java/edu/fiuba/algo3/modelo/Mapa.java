@@ -53,7 +53,6 @@ public class Mapa {
 
     public void establecerDimension(Coordenada dimension) {
         establecerSuperficieYTerrenos(dimension);
-        establecerUbicacionesInicialesDeLosJugadores();
     }
 
     private boolean validarCoordenada(Coordenada coordenada) {
