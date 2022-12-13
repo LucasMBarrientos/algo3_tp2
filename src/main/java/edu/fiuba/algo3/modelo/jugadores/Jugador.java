@@ -122,8 +122,14 @@ public abstract class Jugador {
         inventario.actualizar();
     }
 
-    public void fueDerrotado() {
-        inventario.fueDerrotado(edificioInicialConstruido);
+    public void aniadirseAListaSiNoFueDerrotado(List<Jugador> jugadoresQueNoPerdieron) {
+        if (!(fueDerrotado())) {
+            jugadoresQueNoPerdieron.add(this);
+        }
+    }
+
+    protected boolean fueDerrotado() {
+        return inventario.fueDerrotado(edificioInicialConstruido);
     }
 
     public abstract List<String> devolverMediaDeVictoria();

@@ -56,14 +56,14 @@ public class AlgoStar {
         }
         Logger.log("Se paso el turno a el jugador " + devolverJugadorActual().devolverNombre());
         //Mapa.devolverInstancia().actualizar(turnoActual);
-        for (Jugador jugador : jugadores) {
-            jugador.actualizar();
-            try {
-                jugador.fueDerrotado();
-            } catch (FinDelJuegoAlcanzado e) {
-                jugadorGanador = jugador;
-                throw e;
-            }
+        List<Jugador> jugadoresQueNoPerdieron = new ArrayList<Jugador>();
+        for (int i=0; i < jugadores.size(); i++) {
+            jugadores.get(i).actualizar();
+            jugadores.get(i).aniadirseAListaSiNoFueDerrotado(jugadoresQueNoPerdieron);
+        }
+        if (jugadoresQueNoPerdieron.size() == 1) {
+            jugadorGanador = jugadoresQueNoPerdieron.get(0);
+            throw new FinDelJuegoAlcanzado();
         }
     }
 
