@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
@@ -11,6 +9,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -18,10 +17,16 @@ import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pilon extends EdificioProtoss {
 
-    private final int radioAEnergizar = 3;
+    private int radioAEnergizar = 3;
+
+    private int turno = 0;
+    List<Coordenada> coordenadasEnergizadas = new ArrayList<Coordenada>();
+
     private Recurso suministroAAgregar = new Suministro(5);
 
     public Pilon() {
@@ -40,14 +45,14 @@ public class Pilon extends EdificioProtoss {
         energizarTerrenos();
     }
 
-    private void energizarTerrenos() {
+    private void energizarTerrenos(){
         List<Terreno> terrenosAEnergizar = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioAEnergizar);
         for (Terreno terreno : terrenosAEnergizar) {
             terreno.energizarTerreno();
         }
     }
 
-    public void desenergizarTerrenos() {
+    public void desenergizarTerrenos(){
         List<Terreno> terrenosAEnergizar = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioAEnergizar);
         for (Terreno terreno : terrenosAEnergizar) {
             terreno.desenergizarTerreno();
@@ -55,13 +60,12 @@ public class Pilon extends EdificioProtoss {
     }
 
     @Override
-    public void destruirse(Inventario inv) {
+    public void destruirse(Inventario inv){
         inv.eliminarEdificio(coordenada);
     }
-
     @Override
     public void ejecutarDanio(Danio danio) {
-        if (this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))) {
+        if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){
             desenergizarTerrenos();
             this.establecerEstado(new EdificioDestruido());
             throw new EdificioEstaDestruido();
@@ -78,9 +82,10 @@ public class Pilon extends EdificioProtoss {
         inventario.restarSuministro(suministroAAgregar);
     }
 
-    public void ocupar(Terreno terreno) {
+    public void ocupar(Terreno terreno){
         terreno.ocuparPorEdificio(this);
         this.terreno = terreno;
     }
     
+
 }

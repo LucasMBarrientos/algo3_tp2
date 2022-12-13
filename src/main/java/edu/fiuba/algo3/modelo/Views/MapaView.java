@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.List;
@@ -97,7 +96,7 @@ public class MapaView {
         try {
             nodos = Mapa.devolverInstancia().toJsonOcupantes();
 
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             System.out.println("Error al mostrar Ocupantes");
         }
 
@@ -105,7 +104,6 @@ public class MapaView {
         int sizeY = 10;
         int posX = 1 ;
         int posY = 1 ;
-        //ocupanteGroup.getChildren().clear();
         
         for (JsonNode nodo : nodos) {
             switch (nodo.get("Ocupante").get("nombre").asText()){

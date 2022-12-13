@@ -62,7 +62,6 @@ public class TerrenoVacio implements EstadoTerreno {
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
 
-
     public void ocuparPorUnidad(Dragon unidad){
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
@@ -130,6 +129,15 @@ public class TerrenoVacio implements EstadoTerreno {
         }
     }
 
+    public void energizarTerreno() {
+        terreno.habilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoEnergizado(terreno));
+    }
+
+    public void desenergizarTerreno() {
+        return;
+    }
+
     @Override
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
@@ -152,15 +160,5 @@ public class TerrenoVacio implements EstadoTerreno {
         }
         return nodo;
     }
-
-    public void energizarTerreno() {
-        terreno.habilitarEdificioOcupante();
-        terreno.establecerEstado(new TerrenoEnergizado(terreno));
-    }
-
-    public void desenergizarTerreno() {
-        return;
-    }
-
 
 }

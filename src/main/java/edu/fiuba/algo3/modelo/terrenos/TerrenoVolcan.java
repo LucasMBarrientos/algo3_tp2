@@ -110,12 +110,6 @@ public class TerrenoVolcan extends Terreno {
         throw new TerrenoNoAptoParaTalUnidad();
     }
 
-    public void energizarTerreno() { }
-
-    public void cubrirTerrenoDeMoho() { }
-
-    public void vaciarTerreno() { }
-
     @Override
     public void extraerGasVespeno(Recurso recursoRequerido) {
         gasVespeno.gastar(recursoRequerido);

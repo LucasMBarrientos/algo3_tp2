@@ -18,6 +18,7 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Edificio {
+    
     protected EstadoEdificio estadoActual = new EdificioEnConstruccion();
     protected Terreno terreno;
     protected Recurso costoEnMinerales;
@@ -26,7 +27,6 @@ public abstract class Edificio {
     protected Nombre nombre;
     protected int tiempoDeConstruccion;
     protected Coordenada coordenada;
-    
 
     public abstract Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador);
 
@@ -57,7 +57,6 @@ public abstract class Edificio {
         return this.tiempoDeConstruccion == 0;
     }
 
-
     public void establecerEstado(EstadoEdificio estado) {
         this.estadoActual = estado;
         this.estadoActual.establecerEdificio(this);
@@ -72,6 +71,7 @@ public abstract class Edificio {
     }
 
     public abstract void actualizarEdificio(Inventario inventario);
+
     public abstract void ocupar(Terreno terreno);
 
     public abstract void ejecutarDanio(Danio danio);
@@ -138,10 +138,13 @@ public abstract class Edificio {
         throw new EdificioNoConoceEstaUnidad();
     }
 
-    public void volverNuevamenteOperativo(){ }
+    public void volverNuevamenteOperativo() {
+        return;
+    }
 
-    public void volverEdificioInoperativo(){ }
-
+    public void volverEdificioInoperativo() {
+        return;
+    }
 
     public abstract ObjectNode toData();
 

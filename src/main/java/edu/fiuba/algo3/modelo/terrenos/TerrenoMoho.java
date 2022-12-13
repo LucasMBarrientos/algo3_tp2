@@ -130,6 +130,14 @@ public class TerrenoMoho implements EstadoTerreno {
         return;
     }
 
+    public void energizarTerreno() {
+        return;
+    }
+
+    public void desenergizarTerreno() {
+        return;
+    }
+
     @Override
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
@@ -152,14 +160,5 @@ public class TerrenoMoho implements EstadoTerreno {
         }
         return nodo;
     }
-
-    public void energizarTerreno() {
-        return;
-    }
-
-    public void desenergizarTerreno() {
-        return;
-    }
-
 
 }

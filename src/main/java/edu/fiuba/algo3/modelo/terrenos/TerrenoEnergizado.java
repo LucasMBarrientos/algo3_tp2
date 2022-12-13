@@ -129,6 +129,16 @@ public class TerrenoEnergizado implements EstadoTerreno {
         }
     }
 
+    public void energizarTerreno() {
+        terreno.habilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoEnergizado(terreno));
+    }
+
+    public void desenergizarTerreno() {
+        terreno.deshabilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoVacio(terreno));
+    }
+
     @Override
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
@@ -150,16 +160,6 @@ public class TerrenoEnergizado implements EstadoTerreno {
             nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
         return nodo;
-    }
-
-    public void energizarTerreno() {
-        terreno.habilitarEdificioOcupante();
-        terreno.establecerEstado(new TerrenoEnergizado(terreno));
-    }
-
-    public void desenergizarTerreno() {
-        terreno.deshabilitarEdificioOcupante();
-        terreno.establecerEstado(new TerrenoVacio(terreno));
     }
 
 

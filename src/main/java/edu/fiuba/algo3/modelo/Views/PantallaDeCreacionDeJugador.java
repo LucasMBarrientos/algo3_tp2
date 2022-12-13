@@ -16,11 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class PantallaDeCreacionDeJugador extends VBox {
 
@@ -129,8 +125,6 @@ public class PantallaDeCreacionDeJugador extends VBox {
         this.formUsuario.add(nombre, 0,3);
         this.formUsuario.add(controlParaElegirRaza, 1,3);
     }
-
-
 
     private void agregarBotonParaContinuar(Scene proximaEscena, List<Integer> coloresRemovidos, List<Integer> razasRemovidas) {
         this.botonParaContinuar = new Button();

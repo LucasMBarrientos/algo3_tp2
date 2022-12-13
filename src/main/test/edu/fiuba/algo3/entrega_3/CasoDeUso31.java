@@ -27,6 +27,7 @@ public class CasoDeUso31 {
         AlgoStar algoStar = new AlgoStar();
         JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 500, 2000,0);
         algoStar.agregarJugador(jugadorZerg);
+        algoStar.agregarJugador(new JugadorProtoss("\"El primogenito", "#0000ff"));
         algoStar.empezarJuego();
 
         // Se construye un criadero
@@ -102,6 +103,7 @@ public class CasoDeUso31 {
         AlgoStar algoStar = new AlgoStar();
         JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff",1200, 1200,0);
         algoStar.agregarJugador(jugadorProtoss);
+        algoStar.agregarJugador(new JugadorZerg("La mente suprema", "#ff0000"));
         algoStar.empezarJuego();
 
         jugadorProtoss.construirEdificio(new Coordenada(2, 3), new Pilon());
