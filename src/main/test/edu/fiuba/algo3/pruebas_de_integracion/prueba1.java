@@ -114,7 +114,7 @@ public class prueba1 {
 
         //jugador zerg genera un amo supremo e ingresa un zangano al extractor
         a.hallarJugadorActual().generarUnidad(new Coordenada(3 ,3), new AmoSupremo());
-        a.devolverJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(4,4), new Coordenada(3,2));
+        a.hallarJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(4,4), new Coordenada(3,2));
 
         a.pasarTurno();
 

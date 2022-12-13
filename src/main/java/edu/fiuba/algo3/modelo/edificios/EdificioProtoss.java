@@ -13,19 +13,17 @@ import edu.fiuba.algo3.modelo.jugadores.Inventario;
 
 public abstract class EdificioProtoss extends Edificio {
 
-    public Escudo escudo;
+    protected Escudo escudo;
 
     public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
         validarCorrelativasDeConstruccion(inventarioDelJugador);
         consumirRecursosParaConstruccion(inventarioDelJugador);
-
         try {
             Mapa.devolverInstancia().establecerEdificio(coordenada, this);
-        }catch(TerrenoNoAptoParaConstruirTalEdificio exception) {
+        } catch(TerrenoNoAptoParaConstruirTalEdificio exception) {
             devolverRecursosParaConstruccion(inventarioDelJugador);
             throw exception;
         }
-
         return this;
     }
 
@@ -36,17 +34,18 @@ public abstract class EdificioProtoss extends Edificio {
         }
     }
 
-    public void desenergizarTerrenos(){}
+    public void desenergizarTerrenos() {
+        return;
+    }
 
     @Override
-    public void volverNuevamenteOperativo(){
+    public void volverNuevamenteOperativo() {
         estadoActual.volverOperativo();
     }
 
-    public void regenerar(){
-      escudo.regenerar();
+    public void regenerar() {
+        escudo.regenerar();
     }
-
 
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();

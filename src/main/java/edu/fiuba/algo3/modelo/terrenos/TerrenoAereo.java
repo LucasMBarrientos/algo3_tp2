@@ -104,12 +104,6 @@ public class TerrenoAereo extends Terreno{
         establecerUnidad(unidad);
     }
 
-    public void vaciarTerreno() { }
-
-    public void energizarTerreno() { }
-
-    public void cubrirTerrenoDeMoho() { }
-
     @Override
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();

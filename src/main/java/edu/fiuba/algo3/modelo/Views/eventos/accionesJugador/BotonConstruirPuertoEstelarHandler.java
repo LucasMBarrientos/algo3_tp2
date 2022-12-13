@@ -28,7 +28,7 @@ public class BotonConstruirPuertoEstelarHandler implements EventHandler<ActionEv
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new PuertoEstelar());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new PuertoEstelar());
     }
 
     public void lanzarMensajeDeFaltaDeRecursos() {

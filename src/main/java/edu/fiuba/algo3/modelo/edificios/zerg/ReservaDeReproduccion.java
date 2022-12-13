@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.*;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -20,6 +20,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
         this.nombre = new Nombre("ReservaDeReproduccion");
         establecerEstado(new EdificioEnConstruccion());
     }
+    
     @Override
     public void actualizarEdificio(Inventario inventario) {
         regenerar();

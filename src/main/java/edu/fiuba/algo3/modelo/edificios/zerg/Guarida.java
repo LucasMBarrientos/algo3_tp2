@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -30,7 +30,7 @@ public class Guarida extends EdificioZerg {
 
     @Override
     public void validarCorrelativasDeConstruccion(Inventario inventario) throws ConstruccionRequiereDeOtroEdificio {
-        if(!inventario.tieneEdificio(new Nombre("ReservaDeReproduccion"))){
+        if (!inventario.tieneEdificio(new Nombre("ReservaDeReproduccion"))) {
             throw new ConstruccionRequiereDeOtroEdificio();
         }
     }

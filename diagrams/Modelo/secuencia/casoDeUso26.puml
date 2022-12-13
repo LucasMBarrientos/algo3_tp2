@@ -1,0 +1,52 @@
+@startuml
+
+actor usuario #red
+note right of usuario #aqua
+test26\n
+ 'verificarQueUnCriaderoPuedaSuministrarHasta5Zanganos
+end note
+
+usuario->AlgoStar: new()
+usuario->AlgoStar: agregarJugador(jugadorZerg);
+usuario->AlgoStar: agregarJugador(jugadorProtoss);
+usuario->AlgoStar: empezarJuego();
+usuario->AlgoStar: pasarTurno();
+usuario->JugadorZerg:moverUnidad
+usuario->JugadorZerg:generarUnidad
+
+'JugadorZerg jugadorZerg = new JugadorZerg("La mente suprema", "#ff0000", 500, 500,0);
+ '       algoStar.agregarJugador(jugadorZerg);
+ '       JugadorProtoss jugadorProtoss = new JugadorProtoss("El primogenito", "#0000ff");
+  '      algoStar.agregarJugador(jugadorProtoss);
+   ''     algoStar.empezarJuego();'
+
+ '       jugadorZerg.moverUnidad(new Coordenada(1, 1), new Derecha());
+  '      jugadorZerg.moverUnidad(new Coordenada(2, 1), new Abajo());
+'
+ '       jugadorZerg.construirEdificio(new Coordenada(2, 2), new Criadero());
+  '      for (int i = 0; i < 8; i++) {
+   '         algoStar.pasarTurno();
+    '    }
+'
+ '       jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+  '      algoStar.pasarTurno();
+   '     jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+    '    algoStar.pasarTurno();
+     '   jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+      '  algoStar.pasarTurno();
+       ' jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+        'algoStar.pasarTurno();
+
+'        jugadorZerg.moverUnidad(new Coordenada(2, 1), new Izquierda());
+ '       jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+  '      algoStar.pasarTurno();
+'
+ '       jugadorZerg.moverUnidad(new Coordenada(3, 2), new Derecha());
+'
+ '       // No deberia haber ninguna unidad en la coordenada (3,2)
+
+  '      Assertions.assertThrows(NoHaySuministrosSuficientes.class, ()->{
+   '         jugadorZerg.generarUnidad(new Coordenada(2, 2), new Zangano());
+    '    });
+    '}
+@enduml

@@ -1,18 +1,48 @@
 @startuml
 package edificios {
-package estados {}
-package zerg {}
-package protoss{}
+package estados {
+interface EstadoEdificio
+class EdificioDestruido
+class EdificioEnConstruccion
+class EdificioNoOperativo
+class EdificioOperativo
+
+EstadoEdificio <|.left EdificioOperativo
+EstadoEdificio <|.up. EdificioNoOperativo
+EstadoEdificio <|. EdificioDestruido
+EstadoEdificio <|.up. EdificioEnConstruccion
+}
+package zerg {
+class Criadero
+class Extractor
+class Espiral
+class Guarida
+class ReservaDeProduccion
+
+}
+package protoss{
+class Pilon
+class Acceso
+class Asimilador
+class PuertoEstelar
+}
 
 
 abstract edificio
 abstract edificioZerg
 abstract edificioProtoss
+EstadoEdificio <-down-- edificio
+edificio -right> estadisticas
+edificio <|-left- edificioProtoss
+edificio <|-down- edificioZerg
+edificioProtoss <|-- protoss
+edificioZerg <|-- zerg
 }
 package estadisticas {
 class Danio
 class Escudo
 class Vida
+class Nombre
 
 }
 @enduml

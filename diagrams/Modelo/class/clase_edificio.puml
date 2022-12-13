@@ -1,60 +1,85 @@
 @startuml
-abstract Edificio{
--tiempoConstruccion:int
--requerimientosGas:int
--requerimientosMineral:int
--vidaMax:int
--vida:int
-+{abstract}validarRequerimientoDelCasillero(casilla):bool
-+devolverTiempoConstruccion():int
-+validarRequirimientos(Inventario):bool
-+consumirRecursosDelJugador(Inventario)
-+devolverRequirimientosDeMinerales():int
 
-+devolverRequirimientosDeGas():int
-+actualizar()
-+recibirDanio(int)Bool
-+devolverVida()
+
+abstract Edificio{
+-estadoActual:EstadoEdificio
+-terreno:Terreno;
+-costoEnGas:Recurso
+-costoEnMineral:Recurso
+-vida:Vida
+-nombre:Nombre;
+-tiempoConstruccion:int
+-coordenada:Coordenada
+
++{abstract}construir(coordenada,inventario):Edificio
++consumirRecursosParaConstruccion(inventario)
++devolverRecursosDelJugador(Inventario)
++actualizar(inventario)
++ingresarUnidad(unidad)
++establecerPosicion(coordenada)
++reducirTiempoConstruccion(Tiempo:int):bool
++establecerEstado(estado:EstadoEdificio)
++recibirDanio(danioTerrestre,danioAereo)
++compararCoordenadas(coordenada):bool
++{abstract}actualizarEdificio(inventario)
++{abstract}Ocupar(terreno)
++{abstract}ejecutarDanio(danio)
++{abstract}regenerar()
++devolverNobre():Nombre
++consumirLarva()
++agregarSuministro(inventario)
++restarSuministro(inventario)
++validarCoorelativasDeCostruccion(inventario)
++destruirse(inventario)
++ingresarUnidadTrabajadora(unidad)
++generarUnidad(unidad,inventario)
++volverNuevamenteOperativo()
++volverEdificioInoperativo()toData():ObjecNode
 }
 
 
 interface EstadoEdificio{
- +actualizar()
+ +actualizar(inventario)
 +generarUnidad(unidad,inventario):Unidad
-+ingresarUnidad(zangano)
++ingresarUnidad(unidad)
 +recibirDanio(danio)
-+terminarConstruccion()
-+deshacerConstruccion()
 +establecerEdificio(edificio)
-+actualizarListasDeCoordenadas(listaCoordenadasConCriaderos,listaCoordenadasConPilones)
++volverOperativo()
 +consumirLarva(larvas:int):boolean
++toData():ObjecNode
+
 }
 
 
 abstract EdificioProtoss{
--escudo:int
--escudoMax:int
--operativo:bool
--regenerarEscudo()
--redicirEscudo(int)
-+recibirDanio(int)Bool
-+establecerOperatividad(bool)agusssssss
-+devolverOperatividad():bool
-+devolverEscudo():int
+-escudo:Escudo
++construir(coordenada,inventario)
++ejecutarDanio(danio)
++regenerar()
++desenergizarTerrenos()
++volverNuevamenteOperativo()
++toData():ObjecNode
 }
 
 
 abstract EdificioZerg{
-+regenerar()
++construir(coordenada,inventario)
 +ejecutarDanio(danio)
-+establecerTerreno(terreno)
-{abstract}+ocupar
-{abstract}+validarCoorelativasDeCostruccion(inventario)
++regenerar()
++toData():ObjecNode
+'+establecerTerreno(terreno)
+'{abstract}+ocupar
+'{abstract}+validarCoorelativasDeCostruccion(inventario)
 }
 Edificio-> EstadoEdificio
 EstadoEdificio <|..EdificioOperativo
-EstadoEdificio <|..EdificioEnConstruccion
+EstadoEdificio <|...EdificioEnConstruccion
 EstadoEdificio <|..EdificioDestruido
 Edificio <|--- EdificioProtoss
 Edificio <|-- EdificioZerg
+Edificio ---> Nombre
+Edificio -up-> Coordenada
+Edificio -up-> Recurso
+Edificio -left> Vida
+EdificioProtoss -> Escudo
 @enduml

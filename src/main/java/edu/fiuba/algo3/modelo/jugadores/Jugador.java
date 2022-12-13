@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -18,7 +18,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 public abstract class Jugador {
 
     protected int id;
-    public Inventario inventario;
+    protected Inventario inventario;
     protected Nombre nombre;
     protected String color;
     protected boolean edificioInicialConstruido = false;
@@ -72,7 +72,7 @@ public abstract class Jugador {
         }
     }
 
-    public boolean nombreEsIgual(Nombre nombre) {
+    protected boolean nombreEsIgual(Nombre nombre) {
         return this.nombre.esIgual(nombre);
     }
 
@@ -97,10 +97,7 @@ public abstract class Jugador {
         unidad.moverse(direccionDelMovimiento);
     }
 
-    public void destruirUnidad(Coordenada coordenada) {
-        Mapa.devolverInstancia().eliminarUnidad(coordenada);
-        inventario.eliminarUnidad(coordenada);
-    }
+
 
     public void destruirEdificio(Coordenada coordenada) {
         Mapa.devolverInstancia().eliminarEdificio(coordenada);
@@ -116,14 +113,22 @@ public abstract class Jugador {
         this.id = id;
     }
 
-    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) { }
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
+        return;
+    }
 
     public void actualizar() {
         inventario.actualizar();
     }
 
-    public void fueDerrotado() {
-        inventario.fueDerrotado(edificioInicialConstruido);
+    public void aniadirseAListaSiNoFueDerrotado(List<Jugador> jugadoresQueNoPerdieron) {
+        if (!(fueDerrotado())) {
+            jugadoresQueNoPerdieron.add(this);
+        }
+    }
+
+    protected boolean fueDerrotado() {
+        return (edificioInicialConstruido && inventario.fueDerrotado());
     }
 
     public abstract List<String> devolverMediaDeVictoria();

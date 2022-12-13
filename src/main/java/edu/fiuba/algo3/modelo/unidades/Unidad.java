@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.unidades;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -18,7 +18,6 @@ import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.estados.EstadoUnidad;
 import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
-import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
 
 public abstract class Unidad {
@@ -52,10 +51,6 @@ public abstract class Unidad {
     public void establecerEstado(EstadoUnidad estado){
       this.estado = estado;
       this.estado.setUnidad(this);
-    }
-
-    public void establecerVisibilidad(Visibilidad visibilidad) {
-        return;
     }
 
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
@@ -110,11 +105,14 @@ public abstract class Unidad {
 
     }
 
-    public void volverInvisible(){
-        if(cantidadDeKills >= 3){
-            establecerVisibilidad(new Invisible()); //todas las unidades lo entienden pero solo el zealot lo hace
-        }
+    public void establecerVisibilidad(Visibilidad visibilidad) {
+        return;
     }
+
+    public void volverInvisible(){return;}
+
+    public void volverVisible(){return;}
+
 
     public Nombre devolverNombre(){
         return nombre;

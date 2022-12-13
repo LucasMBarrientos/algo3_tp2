@@ -41,7 +41,7 @@ public class BotonGenerarZerlingHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Zerling());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Zerling());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Zerling");

@@ -3,14 +3,16 @@ package edu.fiuba.algo3;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Views.AlgoStarView;
-import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
-import edu.fiuba.algo3.modelo.Views.PantallaDeCreacionDeJugador;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Views.AlgoStarView;
+import edu.fiuba.algo3.modelo.Views.PantallaBienvenida;
+import edu.fiuba.algo3.modelo.Views.PantallaDeCreacionDeJugador;
+
 
 /**
  * JavaFX App
@@ -40,10 +42,7 @@ public class App extends Application {
         Scene escenaBienvenidos = new Scene(pantallaBienvenida,1280,720);
         escenaBienvenidos.getStylesheets().add(css);
         stage.setScene(escenaBienvenidos);
-
-
         stage.getIcons().add(new Image("/logoZerg.jpg"));
-
         stage.show();
     }
 

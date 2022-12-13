@@ -39,7 +39,7 @@ public class BotonGenerarDragonHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Dragon());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Dragon());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Dragon");

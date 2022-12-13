@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -40,16 +40,14 @@ public class Criadero extends EdificioZerg {
         actualizarMapa();
     }
 
-    private void actualizarLarvas(){
-        if (larvas < 3) {
-            this.larvas++;
-        }
+    private void actualizarLarvas() {
+        this.larvas = Math.min(3, this.larvas + 1);
     }
 
     private void actualizarMapa() {
         if(turno % 4 == 0) {
-            int radioActual = radioInicial + (turno / 4);
-            List<Terreno> terrenosQueDeberianTenerMoho = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioActual);
+            int radioDelMoho = radioInicial + (turno / 4);
+            List<Terreno> terrenosQueDeberianTenerMoho = Mapa.devolverInstancia().buscarTerrenosAdyacentes(coordenada, radioDelMoho);
             for (Terreno terreno : terrenosQueDeberianTenerMoho) {
                 terreno.cubrirTerrenoDeMoho();
             }
@@ -59,11 +57,11 @@ public class Criadero extends EdificioZerg {
 
     @Override
     public boolean consumirLarva() {
-      if(estadoActual.consumirLarva(larvas)){
-        this.larvas--;
-        return true;
-      }
-      return false;
+        if (estadoActual.consumirLarva(larvas)) {
+            this.larvas--;
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -76,7 +74,7 @@ public class Criadero extends EdificioZerg {
         inventario.restarSuministro(suministroAAgregar);
     }
 
-    public void ocupar(Terreno terreno){
+    public void ocupar(Terreno terreno) {
         terreno.ocuparPorEdificio(this);
     }
 

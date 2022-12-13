@@ -10,11 +10,9 @@ import java.util.List;
 
 public class AlgoStar {
 
-    public List<Jugador> jugadores = new ArrayList<Jugador>();
+    private List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
-
     private int turnoActual;
-    private int rondaActual;
 
     private Jugador jugadorGanador;
 
@@ -37,12 +35,10 @@ public class AlgoStar {
         for (Jugador jugador : jugadores) {
             jugador.iniciarseEnMapa();
         }
-        //Mapa.devolverInstancia().actualizar(turnoActual);
+
         this.idJugadorActual = 0;
         this.turnoActual = 0;
-        this.rondaActual = 0;
     }
-
     public Jugador hallarJugadorActual() {
         return jugadores.get(this.idJugadorActual);
     }
@@ -52,28 +48,22 @@ public class AlgoStar {
         turnoActual++;
         if (turnoActual % jugadores.size() == 0) {
             idJugadorActual = 0;
-            rondaActual++;
+
         }
-        Logger.log("Se paso el turno a el jugador " + devolverJugadorActual().devolverNombre());
-        //Mapa.devolverInstancia().actualizar(turnoActual);
-        for (Jugador jugador : jugadores) {
-            jugador.actualizar();
-            try {
-                jugador.fueDerrotado();
-            } catch (FinDelJuegoAlcanzado e) {
-                jugadorGanador = jugador;
-                throw e;
-            }
+        Logger.log("Se paso el turno a el jugador " + this.hallarJugadorActual().devolverNombre());
+        List<Jugador> jugadoresQueNoPerdieron = new ArrayList<Jugador>();
+        for (int i=0; i < jugadores.size(); i++) {
+            jugadores.get(i).actualizar();
+            jugadores.get(i).aniadirseAListaSiNoFueDerrotado(jugadoresQueNoPerdieron);
+        }
+        if (jugadoresQueNoPerdieron.size() == 1) {
+            jugadorGanador = jugadoresQueNoPerdieron.get(0);
+            throw new FinDelJuegoAlcanzado();
         }
     }
 
     public Jugador devolverJugadorGanador() {
         return jugadorGanador;
     }
-    
-    public Jugador devolverJugadorActual() {
-        return jugadores.get(idJugadorActual);
-    }
-
 
 }

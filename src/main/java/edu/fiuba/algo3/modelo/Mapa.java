@@ -169,8 +169,7 @@ public class Mapa {
         }
     }
 
-
-    public List<ObjectNode>  parseTerrenos(){
+    public List<ObjectNode> parseTerrenos(){
       List<ObjectNode>  mapaEnString = new ArrayList<>();
         int longitudX = this.superficie.calcularLongitudX();
         int contadorDeLinea = 0;
@@ -218,5 +217,4 @@ public class Mapa {
         return parseOcupantes();
     }
 
-    
 }

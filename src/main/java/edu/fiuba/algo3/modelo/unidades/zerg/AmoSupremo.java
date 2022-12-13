@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.UnidadZerg;
 import edu.fiuba.algo3.modelo.unidades.estados.UnidadEnConstruccion;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visible;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class AmoSupremo extends UnidadZerg {
         boolean sePudoOcupar = true;
         try {
             terreno.ocuparPorUnidad(this);
+            terreno.establecerVisibilidadAUnidad(this);
         } catch (RuntimeException e){
             sePudoOcupar = false;
         }
@@ -78,7 +80,7 @@ public class AmoSupremo extends UnidadZerg {
     private void invisibilizarTerrenosAnteriores(){
         for(Coordenada coord : coordenadasVisibles) {
             try{
-                Mapa.devolverInstancia().buscarTerreno(coord).volverInvisibleAUnidad();
+                Mapa.devolverInstancia().buscarTerreno(coord).cambiarVisibilidadActual(new Invisible());
             } catch (CoordenadaFueraDelMapa exception){}
         }
     }
@@ -86,14 +88,15 @@ public class AmoSupremo extends UnidadZerg {
     private void visibilizarTerrenosActuales(){
         for(Coordenada coord : coordenadasVisibles) {
             try{
-                Mapa.devolverInstancia().buscarTerreno(coord).cambiarVisibilidadAUnidad(new Visible());
+                Mapa.devolverInstancia().buscarTerreno(coord).cambiarVisibilidadActual(new Visible());
             } catch (CoordenadaFueraDelMapa exception){}
         }
     }
 
     private void buscarCoordenadasAVisivilizar(){
+        coordenadasVisibles.clear();
         List<Coordenada> coordenadas = coordenada.hallarCoordenadasAdyacentes(radioDeVisibilidad);
-        for(Coordenada coordenadaHallada : coordenadas) {
+        for(Coordenada coordenadaHallada : coordenadas){
             coordenadasVisibles.add(coordenadaHallada);
         }
     }

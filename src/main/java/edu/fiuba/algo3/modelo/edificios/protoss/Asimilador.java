@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
@@ -44,6 +44,5 @@ public class Asimilador extends EdificioProtoss {
             throw terrenoSinGasVespeno;
         }
     }
-
 
 }

@@ -40,7 +40,7 @@ public class BotonGenerarZanganoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Zangano());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Zangano());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Amo Supremo");

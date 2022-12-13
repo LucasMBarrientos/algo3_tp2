@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -19,9 +19,9 @@ public class Inventario {
 
     private List<Edificio> edificios = new ArrayList<Edificio>();
     private List<Unidad> unidades = new ArrayList<Unidad>();
-    public GasVespeno gasVespeno;
-    public Mineral mineral;
-    public Suministro suministro;
+    private GasVespeno gasVespeno;
+    private Mineral mineral;
+    private Suministro suministro;
     
     public Inventario(GasVespeno gasVespeno, Mineral mineral, Suministro suministro) {
         this.gasVespeno = gasVespeno;
@@ -29,10 +29,8 @@ public class Inventario {
         this.suministro = suministro;
     }
 
-    public void fueDerrotado(boolean edificioInicialConstruido) {
-        if (edificioInicialConstruido && this.edificios.size() == 0) {
-            throw new FinDelJuegoAlcanzado();
-        }
+    public boolean fueDerrotado() {
+        return this.edificios.size() == 0;
     }
 
     public Edificio buscarEdificio(Coordenada coordenada) {
@@ -85,8 +83,6 @@ public class Inventario {
         }
         throw new NoHayLarvasSuficientes();
     }
-
-
 
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);

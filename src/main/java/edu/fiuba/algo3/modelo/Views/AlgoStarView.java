@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Views;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
@@ -12,12 +11,13 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraUnidadNor
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
-import edu.fiuba.algo3.modelo.jugadores.Jugador;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
@@ -49,9 +49,7 @@ public class AlgoStarView extends BorderPane {
     AlgoStar algoStar;
     ScrollPane contenedorCentral;
     Group layout;
-
     Coordenada limite;
-
     MapaView mapaView;
 
     Image pasarTurnoImagen = new Image("/Sprite-0001-export.png", 100, 100, false, false);
@@ -70,7 +68,7 @@ public class AlgoStarView extends BorderPane {
     public String colorJugadorActual() {
       String colorJugadorActual = "";
       try {
-        switch (this.algoStar.devolverJugadorActual().toData().get("color").asText()){
+        switch (this.algoStar.hallarJugadorActual().toData().get("color").asText()){
           case "Naranja":{
             colorJugadorActual= "orange";
             break;
@@ -102,7 +100,7 @@ public class AlgoStarView extends BorderPane {
         pasarTurno.setStyle(" -fx-background-color: transparent; -fx-border-color: #7d7d7d;");
         pasarTurno.setGraphic(view);
 
-        JsonNode jugadorNode = algoStar.devolverJugadorActual().toData();
+        JsonNode jugadorNode = algoStar.hallarJugadorActual().toData();
 
         Label jugadorActualnombre = new Label(jugadorNode.get("nombre").asText());
         jugadorActualnombre.setFont (Font.font("Tahoma", FontWeight.BOLD, 15));
@@ -277,14 +275,14 @@ public class AlgoStarView extends BorderPane {
 
 
     public void crearBotoneraAmoSupremo(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraAmoSupremo(algoStar, this, coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraMutalisco(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraMutalisco(algoStar, this, coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
@@ -294,14 +292,14 @@ public class AlgoStarView extends BorderPane {
       new BotoneraUnidadNormal(algoStar, this, coordenada, stage);
     }
     public void crearBotoneraZangano(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraZangano(algoStar, this, coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       } 
     }
     public void crearBotoneraAcceso(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraAcceso(algoStar, this,coordenada, stage);
       } else {
         this.setBottom(crearBotoneraVacia(coordenada));
@@ -313,14 +311,14 @@ public class AlgoStarView extends BorderPane {
     }*/
 
     public void crearBotoneraCriadero(Coordenada coordenada) {
-        if ("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()) {
+        if ("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
             new BotoneraCriadero(algoStar, this,coordenada, stage);
         } else {
            this.setBottom(crearBotoneraVacia(coordenada));
         }
     }
     public void crearBotoneraEnergizado(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraEnergizadoProtoss(algoStar, this,coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
@@ -333,39 +331,39 @@ public class AlgoStarView extends BorderPane {
       new BotoneraGuarida(algoStar, this,coordenada, stage);
     }
     public void crearBotoneraVolcan(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneralVolcanProtoss(algoStar, this,coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraMineral(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraMineralProtoss(algoStar, this,coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraPuertoEstelar(algoStar, this,coordenada, stage);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }
+        if ("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
+            new BotoneraPuertoEstelar(algoStar, this,coordenada, stage);
+        } else {
+            this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
     public void crearBotoneraReservaDeReproduccion(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraReservaDeReproduccion(algoStar, this,coordenada, stage);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }
+        if ("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
+            new BotoneraReservaDeReproduccion(algoStar, this,coordenada, stage);
+        } else {
+            this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
     public void crearBotoneraTerrenoVacio(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraVaciaProtoss(algoStar, this,coordenada, stage);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }
+        if ("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
+            new BotoneraVaciaProtoss(algoStar, this,coordenada, stage);
+        } else {
+            this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
 
     public void ataque(Coordenada coordenadaUnidad){
@@ -377,17 +375,6 @@ public class AlgoStarView extends BorderPane {
       ataque.handle();
       this.contenedorCentral.setContent(mapaView.dibujar());
     }
-    /*
-    public void ingreso(Coordenada coordenadaUnidad){
-        this.contenedorCentral.setContent(mapaView.dibujar(false, coordenadaUnidad, true));
-    }
-
-    public void ingresarUnidad(Coordenada coordenadaUnidad, Coordenada coordenadaEdificio){
-        BotonIngresarUnidadHandler ingreso = new BotonIngresarUnidadHandler(algoStar, this, coordenadaUnidad, coordenadaEdificio);
-        ingreso.handle();
-        this.contenedorCentral.setContent(mapaView.dibujar());
-    }*/
-
 
     private void agregarBarraDelMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);
@@ -424,81 +411,127 @@ public class AlgoStarView extends BorderPane {
                         r.reproducirSonido("/boom.mp3", false);
                         break;
                     case P:
-                        Jugador j1 = algoStar.jugadores.get(0);
-                        Jugador j2 = algoStar.jugadores.get(1);
+                        AlgoStar a = algoStar;
 
+                        //jugador zerg mueve el zangano inicial hasta el mineral
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(1,1), new Derecha());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(2,1), new Derecha());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(3,1), new Derecha());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(4,1), new Abajo());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(4,2), new Abajo());
 
-                        j2.construirEdificio(new Coordenada(96, 45), new NexoMineral());
-                        j2.construirEdificio(new Coordenada(95, 46), new NexoMineral());
-                        for (int i = 0; i < 50; i++) { // Termino de construir los nexos minerales
-                            algoStar.pasarTurno();
-                        }
-                        j2.construirEdificio(new Coordenada(95, 45), new Asimilador());
-                        j2.construirEdificio(new Coordenada(8, 1), new Pilon());
-                        for (int i = 0; i < 6; i++) { // Termino de construir el pilon y el asimilador
-                            algoStar.pasarTurno();
-                        }
-                        for (int i = 0; i < 100; i++) { // Recolecto suficientes minerales
-                            algoStar.pasarTurno();
-                        }
-                        j2.construirEdificio(new Coordenada(6, 1), new Acceso());
-                        j2.construirEdificio(new Coordenada(10, 1), new PuertoEstelar());
+                        a.pasarTurno();
 
-                        j1.moverUnidad(new Coordenada(1, 1), new Derecha());
-                        j1.moverUnidad(new Coordenada(2, 1), new Derecha());
-                        j1.moverUnidad(new Coordenada(3, 1), new Derecha());
-                        j1.moverUnidad(new Coordenada(4, 1), new Abajo());
-                        j1.moverUnidad(new Coordenada(4, 2), new Abajo());
-                        for (int i = 0; i < 100; i++) { // Recolecto suficientes minerales
-                            algoStar.pasarTurno();
-                        }
-                        j1.moverUnidad(new Coordenada(4,3), new Izquierda());
-                        j1.moverUnidad(new Coordenada(3,3), new Arriba());
-                        j1.construirEdificio(new Coordenada(3, 2), new Criadero());
-                        for (int i = 0; i < 4; i++) { // Termino de construir el criadero
-                            algoStar.pasarTurno();
-                        }
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        algoStar.pasarTurno();
-                        algoStar.pasarTurno();
+                        //jugador protoss construye nexo mineral y un asimilador
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(95 ,46), new NexoMineral());
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(95 ,44), new NexoMineral());
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(95,45), new Asimilador());
 
-                        j1.moverUnidad(new Coordenada(3, 1), new Izquierda());
-                        j1.moverUnidad(new Coordenada(2, 1), new Izquierda());
-
-                        j1.moverUnidad(new Coordenada(2, 2), new Izquierda());
-                        j1.moverUnidad(new Coordenada(1, 2), new Abajo());
-
-                        j1.moverUnidad(new Coordenada(4, 2), new Abajo());
-                        j1.moverUnidad(new Coordenada(4, 3), new Abajo());
-
-                        j1.construirEdificio(new Coordenada(4, 4), new Extractor());
-                        for (int i = 0; i < 6; i++) { // Termino de construir el extractor
-                            algoStar.pasarTurno();
+                        //ambos jugadores pasan varios turnos para recolectar recursos
+                        for (int i = 0; i < 40; i++) {
+                            a.pasarTurno();
                         }
 
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        algoStar.pasarTurno();
-                        algoStar.pasarTurno();
-                        j1.ingresarUnidadAUnEdificio(new Coordenada(4, 4), new Coordenada(3,1));
-                        j1.ingresarUnidadAUnEdificio(new Coordenada(4, 4), new Coordenada(2,2));
-                        j1.ingresarUnidadAUnEdificio(new Coordenada(4, 4), new Coordenada(4,2));
-                        for (int i = 0; i < 100; i++) { // Recolecto suficientes recursos
-                            algoStar.pasarTurno();
-                        }
-                        j1.generarUnidad(new Coordenada(3, 2), new Zangano());
-                        algoStar.pasarTurno();
-                        algoStar.pasarTurno();
-                        j1.moverUnidad(new Coordenada(3, 1), new Derecha());
-                        j1.construirEdificio(new Coordenada(1, 1), new ReservaDeReproduccion());
-                        j1.construirEdificio(new Coordenada(1, 3), new Guarida());
-                        j1.construirEdificio(new Coordenada(4, 1), new Espiral());
+                        //jugador protoss construye un pilon
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(12,4),new Pilon());
 
-                        for (int i = 0; i < 20; i++) { // Construyo los edificios
-                            algoStar.pasarTurno();
+                        a.pasarTurno();
+
+                        //jugador zerg construye un criadero
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(4,3), new Izquierda());
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(3,3),new Criadero());
+
+                        for (int i = 0; i < 7; i++) {
+                            a.pasarTurno();
+                        }
+
+                        //jugador protoss construye un Acceso
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(11,3), new Acceso());
+
+                        a.pasarTurno();
+
+                        //jugador zerg genera 3 zanganos
+                        a.hallarJugadorActual().generarUnidad(new Coordenada(3,3), new Zangano());
+                        a.hallarJugadorActual().generarUnidad(new Coordenada(3,3), new Zangano());
+                        a.hallarJugadorActual().generarUnidad(new Coordenada(3,3), new Zangano());
+
+                        a.pasarTurno();
+                        a.pasarTurno();
+
+                        //jugador zerg mueve un zangano y construye un Extractor
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(2,3), new Abajo());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(2,4), new Derecha());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(3,4), new Derecha());
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(4,4), new Extractor());
+
+                        a.pasarTurno();
+                        a.pasarTurno();
+                        a.pasarTurno();
+                        a.pasarTurno();
+                        a.pasarTurno();
+
+                        //jugador protoss genera un dragon y este aparece en la coordenada (11, 2)
+                        a.hallarJugadorActual().generarUnidad(new Coordenada(11,3), new Dragon());
+
+                        for (int i = 0; i < 6; i++) {
+                            a.pasarTurno();
+                        }
+
+                        //jugador protoss mueve el dragon y ataca al criadero
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(11,2), new Izquierda());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(10,2), new Izquierda());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(9,2), new Izquierda());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(8,2), new Izquierda());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(7,2), new Izquierda());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(6,2), new Izquierda());
+
+                        a.pasarTurno();
+
+                        //jugador zerg genera un amo supremo e ingresa un zangano al extractor
+                        a.hallarJugadorActual().generarUnidad(new Coordenada(3 ,3), new AmoSupremo());
+                        a.hallarJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(4,4), new Coordenada(3,2));
+
+                        a.pasarTurno();
+
+                        //jugador protoss ataca al extractor hasta destruirlo
+                        for (int i = 0; i < 37; i++) {
+                            a.hallarJugadorActual().atacar(new Coordenada(5,2), new Coordenada(4,4));
+                        }
+
+                        try {
+                            a.hallarJugadorActual().atacar(new Coordenada(5,2), new Coordenada(4,4));
+                        }catch(EdificioEstaDestruido e){
+                            System.out.println("Se destruyo el extractor");
+                        }
+
+                        a.pasarTurno();
+
+                        //jugador zerg mueve un zangano y construye una reserva de reproduccion
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(4,3), new Derecha());
+                        a.hallarJugadorActual().moverUnidad(new Coordenada(5,3), new Derecha());
+                        a.hallarJugadorActual().construirEdificio(new Coordenada(6,3), new ReservaDeReproduccion());
+
+                        a.pasarTurno();
+
+                        //jugador protoss ataca el criadro hasta destruirlo
+                        for (int i = 0; i < 24; i++) {
+                            a.hallarJugadorActual().atacar(new Coordenada(5,2), new Coordenada(3,3));
+                        }
+
+                        try {
+                            a.hallarJugadorActual().atacar(new Coordenada(5,2), new Coordenada(3,3));
+                        }catch(EdificioEstaDestruido e){
+                            System.out.println("Se destruyo el criadero, el jugador zerg no puede generar unidades sin larvas!");
+                        }
+
+                        //pasan los turnos para que la reserva termine de construirse
+                        for (int i = 0; i < 12; i++) {
+                            a.pasarTurno();
+                        }
+
+                        //jugador protoss ataca la reserva hasta destruirla y gana la partida cuando termina su turno
+                        for (int i = 0; i < 49; i++) {
+                            a.hallarJugadorActual().atacar(new Coordenada(5,2), new Coordenada(6,3));
                         }
 
                         break;

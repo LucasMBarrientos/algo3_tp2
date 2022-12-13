@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.edificios.protoss;
 
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioProtoss;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
@@ -37,7 +37,7 @@ public class NexoMineral extends EdificioProtoss {
 
     public void extraerRecursos(Inventario inventario) {
         try {
-            inventario.agregarMinerales(this.terreno.extraerMinerales(new Mineral(10)));
+            inventario.agregarMinerales(terreno.extraerMinerales(new Mineral(10)));
         } catch (RecursosInsuficientes terrenoSinMinerales) {
             establecerEstado(new EdificioInoperativo());
             throw terrenoSinMinerales;

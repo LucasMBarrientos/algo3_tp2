@@ -1,20 +1,18 @@
 package edu.fiuba.algo3.modelo;
+
+import java.io.IOException;
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.terrenos.Terreno;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Json {
 
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
 
-    private static ObjectMapper getDefaultObjectMapper(){
+    private static ObjectMapper getDefaultObjectMapper() {
         ObjectMapper defaultOM = new ObjectMapper();
         defaultOM.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return defaultOM;
@@ -28,7 +26,7 @@ public class Json {
         return objectMapper.treeToValue(node, clazz);
     }
 
-    public static JsonNode toJson(Object a){
+    public static JsonNode toJson(Object a) {
         return objectMapper.valueToTree(a);
     }
 
@@ -42,8 +40,9 @@ public class Json {
 
     public static String generateString(JsonNode node, boolean pretty) throws JsonProcessingException {
         ObjectWriter objectWriter = objectMapper.writer();
-        if(pretty)
+        if (pretty) {
             objectWriter = objectWriter.with(SerializationFeature.INDENT_OUTPUT);
+        }
         return objectWriter.writeValueAsString(node);
     }
 
@@ -55,4 +54,5 @@ public class Json {
     public static ObjectNode createObjectNode() {
         return objectMapper.createObjectNode();
     }
+
 }
