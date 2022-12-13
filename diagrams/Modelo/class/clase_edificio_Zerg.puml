@@ -1,0 +1,68 @@
+@startuml
+
+abstract EdificioZerg{
++construir(coordenada,inventario)
++ejecutarDanio(danio)
++regenerar()
++toData():ObjecNode
+
+}
+
+
+
+EdificioZerg-> EstadoEdificio
+
+
+
+EdificioZerg -up-> Nombre
+EdificioZerg -up-> Coordenada
+EdificioZerg -up-> Recurso
+EdificioZerg -left> Vida
+class Criadero{
++Criadero()
++actualizarLarvas()
++actualizarMapa()
++consumirLarva()
++agregarSuministro(inventario)
++restarSuministro(inventario)
++actualizarEdificio(inventario)
++generarUnidad(unidad,inventario)
++ocupar(terreno)
+}
+
+class ReservaDeReproduccion{
++ReservaDeReproduccion()
++actualizarEdificio(inventario)
++generarUnidad(zerling,inventario)
++ocupar(terreno)
+}
+
+class Guarida{
++Guarida()
++actualizarEdificio(inventario)
++validadCorrelativasDeConstruccion(inventario)
++generarUnidad(hidralisco,inventario)
++ocupar(terreno)
+}
+class Espiral{
++Espiral()
++actualizarEdificio(inventario)
++validadCorrelativasDeConstruccion(inventario)
++generarUnidad(mutalisco,inventario)
++ocupar(terreno)
+}
+class Extractor{
++Extractor()
++actualizarEdificio(inventario)
++ingresarUnidadTrabajadora(unidad)
++extraerRecursos(inventario)
++ocupar(terreno)
+}
+
+EdificioZerg <|-- Criadero
+EdificioZerg <|--- Espiral
+EdificioZerg <|-- Extractor
+EdificioZerg <|-down-- ReservaDeReproduccion
+EdificioZerg <|---- Guarida
+
+@enduml
