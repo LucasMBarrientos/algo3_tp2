@@ -164,10 +164,13 @@ public class prueba1 {
         }catch(EdificioEstaDestruido e){
             System.out.println("Se destruyo el el ultimo edificio de los zerg");
         }
-
-        Assertions.assertThrows(FinDelJuegoAlcanzado.class, ()->{
-            a.pasarTurno();
-        });
+        
+        
+        try {
+          a.pasarTurno();
+        }catch(FinDelJuegoAlcanzado e){
+            System.out.println("Juego ganado por la raza " + a.devolverJugadorGanador().toData().get("raza"));
+        }
 
     }
 
