@@ -39,7 +39,7 @@ public class AlgoStar {
 
         this.idJugadorActual = 0;
         this.turnoActual = 0;
-
+    }
     public Jugador hallarJugadorActual() {
         return jugadores.get(this.idJugadorActual);
     }
