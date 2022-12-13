@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EstadoEdificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;

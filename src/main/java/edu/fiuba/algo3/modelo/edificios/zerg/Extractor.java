@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 
 import java.util.ArrayList;

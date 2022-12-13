@@ -13,7 +13,6 @@ public class AlgoStar {
     private List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
     private int turnoActual;
-    private int rondaActual;
 
     private Jugador jugadorGanador;
 
@@ -49,7 +48,7 @@ public class AlgoStar {
         turnoActual++;
         if (turnoActual % jugadores.size() == 0) {
             idJugadorActual = 0;
-            rondaActual++;
+
         }
         Logger.log("Se paso el turno a el jugador " + this.hallarJugadorActual().devolverNombre());
         List<Jugador> jugadoresQueNoPerdieron = new ArrayList<Jugador>();

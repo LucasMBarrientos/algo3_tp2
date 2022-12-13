@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.unidades.protoss;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;

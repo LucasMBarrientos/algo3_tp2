@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
