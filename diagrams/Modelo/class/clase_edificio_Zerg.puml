@@ -11,8 +11,8 @@ abstract EdificioZerg{
 
 
 EdificioZerg-> EstadoEdificio
-
-
+interface Recurso
+interface EstadoEdificio
 
 EdificioZerg -up-> Nombre
 EdificioZerg -up-> Coordenada

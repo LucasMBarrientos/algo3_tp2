@@ -1,5 +1,13 @@
 @startuml
-class UnidadZerg{}
+abstract UnidadZerg{
+
++ocupar(terreno):bool
++consumirRecursosParaGenerarse(inventario)
++consumirRecursosParaEvolucion(inventario)
++ejecutarDanio(danioTerrestre,danioAereo)
++regenerar()
++toData():objectNode
+}
 
 
 class Devorador{
@@ -10,59 +18,62 @@ class Devorador{
 +actualizarUnidad(inventario)
 }
 
-class amoSupremo{
-+Guardian()
-+generarse(edificio,inventario):Unidad
-+ocupar(terreno):bool
-+ejecutarAtaque(objetivo:Coordenada,mapa)
+class AmoSupremo{
+-radioDeVisibilidad:int
++AmoSupremo()
 +actualizarUnidad(inventario)
++ocupar(terreno):bool
++generarse(edificio,inventario):Unidad
++agregarSuministro(inventario)
+-actualizarMapa()
+-invisibilizarTerrenosAnteriores()
+-visibilizarTerrenosAnteriores()
+-buscarCoordenadasAVisibilizar()
 }
 class Guardian{
 +Guardian()
-+generarse(edificio,inventario):Unidad
-+ocupar(terreno):bool
-+ejecutarAtaque(objetivo:Coordenada,mapa)
 +actualizarUnidad(inventario)
++ocupar(terreno):bool
++generarse(edificio,inventario):Unidad
 }
 class Hidralisco{
 +Hidralisco()
 +generarse(edificio,inventario):Unidad
 +ocupar(terreno):bool
-+ejecutarAtaque(objetivo:Coordenada,mapa)
 +actualizarUnidad(inventario)
+
 }
 class Mutalisco{
 +Mutalisco()
-+generarse(edificio,inventario):Unidad
-+ocupar(terreno):bool
-+ejecutarAtaque(objetivo:Coordenada,mapa)
 +actualizarUnidad(inventario)
-+evolucionar(mapa,unidad):unidad
++ocupar(terreno):bool
++evolucionar(unidad,inventario):unidad
++generarse(edificio,inventario):Unidad
 }
 class Zangano{
-+Zangano(gasVespenoDelJugador,mineralesDelJugador,coordenadaDeLaUnidad)
-+construirEdificio(edificio,coordenada)
+-terreno:Terreno
++Zangano()
++Zangano(gasVespeno,minerales,coordenada)
 +generarse(edificio,inventario):Unidad
-+internarOcuparAlMoverse(terreno)
-+extraerRecurso(inventario)
 +ocupar(terreno):bool
-+ejecutarAtaque(objetivo:Coordenada,mapa)
++extraerRecurso(inventario)
 +actualizarUnidad(inventario)
-
 }
 class Zerling{
 +Zerling()
 +generarse(edificio,inventario):Unidad
 +ocupar(terreno):bool
-+ejecutarAtaque(objetivo:Coordenada,mapa)
+
 +actualizarUnidad(inventario)
 
 }
-UnidadZerg <|-- amoSupremo
-UnidadZerg <|-- Devorador
-UnidadZerg <|-- Guardian
-UnidadZerg <|--- Hidralisco
-UnidadZerg <|---- Mutalisco
-UnidadZerg <|--- Zangano
-UnidadZerg <|-- Zerling
+interface EstadosUnidad
+UnidadZerg -up-> EstadosUnidad
+UnidadZerg <|-- AmoSupremo
+UnidadZerg <|-left- Devorador
+UnidadZerg <|--- Guardian
+UnidadZerg <|---- Hidralisco
+UnidadZerg <|--- Mutalisco
+UnidadZerg <|-- Zangano
+UnidadZerg <|-right- Zerling
 @enduml

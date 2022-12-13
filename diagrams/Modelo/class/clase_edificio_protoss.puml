@@ -1,27 +1,78 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+abstract EdificioProtoss{
+-escudo:Escudo
++construir(coordenada,inventario)
++ejecutarDanio(danio)
++regenerar()
++desenergizarTerrenos()
++volverNuevamenteOperativo()
++toData():ObjecNode
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+
+
+
+
+EdificioProtoss-> EstadoEdificio
+
+interface Recurso
+interface EstadoEdificio
+
+EdificioProtoss -up-> Escudo
+
+EdificioProtoss -up-> Nombre
+EdificioProtoss -up-> Coordenada
+EdificioProtoss -up-> Recurso
+EdificioProtoss -left> Vida
+
+
+class Acceso{
++Acceso()
++actualizarEdificio(inventario)
++extraerRecursos(inventario)
++ocupar(terreno)
 }
+class Asimilador{
++Asimilador()
++actualizarEdificio(inventario)
++generarUnidad(unidad,inventario)
++ocupar(terreno)
++volverEdificioInoperativo()
+}
+
+class NexoMineral{
++NexoMineral()
++actualizarEdificio(inventario)
++extraerRecursos(inventario)
++ocupar(terreno)
+}
+
+class Pilon{
++Pilon()
++actualizarEdificio(inventario)
++energizarTerrenos()
++desenergizarTerrenos()
++destruirse(inventario)
++ejecutarDanio(danio)
++agregarSuministro(inventario)
++restarSuministro(inventario)
++ocupar(terreno)
+}
+
+class PuertoEstelar{
++PuertoEstelar()
++actualizarEdificio(inventario)
++volverEdificioInoperativo()
++ocupar(terreno)
++generarUnidad(scout,inventario)
++validadCorrelativasDeConstruccion(inventario)
+}
+
+EdificioProtoss <|-- Pilon
+EdificioProtoss <|--- PuertoEstelar
+EdificioProtoss <|-- NexoMineral
+EdificioProtoss <|-down-- Asimilador
+EdificioProtoss <|---- Acceso
 
 @enduml

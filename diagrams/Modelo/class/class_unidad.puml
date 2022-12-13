@@ -51,7 +51,7 @@ abstract Unidad{
 {abstract}+generarse(edificio,inventario):Unidad
 {abstract}+ocupar(terreno):bool
 }
-class UnidadProtoss{
+abstract UnidadProtoss{
 
 -escudo:Escudo
 +ocupar(terreno):bool
@@ -60,15 +60,13 @@ class UnidadProtoss{
 +regenerar()
 +toData():objectNode
 }
-class UnidadZerg{
+abstract UnidadZerg{
 
 +ocupar(terreno):bool
 +consumirRecursosParaGenerarse(inventario)
 +consumirRecursosParaEvolucion(inventario)
 +ejecutarDanio(danioTerrestre,danioAereo)
 +regenerar()
-+generarse(edificio,inventario):Unidad
-+actualizarUnidad(inventario)
 +toData():objectNode
 }
 
@@ -85,14 +83,24 @@ class Danio{
 -poder:int
 +Danio(poder:int)
 +aplicarDanio(estadistica:int)
+toData():ObjectNodo
+
+}
+class Nombre{
+-nombre:String
++Nombre(nombre)
++esIgual(nombre:Nombre):bool
++devolverValor():String
+toData():ObjectNodo
 }
 class Escudo{
--valorMaximo:int
--valorActual:int
+-poderMaximo:int
+-poderActual:int
 -tasaRegeneracion:double
 +Escudo(valorMaximo:int)
-+recibirDanio(Danio):bool
++recibirDanio(Danio):int
 +regenerar()
+toData():ObjectNodo
 }
 
 class Vida{
@@ -102,8 +110,11 @@ class Vida{
 +Vida(valorMaximo:int)
 +recibirDanio(Danio):bool
 +regenerar()
+toData():ObjectNodo
 }
-
+abstract Recurso
+Unidad -up-> Recurso
+Unidad --* Nombre
 Unidad --* Vida
 Unidad -*  Danio
 Unidad <|-- UnidadProtoss
