@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.estadisticas.Escudo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -16,6 +17,7 @@ import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.recursos.Suministro;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pilon extends EdificioProtoss {
@@ -23,6 +25,7 @@ public class Pilon extends EdificioProtoss {
     private int radioAEnergizar = 3;
 
     private int turno = 0;
+    List<Coordenada> coordenadasEnergizadas = new ArrayList<Coordenada>();
 
     private Recurso suministroAAgregar = new Suministro(5);
 
@@ -56,6 +59,10 @@ public class Pilon extends EdificioProtoss {
         }
     }
 
+    @Override
+    public void destruirse(Inventario inv){
+        inv.eliminarEdificio(coordenada);
+    }
     @Override
     public void ejecutarDanio(Danio danio) {
         if(this.vida.recibirDanio(new Danio(escudo.recibirDanio(danio) * (-1)))){

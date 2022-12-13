@@ -27,7 +27,7 @@ public class BotonConstruirExtractorHandler implements EventHandler<ActionEvent>
     }
 
     public void construirEdificio() {
-        algoStar.devolverJugadorActual().construirEdificio(coordenada, new Extractor());
+        algoStar.hallarJugadorActual().construirEdificio(coordenada, new Extractor());
     }
     public void lanzarMensajeDeFaltaDeRecursos() {
         Text texto = new Text("No tienes suficientes recursos para construir un Extractor");

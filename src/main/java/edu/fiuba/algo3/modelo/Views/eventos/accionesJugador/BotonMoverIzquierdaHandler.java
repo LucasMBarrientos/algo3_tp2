@@ -30,7 +30,7 @@ public class BotonMoverIzquierdaHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().moverUnidad(coordenadaActual, new Izquierda());
+            algoStar.hallarJugadorActual().moverUnidad(coordenadaActual, new Izquierda());
         } catch (CoordenadaFueraDelMapa | UnidadNoEncontrada | TerrenoNoAptoParaTalUnidad exeption) {
             Text texto = new Text("La unidad seleccionada no puede transitar por este terreno");
             texto.setY(15);

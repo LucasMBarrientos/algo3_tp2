@@ -10,12 +10,10 @@ import java.util.List;
 
 public class AlgoStar {
 
-    public List<Jugador> jugadores = new ArrayList<Jugador>();
+    private List<Jugador> jugadores = new ArrayList<Jugador>();
     private int idJugadorActual;
-
     private int turnoActual;
     private int rondaActual;
-
     private Jugador jugadorGanador;
 
     public AlgoStar() {
@@ -37,7 +35,6 @@ public class AlgoStar {
         for (Jugador jugador : jugadores) {
             jugador.iniciarseEnMapa();
         }
-        //Mapa.devolverInstancia().actualizar(turnoActual);
         this.idJugadorActual = 0;
         this.turnoActual = 0;
         this.rondaActual = 0;
@@ -54,8 +51,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        Logger.log("Se paso el turno a el jugador " + devolverJugadorActual().devolverNombre());
-        //Mapa.devolverInstancia().actualizar(turnoActual);
+        Logger.log("Se paso el turno a el jugador " + this.hallarJugadorActual().devolverNombre());
         List<Jugador> jugadoresQueNoPerdieron = new ArrayList<Jugador>();
         for (int i=0; i < jugadores.size(); i++) {
             jugadores.get(i).actualizar();
@@ -70,10 +66,5 @@ public class AlgoStar {
     public Jugador devolverJugadorGanador() {
         return jugadorGanador;
     }
-    
-    public Jugador devolverJugadorActual() {
-        return jugadores.get(idJugadorActual);
-    }
-
 
 }

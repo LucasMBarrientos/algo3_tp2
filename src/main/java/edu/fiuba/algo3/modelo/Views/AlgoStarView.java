@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Views;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.accionesJugador.BotonAtacarHandler;
@@ -13,13 +12,10 @@ import edu.fiuba.algo3.modelo.Views.eventos.botoneras.unidades.BotoneraZangano;
 import edu.fiuba.algo3.modelo.edificios.protoss.*;
 import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
-import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
@@ -74,7 +70,7 @@ public class AlgoStarView extends BorderPane {
     public String colorJugadorActual() {
       String colorJugadorActual = "";
       try {
-        switch (this.algoStar.devolverJugadorActual().toData().get("color").asText()){
+        switch (this.algoStar.hallarJugadorActual().toData().get("color").asText()){
           case "Naranja":{
             colorJugadorActual= "orange";
             break;
@@ -106,7 +102,7 @@ public class AlgoStarView extends BorderPane {
         pasarTurno.setStyle(" -fx-background-color: transparent; -fx-border-color: #7d7d7d;");
         pasarTurno.setGraphic(view);
 
-        JsonNode jugadorNode = algoStar.devolverJugadorActual().toData();
+        JsonNode jugadorNode = algoStar.hallarJugadorActual().toData();
 
         Label jugadorActualnombre = new Label(jugadorNode.get("nombre").asText());
         jugadorActualnombre.setFont (Font.font("Tahoma", FontWeight.BOLD, 15));
@@ -281,14 +277,14 @@ public class AlgoStarView extends BorderPane {
 
 
     public void crearBotoneraAmoSupremo(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraAmoSupremo(algoStar, this, coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraMutalisco(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraMutalisco(algoStar, this, coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
@@ -298,14 +294,14 @@ public class AlgoStarView extends BorderPane {
       new BotoneraUnidadNormal(algoStar, this, coordenada, stage);
     }
     public void crearBotoneraZangano(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraZangano(algoStar, this, coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       } 
     }
     public void crearBotoneraAcceso(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraAcceso(algoStar, this,coordenada, stage);
       } else {
         this.setBottom(crearBotoneraVacia(coordenada));
@@ -317,14 +313,14 @@ public class AlgoStarView extends BorderPane {
     }*/
 
     public void crearBotoneraCriadero(Coordenada coordenada) {
-        if ("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()) {
+        if ("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
             new BotoneraCriadero(algoStar, this,coordenada, stage);
         } else {
            this.setBottom(crearBotoneraVacia(coordenada));
         }
     }
     public void crearBotoneraEnergizado(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraEnergizadoProtoss(algoStar, this,coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
@@ -337,39 +333,39 @@ public class AlgoStarView extends BorderPane {
       new BotoneraGuarida(algoStar, this,coordenada, stage);
     }
     public void crearBotoneraVolcan(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneralVolcanProtoss(algoStar, this,coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraMineral(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
+      if("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()){
         new BotoneraMineralProtoss(algoStar, this,coordenada, stage);
       }else{
         this.setBottom(crearBotoneraVacia(coordenada));
       }
     }
     public void crearBotoneraPuertoEstelar(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraPuertoEstelar(algoStar, this,coordenada, stage);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }
+        if ("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
+            new BotoneraPuertoEstelar(algoStar, this,coordenada, stage);
+        } else {
+            this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
     public void crearBotoneraReservaDeReproduccion(Coordenada coordenada) {
-      if("zerg"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraReservaDeReproduccion(algoStar, this,coordenada, stage);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }
+        if ("zerg"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
+            new BotoneraReservaDeReproduccion(algoStar, this,coordenada, stage);
+        } else {
+            this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
     public void crearBotoneraTerrenoVacio(Coordenada coordenada) {
-      if("protoss"== algoStar.devolverJugadorActual().toData().get("raza").asText()){
-        new BotoneraVaciaProtoss(algoStar, this,coordenada, stage);
-      }else{
-        this.setBottom(crearBotoneraVacia(coordenada));
-      }
+        if ("protoss"== algoStar.hallarJugadorActual().toData().get("raza").asText()) {
+            new BotoneraVaciaProtoss(algoStar, this,coordenada, stage);
+        } else {
+            this.setBottom(crearBotoneraVacia(coordenada));
+        }
     }
 
     public void ataque(Coordenada coordenadaUnidad){
@@ -381,17 +377,6 @@ public class AlgoStarView extends BorderPane {
       ataque.handle();
       this.contenedorCentral.setContent(mapaView.dibujar());
     }
-    /*
-    public void ingreso(Coordenada coordenadaUnidad){
-        this.contenedorCentral.setContent(mapaView.dibujar(false, coordenadaUnidad, true));
-    }
-
-    public void ingresarUnidad(Coordenada coordenadaUnidad, Coordenada coordenadaEdificio){
-        BotonIngresarUnidadHandler ingreso = new BotonIngresarUnidadHandler(algoStar, this, coordenadaUnidad, coordenadaEdificio);
-        ingreso.handle();
-        this.contenedorCentral.setContent(mapaView.dibujar());
-    }*/
-
 
     private void agregarBarraDelMenu(Stage stage){
         this.menuBar = new BarraDelMenu(stage);
@@ -506,7 +491,7 @@ public class AlgoStarView extends BorderPane {
 
                         //jugador zerg genera un amo supremo e ingresa un zangano al extractor
                         a.hallarJugadorActual().generarUnidad(new Coordenada(3 ,3), new AmoSupremo());
-                        a.devolverJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(4,4), new Coordenada(3,2));
+                        a.hallarJugadorActual().ingresarUnidadAUnEdificio(new Coordenada(4,4), new Coordenada(3,2));
 
                         a.pasarTurno();
 

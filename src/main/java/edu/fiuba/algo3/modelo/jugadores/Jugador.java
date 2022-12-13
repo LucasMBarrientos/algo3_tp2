@@ -18,7 +18,7 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 public abstract class Jugador {
 
     protected int id;
-    public Inventario inventario;
+    protected Inventario inventario;
     protected Nombre nombre;
     protected String color;
     protected boolean edificioInicialConstruido = false;
@@ -116,7 +116,9 @@ public abstract class Jugador {
         this.id = id;
     }
 
-    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) { }
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
+        return;
+    }
 
     public void actualizar() {
         inventario.actualizar();
@@ -129,7 +131,7 @@ public abstract class Jugador {
     }
 
     protected boolean fueDerrotado() {
-        return inventario.fueDerrotado(edificioInicialConstruido);
+        return (edificioInicialConstruido && inventario.fueDerrotado());
     }
 
     public abstract List<String> devolverMediaDeVictoria();
