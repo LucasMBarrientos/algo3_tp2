@@ -72,7 +72,7 @@ public abstract class Jugador {
         }
     }
 
-    public boolean nombreEsIgual(Nombre nombre) {
+    protected boolean nombreEsIgual(Nombre nombre) {
         return this.nombre.esIgual(nombre);
     }
 
@@ -97,10 +97,7 @@ public abstract class Jugador {
         unidad.moverse(direccionDelMovimiento);
     }
 
-    public void destruirUnidad(Coordenada coordenada) {
-        Mapa.devolverInstancia().eliminarUnidad(coordenada);
-        inventario.eliminarUnidad(coordenada);
-    }
+
 
     public void destruirEdificio(Coordenada coordenada) {
         Mapa.devolverInstancia().eliminarEdificio(coordenada);
