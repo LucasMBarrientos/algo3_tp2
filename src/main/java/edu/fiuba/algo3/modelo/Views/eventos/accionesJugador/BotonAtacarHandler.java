@@ -70,7 +70,7 @@ public class BotonAtacarHandler {
 
     public void handle() {
         try {
-            algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
+            algoStar.hallarJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
             ReproductorDeSonidos.devolverInstancia().reproducirSonido("/boom.mp3", false);
 
         } catch (UnidadEstaDestruida e) {

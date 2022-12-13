@@ -40,7 +40,7 @@ public class BotonGenerarMutaliscoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().generarUnidad(coordenadaDelEdificio, new Mutalisco());
+            algoStar.hallarJugadorActual().generarUnidad(coordenadaDelEdificio, new Mutalisco());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para generar un Mutalisco");

@@ -16,7 +16,7 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 
 public class PuertoEstelar extends EdificioProtoss {
 
-    public PuertoEstelar(){
+    public PuertoEstelar() {
         this.costoEnMinerales = new Mineral(150);
         this.costoEnGas = new GasVespeno(150);
         this.tiempoDeConstruccion = 10;
@@ -30,8 +30,9 @@ public class PuertoEstelar extends EdificioProtoss {
     public void actualizarEdificio(Inventario inventario) {
         regenerar();
     }
+
     @Override
-    public void volverEdificioInoperativo(){
+    public void volverEdificioInoperativo() {
         establecerEstado(new EdificioInoperativo());
     }
 

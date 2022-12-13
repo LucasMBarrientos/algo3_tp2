@@ -54,7 +54,7 @@ public class AlgoStar {
             idJugadorActual = 0;
             rondaActual++;
         }
-        Logger.log("Se paso el turno a el jugador " + devolverJugadorActual().devolverNombre());
+        Logger.log("Se paso el turno a el jugador " + this.hallarJugadorActual().devolverNombre());
         //Mapa.devolverInstancia().actualizar(turnoActual);
         List<Jugador> jugadoresQueNoPerdieron = new ArrayList<Jugador>();
         for (int i=0; i < jugadores.size(); i++) {
@@ -70,10 +70,5 @@ public class AlgoStar {
     public Jugador devolverJugadorGanador() {
         return jugadorGanador;
     }
-    
-    public Jugador devolverJugadorActual() {
-        return jugadores.get(idJugadorActual);
-    }
-
 
 }

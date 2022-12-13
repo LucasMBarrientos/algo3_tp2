@@ -29,7 +29,7 @@ public class BotonEvolucionarADevoradorHandler implements EventHandler<ActionEve
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().evolucionar(coordenadaDeLaUnidad, new Devorador());
+            algoStar.hallarJugadorActual().evolucionar(coordenadaDeLaUnidad, new Devorador());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
             Text texto = new Text("No tienes suficientes recursos para Evolucionar esta unidad");
