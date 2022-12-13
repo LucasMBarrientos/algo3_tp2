@@ -21,24 +21,11 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Mapa {
+
     private static Mapa instancia = null;
     private List<Terreno> terrenos = new ArrayList<Terreno>();
     private List<Coordenada> ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
     private SuperficieRectangular superficie;
-
-
-/*    public Mapa(Coordenada dimension) {
-        this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
-        for (int y = 0; y < superficie.calcularLongitudY(); y++) {
-            for (int x = 0; x < superficie.calcularLongitudX(); x++) {
-                this.terrenos.add(new TerrenoBase(new Coordenada(x,y)));
-            }
-        }
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
-        generarTerrenoInicial();
-    }
-    */
 
     public static Mapa devolverInstancia() {
         if(instancia == null){
@@ -66,7 +53,6 @@ public class Mapa {
 
     public void establecerDimension(Coordenada dimension) {
         establecerSuperficieYTerrenos(dimension);
-        establecerUbicacionesInicialesDeLosJugadores();
     }
 
     private boolean validarCoordenada(Coordenada coordenada) {
@@ -162,6 +148,7 @@ public class Mapa {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
         Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
+        zanganoGenerado.reducirTiempoConstruccion(1);
         zanganoGenerado.terminarConstruccion();
         zanganoGenerado.establecerCoordenada(ubicacionDelZangano);
         zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));

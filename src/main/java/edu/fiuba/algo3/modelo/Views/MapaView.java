@@ -109,7 +109,14 @@ public class MapaView {
                 case "AmoSupremo":{
                   ImageView imageAmoSupremoSprite= new ImageView(imagenAmoSupremo);
                   BorderPane imageAmoSupremoWrapper = new BorderPane(imageAmoSupremoSprite);
-                  imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  
                   imageAmoSupremoWrapper.setLayoutX(posX);
                   imageAmoSupremoWrapper.setLayoutY(posY);
                   imageAmoSupremoSprite.setOnMouseClicked(event ->  {
@@ -127,8 +134,13 @@ public class MapaView {
                   });
                   
                   imageAmoSupremoWrapper.setOnMouseExited(e -> {
-                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
+                    
                   //ocupanteGroup.getChildren().add(imageAmoSupremoSprite);
                   pruebaGrid.add(imageAmoSupremoWrapper, posX, posY);
                   break;
@@ -136,7 +148,13 @@ public class MapaView {
                 case "Zangano":{
                   ImageView imageZanganoSprite= new ImageView(imagenZangano);
                   BorderPane imageZanganoWrapper = new BorderPane(imageZanganoSprite);
-                  imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageZanganoWrapper.setLayoutX(posX);
                   imageZanganoWrapper.setLayoutY(posY);
                   imageZanganoWrapper.setOnMouseClicked(event ->  {
@@ -152,7 +170,11 @@ public class MapaView {
                   });
                   
                   imageZanganoWrapper.setOnMouseExited(e -> {
-                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
                   //ocupanteGroup.getChildren().add(imageZanganoSprite);
                   pruebaGrid.add(imageZanganoWrapper, posX, posY);
@@ -161,7 +183,13 @@ public class MapaView {
                 case "Zerling":{
                   ImageView imageZerlingSprite= new ImageView(imagenZerling);
                   BorderPane imageZerlingWrapper = new BorderPane(imageZerlingSprite);
-                  imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageZerlingWrapper.setLayoutX(posX);
                   imageZerlingWrapper.setLayoutY(posY);
                   imageZerlingWrapper.setOnMouseClicked(event ->  {
@@ -177,7 +205,11 @@ public class MapaView {
                   });
                   
                   imageZerlingWrapper.setOnMouseExited(e -> {
-                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
                   //ocupanteGroup.getChildren().add(imageZerlingSprite);
                   pruebaGrid.add(imageZerlingWrapper, posX, posY);
@@ -186,7 +218,13 @@ public class MapaView {
                 case "Hidralisco":{
                     ImageView imageHidraliscoSprite= new ImageView(imagenHidralisco);
                     BorderPane imageHidraliscoWrapper = new BorderPane(imageHidraliscoSprite);
-                    imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                    if(tiempoConstruccion > 0){
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                     imageHidraliscoWrapper.setLayoutX(posX);
                     imageHidraliscoWrapper.setLayoutY(posY);
                     imageHidraliscoWrapper.setOnMouseClicked(event ->  {
@@ -203,7 +241,11 @@ public class MapaView {
                     });
                     
                     imageHidraliscoWrapper.setOnMouseExited(e -> {
-                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                      if(tiempoConstruccion > 0){
+                        imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                      }else{
+                        imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                      }
                     });
                     //ocupanteGroup.getChildren().add(imageHidraliscoSprite);
                     pruebaGrid.add(imageHidraliscoWrapper, posX, posY);
@@ -212,7 +254,13 @@ public class MapaView {
                 case "Mutalisco":{
                   ImageView imageMutaliscoSprite= new ImageView(imagenMutalisco);
                   BorderPane imageMutaliscoWrapper = new BorderPane(imageMutaliscoSprite);
-                  imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageMutaliscoWrapper.setLayoutX(posX);
                   imageMutaliscoWrapper.setLayoutY(posY);
                   imageMutaliscoWrapper.setOnMouseClicked(event ->  {
@@ -229,7 +277,11 @@ public class MapaView {
                   });
                   
                   imageMutaliscoWrapper.setOnMouseExited(e -> {
-                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
                   //ocupanteGroup.getChildren().add(imageMutaliscoSprite);
                   pruebaGrid.add(imageMutaliscoWrapper, posX, posY);
@@ -238,7 +290,13 @@ public class MapaView {
                 case "Guardian":{
                   ImageView imageGuardianSprite= new ImageView(imagenGuardian);
                   BorderPane imageGuardianWrapper = new BorderPane(imageGuardianSprite);
-                  imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageGuardianWrapper.setLayoutX(posX);
                   imageGuardianWrapper.setLayoutY(posY);
                   imageGuardianWrapper.setOnMouseClicked(event ->  {
@@ -255,7 +313,11 @@ public class MapaView {
                   });
                   
                   imageGuardianSprite.setOnMouseExited(e -> {
-                    imageGuardianSprite.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
                   //ocupanteGroup.getChildren().add(imageGuardianSprite);
                   pruebaGrid.add(imageGuardianSprite, posX, posY);
@@ -264,7 +326,13 @@ public class MapaView {
                 case "Devorador":{
                   ImageView imageDevoradorSprite= new ImageView(imagenDevorador);
                   BorderPane imageDevoradorWrapper = new BorderPane(imageDevoradorSprite);
-                  imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageDevoradorWrapper.setLayoutX(posX);
                   imageDevoradorWrapper.setLayoutY(posY);
                   imageDevoradorWrapper.setOnMouseClicked(event ->  {
@@ -281,7 +349,11 @@ public class MapaView {
                   });
                   
                   imageDevoradorWrapper.setOnMouseExited(e -> {
-                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
 
                   //ocupanteGroup.getChildren().add(imageDevoradorSprite);
@@ -296,7 +368,13 @@ public class MapaView {
                     imageZealotSprite.setOpacity(opacityInvisible);
                   }
                   BorderPane imageZealotWrapper = new BorderPane(imageZealotSprite);
-                  imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageZealotWrapper.setLayoutX(posX);
                   imageZealotWrapper.setLayoutY(posY);
 
@@ -314,7 +392,11 @@ public class MapaView {
                   });
                   
                   imageZealotWrapper.setOnMouseExited(e -> {
-                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imageZealotSprite);
@@ -323,8 +405,14 @@ public class MapaView {
                 }
                 case "Dragon":{
                   ImageView imageDragonSprite= new ImageView(imagenDragon);
-                   BorderPane imageDragonWrapper = new BorderPane(imageDragonSprite);
-                   imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  BorderPane imageDragonWrapper = new BorderPane(imageDragonSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                    imageDragonWrapper.setLayoutX(posX);
                    imageDragonWrapper.setLayoutY(posY);
                    imageDragonWrapper.setOnMouseClicked(event ->  {
@@ -341,7 +429,11 @@ public class MapaView {
                   });
                   
                   imageDragonWrapper.setOnMouseExited(e -> {
-                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imageDragonSprite);
@@ -351,7 +443,13 @@ public class MapaView {
                 case "Scout":{
                   ImageView imageScoutSprite= new ImageView(imagenScout);
                   BorderPane imageScoutWrapper = new BorderPane(imageScoutSprite);
-                  imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageScoutWrapper.setLayoutX(posX);
                   imageScoutWrapper.setLayoutY(posY);
                   imageScoutWrapper.setOnMouseClicked(event ->  {
@@ -368,7 +466,11 @@ public class MapaView {
                   });
                   
                   imageScoutWrapper.setOnMouseExited(e -> {
-                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imageScoutSprite);
@@ -453,7 +555,13 @@ public class MapaView {
                 case "Extractor":{
                   ImageView imagenExtractorSprite= new ImageView(imagenExtractor);
                   BorderPane imageExtractorWrapper = new BorderPane(imagenExtractorSprite);
-                  imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageExtractorWrapper.setLayoutX(posX);
                   imageExtractorWrapper.setLayoutY(posY);
                   imageExtractorWrapper.setOnMouseClicked(event ->  {
@@ -470,7 +578,11 @@ public class MapaView {
                   });
                   
                   imageExtractorWrapper.setOnMouseExited(e -> {
-                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenExtractorSprite);
@@ -480,7 +592,13 @@ public class MapaView {
                 case "Guarida":{
                   ImageView imagenGuaridaSprite= new ImageView(imagenGuarida);
                   BorderPane imageGuaridaWrapper = new BorderPane(imagenGuaridaSprite);
-                  imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageGuaridaWrapper.setLayoutX(posX);
                   imageGuaridaWrapper.setLayoutY(posY);
                   imageGuaridaWrapper.setOnMouseClicked(event ->  {
@@ -497,7 +615,11 @@ public class MapaView {
                   });
                   
                   imageGuaridaWrapper.setOnMouseExited(e -> {
-                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenGuaridaSprite);
@@ -507,7 +629,13 @@ public class MapaView {
                 case "Espiral":{
                   ImageView imagenEspiralSprite= new ImageView(imagenEspiral);
                   BorderPane imageEspiralWrapper = new BorderPane(imagenEspiralSprite);
-                  imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageEspiralWrapper.setLayoutX(posX);
                   imageEspiralWrapper.setLayoutY(posY);
                   imagenEspiralSprite.setOnMouseClicked(event ->  {
@@ -524,7 +652,11 @@ public class MapaView {
                   });
                   
                   imageEspiralWrapper.setOnMouseExited(e -> {
-                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenEspiralSprite);
@@ -534,7 +666,13 @@ public class MapaView {
                 case "NexoMineral":{
                   ImageView imagenNexoMineralSprite= new ImageView(imagenNexoMineral);                  
                   BorderPane imageNexoMineralWrapper = new BorderPane(imagenNexoMineralSprite);
-                  imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageNexoMineralWrapper.setLayoutX(posX);
                   imageNexoMineralWrapper.setLayoutY(posY);
                   imageNexoMineralWrapper.setOnMouseClicked(event ->  {
@@ -551,7 +689,11 @@ public class MapaView {
                   });
                   
                   imageNexoMineralWrapper.setOnMouseExited(e -> {
-                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenNexoMineralSprite);
@@ -561,7 +703,13 @@ public class MapaView {
                 case "Pilon":{
                   ImageView imagenPilonSprite= new ImageView(imagenPilon);                  
                   BorderPane imagePilonWrapper = new BorderPane(imagenPilonSprite);
-                  imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imagePilonWrapper.setLayoutX(posX);
                   imagePilonWrapper.setLayoutY(posY);
                   imagePilonWrapper.setOnMouseClicked(event ->  {
@@ -578,7 +726,11 @@ public class MapaView {
                   });
                   
                   imagePilonWrapper.setOnMouseExited(e -> {
-                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenPilonSprite);
@@ -588,7 +740,13 @@ public class MapaView {
                 case "Asimilador":{
                   ImageView imagenAsimiladorSprite= new ImageView(imagenAsimilador);                 
                   BorderPane imageAsimiladorWrapper = new BorderPane(imagenAsimiladorSprite);
-                  imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageAsimiladorWrapper.setLayoutX(posX);
                   imageAsimiladorWrapper.setLayoutY(posY);
                   imageAsimiladorWrapper.setOnMouseClicked(event ->  {
@@ -605,7 +763,11 @@ public class MapaView {
                   });
                   
                   imageAsimiladorWrapper.setOnMouseExited(e -> {
-                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenAsimiladorSprite);
@@ -615,7 +777,13 @@ public class MapaView {
                 case "Acceso":{
                   ImageView imagenAccesoSprite= new ImageView(imagenAcceso);                 
                   BorderPane imageAccesoWrapper = new BorderPane(imagenAccesoSprite);
-                  imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imageAccesoWrapper.setLayoutX(posX);
                   imageAccesoWrapper.setLayoutY(posY);
                   imageAccesoWrapper.setOnMouseClicked(event ->  {
@@ -632,7 +800,11 @@ public class MapaView {
                   });
                   
                   imageAccesoWrapper.setOnMouseExited(e -> {
-                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenAccesoSprite);
@@ -642,7 +814,13 @@ public class MapaView {
                 case "PuertoEstelar":{
                   ImageView imagenPuertoEstelarSprite= new ImageView(imagenPuertoEstelar);                 
                   BorderPane imagePuertoEstelarWrapper = new BorderPane(imagenPuertoEstelarSprite);
-                  imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
                   imagePuertoEstelarWrapper.setLayoutX(posX);
                   imagePuertoEstelarWrapper.setLayoutY(posY);
                   imagenPuertoEstelarSprite.setOnMouseClicked(event ->  {
@@ -659,7 +837,11 @@ public class MapaView {
                   });
                   
                   imagePuertoEstelarWrapper.setOnMouseExited(e -> {
-                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    if(tiempoConstruccion > 0){
+                      imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, blue "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
                   });
  
                   //ocupanteGroup.getChildren().add(imagenPuertoEstelarSprite);
@@ -697,6 +879,10 @@ public class MapaView {
         algoStarView.setPantallDeStatsEdificio(node);
     }
 
+    private void setStatsTerreno(JsonNode node){
+      algoStarView.setPantallDeStatsTerreno(node);
+  }
+
     private void dibujarTerrenos(){
         List<ObjectNode> nodos = null;
         try {
@@ -724,6 +910,7 @@ public class MapaView {
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                      setStatsTerreno(nodo);
                     });
 
                     imageEspecialWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
@@ -751,11 +938,13 @@ public class MapaView {
                         int y = nodo.get("coordenada").get("y").asInt();
                         Coordenada coor = new Coordenada(x,y);
                         algoStarView.realizarAtaque(coordenadaUnidad,coor);
+                        setStatsTerreno(nodo);
                       }else{
                         int x = nodo.get("coordenada").get("x").asInt();
                         int y = nodo.get("coordenada").get("y").asInt();
                         Coordenada coor = new Coordenada(x,y);
                         algoStarView.crearBotoneraTerrenoVacio(coor);
+                        setStatsTerreno(nodo);
                       }
                     });
                     imageVacioWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
@@ -784,6 +973,7 @@ public class MapaView {
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraMineral(coor);
+                      setStatsTerreno(nodo);
                     });
                     
                     imageMineralWrapper.setOnMouseEntered(event ->  {
@@ -808,6 +998,7 @@ public class MapaView {
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                      setStatsTerreno(nodo);
                     });
 
                     imageMohoWrapper.setOnMouseEntered(event ->  {
@@ -833,6 +1024,7 @@ public class MapaView {
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraVolcan(coor);
+                      setStatsTerreno(nodo);
                     });
                     imageVolcanWrapper.setOnMouseEntered(event ->  {
                       imageVolcanWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");
@@ -856,6 +1048,7 @@ public class MapaView {
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraEnergizado(coor);
+                      setStatsTerreno(nodo);
                     });
                     imageEnergizadoWrapper.setOnMouseEntered(event ->  {
                       imageEnergizadoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: blue;");

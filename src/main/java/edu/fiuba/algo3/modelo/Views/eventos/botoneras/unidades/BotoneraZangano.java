@@ -9,19 +9,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BotoneraZangano extends HBox {
-    public BotoneraZangano(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
+    public BotoneraZangano(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada, Stage pantalla){
         HBox contenedorHorizontal = new HBox();  
         List<VBox> buttons = crearBotones(algoStar, algoView, coordenada);
-        
+        Image imgFondo = new Image("/abajo.jpg");
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
+        contenedorHorizontal.setBackground(new Background(fondo));
+        contenedorHorizontal.setPadding(new Insets(25));
+
         Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
+        coordenadaX.getStyleClass().add("label-botonera");
         Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+        coordenadaY.getStyleClass().add("label-botonera");
         VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
         
         contenedorHorizontal.getChildren().clear();
@@ -35,33 +41,48 @@ public class BotoneraZangano extends HBox {
     private List<VBox> crearBotones(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
 
         Button construirCriadero = new Button();
+        construirCriadero.getStyleClass().add("btn-botonera-accion");
         construirCriadero.setText("construir Criadero");
         Label costoGasCriadero = new Label("COSTO GAS: 0");
+        costoGasCriadero.getStyleClass().add("label-botonera");
         Label costoMineralCriadero  = new Label("COSTO MINERAL: 200");
+        costoMineralCriadero.getStyleClass().add("label-botonera");
         VBox generarCriaderobox = new VBox(costoGasCriadero,costoMineralCriadero,construirCriadero);
         
         Button construirEspiral = new Button();
         construirEspiral.setText("construir Espiral");
+        construirEspiral.getStyleClass().add("btn-botonera-accion");
         Label costoGasEspiral = new Label("COSTO GAS: 100");
+        costoGasEspiral.getStyleClass().add("label-botonera");
         Label costoMineralEspiral  = new Label("COSTO MINERAL: 150");
+        costoMineralEspiral.getStyleClass().add("label-botonera");
         VBox generarEspiralbox = new VBox(costoGasEspiral,costoMineralEspiral,construirEspiral);
 
         Button construirExtractor = new Button();
         construirExtractor.setText("construir Extractor");
+        construirExtractor.getStyleClass().add("btn-botonera-accion");
         Label costoGasExtractor = new Label("COSTO GAS: 0");
+        costoGasExtractor.getStyleClass().add("label-botonera");
         Label costoMineralExtractor  = new Label("COSTO MINERAL: 100");
+        costoMineralExtractor.getStyleClass().add("label-botonera");
         VBox generarExtractorbox = new VBox(costoGasExtractor,costoMineralExtractor,construirExtractor);
 
         Button construirGuarida = new Button();
         construirGuarida.setText("construir Guarida");
+        construirGuarida.getStyleClass().add("btn-botonera-accion");
         Label costoGasGuarida = new Label("COSTO GAS: 100");
+        costoGasGuarida.getStyleClass().add("label-botonera");
         Label costoMineralGuarida  = new Label("COSTO MINERAL: 200");
+        costoMineralGuarida.getStyleClass().add("label-botonera");
         VBox generarGuaridabox = new VBox(costoGasGuarida,costoMineralGuarida,construirGuarida);
 
         Button construirReservaDeReproduccion = new Button();
         construirReservaDeReproduccion.setText("construir Reserva De Reproduccion");
+        construirReservaDeReproduccion.getStyleClass().add("btn-botonera-accion");
         Label costoGasReservaDeReproduccion = new Label("COSTO GAS: 0");
+        costoGasReservaDeReproduccion.getStyleClass().add("label-botonera");
         Label costoMineralReservaDeReproduccion  = new Label("COSTO MINERAL: 150");
+        costoMineralReservaDeReproduccion.getStyleClass().add("label-botonera");
         VBox generarReservaDeReproduccionbox = new VBox(costoGasReservaDeReproduccion,costoMineralReservaDeReproduccion,construirReservaDeReproduccion);
 
         Image arriba = new Image("flecha-arriba.png" ,35, 35, false, false);
@@ -71,13 +92,16 @@ public class BotoneraZangano extends HBox {
 
         Button moverAbajo = new Button();
         moverAbajo.setGraphic(new ImageView(abajo));
+        moverAbajo.getStyleClass().add("btn-botonera-direcciones");
         Button moverArriba = new Button();
         moverArriba.setGraphic(new ImageView(arriba));
+        moverArriba.getStyleClass().add("btn-botonera-direcciones");
         Button moverIzquierda = new Button();
         moverIzquierda.setGraphic(new ImageView(izquierda));
+        moverIzquierda.getStyleClass().add("btn-botonera-direcciones");
         Button moverDerecha = new Button();
         moverDerecha.setGraphic(new ImageView(derecha));
-
+        moverDerecha.getStyleClass().add("btn-botonera-direcciones");
 
         VBox generarAbajobox = new VBox(moverAbajo);
         VBox generarArribabox = new VBox(moverArriba);
@@ -86,6 +110,7 @@ public class BotoneraZangano extends HBox {
 
         Button ingresar = new Button();
         ingresar.setText("ingresar");
+        ingresar.getStyleClass().add("btn-botonera-accion");
         VBox generaringresarbox = new VBox(ingresar);
 
        /* ingresar.setOnAction(event ->  {
