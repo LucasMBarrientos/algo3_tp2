@@ -1,21 +1,14 @@
 package edu.fiuba.algo3.modelo.Views.eventos.accionesJugador;
 
-import java.util.List;
-
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Views.AlgoStarView;
-import edu.fiuba.algo3.modelo.Views.MapaView;
-import edu.fiuba.algo3.modelo.Views.PantallaFinDelJuego;
-import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
-import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.jugadores.Jugador;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import edu.fiuba.algo3.modelo.AlgoStar;
+import edu.fiuba.algo3.modelo.Views.AlgoStarView;
+import edu.fiuba.algo3.modelo.Views.PantallaFinDelJuego;
+import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 
 public class BotonPasarTurnoHandler implements EventHandler<ActionEvent> {
 
