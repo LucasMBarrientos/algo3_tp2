@@ -34,7 +34,13 @@ public class Mapa {
         return instancia;
     }
 
-    private void establecerSuperficieYTerrenos(Coordenada dimension) {
+    private void establecerUbicacionesInicialesDeLosJugadores() {
+        ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
+        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
+    }
+
+    public void establecerDimension(Coordenada dimension) {
         this.superficie = new SuperficieRectangular(new Coordenada(0, 0), dimension);
         for (int y = 0; y < superficie.calcularLongitudY(); y++) {
             for (int x = 0; x < superficie.calcularLongitudX(); x++) {
@@ -43,16 +49,6 @@ public class Mapa {
         }
         establecerUbicacionesInicialesDeLosJugadores();
         generarTerrenoInicial();
-    }
-
-    private void establecerUbicacionesInicialesDeLosJugadores() {
-        ubicacionesInicialesDeLosJugadores = new ArrayList<Coordenada>();
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(4, 4));
-        ubicacionesInicialesDeLosJugadores.add(new Coordenada(superficie.calcularLongitudX() - 5, superficie.calcularLongitudY() - 5));
-    }
-
-    public void establecerDimension(Coordenada dimension) {
-        establecerSuperficieYTerrenos(dimension);
     }
 
     private boolean validarCoordenada(Coordenada coordenada) {
