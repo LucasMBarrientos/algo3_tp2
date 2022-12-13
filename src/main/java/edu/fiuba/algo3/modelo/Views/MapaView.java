@@ -571,7 +571,7 @@ public class MapaView {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
@@ -682,7 +682,7 @@ public class MapaView {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                          algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
@@ -717,9 +717,9 @@ public class MapaView {
                   imagePilonWrapper.setLayoutY(posY);
                   imagePilonWrapper.setOnMouseClicked(event ->  {
                       if(atacando){
-                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                        algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
@@ -756,7 +756,7 @@ public class MapaView {
                       if(atacando){
                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       }else{
-                          algoStarView.crearBotoneraVacia(crearCoordenada(nodo));
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
                       }
                       setStatsEdificio(nodo);
                   });
