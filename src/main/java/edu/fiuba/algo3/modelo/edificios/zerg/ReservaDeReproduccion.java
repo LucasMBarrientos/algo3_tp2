@@ -20,6 +20,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
         this.nombre = new Nombre("ReservaDeReproduccion");
         establecerEstado(new EdificioEnConstruccion());
     }
+    
     @Override
     public void actualizarEdificio(Inventario inventario) {
         regenerar();

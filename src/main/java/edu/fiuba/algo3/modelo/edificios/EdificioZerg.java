@@ -16,14 +16,12 @@ public abstract class EdificioZerg extends Edificio {
     public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
         validarCorrelativasDeConstruccion(inventarioDelJugador);
         consumirRecursosParaConstruccion(inventarioDelJugador);
-
         try {
             Mapa.devolverInstancia().establecerEdificio(coordenada, this);
-        }catch(TerrenoNoAptoParaConstruirTalEdificio | NoHayUnZanganoEnEsaCoordenada exception) {
+        } catch(TerrenoNoAptoParaConstruirTalEdificio | NoHayUnZanganoEnEsaCoordenada exception) {
             devolverRecursosParaConstruccion(inventarioDelJugador);
             throw exception;
         }
-
         inventarioDelJugador.eliminarUnidad(coordenada); //elimino al zangano que construyo el edificio
         return this;
     }
@@ -34,7 +32,8 @@ public abstract class EdificioZerg extends Edificio {
             throw new EdificioEstaDestruido();
         }
     }
-    public void regenerar(){
+
+    public void regenerar() {
         vida.regenerar();
     }
 

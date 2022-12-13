@@ -19,9 +19,9 @@ public class Inventario {
 
     private List<Edificio> edificios = new ArrayList<Edificio>();
     private List<Unidad> unidades = new ArrayList<Unidad>();
-    public GasVespeno gasVespeno;
-    public Mineral mineral;
-    public Suministro suministro;
+    private GasVespeno gasVespeno;
+    private Mineral mineral;
+    private Suministro suministro;
     
     public Inventario(GasVespeno gasVespeno, Mineral mineral, Suministro suministro) {
         this.gasVespeno = gasVespeno;
@@ -29,8 +29,8 @@ public class Inventario {
         this.suministro = suministro;
     }
 
-    public boolean fueDerrotado(boolean edificioInicialConstruido) {
-        return (edificioInicialConstruido && this.edificios.size() == 0);
+    public boolean fueDerrotado() {
+        return this.edificios.size() == 0;
     }
 
     public Edificio buscarEdificio(Coordenada coordenada) {
@@ -83,8 +83,6 @@ public class Inventario {
         }
         throw new NoHayLarvasSuficientes();
     }
-
-
 
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);

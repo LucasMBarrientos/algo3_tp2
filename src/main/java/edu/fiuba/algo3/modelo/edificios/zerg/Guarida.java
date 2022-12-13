@@ -30,7 +30,7 @@ public class Guarida extends EdificioZerg {
 
     @Override
     public void validarCorrelativasDeConstruccion(Inventario inventario) throws ConstruccionRequiereDeOtroEdificio {
-        if(!inventario.tieneEdificio(new Nombre("ReservaDeReproduccion"))){
+        if (!inventario.tieneEdificio(new Nombre("ReservaDeReproduccion"))) {
             throw new ConstruccionRequiereDeOtroEdificio();
         }
     }
