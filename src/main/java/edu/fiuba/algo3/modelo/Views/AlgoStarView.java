@@ -67,6 +67,31 @@ public class AlgoStarView extends BorderPane {
         setPantallDeStats();
     }
 
+    public String colorJugadorActual() {
+      String colorJugadorActual = "";
+      try {
+        switch (this.algoStar.devolverJugadorActual().toData().get("color").asText()){
+          case "Naranja":{
+            colorJugadorActual= "orange";
+            break;
+          }
+          case "Violeta":{
+            colorJugadorActual= "violet";
+            break;
+          }
+          case "Rojo":{
+            colorJugadorActual= "red";
+            break;
+          }
+          case "Azul":{
+            colorJugadorActual = "blue";
+            break;
+          }
+        }
+      } catch (RuntimeException e) {}
+      return colorJugadorActual;
+    }
+
     public void setPantallaDeStatsJugador() {
         ImageView view = new ImageView(pasarTurnoImagen);
 
@@ -79,8 +104,13 @@ public class AlgoStarView extends BorderPane {
 
         JsonNode jugadorNode = algoStar.devolverJugadorActual().toData();
 
-        Label jugadorActualLabel = new Label("Turno de " + jugadorNode.get("nombre").asText());
-        jugadorActualLabel.getStyleClass().add("label-lateral-derecho");
+        Label jugadorActualnombre = new Label(jugadorNode.get("nombre").asText());
+        jugadorActualnombre.setFont (Font.font("Tahoma", FontWeight.BOLD, 15));
+        jugadorActualnombre.setTextFill(Color.web(this.colorJugadorActual()));
+        Label jugadorActualLabelInicio = new Label("Turno de " );
+        jugadorActualLabelInicio.getStyleClass().add("label-lateral-derecho");
+        HBox jugadorActualLabel = new HBox(jugadorActualLabelInicio,jugadorActualnombre); 
+
         Label gasDisponible = new Label("Gas Vespeno: " + jugadorNode.get("inventario").get("cantidadGasVespeno").get("gasVespeno").asText());
         gasDisponible.getStyleClass().add("label-lateral-derecho");
         Label mineralDisponible = new Label("Mineral: " + jugadorNode.get("inventario").get("cantidadMineral").get("mineral").asText());
@@ -140,6 +170,8 @@ public class AlgoStarView extends BorderPane {
 
     public void setPantallDeStatsUnidad(JsonNode node) {
         //Aca iría las cosas de la pantalla de stats
+        Label nombre = new Label("Unidad de Tipo: " + node.get("Ocupante").get("nombre").asText());
+        nombre.getStyleClass().add("label-lateral-izquierdo");
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
         vida.getStyleClass().add("label-lateral-izquierdo");
         Label danioAereoYTerrestre = new Label("Daño Terrestre: " + node.get("Ocupante").get("danioTerrestre").asText() + "\nDaño Aereo: " + node.get("Ocupante").get("danioAereo").asText());
@@ -155,7 +187,7 @@ public class AlgoStarView extends BorderPane {
 
 
         // handler del boton construir
-        VBox contenedorHorizontal = new VBox(danioAereoYTerrestre,vida,escudo); // <- recibe las cosas como parámetro
+        VBox contenedorHorizontal = new VBox(nombre,danioAereoYTerrestre,vida,escudo); // <- recibe las cosas como parámetro
         /*contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setMinWidth(260);
         contenedorHorizontal.setPadding(new Insets(10));*/
@@ -173,9 +205,11 @@ public class AlgoStarView extends BorderPane {
     public void setPantallDeStatsEdificio(JsonNode node) {
         //Aca iría las cosas de la pantalla de stats
         Label vida = new Label("Vida: " + node.get("Ocupante").get("vida").asText());
+        vida.getStyleClass().add("label-lateral-izquierdo");
         Label estadoConstruccion = new Label("Estado de Construcción: " + node.get("Ocupante").get("estado").asText());
+        estadoConstruccion.getStyleClass().add("label-lateral-izquierdo");
         Label escudo = new Label();
-
+        escudo.getStyleClass().add("label-lateral-izquierdo");
 
         if(Objects.equals(node.get("Ocupante").get("raza").asText(), "protoss")){
              escudo = new Label("Escudo: " + node.get("Ocupante").get("escudo").asText());
@@ -188,7 +222,9 @@ public class AlgoStarView extends BorderPane {
         contenedorHorizontal.setSpacing(10);
         contenedorHorizontal.setMinWidth(260);
         contenedorHorizontal.setPadding(new Insets(10));
-
+        Image imgFondo = new Image("/izquierda.jpg");
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(stage.getOutputScaleX(),stage.getMaxWidth(),true,true,true,true));
+        contenedorHorizontal.setBackground(new Background(fondo));
         this.setLeft(contenedorHorizontal);
     }
 
