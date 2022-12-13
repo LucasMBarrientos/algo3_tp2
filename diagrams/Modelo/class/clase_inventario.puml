@@ -4,7 +4,8 @@ abstract Recurso{
 +Recursos(unidades)
 +gastar(recursos)
 +agregarUnidades(recurso:Recurso)
-+gastarUnidades(unidadesAConsumir:int)
++restarUnidades(recurso:Recurso)
+'+gastarUnidades(unidadesAConsumir:int)
 -devolverCantidadUnidades():int
 +{abstract}toData():ObjectNode
 
@@ -18,14 +19,13 @@ class Inventario{
 -suministro:Suministro
 
 +Inventario(gasVespeno:GasVespeno,mineral:Mineral,suministro:Suministro)
-
++fueDerrotado():bool
 +buscarEdificio(coordenada):Edificio
 +buscarUnidad(coordenada):Unidad
 -buscarIdDeUnidad(coordenada):int
 -buscarIdDeEdificio(coordenada):int
 +tieneEdificio(nombreEdificio:nombre):bool
 +consumirLarva()
-+evolucionarUnidad(mapa,coordenada,unidad)
 +agregarEdificio(edificio)
 +agregarUnidad(unidad)
 +eliminarUnidad(coordenada)
@@ -33,13 +33,14 @@ class Inventario{
 +agregarGasVespeno(gasVespeno:Recurso)
 +agregarMineral(mineral:Recurso)
 +agregarSuministro(suministro:Recurso)
-+consumirGasVespeno(gasVespeno:Recurso)
-+restarSuministro(recursoRequerido)
-+consumirMineral(mineral:Recurso)
 +consumirSuministro(suministro:Recurso)
++restarSuministro(recursoRequerido)
++consumirGasVespeno(gasVespeno:Recurso)
++consumirMineral(mineral:Recurso)
 +devolverGasVespeno(gasVespeno:Recurso)
 +devolverMineral(mineral:Recurso)
 +toData():ObjectNode
+'+evolucionarUnidad(mapa,coordenada,unidad)
 +actualizar()
 }
 
