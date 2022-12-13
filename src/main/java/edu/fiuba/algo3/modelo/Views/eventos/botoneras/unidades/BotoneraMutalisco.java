@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -17,12 +19,18 @@ import java.util.List;
 
 public class BotoneraMutalisco extends HBox {
     
-    public BotoneraMutalisco(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada){
+    public BotoneraMutalisco(AlgoStar algoStar, AlgoStarView algoView, Coordenada coordenada, Stage pantalla){
         HBox contenedorHorizontal = new HBox();  
         List<Button> buttons = crearBotones(algoStar, algoView, coordenada);
-      
+        Image imgFondo = new Image("/abajo.jpg");
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
+        contenedorHorizontal.setBackground(new Background(fondo));
+        contenedorHorizontal.setPadding(new Insets(25));
+
         Label coordenadaX = new Label("CORDENADA X: " + coordenada.toData().get("x"));
+        coordenadaX.getStyleClass().add("label-botonera");
         Label coordenadaY  = new Label("CORDENADA Y: "  + coordenada.toData().get("y"));
+        coordenadaY.getStyleClass().add("label-botonera");
         VBox coordenadaBox = new VBox(coordenadaX,coordenadaY);
         
         contenedorHorizontal.getChildren().clear();
@@ -41,19 +49,26 @@ public class BotoneraMutalisco extends HBox {
 
         Button moverAbajo = new Button();
         moverAbajo.setGraphic(new ImageView(abajo));
+        moverAbajo.getStyleClass().add("btn-botonera-direcciones");
         Button moverArriba = new Button();
         moverArriba.setGraphic(new ImageView(arriba));
+        moverArriba.getStyleClass().add("btn-botonera-direcciones");
         Button moverIzquierda = new Button();
         moverIzquierda.setGraphic(new ImageView(izquierda));
+        moverIzquierda.getStyleClass().add("btn-botonera-direcciones");
         Button moverDerecha = new Button();
         moverDerecha.setGraphic(new ImageView(derecha));
+        moverDerecha.getStyleClass().add("btn-botonera-direcciones");
 
         Button atacar = new Button();
         atacar.setText("atacar");
+        atacar.getStyleClass().add("btn-botonera-accion");
         Button evolucionarGuardian = new Button();
         evolucionarGuardian.setText("evolucionar Guardian");
+        evolucionarGuardian.getStyleClass().add("btn-botonera-accion");
         Button evolucionarDevorador = new Button();
         evolucionarDevorador.setText("evolucionar Devorador");
+        evolucionarDevorador.getStyleClass().add("btn-botonera-accion");
 
 
         BotonMoverAbajoHandler botonMoverAbajoHandler = new BotonMoverAbajoHandler(algoStar, algoView, coordenada);

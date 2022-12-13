@@ -26,7 +26,6 @@ public class App extends Application {
         Scene escenaJuego = new Scene(pantallaPrincipal,1620,780);
         String css = this.getClass().getResource("/prueba.css").toExternalForm();
         escenaJuego.getStylesheets().add(css);
-        System.out.println(css);
         // Creacion de las pantallas de creacion de jugadoress
         List<Integer> coloresRemovidos = new ArrayList<Integer>();
         List<Integer> razasRemovidas = new ArrayList<Integer>();

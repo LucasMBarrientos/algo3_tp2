@@ -20,13 +20,14 @@ public class PantallaFinDelJuego extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-
+        String css = this.getClass().getResource("/prueba.css").toExternalForm();
+        this.getStylesheets().add(css);
         //BackgroundImage fondo2 = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, BackgroundSize.AUTO(this.getBaselineOffset()));
         List<String> objetos = jugadorGanador.devolverMediaDeVictoria();
        BackgroundImage fondo = new BackgroundImage(new Image(objetos.get(0)), BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(this.getMaxHeight(),this.getMaxWidth(),true,true,true,true));
         this.setBackground(new Background(fondo));
         Label mensajeDeVictoria = new Label(objetos.get(1));
-
+        mensajeDeVictoria.getStyleClass().add("mensaje-victoria");
 
         Button botonParaSalir = new Button("Salir del juego");
         botonParaSalir.getStyleClass().add("btn-salir");

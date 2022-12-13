@@ -162,6 +162,7 @@ public class Mapa {
         Coordenada ubicacionDelVolcanInicial = ubicacionesInicialesDeLosJugadores.get(idJugador);
         Coordenada ubicacionDelZangano = superficie.transformarCoordenadaRelativamenteAlCentro(ubicacionDelVolcanInicial,3,3);
         Zangano zanganoGenerado = new Zangano(new GasVespeno(0), new Mineral(0),new Suministro(0));
+        zanganoGenerado.reducirTiempoConstruccion(1);
         zanganoGenerado.terminarConstruccion();
         zanganoGenerado.establecerCoordenada(ubicacionDelZangano);
         zanganoGenerado.ocupar(buscarTerreno(ubicacionDelZangano));
