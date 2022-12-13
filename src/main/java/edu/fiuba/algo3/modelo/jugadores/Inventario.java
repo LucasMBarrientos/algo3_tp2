@@ -29,10 +29,8 @@ public class Inventario {
         this.suministro = suministro;
     }
 
-    public void fueDerrotado(boolean edificioInicialConstruido) {
-        if (edificioInicialConstruido && this.edificios.size() == 0) {
-            throw new FinDelJuegoAlcanzado();
-        }
+    public boolean fueDerrotado(boolean edificioInicialConstruido) {
+        return (edificioInicialConstruido && this.edificios.size() == 0);
     }
 
     public Edificio buscarEdificio(Coordenada coordenada) {
