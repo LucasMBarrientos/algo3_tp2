@@ -2,28 +2,20 @@ package edu.fiuba.algo3.pruebas_de_integracion;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Logger;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
 import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
 import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
 import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
 import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Abajo;
-import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Derecha;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Izquierda;
 import edu.fiuba.algo3.modelo.jugadores.JugadorProtoss;
 import edu.fiuba.algo3.modelo.jugadores.JugadorZerg;
-import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
-import edu.fiuba.algo3.modelo.unidades.zerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class prueba2 {
@@ -44,11 +36,7 @@ public class prueba2 {
         a.hallarJugadorActual().moverUnidad(new Coordenada(4,1), new Abajo());
         a.hallarJugadorActual().moverUnidad(new Coordenada(4,2), new Abajo());
         
-        for (int i = 0; i < 6; i++) { // Termino de construir los edificios
-            a.pasarTurno();
-        }
-
-        //ambos jugadores pasan varios turnos para recolectar recursos
+        //pasan varios turnos para recolectar recursos
         for (int i = 0; i < 40; i++) {
             a.pasarTurno();
         }
