@@ -13,10 +13,6 @@ import edu.fiuba.algo3.modelo.unidades.estados.UnidadDestruida;
 public abstract class UnidadProtoss extends Unidad {
 
     protected Escudo escudo;
-    
-    public Escudo devolverEscudo() {
-        return escudo;
-    }
 
     public abstract boolean ocupar(Terreno terreno);
 

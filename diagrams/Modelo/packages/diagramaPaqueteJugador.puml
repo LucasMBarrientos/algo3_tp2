@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+package jugadores {
+class Inventario
+abstract Jugador
+class JugadorZerg
+class JugadorProtoss
+
+Jugador -> Inventario
+Jugador <|--JugadorProtoss
+Jugador <|-left JugadorZerg
+
+}
+package recursos {
+abstract Recurso
+class Mineral
+class GasVespeno
+class Suministro
+
+Inventario -right> Recurso
+Recurso <|--GasVespeno
+Recurso <|--Mineral
+Recurso <|-right Suministro
+
+}
+@enduml

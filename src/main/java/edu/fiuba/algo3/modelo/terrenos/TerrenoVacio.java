@@ -2,26 +2,13 @@ package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
-
-import java.util.List;
 
 public class TerrenoVacio implements EstadoTerreno {
 
@@ -55,7 +42,7 @@ public class TerrenoVacio implements EstadoTerreno {
 
     public void ocuparPorEdificio(Criadero criadero){
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(criadero);
     }
 
@@ -74,7 +61,6 @@ public class TerrenoVacio implements EstadoTerreno {
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion){
         throw new TerrenoNoAptoParaConstruirTalEdificio();
     }
-
 
     public void ocuparPorUnidad(Dragon unidad){
         terreno.verificarTerrenoSinEdificio();
@@ -98,6 +84,7 @@ public class TerrenoVacio implements EstadoTerreno {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
+        terreno.establecerZanganoOcupante(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
@@ -137,7 +124,18 @@ public class TerrenoVacio implements EstadoTerreno {
     }
 
     public void cubrirTerrenoDeMoho() {
-        terreno.establecerEstado(new TerrenoMoho(terreno));
+        if(terreno.edificio == null){
+            terreno.establecerEstado(new TerrenoMoho(terreno));
+        }
+    }
+
+    public void energizarTerreno() {
+        terreno.habilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoEnergizado(terreno));
+    }
+
+    public void desenergizarTerreno() {
+        return;
     }
 
     @Override
@@ -161,18 +159,6 @@ public class TerrenoVacio implements EstadoTerreno {
             nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
         return nodo;
-    }
-
-    public void energizarTerreno() {
-        terreno.establecerEstado(new TerrenoEnergizado(terreno));
-    }
-
-    public void desenergizarTerreno() {
-        return;
-    }
-
-    public boolean tieneMoho() {
-        return false;
     }
 
 }

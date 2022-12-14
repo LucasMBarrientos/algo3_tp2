@@ -1,7 +1,12 @@
 package edu.fiuba.algo3.modelo.jugadores;
 
+import java.util.List;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
@@ -9,14 +14,12 @@ import edu.fiuba.algo3.modelo.geometria.Direccion;
 import edu.fiuba.algo3.modelo.recursos.*;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 
-import java.util.List;
 
 public abstract class Jugador {
 
     protected int id;
-    protected Mapa mapa;
-    public Inventario inventario;
-    protected String nombre;
+    protected Inventario inventario;
+    protected Nombre nombre;
     protected String color;
     protected boolean edificioInicialConstruido = false;
 
@@ -24,24 +27,29 @@ public abstract class Jugador {
         if (nombre.length() < 6) {
             throw new NombreDeJugadorInvalido();
         }
-        this.nombre = nombre;
+        this.nombre = new Nombre(nombre);
     }
 
     public abstract ObjectNode toData();
 
-    public abstract void construirEdificio(Coordenada coordenada, Edificio edificio);
+    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
+        edificio.construir(coordenada, inventario);
+        inventario.agregarEdificio(edificio);
+        edificioInicialConstruido = true;
+        Logger.log("Se inicio la construccion del edificio: \"" + edificio.devolverNombre().devolverValor() + "\"");
+    }
 
-    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad){
+    public void generarUnidad(Coordenada coordenadaDelEdificio, Unidad unidad) {
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         unidad.generarse(edificio, inventario);
-
         try {
-            mapa.establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);
+            Mapa.devolverInstancia().establecerUnidadEnCoordenadaAdyacente(coordenadaDelEdificio, unidad);
         } catch(TerrenoNoAptoParaTalUnidad e){
             unidad.restaurarRecursosParaConstruccion(inventario);
             throw new TerrenoNoAptoParaConstruirTalEdificio();
         }
         inventario.agregarUnidad(unidad);
+        Logger.log("Se inicio la creacion de la unidad: \"" + unidad.devolverNombre().devolverValor() + "\"");
     }
 
     protected void establecerAtributosBasicos(String nombre, String color, int gasInicial, int mineralesIniciales, int suministroInicial) {
@@ -64,8 +72,8 @@ public abstract class Jugador {
         }
     }
 
-    public boolean nombreEsIgual(String nombre) {
-        return this.nombre.equals(nombre);
+    protected boolean nombreEsIgual(Nombre nombre) {
+        return this.nombre.esIgual(nombre);
     }
 
     protected void compararColor(Jugador jugador) throws ColorDeJugadorInvalido {
@@ -84,57 +92,53 @@ public abstract class Jugador {
         }
     }
 
-    public void establecerMapa(Mapa mapa) {
-        this.mapa = mapa;
-        iniciarseEnMapa();
-    }
-
     public void moverUnidad(Coordenada coordenadaDeLaUnidad, Direccion direccionDelMovimiento) {
         Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);
-        unidad.moverse(direccionDelMovimiento, mapa);
+        unidad.moverse(direccionDelMovimiento);
     }
 
-    public void destruirUnidad(Coordenada coordenada) {
-        mapa.eliminarUnidad(coordenada);
-        inventario.eliminarUnidad(coordenada);
-    }
+
 
     public void destruirEdificio(Coordenada coordenada) {
-        mapa.eliminarEdificio(coordenada);
+        Mapa.devolverInstancia().eliminarEdificio(coordenada);
         inventario.eliminarEdificio(coordenada);
     }
 
     public void atacar(Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         Unidad unidad = inventario.buscarUnidad(coordenadaUnidad);
-        try {
-            unidad.atacar(coordenadaObjetivo, mapa);
-        } catch (UnidadEstaDestruida e){
-            mapa.eliminarUnidad(coordenadaObjetivo);
-            throw new UnidadEstaDestruida();
-        } catch (EdificioEstaDestruido e){
-            mapa.eliminarEdificio(coordenadaObjetivo);
-            throw new EdificioEstaDestruido();
-        }
+        unidad.atacar(coordenadaObjetivo);
     }
 
     public void establecerId(int id) {
         this.id = id;
     }
 
-    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) { }
+    public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
+        return;
+    }
 
     public void actualizar() {
         inventario.actualizar();
     }
 
-    public void fueDerrotado() {
-        inventario.fueDerrotado(edificioInicialConstruido);
+    public void aniadirseAListaSiNoFueDerrotado(List<Jugador> jugadoresQueNoPerdieron) {
+        if (!(fueDerrotado())) {
+            jugadoresQueNoPerdieron.add(this);
+        }
     }
 
-    public abstract String devolverMensajeDeVictoria();
+    protected boolean fueDerrotado() {
+        return (edificioInicialConstruido && inventario.fueDerrotado());
+    }
 
-    public void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad){}
+    public abstract List<String> devolverMediaDeVictoria();
 
-    protected abstract void iniciarseEnMapa();
+    public abstract void ingresarUnidadAUnEdificio(Coordenada coordenadaDelEdificio, Coordenada coordenadaDeLaUnidad);
+
+    public abstract void iniciarseEnMapa();
+
+    public String devolverNombre() {
+        return this.nombre.devolverValor();
+    }
 
 }

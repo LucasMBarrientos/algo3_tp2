@@ -1,0 +1,31 @@
+@startuml
+state PantallaJuego
+state MostrarMenu{
+MenuAgregarJugador1 --> MenuAgregarJugador2 :continuar/[nombre valido]
+MenuAgregarJugador2 --> CrearJugadores :empezar juego/\n[nombre valido]\n[nombre diferente]\n[color diferente]\n[raza diferente]
+
+
+}
+[*] --> MostrarMenuBienvenida
+
+MostrarMenuBienvenida --> MostrarMenu : comenzar partida
+'MostrarMenuBienvenida -> [*] : salir
+MostrarMenu --> PantallaJuego
+state PantallaJuego{
+PantallaJuego: mostrar mapa
+TurnoJugador1 -> TurnoJugador2 :pasar turno
+TurnoJugador1 <- TurnoJugador2 :pasar turno
+state TurnoJugador1{
+TurnoJugador1 :actualizar
+}
+state TurnoJugador2{
+TurnoJugador2 :actualizar
+}
+
+
+}
+PantallaJuego --> [*] : [un jugador se queda sin \ntropas y sin edificios]
+
+
+
+@enduml

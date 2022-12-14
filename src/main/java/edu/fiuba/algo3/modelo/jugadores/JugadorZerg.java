@@ -2,12 +2,14 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JugadorZerg extends Jugador {
 
@@ -25,7 +27,7 @@ public class JugadorZerg extends Jugador {
 
     public ObjectNode toData(){
         ObjectNode node = Json.createObjectNode();
-        node.put("nombre", nombre);
+        node.put("nombre", nombre.devolverValor());
         node.put("inventario", inventario.toData());
         node.put("raza","zerg");
         node.put("color",color);
@@ -33,43 +35,10 @@ public class JugadorZerg extends Jugador {
         return node;
     }
 
-
-    public void construirEdificio(Coordenada coordenada, Edificio edificio) {
-        Unidad zanganoConstructor = verificacionDeUnidadConstructora(coordenada, inventario);
-        edificio.construir(coordenada, inventario);
-        mapa.eliminarUnidad(coordenada); // Primero elimino al zangano porque no puedo construir sobre terrenoOcupado
-
-        try {
-            mapa.establecerEdificio(coordenada, edificio);
-        }catch(TerrenoNoAptoParaConstruirTalEdificio e) {
-            edificio.devolverRecursosParaConstruccion(inventario);
-            mapa.establecerUnidad(coordenada, zanganoConstructor); // Si el terreno no era apto, vuelvo a meter al zangano
-            throw new TerrenoNoAptoParaConstruirTalEdificio();
-        }
-
-        inventario.eliminarUnidad(coordenada);
-        inventario.agregarEdificio(edificio);
-        edificioInicialConstruido = true;
-    }
-
-    public Unidad verificacionDeUnidadConstructora(Coordenada coordenada, Inventario inventario) throws NoHayUnZanganoEnEsaCoordenada {
-        Unidad unidad = inventario.buscarUnidad(coordenada);
-        Nombre nombreUnidadConstructora = new Nombre("Zangano");
-
-        if(!nombreUnidadConstructora.esIgual(unidad.devolverNombre())){
-            throw new NoHayUnZanganoEnEsaCoordenada();
-        }
-        return unidad;
-    }
-
     @Override
     public void evolucionar(Coordenada coordenada, Unidad unidadAEvolucionar) {
-        inventario.evolucionarUnidad(mapa, coordenada, unidadAEvolucionar);
-    }
-
-    public void ingresarUnidad(Coordenada coordenada){
         Unidad unidad = inventario.buscarUnidad(coordenada);
-        unidad.ocupar(mapa.buscarTerreno(coordenada));
+        unidad.evolucionar(unidadAEvolucionar, inventario);
     }
 
     @Override
@@ -77,20 +46,23 @@ public class JugadorZerg extends Jugador {
         Unidad unidad = inventario.buscarUnidad(coordenadaDeLaUnidad);
         Edificio edificio = inventario.buscarEdificio(coordenadaDelEdificio);
         edificio.ingresarUnidad(unidad);
-        mapa.eliminarUnidad(coordenadaDeLaUnidad);
+        Mapa.devolverInstancia().eliminarUnidad(coordenadaDeLaUnidad);
         inventario.eliminarUnidad(coordenadaDeLaUnidad);
     }
 
-    protected void iniciarseEnMapa() {
-        Zangano zanganoInicial = mapa.establecerZanganoInicial(id);
+    public void iniciarseEnMapa() {
+        Zangano zanganoInicial = Mapa.devolverInstancia().establecerZanganoInicial(id);
         inventario.agregarUnidad(zanganoInicial);
     }
 
-    public String devolverMensajeDeVictoria() {
-        return "El jugador " + nombre + " logro repeeler a los Zerg de la zona";
+    public List<String> devolverMediaDeVictoria() {
+        List<String> objetos = new ArrayList<String>();
+        objetos.add("/victoriaZerg.jpg");
+        objetos.add( nombre.devolverValor() + " a llevado a la raza Zerg a la victoria");
+        return objetos;
     }
 
- }
+}
 
 
 

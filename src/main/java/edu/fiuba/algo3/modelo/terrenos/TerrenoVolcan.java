@@ -1,31 +1,18 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
-import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
-
-import java.util.List;
 
 public class TerrenoVolcan extends Terreno {
 
@@ -47,6 +34,7 @@ public class TerrenoVolcan extends Terreno {
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
         edificio = asimilador;
+        edificio.establecerPosicion(coordenada);
     }
 
     public void ocuparPorEdificio(NexoMineral nexoMineral){
@@ -67,8 +55,8 @@ public class TerrenoVolcan extends Terreno {
 
     public void ocuparPorEdificio(Extractor extractor){
         verificarTerrenoSinEdificio();
-        verificarTerrenoSinUnidad();
-        edificio = extractor;
+        verificarZanganoOcupante();
+        establecerEdificio(extractor);
     }
 
     public void ocuparPorEdificio(Guarida guarida){
@@ -94,8 +82,8 @@ public class TerrenoVolcan extends Terreno {
     public void ocuparPorUnidad(Zangano unidad){
         verificarTerrenoSinEdificio();
         verificarTerrenoSinUnidad();
-        this.unidad = unidad;
-        unidad.establecerCoordenada(coordenada);
+        establecerUnidad(unidad);
+        establecerZanganoOcupante(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
@@ -121,12 +109,6 @@ public class TerrenoVolcan extends Terreno {
     public void ocuparPorUnidad(AmoSupremo unidad){
         throw new TerrenoNoAptoParaTalUnidad();
     }
-
-    public void energizarTerreno() { }
-
-    public void cubrirTerrenoDeMoho() { }
-
-    public void vaciarTerreno() { }
 
     @Override
     public void extraerGasVespeno(Recurso recursoRequerido) {

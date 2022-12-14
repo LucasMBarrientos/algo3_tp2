@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/state-diagram
+state PantallaJuego
+state MostrarMenu{
+MenuAgregarJugador1 --> MenuAgregarJugador2 :continuar/[nombre valido]
+MenuAgregarJugador2 --> CrearJugadores :empezar juego/\n[nombre valido]\n[nombre diferente]\n[color diferente]\n[raza diferente]
+
+
+}
+[*] --> MostrarMenuBienvenida
+
+MostrarMenuBienvenida --> MostrarMenu : comenzar partida
+MostrarMenuBienvenida -> [*] : salir
+MostrarMenu --> PantallaJuego
+
+
+
+
+
+'scale 350 width
+'[*] --> NotShooting
+
+'state NotShooting {
+ ' [*] --> Idle
+ ' Idle --> Configuring : EvConfig
+'  Configuring --> Idle : EvConfig
+'}
+
+'state Configuring {
+'  [*] --> NewValueSelection
+'  NewValueSelection --> NewValuePreview : EvNewValue
+'  NewValuePreview --> NewValueSelection : EvNewValueRejected
+'  NewValuePreview --> NewValueSelection : EvNewValueSaved
+
+  'state NewValuePreview {
+  '   State1 -> State2
+  '}'
+
+'}
+@enduml

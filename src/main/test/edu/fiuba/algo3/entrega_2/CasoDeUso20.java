@@ -19,10 +19,8 @@ public class CasoDeUso20 {
         algoStar.agregarJugador(jugadorProtoss);
         algoStar.empezarJuego();
 
-
         Assertions.assertThrows(TerrenoNoAptoParaTalUnidad.class, ()->{
             jugador.moverUnidad(new Coordenada(1,1), new Arriba());
         });
-
     }
 }

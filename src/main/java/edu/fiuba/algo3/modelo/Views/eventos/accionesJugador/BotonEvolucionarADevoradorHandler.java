@@ -7,6 +7,11 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.unidades.zerg.Devorador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class BotonEvolucionarADevoradorHandler implements EventHandler<ActionEvent> {
 
@@ -24,10 +29,16 @@ public class BotonEvolucionarADevoradorHandler implements EventHandler<ActionEve
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().evolucionar(coordenadaDeLaUnidad, new Devorador());
+            algoStar.hallarJugadorActual().evolucionar(coordenadaDeLaUnidad, new Devorador());
             algoStarView.setPantallaDeStatsJugador();
         } catch (RecursosInsuficientes e) {
-            //avisar al jugador con una ventanita linda
+            Text texto = new Text("No tienes suficientes recursos para Evolucionar esta unidad");
+            texto.setY(15);
+            texto.setX(15);
+            texto.setFill(Color.INDIANRED);
+            texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+
+            algoStarView.mostrarMensajeDeAccionProhibida(texto);
 
         }
 

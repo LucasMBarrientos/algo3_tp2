@@ -1,10 +1,11 @@
 package edu.fiuba.algo3.modelo.unidades.zerg;
 
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
+import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -46,10 +47,17 @@ public class Mutalisco extends UnidadZerg {
     }
 
     @Override
-    public Unidad evolucionar(Mapa mapa, Unidad unidad) {
-        mapa.eliminarUnidad(coordenada);
-        mapa.establecerUnidad(coordenada,unidad);
-        return unidad;
+    public Unidad evolucionar(Unidad unidadAEvolucionar, Inventario inventario) {
+        unidadAEvolucionar.consumirRecursosParaEvolucion(inventario);
+
+        Mapa.devolverInstancia().eliminarUnidad(coordenada);
+        Mapa.devolverInstancia().establecerUnidad(coordenada, unidadAEvolucionar);
+
+        inventario.eliminarUnidad(coordenada);
+        inventario.agregarUnidad(unidadAEvolucionar);
+
+        Logger.log("Mutalisco evolucionó a " + unidadAEvolucionar.devolverNombre().devolverValor());
+        return unidadAEvolucionar;
     }
 
     public Unidad generarse(Edificio edificio, Inventario inventario) {

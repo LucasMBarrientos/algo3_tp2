@@ -1,0 +1,18 @@
+@startuml
+[*] --> Edificio :crear edificio
+state EdificioNoPuedeGenerarse as "edificio no puede generarse"
+[*] --> EdificioNoPuedeGenerarse :[recursos Insuficientes]\n[terreno no apto]\n[correlatividad no valida]
+EdificioNoPuedeGenerarse --> [*]
+
+state Edificio{
+[*]--> EdificioEnConstruccion :iniciar estado edificio
+state decicion <<choice>>
+decicion -> EdificioEnConstruccion :[no alcanzo el\n de construccion]
+
+EdificioEnConstruccion -> decicion : actualizar
+decicion --> EdificioOperativo :[alcanzo el de\n construccion]
+EdificioOperativo -> EdificioDestruido: recibir ataque /[ vida = 0]
+}
+
+Edificio --> [*]
+@enduml

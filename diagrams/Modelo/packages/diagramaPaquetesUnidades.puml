@@ -1,0 +1,66 @@
+@startuml
+package unidad {
+package estados {
+interface EstadoUnidad
+class UnidadDestruido
+class UnidadEnConstruccion
+
+class UnidadOperativo
+
+EstadoUnidad <|.left UnidadOperativo
+EstadoUnidad <|. UnidadDestruido
+EstadoUnidad <|.. UnidadEnConstruccion
+}
+package zerg {
+class AmoSupremo
+class Devorador
+class Guardian
+class Hidralisco
+class Mutalisco
+class Zangano
+class Zerling
+}
+package protoss{
+class Dragon
+class Scout
+class Zealot
+}
+
+
+abstract unidad
+abstract unidadZerg
+abstract unidadProtoss
+EstadoUnidad <-down-- unidad
+unidad -right> estadisticas
+unidad <|-left- unidadProtoss
+unidad <|-down- unidadZerg
+unidadProtoss <|-- protoss
+unidadZerg <|-- zerg
+package modificadores{
+interface Visivilidad
+class Invisible
+class Visible
+}
+Zealot --> Visivilidad
+Visivilidad <|..Visible
+Visivilidad <|..Invisible
+}
+
+package estadisticas {
+class Danio
+class Escudo
+class Vida
+class Nombre
+
+}
+
+'package unidades {
+'package estadoUnidad{}
+'package modificadores{}
+'package UnidadProtoss{}
+'package UnidadZerg{}
+'abstract Unidad
+'abstract UnidadZerg
+'abstract UnidadProtoss
+'}
+@enduml

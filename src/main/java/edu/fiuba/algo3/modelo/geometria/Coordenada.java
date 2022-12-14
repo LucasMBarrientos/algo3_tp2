@@ -101,5 +101,9 @@ public class Coordenada {
     public int devolverY() {
         return y;
     }
+
+    public String devolverValorComoString(){
+        return "(" + devolverX() + "," + devolverY() + ")";
+    }
     
 }

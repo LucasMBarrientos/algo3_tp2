@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.modelo.edificios.zerg;
 
+import edu.fiuba.algo3.modelo.edificios.estados.EdificioInoperativo;
 import edu.fiuba.algo3.modelo.estadisticas.Vida;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.excepciones.EdificioNoConoceEstaUnidad;
 import edu.fiuba.algo3.modelo.excepciones.NoHayEspacioDisponible;
+import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.jugadores.Inventario;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.terrenos.Terreno;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.EdificioZerg;
 
 import java.util.ArrayList;
@@ -52,8 +54,13 @@ public class Extractor extends EdificioZerg {
     }
 
     public void extraerRecursos(Inventario inventario) {
-        terreno.extraerGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
-        inventario.agregarGasVespeno(new GasVespeno(10* zanganosTrabajando.size()));
+        try {
+            terreno.extraerGasVespeno(new GasVespeno(10 * zanganosTrabajando.size()));
+            inventario.agregarGasVespeno(new GasVespeno(10 * zanganosTrabajando.size()));
+        } catch (RecursosInsuficientes terrenoSinGasVespeno) {
+            establecerEstado(new EdificioInoperativo());
+            throw terrenoSinGasVespeno;
+        }
     }
 
 }

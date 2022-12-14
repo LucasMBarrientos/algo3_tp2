@@ -1,32 +1,22 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import java.util.List;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
+import edu.fiuba.algo3.modelo.excepciones.NoHayUnZanganoEnEsaCoordenada;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnEdificio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoOcupadoPorUnaUnidad;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.geometria.SuperficieRectangular;
-import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
 import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.modificadores.Invisible;
 import edu.fiuba.algo3.modelo.unidades.modificadores.Visibilidad;
-import edu.fiuba.algo3.modelo.unidades.protoss.*;
+import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
+import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
+import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
 public abstract class Terreno {
@@ -36,11 +26,19 @@ public abstract class Terreno {
     protected Edificio edificio;
 
     protected Unidad unidad;
-    /*
-    public void establecerEstado(EstadoTerreno estado) {
-        this.estado = estado;
-        this.estado.setTerreno(this);
-    }*/
+
+    protected Visibilidad visibilidad = new Invisible();
+    private Zangano zanganoOcupante;
+
+    protected void establecerEdificio(Edificio edificio){
+        this.edificio = edificio;
+        edificio.establecerPosicion(coordenada);
+        eliminarUnidad(); //si el edificio era zerg debe eliminarse el zanganoConstructor, sino ya se verifico que no hay otra unidad
+    }
+    protected void establecerUnidad(Unidad unidad){
+        this.unidad = unidad;
+        unidad.establecerCoordenada(coordenada);
+    }
 
     public boolean compararCoordenadas(Coordenada coordenada) {
         return this.coordenada.esIgual(coordenada);
@@ -89,37 +87,30 @@ public abstract class Terreno {
 
     public void verificarTerrenoSinEdificio(){
         if(this.edificio != null){
-            throw new TerrenoNoAptoParaConstruirTalEdificio(); //se podria usar otra excepcion mejor
+            throw new TerrenoOcupadoPorUnEdificio();
         }
-    }
-
-    public void actualizar(){
-
     }
 
     public void verificarTerrenoSinUnidad(){
         if(this.unidad != null){
-            throw new TerrenoOcupadoPorUnaUnidad(); //se podria usar otra excepcion mejor
+            throw new TerrenoOcupadoPorUnaUnidad();
         }
     }
 
     public void eliminarEdificio() {
         this.edificio = null;
     }
-    
-    public void establecerUnidad(Unidad unidad){
-        this.unidad = unidad;
+
+    public void eliminarUnidad() {
+        this.unidad = null;
+        eliminarZanganoOcupante();
     }
 
-    public abstract void vaciarTerreno();
+    public void energizarTerreno(){return;}
 
-    public abstract void energizarTerreno();
+    public void desenergizarTerreno() {return;}
 
-    public void desenergizarTerreno() {
-        return;
-    }
-
-    public abstract void cubrirTerrenoDeMoho();
+    public void cubrirTerrenoDeMoho(){return;}
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
         if(edificio != null){
@@ -129,34 +120,30 @@ public abstract class Terreno {
         }
     }
 
-    public void actualizarListaDeCoordenadas(List<Coordenada> coordenadasConMoho, List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        if (edificio != null) {
-            edificio.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
+    public void cambiarVisibilidadActual(Visibilidad visibilidad){
+        this.visibilidad = visibilidad;
+    }
+
+    public void establecerVisibilidadAUnidad(Unidad unidad){
+        unidad.establecerVisibilidad(visibilidad);
+    }
+
+
+    protected void establecerZanganoOcupante(Zangano zangano){
+        zanganoOcupante = zangano;
+    }
+
+    protected void eliminarZanganoOcupante(){
+        zanganoOcupante = null;
+    }
+
+    protected void verificarZanganoOcupante(){
+        if(zanganoOcupante == null){
+            throw new NoHayUnZanganoEnEsaCoordenada();
         }
     }
 
-    public void actualizarListaDeCoordenadasAVisibilizar(List<Coordenada> coordenadasConUnidades) {
-        if (unidad != null) {
-            unidad.actualizarListaDeCoordenadasVisibles(coordenadasConUnidades);
-        }
-    }
-
-    public void cambiarVisibilidadAUnidad(Visibilidad visibilidad){
-        if (unidad != null) {
-            unidad.establecerVisibilidad(visibilidad);
-        }
-    }
-
-    public void volverInvisibleAUnidad(){
-      if (unidad != null) {
-          unidad.volverInvisible();
-      }
-  }
-
-
-    public void extraerGasVespeno(Recurso recursoRequerido) {
-
-    }
+    public void extraerGasVespeno(Recurso recursoRequerido) {}
 
     public Mineral extraerMinerales(Mineral mineral) {
       return new Mineral(0);

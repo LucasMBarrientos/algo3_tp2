@@ -1,28 +1,14 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
+import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
-
-import java.util.List;
 
 public class TerrenoMoho implements EstadoTerreno {
         
@@ -54,12 +40,12 @@ public class TerrenoMoho implements EstadoTerreno {
 
     public void ocuparPorEdificio(Criadero criadero) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(criadero);
     }
     public void ocuparPorEdificio(Espiral espiral) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(espiral);
     }
 
@@ -69,13 +55,13 @@ public class TerrenoMoho implements EstadoTerreno {
 
     public void ocuparPorEdificio(Guarida guarida) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(guarida);
     }
 
     public void ocuparPorEdificio(ReservaDeReproduccion reservaDeReproduccion) {
         terreno.verificarTerrenoSinEdificio();
-        terreno.verificarTerrenoSinUnidad();
+        terreno.verificarZanganoOcupante();
         terreno.establecerEdificio(reservaDeReproduccion);
     }
 
@@ -101,6 +87,7 @@ public class TerrenoMoho implements EstadoTerreno {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
+        terreno.establecerZanganoOcupante(unidad);
     }
 
     public void ocuparPorUnidad(Zerling unidad){
@@ -143,6 +130,14 @@ public class TerrenoMoho implements EstadoTerreno {
         return;
     }
 
+    public void energizarTerreno() {
+        return;
+    }
+
+    public void desenergizarTerreno() {
+        return;
+    }
+
     @Override
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
@@ -164,18 +159,6 @@ public class TerrenoMoho implements EstadoTerreno {
             nodo.put("Ocupante",node2.put("nombre","Desocupado"));
         }
         return nodo;
-    }
-
-    public void energizarTerreno() {
-        return;
-    }
-
-    public void desenergizarTerreno() {
-        return;
-    }
-  
-    public boolean tieneMoho() {
-        return true;
     }
 
 }

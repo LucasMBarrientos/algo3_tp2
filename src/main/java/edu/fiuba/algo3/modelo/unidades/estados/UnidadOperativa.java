@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.unidades.estados;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
@@ -16,18 +17,18 @@ public class UnidadOperativa implements EstadoUnidad {
 
     private Unidad unidad;
 
-    public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
+    public void moverse(Direccion direccion, Coordenada coordenada) {
         try {
-            mapa.establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
-            mapa.eliminarUnidad(coordenada);
+            Mapa.devolverInstancia().establecerUnidad(direccion.hallarCoordenadaSiguiente(coordenada),this.unidad);
+            Mapa.devolverInstancia().eliminarUnidad(coordenada);
+            Logger.log(unidad.devolverNombre().devolverValor() +" se mueve hacia la " + direccion.hallarCoordenadaSiguiente(coordenada).devolverValorComoString());
         } catch (TerrenoNoAptoParaTalUnidad e){
-            mapa.establecerUnidad(coordenada, this.unidad);
+            Mapa.devolverInstancia().establecerUnidad(coordenada, this.unidad);
         }
-
     }
 
-    public void atacar(Coordenada objetivo, Mapa mapa) {
-        unidad.ejecutarAtaque(objetivo, mapa);
+    public void atacar(Coordenada objetivo) {
+        unidad.ejecutarAtaque(objetivo);
     }
 
     public void recibirDanio(Danio danioTerrestre, Danio danioAereo) {
@@ -44,10 +45,6 @@ public class UnidadOperativa implements EstadoUnidad {
       this.unidad = unidad;
     }
 
-    @Override
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){
-        unidad.actualizarListaAVisibilizar(coordenadasAVisibilizar);
-    }
 
     @Override
     public void terminarConstruccion() {

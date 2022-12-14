@@ -9,6 +9,11 @@ import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.geometria.direcciones.Arriba;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 
 public class BotonMoverArribaHandler implements EventHandler<ActionEvent> {
@@ -26,12 +31,21 @@ public class BotonMoverArribaHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent evento) {
         try {
-            algoStar.devolverJugadorActual().moverUnidad(coordenadaActual, new Arriba());
+            algoStar.hallarJugadorActual().moverUnidad(coordenadaActual, new Arriba());
         } catch (CoordenadaFueraDelMapa | UnidadNoEncontrada | TerrenoNoAptoParaTalUnidad exeption ) {
+            Text texto = new Text("La unidad seleccionada no puede transitar por este terreno");
+            texto.setY(15);
+            texto.setX(15);
+            texto.setFill(Color.INDIANRED);
+            texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+
+            algoStarView.mostrarMensajeDeAccionProhibida(texto);
 
         }
         algoStarView.setBottom(algoStarView.crearBotoneraVacia());
         algoStarView.actualizarMapa();
     }
+
+
 
 }

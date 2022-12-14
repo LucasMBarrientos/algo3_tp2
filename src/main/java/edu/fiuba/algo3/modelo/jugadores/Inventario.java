@@ -2,15 +2,9 @@ package edu.fiuba.algo3.modelo.jugadores;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.excepciones.EdificioNoEncontrado;
-import edu.fiuba.algo3.modelo.excepciones.FinDelJuegoAlcanzado;
-import edu.fiuba.algo3.modelo.excepciones.NoHayLarvasSuficientes;
-import edu.fiuba.algo3.modelo.excepciones.NoHaySuministrosSuficientes;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.excepciones.UnidadNoEncontrada;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import edu.fiuba.algo3.modelo.recursos.GasVespeno;
 import edu.fiuba.algo3.modelo.recursos.Mineral;
@@ -25,20 +19,18 @@ public class Inventario {
 
     private List<Edificio> edificios = new ArrayList<Edificio>();
     private List<Unidad> unidades = new ArrayList<Unidad>();
-    public GasVespeno gasVespeno;
-    public Mineral mineral;
-    public Suministro suministro;
+    private GasVespeno gasVespeno;
+    private Mineral mineral;
+    private Suministro suministro;
     
-    public Inventario(GasVespeno gasVespeno, Mineral mineral,Suministro suministro) {
+    public Inventario(GasVespeno gasVespeno, Mineral mineral, Suministro suministro) {
         this.gasVespeno = gasVespeno;
         this.mineral = mineral;
         this.suministro = suministro;
     }
 
-    public void fueDerrotado(boolean edificioInicialConstruido) {
-        if (edificioInicialConstruido && this.edificios.size() == 0) {
-            throw new FinDelJuegoAlcanzado();
-        }
+    public boolean fueDerrotado() {
+        return this.edificios.size() == 0;
     }
 
     public Edificio buscarEdificio(Coordenada coordenada) {
@@ -91,13 +83,6 @@ public class Inventario {
         }
         throw new NoHayLarvasSuficientes();
     }
-
-
-    public void evolucionarUnidad(Mapa mapa, Coordenada coordenada, Unidad unidadAEvolucionar) {
-        Unidad unidadGenerada = buscarUnidad(coordenada).evolucionar(mapa,unidadAEvolucionar);
-        this.unidades.set(buscarIdDeUnidad(coordenada), unidadGenerada);
-    }
-
 
     public void agregarEdificio(Edificio edificioNuevo) {
         edificios.add(edificioNuevo);
@@ -172,10 +157,14 @@ public class Inventario {
 
     public void actualizar() {
         for(int i = 0;i<this.edificios.size();i++) {
-            edificios.get(i).actualizar(this);
+            try {
+                edificios.get(i).actualizar(this);
+            } catch (RecursosInsuficientes e) { }
         }
         for(int i = 0;i<this.unidades.size();i++){
-            unidades.get(i).actualizar(this);
+            try {
+                unidades.get(i).actualizar(this);
+            } catch (RecursosInsuficientes e) { }
         }
     }
 

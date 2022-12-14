@@ -1,13 +1,26 @@
 @startuml
 abstract UnidadProtoss{
-+devolverEscudo():Escudo
+
+-escudo:Escudo
++ocupar(terreno):bool
++consumirRecursosParaGenerarse(inventario)
++ejecutarDanio(danioTerrestre,danioAereo)
++regenerar()
++toData():objectNode
 }
 
 class Zealot{
+-visibilidad:Visibilidad
+-terreno:Terreno
 +Zealot()
-+generarse(edificio,inventario):Unidad
-+ocupar(terreno):bool
 +actualizarUnidad(inventario)
++ocupar(terreno):bool
++generarse(edificio,inventario):Unidad
++ejecutarDanio(danioTerrestre,danioAereo)
++establecerVisibilidad(visibilidad)
++volverInvisible()
++volverVisible()
++toData():objectNode
 }
 
 class Scout{
@@ -19,11 +32,28 @@ class Scout{
 
 class Dragon{
 +Dragon()
-+generarse(edificio,inventario):Unidad
-+ocupar(terreno):bool
 +actualizarUnidad(inventario)
++ocupar(terreno):bool
++generarse(edificio,inventario):Unidad
 }
+
 UnidadProtoss <|-- Zealot
-UnidadProtoss <|--- Scout
+UnidadProtoss <|-left- Scout
 UnidadProtoss <|-- Dragon
+Zealot --> Visibilidad
+Visibilidad <|.. Visible
+Visibilidad <|.. Invisible
+
+interface Visibilidad{
++visibilizarUnidad(unidad,cantidadKills:int)
++ejecutarDanio(danioTerrestre,vida,escudo,unidad)
+}
+class Visible{
++toData():objectNode
+
+}
+class Invisible{
++toData():objectNode
+
+}
 @enduml

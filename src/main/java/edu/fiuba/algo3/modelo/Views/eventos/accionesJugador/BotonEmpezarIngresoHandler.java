@@ -2,12 +2,10 @@ package edu.fiuba.algo3.modelo.Views.eventos.accionesJugador;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
-import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraAtaque;
 import edu.fiuba.algo3.modelo.Views.eventos.botoneras.BotoneraIngresarAExtractor;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 
 public class BotonEmpezarIngresoHandler implements EventHandler<ActionEvent> {
 

@@ -1,23 +1,10 @@
 package edu.fiuba.algo3.modelo.terrenos;
 
-import java.util.List;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.fiuba.algo3.modelo.Json;
-import edu.fiuba.algo3.modelo.edificios.Edificio;
-import edu.fiuba.algo3.modelo.edificios.protoss.Acceso;
-import edu.fiuba.algo3.modelo.edificios.protoss.Asimilador;
-import edu.fiuba.algo3.modelo.edificios.protoss.NexoMineral;
-import edu.fiuba.algo3.modelo.edificios.protoss.Pilon;
-import edu.fiuba.algo3.modelo.edificios.protoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.edificios.zerg.Criadero;
-import edu.fiuba.algo3.modelo.edificios.zerg.Espiral;
-import edu.fiuba.algo3.modelo.edificios.zerg.Extractor;
-import edu.fiuba.algo3.modelo.edificios.zerg.Guarida;
-import edu.fiuba.algo3.modelo.edificios.zerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.edificios.protoss.*;
+import edu.fiuba.algo3.modelo.edificios.zerg.*;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaTalUnidad;
-import edu.fiuba.algo3.modelo.recursos.Recurso;
 import edu.fiuba.algo3.modelo.unidades.protoss.Dragon;
 import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
@@ -80,7 +67,6 @@ public class TerrenoEnergizado implements EstadoTerreno {
         terreno.verificarTerrenoSinEdificio();
         terreno.verificarTerrenoSinUnidad();
         terreno.establecerUnidad(unidad);
-
     }
 
     public void ocuparPorUnidad(Zealot unidad){
@@ -143,6 +129,16 @@ public class TerrenoEnergizado implements EstadoTerreno {
         }
     }
 
+    public void energizarTerreno() {
+        terreno.habilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoEnergizado(terreno));
+    }
+
+    public void desenergizarTerreno() {
+        terreno.deshabilitarEdificioOcupante();
+        terreno.establecerEstado(new TerrenoVacio(terreno));
+    }
+
     @Override
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();
@@ -166,16 +162,5 @@ public class TerrenoEnergizado implements EstadoTerreno {
         return nodo;
     }
 
-    public void energizarTerreno() {
-        return;
-    }
-
-    public void desenergizarTerreno() {
-        terreno.establecerEstado(new TerrenoVacio(terreno));
-    }
-  
-    public boolean tieneMoho() {
-        return false;
-    }
 
 }

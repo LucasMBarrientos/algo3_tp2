@@ -1,0 +1,25 @@
+@startuml
+[*] --> Unidad :crear unidad
+state UnidadNoPuedeGenerarse as "unidad no puede generarse"
+[*] --> UnidadNoPuedeGenerarse :[recursos Insuficientes]
+UnidadNoPuedeGenerarse --> [*]
+
+state Unidad{
+[*]--> UnidadEnConstruccion :iniciar estado unidad
+state decicion <<choice>>
+decicion -> UnidadEnConstruccion :[no alcanzo el\n de construccion]
+
+UnidadEnConstruccion -> decicion : actualizar
+note right of UnidadOperativa : si la unidad es un Zealot se \n volver invisible
+
+decicion --> UnidadOperativa :[alcanzo el de\n construccion]
+state UnidadOperativa{
+[*] -left>Visible:crear estado
+Visible --> Invisible: atacar/\n[cantidad de destrucciones = \n cantidad solicitada]
+
+}
+
+UnidadOperativa --> UnidadDestruida: recibir ataque /[ vida = 0]
+}
+Unidad --> [*]
+@enduml

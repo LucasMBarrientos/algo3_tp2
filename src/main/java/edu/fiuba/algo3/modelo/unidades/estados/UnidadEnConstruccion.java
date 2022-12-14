@@ -16,12 +16,12 @@ public class UnidadEnConstruccion implements EstadoUnidad {
 
     private Unidad unidad;
     
-    public void moverse(Direccion direccion, Mapa mapa, Coordenada coordenada) {
+    public void moverse(Direccion direccion, Coordenada coordenada) {
         throw new UnidadNoTerminoDeConstruirse();
     }
 
     @Override
-    public void atacar(Coordenada objetivo, Mapa mapa) {
+    public void atacar(Coordenada objetivo) {
       throw new UnidadNoTerminoDeConstruirse();
     }
 
@@ -52,7 +52,6 @@ public class UnidadEnConstruccion implements EstadoUnidad {
       
     }
 
-    public void actualizarListaDeCoordenadasVisibles(List<Coordenada> coordenadasAVisibilizar){ }
 
     public ObjectNode toData() {
         ObjectNode nodo = Json.createObjectNode();

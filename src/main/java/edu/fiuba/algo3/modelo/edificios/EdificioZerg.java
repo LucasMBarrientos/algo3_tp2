@@ -1,19 +1,29 @@
 package edu.fiuba.algo3.modelo.edificios;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import edu.fiuba.algo3.modelo.Json;
+import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioDestruido;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.terrenos.Terreno;
+import edu.fiuba.algo3.modelo.excepciones.NoHayUnZanganoEnEsaCoordenada;
+import edu.fiuba.algo3.modelo.excepciones.TerrenoNoAptoParaConstruirTalEdificio;
+import edu.fiuba.algo3.modelo.geometria.Coordenada;
+import edu.fiuba.algo3.modelo.jugadores.Inventario;
 
 public abstract class EdificioZerg extends Edificio {
 
-    public abstract void ocupar(Terreno terreno);
-
-    public void establecerTerreno(Terreno terreno) {
-        this.terreno = terreno;
+    public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
+        validarCorrelativasDeConstruccion(inventarioDelJugador);
+        consumirRecursosParaConstruccion(inventarioDelJugador);
+        try {
+            Mapa.devolverInstancia().establecerEdificio(coordenada, this);
+        } catch(TerrenoNoAptoParaConstruirTalEdificio | NoHayUnZanganoEnEsaCoordenada exception) {
+            devolverRecursosParaConstruccion(inventarioDelJugador);
+            throw exception;
+        }
+        inventarioDelJugador.eliminarUnidad(coordenada); //elimino al zangano que construyo el edificio
+        return this;
     }
 
     public void ejecutarDanio(Danio danio) {
@@ -23,7 +33,7 @@ public abstract class EdificioZerg extends Edificio {
         }
     }
 
-    public void regenerar(){
+    public void regenerar() {
         vida.regenerar();
     }
 

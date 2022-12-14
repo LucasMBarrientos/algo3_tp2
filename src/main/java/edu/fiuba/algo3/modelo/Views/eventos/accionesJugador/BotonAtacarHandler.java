@@ -2,19 +2,19 @@ package edu.fiuba.algo3.modelo.Views.eventos.accionesJugador;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.AlgoStarView;
+import edu.fiuba.algo3.modelo.Views.ReproductorDeSonidos;
 import edu.fiuba.algo3.modelo.excepciones.AtaqueImposibleDeRealizarse;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEstaDestruido;
-import edu.fiuba.algo3.modelo.excepciones.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.excepciones.UnidadEstaDestruida;
+import edu.fiuba.algo3.modelo.excepciones.UnidadNoTerminoDeConstruirse;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zerling;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
-import java.util.List;
-
-public class BotonAtacarHandler implements EventHandler<ActionEvent> {
+public class BotonAtacarHandler {
 
     AlgoStar algoStar;
     AlgoStarView algoStarView;
@@ -22,34 +22,70 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     Coordenada coordenadaUnidad;
     Coordenada coordenadaObjetivo;
 
-    TextField textFieldCoord1;
-    TextField textFieldCoord2;
 
-    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, TextField textField1, TextField textField2) {
+    public BotonAtacarHandler(AlgoStar algoStar, AlgoStarView algoStarView, Coordenada coordenadaUnidad, Coordenada coordenadaObjetivo) {
         this.algoStar = algoStar;
         this.algoStarView = algoStarView;
         this.coordenadaUnidad = coordenadaUnidad;
-        this.textFieldCoord1 = textField1;
-        this.textFieldCoord2 = textField2;
+        this.coordenadaObjetivo = coordenadaObjetivo;
     }
 
-    @Override
-    public void handle(ActionEvent evento) {
-        Coordenada coordenadaObjetivo = new Coordenada(Integer.parseInt(textFieldCoord1.getText()),Integer.parseInt(textFieldCoord2.getText()));
+    private void lanzarMensajeDeUnidadNoOperativo() {
+        Text texto = new Text("Parece que esta unidad aun esta construccion\n" +
+                "Deberas esperar un poco mas para atacar con ella!");
+        texto.setY(15);
+        texto.setX(15);
+        texto.setFill(Color.INDIANRED);
+        texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+        algoStarView.mostrarMensajeDeAccionProhibida(texto);
+    }
+
+    private void lanzarMensajeDeObjetivoFuraDelRango() {
+        Text texto = new Text("El objetivo que intentas atacar se encuentra fuera del rango de esta unidad\n" +
+                "Deberas acercarte primero! ");
+        texto.setY(15);
+        texto.setX(15);
+        texto.setFill(Color.INDIANRED);
+        texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+        algoStarView.mostrarMensajeDeAccionProhibida(texto);
+    }
+
+    private void lanzarMensajeDeUnidadDestruida() {
+        Text texto = new Text("Felicidades! Has destruido una Unidad enemiga" );
+        texto.setY(15);
+        texto.setX(15);
+        texto.setFill(Color.INDIANRED);
+        texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+        algoStarView.mostrarMensajeDeAccionProhibida(texto);
+    }
+
+    private void lanzarMensajeDeEdificioDestruido() {
+        Text texto = new Text("Felicidades! Has destruido un Edificio enemigo" );
+        texto.setY(15);
+        texto.setX(15);
+        texto.setFill(Color.INDIANRED);
+        texto.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.REGULAR, 13));
+        algoStarView.mostrarMensajeDeAccionProhibida(texto);
+    }
+
+    public void handle() {
         try {
-            algoStar.devolverJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
+            algoStar.hallarJugadorActual().atacar(coordenadaUnidad, coordenadaObjetivo);
+            ReproductorDeSonidos.devolverInstancia().reproducirSonido("/boom.mp3", false);
 
-        }catch (UnidadEstaDestruida e) {
-            //avisar al jugador que destruyo una unidad
+        } catch (UnidadEstaDestruida e) {
+            lanzarMensajeDeUnidadDestruida();
 
-        }catch (EdificioEstaDestruido e) {
-            //avisar al jugador que destruyo un edificio
+        } catch (EdificioEstaDestruido e) {
+            lanzarMensajeDeEdificioDestruido();
 
-        }catch (AtaqueImposibleDeRealizarse e) {
-            //avisar al jugador que el objetivo se encuentra fuera del rango
+        } catch (AtaqueImposibleDeRealizarse e) {
+            lanzarMensajeDeObjetivoFuraDelRango();
 
+        } catch (UnidadNoTerminoDeConstruirse e){
+            lanzarMensajeDeUnidadNoOperativo();
         }
-
         algoStarView.actualizarMapa();
+
     }
 }

@@ -5,18 +5,17 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.ManejoContinuacionDeCreacionDeJugadores;
+import edu.fiuba.algo3.modelo.Views.eventos.topMenu.OpcionSalirEventHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class PantallaDeCreacionDeJugador extends VBox {
@@ -28,9 +27,10 @@ public class PantallaDeCreacionDeJugador extends VBox {
     private ChoiceBox<String> controlParaElegirRaza = new ChoiceBox<String>();
     private TextField casillaDeTextoParaNombre = new TextField();
     private Button botonParaContinuar;
-
+    private GridPane formUsuario = new GridPane();
     private List<Integer> coloresRemovidos;
     private List<Integer> razasRemovidas;
+    private HBox contenedorBotones = new HBox(20);
 
     public PantallaDeCreacionDeJugador(Stage pantalla, Scene proximaEscena, AlgoStar algoStar, AlgoStarView algoView, List<Integer> coloresRemovidos, List<Integer> razasRemovidas) {
         super();
@@ -38,34 +38,63 @@ public class PantallaDeCreacionDeJugador extends VBox {
         this.algoStar = algoStar;
         this.algoStarView = algoView;
         this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
+        this.contenedorBotones.setAlignment(Pos.CENTER);
+        this.formUsuario = new GridPane();
+        this.formUsuario.setAlignment(Pos.CENTER);
+        this.formUsuario.setHgap(20); //horizontal gap in pixels => that's what you are asking for
+        this.formUsuario.setVgap(20);
+        this.setSpacing(40);
         this.setPadding(new Insets(25));
         this.establecerFondo();
-        this.agregarCasillaDeTextoParaNombre();
         this.agregarControlParaSeleccionarColor();
+        this.agregarCasillaDeTextoParaNombre();
         this.coloresRemovidos = coloresRemovidos;
         this.razasRemovidas = razasRemovidas;
-
+        this.formUsuario.getStyleClass().add("form-grid");
+        this.controlParaElegirColor.getStyleClass().add("choice-box");
+        this.controlParaElegirRaza.getStyleClass().add("choice-box");
         this.agregarControlParaSeleccionarRaza();
+        this.getChildren().add(this.formUsuario);
         this.agregarBotonParaContinuar(proximaEscena, coloresRemovidos, razasRemovidas);
+        this.agregarBotonParaSalir();
+        this.getChildren().add(this.contenedorBotones);
     }
 
 
     private void agregarCasillaDeTextoParaNombre() {
-        Label etiqueta = new Label();
-        etiqueta.setFont (Font.font("Tahoma", FontWeight.BOLD, 22));
-        etiqueta.setText ("  Insertar un nombre\nMINIMO 6 Caracteres\nMAXIMO 15 Caracteres ");
-        // etiqueta.setTextFill(Color.web("#6A7C5"));
-        casillaDeTextoParaNombre.setMaxWidth(140);
+        Label nombre = new Label();
+        nombre.setPrefHeight(40);
+        nombre.setText ("Insertar un nombre:");
+        nombre.getStyleClass().add("form-label");
+
         addTextLimiter(casillaDeTextoParaNombre,15);
         casillaDeTextoParaNombre.setPromptText("Ejemplo:Chaqueño");
+        casillaDeTextoParaNombre.getStyleClass().add("nombre-input");
+        casillaDeTextoParaNombre.setPrefHeight(40);
+        nombre.setLayoutX(1);
+        nombre.setLayoutY(1);
+        casillaDeTextoParaNombre.setLayoutX(2);
+        casillaDeTextoParaNombre.setLayoutY(1);
 
-        this.getChildren().add(etiqueta);
-        this.getChildren().add(casillaDeTextoParaNombre);
+        Image infoImage = new Image("/info.png",40,40,false,false);
+        ImageView view = new ImageView(infoImage);
+        
+        Tooltip tt = new Tooltip("MINIMO 6 Caracteres\nMAXIMO 15 Caracteres");
+        tt.setPrefWidth(400);
+        tt.getStyleClass().add("tooltip");
+        Tooltip.install(view, tt);
+        this.formUsuario.add(nombre, 0,1);
+        this.formUsuario.add(casillaDeTextoParaNombre, 1,1);
+        this.formUsuario.add(view, 2,1);
 
     }
 
     private void agregarControlParaSeleccionarColor() {
+        Label nombre = new Label();
+       
+        nombre.setText ("Elegir tu color:");
+        nombre.getStyleClass().add("form-label");
+        nombre.setPrefHeight(40);
         List<String> colores = new ArrayList<String>();
         colores.add("Naranja");
         colores.add("Violeta");
@@ -75,21 +104,31 @@ public class PantallaDeCreacionDeJugador extends VBox {
         controlParaElegirColor.getItems().addAll(colores);
         controlParaElegirColor.setValue("Elegir un color");
         controlParaElegirColor.setOnMouseClicked(this::seleccionarColor);
-        this.getChildren().add(controlParaElegirColor);
+        controlParaElegirColor.setPrefHeight(40);
+
+        this.formUsuario.add(nombre, 0,2);
+        this.formUsuario.add(controlParaElegirColor, 1,2);
     }
 
     private void agregarControlParaSeleccionarRaza() {
+        Label nombre = new Label();
+
+        nombre.setText ("Elegir tu raza:");
+        nombre.getStyleClass().add("form-label");
+        nombre.setPrefHeight(40);
         controlParaElegirRaza.getItems().add("Zerg");
         controlParaElegirRaza.getItems().add("Protoss");
         controlParaElegirRaza.setValue("Elegir una raza");
         controlParaElegirRaza.setOnMouseClicked(this::seleccionarRaza);
-        this.getChildren().add(controlParaElegirRaza);
+        controlParaElegirRaza.setPrefHeight(40);
+
+        this.formUsuario.add(nombre, 0,3);
+        this.formUsuario.add(controlParaElegirRaza, 1,3);
     }
-
-
 
     private void agregarBotonParaContinuar(Scene proximaEscena, List<Integer> coloresRemovidos, List<Integer> razasRemovidas) {
         this.botonParaContinuar = new Button();
+        botonParaContinuar.getStyleClass().add("btn-comenzar");
         if (razasRemovidas.size() == 1) {
             botonParaContinuar.setText("Continuar");
         } else {
@@ -108,27 +147,23 @@ public class PantallaDeCreacionDeJugador extends VBox {
         );
 
         botonParaContinuar.setOnAction(manejoCotinuacionDeCreacionDeJugadores);
-        this.getChildren().add(botonParaContinuar);
+        this.contenedorBotones.getChildren().add(botonParaContinuar);
 
     }
 
+    private void agregarBotonParaSalir() {
+      Button botonParaSalir = new Button("Salir del juego");
+      botonParaSalir.getStyleClass().add("btn-salir");
+      OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
+      botonParaSalir.setOnAction(opcionSalirEventHandler);
+    
+      this.contenedorBotones.getChildren().add(botonParaSalir);
+  }
+
     private void establecerFondo() {
-                // imgView.setX(50);
-                //imgView.setY(50);
-        /*      ImageView imageView = new ImageView();
-                imageView.setImage(bgImage);
-                imageView.setFitHeight(780);
-                imageView.setFitWidth(1620);
-
-        */
-
         Image imgFondo = new Image("/fondo1.jpg");
-         BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
-
+        BackgroundImage fondo = new BackgroundImage(imgFondo, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,new BackgroundSize(pantalla.getOutputScaleX(),pantalla.getMaxWidth(),true,true,true,true));
         this.setBackground(new Background(fondo));
-        // this.setStyle("-fx-background: #7d7d7d; -fx-border-color: #7d7d7d;");
-        // this.getStylesheets().addAll(this.getClass().getResource("descarga.png").toExternalForm());
-        // contenedorCentral.setPadding(new Insets(5));
     }
 
     public void seleccionarColor(MouseEvent e) {

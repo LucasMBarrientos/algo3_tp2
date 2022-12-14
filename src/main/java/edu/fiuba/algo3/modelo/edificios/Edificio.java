@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.edificios;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import edu.fiuba.algo3.modelo.Nombre;
+import edu.fiuba.algo3.modelo.estadisticas.Nombre;
 import edu.fiuba.algo3.modelo.edificios.estados.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.edificios.estados.EstadoEdificio;
 import edu.fiuba.algo3.modelo.estadisticas.Danio;
@@ -18,10 +17,8 @@ import edu.fiuba.algo3.modelo.unidades.protoss.Scout;
 import edu.fiuba.algo3.modelo.unidades.protoss.Zealot;
 import edu.fiuba.algo3.modelo.unidades.zerg.*;
 
-import java.util.List;
-
 public abstract class Edificio {
-
+    
     protected EstadoEdificio estadoActual = new EdificioEnConstruccion();
     protected Terreno terreno;
     protected Recurso costoEnMinerales;
@@ -30,17 +27,8 @@ public abstract class Edificio {
     protected Nombre nombre;
     protected int tiempoDeConstruccion;
     protected Coordenada coordenada;
-    
-    public void deshacerConstruccion() {
-        this.estadoActual.deshacerConstruccion();
-    }
-    
-    public Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador) {
-        validarCorrelativasDeConstruccion(inventarioDelJugador);
-        consumirRecursosParaConstruccion(inventarioDelJugador);
-        this.coordenada = coordenada;
-        return this;
-    }
+
+    public abstract Edificio construir(Coordenada coordenada, Inventario inventarioDelJugador);
 
     public void consumirRecursosParaConstruccion(Inventario inventario) {
         inventario.consumirMinerales(costoEnMinerales);
@@ -56,8 +44,6 @@ public abstract class Edificio {
         this.estadoActual.actualizar(inventario);
     }
 
-    public abstract void actualizarEdificio(Inventario inventario);
-
     public void ingresarUnidad(Unidad unidad) {
         estadoActual.ingresarUnidad(unidad);
     }
@@ -69,10 +55,6 @@ public abstract class Edificio {
     public boolean reducirTiempoConstruccion(int tiempoAReducir) {
         this.tiempoDeConstruccion = Math.max(0, this.tiempoDeConstruccion - tiempoAReducir);
         return this.tiempoDeConstruccion == 0;
-    }
-
-    public void terminarConstruccion() {
-        this.estadoActual.terminarConstruccion();
     }
 
     public void establecerEstado(EstadoEdificio estado) {
@@ -88,10 +70,14 @@ public abstract class Edificio {
         return this.coordenada.esIgual(coordenadaComparada);
     }
 
-    public void actualizarListasDeCoordenadas(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
-        this.estadoActual.actualizarListasDeCoordenadas(coordenadasConCriaderos, coordenadasConPilones);
-    }
-    
+    public abstract void actualizarEdificio(Inventario inventario);
+
+    public abstract void ocupar(Terreno terreno);
+
+    public abstract void ejecutarDanio(Danio danio);
+
+    public abstract void regenerar();
+
     public Nombre devolverNombre() {
         return nombre;
     }
@@ -109,10 +95,6 @@ public abstract class Edificio {
     }
 
     public void validarCorrelativasDeConstruccion(Inventario inventario) {
-        return;
-    }
-
-    public void actualizarListasDeCoordenadasSegunEdificio(List<Coordenada> coordenadasConCriaderos, List<Coordenada> coordenadasConPilones) {
         return;
     }
 
@@ -156,14 +138,14 @@ public abstract class Edificio {
         throw new EdificioNoConoceEstaUnidad();
     }
 
-    public abstract void ejecutarDanio(Danio danio);
+    public void volverNuevamenteOperativo() {
+        return;
+    }
 
-    public abstract void regenerar();
+    public void volverEdificioInoperativo() {
+        return;
+    }
 
     public abstract ObjectNode toData();
-
-    public abstract void ocupar(Terreno terreno);
-
-    public abstract void establecerTerreno(Terreno terreno);
 
 }

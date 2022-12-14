@@ -3,43 +3,29 @@ package edu.fiuba.algo3.modelo.Views;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import edu.fiuba.algo3.modelo.AlgoStar;
-import edu.fiuba.algo3.modelo.Json;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.unidades.zerg.Zangano;
 import edu.fiuba.algo3.modelo.geometria.Coordenada;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
+
 public class MapaView {
-/*
-    var player = javafx.scene.media.MediaPlayer {
-        repeatCount: javafx.scene.media.MediaPlayer.REPEAT_FOREVER
-        media: Media { source: "{\_\_DIR\_\_}clip.wav"
-        };
-    };
-    */
-    Mapa mapa;
+
     AlgoStarView algoStarView;
     Group info = new Group();
+    GridPane pruebaGrid = new GridPane();
+    Coordenada coordenadaUnidad;
     private Group terrenoGroup = new Group();
     private Group ocupanteGroup = new Group();
-
+    boolean atacando = false;
+    boolean ingresadoAEdificio = false;
+    String colorJugadorActual = "";
 
     //#region Imagenes
     Image imagenVacio = new  Image("/imgVacio.jpg", 35, 35, false, false);
@@ -70,138 +56,311 @@ public class MapaView {
     Image imagenAsimilador = new Image("/Asimilador.png", 35, 35, false, false);
     Image imagenAcceso = new Image("/Acceso.png", 35, 35, false, false);
     Image imagenPuertoEstelar = new Image("/PuertoEstelar.png", 35, 35, false, false);
+//#endregion
 
     //#endregion
 
     double opacityVisible = 1;
     double opacityInvisible = 0.5;
 
-    public MapaView(Mapa mapa, AlgoStarView algoStarView) {
-        this.mapa = mapa;
+    public MapaView(AlgoStarView algoStarView) {
         this.algoStarView = algoStarView;
     }
 
-    public Group dibujar() {
+    /*public Group dibujar() {
       info.getChildren().clear();
       dibujarTerrenos();
       dibujarOcupantes();
       return info;
+    }*/
+
+    public GridPane dibujar() {
+      colorJugadorActual = this.algoStarView.colorJugadorActual();
+      atacando = false;
+      pruebaGrid.getChildren().clear();
+      dibujarTerrenos();
+      dibujarOcupantes();
+      return pruebaGrid;
     }
+
+    public GridPane dibujar(boolean atacando, Coordenada unidad, boolean ingresandoAEdificio) {
+      this.atacando = true;
+      this.coordenadaUnidad = unidad;
+      pruebaGrid.getChildren().clear();
+      dibujarTerrenos();
+      dibujarOcupantes();
+      return pruebaGrid;
+    }
+
 
     private void dibujarOcupantes()  {
         List<ObjectNode> nodos = null;
         try {
-            nodos = mapa.toJsonOcupantes();
+            nodos = Mapa.devolverInstancia().toJsonOcupantes();
 
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             System.out.println("Error al mostrar Ocupantes");
         }
 
         int sizeX = 10;
         int sizeY = 10;
-        int posX = 2 ;
-        int posY = 2 ;
-        int separacion = 40;
-        ocupanteGroup.getChildren().clear();
+        int posX = 1 ;
+        int posY = 1 ;
         
         for (JsonNode nodo : nodos) {
             switch (nodo.get("Ocupante").get("nombre").asText()){
                 case "AmoSupremo":{
                   ImageView imageAmoSupremoSprite= new ImageView(imagenAmoSupremo);
-                  imageAmoSupremoSprite.setY(posY*separacion);
-                  imageAmoSupremoSprite.setX(posX*separacion);
+                  BorderPane imageAmoSupremoWrapper = new BorderPane(imageAmoSupremoSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  
+                  imageAmoSupremoWrapper.setLayoutX(posX);
+                  imageAmoSupremoWrapper.setLayoutY(posY);
                   imageAmoSupremoSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                    if(atacando){
+                      algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraAmoSupremo(coor);
+                    }else{
+                      algoStarView.crearBotoneraAmoSupremo(crearCoordenada(nodo));
+                      setStatsUnidad(nodo);
+                    }
                   });
-                  ocupanteGroup.getChildren().add(imageAmoSupremoSprite);
+                  
+                  imageAmoSupremoWrapper.setOnMouseEntered(event ->  {
+                    imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageAmoSupremoWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " " +75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageAmoSupremoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+                    
+                  //ocupanteGroup.getChildren().add(imageAmoSupremoSprite);
+                  pruebaGrid.add(imageAmoSupremoWrapper, posX, posY);
                   break;
                 }
                 case "Zangano":{
                   ImageView imageZanganoSprite= new ImageView(imagenZangano);
-                  imageZanganoSprite.setY(posY*separacion);
-                  imageZanganoSprite.setX(posX*separacion);
-                  imageZanganoSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageZanganoWrapper = new BorderPane(imageZanganoSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageZanganoWrapper.setLayoutX(posX);
+                  imageZanganoWrapper.setLayoutY(posY);
+                  imageZanganoWrapper.setOnMouseClicked(event ->  {
+                    if(atacando){
+                        algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                    } else {
+                        algoStarView.crearBotoneraZangano(crearCoordenada(nodo));
+                    }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraZangano(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageZanganoSprite);
+                  imageZanganoWrapper.setOnMouseEntered(event ->  {
+                    imageZanganoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageZanganoWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageZanganoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+                  //ocupanteGroup.getChildren().add(imageZanganoSprite);
+                  pruebaGrid.add(imageZanganoWrapper, posX, posY);
                   break;
                 }
                 case "Zerling":{
                   ImageView imageZerlingSprite= new ImageView(imagenZerling);
-                  imageZerlingSprite.setY(posY*separacion);
-                  imageZerlingSprite.setX(posX*separacion);
-                  imageZerlingSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageZerlingWrapper = new BorderPane(imageZerlingSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageZerlingWrapper.setLayoutX(posX);
+                  imageZerlingWrapper.setLayoutY(posY);
+                  imageZerlingWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                      }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraUnidadNormal(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageZerlingSprite);
+                  imageZerlingWrapper.setOnMouseEntered(event ->  {
+                    imageZerlingWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageZerlingWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageZerlingWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+                  //ocupanteGroup.getChildren().add(imageZerlingSprite);
+                  pruebaGrid.add(imageZerlingWrapper, posX, posY);
                   break;
                 }
                 case "Hidralisco":{
                     ImageView imageHidraliscoSprite= new ImageView(imagenHidralisco);
-                    imageHidraliscoSprite.setY(posY*separacion);
-                    imageHidraliscoSprite.setX(posX*separacion);
-                    imageHidraliscoSprite.setOnMouseClicked(event ->  {
-                        int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                        int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                    BorderPane imageHidraliscoWrapper = new BorderPane(imageHidraliscoSprite);
+                    int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                    if(tiempoConstruccion > 0){
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                    imageHidraliscoWrapper.setLayoutX(posX);
+                    imageHidraliscoWrapper.setLayoutY(posY);
+                    imageHidraliscoWrapper.setOnMouseClicked(event ->  {
+                        if(atacando){
+                            algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                        }else{
+                            algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                        }
                         setStatsUnidad(nodo);
-                        Coordenada coor = new Coordenada(x,y);
-                        algoStarView.crearBotoneraUnidadNormal(coor);
                     });
-                    ocupanteGroup.getChildren().add(imageHidraliscoSprite);
+                    
+                    imageHidraliscoWrapper.setOnMouseEntered(event ->  {
+                      imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageHidraliscoWrapper.setOnMouseExited(e -> {
+                      if(tiempoConstruccion > 0){
+                        imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                      }else{
+                        imageHidraliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                      }
+                    });
+                    //ocupanteGroup.getChildren().add(imageHidraliscoSprite);
+                    pruebaGrid.add(imageHidraliscoWrapper, posX, posY);
                     break;
                 }
                 case "Mutalisco":{
                   ImageView imageMutaliscoSprite= new ImageView(imagenMutalisco);
-                  imageMutaliscoSprite.setY(posY*separacion);
-                  imageMutaliscoSprite.setX(posX*separacion);
-                  imageMutaliscoSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageMutaliscoWrapper = new BorderPane(imageMutaliscoSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageMutaliscoWrapper.setLayoutX(posX);
+                  imageMutaliscoWrapper.setLayoutY(posY);
+                  imageMutaliscoWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraMutalisco(crearCoordenada(nodo));
+                      }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraMutalisco(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageMutaliscoSprite);
+                  
+                  imageMutaliscoWrapper.setOnMouseEntered(event ->  {
+                    imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageMutaliscoWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageMutaliscoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+                  //ocupanteGroup.getChildren().add(imageMutaliscoSprite);
+                  pruebaGrid.add(imageMutaliscoWrapper, posX, posY);
                   break;
                 }
                 case "Guardian":{
                   ImageView imageGuardianSprite= new ImageView(imagenGuardian);
-                  imageGuardianSprite.setY(posY*separacion);
-                  imageGuardianSprite.setX(posX*separacion);
-                  imageGuardianSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageGuardianWrapper = new BorderPane(imageGuardianSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageGuardianWrapper.setLayoutX(posX);
+                  imageGuardianWrapper.setLayoutY(posY);
+                  imageGuardianWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                      }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraUnidadNormal(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageGuardianSprite);
+                  
+                  imageGuardianSprite.setOnMouseEntered(event ->  {
+                    imageGuardianSprite.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageGuardianSprite.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageGuardianWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+                  //ocupanteGroup.getChildren().add(imageGuardianSprite);
+                  pruebaGrid.add(imageGuardianSprite, posX, posY);
                   break;
                 }
                 case "Devorador":{
                   ImageView imageDevoradorSprite= new ImageView(imagenDevorador);
-                  imageDevoradorSprite.setY(posY*separacion);
-                  imageDevoradorSprite.setX(posX*separacion);
-                  imageDevoradorSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageDevoradorWrapper = new BorderPane(imageDevoradorSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageDevoradorWrapper.setLayoutX(posX);
+                  imageDevoradorWrapper.setLayoutY(posY);
+                  imageDevoradorWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                      }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraUnidadNormal(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageDevoradorSprite);
+                  
+                  imageDevoradorWrapper.setOnMouseEntered(event ->  {
+                    imageDevoradorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageDevoradorWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageDevoradorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+
+                  //ocupanteGroup.getChildren().add(imageDevoradorSprite);
+                  pruebaGrid.add(imageDevoradorWrapper, posX, posY);                  
                   break;
                 }
                 case "Zealot":{
@@ -211,191 +370,492 @@ public class MapaView {
                   }else{
                     imageZealotSprite.setOpacity(opacityInvisible);
                   }
-                  imageZealotSprite.setY(posY*separacion);
-                  imageZealotSprite.setX(posX*separacion);
-                  imageZealotSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageZealotWrapper = new BorderPane(imageZealotSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageZealotWrapper.setLayoutX(posX);
+                  imageZealotWrapper.setLayoutY(posY);
+
+                  imageZealotWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                      }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraUnidadNormal(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageZealotSprite);
+                  
+                  imageZealotWrapper.setOnMouseEntered(event ->  {
+                    imageZealotWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageZealotWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageZealotWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imageZealotSprite);
+                  pruebaGrid.add(imageZealotWrapper, posX, posY); 
                   break;
                 }
                 case "Dragon":{
                   ImageView imageDragonSprite= new ImageView(imagenDragon);
-                  imageDragonSprite.setY(posY*separacion);
-                  imageDragonSprite.setX(posX*separacion);
-                  imageDragonSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                      setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraUnidadNormal(coor);
+                  BorderPane imageDragonWrapper = new BorderPane(imageDragonSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                   imageDragonWrapper.setLayoutX(posX);
+                   imageDragonWrapper.setLayoutY(posY);
+                   imageDragonWrapper.setOnMouseClicked(event ->  {
+                       if(atacando){
+                           algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                       }else{
+                           algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                       }
+                       setStatsUnidad(nodo);
                   });
-                  ocupanteGroup.getChildren().add(imageDragonSprite);
+                  
+                  imageDragonWrapper.setOnMouseEntered(event ->  {
+                    imageDragonWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageDragonWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageDragonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imageDragonSprite);
+                  pruebaGrid.add(imageDragonWrapper, posX, posY);                   
                   break;
                 }
                 case "Scout":{
                   ImageView imageScoutSprite= new ImageView(imagenScout);
-                  imageScoutSprite.setY(posY*separacion);
-                  imageScoutSprite.setX(posX*separacion);
-                  imageScoutSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageScoutWrapper = new BorderPane(imageScoutSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageScoutWrapper.setLayoutX(posX);
+                  imageScoutWrapper.setLayoutY(posY);
+                  imageScoutWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraUnidadNormal(crearCoordenada(nodo));
+                      }
                       setStatsUnidad(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraUnidadNormal(coor);
                   });
-                  ocupanteGroup.getChildren().add(imageScoutSprite);
+                  
+                  imageScoutWrapper.setOnMouseEntered(event ->  {
+                    imageScoutWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageScoutWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageScoutWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imageScoutSprite);
+                  pruebaGrid.add(imageScoutWrapper, posX, posY);     
                   break;
                 }
                 case "Criadero":{
                     ImageView imageCriaderoSprite= new ImageView(imagenCriadero);
-                    imageCriaderoSprite.setY(posY*separacion);
-                    imageCriaderoSprite.setX(posX*separacion);
-                    imageCriaderoSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                      setStatsEdificio(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraCriadero(coor);
+                    BorderPane imageCriaderoWrapper = new BorderPane(imageCriaderoSprite);
+                    int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                    if(tiempoConstruccion > 0){
+                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                    
+                    imageCriaderoWrapper.setLayoutX(posX);
+                    imageCriaderoWrapper.setLayoutY(posY);
+                    imageCriaderoWrapper.setOnMouseClicked(event ->  {
+                        if(atacando){
+                            algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                        }else{
+                            algoStarView.crearBotoneraCriadero(crearCoordenada(nodo));
+                        }
+                        setStatsEdificio(nodo);
                     });
-                    ocupanteGroup.getChildren().add(imageCriaderoSprite);
+                  
+                    imageCriaderoWrapper.setOnMouseEntered(event ->  {
+                      imageCriaderoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageCriaderoWrapper.setOnMouseExited(e -> {
+                      if(tiempoConstruccion > 0){
+                        imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                      }else{
+                        imageCriaderoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                      }
+                    });
+   
+                    //ocupanteGroup.getChildren().add(imageCriaderoSprite);
+                    pruebaGrid.add(imageCriaderoWrapper, posX, posY);                             
                     break;
                 }
                 case "ReservaDeReproduccion":{
                     ImageView imagenReservaDeReproduccionSprite= new ImageView(imagenReservaDeReproduccion);
-                    imagenReservaDeReproduccionSprite.setY(posY*separacion);
-                    imagenReservaDeReproduccionSprite.setX(posX*separacion);
-                    imagenReservaDeReproduccionSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                      setStatsEdificio(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraReservaDeReproduccion(coor);
+                    BorderPane imageReservaDeReproduccionWrapper = new BorderPane(imagenReservaDeReproduccionSprite);int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                    if(tiempoConstruccion > 0){
+                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+
+                    imageReservaDeReproduccionWrapper.setLayoutX(posX);
+                    imageReservaDeReproduccionWrapper.setLayoutY(posY);
+                    imageReservaDeReproduccionWrapper.setOnMouseClicked(event ->  {
+                        if(atacando){
+                            algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                        }else{
+                            algoStarView.crearBotoneraReservaDeReproduccion(crearCoordenada(nodo));
+                        }
+                        setStatsEdificio(nodo);
                     });
-                    ocupanteGroup.getChildren().add(imagenReservaDeReproduccionSprite);
+                  
+                    imageReservaDeReproduccionWrapper.setOnMouseEntered(event ->  {
+                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageReservaDeReproduccionWrapper.setOnMouseExited(e -> {
+                      if(tiempoConstruccion > 0){
+                        imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                      }else{
+                      imageReservaDeReproduccionWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                      }
+                    });
+   
+                    //ocupanteGroup.getChildren().add(imagenReservaDeReproduccionSprite);
+                    pruebaGrid.add(imageReservaDeReproduccionWrapper, posX, posY);                                    
                     break;
                 }
                 case "Extractor":{
                   ImageView imagenExtractorSprite= new ImageView(imagenExtractor);
-                  imagenExtractorSprite.setY(posY*separacion);
-                  imagenExtractorSprite.setX(posX*separacion);
-                  imagenExtractorSprite.setOnMouseClicked(event ->  {
-                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                    setStatsEdificio(nodo);
-                    Coordenada coor = new Coordenada(x,y);
-                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                  BorderPane imageExtractorWrapper = new BorderPane(imagenExtractorSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageExtractorWrapper.setLayoutX(posX);
+                  imageExtractorWrapper.setLayoutY(posY);
+                  imageExtractorWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
+                      }
+                      setStatsEdificio(nodo);
                   });
-                  ocupanteGroup.getChildren().add(imagenExtractorSprite);
+                  
+                  imageExtractorWrapper.setOnMouseEntered(event ->  {
+                    imageExtractorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageExtractorWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageExtractorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenExtractorSprite);
+                  pruebaGrid.add(imageExtractorWrapper, posX, posY);                         
                   break;
                 }
                 case "Guarida":{
                   ImageView imagenGuaridaSprite= new ImageView(imagenGuarida);
-                  imagenGuaridaSprite.setY(posY*separacion);
-                  imagenGuaridaSprite.setX(posX*separacion);
-                  imagenGuaridaSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  BorderPane imageGuaridaWrapper = new BorderPane(imagenGuaridaSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageGuaridaWrapper.setLayoutX(posX);
+                  imageGuaridaWrapper.setLayoutY(posY);
+                  imageGuaridaWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraGuarida(crearCoordenada(nodo));
+                      }
                       setStatsEdificio(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraGuarida(coor);
                   });
-                  ocupanteGroup.getChildren().add(imagenGuaridaSprite);
+                  
+                  imageGuaridaWrapper.setOnMouseEntered(event ->  {
+                    imageGuaridaWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageGuaridaWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageGuaridaWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenGuaridaSprite);
+                  pruebaGrid.add(imageGuaridaWrapper, posX, posY); 
                   break;
                 }
                 case "Espiral":{
                   ImageView imagenEspiralSprite= new ImageView(imagenEspiral);
-                  imagenEspiralSprite.setY(posY*separacion);
-                  imagenEspiralSprite.setX(posX*separacion);
+                  BorderPane imageEspiralWrapper = new BorderPane(imagenEspiralSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageEspiralWrapper.setLayoutX(posX);
+                  imageEspiralWrapper.setLayoutY(posY);
                   imagenEspiralSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraEspiral(crearCoordenada(nodo));
+                      }
                       setStatsEdificio(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraEspiral(coor);
                   });
-                  ocupanteGroup.getChildren().add(imagenEspiralSprite);
+                  
+                  imageEspiralWrapper.setOnMouseEntered(event ->  {
+                    imageEspiralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageEspiralWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageEspiralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenEspiralSprite);
+                  pruebaGrid.add(imageEspiralWrapper, posX, posY); 
                   break;
                 }
                 case "NexoMineral":{
-                  ImageView imagenNexoMineralSprite= new ImageView(imagenNexoMineral);
-                  imagenNexoMineralSprite.setY(posY*separacion);
-                  imagenNexoMineralSprite.setX(posX*separacion);
-                  imagenNexoMineralSprite.setOnMouseClicked(event ->  {
-                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                    setStatsEdificio(nodo);
-                    Coordenada coor = new Coordenada(x,y);
-                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                  ImageView imagenNexoMineralSprite= new ImageView(imagenNexoMineral);                  
+                  BorderPane imageNexoMineralWrapper = new BorderPane(imagenNexoMineralSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageNexoMineralWrapper.setLayoutX(posX);
+                  imageNexoMineralWrapper.setLayoutY(posY);
+                  imageNexoMineralWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
+                      }
+                      setStatsEdificio(nodo);
                   });
-                  ocupanteGroup.getChildren().add(imagenNexoMineralSprite);
+                  
+                  imageNexoMineralWrapper.setOnMouseEntered(event ->  {
+                    imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageNexoMineralWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageNexoMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenNexoMineralSprite);
+                  pruebaGrid.add(imageNexoMineralWrapper, posX, posY);                  
                   break;
                 }
                 case "Pilon":{
-                  ImageView imagenPilonSprite= new ImageView(imagenPilon);
-                  imagenPilonSprite.setY(posY*separacion);
-                  imagenPilonSprite.setX(posX*separacion);
-                  imagenPilonSprite.setOnMouseClicked(event ->  {
-                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                    setStatsEdificio(nodo);
-                    Coordenada coor = new Coordenada(x,y);
-                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                  ImageView imagenPilonSprite= new ImageView(imagenPilon);                  
+                  BorderPane imagePilonWrapper = new BorderPane(imagenPilonSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imagePilonWrapper.setLayoutX(posX);
+                  imagePilonWrapper.setLayoutY(posY);
+                  imagePilonWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                        algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
+                      }
+                      setStatsEdificio(nodo);
                   });
-                  ocupanteGroup.getChildren().add(imagenPilonSprite);
+                  
+                  imagePilonWrapper.setOnMouseEntered(event ->  {
+                    imagePilonWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imagePilonWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imagePilonWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenPilonSprite);
+                  pruebaGrid.add(imagePilonWrapper, posX, posY);  
                   break;
                 }
                 case "Asimilador":{
-                  ImageView imagenAsimiladorSprite= new ImageView(imagenAsimilador);
-                  imagenAsimiladorSprite.setY(posY*separacion);
-                  imagenAsimiladorSprite.setX(posX*separacion);
-                  imagenAsimiladorSprite.setOnMouseClicked(event ->  {
-                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                    setStatsEdificio(nodo);
-                    Coordenada coor = new Coordenada(x,y);
-                    algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                  ImageView imagenAsimiladorSprite= new ImageView(imagenAsimilador);                 
+                  BorderPane imageAsimiladorWrapper = new BorderPane(imagenAsimiladorSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageAsimiladorWrapper.setLayoutX(posX);
+                  imageAsimiladorWrapper.setLayoutY(posY);
+                  imageAsimiladorWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                        algoStarView.setBottom(algoStarView.crearBotoneraVacia(crearCoordenada(nodo)));
+                      }
+                      setStatsEdificio(nodo);
                   });
-                  ocupanteGroup.getChildren().add(imagenAsimiladorSprite);
+                  
+                  imageAsimiladorWrapper.setOnMouseEntered(event ->  {
+                    imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageAsimiladorWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageAsimiladorWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenAsimiladorSprite);
+                  pruebaGrid.add(imageAsimiladorWrapper, posX, posY);                    
                   break;
                 }
                 case "Acceso":{
-                  ImageView imagenAccesoSprite= new ImageView(imagenAcceso);
-                  imagenAccesoSprite.setY(posY*separacion);
-                  imagenAccesoSprite.setX(posX*separacion);
-                  imagenAccesoSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                      int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+                  ImageView imagenAccesoSprite= new ImageView(imagenAcceso);                 
+                  BorderPane imageAccesoWrapper = new BorderPane(imagenAccesoSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imageAccesoWrapper.setLayoutX(posX);
+                  imageAccesoWrapper.setLayoutY(posY);
+                  imageAccesoWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraAcceso(crearCoordenada(nodo));
+                      }
                       setStatsEdificio(nodo);
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraAcceso(coor);
                   });
-                  ocupanteGroup.getChildren().add(imagenAccesoSprite);
+                  
+                  imageAccesoWrapper.setOnMouseEntered(event ->  {
+                    imageAccesoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imageAccesoWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imageAccesoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenAccesoSprite);
+                  pruebaGrid.add(imageAccesoWrapper, posX, posY);                      
                   break;
                 }
                 case "PuertoEstelar":{
-                  ImageView imagenPuertoEstelarSprite= new ImageView(imagenPuertoEstelar);
-                  imagenPuertoEstelarSprite.setY(posY*separacion);
-                  imagenPuertoEstelarSprite.setX(posX*separacion);
+                  ImageView imagenPuertoEstelarSprite= new ImageView(imagenPuertoEstelar);                 
+                  BorderPane imagePuertoEstelarWrapper = new BorderPane(imagenPuertoEstelarSprite);
+                  int tiempoConstruccion = nodo.get("Ocupante").get("tiempoDeConstruccion").intValue();
+
+                  if(tiempoConstruccion > 0){
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                  }else{
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                  }
+                  imagePuertoEstelarWrapper.setLayoutX(posX);
+                  imagePuertoEstelarWrapper.setLayoutY(posY);
                   imagenPuertoEstelarSprite.setOnMouseClicked(event ->  {
-                    int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
-                    int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
-                    setStatsEdificio(nodo);
-                    Coordenada coor = new Coordenada(x,y);
-                    algoStarView.crearBotoneraPuertoEstelar(coor);
+                      if(atacando){
+                          algoStarView.realizarAtaque(coordenadaUnidad, crearCoordenada(nodo));
+                      }else{
+                          algoStarView.crearBotoneraPuertoEstelar(crearCoordenada(nodo));
+                      }
+                      setStatsEdificio(nodo);
                   });
-                  ocupanteGroup.getChildren().add(imagenPuertoEstelarSprite);
+                  
+                  imagePuertoEstelarWrapper.setOnMouseEntered(event ->  {
+                    imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                  });
+                  
+                  imagePuertoEstelarWrapper.setOnMouseExited(e -> {
+                    if(tiempoConstruccion > 0){
+                      imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: linear-gradient(to right, " + colorJugadorActual + " "+75/tiempoConstruccion+"%, grey 1px);");
+                    }else{
+                      imagePuertoEstelarWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    }
+                  });
+ 
+                  //ocupanteGroup.getChildren().add(imagenPuertoEstelarSprite);
+                  pruebaGrid.add(imagePuertoEstelarWrapper, posX, posY);                      
                   break;
                 }
                 case "Desocupado":{
                     break;
                 }
                 case "cambioDeLinea":{
-                    posX = 1;
+                    posX = 0;
                     posY ++;
                     break;
                 }
@@ -405,9 +865,15 @@ public class MapaView {
             }
             posX ++;
         }
-        info.getChildren().add(ocupanteGroup);
+        //info.getChildren().add(ocupanteGroup);
     }
 
+    private Coordenada crearCoordenada(JsonNode nodo){
+        int x = nodo.get("Ocupante").get("coordenada").get("x").asInt();
+        int y = nodo.get("Ocupante").get("coordenada").get("y").asInt();
+        Coordenada coordenada = new Coordenada(x,y);
+        return coordenada;
+    }
     private void setStatsUnidad(JsonNode node){
         algoStarView.setPantallDeStatsUnidad(node);
     }
@@ -416,10 +882,14 @@ public class MapaView {
         algoStarView.setPantallDeStatsEdificio(node);
     }
 
+    private void setStatsTerreno(JsonNode node){
+      algoStarView.setPantallDeStatsTerreno(node);
+  }
+
     private void dibujarTerrenos(){
         List<ObjectNode> nodos = null;
         try {
-            nodos = mapa.toJsonTerrenos();
+            nodos = Mapa.devolverInstancia().toJsonTerrenos();
         }catch (JsonProcessingException e){
              System.out.println("Error al mostrar terrenos");
         } catch (IOException e) {
@@ -428,95 +898,174 @@ public class MapaView {
 
 
         //Aca se dibujarian los terrenos
-        int sizeX = 35;
-        int sizeY = 35;
-        int posX = 2 ;
-        int posY = 2 ;
-        int separacion = 40;
-        terrenoGroup.getChildren().clear();
+        int posX = 1 ;
+        int posY = 1 ;
+        //terrenoGroup.getChildren().clear();
         for (JsonNode nodo : nodos) {
             switch (nodo.get("nombre").asText()){
                 case "Aereo":{
                     ImageView imageEspecialesSprite= new ImageView(imagenEspecial);
-                    imageEspecialesSprite.setY(posY*separacion);
-                    imageEspecialesSprite.setX(posX*separacion);
-                    imageEspecialesSprite.setOnMouseClicked(event ->  {
+                    BorderPane imageEspecialWrapper = new BorderPane(imageEspecialesSprite);
+                    imageEspecialWrapper.setLayoutX(posX);
+                    imageEspecialWrapper.setLayoutY(posY);
+                    imageEspecialWrapper.setOnMouseClicked(event ->  {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                      setStatsTerreno(nodo);
                     });
-                    terrenoGroup.getChildren().add(imageEspecialesSprite);
+
+                    imageEspecialWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    imageEspecialWrapper.setOnMouseEntered(event ->  {
+                      imageEspecialWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageEspecialWrapper.setOnMouseExited(e -> {
+                      imageEspecialWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    });
+
+                    //terrenoGroup.getChildren().add(imageEspecialesSprite);
+                    pruebaGrid.add(imageEspecialWrapper, posX, posY);
                     break;
                 }
                 case "Vacio":{
                     ImageView imageVacioSprite= new ImageView(imagenVacio);
-                    imageVacioSprite.setY(posY*separacion);
-                    imageVacioSprite.setX(posX*separacion);
-                    imageVacioSprite.setOnMouseClicked(event ->  {
-                      int x = nodo.get("coordenada").get("x").asInt();
-                      int y = nodo.get("coordenada").get("y").asInt();
-                      Coordenada coor = new Coordenada(x,y);
-                      algoStarView.crearBotoneraTerrenoVacio(coor);
+                    BorderPane imageVacioWrapper = new BorderPane(imageVacioSprite);
+                   
+                    imageVacioWrapper.setLayoutX(posX);
+                    imageVacioWrapper.setLayoutY(posY);
+                    imageVacioWrapper.setOnMouseClicked(event ->  {
+                      if(atacando){
+                        int x = nodo.get("coordenada").get("x").asInt();
+                        int y = nodo.get("coordenada").get("y").asInt();
+                        Coordenada coor = new Coordenada(x,y);
+                        algoStarView.realizarAtaque(coordenadaUnidad,coor);
+                        setStatsTerreno(nodo);
+                      }else{
+                        int x = nodo.get("coordenada").get("x").asInt();
+                        int y = nodo.get("coordenada").get("y").asInt();
+                        Coordenada coor = new Coordenada(x,y);
+                        algoStarView.crearBotoneraTerrenoVacio(coor);
+                        setStatsTerreno(nodo);
+                      }
                     });
-                    terrenoGroup.getChildren().add(imageVacioSprite);
+                    imageVacioWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    imageVacioWrapper.setOnMouseEntered(event ->  {
+                      imageVacioWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageVacioWrapper.setOnMouseExited(e -> {
+                      imageVacioWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    });
+                    
+
+                    //imageVacioWrapper.getStyleClass().add("terreno-vacio");
+                    //terrenoGroup.getChildren().add(imageVacioWrapper);
+                    pruebaGrid.add(imageVacioWrapper, posX, posY);
                     break;
                 }
                 case "Mineral":{
                     ImageView imageMineralSprite= new ImageView(imagenMineral);
-                    imageMineralSprite.setY(posY*separacion);
-                    imageMineralSprite.setX(posX*separacion);
-                    imageMineralSprite.setOnMouseClicked(event ->  {
+                    BorderPane imageMineralWrapper = new BorderPane(imageMineralSprite);
+                    imageMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    imageMineralWrapper.setLayoutX(posX);
+                    imageMineralWrapper.setLayoutY(posY);
+                    imageMineralWrapper.setOnMouseClicked(event ->  {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraMineral(coor);
+                      setStatsTerreno(nodo);
                     });
-                    terrenoGroup.getChildren().add(imageMineralSprite);
+                    
+                    imageMineralWrapper.setOnMouseEntered(event ->  {
+                      imageMineralWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageMineralWrapper.setOnMouseExited(e -> {
+                      imageMineralWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    });
+                    //terrenoGroup.getChildren().add(imageMineralSprite);
+                    pruebaGrid.add(imageMineralWrapper, posX, posY);
                     break;
                 }
                 case "Moho":{
                     ImageView imageMohoSprite= new ImageView(imagenMoho);
-                    imageMohoSprite.setY(posY*separacion);
-                    imageMohoSprite.setX(posX*separacion);
-                    imageMohoSprite.setOnMouseClicked(event ->  {
+                    BorderPane imageMohoWrapper = new BorderPane(imageMohoSprite);
+                    imageMohoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    imageMohoWrapper.setLayoutX(posX);
+                    imageMohoWrapper.setLayoutY(posY);
+                    imageMohoWrapper.setOnMouseClicked(event ->  {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.setBottom(algoStarView.crearBotoneraVacia(coor));
+                      setStatsTerreno(nodo);
                     });
-                    terrenoGroup.getChildren().add(imageMohoSprite);
+
+                    imageMohoWrapper.setOnMouseEntered(event ->  {
+                      imageMohoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageMohoWrapper.setOnMouseExited(e -> {
+                      imageMohoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    });
+
+                    //terrenoGroup.getChildren().add(imageMohoSprite);
+                    pruebaGrid.add(imageMohoWrapper, posX, posY);
                     break;
                 }
                 case "Volcan":{
                     ImageView imageVolcanSprite= new ImageView(imagenVolcan);
-                    imageVolcanSprite.setY(posY*separacion);
-                    imageVolcanSprite.setX(posX*separacion);
-                    imageVolcanSprite.setOnMouseClicked(event ->  {
+                    BorderPane imageVolcanWrapper = new BorderPane(imageVolcanSprite);
+                    imageVolcanWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    imageVolcanWrapper.setLayoutX(posX);
+                    imageVolcanWrapper.setLayoutY(posY);
+                    imageVolcanWrapper.setOnMouseClicked(event ->  {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraVolcan(coor);
+                      setStatsTerreno(nodo);
                     });
-                    terrenoGroup.getChildren().add(imageVolcanSprite);
+                    imageVolcanWrapper.setOnMouseEntered(event ->  {
+                      imageVolcanWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
                     
+                    imageVolcanWrapper.setOnMouseExited(e -> {
+                      imageVolcanWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    });
+                    //terrenoGroup.getChildren().add(imageVolcanSprite);
+                    pruebaGrid.add(imageVolcanWrapper, posX, posY);
                     break;
                 }
                 case "Energizado":{
                     ImageView imageEnergizadoSprite= new ImageView(imagenEnergizado);
-                    imageEnergizadoSprite.setY(posY*separacion);
-                    imageEnergizadoSprite.setX(posX*separacion);
-                    imageEnergizadoSprite.setOnMouseClicked(event ->  {
+                    BorderPane imageEnergizadoWrapper = new BorderPane(imageEnergizadoSprite);
+                    imageEnergizadoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    imageEnergizadoWrapper.setLayoutX(posX);
+                    imageEnergizadoWrapper.setLayoutY(posY);
+                    imageEnergizadoWrapper.setOnMouseClicked(event ->  {
                       int x = nodo.get("coordenada").get("x").asInt();
                       int y = nodo.get("coordenada").get("y").asInt();
                       Coordenada coor = new Coordenada(x,y);
                       algoStarView.crearBotoneraEnergizado(coor);
+                      setStatsTerreno(nodo);
                     });
-                    terrenoGroup.getChildren().add(imageEnergizadoSprite);
+                    imageEnergizadoWrapper.setOnMouseEntered(event ->  {
+                      imageEnergizadoWrapper.setStyle("-fx-border-width: 5px;" + "-fx-border-color: " + colorJugadorActual + ";");
+                    });
+                    
+                    imageEnergizadoWrapper.setOnMouseExited(e -> {
+                      imageEnergizadoWrapper.setStyle("-fx-border-width: 5px;"+ "-fx-border-color: grey;");
+                    });
+                    //terrenoGroup.getChildren().add(imageEnergizadoSprite);
+                    pruebaGrid.add(imageEnergizadoWrapper, posX, posY);
                     break;
                 }
                 case "cambioDeLinea":{
-                    posX = 1;
+                    posX = 0;
                     posY ++;
                     break;
                 }
@@ -526,6 +1075,6 @@ public class MapaView {
             }
             posX ++;
         }
-        info.getChildren().add(terrenoGroup);
+        //info.getChildren().add(terrenoGroup);
     }
 }

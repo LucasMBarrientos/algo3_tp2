@@ -1,13 +1,18 @@
 package edu.fiuba.algo3.modelo.Views;
 
-import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class ReproductorDeSonidos {
+
+    private static ReproductorDeSonidos instancia = new ReproductorDeSonidos();
+    private MediaPlayer control;
+
+    public static ReproductorDeSonidos devolverInstancia() {
+        return instancia;
+    }
 
     private Media extraerSonido(String directorioDelArchivo) {
         try {
@@ -18,13 +23,21 @@ public class ReproductorDeSonidos {
         }
     }
 
-    public void reproducirSonido(String directorioDelArchivo) {
-        reproducirSonido(this.extraerSonido(directorioDelArchivo));
-    }
-
-    public void reproducirSonido(Media sonido) {
-        MediaPlayer control = new MediaPlayer(sonido);
-        control.setCycleCount(MediaPlayer.INDEFINITE);
+    public void reproducirSonido(String directorioDelArchivo, boolean loop) {
+        Media media = this.extraerSonido(directorioDelArchivo);
+        control = new MediaPlayer(media);
+        if (loop) {
+            Runnable onEnd = new Runnable() {
+                @Override
+                public void run() {
+                    control.dispose();
+                    control = new MediaPlayer(media);
+                    control.play();
+                    control.setOnEndOfMedia(this);
+                }
+            };
+            control.setOnEndOfMedia(onEnd);
+        }
         control.setAutoPlay(true);
         control.setOnReady(() -> {
             control.play();

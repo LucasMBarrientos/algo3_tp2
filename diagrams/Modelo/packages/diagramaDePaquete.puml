@@ -2,44 +2,87 @@
 
 
 
-package "modelo" {
-file AlgoStar.java
-package "jugadores" {
-file Inventario
-Inventario -> recursos
-Inventario --> unidades
-Inventario -left-> edificios
-package "recursos" {
+package modelo {
+class AlgoStar
+class Mapa
+
+package edificios {
 
 }
 
-package "edificios" {
+package geometria {
+package direcciones{
+class Abajo
+class Arriba
+class Derecha
+class Izquierda
+}
+interface Direccion
+class Coordenada
+class SuperficieRectangular
+Coordenada .> Direccion
+Direccion <|.. direcciones
+SuperficieRectangular -up-> Coordenada
+}
+package jugadores {
+'class Inventario
+'abstract Jugador
+'class JugadorZerg
+'class JugadorProtoss
+
+'Jugador -> Inventario
+'Jugador <|--JugadorProtoss
+'Jugador <|-left JugadorZerg
+'Inventario .up> recursos
 
 }
-package "unidades" {
+package recursos {
 
 }
-edificios -->estadisticas
-unidades ->estadisticas
+package terrenos {
+interface EstadoTerreno
+abstract Terreno
+Terreno <|- TerrenoAereo
+Terreno <|-left- TerrenoMineral
+Terreno <|-- TerrenoVolcan
+Terreno <|--- TerrenoBase
+EstadoTerreno <- TerrenoBase
+EstadoTerreno <|-. TerrenoVacio
+EstadoTerreno <|.. TerrenoEnergizado
+EstadoTerreno <|-. TerrenoMoho
 
-package "estadisticas" {
+}
+
+package unidades {
+}
+package estadisticas {
+class Nombre
+class Danio
+class Escudo
+class Vida
 
 }
 
 
+}
+AlgoStar --> jugadores
+jugadores -------right--> edificios
+jugadores ---> unidades
+jugadores ...> Mapa
+Mapa    -down-> terrenos
+Mapa    -down-> geometria
+terrenos  --> geometria
+jugadores -right--> Nombre
+jugadores -----> recursos
 
-}
-AlgoStar.java -down-> jugadores
-jugadores --> mapa
-package "mapa" {
-package "terrenos" {
+'edificios -->estadisticas
+'unidades -down-> estadisticas
 
-}
-}
+'Inventario -> recursos
+'edificios <-right- Inventario
+'Inventario -down-> unidades
 
-}
-package "JUnit" {
-        file Test
-}
-Test --> modelo
+'class Inventario
+
+
 @enduml

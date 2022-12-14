@@ -19,13 +19,13 @@ public class CasoDeUso19 {
 
     @Test
     public void unZerlingPuedeAtacarAlScoutPeroNoLeHaceDaño() {
-        Mapa mapa = new Mapa(new Coordenada(100, 50));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(100, 50));
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(0));
         Zerling zerling = new Zerling();
         Scout scout = new Scout();
 
-        mapa.establecerUnidad(new Coordenada(2, 1), zerling);
-        mapa.establecerUnidad(new Coordenada(2, 2), scout);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,1), zerling);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,2), scout);
 
         for (int i=0; i<20; i++) {
             zerling.actualizar(inventario);
@@ -33,29 +33,31 @@ public class CasoDeUso19 {
         }
 
         for (int i = 0; i < 200; i++) {
-            zerling.atacar(new Coordenada(2, 2), mapa);
+            zerling.atacar(new Coordenada(2, 2));
         }
 
         for (int i = 0; i < 4; i++) {
-            scout.atacar(new Coordenada(2, 1), mapa);
+            scout.atacar(new Coordenada(2, 1));
         }
 
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
-            scout.atacar(new Coordenada(2, 1), mapa);
+            scout.atacar(new Coordenada(2, 1));
         });
     }
     
     @Test
     public void unGuardianPuedeAtacarAlZealotPeroNoAlScout() {
-        Mapa mapa = new Mapa(new Coordenada(100, 50));
+        Mapa.devolverInstancia().establecerDimension(new Coordenada(100, 50));
         Inventario inventario = new Inventario(new GasVespeno(0), new Mineral(0), new Suministro(0));
         Guardian guardian = new Guardian();
         Zealot zealot = new Zealot();
         Scout scout = new Scout();
 
-        mapa.establecerUnidad(new Coordenada(2, 1), guardian);
-        mapa.establecerUnidad(new Coordenada(3, 1), zealot);
-        mapa.establecerUnidad(new Coordenada(2, 2), scout);
+
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,1), guardian);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(3,1), zealot);
+        Mapa.devolverInstancia().establecerUnidad(new Coordenada(2,2), scout);
+
 
         for (int i=0; i<20; i++) {
             guardian.actualizar(inventario);
@@ -64,16 +66,16 @@ public class CasoDeUso19 {
         }
 
         for (int i = 0; i < 200; i++) {
-            guardian.atacar(new Coordenada(2, 2), mapa);
+            guardian.atacar(new Coordenada(2, 2));
         }
 
         for (int i = 0; i < 6; i++) {
-            guardian.atacar(new Coordenada(3, 1), mapa);
+            guardian.atacar(new Coordenada(3, 1));
         }
 
         // Puede destruir al zealot
         Assertions.assertThrows(UnidadEstaDestruida.class, ()->{
-            guardian.atacar(new Coordenada(3, 1), mapa);
+            guardian.atacar(new Coordenada(3, 1));
         });
     }    
 

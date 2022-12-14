@@ -2,16 +2,12 @@ package edu.fiuba.algo3.modelo.Views;
 
 import edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Views.eventos.BotonBienvenida;
-import edu.fiuba.algo3.modelo.Views.eventos.BotonEntrarEventHandler;
 import edu.fiuba.algo3.modelo.Views.eventos.topMenu.OpcionSalirEventHandler;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -42,10 +38,11 @@ public class PantallaBienvenida extends VBox {
 
         Button boton = new Button();
         boton.setText("Comenzar Partida");
+        boton.getStyleClass().add("btn-comenzar");
         BotonBienvenida botonBienvenida = new BotonBienvenida(stage,escenaJuego,algoStar);
         boton.setOnAction(botonBienvenida);
         Button botonParaSalir = new Button("Salir del juego");
-
+        botonParaSalir.getStyleClass().add("btn-salir");
         OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
         botonParaSalir.setOnAction(opcionSalirEventHandler);
 
