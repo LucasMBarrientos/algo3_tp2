@@ -35,6 +35,7 @@ abstract Edificio{
 +generarUnidad(unidad,inventario)
 +volverNuevamenteOperativo()
 +volverEdificioInoperativo()toData():ObjecNode
+
 }
 
 
@@ -71,13 +72,27 @@ abstract EdificioZerg{
 '{abstract}+ocupar
 '{abstract}+validarCoorelativasDeCostruccion(inventario)
 }
+
+class EdificioOperativo{
+-edificio:Edificio
+}
+class EdificioInoperativo{
+-edificio:Edificio
+}
+class EdificioEnConstruccion{
+-edificio:Edificio
+}
+class EdificioDestruido{
+-edificio:Edificio
+}
 Edificio-> EstadoEdificio
-EstadoEdificio <|..EdificioOperativo
+EstadoEdificio <|..EdificioInoperativo
+EstadoEdificio <|...EdificioOperativo
 EstadoEdificio <|...EdificioEnConstruccion
 EstadoEdificio <|..EdificioDestruido
 Edificio <|--- EdificioProtoss
 Edificio <|-- EdificioZerg
-Edificio ---> Nombre
+Edificio -up-> Nombre
 Edificio -up-> Coordenada
 Edificio -up-> Recurso
 Edificio -left> Vida
